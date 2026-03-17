@@ -1,3 +1,5 @@
+[![CI](https://github.com/carllosnc/dashkit/actions/workflows/ci.yml/badge.svg)](https://github.com/carllosnc/dashkit/actions/workflows/ci.yml)
+
 # Dashkit UI
 
 A premium, highly customizable React component library designed specifically for modern web applications and developer tools. Dashkit focuses on developer experience, bringing together best-in-class tooling, robust test coverage, and a beautiful neutral-toned aesthetic.
@@ -69,3 +71,11 @@ bun run lint
 
 ## CI / CD
 Dashkit uses **GitHub Actions** to automatically lint, type-check, build, and test on every Pull Request and commit pushed to the `main` branch.
+
+## License
+Dashkit is released under the [MIT License](LICENSE).
+
+---
+
+Dashkit is created and maintained by [CarllosNC](https://github.com/carllosnc).
+
