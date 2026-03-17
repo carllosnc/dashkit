@@ -26,7 +26,7 @@ function App() {
 
       {/* Hero Section */}
       <main className="flex-1 flex flex-col items-center justify-center text-center px-6 py-24">
-        <h1 className="text-5xl md:text-5xl font-extrabold tracking-tight text-neutral-900 dark:text-white max-w-4xl leading-[1.1] mb-6">
+        <h1 className="text-5xl md:text-5xl tracking-tight text-neutral-900 dark:text-white max-w-4xl leading-[1.1] mb-6">
           Build beautiful dashboards <br className="hidden md:block" />
           at the speed of light.
         </h1>
