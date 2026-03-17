@@ -1,73 +1,71 @@
-# React + TypeScript + Vite
+# Dashkit UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A premium, highly customizable React component library designed specifically for modern web applications and developer tools. Dashkit focuses on developer experience, bringing together best-in-class tooling, robust test coverage, and a beautiful neutral-toned aesthetic.
 
-Currently, two official plugins are available:
+**Status:** Active Development
+- `Button` component is designed, tested, and shipped.
+- `Input` & `Card` components are WIP.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech Stack
 
-## React Compiler
+Dashkit is built with modern, blazingly-fast technologies:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Framework**: [React 19](https://react.dev/)
+- **Bundler**: [Vite](https://vitejs.dev/)
+- **Styling**: [TailwindCSS v4](https://tailwindcss.com/)
+- **Typography**: [Inter Variable Font](https://rsms.me/inter/)
+- **Routing**: [React Router v7](https://reactrouter.com/)
+- **Testing**: [Vitest](https://vitest.dev/) + React Testing Library
+- **Icons**: [React Icons](https://react-icons.github.io/react-icons/)
+- **Package Manager**: [Bun](https://bun.sh/)
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
+Make sure you have [Bun](https://bun.sh/) installed on your machine.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Installation
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Clone the repository and install dependencies using Bun:
+```bash
+git clone https://github.com/your-username/dashkit.git
+cd dashkit
+bun install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Running the Development Server
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+To spin up your local environment and view the component sandbox & documentation:
+```bash
+bun run dev
 ```
+Navigate to `http://localhost:5173/` in your browser.
+
+## Testing and Linting
+
+Dashkit has a full testing suite configured with Vitest and JSDOM. 
+
+**Run standard tests once:**
+```bash
+bun run test
+```
+
+**Run tests in watch-mode (restarts on save):**
+```bash
+bun run test:watch
+```
+
+**Run ESLint:**
+```bash
+bun run lint
+```
+
+## Project Structure
+
+- `src/components/` - The core reusable UI components.
+- `src/layouts/` - Shared layouts for the main app and documentation pages.
+- `src/pages/` - Interactive documentation and functional test pages.
+- `src/setupTests.ts` - Vitest setup definitions.
+
+## CI / CD
+Dashkit uses **GitHub Actions** to automatically lint, type-check, build, and test on every Pull Request and commit pushed to the `main` branch.
