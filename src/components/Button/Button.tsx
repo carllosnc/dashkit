@@ -14,7 +14,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         className={clsx(
           "inline-flex items-center justify-center gap-2 px-4 py-[5px] rounded-full",
-          "text-sm font-medium border",
+          "text-sm border",
           "transition-colors duration-200",
           "focus:outline-none",
           {
