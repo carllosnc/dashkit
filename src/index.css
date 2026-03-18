@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 @import "@fontsource-variable/inter";
 
 @theme {
@@ -10,4 +11,55 @@
     @apply antialiased text-gray-900 bg-white dark:text-gray-100 dark:bg-gray-950;
   }
 }
+
+@layer utilities {
+  @keyframes spinner-dash {
+    0% {
+      stroke-dasharray: 1, 150;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -35;
+    }
+    100% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -124;
+    }
+  }
+
+  .animate-spinner-dash {
+    animation: spinner-dash 1.5s ease-in-out infinite;
+  }
+}
+
+@layer components {
+  /* rehype-pretty-code: styling */
+  [data-rehype-pretty-code-figure] {
+    @apply mb-6;
+  }
+
+  [data-rehype-pretty-code-figure] pre {
+    @apply rounded-lg border border-neutral-200 dark:border-neutral-800 px-4 py-3 text-[13px] leading-relaxed overflow-x-auto bg-neutral-900! dark:bg-neutral-900!;
+  }
+
+  [data-rehype-pretty-code-figure] code {
+    @apply grid min-w-full;
+  }
+
+  [data-rehype-pretty-code-figure] [data-line] {
+    @apply px-1;
+  }
+
+  /* Reset prose code styling so Shiki handles colors */
+  .prose [data-rehype-pretty-code-figure] code {
+    @apply text-inherit;
+  }
+
+  .prose [data-rehype-pretty-code-figure] code::before,
+  .prose [data-rehype-pretty-code-figure] code::after {
+    content: none;
+  }
+}
+
 

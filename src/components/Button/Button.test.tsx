@@ -37,4 +37,11 @@ describe('Button', () => {
     const button = screen.getByRole('button');
     expect(button).toBeDisabled();
   });
+
+  it('shows loading spinner and disables when loading state is enabled', () => {
+    const { container } = render(<Button loading>Submit</Button>);
+    const button = screen.getByRole('button');
+    expect(button).toBeDisabled();
+    expect(container.querySelector('svg.animate-spin')).toBeInTheDocument();
+  });
 });

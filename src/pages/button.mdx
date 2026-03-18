@@ -1,0 +1,95 @@
+# Button
+
+A highly customizable button component supporting multiple variants, icons, and loading states.
+
+## Import
+
+```tsx
+import { Button } from '@/components/Button/Button'
+```
+
+## Variants
+
+Use the `variant` prop to switch between visual styles.
+
+<Preview>
+  <Button variant="filled">Filled</Button>
+  <Button variant="outlined">Outlined</Button>
+</Preview>
+
+```tsx
+<Button variant="filled">Filled</Button>
+<Button variant="outlined">Outlined</Button>
+```
+
+## With Icons
+
+Use `leftIcon` and `rightIcon` to add icons before or after the label.
+
+<Preview>
+  <Button variant="filled" leftIcon={<FiDownload />}>
+    Download Data
+  </Button>
+  <Button variant="outlined" rightIcon={<FiArrowRight />}>
+    Next Step
+  </Button>
+</Preview>
+
+```tsx
+import { FiDownload, FiArrowRight } from 'react-icons/fi'
+
+<Button variant="filled" leftIcon={<FiDownload />}>
+  Download Data
+</Button>
+
+<Button variant="outlined" rightIcon={<FiArrowRight />}>
+  Next Step
+</Button>
+```
+
+## Loading State
+
+Set the `loading` prop to show a spinner and disable the button. When loading, the left icon is replaced by the spinner and the right icon is hidden.
+
+<Preview>
+  <Button variant="filled" loading>
+    Saving Changes
+  </Button>
+  <Button variant="outlined" loading>
+    Processing
+  </Button>
+</Preview>
+
+```tsx
+<Button variant="filled" loading>
+  Saving Changes
+</Button>
+```
+
+## Disabled
+
+Use the native `disabled` prop. The button becomes non-interactive with reduced opacity.
+
+<Preview>
+  <Button variant="filled" disabled>Filled Disabled</Button>
+  <Button variant="outlined" disabled>Outlined Disabled</Button>
+</Preview>
+
+```tsx
+<Button variant="filled" disabled>Filled Disabled</Button>
+<Button variant="outlined" disabled>Outlined Disabled</Button>
+```
+
+## Props
+
+The component extends all native `ButtonHTMLAttributes<HTMLButtonElement>` props (e.g. `onClick`, `type`, `disabled`, `className`), plus the following:
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'filled' \| 'outlined'` | `'filled'` | Visual style of the button. |
+| `leftIcon` | `ReactNode` | — | Icon element rendered before the label. Replaced by spinner when `loading`. |
+| `rightIcon` | `ReactNode` | — | Icon element rendered after the label. Hidden when `loading`. |
+| `loading` | `boolean` | `false` | Shows a spinner, disables the button, and hides icons. |
+| `disabled` | `boolean` | `false` | Disables the button with reduced opacity. |
+| `className` | `string` | — | Additional CSS classes merged via `clsx`. |
+| `ref` | `Ref<HTMLButtonElement>` | — | Forwarded ref to the underlying `<button>` element. |

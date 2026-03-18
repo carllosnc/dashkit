@@ -3,8 +3,9 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
 import App from './App.tsx'
-import { ButtonDocs } from './pages/ButtonDocs.tsx'
+import ButtonDocs from './pages/button.mdx'
 import { DocsLayout } from './layouts/DocsLayout.tsx'
+import { MdxWrapper } from './layouts/MdxWrapper.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -12,9 +13,10 @@ createRoot(document.getElementById('root')!).render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/docs" element={<DocsLayout />}>
-          <Route path="button" element={<ButtonDocs />} />
+          <Route path="button" element={<MdxWrapper Component={ButtonDocs} />} />
         </Route>
       </Routes>
     </BrowserRouter>
   </StrictMode>,
 )
+
