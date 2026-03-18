@@ -80,6 +80,20 @@ Use the native `disabled` prop. The button becomes non-interactive with reduced 
 <Button variant="outlined" disabled>Outlined Disabled</Button>
 ```
 
+## Icon Only
+
+If you omit the `children` (label) and provide only an icon, the button will automatically switch to a circular/square layout with balanced padding. **Note:** Always provide an `aria-label` for accessibility when using icon-only buttons.
+
+<Preview>
+  <Button variant="filled" leftIcon={<FiDownload />} aria-label="Download" />
+  <Button variant="outlined" leftIcon={<FiArrowRight />} aria-label="Next" />
+</Preview>
+
+```tsx
+<Button variant="filled" leftIcon={<FiDownload />} aria-label="Download" />
+<Button variant="outlined" leftIcon={<FiArrowRight />} aria-label="Next" />
+```
+
 ## Props
 
 The component extends all native `ButtonHTMLAttributes<HTMLButtonElement>` props (e.g. `onClick`, `type`, `disabled`, `className`), plus the following:
