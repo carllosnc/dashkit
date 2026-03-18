@@ -1,5 +1,13 @@
 import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from 'react';
-import clsx from 'clsx';
+import clsx, { type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+/**
+ * Utility for merging tailwind classes with conflict resolution
+ */
+function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'filled' | 'outlined';
@@ -9,6 +17,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const LoadingSpinner = () => (
+
   <>
     <style>{`
       @keyframes spinner-dash {
@@ -66,14 +75,14 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         disabled={disabled || loading}
-        className={clsx(
+        className={cn(
           "inline-flex items-center justify-center rounded-full transition-all duration-200 focus:outline-none",
           "text-sm border",
           {
             "bg-black text-white border-transparent dark:bg-white dark:text-black": variant === 'filled',
             "bg-transparent text-black border-neutral-500 hover:bg-neutral-100 dark:text-white dark:border-white": variant === 'outlined',
             "opacity-60 cursor-not-allowed": loading || disabled,
-
+            
             // Layout
             "gap-2 px-4 py-[5px]": !isIconOnly,
             "p-[8px] aspect-square": isIconOnly,
