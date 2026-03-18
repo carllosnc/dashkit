@@ -7,16 +7,20 @@ import ButtonDocs from './pages/button.mdx'
 import { DocsLayout } from './layouts/DocsLayout.tsx'
 import { MdxWrapper } from './layouts/MdxWrapper.tsx'
 
+import { ThemeProvider } from './components/ThemeProvider.tsx'
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/docs" element={<DocsLayout />}>
-          <Route path="button" element={<MdxWrapper Component={ButtonDocs} />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <ThemeProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/docs" element={<DocsLayout />}>
+            <Route path="button" element={<MdxWrapper Component={ButtonDocs} />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
   </StrictMode>,
 )
 

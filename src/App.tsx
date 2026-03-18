@@ -1,10 +1,11 @@
 import { Button } from './components/Button/Button'
 import { FiArrowRight, FiGithub, FiLayers } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
+import { ThemeToggle } from './components/ThemeToggle'
 
 function App() {
   return (
-    <div className="flex flex-col min-h-screen bg-neutral-50 dark:bg-neutral-950 font-sans">
+    <div className="flex flex-col min-h-screen bg-neutral-50 dark:bg-neutral-950 font-sans transition-colors duration-300">
       {/* Navigation */}
       <nav className="flex items-center justify-between px-8 py-4 border-b border-neutral-200 dark:border-neutral-800 bg-white/50 dark:bg-neutral-950/50 backdrop-blur-md sticky top-0 z-50">
         <div className="flex items-center gap-2 text-xl font-bold tracking-tight text-neutral-900 dark:text-white">
@@ -18,11 +19,13 @@ function App() {
           <a href="#" className="text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition-colors">
             Components
           </a>
+          <ThemeToggle />
           <a href="#" className="text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">
             <FiGithub size={20} />
           </a>
         </div>
       </nav>
+
 
       {/* Hero Section */}
       <main className="flex-1 flex flex-col items-center justify-center text-center px-6 py-24">

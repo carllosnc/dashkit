@@ -1,5 +1,6 @@
 import { FiGithub, FiLayers } from 'react-icons/fi';
 import { Link, Outlet, useLocation } from 'react-router-dom';
+import { ThemeToggle } from '../components/ThemeToggle';
 import clsx from 'clsx';
 
 export function DocsLayout() {
@@ -7,7 +8,7 @@ export function DocsLayout() {
   const currentPath = location.pathname;
 
   return (
-    <div className="min-h-screen bg-white dark:bg-neutral-950 font-sans flex flex-col">
+    <div className="min-h-screen bg-white dark:bg-neutral-950 font-sans flex flex-col transition-colors duration-300">
       {/* Navigation */}
       <nav className="flex items-center justify-between px-8 py-4 border-b border-neutral-200 dark:border-neutral-800 bg-white/50 dark:bg-neutral-950/50 backdrop-blur-md sticky top-0 z-50">
         <Link to="/" className="flex items-center gap-2 text-xl font-bold tracking-tight text-neutral-900 dark:text-white">
@@ -21,11 +22,14 @@ export function DocsLayout() {
           <Link to="/" className="text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition-colors">
             Components
           </Link>
+          <ThemeToggle />
           <a href="#" className="text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">
             <FiGithub size={20} />
           </a>
         </div>
       </nav>
+
+
 
       {/* Main Layout */}
       <div className="flex-1 max-w-7xl w-full mx-auto px-6 grid grid-cols-[240px_1fr] gap-12">
