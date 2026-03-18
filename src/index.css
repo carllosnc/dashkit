@@ -6,6 +6,9 @@
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
 }
 
+@variant dark (&:where(.dark, .dark *));
+
+
 @layer base {
   body {
     @apply antialiased text-neutral-900 bg-white dark:text-neutral-100 dark:bg-[#030303];

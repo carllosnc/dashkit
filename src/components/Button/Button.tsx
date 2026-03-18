@@ -80,9 +80,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           "text-sm border",
           {
             "bg-black text-white border-transparent dark:bg-white dark:text-black": variant === 'filled',
-            "bg-transparent text-black border-neutral-500 hover:bg-neutral-100 dark:text-white dark:border-white": variant === 'outlined',
+            "bg-transparent text-neutral-800 border-neutral-400 hover:bg-neutral-50 dark:text-neutral-100 dark:border-neutral-700 dark:hover:bg-neutral-900/50": variant === 'outlined',
             "opacity-60 cursor-not-allowed": loading || disabled,
-            
             // Layout
             "gap-2 px-4 py-[5px]": !isIconOnly,
             "p-[8px] aspect-square": isIconOnly,
