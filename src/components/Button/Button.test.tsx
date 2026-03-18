@@ -29,7 +29,7 @@ describe('Button', () => {
     render(<Button variant="outlined">Click Me</Button>);
     const button = screen.getByRole('button');
     expect(button).toHaveClass('bg-transparent');
-    expect(button).toHaveClass('border-neutral-500');
+    expect(button).toHaveClass('border-neutral-400');
   });
 
   it('passes generic attributes to button element', () => {

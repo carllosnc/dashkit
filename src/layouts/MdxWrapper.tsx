@@ -1,9 +1,14 @@
-import { useState, useRef, type ComponentType, type ReactNode } from 'react';
+import React, { useState, useRef, type ComponentType, type ReactNode } from 'react';
 import { Button } from '../components/Button/Button';
 import { FiDownload, FiArrowRight, FiCopy, FiCheck } from 'react-icons/fi';
 
 type MdxComponentProps = { components?: Record<string, unknown> };
 type MdxComponent = ComponentType<MdxComponentProps>;
+
+interface CustomPreProps extends React.HTMLAttributes<HTMLPreElement> {
+  'data-theme'?: string;
+  'data-language'?: string;
+}
 
 const CopyButton = ({ preRef }: { preRef: React.RefObject<HTMLPreElement | null> }) => {
   const [isCopied, setIsCopied] = useState(false);
@@ -33,19 +38,24 @@ const CopyButton = ({ preRef }: { preRef: React.RefObject<HTMLPreElement | null>
   );
 };
 
-const CustomPre = ({ children, ...props }: { children: ReactNode }) => {
+const CustomPre = ({ children, className, ...props }: CustomPreProps) => {
   const preRef = useRef<HTMLPreElement>(null);
 
+  // In dual-theme output, Shiki renders two versions. 
+  // We pass all attributes (including data-theme) to the container 
+  // so that index.css can show/hide the entire block (including the copy button).
   return (
-    <div className="relative group mt-6 first:mt-0 overflow-hidden">
-      <pre ref={preRef} {...props} className="m-0!">
+    <div 
+      {...props}
+      className="relative group mt-6 first:mt-0 overflow-hidden rounded-lg border border-neutral-200 dark:border-neutral-800"
+    >
+      <pre ref={preRef} className="m-0! bg-transparent!">
         {children}
       </pre>
       <CopyButton preRef={preRef} />
     </div>
   );
 };
-
 
 const components = {
   Button,
@@ -66,4 +76,3 @@ export function MdxWrapper({ Component }: { Component: MdxComponent }) {
     </div>
   );
 }
-

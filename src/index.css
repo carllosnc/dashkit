@@ -15,7 +15,6 @@
   }
 }
 
-
 @layer components {
   /* rehype-pretty-code: styling */
   [data-rehype-pretty-code-figure] {
@@ -23,8 +22,19 @@
   }
 
   [data-rehype-pretty-code-figure] pre {
-    @apply rounded-none! dark:border-neutral-800 px-4 py-3 text-[13px] leading-relaxed overflow-x-auto bg-neutral-900! dark:bg-neutral-900!;
+    @apply rounded-none! dark:border-neutral-800 px-4 py-3 text-[13px] leading-relaxed overflow-x-auto;
   }
+
+  /* Shiki dual-theme support */
+  [data-theme='dark'],
+  .dark [data-theme='light'] {
+    display: none !important;
+  }
+
+  .dark [data-theme='dark'] {
+    display: block !important;
+  }
+
 
   [data-rehype-pretty-code-figure] code {
     @apply grid min-w-full;
