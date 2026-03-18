@@ -48,6 +48,21 @@
           "target": "components/ui/checkbox.tsx"
         }
       ]
+    },
+    {
+      "name": "radio",
+      "type": "registry:ui",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "files": [
+        {
+          "path": "src/components/Radio/Radio.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/radio.tsx"
+        }
+      ]
     }
   ]
 }

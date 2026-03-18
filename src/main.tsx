@@ -6,6 +6,7 @@ import App from './App.tsx'
 import ButtonDocs from './pages/button.mdx'
 import CheckboxDocs from './pages/checkbox.mdx'
 import InputDocs from './pages/input.mdx'
+import RadioDocs from './pages/radio.mdx'
 import IntroductionDocs from './pages/introduction.mdx'
 import { DocsLayout } from './layouts/DocsLayout.tsx'
 import { MdxWrapper } from './layouts/MdxWrapper.tsx'
@@ -24,6 +25,7 @@ createRoot(document.getElementById('root')!).render(
             <Route path="button" element={<MdxWrapper Component={ButtonDocs} />} />
             <Route path="input" element={<MdxWrapper Component={InputDocs} />} />
             <Route path="checkbox" element={<MdxWrapper Component={CheckboxDocs} />} />
+            <Route path="radio" element={<MdxWrapper Component={RadioDocs} />} />
           </Route>
         </Routes>
       </BrowserRouter>

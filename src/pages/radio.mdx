@@ -1,0 +1,126 @@
+# Radio
+
+A premium radio button component for single choices from a set, with support for labels and descriptions.
+
+## Import
+
+```tsx
+import { Radio } from '@/components/Radio/Radio'
+```
+
+## CLI
+
+Add the radio button to your project using the shadcn CLI:
+
+```bash
+bunx shadcn@latest add https://raw.githubusercontent.com/carllosnc/dashkit/master/registry.json:radio
+```
+
+## Basic Usage
+
+The basic radio button with a label. Usually part of a group sharing the same `name`.
+
+<Preview>
+  <div className="flex flex-col gap-4">
+    <Radio label="Option 1" name="radio-demo" value="1" defaultChecked />
+    <Radio label="Option 2" name="radio-demo" value="2" />
+  </div>
+</Preview>
+
+```tsx
+<div className="flex flex-col gap-4">
+  <Radio label="Option 1" name="radio-group" value="1" defaultChecked />
+  <Radio label="Option 2" name="radio-group" value="2" />
+</div>
+```
+
+## With Description
+
+You can add descriptions for more complex choices.
+
+<Preview>
+  <div className="flex flex-col gap-6 w-full max-w-md">
+    <Radio 
+      label="Standard Shipping" 
+      description="Delivery in 3-5 business days" 
+      name="shipping" 
+      value="standard" 
+      defaultChecked 
+    />
+    <Radio 
+      label="Priority Shipping" 
+      description="Next day delivery by morning" 
+      name="shipping" 
+      value="priority" 
+    />
+  </div>
+</Preview>
+
+```tsx
+<Radio 
+  label="Priority Shipping" 
+  description="Next day delivery by morning" 
+  name="shipping" 
+  value="priority" 
+/>
+```
+
+## States
+
+Supports checked, disabled, and focus states.
+
+<Preview>
+  <div className="flex flex-col gap-6 w-full max-w-sm">
+    <Radio label="Default Checked" defaultChecked />
+    <Radio label="Disabled Unchecked" disabled />
+    <Radio label="Disabled Checked" disabled defaultChecked />
+  </div>
+</Preview>
+
+```tsx
+<Radio label="Default Checked" defaultChecked />
+<Radio label="Disabled Unchecked" disabled />
+<Radio label="Disabled Checked" disabled defaultChecked />
+```
+
+## Controlled
+
+Works seamlessly with React's state management.
+
+<Preview>
+  <RadioDemo />
+</Preview>
+
+```tsx
+import { useState } from 'react'
+
+export function LanguageSelection() {
+  const [value, setValue] = useState('react')
+
+  return (
+    <div className="flex flex-col gap-4">
+      <Radio 
+        label="React" 
+        checked={value === 'react'} 
+        onChange={() => setValue('react')} 
+      />
+      <Radio 
+        label="Vue" 
+        checked={value === 'vue'} 
+        onChange={() => setValue('vue')} 
+      />
+    </div>
+  )
+}
+```
+
+## Props
+
+Extends all native `RadioHTMLAttributes<HTMLInputElement>` (except `type`), plus these specialties:
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | — | Label text rendered to the right. |
+| `description` | `string` | — | Subtle description text rendered below the label. |
+| `className` | `string` | — | Additional CSS classes for custom styling. |
+| `ref` | `Ref<HTMLInputElement>` | — | Forwarded ref to the underlying radio input. |

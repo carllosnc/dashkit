@@ -3,6 +3,8 @@ import { Button } from '../components/Button/Button';
 import { Checkbox } from '../components/Checkbox/Checkbox';
 import { CheckboxDemo } from '../components/Checkbox/CheckboxDemo';
 import { Input } from '../components/Input/Input';
+import { Radio } from '../components/Radio/Radio';
+import { RadioDemo } from '../components/Radio/RadioDemo';
 import { FiDownload, FiArrowRight, FiCopy, FiCheck, FiSearch, FiLock } from 'react-icons/fi';
 
 type MdxComponentProps = { components?: Record<string, ElementType> };
@@ -67,6 +69,8 @@ const components: Record<string, ElementType> = {
   Input,
   Checkbox,
   CheckboxDemo,
+  Radio,
+  RadioDemo,
   FiDownload,
   FiArrowRight,
   FiSearch,
