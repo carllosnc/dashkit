@@ -25,7 +25,7 @@ const CopyButton = ({ preRef }: { preRef: React.RefObject<HTMLPreElement | null>
     <button
       onClick={copy}
       type="button"
-      className="absolute top-2 right-2 p-1.5 rounded-md transition-all duration-200 bg-white/10 hover:bg-white/20 text-neutral-400 hover:text-white border border-white/20 z-20 opacity-0 group-hover:opacity-100 focus:opacity-100"
+      className="absolute top-2 right-2 p-1.5 rounded-md transition-all duration-200 bg-neutral-800 hover:bg-neutral-700 text-neutral-400 hover:text-white border border-neutral-700 z-20 opacity-0 group-hover:opacity-100 focus:opacity-100"
       aria-label="Copy code"
     >
       {isCopied ? <FiCheck size={14} className="text-emerald-400" /> : <FiCopy size={14} />}
