@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "dashkit",
+  "homepage": "https://dashkit.ui",
+  "items": [
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "files": [
+        {
+          "path": "src/components/Button/Button.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/button.tsx"
+        }
+      ]
+    }
+  ]
+}
