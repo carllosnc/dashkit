@@ -8,7 +8,7 @@ export function DocsLayout() {
   const currentPath = location.pathname;
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#030303] font-sans flex flex-col selection:bg-neutral-200 dark:selection:bg-neutral-800">
+    <div className="min-h-screen bg-white dark:bg-[#030303] font-sans flex flex-col">
       {/* Navigation */}
       <nav className="flex items-center justify-between px-8 py-5 border-b border-neutral-200 dark:border-neutral-800 bg-white/70 dark:bg-[#030303]/70 backdrop-blur-xl sticky top-0 z-50">
         <Link to="/" className="flex items-center gap-2.5 text-xl font-bold tracking-tight text-neutral-900 dark:text-white group">

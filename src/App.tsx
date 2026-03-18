@@ -5,7 +5,7 @@ import { ThemeToggle } from './components/ThemeToggle'
 
 function App() {
   return (
-    <div className="flex flex-col min-h-screen bg-white dark:bg-[#030303] font-sans selection:bg-neutral-200 dark:selection:bg-neutral-800">
+    <div className="flex flex-col min-h-screen bg-white dark:bg-[#030303] font-sans">
       {/* Background Effect */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-neutral-100/50 dark:bg-neutral-900/20 blur-[120px]" />

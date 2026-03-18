@@ -15,10 +15,7 @@ export default defineConfig({
         remarkPlugins: [remarkGfm],
         rehypePlugins: [
           [rehypePrettyCode, {
-            theme: {
-              light: 'github-light',
-              dark: 'github-dark',
-            },
+            theme: 'vesper',
             keepBackground: true,
           }],
         ],
