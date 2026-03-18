@@ -1,4 +1,4 @@
-import { useTheme } from './ThemeProvider';
+import { useTheme } from './ThemeContext';
 import { FiSun, FiMoon } from 'react-icons/fi';
 import clsx from 'clsx';
 
