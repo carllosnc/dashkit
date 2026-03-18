@@ -62,12 +62,47 @@ bun run test:watch
 bun run lint
 ```
 
+## Shadcn Registry
+
+Dashkit supports the [shadcn/ui](https://ui.shadcn.com/) CLI, allowing you to easily add components from this library to other projects.
+
+### Add to your project
+To add a component from Dashkit to your project, run:
+
+```bash
+bunx shadcn@latest add https://raw.githubusercontent.com/carllosnc/dashkit/master/registry.json:[component-name]
+```
+
+## How to Register a New Component
+
+Follow these steps to add a new component and make it available via the CLI registry:
+
+1. **Create the component**: Add your component code in `src/components/[ComponentName]/[ComponentName].tsx`.
+2. **Add to Registry Index**: Open `registry.json` and add a new entry to the `items` array:
+   ```json
+   {
+     "name": "[component-name]",
+     "type": "registry:ui",
+     "dependencies": ["clsx", "tailwind-merge"],
+     "files": [
+       {
+         "path": "src/components/[ComponentName]/[ComponentName].tsx",
+         "type": "registry:ui",
+         "target": "components/ui/[component-name].tsx"
+       }
+     ]
+   }
+   ```
+3. **Create Component JSON**: Create a new file at `registry/[component-name].json` containing the component's metadata and the full source code as a string in the `content` field.
+4. **Update Docs**: Create a corresponding `.mdx` file in `src/pages/` and add the route in `main.tsx`.
+
 ## Project Structure
 
 - `src/components/` - The core reusable UI components.
 - `src/layouts/` - Shared layouts for the main app and documentation pages.
-- `src/pages/` - Interactive documentation and functional test pages.
-- `src/setupTests.ts` - Vitest setup definitions.
+- `src/pages/` - Interactive documentation in MDX.
+- `registry/` - JSON definitions for Shadcn CLI support.
+- `registry.json` - Main index for the Shadcn registry.
 
 ## CI / CD
 Dashkit uses **GitHub Actions** to automatically lint, type-check, build, and test on every Pull Request and commit pushed to the `main` branch.
