@@ -94,6 +94,30 @@ If you omit the `children` (label) and provide only an icon, the button will aut
 <Button variant="outlined" leftIcon={<FiArrowRight />} aria-label="Next" />
 ```
 
+## Custom Styling
+
+You can easily override or extend the default styles using the `className` prop. The component uses `tailwind-merge` internally, so your custom classes will automatically take precedence over the defaults without needing the `!` (important) modifier.
+
+<Preview>
+  <Button className="rounded-xl bg-indigo-600 hover:bg-indigo-700">
+    Custom Radius & Color
+  </Button>
+  <Button variant="outlined" className="border-red-500 text-red-500 hover:bg-red-50">
+    Destructive Action
+  </Button>
+</Preview>
+
+```tsx
+// Custom classes automatically override defaults thanks to tailwind-merge
+<Button className="rounded-xl bg-indigo-600 hover:bg-indigo-700">
+  Custom Radius & Color
+</Button>
+
+<Button variant="outlined" className="border-red-500 text-red-500 hover:bg-red-50">
+  Destructive Action
+</Button>
+```
+
 ## Props
 
 The component extends all native `ButtonHTMLAttributes<HTMLButtonElement>` props (e.g. `onClick`, `type`, `disabled`, `className`), plus the following:
