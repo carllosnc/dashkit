@@ -1,0 +1,135 @@
+# Input
+
+A primitive input component with support for labels, icons, error states, and helper text.
+
+## Import
+
+```tsx
+import { Input } from '@/components/Input/Input'
+```
+
+## CLI
+
+Add the input to your project using the shadcn CLI:
+
+```bash
+bunx shadcn@latest add https://raw.githubusercontent.com/carllosnc/dashkit/master/registry.json:input
+```
+
+## Basic Usage
+
+The basic usage of the input with a label and placeholder.
+
+<Preview>
+  <Input label="Email Address" placeholder="Enter your email" />
+</Preview>
+
+```tsx
+<Input 
+  label="Email Address" 
+  placeholder="Enter your email" 
+/>
+```
+
+## With Icons
+
+Use `leftIcon` and `rightIcon` to add icons to the input. The icons automatically transition their color when the input is focused.
+
+<Preview>
+  <div className="flex flex-col gap-6 w-full max-w-sm">
+    <Input 
+      label="Search" 
+      placeholder="Search documentation..." 
+      leftIcon={<FiSearch />} 
+    />
+    <Input 
+      label="Password" 
+      type="password" 
+      placeholder="••••••••" 
+      rightIcon={<FiLock />} 
+    />
+  </div>
+</Preview>
+
+```tsx
+import { FiSearch, FiLock } from 'react-icons/fi'
+
+<Input 
+  label="Search" 
+  placeholder="Search..." 
+  leftIcon={<FiSearch />} 
+/>
+
+<Input 
+  label="Password" 
+  type="password" 
+  rightIcon={<FiLock />} 
+/>
+```
+
+## States
+
+The input supports error and disabled states.
+
+<Preview>
+  <div className="flex flex-col gap-6 w-full max-w-sm">
+    <Input 
+      label="Username" 
+      error="Username is already taken" 
+      defaultValue="carllosnc" 
+    />
+    <Input 
+      label="API Key" 
+      disabled 
+      value="sk_test_51Mz..." 
+      helperText="You cannot edit this key" 
+    />
+  </div>
+</Preview>
+
+```tsx
+<Input 
+  label="Username" 
+  error="Username is already taken" 
+  defaultValue="carllosnc" 
+/>
+
+<Input 
+  label="API Key" 
+  disabled 
+  value="sk_test_51Mz..." 
+  helperText="You cannot edit this key" 
+/>
+```
+
+## Custom Styling
+
+You can override or extend the styles of the input via `className`.
+
+<Preview>
+  <Input 
+    className="rounded-full border-indigo-200 focus:border-indigo-500 focus:ring-indigo-100" 
+    placeholder="Custom rounded & border"
+  />
+</Preview>
+
+```tsx
+<Input 
+  className="rounded-full border-indigo-200 focus:border-indigo-500 focus:ring-indigo-100" 
+  placeholder="Custom style"
+/>
+```
+
+## Props
+
+The component extends all native `InputHTMLAttributes<HTMLInputElement>` props, plus the following:
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | — | Input label rendered above the field. |
+| `leftIcon` | `ReactNode` | — | Icon element rendered at the start of the field. |
+| `rightIcon` | `ReactNode` | — | Icon element rendered at the end of the field. |
+| `error` | `string` | — | Error message displayed below the field. |
+| `helperText` | `string` | — | Helper message displayed below the field. |
+| `className` | `string` | — | Additional CSS classes for the input element. |
+| `ref` | `Ref<HTMLInputElement>` | — | Forwarded ref to the underlying `<input>` element. |

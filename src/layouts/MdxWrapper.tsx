@@ -1,6 +1,7 @@
 import React, { useState, useRef, type ComponentType, type ReactNode, type ElementType } from 'react';
 import { Button } from '../components/Button/Button';
-import { FiDownload, FiArrowRight, FiCopy, FiCheck } from 'react-icons/fi';
+import { Input } from '../components/Input/Input';
+import { FiDownload, FiArrowRight, FiCopy, FiCheck, FiSearch, FiLock } from 'react-icons/fi';
 
 type MdxComponentProps = { components?: Record<string, ElementType> };
 type MdxComponent = ComponentType<MdxComponentProps>;
@@ -61,8 +62,11 @@ const CustomPre = ({ children, ...props }: CustomPreProps) => {
 
 const components: Record<string, ElementType> = {
   Button,
+  Input,
   FiDownload,
   FiArrowRight,
+  FiSearch,
+  FiLock,
   Preview: ({ children }: { children: ReactNode }) => (
     <div className="not-prose flex gap-4 p-6 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
       {children}
