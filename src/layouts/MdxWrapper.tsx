@@ -1,5 +1,7 @@
 import React, { useState, useRef, type ComponentType, type ReactNode, type ElementType } from 'react';
 import { Button } from '../components/Button/Button';
+import { Checkbox } from '../components/Checkbox/Checkbox';
+import { CheckboxDemo } from '../components/Checkbox/CheckboxDemo';
 import { Input } from '../components/Input/Input';
 import { FiDownload, FiArrowRight, FiCopy, FiCheck, FiSearch, FiLock } from 'react-icons/fi';
 
@@ -63,6 +65,8 @@ const CustomPre = ({ children, ...props }: CustomPreProps) => {
 const components: Record<string, ElementType> = {
   Button,
   Input,
+  Checkbox,
+  CheckboxDemo,
   FiDownload,
   FiArrowRight,
   FiSearch,

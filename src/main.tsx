@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
 import App from './App.tsx'
 import ButtonDocs from './pages/button.mdx'
+import CheckboxDocs from './pages/checkbox.mdx'
 import InputDocs from './pages/input.mdx'
 import IntroductionDocs from './pages/introduction.mdx'
 import { DocsLayout } from './layouts/DocsLayout.tsx'
@@ -22,6 +23,7 @@ createRoot(document.getElementById('root')!).render(
             <Route path="introduction" element={<MdxWrapper Component={IntroductionDocs} />} />
             <Route path="button" element={<MdxWrapper Component={ButtonDocs} />} />
             <Route path="input" element={<MdxWrapper Component={InputDocs} />} />
+            <Route path="checkbox" element={<MdxWrapper Component={CheckboxDocs} />} />
           </Route>
         </Routes>
       </BrowserRouter>

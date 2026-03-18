@@ -1,0 +1,127 @@
+# Checkbox
+
+A custom-styled checkbox component for binary choices, with support for labels and descriptions.
+
+## Import
+
+```tsx
+import { Checkbox } from '@/components/Checkbox/Checkbox'
+```
+
+## CLI
+
+Add the checkbox to your project using the shadcn CLI:
+
+```bash
+bunx shadcn@latest add https://raw.githubusercontent.com/carllosnc/dashkit/master/registry.json:checkbox
+```
+
+## Basic Usage
+
+The basic checkbox with a label.
+
+<Preview>
+  <Checkbox label="Remember me" />
+</Preview>
+
+```tsx
+<Checkbox label="Remember me" />
+```
+
+## With Description
+
+You can add a description below the label to provide more context.
+
+<Preview>
+  <div className="flex flex-col gap-6 w-full max-w-sm">
+    <Checkbox 
+      label="Accept terms and conditions" 
+      description="You agree to our Terms of Service and Privacy Policy." 
+    />
+    <Checkbox 
+      label="Join newsletter" 
+      description="Receive weekly updates about new features." 
+    />
+  </div>
+</Preview>
+
+```tsx
+<Checkbox 
+  label="Accept terms and conditions" 
+  description="You agree to our Terms of Service and Privacy Policy." 
+/>
+```
+
+## States
+
+The checkbox supports various states like checked, disabled, and focus.
+
+<Preview>
+  <div className="flex flex-col gap-6 w-full max-w-sm">
+    <Checkbox label="Default Checked" defaultChecked />
+    <Checkbox label="Disabled Unchecked" disabled />
+    <Checkbox label="Disabled Checked" disabled defaultChecked />
+  </div>
+</Preview>
+
+```tsx
+<Checkbox label="Default Checked" defaultChecked />
+<Checkbox label="Disabled Unchecked" disabled />
+<Checkbox label="Disabled Checked" disabled defaultChecked />
+```
+
+## Custom Styling
+
+You can override or extend styles via `className`.
+
+<Preview>
+  <Checkbox 
+    label="Indigo Variant" 
+    className="peer-checked:bg-indigo-600 peer-checked:border-indigo-600 focus:ring-indigo-100" 
+    defaultChecked 
+  />
+</Preview>
+
+```tsx
+<Checkbox 
+  label="Indigo Variant" 
+  className="peer-checked:bg-indigo-600 peer-checked:border-indigo-600" 
+  defaultChecked 
+/>
+```
+
+## Controlled
+
+You can use the `checked` and `onChange` props to control the checkbox state with React.
+
+<Preview>
+  <CheckboxDemo />
+</Preview>
+
+```tsx
+import { useState } from 'react'
+
+export function ControlledCheckbox() {
+  const [checked, setChecked] = useState(false)
+
+  return (
+    <Checkbox 
+      label="Controlled Checkbox" 
+      description={`Currently: ${checked ? 'Checked' : 'Unchecked'}`}
+      checked={checked}
+      onChange={(e) => setChecked(e.target.checked)}
+    />
+  )
+}
+```
+
+## Props
+
+The component extends all native `InputHTMLAttributes<HTMLInputElement>` props (excluding `type`), plus the following:
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | — | Label rendered to the right of the checkbox. |
+| `description` | `string` | — | Additional context rendered below the label. |
+| `className` | `string` | — | Additional CSS classes for the checkbox container. |
+| `ref` | `Ref<HTMLInputElement>` | — | Forwarded ref to the underlying `<input>` element. |

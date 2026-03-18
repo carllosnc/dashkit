@@ -32,6 +32,22 @@
           "target": "components/ui/input.tsx"
         }
       ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "react-icons"
+      ],
+      "files": [
+        {
+          "path": "src/components/Checkbox/Checkbox.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/checkbox.tsx"
+        }
+      ]
     }
   ]
 }

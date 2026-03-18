@@ -84,6 +84,17 @@ export function DocsLayout() {
                 >
                   Input
                 </Link>
+                <Link 
+                  to="/docs/checkbox" 
+                  className={clsx(
+                    "px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
+                    currentPath === '/docs/checkbox' 
+                      ? "bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
+                      : "text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/5"
+                  )}
+                >
+                  Checkbox
+                </Link>
                 <div className="px-3 py-2.5 rounded-lg text-sm font-medium text-neutral-300 dark:text-neutral-800 cursor-not-allowed italic">
                   Card (WIP)
                 </div>
