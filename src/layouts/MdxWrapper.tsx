@@ -5,10 +5,13 @@ import { FiDownload, FiArrowRight, FiCopy, FiCheck } from 'react-icons/fi';
 type MdxComponentProps = { components?: Record<string, unknown> };
 type MdxComponent = ComponentType<MdxComponentProps>;
 
-const CopyButton = ({ text }: { text: string }) => {
+const CopyButton = ({ preRef }: { preRef: React.RefObject<HTMLPreElement | null> }) => {
   const [isCopied, setIsCopied] = useState(false);
 
   const copy = async () => {
+    const text = preRef.current?.textContent;
+    if (!text) return;
+
     try {
       await navigator.clipboard.writeText(text);
       setIsCopied(true);
@@ -21,7 +24,8 @@ const CopyButton = ({ text }: { text: string }) => {
   return (
     <button
       onClick={copy}
-      className="absolute top-3 right-3 p-2 rounded-md transition-all duration-200 bg-white/5 hover:bg-white/10 text-neutral-400 hover:text-white border border-white/10 z-10 opacity-0 group-hover:opacity-100 focus:opacity-100"
+      type="button"
+      className="absolute top-2 right-2 p-1.5 rounded-md transition-all duration-200 bg-white/10 hover:bg-white/20 text-neutral-400 hover:text-white border border-white/20 z-20 opacity-0 group-hover:opacity-100 focus:opacity-100"
       aria-label="Copy code"
     >
       {isCopied ? <FiCheck size={14} className="text-emerald-400" /> : <FiCopy size={14} />}
@@ -29,29 +33,19 @@ const CopyButton = ({ text }: { text: string }) => {
   );
 };
 
-const CustomPre = ({ children, ...props }: any) => {
+const CustomPre = ({ children, ...props }: { children: ReactNode }) => {
   const preRef = useRef<HTMLPreElement>(null);
-  const [text, setText] = useState('');
-
-  // Extract text after mount to handle hydrated content
-  const handleRef = (node: HTMLPreElement | null) => {
-    (preRef as any).current = node;
-    if (node) {
-      // Use a small timeout or requestAnimationFrame to ensure Shiki has finished rendering
-      // although textContent should be available immediately from the DOM structure
-      setText(node.textContent || '');
-    }
-  };
 
   return (
-    <div className="relative group overflow-hidden rounded-lg">
-      <pre ref={handleRef} {...props}>
+    <div className="relative group mt-6 first:mt-0 overflow-hidden">
+      <pre ref={preRef} {...props} className="m-0!">
         {children}
       </pre>
-      {text && <CopyButton text={text} />}
+      <CopyButton preRef={preRef} />
     </div>
   );
 };
+
 
 const components = {
   Button,
@@ -72,3 +66,4 @@ export function MdxWrapper({ Component }: { Component: MdxComponent }) {
     </div>
   );
 }
+
