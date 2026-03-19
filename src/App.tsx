@@ -1,5 +1,5 @@
 import { Button } from './components/Button/Button'
-import { FiArrowRight, FiGithub, FiLayers } from 'react-icons/fi'
+import { FiArrowRight, FiGithub } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import { ThemeToggle } from './components/ThemeToggle'
 
@@ -14,19 +14,13 @@ function App() {
 
       {/* Navigation */}
       <nav className="flex items-center justify-between px-8 py-5 border-b border-neutral-200 dark:border-neutral-800 bg-white/70 dark:bg-[#030303]/70 backdrop-blur-xl sticky top-0 z-50">
-        <div className="flex items-center gap-2.5 text-xl font-bold tracking-tight text-neutral-900 dark:text-white group cursor-default">
-          <div className="p-1.5 rounded-lg bg-neutral-900 dark:bg-white group-hover:scale-110">
-            <FiLayers className="text-white dark:text-black size-5" />
-          </div>
-          Dashkit UI
+        <div className="flex items-center group cursor-default">
+          <img src="/logo.svg" alt="Dashkit UI Logo" className="h-6 dark:invert" />
         </div>
         <div className="flex items-center gap-8">
           <Link to="/docs" className="text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white">
             Documentation
           </Link>
-          <a href="#" className="hidden sm:block text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white">
-            Components
-          </a>
           <div className="flex items-center gap-4 pl-4 border-l border-neutral-200 dark:border-neutral-800">
             <ThemeToggle />
             <a href="https://github.com/carllosnc/dashkit" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-neutral-900 dark:hover:text-white">

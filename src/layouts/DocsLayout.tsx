@@ -1,4 +1,4 @@
-import { FiGithub, FiLayers } from 'react-icons/fi';
+import { FiGithub } from 'react-icons/fi';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { ThemeToggle } from '../components/ThemeToggle';
 import clsx from 'clsx';
@@ -11,18 +11,12 @@ export function DocsLayout() {
     <div className="min-h-screen bg-white dark:bg-[#030303] font-sans flex flex-col">
       {/* Navigation */}
       <nav className="flex items-center justify-between px-8 py-5 border-b border-neutral-200 dark:border-neutral-800 bg-white/70 dark:bg-[#030303]/70 backdrop-blur-xl sticky top-0 z-50">
-        <Link to="/" className="flex items-center gap-2.5 text-xl font-bold tracking-tight text-neutral-900 dark:text-white group">
-          <div className="p-1.5 rounded-lg bg-neutral-900 dark:bg-white group-hover:scale-110">
-            <FiLayers className="text-white dark:text-black size-5" />
-          </div>
-          Dashkit UI
+        <Link to="/" className="flex items-center group">
+          <img src="/logo.svg" alt="Dashkit UI Logo" className="h-6 dark:invert" />
         </Link>
         <div className="flex items-center gap-8">
           <Link to="/docs" className="text-sm font-medium text-neutral-900 dark:text-white transition-colors">
             Documentation
-          </Link>
-          <Link to="/" className="text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white">
-            Components
           </Link>
           <div className="flex items-center gap-4 pl-4 border-l border-neutral-200 dark:border-neutral-800">
             <ThemeToggle />
