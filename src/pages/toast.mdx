@@ -1,0 +1,73 @@
+# Toast
+
+A succinct message that provides feedback about an operation in a small, non-intrusive card.
+
+## Import
+
+```tsx
+import { toast, ToastProvider, useToast } from '@/components/Toast/Toast'
+```
+
+## Setup
+
+Wrap your application (usually in `main.tsx` or `App.tsx`) with the `ToastProvider`:
+
+```tsx
+import { ToastProvider } from '@/components/Toast/Toast'
+
+function App() {
+  return (
+    <ToastProvider>
+      <YourApp />
+    </ToastProvider>
+  )
+}
+```
+
+## CLI
+
+```bash
+bunx shadcn@latest add https://raw.githubusercontent.com/carllosnc/dashkit/master/registry.json:toast
+```
+
+## Basic Usage
+
+You can trigger a toast from anywhere by importing the `toast` function directly, or using the `useToast` hook within a component.
+
+<Preview>
+  <ToastDemo />
+</Preview>
+
+```tsx
+import { toast } from '@/components/Toast/Toast'
+
+// Inside a component or function
+const trigger = () => {
+  toast({
+    title: "Project Saved",
+    description: "Your changes are now live.",
+    type: "success"
+  })
+}
+```
+
+## Features
+
+- **Stacked Visualization**: Toasts automatically stack as cards when multiple are active, saving screen space while remaining readable.
+- **Icon Support**: Easily add custom icons or use preset types (`success`, `info`, `warning`, `error`).
+- **Global State**: Trigger toasts from non-component files using a global singleton.
+- **Framer Motion**: Smooth, spring-based entry/exit and layout animations.
+- **Auto-dismiss**: Configurable duration with a default of 5 seconds.
+
+## API
+
+### toast(options)
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `title` | `string` | — | Bold heading for the toast. |
+| `description` | `string` | — | Body text for the message. |
+| `type` | `'default' \| 'success' \| 'info' \| 'warning' \| 'error'` | `'default'` | Semantic coloring for the default icon. |
+| `icon` | `ReactNode` | — | Explicit icon override. |
+| `duration` | `number` | `5000` | MS before hiding (0 for persistent). |
+| `id` | `string` | `auto` | Unique ID (use to prevent duplicate toasts). |

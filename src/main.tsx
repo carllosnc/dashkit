@@ -15,15 +15,16 @@ import ImageExpanderDocs from './pages/image-expander.mdx'
 import DrawerDocs from './pages/drawer.mdx'
 import ModalDocs from './pages/modal.mdx'
 import AccordionDocs from './pages/accordion.mdx'
+import ToastDocs from './pages/toast.mdx'
 import IntroductionDocs from './pages/introduction.mdx'
 import { DocsLayout } from './layouts/DocsLayout.tsx'
 import { MdxWrapper } from './layouts/MdxWrapper.tsx'
 
-import { ThemeProvider } from './components/ThemeProvider.tsx'
+import { ToastProvider } from './components/Toast/Toast.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ThemeProvider>
+    <ToastProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />} />
@@ -42,10 +43,10 @@ createRoot(document.getElementById('root')!).render(
             <Route path="drawer" element={<MdxWrapper Component={DrawerDocs} />} />
             <Route path="modal" element={<MdxWrapper Component={ModalDocs} />} />
             <Route path="accordion" element={<MdxWrapper Component={AccordionDocs} />} />
+            <Route path="toast" element={<MdxWrapper Component={ToastDocs} />} />
           </Route>
         </Routes>
       </BrowserRouter>
-    </ThemeProvider>
+    </ToastProvider>
   </StrictMode>,
 )
-

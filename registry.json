@@ -193,6 +193,23 @@
           "target": "components/ui/accordion.tsx"
         }
       ]
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "framer-motion",
+        "react-icons"
+      ],
+      "files": [
+        {
+          "path": "src/components/Toast/Toast.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/toast.tsx"
+        }
+      ]
     }
   ]
 }

@@ -22,6 +22,7 @@ import { ImageExpander } from '../components/ImageExpander/ImageExpander';
 import { ImageExpanderDemo } from '../components/ImageExpander/ImageExpanderDemo';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../components/Accordion/Accordion';
 import { AccordionDemo } from '../components/Accordion/AccordionDemo';
+import { ToastDemo } from '../components/Toast/ToastDemo';
 import { FiDownload, FiArrowRight, FiCopy, FiCheck, FiSearch, FiLock, FiUser, FiSettings, FiActivity, FiCheckCircle } from 'react-icons/fi';
 
 type MdxComponentProps = { components?: Record<string, ElementType> };
@@ -94,6 +95,7 @@ const components: Record<string, ElementType> = {
   AccordionTrigger,
   AccordionContent,
   AccordionDemo,
+  ToastDemo,
   Checkbox,
   CheckboxDemo,
   Radio,

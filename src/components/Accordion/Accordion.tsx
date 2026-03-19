@@ -87,7 +87,7 @@ export const AccordionItem = ({ value, children, className, disabled }: Accordio
   return (
     <AccordionItemContext.Provider value={{ value, isOpen }}>
       <div className={cn(
-        "border-b border-neutral-200 dark:border-neutral-800 last:border-b-0 transition-colors duration-200",
+        "border-b border-neutral-300 dark:border-neutral-800 last:border-b-0 transition-colors duration-200",
         disabled && "opacity-50 pointer-events-none",
         className
       )}>
