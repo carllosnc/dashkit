@@ -4,7 +4,7 @@ import { FiX, FiInfo, FiCheckCircle, FiAlertCircle, FiAlertTriangle } from 'reac
 import { createPortal } from 'react-dom';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { useToast, type ToastData, type ToastType, removeToast, type ToastPosition, setToastDefaultPosition, toast } from './useToast';
+import { useToast, type ToastData, type ToastType, removeToast, type ToastPosition, setToastDefaultPosition} from './useToast';
 export type { ToastOptions, ToastType, ToastData, ToastPosition } from './useToast';
 
 function cn(...inputs: (string | undefined | null | boolean | Record<string, boolean>)[]) {
