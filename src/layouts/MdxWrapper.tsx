@@ -5,7 +5,15 @@ import { CheckboxDemo } from '../components/Checkbox/CheckboxDemo';
 import { Input } from '../components/Input/Input';
 import { Radio } from '../components/Radio/Radio';
 import { RadioDemo } from '../components/Radio/RadioDemo';
-import { FiDownload, FiArrowRight, FiCopy, FiCheck, FiSearch, FiLock } from 'react-icons/fi';
+import { Select } from '../components/Select/Select';
+import { SelectDemo } from '../components/Select/SelectDemo';
+import { Switch } from '../components/Switch/Switch';
+import { SwitchDemo } from '../components/Switch/SwitchDemo';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/Tabs/Tabs';
+import { TabsDemo } from '../components/Tabs/TabsDemo';
+import { OtpInput } from '../components/OtpInput/OtpInput';
+import { OtpInputDemo } from '../components/OtpInput/OtpInputDemo';
+import { FiDownload, FiArrowRight, FiCopy, FiCheck, FiSearch, FiLock, FiUser, FiSettings, FiActivity, FiCheckCircle } from 'react-icons/fi';
 
 type MdxComponentProps = { components?: Record<string, ElementType> };
 type MdxComponent = ComponentType<MdxComponentProps>;
@@ -71,10 +79,25 @@ const components: Record<string, ElementType> = {
   CheckboxDemo,
   Radio,
   RadioDemo,
+  Select,
+  SelectDemo,
+  Switch,
+  SwitchDemo,
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+  TabsDemo,
+  OtpInput,
+  OtpInputDemo,
   FiDownload,
   FiArrowRight,
   FiSearch,
   FiLock,
+  FiUser,
+  FiSettings,
+  FiActivity,
+  FiCheckCircle,
   Preview: ({ children }: { children: ReactNode }) => (
     <div className="not-prose flex gap-4 p-6 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
       {children}
@@ -85,7 +108,7 @@ const components: Record<string, ElementType> = {
 
 export function MdxWrapper({ Component }: { Component: MdxComponent }) {
   return (
-    <div className="prose prose-neutral dark:prose-invert max-w-3xl">
+    <div className="prose prose-neutral dark:prose-invert max-w-full">
       <Component components={components} />
     </div>
   );
