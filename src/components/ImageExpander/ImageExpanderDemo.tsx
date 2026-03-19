@@ -30,7 +30,7 @@ export function ImageExpanderDemo() {
               <img 
                 src={img.url} 
                 alt={img.alt}
-                className="w-auto h-auto max-w-full block" 
+                className="w-auto h-auto" 
               />
             }
           >
