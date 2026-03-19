@@ -1,71 +1,60 @@
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from './Accordion';
-import { FiLayout, FiShield, FiZap } from 'react-icons/fi';
+import { FiShield, FiZap } from 'react-icons/fi';
 
 export function AccordionDemo() {
   return (
-    <div className="flex flex-col gap-12 w-full">
+    <div className="flex flex-col gap-12 w-full max-w-2xl">
       {/* Default Single Mode */}
-      <div className="space-y-4">
-        <h3 className="text-xs font-bold text-neutral-400 uppercase tracking-widest ml-1">Single Expansion (Default)</h3>
-        <Accordion type="single" defaultValue="item-1">
+      <div className="space-y-2">
+        <h3 className="text-[10px] font-bold text-neutral-400 uppercase tracking-[0.2em] ml-1 mb-4">Simple Border Bottom</h3>
+        <Accordion type="single" defaultValue="item-1" className="gap-0 border-t border-neutral-200 dark:border-neutral-800">
           <AccordionItem value="item-1">
-            <AccordionTrigger className="gap-3">
-              <div className="flex items-center gap-3">
-                <FiZap className="text-amber-500" />
-                <span>Performance Optimization</span>
-              </div>
-            </AccordionTrigger>
+            <AccordionTrigger>Minimalist Performance</AccordionTrigger>
             <AccordionContent>
-              Dashkit is built with advanced tree-shaking and lazy-loading techniques to ensure your dashboard loads in under 100ms. We prioritize critical rendering paths and minimize main-thread execution.
+              No boxes, no shadows. Just clean spacers and thin lines for a modern, high-density dashboard look. We've removed the container styling to let your content breathe.
             </AccordionContent>
           </AccordionItem>
           
           <AccordionItem value="item-2">
-            <AccordionTrigger className="gap-3">
-              <div className="flex items-center gap-3">
-                <FiShield className="text-blue-500" />
-                <span>Security & Privacy</span>
-              </div>
-            </AccordionTrigger>
+            <AccordionTrigger>Seamless Integration</AccordionTrigger>
             <AccordionContent>
-              Enterprise-grade security comes standard. All components are audited for XSS and CSRF vulnerabilities, ensuring your data remains isolated and protected by default.
+              Designed to fit anywhere—sidebars, settings pages, or complex forms without added visual noise. The spring animations provide a premium feel without being distracting.
             </AccordionContent>
           </AccordionItem>
 
           <AccordionItem value="item-3">
-            <AccordionTrigger className="gap-3">
-              <div className="flex items-center gap-3">
-                <FiLayout className="text-purple-500" />
-                <span>Design System Continuity</span>
-              </div>
-            </AccordionTrigger>
+            <AccordionTrigger>Accessibility First</AccordionTrigger>
             <AccordionContent>
-              Our tokens and utility classes are synchronized across all components, providing a seamless visual experience that feels like a single, cohesive interface rather than a collection of parts.
+              Fully accessible via keyboard navigation. Users can toggle items using the Enter or Space key, following the standard WAI-ARIA design pattern for accordions.
             </AccordionContent>
           </AccordionItem>
         </Accordion>
       </div>
 
-      {/* Multiple Mode */}
-      <div className="space-y-4">
-        <h3 className="text-xs font-bold text-neutral-400 uppercase tracking-widest ml-1">Multiple Expansion</h3>
-        <Accordion type="multiple" className="gap-1">
-          <AccordionItem value="m-1" className="border-none bg-transparent hover:bg-neutral-50 dark:hover:bg-white/5 rounded-xl transition-colors">
-            <AccordionTrigger className="px-3 py-4">Architecture</AccordionTrigger>
-            <AccordionContent className="px-3 text-sm">
-              Modular micro-frontend architecture with state-driven rendering logic.
+      {/* Multiple Mode with Icon */}
+      <div className="space-y-2">
+        <h3 className="text-[10px] font-bold text-neutral-400 uppercase tracking-[0.2em] ml-1 mb-4">Multi-Expand with Detail</h3>
+        <Accordion type="multiple" className="gap-0 border-y border-neutral-200 dark:border-neutral-800">
+          <AccordionItem value="m-1">
+            <AccordionTrigger>
+              <div className="flex items-center gap-2">
+                <FiZap className="text-amber-500" size={14} />
+                <span>Real-time Updates</span>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent>
+              Synchronize state across multiple browser tabs with zero latency using our optimized WebSocket provider.
             </AccordionContent>
           </AccordionItem>
-          <AccordionItem value="m-2" className="border-none bg-transparent hover:bg-neutral-50 dark:hover:bg-white/5 rounded-xl transition-colors">
-            <AccordionTrigger className="px-3 py-4">Deployment</AccordionTrigger>
-            <AccordionContent className="px-3 text-sm">
-              Ready for Vercel, Netlify, or any edge-compatible infra with zero-config.
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="m-3" disabled className="border-none bg-transparent rounded-xl">
-            <AccordionTrigger className="px-3 py-4 opacity-30">Analytics (Soon)</AccordionTrigger>
-            <AccordionContent className="px-3 text-sm">
-              Real-time telemetry and error tracking integration.
+          <AccordionItem value="m-2">
+            <AccordionTrigger>
+              <div className="flex items-center gap-2">
+                <FiShield className="text-blue-500" size={14} />
+                <span>Audit Logs Tracking</span>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent>
+              Every action is recorded and verifiable. Export logs to CSV or JSON for compliance reporting.
             </AccordionContent>
           </AccordionItem>
         </Accordion>

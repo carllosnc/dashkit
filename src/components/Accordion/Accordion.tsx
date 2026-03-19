@@ -87,8 +87,7 @@ export const AccordionItem = ({ value, children, className, disabled }: Accordio
   return (
     <AccordionItemContext.Provider value={{ value, isOpen }}>
       <div className={cn(
-        "border border-neutral-200 dark:border-neutral-800 rounded-2xl overflow-hidden transition-all duration-300",
-        isOpen ? "bg-white dark:bg-neutral-900 shadow-xl shadow-neutral-200/50 dark:shadow-black" : "bg-neutral-50/50 dark:bg-neutral-900/30",
+        "border-b border-neutral-200 dark:border-neutral-800 last:border-b-0 transition-colors duration-200",
         disabled && "opacity-50 pointer-events-none",
         className
       )}>
@@ -107,18 +106,18 @@ export const AccordionTrigger = ({ children, className }: { children: React.Reac
     <button
       onClick={() => context.onValueChange(itemContext.value)}
       className={cn(
-        "flex w-full items-center justify-between p-5 text-left font-bold transition-all hover:text-neutral-900 dark:hover:text-white group",
+        "flex w-full items-center justify-between py-4 text-left font-medium transition-all hover:text-neutral-900 dark:hover:text-white group",
         itemContext.isOpen ? "text-neutral-900 dark:text-white" : "text-neutral-500 dark:text-neutral-400",
         className
       )}
     >
-      <span className="text-base tracking-tight uppercase">{children}</span>
+      <span className="text-sm tracking-tight">{children}</span>
       <motion.div
         animate={{ rotate: itemContext.isOpen ? 180 : 0 }}
         transition={{ type: 'spring', damping: 20, stiffness: 300 }}
-        className="text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white shrink-0"
+        className="text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white shrink-0 ml-4"
       >
-        <FiChevronDown size={20} />
+        <FiChevronDown size={16} />
       </motion.div>
     </button>
   );
@@ -138,7 +137,7 @@ export const AccordionContent = ({ children, className }: { children: React.Reac
           transition={{ type: 'spring', damping: 25, stiffness: 200 }}
           className="overflow-hidden"
         >
-          <div className={cn("p-5 pt-0 text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium", className)}>
+          <div className={cn("pb-4 text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed", className)}>
             {children}
           </div>
         </motion.div>
