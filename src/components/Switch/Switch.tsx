@@ -15,9 +15,10 @@ export interface SwitchProps extends Omit<InputHTMLAttributes<HTMLInputElement>,
 }
 
 export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
-  ({ label, description, className, id, ...props }, ref) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  ({ label, description, className, id, children, ...props }, ref) => {
     const switchId = id || (label ? `switch-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined);
-    
+
     return (
       <div className="flex gap-4 group relative items-start">
         <div className="flex items-center h-6">

@@ -14,7 +14,7 @@ export type BadgeSize = 'xs' | 'sm' | 'md' | 'lg';
 
 export interface BadgeProps {
   /** The element the badge will be attached to */
-  children: React.ReactNode;
+  children?: React.ReactNode;
   /** Content to display inside the badge */
   content?: React.ReactNode;
   /** Styling variant */

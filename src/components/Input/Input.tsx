@@ -29,7 +29,8 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, leftIcon, rightIcon, error, helperText, mask, formatter, className, id, onChange, ...props }, ref) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  ({ label, leftIcon, rightIcon, error, helperText, mask, formatter, className, id, onChange, children: _children, ...props }, ref) => {
     const inputId = id || (label ? `input-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

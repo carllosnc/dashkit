@@ -15,9 +15,10 @@ export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement
 }
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ label, description, className, id, ...props }, ref) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  ({ label, description, className, id, children, ...props }, ref) => {
     const checkboxId = id || (label ? `checkbox-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined);
-    
+
     return (
       <div className="flex gap-3 group relative items-start">
         <div className="flex items-center h-6">
