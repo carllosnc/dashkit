@@ -13,6 +13,8 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/Tabs/Tab
 import { TabsDemo } from '../components/Tabs/TabsDemo';
 import { OtpInput } from '../components/OtpInput/OtpInput';
 import { OtpInputDemo } from '../components/OtpInput/OtpInputDemo';
+import { ImageExpander } from '../components/ImageExpander/ImageExpander';
+import { ImageExpanderDemo } from '../components/ImageExpander/ImageExpanderDemo';
 import { FiDownload, FiArrowRight, FiCopy, FiCheck, FiSearch, FiLock, FiUser, FiSettings, FiActivity, FiCheckCircle } from 'react-icons/fi';
 
 type MdxComponentProps = { components?: Record<string, ElementType> };
@@ -90,6 +92,8 @@ const components: Record<string, ElementType> = {
   TabsDemo,
   OtpInput,
   OtpInputDemo,
+  ImageExpander,
+  ImageExpanderDemo,
   FiDownload,
   FiArrowRight,
   FiSearch,
