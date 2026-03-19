@@ -1,21 +1,21 @@
 import * as React from 'react';
-import { 
-  Dropdown, 
-  DropdownTrigger, 
-  DropdownContent, 
-  DropdownItem, 
-  DropdownLabel, 
-  DropdownSeparator 
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownContent,
+  DropdownItem,
+  DropdownLabel,
+  DropdownSeparator
 } from './Dropdown';
 import { Button } from '../Button/Button';
-import { 
-  FiUser, 
-  FiSettings, 
-  FiMail, 
-  FiPlusCircle, 
-  FiLogOut, 
-  FiBell, 
-  FiChevronDown 
+import {
+  FiUser,
+  FiSettings,
+  FiMail,
+  FiPlusCircle,
+  FiLogOut,
+  FiBell,
+  FiChevronDown
 } from 'react-icons/fi';
 
 export function DropdownDemo() {
@@ -54,20 +54,20 @@ export function DropdownDemo() {
           </DropdownTrigger>
           <DropdownContent className="w-48">
             <DropdownLabel>Select Workspace</DropdownLabel>
-            <DropdownItem 
-              selected={selected === 'Personal'} 
+            <DropdownItem
+              selected={selected === 'Personal'}
               onClick={() => setSelected('Personal')}
             >
               Personal
             </DropdownItem>
-            <DropdownItem 
-              selected={selected === 'Dashkit Team'} 
+            <DropdownItem
+              selected={selected === 'Dashkit Team'}
               onClick={() => setSelected('Dashkit Team')}
             >
               Dashkit Team
             </DropdownItem>
-            <DropdownItem 
-              selected={selected === 'Side Projects'} 
+            <DropdownItem
+              selected={selected === 'Side Projects'}
               onClick={() => setSelected('Side Projects')}
             >
               Side Projects
@@ -98,23 +98,96 @@ export function DropdownDemo() {
   );
 }
 
-export function LinkTriggerDemo() {
+export function BasicMenuDemo() {
   return (
-    <div className="flex justify-center py-20 bg-neutral-50 dark:bg-white/5 rounded-2xl border border-neutral-200 dark:border-neutral-800">
-      <Dropdown>
+    <Dropdown>
+      <DropdownTrigger asChild>
+        <Button variant="filled" className="gap-2">
+          Options <FiChevronDown />
+        </Button>
+      </DropdownTrigger>
+      <DropdownContent className="w-48">
+        <DropdownItem leftIcon={<FiUser />}>Profile</DropdownItem>
+        <DropdownItem leftIcon={<FiSettings />}>Settings</DropdownItem>
+        <DropdownSeparator />
+        <DropdownItem leftIcon={<FiLogOut />} destructive>Logout</DropdownItem>
+      </DropdownContent>
+    </Dropdown>
+  );
+}
+
+export function SelectableMenuDemo() {
+  const [selected, setSelected] = React.useState('Personal');
+
+  return (
+    <Dropdown>
+      <DropdownTrigger asChild>
+        <Button variant="outlined" className="gap-2 min-w-[160px] justify-between">
+          {selected} <FiChevronDown />
+        </Button>
+        </DropdownTrigger>
+        <DropdownContent className="w-56">
+          <DropdownLabel>Select Category</DropdownLabel>
+          <DropdownItem
+            selected={selected === 'Personal'}
+            onClick={() => setSelected('Personal')}
+          >
+            Personal
+          </DropdownItem>
+          <DropdownItem
+            selected={selected === 'Work'}
+            onClick={() => setSelected('Work')}
+          >
+            Work
+          </DropdownItem>
+          <DropdownItem
+            selected={selected === 'Shared'}
+            onClick={() => setSelected('Shared')}
+          >
+            Shared
+          </DropdownItem>
+          <DropdownSeparator />
+          <DropdownItem leftIcon={<FiPlusCircle />} className="text-sky-500 hover:text-sky-600">
+            Create New
+          </DropdownItem>
+        </DropdownContent>
+      </Dropdown>
+  );
+}
+
+export function CustomTriggerDemo() {
+  return (
+    <div className="flex gap-8 items-center">
+      {/* Icon button trigger */}
+      <Dropdown align="right">
         <DropdownTrigger asChild>
-          <button className="text-sky-500 hover:text-sky-600 font-medium transition-all hover:underline decoration-2 underline-offset-4 flex items-center gap-1">
-            Account Options <FiChevronDown />
+          <button className="p-2 rounded-full hover:bg-neutral-100 dark:hover:bg-white/10 transition-colors text-neutral-500 hover:text-neutral-900 dark:hover:text-white border border-neutral-200 dark:border-neutral-800 shadow-sm">
+            <FiSettings size={20} />
           </button>
         </DropdownTrigger>
         <DropdownContent className="w-48">
-          <DropdownLabel>Quick Actions</DropdownLabel>
-          <DropdownItem leftIcon={<FiUser />}>View Profile</DropdownItem>
-          <DropdownItem leftIcon={<FiSettings />}>Settings</DropdownItem>
+          <DropdownLabel>Settings</DropdownLabel>
+          <DropdownItem leftIcon={<FiUser />}>Account</DropdownItem>
+          <DropdownItem leftIcon={<FiBell />}>Notifications</DropdownItem>
           <DropdownSeparator />
           <DropdownItem leftIcon={<FiLogOut />} destructive>Logout</DropdownItem>
+        </DropdownContent>
+      </Dropdown>
+
+      {/* Text link trigger */}
+      <Dropdown>
+        <DropdownTrigger asChild>
+          <button className="text-sm font-semibold text-sky-500 hover:text-sky-600 underline decoration-2 underline-offset-4 flex items-center gap-1">
+            Actions <FiChevronDown />
+          </button>
+        </DropdownTrigger>
+        <DropdownContent className="w-48">
+          <DropdownItem>Download PDF</DropdownItem>
+          <DropdownItem>Export CSV</DropdownItem>
+          <DropdownItem>Print Report</DropdownItem>
         </DropdownContent>
       </Dropdown>
     </div>
   );
 }
+

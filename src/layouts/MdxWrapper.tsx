@@ -1,4 +1,12 @@
 import React, { useState, useRef, type ComponentType, type ReactNode, type ElementType } from 'react';
+import { 
+  Dropdown, 
+  DropdownTrigger, 
+  DropdownContent, 
+  DropdownLabel, 
+  DropdownItem, 
+  DropdownSeparator 
+} from '../components/Dropdown/Dropdown';
 import { Button } from '../components/Button/Button';
 import { Checkbox } from '../components/Checkbox/Checkbox';
 import { CheckboxDemo } from '../components/Checkbox/CheckboxDemo';
@@ -23,6 +31,7 @@ import { ImageExpanderDemo } from '../components/ImageExpander/ImageExpanderDemo
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../components/Accordion/Accordion';
 import { AccordionDemo } from '../components/Accordion/AccordionDemo';
 import { ToastDemo } from '../components/Toast/ToastDemo';
+import { DropdownDemo, BasicMenuDemo, SelectableMenuDemo, CustomTriggerDemo } from '../components/Dropdown/DropdownDemo';
 import { Badge } from '../components/Badge/Badge';
 import { BadgeDemo } from '../components/Badge/BadgeDemo';
 import { FiDownload, FiArrowRight, FiCopy, FiCheck, FiSearch, FiLock, FiUser, FiSettings, FiActivity, FiCheckCircle } from 'react-icons/fi';
@@ -117,6 +126,16 @@ const components: Record<string, ElementType> = {
   ImageExpanderDemo,
   Badge,
   BadgeDemo,
+  Dropdown,
+  DropdownTrigger,
+  DropdownContent,
+  DropdownLabel,
+  DropdownItem,
+  DropdownSeparator,
+  DropdownDemo,
+  BasicMenuDemo,
+  SelectableMenuDemo,
+  CustomTriggerDemo,
   FiDownload,
   FiArrowRight,
   FiSearch,

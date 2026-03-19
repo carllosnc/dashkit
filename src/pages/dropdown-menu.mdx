@@ -1,4 +1,4 @@
-import { DropdownDemo, LinkTriggerDemo } from '../components/Dropdown/DropdownDemo';
+import { DropdownDemo, BasicMenuDemo, SelectableMenuDemo, CustomTriggerDemo } from '../components/Dropdown/DropdownDemo';
 
 # Dropdown Menu
 
@@ -25,52 +25,99 @@ bunx shadcn@latest add https://raw.githubusercontent.com/carllosnc/dashkit/maste
 
 ## Basic Usage
 
-Dashkit provides a flexible dropdown system that supports alignment, icons, labels, and separators.
+A simple dropdown with items, labels, and separators.
 
-<DropdownDemo />
+<Preview>
+  <BasicMenuDemo />
+</Preview>
 
 ```tsx
-export function Example() {
+<Dropdown>
+  <DropdownTrigger asChild>
+    <Button variant="filled">
+      Options <FiChevronDown />
+    </Button>
+  </DropdownTrigger>
+  <DropdownContent>
+    <DropdownItem leftIcon={<FiUser />}>Profile</DropdownItem>
+    <DropdownItem leftIcon={<FiSettings />}>Settings</DropdownItem>
+    <DropdownSeparator />
+    <DropdownItem destructive>Logout</DropdownItem>
+  </DropdownContent>
+</Dropdown>
+```
+
+## Selectable Items
+
+Dropdown items can show a selected state, typically used for choosing an option from a list.
+
+<Preview>
+  <SelectableMenuDemo />
+</Preview>
+
+```tsx
+export function SelectableExample() {
+  const [selected, setSelected] = useState('Personal');
+
   return (
     <Dropdown>
       <DropdownTrigger asChild>
-        <button>Open Menu</button>
+        <Button variant="outlined">{selected}</Button>
       </DropdownTrigger>
       <DropdownContent>
-        <DropdownLabel>Account</DropdownLabel>
-        <DropdownItem>Profile</DropdownItem>
-        <DropdownItem>Settings</DropdownItem>
-        <DropdownSeparator />
-        <DropdownItem destructive>Logout</DropdownItem>
+        <DropdownItem 
+          selected={selected === 'Personal'} 
+          onClick={() => setSelected('Personal')}
+        >
+          Personal
+        </DropdownItem>
+        <DropdownItem 
+          selected={selected === 'Work'} 
+          onClick={() => setSelected('Work')}
+        >
+          Work
+        </DropdownItem>
       </DropdownContent>
     </Dropdown>
   );
 }
 ```
 
-## Advanced Examples
+## Custom Triggers
 
-### Custom Trigger (asChild)
-Use the `asChild` prop to use any custom element (like a link or a styled button) as the trigger.
+The `asChild` prop allows any element to act as the dropdown trigger, from icon buttons to text links.
 
-<LinkTriggerDemo />
+<Preview>
+  <CustomTriggerDemo />
+</Preview>
 
 ```tsx
-export function linktriggerdemo() {
-  return (
-    <Dropdown>
-      <DropdownTrigger asChild>
-        <button className="text-sky-500 hover:underline">
-          Manage Account
-        </button>
-      </DropdownTrigger>
-      <DropdownContent>
-        <DropdownItem>Profile</DropdownItem>
-        <DropdownItem>Settings</DropdownItem>
-      </DropdownContent>
-    </Dropdown>
-  );
-}
+{/* Icon Button */}
+<Dropdown align="right">
+  <DropdownTrigger asChild>
+    <button className="...">
+      <FiSettings size={20} />
+    </button>
+  </DropdownTrigger>
+  <DropdownContent>
+    <DropdownLabel>Settings</DropdownLabel>
+    <DropdownItem>Account</DropdownItem>
+    <DropdownItem>Security</DropdownItem>
+  </DropdownContent>
+</Dropdown>
+
+{/* Text Link */}
+<Dropdown>
+  <DropdownTrigger asChild>
+    <button className="text-sky-500 font-semibold underline">
+      Actions <FiChevronDown />
+    </button>
+  </DropdownTrigger>
+  <DropdownContent>
+    <DropdownItem>Download PDF</DropdownItem>
+    <DropdownItem>Export CSV</DropdownItem>
+  </DropdownContent>
+</Dropdown>
 ```
 
 ## Features
