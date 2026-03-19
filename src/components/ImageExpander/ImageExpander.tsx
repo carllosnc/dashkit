@@ -97,27 +97,27 @@ export function ImageExpander({ children, full, caption, className }: ImageExpan
 
             {/* Content Container */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="relative z-[105] w-full h-full flex flex-col items-center justify-start overflow-y-auto no-scrollbar scroll-smooth py-8 md:py-16 selection:bg-neutral-500/30"
+              className="relative z-[105] w-full h-full flex flex-col items-center justify-start overflow-auto no-scrollbar scroll-smooth selection:bg-neutral-500/30"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Image Frame */}
-              <div className="relative p-1.5 bg-white dark:bg-neutral-900 rounded-[2rem] shadow-[0_32px_64px_-12px_rgba(0,0,0,0.5)] border border-neutral-200 dark:border-neutral-800 shrink-0">
-                <div className="rounded-[1.5rem] overflow-hidden">
+              {/* Image Container for Original Size */}
+              <div className="relative shrink-0 flex items-center justify-center min-w-full min-h-full">
+                <div className="cursor-default">
                   {displayFull}
                 </div>
               </div>
               
-              {/* Optional Caption */}
+              {/* Optional Caption Overlay */}
               {caption && (
                 <motion.div 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
-                  className="px-6 py-2.5 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-white text-sm font-medium shadow-xl mt-4 shrink-0"
+                  className="fixed bottom-8 left-1/2 -translate-x-1/2 px-6 py-2.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-white text-sm font-medium shadow-2xl z-[120]"
                 >
                   {caption}
                 </motion.div>
