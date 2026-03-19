@@ -15,14 +15,37 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
   rightIcon?: ReactNode;
   error?: string;
   helperText?: string;
+  /**
+   * Optional regex to mask/filter the input value.
+   * Matches will be replaced with an empty string.
+   * Example: /[^\d]/g to only allow digits.
+   */
+  mask?: RegExp;
+  /**
+   * Optional formatter function to apply after masking.
+   * Useful for dynamic patterns like CPF (000.000.000-00).
+   */
+  formatter?: (value: string) => string;
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, leftIcon, rightIcon, error, helperText, className, id, ...props }, ref) => {
+  ({ label, leftIcon, rightIcon, error, helperText, mask, formatter, className, id, onChange, ...props }, ref) => {
     const inputId = id || (label ? `input-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined);
 
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      let value = e.target.value;
+      if (mask) {
+        value = value.replace(mask, '');
+      }
+      if (formatter) {
+        value = formatter(value);
+      }
+      e.target.value = value;
+      onChange?.(e);
+    };
+
     return (
-      <div className="flex flex-col gap-1.5 w-full">
+      <div className="flex flex-col gap-1.5 w-full font-sans">
         {label && (
           <label
             htmlFor={inputId}
@@ -44,9 +67,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             {...props}
             id={inputId}
             ref={ref}
+            onChange={handleChange}
             className={cn(
-              "w-full px-4 py-2.5 text-sm bg-white dark:bg-neutral-900 border rounded-md outline-none transition-all duration-200",
-              "border-neutral-400 dark:border-neutral-800",
+              "w-full px-4 py-[7px] text-sm bg-white dark:bg-neutral-900 border rounded-md outline-none transition-all duration-200",
+              "border-neutral-300 dark:border-neutral-800 text-neutral-900 dark:text-white",
               "focus:border-neutral-900 dark:focus:border-neutral-100",
               "focus:ring-4 focus:ring-neutral-100 dark:focus:ring-neutral-900/40",
               "placeholder:text-neutral-400 dark:placeholder:text-neutral-600",
