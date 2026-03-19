@@ -4,6 +4,7 @@ import path from 'path';
 import chalk from 'chalk';
 import ora from 'ora';
 import { fileURLToPath } from 'url';
+import { execSync } from 'child_process';
 import { registry } from './registry';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -21,9 +22,41 @@ program
 
 interface CliOptions {
   output: string;
+  install: boolean;
 }
 
-async function addComponent(componentName: string, options: CliOptions, isDependency = false) {
+// Helper to get package manager
+function getPackageManager() {
+  const cwd = process.cwd();
+  if (fs.existsSync(path.resolve(cwd, 'bun.lockb')) || fs.existsSync(path.resolve(cwd, 'bun.lock'))) return 'bun';
+  if (fs.existsSync(path.resolve(cwd, 'pnpm-lock.yaml'))) return 'pnpm';
+  if (fs.existsSync(path.resolve(cwd, 'yarn.lock'))) return 'yarn';
+  return 'npm';
+}
+
+// Helper to check if dependency is installed
+async function getMissingDependencies(deps: string[]) {
+  const pkgPath = path.resolve(process.cwd(), 'package.json');
+  if (!(await fs.pathExists(pkgPath))) return deps;
+
+  try {
+    const pkg = await fs.readJson(pkgPath);
+    const installed = {
+      ...pkg.dependencies,
+      ...pkg.devDependencies
+    };
+    return deps.filter(dep => !installed[dep]);
+  } catch {
+    return deps;
+  }
+}
+
+async function addComponent(
+  componentName: string, 
+  options: CliOptions, 
+  isDependency = false,
+  allDeps = new Set<string>()
+) {
   const component = registry[componentName.toLowerCase()];
   
   if (!component) {
@@ -53,21 +86,47 @@ async function addComponent(componentName: string, options: CliOptions, isDepend
       }
     }
 
+    // Accumulate dependencies
+    if (component.dependencies) {
+      component.dependencies.forEach(dep => allDeps.add(dep));
+    }
+
     // 2. Handle registry dependencies recursively
     if (component.registryDependencies) {
       for (const depName of component.registryDependencies) {
-        await addComponent(depName, options, true);
+        await addComponent(depName, options, true, allDeps);
       }
     }
 
     if (!isDependency) {
-      spinner.succeed(chalk.green(`\nSuccessfully added ${chalk.bold(component.name)}!\n`));
+      spinner.succeed(chalk.green(`\nSuccessfully added ${chalk.bold(component.name)}!`));
 
-      // 3. Dependency Instructions
-      if (component.dependencies && component.dependencies.length > 0) {
-        console.log(chalk.cyan('Next steps:'));
-        console.log(`Ensure you have these dependencies installed:`);
-        console.log(chalk.bold(`  bun add ${component.dependencies.join(' ')}\n`));
+      // 3. Dependency Installation
+      const missingDeps = await getMissingDependencies(Array.from(allDeps));
+      
+      if (missingDeps.length > 0) {
+        if (options.install) {
+          const pm = getPackageManager();
+          const installCmd = pm === 'npm' ? 'install' : 'add';
+          const command = `${pm} ${installCmd} ${missingDeps.join(' ')}`;
+          
+          console.log(chalk.cyan(`\nInstalling missing dependencies: ${chalk.bold(missingDeps.join(', '))}`));
+          const installSpinner = ora(`Running ${chalk.bold(command)}...`).start();
+          
+          try {
+            execSync(command, { stdio: 'inherit', cwd: process.cwd() });
+            installSpinner.succeed(chalk.green('Dependencies installed successfully!'));
+          } catch {
+            installSpinner.fail(chalk.red('Failed to install dependencies. Please install them manually:'));
+            console.log(chalk.bold(`  ${command}\n`));
+          }
+        } else {
+          console.log(chalk.cyan('\nNext steps:'));
+          console.log(`Ensure you have these dependencies installed:`);
+          const pm = getPackageManager();
+          const installCmd = pm === 'npm' ? 'install' : 'add';
+          console.log(chalk.bold(`  ${pm} ${installCmd} ${missingDeps.join(' ')}\n`));
+        }
       }
 
       console.log(`${chalk.gray('Location:')} ${targetDir}\n`);
@@ -88,6 +147,7 @@ program
   .description('Add a component to your project')
   .argument('<component>', 'Component to add')
   .option('-o, --output <dir>', 'Output directory', 'src/components/dashkit')
+  .option('--no-install', 'Do not automatically install dependencies')
   .action(async (componentName, options) => {
     await addComponent(componentName, options);
   });
