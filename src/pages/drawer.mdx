@@ -1,0 +1,83 @@
+# Drawer
+
+A premium panel component that slides in from the edges of the screen, providing a temporary surface for navigation, settings, or details.
+
+## Import
+
+```tsx
+import { Drawer } from '@/components/Drawer/Drawer'
+```
+
+## CLI
+
+Add the drawer to your project using the shadcn CLI:
+
+```bash
+bunx shadcn@latest add https://raw.githubusercontent.com/carllosnc/dashkit/master/registry.json:drawer
+```
+
+## Basic Usage
+
+The Drawer is controlled via the `isOpen` prop and requires an `onClose` callback.
+
+<Preview>
+  <DrawerDemo />
+</Preview>
+
+```tsx
+import { useState } from 'react'
+import { Drawer } from '@/components/Drawer/Drawer'
+
+export default function MyPage() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  return (
+    <>
+      <button onClick={() => setIsOpen(true)}>Open Drawer</button>
+      
+      <Drawer
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        position="right"
+        title="Settings"
+        description="Manage your account preferences."
+      >
+        <p>Drawer content goes here...</p>
+      </Drawer>
+    </>
+  )
+}
+```
+
+## Positions
+
+The component supports all four screen edges, with smooth spring animations tailored for each.
+
+- `right` (Default): Slides from the right.
+- `left`: Slides from the left.
+- `top`: Slides from the top.
+- `bottom`: Slides from the bottom.
+
+## Features
+
+- **Spring Physics**: Natural, bouncy transitions using Framer Motion.
+- **Backdrop Blur**: Softly blurs content behind the drawer for focus.
+- **Gesture Support**: Swipe the drawer towards its edge to close it instantly.
+- **Visual Handles**: Integrated drag indicators based on screen position.
+- **Body Lock**: Automatically prevents background scrolling when open.
+- **Responsive**: Adapts its width or height based on the `size` prop or position.
+
+## Props
+
+The `Drawer` component accepts the following props:
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `isOpen` | `boolean` | — | Controls the visibility of the drawer. |
+| `onClose` | `() => void` | — | Callback fired when the drawer should close. |
+| `position` | `'left' \| 'right' \| 'top' \| 'bottom'` | `'right'` | The edge from which the drawer slides. |
+| `title` | `string` | — | Optional header title. |
+| `description` | `string` | — | Optional subtitle below the title. |
+| `size` | `string` | — | Custom width/height (Tailwind class e.g. `max-w-xl`). |
+| `children` | `ReactNode` | — | Content to display inside the drawer body. |
+| `className` | `string` | — | Custom classes for the drawer container. |
