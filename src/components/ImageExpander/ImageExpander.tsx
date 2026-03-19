@@ -105,7 +105,7 @@ export function ImageExpander({ children, full, caption, className }: ImageExpan
               onClick={(e) => e.stopPropagation()}
             >
               {/* Image Container for Original Size */}
-              <div className="relative shrink-0 flex items-center justify-center min-w-full min-h-full">
+              <div className="relative shrink-0 flex items-start justify-center min-w-full">
                 <div className="cursor-default">
                   {displayFull}
                 </div>
