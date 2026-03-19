@@ -1,37 +1,41 @@
 import { ImageExpander } from './ImageExpander';
 
 export function ImageExpanderDemo() {
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
-      {/* Light Mode Mockup */}
-      <div className="flex flex-col gap-4">
-        <h4 className="text-sm font-semibold text-neutral-500 dark:text-neutral-400 ml-1">Analytics View</h4>
-        <ImageExpander 
-          caption="Our premium analytics interface with data visualization"
-          className="aspect-video"
-        >
-          <img 
-            src="https://images.unsplash.com/photo-1551288049-bbda38a5f452?q=80&w=1000&auto=format&fit=crop" 
-            alt="Analytics Dashboard"
-            className="w-full h-full object-cover"
-          />
-        </ImageExpander>
-      </div>
+  const images = [
+    {
+      url: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?q=80&w=1176&auto=format&fit=crop",
+      caption: "Serene Forest",
+      alt: "Forest landscape"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1518495973542-4542c06a5843?q=80&w=687&auto=format&fit=crop",
+      caption: "Sunlight through Trees",
+      alt: "Sunlight"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=80&w=687&auto=format&fit=crop",
+      caption: "Nature's Waterfall",
+      alt: "Waterfall"
+    }
+  ];
 
-      {/* Dark Mode Mockup */}
-      <div className="flex flex-col gap-4">
-        <h4 className="text-sm font-semibold text-neutral-500 dark:text-neutral-400 ml-1">Strategy Planning</h4>
-        <ImageExpander 
-          caption="Conceptual overview of the strategic planning module"
-          className="aspect-video"
-        >
-          <img 
-            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop" 
-            alt="Strategy Interface"
-            className="w-full h-full object-cover"
-          />
-        </ImageExpander>
-      </div>
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+      {images.map((img, index) => (
+        <div key={index} className="flex flex-col gap-3">
+          <ImageExpander 
+            caption={img.caption}
+            className="aspect-[3/4]"
+          >
+            <img 
+              src={img.url} 
+              alt={img.alt}
+              className="w-full h-full object-cover"
+            />
+          </ImageExpander>
+          <span className="text-xs font-medium text-neutral-400 dark:text-neutral-500 text-center uppercase tracking-widest">{img.caption}</span>
+        </div>
+      ))}
     </div>
   );
 }
