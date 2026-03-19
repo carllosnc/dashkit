@@ -1,0 +1,80 @@
+# Image Expander
+
+A premium image zoom-in/expansion component designed to showcase high-fidelity dashboard views, screenshots, or any visual detail with an immersive experience.
+
+## Import
+
+```tsx
+import { ImageExpander } from '@/components/ImageExpander/ImageExpander'
+```
+
+## CLI
+
+Add the image expander to your project using the shadcn CLI:
+
+```bash
+bunx shadcn@latest add https://raw.githubusercontent.com/carllosnc/dashkit/master/registry.json:image-expander
+```
+
+## Basic Usage
+
+The component is easy to use. Just wrap your image or any element you want to expand.
+
+<Preview>
+  <div className="w-full max-w-lg">
+    <ImageExpander caption="A stunning tech interface preview">
+      <img 
+        src="https://images.unsplash.com/photo-1551288049-bbda38a5f452?q=80&w=1000&auto=format&fit=crop" 
+        alt="Dashboard" 
+        className="w-full h-full object-cover rounded-xl" 
+      />
+    </ImageExpander>
+  </div>
+</Preview>
+
+```tsx
+import { ImageExpander } from '@/components/ImageExpander/ImageExpander'
+
+<ImageExpander caption="A clean dashboard mockup">
+  <img src="/path/to/image.jpg" alt="Dashboard View" />
+</ImageExpander>
+```
+
+## Advanced Demos
+
+Experience the component on both light and dark mode screenshots with full immersive expansion.
+
+<Preview>
+  <ImageExpanderDemo />
+</Preview>
+
+```tsx
+<div className="grid grid-cols-2 gap-8">
+  <ImageExpander caption="Light Theme View">
+    <img src="/mockup-light.png" alt="Light Dashboard" />
+  </ImageExpander>
+  
+  <ImageExpander caption="Dark Theme View">
+    <img src="/mockup-dark.png" alt="Dark Dashboard" />
+  </ImageExpander>
+</div>
+```
+
+## Features
+
+- **Spring Dynamics**: Uses Framer Motion's physical spring model for a "premium" feel.
+- **Backdrop Blur**: The UI softly blurs the background to maintain focus on the content.
+- **Dark Mode Ready**: Automatically shifts UI elements like borders and backgrounds.
+- **Auto Body Lock**: Prevents background scrolling when the image is expanded.
+- **Keyboard Friendly**: Easily close using the `Escape` key.
+
+## Props
+
+The component uses a custom interface for high-end expansion:
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | — | The content used for the thumbnail and fallback full view. |
+| `full` | `ReactNode` | — | (Optional) A higher-resolution version to show when expanded. |
+| `caption` | `string` | — | Optional subtitle displayed below the expanded view. |
+| `className` | `string` | — | Custom styling for the thumbnail container. |
