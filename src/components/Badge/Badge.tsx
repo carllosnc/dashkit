@@ -104,6 +104,7 @@ export const Badge = ({
             badgeStyles,
             className
           )}
+          data-testid="badge"
         >
           {pulse && (
             <span 

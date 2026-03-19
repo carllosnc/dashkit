@@ -71,19 +71,19 @@ Dashkit comes with a powerful CLI to add components directly to your project wit
 To add a component to your project, run:
 
 ```bash
-npx dashkit-ui add <component-name>
+bunx dashkit-ui add <component-name>
 ```
 
 ### Examples
 
 **Add the Card component (includes Badge and Button):**
 ```bash
-npx dashkit-ui add card
+bunx dashkit-ui add card
 ```
 
 **Custom Output Directory:**
 ```bash
-npx dashkit-ui add card -o src/components/ui
+bunx dashkit-ui add card -o src/components/ui
 ```
 
 ### Available Components

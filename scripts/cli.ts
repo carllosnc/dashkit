@@ -67,7 +67,7 @@ async function addComponent(componentName: string, options: CliOptions, isDepend
       if (component.dependencies && component.dependencies.length > 0) {
         console.log(chalk.cyan('Next steps:'));
         console.log(`Ensure you have these dependencies installed:`);
-        console.log(chalk.bold(`  npm install ${component.dependencies.join(' ')}\n`));
+        console.log(chalk.bold(`  bun add ${component.dependencies.join(' ')}\n`));
       }
 
       console.log(`${chalk.gray('Location:')} ${targetDir}\n`);
