@@ -26,6 +26,13 @@ export function ImageExpanderDemo() {
           <ImageExpander 
             caption={img.caption}
             className="aspect-[3/4]"
+            full={
+              <img 
+                src={img.url} 
+                alt={img.alt}
+                className="w-auto h-auto max-w-full block" 
+              />
+            }
           >
             <img 
               src={img.url} 
