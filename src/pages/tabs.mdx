@@ -21,19 +21,19 @@ bunx carllosnc/dashkit add tabs
 The component is highly accessible and supports a fluid layout for its triggers.
 
 <Preview>
-  <div className="w-full max-w-lg p-6 rounded-2xl border border-neutral-100 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-xl">
+  <div className="w-full max-w-lg p-6 rounded-2xl border border-base-100 dark:border-base-800 bg-white dark:bg-base-900 shadow-xl">
     <Tabs defaultValue="account">
       <TabsList className="w-full mb-8">
         <TabsTrigger value="account">Account</TabsTrigger>
         <TabsTrigger value="password">Password</TabsTrigger>
       </TabsList>
       <TabsContent value="account">
-        <h3 className="text-lg font-bold text-neutral-900 dark:text-white mb-2">Account Settings</h3>
-        <p className="text-sm text-neutral-500 dark:text-neutral-400">Update your account email and personal information.</p>
+        <h3 className="text-lg font-bold text-base-900 dark:text-white mb-2">Account Settings</h3>
+        <p className="text-sm text-base-500 dark:text-base-400">Update your account email and personal information.</p>
       </TabsContent>
       <TabsContent value="password">
-        <h3 className="text-lg font-bold text-neutral-900 dark:text-white mb-2">Password</h3>
-        <p className="text-sm text-neutral-500 dark:text-neutral-400">Change your password and manage your security settings.</p>
+        <h3 className="text-lg font-bold text-base-900 dark:text-white mb-2">Password</h3>
+        <p className="text-sm text-base-500 dark:text-base-400">Change your password and manage your security settings.</p>
       </TabsContent>
     </Tabs>
   </div>

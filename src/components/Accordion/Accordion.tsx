@@ -87,7 +87,7 @@ export const AccordionItem = ({ value, children, className, disabled }: Accordio
   return (
     <AccordionItemContext.Provider value={{ value, isOpen }}>
       <div className={cn(
-        "border-b border-neutral-300 dark:border-neutral-800 last:border-b-0 transition-colors duration-200",
+        "border-b border-base-300 dark:border-base-800 last:border-b-0 transition-colors duration-200",
         disabled && "opacity-50 pointer-events-none",
         className
       )}>
@@ -106,8 +106,8 @@ export const AccordionTrigger = ({ children, className }: { children: React.Reac
     <button
       onClick={() => context.onValueChange(itemContext.value)}
       className={cn(
-        "flex w-full items-center justify-between py-4 text-left font-medium transition-all hover:text-neutral-900 dark:hover:text-white group",
-        itemContext.isOpen ? "text-neutral-900 dark:text-white" : "text-neutral-500 dark:text-neutral-400",
+        "flex w-full items-center justify-between py-4 text-left font-medium transition-all hover:text-base-900 dark:hover:text-white group",
+        itemContext.isOpen ? "text-base-900 dark:text-white" : "text-base-500 dark:text-base-400",
         className
       )}
     >
@@ -115,7 +115,7 @@ export const AccordionTrigger = ({ children, className }: { children: React.Reac
       <motion.div
         animate={{ rotate: itemContext.isOpen ? 180 : 0 }}
         transition={{ type: 'spring', damping: 20, stiffness: 300 }}
-        className="text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white shrink-0 ml-4"
+        className="text-base-400 group-hover:text-base-900 dark:group-hover:text-white shrink-0 ml-4"
       >
         <FiChevronDown size={16} />
       </motion.div>
@@ -137,7 +137,7 @@ export const AccordionContent = ({ children, className }: { children: React.Reac
           transition={{ type: 'spring', damping: 25, stiffness: 200 }}
           className="overflow-hidden"
         >
-          <div className={cn("pb-4 text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed", className)}>
+          <div className={cn("pb-4 text-sm text-base-500 dark:text-base-400 leading-relaxed", className)}>
             {children}
           </div>
         </motion.div>

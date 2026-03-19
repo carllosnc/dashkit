@@ -55,7 +55,7 @@ export function Tabs({ defaultValue, value, onValueChange, children, className }
 export function TabsList({ children, className }: { children: ReactNode; className?: string }) {
   return (
     <div className={cn(
-      "inline-flex h-11 items-center justify-start rounded-xl bg-neutral-100 dark:bg-neutral-800/80 p-1 text-neutral-500",
+      "inline-flex h-11 items-center justify-start rounded-xl bg-base-100 dark:bg-base-800/80 p-1 text-base-500",
       className
     )}>
       {children}
@@ -78,14 +78,14 @@ export function TabsTrigger({ value, children, className }: { value: string; chi
       className={cn(
         "relative flex-1 px-4 py-2 text-sm font-semibold transition-colors duration-200 outline-none isolate whitespace-nowrap",
         "flex items-center justify-center cursor-pointer",
-        isActive ? "text-neutral-900 dark:text-white" : "text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200",
+        isActive ? "text-base-900 dark:text-white" : "text-base-500 hover:text-base-700 dark:text-base-400 dark:hover:text-base-200",
         className
       )}
     >
       {isActive && (
         <motion.div
           layoutId={`active-tab-${context.tabsId}`}
-          className="absolute inset-0 z-[-1] bg-white dark:bg-neutral-950 rounded-lg shadow-sm"
+          className="absolute inset-0 z-[-1] bg-white dark:bg-base-950 rounded-lg shadow-sm"
           transition={{ 
             type: 'spring', 
             stiffness: 300, 

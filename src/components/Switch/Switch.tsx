@@ -34,16 +34,16 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
             <div 
               className={cn(
                 "w-11 h-6 rounded-full border-2 transition-all duration-300 shrink-0",
-                "border-neutral-800 dark:border-neutral-400 bg-neutral-100 dark:bg-neutral-800",
+                "border-base-800 dark:border-base-400 bg-base-100 dark:bg-base-800",
                 "peer-checked:bg-black peer-checked:border-black dark:peer-checked:bg-white dark:peer-checked:border-white",
-                "peer-focus-visible:ring-4 peer-focus-visible:ring-neutral-100 dark:peer-focus-visible:ring-neutral-900/40",
+                "peer-focus-visible:ring-4 peer-focus-visible:ring-base-100 dark:peer-focus-visible:ring-base-900/40",
                 "peer-disabled:opacity-30 peer-disabled:cursor-not-allowed",
                 className
               )} 
             />
             {/* Thumb */}
             <div className={cn(
-              "absolute left-[4px] top-[4px] w-4 h-4 rounded-full bg-neutral-500 dark:bg-neutral-400 transition-all duration-300",
+              "absolute left-[4px] top-[4px] w-4 h-4 rounded-full bg-base-500 dark:bg-base-400 transition-all duration-300",
               "peer-checked:translate-x-5 peer-checked:bg-white dark:peer-checked:bg-black shadow-sm",
               "peer-disabled:opacity-30 peer-disabled:cursor-not-allowed"
             )} />
@@ -55,12 +55,12 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
             className="flex flex-col cursor-pointer select-none"
           >
             {label && (
-              <span className="text-[15px] font-semibold text-neutral-800 dark:text-neutral-200 tracking-tight leading-6">
+              <span className="text-[15px] font-semibold text-base-800 dark:text-base-200 tracking-tight leading-6">
                 {label}
               </span>
             )}
             {description && (
-              <span className="text-[12px] text-neutral-500 dark:text-neutral-400 tracking-tight">
+              <span className="text-[12px] text-base-500 dark:text-base-400 tracking-tight">
                 {description}
               </span>
             )}

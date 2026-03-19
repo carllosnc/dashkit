@@ -66,7 +66,7 @@ export const Select = ({
   return (
     <div className="flex flex-col gap-1.5 w-full font-sans" ref={containerRef}>
       {label && (
-        <label className="text-[13px] font-semibold text-neutral-700 dark:text-neutral-300 ml-1 tracking-tight">
+        <label className="text-[13px] font-semibold text-base-700 dark:text-base-300 ml-1 tracking-tight">
           {label}
         </label>
       )}
@@ -79,22 +79,22 @@ export const Select = ({
           aria-haspopup="listbox"
           aria-expanded={isOpen}
           className={cn(
-            "w-full px-4 py-2.5 text-sm bg-white dark:bg-neutral-900 border rounded-md outline-none transition-all duration-200",
-            "border-neutral-400 dark:border-neutral-700 text-left",
+            "w-full px-4 py-2.5 text-sm bg-white dark:bg-base-900 border rounded-md outline-none transition-all duration-200",
+            "border-base-400 dark:border-base-700 text-left",
             "flex items-center justify-between gap-2",
-            "focus:border-black dark:focus:border-white focus:ring-4 focus:ring-neutral-100 dark:focus:ring-neutral-900/40",
-            disabled && "opacity-50 cursor-not-allowed bg-neutral-50 dark:bg-neutral-950",
+            "focus:border-black dark:focus:border-white focus:ring-4 focus:ring-base-100 dark:focus:ring-base-900/40",
+            disabled && "opacity-50 cursor-not-allowed bg-base-50 dark:bg-base-950",
             className
           )}
         >
           <span className={cn(
             "truncate block",
-            !selectedOption && "text-neutral-400 dark:text-neutral-600"
+            !selectedOption && "text-base-400 dark:text-base-600"
           )}>
             {selectedOption ? selectedOption.label : placeholder}
           </span>
           <FiChevronDown className={cn(
-            "transition-transform duration-300 shrink-0 text-neutral-400",
+            "transition-transform duration-300 shrink-0 text-base-400",
             isOpen && "rotate-180 text-black dark:text-white"
           )} />
         </button>
@@ -103,13 +103,13 @@ export const Select = ({
           <div 
             role="listbox"
             className={cn(
-              "absolute top-full left-0 w-full mt-2 py-1.5 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg shadow-xl z-50 overflow-hidden",
+              "absolute top-full left-0 w-full mt-2 py-1.5 bg-white dark:bg-base-900 border border-base-200 dark:border-base-800 rounded-lg shadow-xl z-50 overflow-hidden",
               "animate-in fade-in slide-in-from-top-2 duration-200"
             )}
           >
             <div className="max-h-60 overflow-y-auto">
               {options.length === 0 ? (
-                <div className="px-4 py-2 text-sm text-neutral-400 text-center">No options available</div>
+                <div className="px-4 py-2 text-sm text-base-400 text-center">No options available</div>
               ) : (
                 options.map((opt) => (
                   <button
@@ -122,10 +122,10 @@ export const Select = ({
                     }}
                     className={cn(
                       "w-full px-4 py-2.5 text-sm text-left flex items-center justify-between transition-colors",
-                      "hover:bg-neutral-100 dark:hover:bg-neutral-800/80",
+                      "hover:bg-base-100 dark:hover:bg-base-800/80",
                       opt.value === value 
-                        ? "bg-neutral-50 dark:bg-neutral-800/50 font-semibold text-black dark:text-white" 
-                        : "text-neutral-600 dark:text-neutral-400"
+                        ? "bg-base-50 dark:bg-base-800/50 font-semibold text-black dark:text-white" 
+                        : "text-base-600 dark:text-base-400"
                     )}
                   >
                     <span className="truncate">{opt.label}</span>
@@ -140,7 +140,7 @@ export const Select = ({
         )}
       </div>
       {description && (
-        <span className="text-[12px] text-neutral-500 dark:text-neutral-500 ml-1 tracking-tight">
+        <span className="text-[12px] text-base-500 dark:text-base-500 ml-1 tracking-tight">
           {description}
         </span>
       )}

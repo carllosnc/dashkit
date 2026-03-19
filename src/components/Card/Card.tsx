@@ -40,7 +40,7 @@ export const CardTitle = React.forwardRef<HTMLHeadingElement, React.HTMLAttribut
   ({ className, ...props }, ref) => (
     <h3
       ref={ref}
-      className={cn("text-lg font-bold text-neutral-950 dark:text-white tracking-tight leading-tight", className)}
+      className={cn("text-lg font-bold text-base-950 dark:text-white tracking-tight leading-tight", className)}
       {...props}
     />
   )
@@ -51,7 +51,7 @@ export const CardDescription = React.forwardRef<HTMLParagraphElement, React.HTML
   ({ className, ...props }, ref) => (
     <p
       ref={ref}
-      className={cn("text-[13px] text-neutral-500 dark:text-neutral-400 leading-relaxed font-medium", className)}
+      className={cn("text-[13px] text-base-500 dark:text-base-400 leading-relaxed font-medium", className)}
       {...props}
     />
   )
@@ -77,7 +77,7 @@ export const CardFooter = React.forwardRef<HTMLDivElement, React.HTMLAttributes<
     <div
       ref={ref}
       className={cn(
-        "px-6 py-4 bg-neutral-50 dark:bg-white/[0.02] border-t border-neutral-200 dark:border-neutral-800 flex items-center justify-end gap-3",
+        "px-6 py-4 bg-base-50 dark:bg-white/[0.02] border-t border-base-200 dark:border-base-800 flex items-center justify-end gap-3",
         className
       )}
       {...props}
@@ -115,8 +115,8 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
         animate={animate ? { opacity: 1, y: 0 } : undefined}
         transition={{ duration: 0.3, ease: 'easeOut' }}
         className={cn(
-          "bg-white dark:bg-neutral-900 overflow-hidden flex flex-col font-sans",
-          bordered && "border border-neutral-200 dark:border-neutral-800 rounded-2xl",
+          "bg-white dark:bg-base-900 overflow-hidden flex flex-col font-sans",
+          bordered && "border border-base-200 dark:border-base-800 rounded-2xl",
           className
         )}
       >

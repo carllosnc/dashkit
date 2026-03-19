@@ -50,7 +50,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label
             htmlFor={inputId}
-            className="text-[13px] font-semibold text-neutral-700 dark:text-neutral-300 ml-1 tracking-tight"
+            className="text-[13px] font-semibold text-base-700 dark:text-base-300 ml-1 tracking-tight"
           >
             {label}
           </label>
@@ -58,7 +58,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         <div className="relative flex items-center group">
           {leftIcon && (
             <div className={cn(
-              "absolute left-4 text-neutral-400 transition-colors duration-200 pointer-events-none flex items-center justify-center",
+              "absolute left-4 text-base-400 transition-colors duration-200 pointer-events-none flex items-center justify-center",
               "group-focus-within:text-black dark:group-focus-within:text-white"
             )}>
               {leftIcon}
@@ -70,12 +70,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             onChange={handleChange}
             className={cn(
-              "w-full px-4 py-[7px] text-sm bg-white dark:bg-neutral-900 border rounded-md outline-none transition-all duration-200",
-              "border-neutral-300 dark:border-neutral-800 text-neutral-900 dark:text-white",
-              "focus:border-neutral-900 dark:focus:border-neutral-100",
-              "focus:ring-4 focus:ring-neutral-100 dark:focus:ring-neutral-900/40",
-              "placeholder:text-neutral-400 dark:placeholder:text-neutral-600",
-              "disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-neutral-50 dark:disabled:bg-neutral-950",
+              "w-full px-4 py-[7px] text-sm bg-white dark:bg-base-900 border rounded-md outline-none transition-all duration-200",
+              "border-base-300 dark:border-base-800 text-base-900 dark:text-white",
+              "focus:border-base-900 dark:focus:border-base-100",
+              "focus:ring-4 focus:ring-base-100 dark:focus:ring-base-900/40",
+              "placeholder:text-base-400 dark:placeholder:text-base-600",
+              "disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-base-50 dark:disabled:bg-base-950",
               {
                 "pl-11": !!leftIcon,
                 "pr-11": !!rightIcon,
@@ -86,7 +86,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           />
           {rightIcon && (
             <div className={cn(
-              "absolute right-4 text-neutral-400 transition-colors duration-200 pointer-events-none flex items-center justify-center",
+              "absolute right-4 text-base-400 transition-colors duration-200 pointer-events-none flex items-center justify-center",
               "group-focus-within:text-black dark:group-focus-within:text-white"
             )}>
               {rightIcon}
@@ -96,7 +96,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {(error || helperText) && (
           <span className={cn(
             "text-[12px] ml-1 tracking-tight",
-            error ? "text-red-500" : "text-neutral-500"
+            error ? "text-red-500" : "text-base-500"
           )}>
             {error || helperText}
           </span>

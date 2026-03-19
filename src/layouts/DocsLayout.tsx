@@ -10,17 +10,17 @@ export function DocsLayout() {
   return (
     <div className="min-h-screen bg-white dark:bg-[#030303] font-sans flex flex-col">
       {/* Navigation */}
-      <nav className="flex items-center justify-between px-8 py-5 border-b border-neutral-200 dark:border-neutral-800 bg-white/70 dark:bg-[#030303]/70 backdrop-blur-xl sticky top-0 z-50">
+      <nav className="flex items-center justify-between px-8 py-5 border-b border-base-200 dark:border-base-800 bg-white/70 dark:bg-[#030303]/70 backdrop-blur-xl sticky top-0 z-50">
         <Link to="/" className="flex items-center group">
           <img src="/logo.svg" alt="Dashkit UI Logo" className="h-6 dark:invert" />
         </Link>
         <div className="flex items-center gap-8">
-          <Link to="/docs" className="text-sm font-medium text-neutral-900 dark:text-white transition-colors">
+          <Link to="/docs" className="text-sm font-medium text-base-900 dark:text-white transition-colors">
             Documentation
           </Link>
-          <div className="flex items-center gap-4 pl-4 border-l border-neutral-200 dark:border-neutral-800">
+          <div className="flex items-center gap-4 pl-4 border-l border-base-200 dark:border-base-800">
             <ThemeToggle />
-            <a href="https://github.com/carllosnc/dashkit" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-neutral-900 dark:hover:text-white">
+            <a href="https://github.com/carllosnc/dashkit" target="_blank" rel="noopener noreferrer" className="text-base-400 hover:text-base-900 dark:hover:text-white">
               <FiGithub size={20} />
             </a>
           </div>
@@ -30,10 +30,10 @@ export function DocsLayout() {
       {/* Main Layout */}
       <div className="flex-1 max-w-6xl w-full mx-auto px-6 grid grid-cols-[260px_1fr] gap-12">
         {/* Sidebar */}
-        <aside className="py-12 border-r border-neutral-200 dark:border-neutral-800 hidden md:block pr-8">
+        <aside className="py-12 border-r border-base-200 dark:border-base-800 hidden md:block pr-8">
           <div className="sticky top-28">
             <div className="mb-10">
-              <h4 className="text-[11px] font-bold text-neutral-400 dark:text-neutral-500 uppercase tracking-[0.2em] mb-4">
+              <h4 className="text-[11px] font-bold text-base-400 dark:text-base-500 uppercase tracking-[0.2em] mb-4">
                 Getting Started
               </h4>
               <nav className="flex flex-col gap-1">
@@ -42,8 +42,8 @@ export function DocsLayout() {
                   className={clsx(
                     "px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
                     (currentPath === '/docs' || currentPath === '/docs/introduction')
-                      ? "bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
-                      : "text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/5"
+                      ? "bg-base-100 text-base-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
+                      : "text-base-500 hover:text-base-900 hover:bg-base-50 dark:text-base-400 dark:hover:text-white dark:hover:bg-white/5"
                   )}
                 >
                   Introduction
@@ -53,8 +53,8 @@ export function DocsLayout() {
                   className={clsx(
                     "px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
                     currentPath === '/docs/cli'
-                      ? "bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
-                      : "text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/5"
+                      ? "bg-base-100 text-base-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
+                      : "text-base-500 hover:text-base-900 hover:bg-base-50 dark:text-base-400 dark:hover:text-white dark:hover:bg-white/5"
                   )}
                 >
                   CLI
@@ -63,7 +63,7 @@ export function DocsLayout() {
             </div>
 
             <div className="mb-8">
-              <h4 className="text-[11px] font-bold text-neutral-400 dark:text-neutral-500 uppercase tracking-[0.2em] mb-4">
+              <h4 className="text-[11px] font-bold text-base-400 dark:text-base-500 uppercase tracking-[0.2em] mb-4">
                 Components
               </h4>
               <nav className="flex flex-col gap-1">
@@ -72,8 +72,8 @@ export function DocsLayout() {
                   className={clsx(
                     "px-3 py-2.5 rounded-xl text-sm font-medium",
                     currentPath === '/docs/button' 
-                      ? "bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
-                      : "text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/5"
+                      ? "bg-base-100 text-base-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
+                      : "text-base-500 hover:text-base-900 hover:bg-base-50 dark:text-base-400 dark:hover:text-white dark:hover:bg-white/5"
                   )}
                 >
                   Button
@@ -83,8 +83,8 @@ export function DocsLayout() {
                   className={clsx(
                     "px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
                     currentPath === '/docs/input' 
-                      ? "bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
-                      : "text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/5"
+                      ? "bg-base-100 text-base-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
+                      : "text-base-500 hover:text-base-900 hover:bg-base-50 dark:text-base-400 dark:hover:text-white dark:hover:bg-white/5"
                   )}
                 >
                   Input
@@ -94,8 +94,8 @@ export function DocsLayout() {
                   className={clsx(
                     "px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
                     currentPath === '/docs/checkbox' 
-                      ? "bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
-                      : "text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/5"
+                      ? "bg-base-100 text-base-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
+                      : "text-base-500 hover:text-base-900 hover:bg-base-50 dark:text-base-400 dark:hover:text-white dark:hover:bg-white/5"
                   )}
                 >
                   Checkbox
@@ -105,8 +105,8 @@ export function DocsLayout() {
                   className={clsx(
                     "px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
                     currentPath === '/docs/radio' 
-                      ? "bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
-                      : "text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/5"
+                      ? "bg-base-100 text-base-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
+                      : "text-base-500 hover:text-base-900 hover:bg-base-50 dark:text-base-400 dark:hover:text-white dark:hover:bg-white/5"
                   )}
                 >
                   Radio
@@ -116,8 +116,8 @@ export function DocsLayout() {
                   className={clsx(
                     "px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
                     currentPath === '/docs/select' 
-                      ? "bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
-                      : "text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/5"
+                      ? "bg-base-100 text-base-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
+                      : "text-base-500 hover:text-base-900 hover:bg-base-50 dark:text-base-400 dark:hover:text-white dark:hover:bg-white/5"
                   )}
                 >
                   Select
@@ -127,8 +127,8 @@ export function DocsLayout() {
                   className={clsx(
                     "px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
                     currentPath === '/docs/switch' 
-                      ? "bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
-                      : "text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/5"
+                      ? "bg-base-100 text-base-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
+                      : "text-base-500 hover:text-base-900 hover:bg-base-50 dark:text-base-400 dark:hover:text-white dark:hover:bg-white/5"
                   )}
                 >
                   Switch
@@ -138,8 +138,8 @@ export function DocsLayout() {
                   className={clsx(
                     "px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
                     currentPath === '/docs/tabs' 
-                      ? "bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
-                      : "text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/5"
+                      ? "bg-base-100 text-base-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
+                      : "text-base-500 hover:text-base-900 hover:bg-base-50 dark:text-base-400 dark:hover:text-white dark:hover:bg-white/5"
                   )}
                 >
                   Tabs
@@ -149,8 +149,8 @@ export function DocsLayout() {
                   className={clsx(
                     "px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
                     currentPath === '/docs/otp-input' 
-                      ? "bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
-                      : "text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/5"
+                      ? "bg-base-100 text-base-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
+                      : "text-base-500 hover:text-base-900 hover:bg-base-50 dark:text-base-400 dark:hover:text-white dark:hover:bg-white/5"
                   )}
                 >
                   OTP Input
@@ -160,8 +160,8 @@ export function DocsLayout() {
                   className={clsx(
                     "px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
                     currentPath === '/docs/image-expander' 
-                      ? "bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
-                      : "text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/5"
+                      ? "bg-base-100 text-base-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
+                      : "text-base-500 hover:text-base-900 hover:bg-base-50 dark:text-base-400 dark:hover:text-white dark:hover:bg-white/5"
                   )}
                 >
                   Image Expander
@@ -171,8 +171,8 @@ export function DocsLayout() {
                   className={clsx(
                     "px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
                     currentPath === '/docs/drawer' 
-                      ? "bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
-                      : "text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/5"
+                      ? "bg-base-100 text-base-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
+                      : "text-base-500 hover:text-base-900 hover:bg-base-50 dark:text-base-400 dark:hover:text-white dark:hover:bg-white/5"
                   )}
                 >
                   Drawer
@@ -182,8 +182,8 @@ export function DocsLayout() {
                   className={clsx(
                     "px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
                     currentPath === '/docs/modal' 
-                      ? "bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
-                      : "text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/5"
+                      ? "bg-base-100 text-base-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
+                      : "text-base-500 hover:text-base-900 hover:bg-base-50 dark:text-base-400 dark:hover:text-white dark:hover:bg-white/5"
                   )}
                 >
                   Modal
@@ -193,8 +193,8 @@ export function DocsLayout() {
                   className={clsx(
                     "px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
                     currentPath === '/docs/accordion' 
-                      ? "bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
-                      : "text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/5"
+                      ? "bg-base-100 text-base-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
+                      : "text-base-500 hover:text-base-900 hover:bg-base-50 dark:text-base-400 dark:hover:text-white dark:hover:bg-white/5"
                   )}
                 >
                   Accordion
@@ -204,8 +204,8 @@ export function DocsLayout() {
                   className={clsx(
                     "px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
                     currentPath === '/docs/toast' 
-                      ? "bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
-                      : "text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/5"
+                      ? "bg-base-100 text-base-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
+                      : "text-base-500 hover:text-base-900 hover:bg-base-50 dark:text-base-400 dark:hover:text-white dark:hover:bg-white/5"
                   )}
                 >
                   Toast
@@ -215,8 +215,8 @@ export function DocsLayout() {
                   className={clsx(
                     "px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
                     currentPath === '/docs/dropdown-menu' 
-                      ? "bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
-                      : "text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/5"
+                      ? "bg-base-100 text-base-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
+                      : "text-base-500 hover:text-base-900 hover:bg-base-50 dark:text-base-400 dark:hover:text-white dark:hover:bg-white/5"
                   )}
                 >
                   Dropdown Menu
@@ -226,8 +226,8 @@ export function DocsLayout() {
                   className={clsx(
                     "px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
                     currentPath === '/docs/badge' 
-                      ? "bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
-                      : "text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/5"
+                      ? "bg-base-100 text-base-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
+                      : "text-base-500 hover:text-base-900 hover:bg-base-50 dark:text-base-400 dark:hover:text-white dark:hover:bg-white/5"
                   )}
                 >
                   Badge
@@ -237,8 +237,8 @@ export function DocsLayout() {
                   className={clsx(
                     "px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
                     currentPath === '/docs/card' 
-                      ? "bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
-                      : "text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/5"
+                      ? "bg-base-100 text-base-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
+                      : "text-base-500 hover:text-base-900 hover:bg-base-50 dark:text-base-400 dark:hover:text-white dark:hover:bg-white/5"
                   )}
                 >
                   Card

@@ -111,7 +111,7 @@ export function DropdownContent({ children, className }: { children: React.React
            transition={{ duration: 0.15, ease: "easeOut" }}
            className={cn(
              "absolute z-50 mt-2 min-w-[12rem] overflow-hidden rounded-lg",
-             "bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800",
+             "bg-white dark:bg-base-900 border border-base-200 dark:border-base-800",
              "shadow-xl dark:shadow-black/50 p-1 origin-top",
              align === 'right' ? 'right-0' : 'left-0',
              className
@@ -160,17 +160,17 @@ export function DropdownItem({
       }}
       className={cn(
         "flex w-full items-center gap-2 px-3 py-2 text-sm font-medium rounded-lg transition-colors text-left",
-        "hover:bg-neutral-100 dark:hover:bg-white/5",
-        destructive ? "text-red-500 hover:text-red-600 dark:hover:bg-red-500/10" : "text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white",
-        selected && "bg-neutral-50 dark:bg-white/5 text-neutral-900 dark:text-white",
+        "hover:bg-base-100 dark:hover:bg-white/5",
+        destructive ? "text-red-500 hover:text-red-600 dark:hover:bg-red-500/10" : "text-base-700 dark:text-base-300 hover:text-base-900 dark:hover:text-white",
+        selected && "bg-base-50 dark:bg-white/5 text-base-900 dark:text-white",
         disabled && "opacity-50 cursor-not-allowed",
         className
       )}
     >
-      {leftIcon && <span className="shrink-0 text-neutral-400">{leftIcon}</span>}
+      {leftIcon && <span className="shrink-0 text-base-400">{leftIcon}</span>}
       <span className="flex-1 truncate">{children}</span>
-      {selected && <FiCheck className="shrink-0 text-neutral-900 dark:text-white" size={14} />}
-      {rightIcon && <span className="shrink-0 text-neutral-400">{rightIcon}</span>}
+      {selected && <FiCheck className="shrink-0 text-base-900 dark:text-white" size={14} />}
+      {rightIcon && <span className="shrink-0 text-base-400">{rightIcon}</span>}
     </button>
   );
 }
@@ -180,7 +180,7 @@ export function DropdownItem({
  */
 export function DropdownLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div className="px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-neutral-400 dark:text-neutral-500">
+    <div className="px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-base-400 dark:text-base-500">
       {children}
     </div>
   );
@@ -191,7 +191,7 @@ export function DropdownLabel({ children }: { children: React.ReactNode }) {
  */
 export function DropdownSeparator() {
   return (
-    <div className="my-1 h-px bg-neutral-200 dark:bg-neutral-800" />
+    <div className="my-1 h-px bg-base-200 dark:bg-base-800" />
   );
 }
 

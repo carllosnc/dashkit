@@ -40,7 +40,7 @@ export function ImageExpanderDemo() {
               className="w-full h-full object-cover"
             />
           </ImageExpander>
-          <span className="text-xs font-medium text-neutral-400 dark:text-neutral-500 text-center uppercase tracking-widest">{img.caption}</span>
+          <span className="text-xs font-medium text-base-400 dark:text-base-500 text-center uppercase tracking-widest">{img.caption}</span>
         </div>
       ))}
     </div>

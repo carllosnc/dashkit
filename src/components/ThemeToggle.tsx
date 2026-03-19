@@ -13,7 +13,7 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
     <button
       onClick={toggleTheme}
       className={clsx(
-        "text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition-colors p-1 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-900",
+        "text-base-500 hover:text-base-900 dark:text-base-400 dark:hover:text-white transition-colors p-1 rounded-md hover:bg-base-100 dark:hover:bg-base-900",
         className
       )}
       aria-label="Toggle theme"

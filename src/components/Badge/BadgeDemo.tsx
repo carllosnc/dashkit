@@ -8,7 +8,7 @@ export function BadgeDemo() {
 
       {/* Standalone Badges */}
       <section>
-        <h3 className="text-sm font-medium text-neutral-500 mb-6">Standalone Badges</h3>
+        <h3 className="text-sm font-medium text-base-500 mb-6">Standalone Badges</h3>
         <div className="flex flex-wrap gap-4 items-center">
           <Badge content="New" color="primary" />
           <Badge content="Live" color="success" pulse />
@@ -21,7 +21,7 @@ export function BadgeDemo() {
 
       {/* Float Badges */}
       <section>
-        <h3 className="text-sm font-medium text-neutral-500 mb-6">Floating Badges</h3>
+        <h3 className="text-sm font-medium text-base-500 mb-6">Floating Badges</h3>
         <div className="flex flex-wrap gap-8 items-center">
           <FloatBadge content={5} color="error">
             <Button variant="outlined" leftIcon={<FiMail size={18} />}>
@@ -30,19 +30,19 @@ export function BadgeDemo() {
           </FloatBadge>
 
           <FloatBadge content={12} color="primary">
-            <div className="p-3 bg-neutral-100 dark:bg-white/5 border border-neutral-200 dark:border-white/5 rounded-xl text-neutral-600 dark:text-neutral-400">
+            <div className="p-3 bg-base-100 dark:bg-white/5 border border-base-200 dark:border-white/5 rounded-xl text-base-600 dark:text-base-400">
               <FiBell size={24} />
             </div>
           </FloatBadge>
 
           <FloatBadge dot pulse color="success" position="bottom-right">
-            <div className="w-12 h-12 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-full flex items-center justify-center overflow-hidden">
-              <FiUser size={24} className="text-neutral-400" />
+            <div className="w-12 h-12 bg-base-100 dark:bg-base-800 border border-base-200 dark:border-base-700 rounded-full flex items-center justify-center overflow-hidden">
+              <FiUser size={24} className="text-base-400" />
             </div>
           </FloatBadge>
 
           <FloatBadge content={120} max={99} color="error" position="top-right">
-            <div className="p-3 bg-neutral-100 dark:bg-white/5 border border-neutral-200 dark:border-white/5 rounded-xl text-neutral-600 dark:text-neutral-400">
+            <div className="p-3 bg-base-100 dark:bg-white/5 border border-base-200 dark:border-white/5 rounded-xl text-base-600 dark:text-base-400">
               <FiMessageSquare size={24} />
             </div>
           </FloatBadge>
@@ -51,7 +51,7 @@ export function BadgeDemo() {
 
       {/* Pulse & Status */}
       <section>
-        <h3 className="text-sm font-medium text-neutral-500 mb-6">Status Indicators</h3>
+        <h3 className="text-sm font-medium text-base-500 mb-6">Status Indicators</h3>
         <div className="flex flex-wrap gap-12 items-center">
           <FloatBadge dot pulse color="error">
             <div className="p-3 bg-red-50 dark:bg-red-500/10 rounded-xl text-red-500">

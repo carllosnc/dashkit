@@ -8,22 +8,22 @@ function App() {
     <div className="flex flex-col min-h-screen bg-white dark:bg-[#030303] font-sans">
       {/* Background Effect */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-neutral-100/50 dark:bg-neutral-900/20 blur-[120px]" />
-        <div className="absolute top-[20%] -right-[10%] w-[30%] h-[50%] rounded-full bg-neutral-100/30 dark:bg-neutral-800/10 blur-[100px]" />
+        <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-base-100/50 dark:bg-base-900/20 blur-[120px]" />
+        <div className="absolute top-[20%] -right-[10%] w-[30%] h-[50%] rounded-full bg-base-100/30 dark:bg-base-800/10 blur-[100px]" />
       </div>
 
       {/* Navigation */}
-      <nav className="flex items-center justify-between px-8 py-5 border-b border-neutral-200 dark:border-neutral-800 bg-white/70 dark:bg-[#030303]/70 backdrop-blur-xl sticky top-0 z-50">
+      <nav className="flex items-center justify-between px-8 py-5 border-b border-base-200 dark:border-base-800 bg-white/70 dark:bg-[#030303]/70 backdrop-blur-xl sticky top-0 z-50">
         <div className="flex items-center group cursor-default">
           <img src="/logo.svg" alt="Dashkit UI Logo" className="h-6 dark:invert" />
         </div>
         <div className="flex items-center gap-8">
-          <Link to="/docs" className="text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white">
+          <Link to="/docs" className="text-sm font-medium text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white">
             Documentation
           </Link>
-          <div className="flex items-center gap-4 pl-4 border-l border-neutral-200 dark:border-neutral-800">
+          <div className="flex items-center gap-4 pl-4 border-l border-base-200 dark:border-base-800">
             <ThemeToggle />
-            <a href="https://github.com/carllosnc/dashkit" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-neutral-900 dark:hover:text-white">
+            <a href="https://github.com/carllosnc/dashkit" target="_blank" rel="noopener noreferrer" className="text-base-400 hover:text-base-900 dark:hover:text-white">
               <FiGithub size={20} />
             </a>
           </div>
@@ -32,12 +32,12 @@ function App() {
 
       {/* Hero Section */}
       <main className="flex-1 relative flex flex-col items-center justify-center text-center px-6 py-32 overflow-hidden">
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-neutral-950 dark:text-white max-w-4xl leading-[1.05] mb-8">
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-base-950 dark:text-white max-w-4xl leading-[1.05] mb-8">
           Build beautiful dashboards <br className="hidden md:block" />
-          <span className="text-neutral-400 dark:text-neutral-600">at the speed of light.</span>
+          <span className="text-base-400 dark:text-base-600">at the speed of light.</span>
         </h1>
 
-        <p className="text-lg md:text-xl text-neutral-500 dark:text-neutral-400 max-w-2xl mb-12">
+        <p className="text-lg md:text-xl text-base-500 dark:text-base-400 max-w-2xl mb-12">
           A premium, highly-customizable React library built with Tailwind CSS and Framer Motion, designed for high-performance dashboards.
         </p>
 
@@ -48,7 +48,7 @@ function App() {
             </Button>
           </Link>
           <a href="https://github.com/carllosnc/dashkit" target="_blank" rel="noopener noreferrer">
-            <Button variant="outlined" leftIcon={<FiGithub />} className="h-12 px-8 text-base bg-white dark:bg-neutral-950">
+            <Button variant="outlined" leftIcon={<FiGithub />} className="h-12 px-8 text-base bg-white dark:bg-base-950">
               View on GitHub
             </Button>
           </a>
@@ -56,26 +56,24 @@ function App() {
 
         {/* Tech Stack Badges */}
         <div className="flex flex-wrap justify-center gap-6 opacity-60">
-          <div className="flex items-center gap-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
+          <div className="flex items-center gap-2 text-sm font-medium text-base-600 dark:text-base-400">
             <div className="size-1.5 rounded-full bg-sky-400" />
             React
           </div>
-          <div className="flex items-center gap-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
+          <div className="flex items-center gap-2 text-sm font-medium text-base-600 dark:text-base-400">
             <div className="size-1.5 rounded-full bg-teal-400" />
             Tailwind CSS
           </div>
-          <div className="flex items-center gap-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
+          <div className="flex items-center gap-2 text-sm font-medium text-base-600 dark:text-base-400">
             <div className="size-1.5 rounded-full bg-violet-400" />
             Framer Motion
           </div>
-          <div className="flex items-center gap-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
+          <div className="flex items-center gap-2 text-sm font-medium text-base-600 dark:text-base-400">
             <div className="size-1.5 rounded-full bg-amber-400" />
             TypeScript
           </div>
         </div>
-
       </main>
-
     </div>
   )
 }

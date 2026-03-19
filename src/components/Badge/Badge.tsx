@@ -8,34 +8,34 @@ function cn(...inputs: (string | undefined | null | boolean | Record<string, boo
 }
 
 export type BadgeVariant = 'solid' | 'soft' | 'outline';
-export type BadgeColor = 'primary' | 'success' | 'warning' | 'error' | 'info' | 'neutral';
+export type BadgeColor = 'primary' | 'success' | 'warning' | 'error' | 'info' | 'base';
 export type BadgePosition = 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
 
 const colorStyles: Record<BadgeColor, string> = {
-  primary: "bg-primary-600 text-white hover:bg-primary-700",
+  primary: "bg-primary text-white hover:bg-primary",
   success: "bg-emerald-500 text-white hover:bg-emerald-600",
   warning: "bg-amber-500 text-white hover:bg-amber-600",
   error: "bg-red-500 text-white hover:bg-red-600",
   info: "bg-blue-500 text-white hover:bg-blue-600",
-  neutral: "bg-neutral-200 text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200 hover:bg-neutral-300 dark:hover:bg-neutral-700"
+  base: "bg-base-200 text-base-800 dark:bg-base-800 dark:text-base-200 hover:bg-base-300 dark:hover:bg-base-700"
 };
 
 const softStyles: Record<BadgeColor, string> = {
-  primary: "bg-primary-50 text-primary-700 dark:bg-primary-500/10 dark:text-primary-400",
+  primary: "bg-base-50 text-primary dark:bg-base-500/10 dark:text-primary",
   success: "bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400",
   warning: "bg-amber-50 text-amber-700 dark:bg-amber-500/10 dark:text-amber-400",
   error: "bg-red-50 text-red-700 dark:bg-red-500/10 dark:text-red-400",
   info: "bg-blue-50 text-blue-700 dark:bg-blue-500/10 dark:text-blue-400",
-  neutral: "bg-neutral-50 text-neutral-600 dark:bg-neutral-900 dark:text-neutral-400"
+  base: "bg-base-50 text-base-600 dark:bg-base-900 dark:text-base-400"
 };
 
 const outlineStyles: Record<BadgeColor, string> = {
-  primary: "border-primary-500 text-primary-600 dark:text-primary-400",
+  primary: "border-base-500 text-primary dark:text-primary",
   success: "border-emerald-500 text-emerald-600 dark:text-emerald-400",
   warning: "border-amber-500 text-amber-600 dark:text-amber-400",
   error: "border-red-500 text-red-600 dark:text-red-400",
   info: "border-blue-500 text-blue-600 dark:text-blue-400",
-  neutral: "border-neutral-300 text-neutral-600 dark:border-neutral-700 dark:text-neutral-400"
+  base: "border-base-300 text-base-600 dark:border-base-700 dark:text-base-400"
 };
 
 const positionClasses: Record<BadgePosition, string> = {

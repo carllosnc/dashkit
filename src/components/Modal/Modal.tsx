@@ -72,7 +72,7 @@ export const Modal = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-neutral-950/40 backdrop-blur-sm -z-10"
+            className="absolute inset-0 bg-base-950/40 backdrop-blur-sm -z-10"
           />
 
           {/* Modal Content */}
@@ -82,8 +82,8 @@ export const Modal = ({
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
             className={cn(
-              "w-full bg-white dark:bg-neutral-950 rounded-2xl shadow-2xl overflow-hidden flex flex-col",
-              "border border-neutral-200 dark:border-neutral-800",
+              "w-full bg-white dark:bg-base-950 rounded-2xl shadow-2xl overflow-hidden flex flex-col",
+              "border border-base-200 dark:border-base-800",
               sizeClasses[size],
               className
             )}
@@ -93,12 +93,12 @@ export const Modal = ({
               <div className="flex items-start justify-between p-8 pb-4">
                 <div className="flex flex-col gap-1.5">
                   {title && (
-                    <h2 className="text-xl font-bold text-neutral-900 dark:text-white tracking-tight uppercase">
+                    <h2 className="text-xl font-bold text-base-900 dark:text-white tracking-tight uppercase">
                       {title}
                     </h2>
                   )}
                   {description && (
-                    <p className="text-sm text-neutral-500 dark:text-neutral-400">
+                    <p className="text-sm text-base-500 dark:text-base-400">
                       {description}
                     </p>
                   )}
@@ -106,7 +106,7 @@ export const Modal = ({
                 {showCloseButton && (
                   <button
                     onClick={onClose}
-                    className="p-2.5 rounded-xl transition-all duration-200 hover:bg-neutral-100 dark:hover:bg-neutral-900 text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
+                    className="p-2.5 rounded-xl transition-all duration-200 hover:bg-base-100 dark:hover:bg-base-900 text-base-400 hover:text-base-900 dark:hover:text-white"
                   >
                     <FiX size={20} />
                   </button>
@@ -121,7 +121,7 @@ export const Modal = ({
 
             {/* Footer */}
             {footer && (
-              <div className="p-8 pt-4 flex items-center justify-end gap-3 bg-neutral-50/50 dark:bg-neutral-900/30">
+              <div className="p-8 pt-4 flex items-center justify-end gap-3 bg-base-50/50 dark:bg-base-900/30">
                 {footer}
               </div>
             )}

@@ -6,8 +6,8 @@ export function AccordionDemo() {
     <div className="flex flex-col gap-12 w-full max-w-2xl">
       {/* Default Single Mode */}
       <div className="space-y-2">
-        <h3 className="text-[10px] font-bold text-neutral-400 uppercase tracking-[0.2em] ml-1 mb-4">Simple Border Bottom</h3>
-        <Accordion type="single" defaultValue="item-1" className="gap-0 border-t border-neutral-200 dark:border-neutral-800">
+        <h3 className="text-[10px] font-bold text-base-400 uppercase tracking-[0.2em] ml-1 mb-4">Simple Border Bottom</h3>
+        <Accordion type="single" defaultValue="item-1" className="gap-0 border-t border-base-200 dark:border-base-800">
           <AccordionItem value="item-1">
             <AccordionTrigger>Minimalist Performance</AccordionTrigger>
             <AccordionContent>
@@ -33,8 +33,8 @@ export function AccordionDemo() {
 
       {/* Multiple Mode with Icon */}
       <div className="space-y-2">
-        <h3 className="text-[10px] font-bold text-neutral-400 uppercase tracking-[0.2em] ml-1 mb-4">Multi-Expand with Detail</h3>
-        <Accordion type="multiple" className="gap-0 border-y border-neutral-200 dark:border-neutral-800">
+        <h3 className="text-[10px] font-bold text-base-400 uppercase tracking-[0.2em] ml-1 mb-4">Multi-Expand with Detail</h3>
+        <Accordion type="multiple" className="gap-0 border-y border-base-200 dark:border-base-800">
           <AccordionItem value="m-1">
             <AccordionTrigger>
               <div className="flex items-center gap-2">

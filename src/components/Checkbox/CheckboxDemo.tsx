@@ -15,13 +15,13 @@ export function CheckboxDemo() {
       <div className="flex gap-2">
         <button 
           onClick={() => setChecked(true)}
-          className="text-xs px-2 py-1 bg-neutral-100 dark:bg-neutral-800 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors"
+          className="text-xs px-2 py-1 bg-base-100 dark:bg-base-800 rounded-md hover:bg-base-200 dark:hover:bg-base-700 transition-colors"
         >
           Check
         </button>
         <button 
           onClick={() => setChecked(false)}
-          className="text-xs px-2 py-1 bg-neutral-100 dark:bg-neutral-800 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors"
+          className="text-xs px-2 py-1 bg-base-100 dark:bg-base-800 rounded-md hover:bg-base-200 dark:hover:bg-base-700 transition-colors"
         >
           Uncheck
         </button>

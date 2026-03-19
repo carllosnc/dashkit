@@ -81,15 +81,15 @@ export function DropdownDemo() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-2xl px-4">
-        <div className="bg-neutral-50 dark:bg-white/5 rounded-2xl p-6 border border-neutral-200 dark:border-neutral-800">
+        <div className="bg-base-50 dark:bg-white/5 rounded-2xl p-6 border border-base-200 dark:border-base-800">
           <h4 className="text-sm font-bold mb-2">Clean Design</h4>
-          <p className="text-sm text-neutral-500 dark:text-neutral-400">
+          <p className="text-sm text-base-500 dark:text-base-400">
             Minimalist aesthetics with smooth Framer Motion animations and subtle glassmorphism.
           </p>
         </div>
-        <div className="bg-neutral-50 dark:bg-white/5 rounded-2xl p-6 border border-neutral-200 dark:border-neutral-800">
+        <div className="bg-base-50 dark:bg-white/5 rounded-2xl p-6 border border-base-200 dark:border-base-800">
           <h4 className="text-sm font-bold mb-2">Context Aware</h4>
-          <p className="text-sm text-neutral-500 dark:text-neutral-400">
+          <p className="text-sm text-base-500 dark:text-base-400">
             Supports alignment, labels, separators, and custom icons for a professional feel.
           </p>
         </div>
@@ -161,7 +161,7 @@ export function CustomTriggerDemo() {
       {/* Icon button trigger */}
       <Dropdown align="right">
         <DropdownTrigger asChild>
-          <button className="p-2 rounded-full hover:bg-neutral-100 dark:hover:bg-white/10 transition-colors text-neutral-500 hover:text-neutral-900 dark:hover:text-white border border-neutral-200 dark:border-neutral-800 shadow-sm">
+          <button className="p-2 rounded-full hover:bg-base-100 dark:hover:bg-white/10 transition-colors text-base-500 hover:text-base-900 dark:hover:text-white border border-base-200 dark:border-base-800 shadow-sm">
             <FiSettings size={20} />
           </button>
         </DropdownTrigger>

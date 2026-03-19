@@ -12,7 +12,7 @@ export function SwitchDemo() {
         checked={enabled}
         onChange={(e) => setEnabled(e.target.checked)}
       />
-      <div className="text-sm text-neutral-500 dark:text-neutral-400">
+      <div className="text-sm text-base-500 dark:text-base-400">
         Notifications are: <span className="font-semibold text-black dark:text-white">{enabled ? 'Enabled' : 'Disabled'}</span>
       </div>
     </div>

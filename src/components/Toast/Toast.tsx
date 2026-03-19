@@ -116,8 +116,8 @@ function ToastItem({
       className={cn(
         "absolute w-full pointer-events-auto",
         isTop ? "top-0 origin-top" : "bottom-0 origin-bottom",
-        "bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800",
-        "rounded-2xl shadow-2xl p-4 flex gap-4 group transition-shadow hover:shadow-neutral-400/20 dark:hover:shadow-black"
+        "bg-white dark:bg-base-900 border border-base-200 dark:border-base-800",
+        "rounded-2xl shadow-2xl p-4 flex gap-4 group transition-shadow hover:shadow-base-400/20 dark:hover:shadow-black"
       )}
     >
       <div className="shrink-0 mt-0.5 text-xl">
@@ -126,12 +126,12 @@ function ToastItem({
       
       <div className="flex flex-col gap-1 flex-1 overflow-hidden">
         {toast.title && (
-          <h4 className="text-sm font-bold text-neutral-900 dark:text-white leading-tight truncate">
+          <h4 className="text-sm font-bold text-base-900 dark:text-white leading-tight truncate">
             {toast.title}
           </h4>
         )}
         {toast.description && (
-          <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed line-clamp-2">
+          <p className="text-xs text-base-500 dark:text-base-400 leading-relaxed line-clamp-2">
             {toast.description}
           </p>
         )}
@@ -139,7 +139,7 @@ function ToastItem({
 
       <button
         onClick={() => removeToast(toast.id)}
-        className="shrink-0 h-fit p-1 rounded-lg text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/5 transition-all opacity-0 group-hover:opacity-100"
+        className="shrink-0 h-fit p-1 rounded-lg text-base-400 hover:text-base-900 dark:hover:text-white hover:bg-base-100 dark:hover:bg-white/5 transition-all opacity-0 group-hover:opacity-100"
       >
         <FiX size={14} />
       </button>
