@@ -113,21 +113,30 @@ export function ImageExpander({ children, full, caption, className }: ImageExpan
 
               {/* Optional Caption Overlay */}
               {caption && (
-                <motion.div 
-                  initial={{ opacity: 0, y: 40, scale: 0.9 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 40, scale: 0.9 }}
-                  transition={{ 
-                    type: 'spring', 
-                    damping: 30, 
-                    stiffness: 350,
-                    delay: 0.1 
-                  }}
-                  className="fixed bottom-12 left-1/2 -translate-x-1/2 px-8 py-3 rounded-full bg-neutral-950/80 backdrop-blur-2xl border border-white/5 text-white/90 text-sm font-semibold shadow-[0_24px_48px_-12px_rgba(0,0,0,0.6)] z-[120] flex items-center gap-3 tracking-tight"
-                >
-                  <div className="size-1.5 rounded-full bg-white/30" />
-                  {caption}
-                </motion.div>
+                <>
+                  {/* Subtle bottom fade for caption legibility */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="fixed inset-x-0 bottom-0 h-48 bg-gradient-to-t from-neutral-950/80 via-neutral-950/40 to-transparent pointer-events-none z-[115]"
+                  />
+
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 20 }}
+                    transition={{ 
+                      type: 'spring', 
+                      damping: 30, 
+                      stiffness: 350,
+                      delay: 0.1 
+                    }}
+                    className="fixed bottom-12 left-1/2 -translate-x-1/2 text-white/90 text-sm font-semibold z-[120] flex items-center gap-2.5 tracking-tight"
+                  >
+                    {caption}
+                  </motion.div>
+                </>
               )}
             </motion.div>
           </div>
