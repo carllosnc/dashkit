@@ -71,14 +71,14 @@ export function ImageExpander({ children, full, caption, className }: ImageExpan
 
       <AnimatePresence>
         {isOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 isolate">
+          <div className="fixed inset-0 z-[100] flex items-center justify-center isolate">
             {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="absolute inset-0 bg-neutral-950/80 backdrop-blur-sm -z-10"
+              className="absolute p-4 md:p-8 inset-0 bg-neutral-950/80 backdrop-blur-sm -z-10"
             />
 
             {/* Close Button Trigger Area (Clicking empty space closes) */}
@@ -101,24 +101,31 @@ export function ImageExpander({ children, full, caption, className }: ImageExpan
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="relative z-[105] w-full h-full flex flex-col items-center justify-start overflow-auto no-scrollbar scroll-smooth selection:bg-neutral-500/30"
+              className="relative z-[105] w-full h-full flex flex-col items-center justify-center overflow-auto no-scrollbar scroll-smooth selection:bg-neutral-500/30"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Image Container for Original Size */}
-              <div className="relative shrink-0 flex items-start justify-center min-w-full">
+              <div className="relative shrink-0 flex items-center justify-center min-w-full min-h-full">
                 <div className="cursor-default">
                   {displayFull}
                 </div>
               </div>
-              
+
               {/* Optional Caption Overlay */}
               {caption && (
                 <motion.div 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                  className="fixed bottom-8 left-1/2 -translate-x-1/2 px-6 py-2.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-white text-sm font-medium shadow-2xl z-[120]"
+                  initial={{ opacity: 0, y: 40, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 40, scale: 0.9 }}
+                  transition={{ 
+                    type: 'spring', 
+                    damping: 30, 
+                    stiffness: 350,
+                    delay: 0.1 
+                  }}
+                  className="fixed bottom-12 left-1/2 -translate-x-1/2 px-8 py-3 rounded-full bg-neutral-950/80 backdrop-blur-2xl border border-white/5 text-white/90 text-sm font-semibold shadow-[0_24px_48px_-12px_rgba(0,0,0,0.6)] z-[120] flex items-center gap-3 tracking-tight"
                 >
+                  <div className="size-1.5 rounded-full bg-white/30" />
                   {caption}
                 </motion.div>
               )}
