@@ -1,4 +1,4 @@
-import { toast } from './Toast';
+import { toast } from './useToast';
 import { Button } from '../Button/Button';
 import { FiCheck, FiInfo, FiAlertTriangle, FiTrash2, FiDownload } from 'react-icons/fi';
 

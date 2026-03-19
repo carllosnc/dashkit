@@ -4,68 +4,26 @@ import { FiX, FiInfo, FiCheckCircle, FiAlertCircle, FiAlertTriangle } from 'reac
 import { createPortal } from 'react-dom';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { useToast, type ToastData, type ToastType, removeToast } from './useToast';
+export type { ToastOptions, ToastType, ToastData } from './useToast';
 
 function cn(...inputs: (string | undefined | null | boolean | Record<string, boolean>)[]) {
   return twMerge(clsx(inputs));
 }
 
-// Global state for Toasts
-type ToastType = 'default' | 'success' | 'info' | 'error' | 'warning';
-
-interface ToastOptions {
-  id?: string;
-  title?: string;
-  description?: string;
-  icon?: React.ReactNode;
-  type?: ToastType;
-  duration?: number;
-}
-
-type ToastData = ToastOptions & { id: string };
-
-let toastCount = 0;
-const observers = new Set<(toasts: ToastData[]) => void>();
-let currentToasts: ToastData[] = [];
-
-const notify = () => observers.forEach(fn => fn([...currentToasts]));
-
-export const toast = (options: ToastOptions) => {
-  const id = options.id || `toast-${toastCount++}`;
-  const newToast: ToastData = { ...options, id, type: options.type || 'default' };
-  
-  currentToasts = [newToast, ...currentToasts].slice(0, 5); // Max 5 toasts
-  notify();
-
-  if (options.duration !== 0) {
-    setTimeout(() => removeToast(id), options.duration || 5000);
-  }
-  return id;
-};
-
-export const removeToast = (id: string) => {
-  currentToasts = currentToasts.filter(t => t.id !== id);
-  notify();
-};
-
-export function useToast() {
-  const [toasts, setToasts] = React.useState<ToastData[]>([]);
-
-  React.useEffect(() => {
-    observers.add(setToasts);
-    return () => { observers.delete(setToasts); };
-  }, []);
-
-  return { toasts, toast, removeToast };
-}
-
 // Provider Component
 export function ToastProvider({ children }: { children: React.ReactNode }) {
   const { toasts } = useToast();
+  const [isMounted, setIsMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   return (
     <>
       {children}
-      {typeof document !== 'undefined' && createPortal(
+      {isMounted && typeof document !== 'undefined' && createPortal(
         <div className="fixed bottom-8 right-8 z-[100] flex flex-col items-end pointer-events-none w-[380px]">
           <AnimatePresence mode="popLayout">
             {toasts.map((t, index) => (
@@ -84,7 +42,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-const typeIcons = {
+const typeIcons: Record<ToastType, React.ReactNode> = {
   success: <FiCheckCircle className="text-emerald-500" />,
   error: <FiAlertCircle className="text-red-500" />,
   warning: <FiAlertTriangle className="text-amber-500" />,
@@ -93,11 +51,6 @@ const typeIcons = {
 };
 
 function ToastItem({ toast, index, total }: { toast: ToastData; index: number; total: number }) {
-  // Stacking logic: 
-  // index 0 is the newest (top of the view, bottom of stack visually if we use negative Y)
-  // We want the newest at the front.
-  // We'll use absolute positioning for the stack effect.
-  
   const isStacked = index > 0;
   const offset = index * 12;
   const scale = 1 - index * 0.05;
@@ -123,7 +76,7 @@ function ToastItem({ toast, index, total }: { toast: ToastData; index: number; t
       )}
     >
       <div className="shrink-0 mt-0.5 text-xl">
-        {toast.icon || typeIcons[toast.type || 'default']}
+        {toast.icon || typeIcons[toast.type]}
       </div>
       
       <div className="flex flex-col gap-1 flex-1 overflow-hidden">
@@ -148,3 +101,5 @@ function ToastItem({ toast, index, total }: { toast: ToastData; index: number; t
     </motion.div>
   );
 }
+
+
