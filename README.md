@@ -4,10 +4,6 @@
 
 A premium, highly customizable React component library designed specifically for modern web applications and developer tools. Dashkit focuses on developer experience, bringing together best-in-class tooling, robust test coverage, and a beautiful neutral-toned aesthetic.
 
-**Status:** Active Development
-- `Button`, `Badge`, `Card` components are designed, tested, and shipped.
-- `Input`, `Accordion`, `Checkbox` & more are available via CLI.
-
 ## Tech Stack
 
 Dashkit is built with modern, blazingly-fast technologies:
@@ -30,7 +26,7 @@ Make sure you have [Bun](https://bun.sh/) installed on your machine.
 
 Clone the repository and install dependencies using Bun:
 ```bash
-git clone https://github.com/your-username/dashkit.git
+git clone https://github.com/carllosnc/dashkit.git
 cd dashkit
 bun install
 ```
