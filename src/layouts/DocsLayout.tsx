@@ -57,7 +57,7 @@ export function DocsLayout() {
                       : "text-base-500 hover:text-base-900 hover:bg-base-50 dark:text-base-400 dark:hover:text-white dark:hover:bg-white/5"
                   )}
                 >
-                  CLI
+                  Installation
                 </Link>
               </nav>
             </div>
