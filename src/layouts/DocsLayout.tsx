@@ -34,7 +34,7 @@ export function DocsLayout() {
       </nav>
 
       {/* Main Layout */}
-      <div className="flex-1 max-w-7xl w-full mx-auto px-6 grid grid-cols-[260px_1fr] gap-12">
+      <div className="flex-1 max-w-6xl w-full mx-auto px-6 grid grid-cols-[260px_1fr] gap-12">
         {/* Sidebar */}
         <aside className="py-12 border-r border-neutral-200 dark:border-neutral-800 hidden md:block pr-8">
           <div className="sticky top-28">
@@ -106,6 +106,50 @@ export function DocsLayout() {
                 >
                   Radio
                 </Link>
+                <Link 
+                  to="/docs/select" 
+                  className={clsx(
+                    "px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
+                    currentPath === '/docs/select' 
+                      ? "bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
+                      : "text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/5"
+                  )}
+                >
+                  Select
+                </Link>
+                <Link 
+                  to="/docs/switch" 
+                  className={clsx(
+                    "px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
+                    currentPath === '/docs/switch' 
+                      ? "bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
+                      : "text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/5"
+                  )}
+                >
+                  Switch
+                </Link>
+                <Link 
+                  to="/docs/tabs" 
+                  className={clsx(
+                    "px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
+                    currentPath === '/docs/tabs' 
+                      ? "bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
+                      : "text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/5"
+                  )}
+                >
+                  Tabs
+                </Link>
+                <Link 
+                  to="/docs/otp-input" 
+                  className={clsx(
+                    "px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
+                    currentPath === '/docs/otp-input' 
+                      ? "bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
+                      : "text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/5"
+                  )}
+                >
+                  OTP Input
+                </Link>
                 <div className="px-3 py-2.5 rounded-lg text-sm font-medium text-neutral-300 dark:text-neutral-800 cursor-not-allowed italic">
                   Card (WIP)
                 </div>
@@ -115,7 +159,7 @@ export function DocsLayout() {
         </aside>
 
         {/* Content Area */}
-        <main className="py-12 min-w-0">
+        <main className="py-12">
           <Outlet />
         </main>
       </div>
