@@ -44,10 +44,10 @@ function App() {
         </h1>
 
         <p className="text-lg md:text-xl text-neutral-500 dark:text-neutral-400 max-w-2xl mb-12">
-          A premium, highly-customizable React component library designed specifically for modern web applications and developer tools.
+          A premium, highly-customizable React library built with Tailwind CSS and Framer Motion, designed for high-performance dashboards.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 items-center">
+        <div className="flex flex-col sm:flex-row gap-4 items-center mb-16">
           <Link to="/docs" tabIndex={-1}>
             <Button variant="filled" rightIcon={<FiArrowRight />} className="h-12 px-8 text-base">
               Get Started
@@ -58,6 +58,26 @@ function App() {
               View on GitHub
             </Button>
           </a>
+        </div>
+
+        {/* Tech Stack Badges */}
+        <div className="flex flex-wrap justify-center gap-6 opacity-60">
+          <div className="flex items-center gap-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
+            <div className="size-1.5 rounded-full bg-sky-400" />
+            React
+          </div>
+          <div className="flex items-center gap-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
+            <div className="size-1.5 rounded-full bg-teal-400" />
+            Tailwind CSS
+          </div>
+          <div className="flex items-center gap-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
+            <div className="size-1.5 rounded-full bg-violet-400" />
+            Framer Motion
+          </div>
+          <div className="flex items-center gap-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
+            <div className="size-1.5 rounded-full bg-amber-400" />
+            TypeScript
+          </div>
         </div>
 
       </main>
