@@ -28,10 +28,10 @@ interface CliOptions {
 // Helper to get package manager
 function getPackageManager() {
   const cwd = process.cwd();
-  if (fs.existsSync(path.resolve(cwd, 'bun.lockb')) || fs.existsSync(path.resolve(cwd, 'bun.lock'))) return 'bun';
   if (fs.existsSync(path.resolve(cwd, 'pnpm-lock.yaml'))) return 'pnpm';
   if (fs.existsSync(path.resolve(cwd, 'yarn.lock'))) return 'yarn';
-  return 'npm';
+  if (fs.existsSync(path.resolve(cwd, 'package-lock.json'))) return 'npm';
+  return 'bun';
 }
 
 // Helper to check if dependency is installed

@@ -24,7 +24,7 @@ describe('Dashkit CLI', () => {
     await fs.ensureDir(testDir);
     
     // Run CLI via tsx to test source
-    execSync(`npx tsx ${CLI_PATH} add badge -o components`, {
+    execSync(`bun x tsx ${CLI_PATH} add badge -o components`, {
       cwd: testDir,
       stdio: 'inherit'
     });
@@ -38,7 +38,7 @@ describe('Dashkit CLI', () => {
     await fs.ensureDir(testDir);
     
     // Run CLI
-    execSync(`npx tsx ${CLI_PATH} add card -o components`, {
+    execSync(`bun x tsx ${CLI_PATH} add card -o components`, {
       cwd: testDir,
       stdio: 'inherit'
     });
@@ -58,7 +58,7 @@ describe('Dashkit CLI', () => {
     await fs.writeJson(path.join(testDir, 'package.json'), { name: 'test-app' });
 
     // Run CLI with --no-install
-    const output = execSync(`npx tsx ${CLI_PATH} add badge -o components --no-install`, {
+    const output = execSync(`bun x tsx ${CLI_PATH} add badge -o components --no-install`, {
       cwd: testDir,
       encoding: 'utf8'
     });
@@ -72,7 +72,7 @@ describe('Dashkit CLI', () => {
     await fs.ensureDir(testDir);
 
     try {
-      execSync(`npx tsx ${CLI_PATH} add unknown-comp -o components`, {
+      execSync(`bun x tsx ${CLI_PATH} add unknown-comp -o components`, {
         cwd: testDir,
         stdio: 'pipe' // Capture output
       });
