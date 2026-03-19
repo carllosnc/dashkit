@@ -176,6 +176,23 @@
           "target": "components/ui/modal.tsx"
         }
       ]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "framer-motion",
+        "react-icons"
+      ],
+      "files": [
+        {
+          "path": "src/components/Accordion/Accordion.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/accordion.tsx"
+        }
+      ]
     }
   ]
 }

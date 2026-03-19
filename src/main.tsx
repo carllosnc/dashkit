@@ -14,6 +14,7 @@ import OtpInputDocs from './pages/otp-input.mdx'
 import ImageExpanderDocs from './pages/image-expander.mdx'
 import DrawerDocs from './pages/drawer.mdx'
 import ModalDocs from './pages/modal.mdx'
+import AccordionDocs from './pages/accordion.mdx'
 import IntroductionDocs from './pages/introduction.mdx'
 import { DocsLayout } from './layouts/DocsLayout.tsx'
 import { MdxWrapper } from './layouts/MdxWrapper.tsx'
@@ -40,6 +41,7 @@ createRoot(document.getElementById('root')!).render(
             <Route path="image-expander" element={<MdxWrapper Component={ImageExpanderDocs} />} />
             <Route path="drawer" element={<MdxWrapper Component={DrawerDocs} />} />
             <Route path="modal" element={<MdxWrapper Component={ModalDocs} />} />
+            <Route path="accordion" element={<MdxWrapper Component={AccordionDocs} />} />
           </Route>
         </Routes>
       </BrowserRouter>

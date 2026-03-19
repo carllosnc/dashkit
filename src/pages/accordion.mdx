@@ -1,0 +1,68 @@
+# Accordion
+
+A vertically stacked list of headers that reveal associated content areas when clicked.
+
+## Import
+
+```tsx
+import { 
+  Accordion, 
+  AccordionItem, 
+  AccordionTrigger, 
+  AccordionContent 
+} from '@/components/Accordion/Accordion'
+```
+
+## CLI
+
+Add the accordion to your project using the shadcn CLI:
+
+```bash
+bunx shadcn@latest add https://raw.githubusercontent.com/carllosnc/dashkit/master/registry.json:accordion
+```
+
+## Basic Usage
+
+The accordion supports `single` (default) or `multiple` expansion modes via the `type` prop.
+
+<Preview>
+  <AccordionDemo />
+</Preview>
+
+```tsx
+<Accordion type="single" defaultValue="item-1">
+  <AccordionItem value="item-1">
+    <AccordionTrigger>Is it accessible?</AccordionTrigger>
+    <AccordionContent>
+      Yes. It follows the WAI-ARIA design pattern.
+    </AccordionContent>
+  </AccordionItem>
+</Accordion>
+```
+
+## Features
+
+- **Height Animations**: Smooth, spring-based expansion using `framer-motion`.
+- **Compound Components**: Highly customizable using the sub-component pattern.
+- **Multiple Modes**: Toggle between standard accordion behavior or a multi-expand list.
+- **Auto-State**: Manages internal open/close state or can be controlled via `value`.
+- **Keyboard Navigation**: Fully accessible via enter/space keys and focus management.
+
+## Props
+
+### Accordion
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `type` | `'single' \| 'multiple'` | `'single'` | Expansion logic mode. |
+| `defaultValue` | `string \| string[]` | — | Initial open item(s). |
+| `value` | `string \| string[]` | — | Controlled open item(s). |
+| `onValueChange` | `(value: string \| string[]) => void` | — | Event fired on toggle. |
+
+### AccordionItem
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `string` | — | Unique identifier for the item. |
+| `disabled` | `boolean` | `false` | Prevents interaction. |
+| `className` | `string` | — | Custom styles for the container. |
