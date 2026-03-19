@@ -79,3 +79,9 @@ export const toast = (options: ToastOptions) => {
   }
   return id;
 };
+
+export const resetToasts = () => {
+  currentToasts = [];
+  toastCount = 0;
+  notify();
+};
