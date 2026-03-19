@@ -62,7 +62,7 @@ export function ImageExpander({ children, full, caption, className }: ImageExpan
         </div>
         
         {/* Hover Overlay Indicator */}
-        <div className="absolute inset-0 flex items-center justify-center bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="absolute inset-0 flex items-center justify-center bg-base-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <div className="p-3 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white shadow-2xl scale-75 group-hover:scale-100 transition-transform duration-300">
             <FiMaximize2 className="size-6" />
           </div>

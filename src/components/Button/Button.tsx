@@ -79,7 +79,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           "inline-flex items-center justify-center rounded-full transition-all duration-200 focus:outline-none cursor-pointer",
           "text-sm border",
           {
-            "bg-primary text-white border-transparent hover:bg-primary": variant === 'filled',
+            "bg-base text-white border-transparent hover:bg-base-900 dark:bg-white dark:text-base-950 dark:hover:bg-base-100": variant === 'filled',
             "bg-transparent text-base-800 border-base-400 hover:bg-base-50 dark:text-base-100 dark:border-base-700 dark:hover:bg-base-900/50": variant === 'outlined',
             "opacity-60 cursor-not-allowed": loading || disabled,
             // Layout

@@ -21,7 +21,7 @@ describe('Button', () => {
   it('applies standard variant by default', () => {
     render(<Button>Click Me</Button>);
     const button = screen.getByRole('button');
-    expect(button).toHaveClass('bg-black');
+    expect(button).toHaveClass('bg-base');
     expect(button).toHaveClass('text-white');
   });
 

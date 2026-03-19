@@ -43,7 +43,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
             />
             {/* Inner Dot Fill */}
             <div className={cn(
-              "absolute w-2.5 h-2.5 rounded-full bg-black dark:bg-white transition-all duration-200 pointer-events-none",
+              "absolute w-2.5 h-2.5 rounded-full bg-base-900 dark:bg-base-100 transition-all duration-200 pointer-events-none",
               "opacity-0 scale-50 peer-checked:opacity-100 peer-checked:scale-100"
             )} />
           </label>

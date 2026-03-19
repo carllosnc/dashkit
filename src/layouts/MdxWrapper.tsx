@@ -171,7 +171,7 @@ const components: Record<string, ElementType> = {
 
 export function MdxWrapper({ Component }: { Component: MdxComponent }) {
   return (
-    <div className="prose prose-neutral dark:prose-invert max-w-full">
+    <div className="prose dark:prose-invert max-w-full">
       <Component components={components} />
     </div>
   );

@@ -43,7 +43,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             />
             {/* Inner Block Fill */}
             <div className={cn(
-              "absolute w-[14px] h-[14px] rounded-[2.5px] bg-black dark:bg-white transition-all duration-200 pointer-events-none",
+              "absolute w-[14px] h-[14px] rounded-[2.5px] bg-base-900 dark:bg-base-100 transition-all duration-200 pointer-events-none",
               "opacity-0 scale-50 peer-checked:opacity-100 peer-checked:scale-100"
             )} />
           </label>

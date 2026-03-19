@@ -5,9 +5,8 @@
 @theme {
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
 
-  --color-primary: var(--color-black);
-  --color-primary-foreground: var(--color-white);
-
+  /* Dashkit Colors - Start */
+  --color-base: var(--color-neutral-950);
   --color-base-50: var(--color-neutral-50);
   --color-base-100: var(--color-neutral-100);
   --color-base-200: var(--color-neutral-200);
@@ -19,19 +18,21 @@
   --color-base-800: var(--color-neutral-800);
   --color-base-900: var(--color-neutral-900);
   --color-base-950: var(--color-neutral-950);
+  --color-base-foreground: var(--color-white);
+  /* Dashkit Colors - End */
 }
 
 @variant dark (&:where(.dark, .dark *));
 
 @layer base {
   body {
-    @apply antialiased text-neutral-900 bg-white dark:text-neutral-100 dark:bg-[#030303];
+    @apply antialiased text-base-900 bg-white dark:text-base-100 dark:bg-[#030303];
   }
 }
 
 @layer components {
   [data-rehype-pretty-code-figure] div {
-    @apply bg-neutral-800! border-none! rounded-none!;
+    @apply bg-base-900! border-none! rounded-none!;
   }
 
   [data-rehype-pretty-code-figure] code {

@@ -35,7 +35,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
               className={cn(
                 "w-11 h-6 rounded-full border-2 transition-all duration-300 shrink-0",
                 "border-base-800 dark:border-base-400 bg-base-100 dark:bg-base-800",
-                "peer-checked:bg-black peer-checked:border-black dark:peer-checked:bg-white dark:peer-checked:border-white",
+                "peer-checked:bg-base-900 peer-checked:border-base-900 dark:peer-checked:bg-base-100 dark:peer-checked:border-base-100",
                 "peer-focus-visible:ring-4 peer-focus-visible:ring-base-100 dark:peer-focus-visible:ring-base-900/40",
                 "peer-disabled:opacity-30 peer-disabled:cursor-not-allowed",
                 className
@@ -44,7 +44,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
             {/* Thumb */}
             <div className={cn(
               "absolute left-[4px] top-[4px] w-4 h-4 rounded-full bg-base-500 dark:bg-base-400 transition-all duration-300",
-              "peer-checked:translate-x-5 peer-checked:bg-white dark:peer-checked:bg-black shadow-sm",
+              "peer-checked:translate-x-5 peer-checked:bg-base-50 dark:peer-checked:bg-base-100 shadow-sm",
               "peer-disabled:opacity-30 peer-disabled:cursor-not-allowed"
             )} />
           </label>
