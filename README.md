@@ -1,4 +1,12 @@
-[![CI](https://github.com/carllosnc/dashkit/actions/workflows/ci.yml/badge.svg)](https://github.com/carllosnc/dashkit/actions/workflows/ci.yml)
+<p align="center">
+  <img src="public/logo.svg" alt="Dashkit UI Logo" width="120" />
+</p>
+
+<p align="center">
+  <a href="https://github.com/carllosnc/dashkit/actions/workflows/ci.yml">
+    <img src="https://github.com/carllosnc/dashkit/actions/workflows/ci.yml/badge.svg" alt="CI" />
+  </a>
+</p>
 
 # Dashkit UI
 
