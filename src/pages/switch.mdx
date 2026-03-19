@@ -1,0 +1,107 @@
+# Switch
+
+A high-performance, premium toggle switch component for binary choices, with support for labels and descriptions.
+
+## Import
+
+```tsx
+import { Switch } from '@/components/Switch/Switch'
+```
+
+## CLI
+
+Add the switch component to your project using the shadcn CLI:
+
+```bash
+bunx shadcn@latest add https://raw.githubusercontent.com/carllosnc/dashkit/master/registry.json:switch
+```
+
+## Basic Usage
+
+The basic switch with a label.
+
+<Preview>
+  <Switch label="Enable Tracking" />
+</Preview>
+
+```tsx
+<Switch label="Enable Tracking" />
+```
+
+## With Description
+
+You can add descriptions to provide more context for the toggle activity.
+
+<Preview>
+  <div className="flex flex-col gap-6 w-full max-w-md">
+    <Switch 
+      label="Background Updates" 
+      description="Allow the application to update content while in the background."
+    />
+    <Switch 
+      label="Auto Save" 
+      description="Automatically save changes every 2 seconds."
+      defaultChecked
+    />
+  </div>
+</Preview>
+
+```tsx
+<Switch 
+  label="Background Updates" 
+  description="Allow updates in the background."
+/>
+```
+
+## Controlled State
+
+Manage the switch state using React's `useState`.
+
+<Preview>
+  <SwitchDemo />
+</Preview>
+
+```tsx
+import { useState } from 'react'
+
+export function Settings() {
+  const [enabled, setEnabled] = useState(false)
+
+  return (
+    <Switch 
+      label="Push Notifications" 
+      checked={enabled} 
+      onChange={(e) => setEnabled(e.target.checked)} 
+    />
+  )
+}
+```
+
+## States
+
+Supports checked, disabled, and focus states.
+
+<Preview>
+  <div className="flex flex-col gap-6 w-full max-w-sm">
+    <Switch label="Default Checked" defaultChecked />
+    <Switch label="Disabled Unchecked" disabled />
+    <Switch label="Disabled Checked" disabled defaultChecked />
+  </div>
+</Preview>
+
+```tsx
+<Switch label="Default Checked" defaultChecked />
+<Switch label="Disabled Unchecked" disabled />
+<Switch label="Disabled Checked" disabled defaultChecked />
+```
+
+## Props
+
+Extends all native `CheckboxHTMLAttributes<HTMLInputElement>` (except `type`), plus these specialties:
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | — | Title text rendered to the right. |
+| `description` | `string` | — | Description text rendered below the label. |
+| `className` | `string` | — | Additional CSS classes for custom styling. |
+| `ref` | `Ref<HTMLInputElement>` | — | Forwarded ref to the underlying checkbox input. |
