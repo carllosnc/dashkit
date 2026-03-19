@@ -101,12 +101,12 @@ export function ImageExpander({ children, full, caption, className }: ImageExpan
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="relative max-w-7xl max-h-[90vh] flex flex-col items-center justify-center gap-4 z-[105]"
+              className="relative z-[105] w-full h-full flex flex-col items-center justify-start overflow-y-auto no-scrollbar scroll-smooth py-8 md:py-16 selection:bg-neutral-500/30"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Image Frame */}
-              <div className="relative p-1.5 bg-white dark:bg-neutral-900 rounded-[2rem] shadow-[0_32px_64px_-12px_rgba(0,0,0,0.5)] border border-neutral-200 dark:border-neutral-800 overflow-hidden">
-                <div className="rounded-[1.5rem] overflow-hidden max-h-[80vh]">
+              <div className="relative p-1.5 bg-white dark:bg-neutral-900 rounded-[2rem] shadow-[0_32px_64px_-12px_rgba(0,0,0,0.5)] border border-neutral-200 dark:border-neutral-800 shrink-0">
+                <div className="rounded-[1.5rem] overflow-hidden">
                   {displayFull}
                 </div>
               </div>
@@ -117,7 +117,7 @@ export function ImageExpander({ children, full, caption, className }: ImageExpan
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.2 }}
-                  className="px-6 py-2.5 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-white text-sm font-medium shadow-xl"
+                  className="px-6 py-2.5 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-white text-sm font-medium shadow-xl mt-4 shrink-0"
                 >
                   {caption}
                 </motion.div>
