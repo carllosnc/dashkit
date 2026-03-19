@@ -97,3 +97,24 @@ export function DropdownDemo() {
     </div>
   );
 }
+
+export function LinkTriggerDemo() {
+  return (
+    <div className="flex justify-center py-20 bg-neutral-50 dark:bg-white/5 rounded-2xl border border-neutral-200 dark:border-neutral-800">
+      <Dropdown>
+        <DropdownTrigger asChild>
+          <button className="text-sky-500 hover:text-sky-600 font-medium transition-all hover:underline decoration-2 underline-offset-4 flex items-center gap-1">
+            Account Options <FiChevronDown />
+          </button>
+        </DropdownTrigger>
+        <DropdownContent className="w-48">
+          <DropdownLabel>Quick Actions</DropdownLabel>
+          <DropdownItem leftIcon={<FiUser />}>View Profile</DropdownItem>
+          <DropdownItem leftIcon={<FiSettings />}>Settings</DropdownItem>
+          <DropdownSeparator />
+          <DropdownItem leftIcon={<FiLogOut />} destructive>Logout</DropdownItem>
+        </DropdownContent>
+      </Dropdown>
+    </div>
+  );
+}

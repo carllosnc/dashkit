@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiChevronRight, FiCheck } from 'react-icons/fi';
+import { FiCheck } from 'react-icons/fi';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -47,8 +47,22 @@ export function Dropdown({ children, align = 'left' }: DropdownProps) {
     };
 
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+    
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setOpen(false);
+      }
+    };
+
+    if (open) {
+      document.addEventListener('keydown', handleKeyDown);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [open]);
 
   return (
     <DropdownContext.Provider value={{ open, setOpen, align }}>
@@ -64,20 +78,18 @@ export function Dropdown({ children, align = 'left' }: DropdownProps) {
  */
 export function DropdownTrigger({ children, asChild }: { children: React.ReactNode; asChild?: boolean }) {
   const { open, setOpen } = useDropdown();
-  
-  const element = children as React.ReactElement;
-  
-  if (asChild && React.isValidElement(element)) {
-    return React.cloneElement(element, {
+
+  if (asChild && React.isValidElement(children)) {
+    return React.cloneElement(children as React.ReactElement<{ onClick?: React.MouseEventHandler }>, {
       onClick: (e: React.MouseEvent) => {
-        element.props.onClick?.(e);
+        (children.props as unknown as { onClick?: React.MouseEventHandler }).onClick?.(e);
         setOpen(!open);
       },
-    } as any);
+    });
   }
 
   return (
-    <div onClick={() => setOpen(!open)} className="cursor-pointer">
+    <div onClick={() => setOpen(!open)} className="cursor-pointer inline-block">
       {children}
     </div>
   );
@@ -98,7 +110,7 @@ export function DropdownContent({ children, className }: { children: React.React
            exit={{ opacity: 0, scale: 0.95, y: -10 }}
            transition={{ duration: 0.15, ease: "easeOut" }}
            className={cn(
-             "absolute z-50 mt-2 min-w-[12rem] overflow-hidden rounded-2xl",
+             "absolute z-50 mt-2 min-w-[12rem] overflow-hidden rounded-lg",
              "bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800",
              "shadow-xl dark:shadow-black/50 p-1 origin-top",
              align === 'right' ? 'right-0' : 'left-0',
@@ -147,7 +159,7 @@ export function DropdownItem({
         setOpen(false);
       }}
       className={cn(
-        "flex w-full items-center gap-2 px-3 py-2 text-sm font-medium rounded-xl transition-colors text-left",
+        "flex w-full items-center gap-2 px-3 py-2 text-sm font-medium rounded-lg transition-colors text-left",
         "hover:bg-neutral-100 dark:hover:bg-white/5",
         destructive ? "text-red-500 hover:text-red-600 dark:hover:bg-red-500/10" : "text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white",
         selected && "bg-neutral-50 dark:bg-white/5 text-neutral-900 dark:text-white",

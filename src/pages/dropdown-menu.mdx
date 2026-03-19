@@ -1,14 +1,10 @@
-import { DropdownDemo } from '../components/Dropdown/DropdownDemo';
+import { DropdownDemo, LinkTriggerDemo } from '../components/Dropdown/DropdownDemo';
 
 # Dropdown Menu
 
 An interactive menu that displays a list of actions or options when triggered.
 
-<DropdownDemo />
-
-## Usage
-
-Dashkit provides a flexible dropdown system that supports alignment, icons, labels, and separators.
+## Import
 
 ```tsx
 import { 
@@ -18,8 +14,22 @@ import {
   DropdownItem, 
   DropdownLabel, 
   DropdownSeparator 
-} from '@/components/Dropdown';
+} from '@/components/Dropdown/Dropdown';
+```
 
+## CLI
+
+```bash
+bunx shadcn@latest add https://raw.githubusercontent.com/carllosnc/dashkit/master/registry.json:dropdown-menu
+```
+
+## Basic Usage
+
+Dashkit provides a flexible dropdown system that supports alignment, icons, labels, and separators.
+
+<DropdownDemo />
+
+```tsx
 export function Example() {
   return (
     <Dropdown>
@@ -38,10 +48,35 @@ export function Example() {
 }
 ```
 
+## Advanced Examples
+
+### Custom Trigger (asChild)
+Use the `asChild` prop to use any custom element (like a link or a styled button) as the trigger.
+
+<LinkTriggerDemo />
+
+```tsx
+export function linktriggerdemo() {
+  return (
+    <Dropdown>
+      <DropdownTrigger asChild>
+        <button className="text-sky-500 hover:underline">
+          Manage Account
+        </button>
+      </DropdownTrigger>
+      <DropdownContent>
+        <DropdownItem>Profile</DropdownItem>
+        <DropdownItem>Settings</DropdownItem>
+      </DropdownContent>
+    </Dropdown>
+  );
+}
+```
+
 ## Features
 
 - **Animated**: Uses Framer Motion for smooth scale and opacity transitions.
-- **Accessible**: Closes automatically when clicking outside or selecting an item.
+- **Accessible**: Closes automatically when clicking outside or selecting an item. Supports `Escape` key.
 - **Customizable**: Supports custom triggers via `asChild`, alignment (`left` or `right`), and icons.
 - **Styled**: Beautiful default styles for light and dark modes.
 
