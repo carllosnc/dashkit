@@ -12,6 +12,8 @@ import SwitchDocs from './pages/switch.mdx'
 import TabsDocs from './pages/tabs.mdx'
 import OtpInputDocs from './pages/otp-input.mdx'
 import ImageExpanderDocs from './pages/image-expander.mdx'
+import DrawerDocs from './pages/drawer.mdx'
+import ModalDocs from './pages/modal.mdx'
 import IntroductionDocs from './pages/introduction.mdx'
 import { DocsLayout } from './layouts/DocsLayout.tsx'
 import { MdxWrapper } from './layouts/MdxWrapper.tsx'
@@ -36,6 +38,8 @@ createRoot(document.getElementById('root')!).render(
             <Route path="tabs" element={<MdxWrapper Component={TabsDocs} />} />
             <Route path="otp-input" element={<MdxWrapper Component={OtpInputDocs} />} />
             <Route path="image-expander" element={<MdxWrapper Component={ImageExpanderDocs} />} />
+            <Route path="drawer" element={<MdxWrapper Component={DrawerDocs} />} />
+            <Route path="modal" element={<MdxWrapper Component={ModalDocs} />} />
           </Route>
         </Routes>
       </BrowserRouter>

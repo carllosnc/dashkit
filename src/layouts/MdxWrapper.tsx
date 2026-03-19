@@ -4,6 +4,10 @@ import { Checkbox } from '../components/Checkbox/Checkbox';
 import { CheckboxDemo } from '../components/Checkbox/CheckboxDemo';
 import { Input } from '../components/Input/Input';
 import { InputDemo } from '../components/Input/InputDemo';
+import { Drawer } from '../components/Drawer/Drawer';
+import { DrawerDemo } from '../components/Drawer/DrawerDemo';
+import { Modal } from '../components/Modal/Modal';
+import { ModalDemo } from '../components/Modal/ModalDemo';
 import { Radio } from '../components/Radio/Radio';
 import { RadioDemo } from '../components/Radio/RadioDemo';
 import { Select } from '../components/Select/Select';
@@ -79,6 +83,10 @@ const components: Record<string, ElementType> = {
   Button,
   Input,
   InputDemo,
+  Drawer,
+  DrawerDemo,
+  Modal,
+  ModalDemo,
   Checkbox,
   CheckboxDemo,
   Radio,

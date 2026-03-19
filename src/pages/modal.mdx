@@ -1,0 +1,84 @@
+# Modal
+
+A centered, layered dialog component that focuses user attention on critical information or actions.
+
+## Import
+
+```tsx
+import { Modal } from '@/components/Modal/Modal'
+```
+
+## CLI
+
+Add the modal to your project using the shadcn CLI:
+
+```bash
+bunx shadcn@latest add https://raw.githubusercontent.com/carllosnc/dashkit/master/registry.json:modal
+```
+
+## Basic Usage
+
+The modal is a controlled component toggled by the `isOpen` prop.
+
+<Preview>
+  <ModalDemo />
+</Preview>
+
+```tsx
+import { useState } from 'react'
+import { Modal } from '@/components/Modal/Modal'
+
+export default function MyPage() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  return (
+    <>
+      <button onClick={() => setIsOpen(true)}>Open Modal</button>
+      
+      <Modal
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        title="Delete Item"
+        description="Are you sure you want to proceed?"
+      >
+        <p>This action cannot be undone.</p>
+      </Modal>
+    </>
+  )
+}
+```
+
+## Features
+
+- **Spring-Based Animations**: Uses `framer-motion` for a premium scale/fade entry.
+- **Backdrop Blur**: Softly blurs background content for better focus.
+- **Body Scroll Lock**: Automatically prevents scrolling when the modal is active.
+- **Portalled Rendering**: Renders at the document root to avoid z-index layering issues.
+- **Keyboard Accessible**: Closes instantly when the `Escape` key is pressed.
+
+## Sizes
+
+The component includes predefined sizes to accommodate different content types.
+
+- `sm`: Max width 384px (Task alerts)
+- `md` (Default): Max width 448px (Standard forms)
+- `lg`: Max width 512px
+- `xl`: Max width 576px
+- `2xl`: Max width 672px
+- `full`: Immersive, full-screen takeover with rounded corners.
+
+## Props
+
+The `Modal` component accepts the following props:
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `isOpen` | `boolean` | — | Controls if the modal is shown. |
+| `onClose` | `() => void` | — | Callback fired when closing (ESC or click outside). |
+| `title` | `string` | — | Bold header title. |
+| `description` | `string` | — | Subtitle text below the title. |
+| `size` | `'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl' \| 'full'` | `'md'` | The max-width of the internal container. |
+| `footer` | `ReactNode` | — | Actions displayed at the bottom of the modal. |
+| `children` | `ReactNode` | — | Main content of the dialog. |
+| `className` | `string` | — | Custom classes for the modal container. |
+| `showCloseButton` | `boolean` | `true` | Whether to show the X icon in headers. |

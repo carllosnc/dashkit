@@ -142,6 +142,40 @@
           "target": "components/ui/image-expander.tsx"
         }
       ]
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "framer-motion",
+        "react-icons"
+      ],
+      "files": [
+        {
+          "path": "src/components/Drawer/Drawer.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/drawer.tsx"
+        }
+      ]
+    },
+    {
+      "name": "modal",
+      "type": "registry:ui",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "framer-motion",
+        "react-icons"
+      ],
+      "files": [
+        {
+          "path": "src/components/Modal/Modal.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/modal.tsx"
+        }
+      ]
     }
   ]
 }
