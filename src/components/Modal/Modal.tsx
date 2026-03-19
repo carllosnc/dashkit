@@ -82,7 +82,7 @@ export const Modal = ({
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
             className={cn(
-              "w-full bg-white dark:bg-neutral-950 rounded-3xl shadow-2xl overflow-hidden flex flex-col",
+              "w-full bg-white dark:bg-neutral-950 rounded-2xl shadow-2xl overflow-hidden flex flex-col",
               "border border-neutral-200 dark:border-neutral-800",
               sizeClasses[size],
               className
@@ -106,7 +106,7 @@ export const Modal = ({
                 {showCloseButton && (
                   <button
                     onClick={onClose}
-                    className="p-2.5 rounded-2xl transition-all duration-200 hover:bg-neutral-100 dark:hover:bg-neutral-900 text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
+                    className="p-2.5 rounded-xl transition-all duration-200 hover:bg-neutral-100 dark:hover:bg-neutral-900 text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
                   >
                     <FiX size={20} />
                   </button>
