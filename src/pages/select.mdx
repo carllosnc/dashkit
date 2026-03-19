@@ -1,0 +1,124 @@
+# Select
+
+A high-performance, premium dropdown select component with support for labels, descriptions, and keyboard navigation.
+
+## Import
+
+```tsx
+import { Select } from '@/components/Select/Select'
+```
+
+## CLI
+
+Add the select component to your project using the shadcn CLI:
+
+```bash
+bunx shadcn@latest add https://raw.githubusercontent.com/carllosnc/dashkit/master/registry.json:select
+```
+
+## Basic Usage
+
+The component is easy to use with an array of `SelectOption` objects.
+
+<Preview>
+  <div className="w-full max-w-sm">
+    <Select 
+      label="Choose Category" 
+      placeholder="Select Category..." 
+      options={[
+        { value: 'tech', label: 'Technology' },
+        { value: 'life', label: 'Lifestyle' },
+        { value: 'busi', label: 'Business' }
+      ]} 
+    />
+  </div>
+</Preview>
+
+```tsx
+import { Select } from '@/components/Select/Select'
+
+const options = [
+  { value: 'tech', label: 'Technology' },
+  { value: 'life', label: 'Lifestyle' },
+  { value: 'busi', label: 'Business' }
+]
+
+<Select 
+  label="Choose Category" 
+  options={options} 
+  placeholder="Select Category..."
+/>
+```
+
+## Controlled State
+
+Manage the selected value using React state.
+
+<Preview>
+  <SelectDemo />
+</Preview>
+
+```tsx
+import { useState } from 'react'
+
+export function PricingSelect() {
+  const [value, setValue] = useState('')
+
+  const options = [
+    { value: 'm', label: 'Monthly billing' },
+    { value: 'y', label: 'Yearly billing' }
+  ]
+
+  return (
+    <Select 
+      label="Billing Cycle" 
+      options={options} 
+      value={value} 
+      onChange={setValue} 
+    />
+  )
+}
+```
+
+## States
+
+Supports disabled and focus states with premium transitions.
+
+<Preview>
+  <div className="flex flex-col gap-6 w-full max-w-sm">
+    <Select 
+      label="Disabled Select" 
+      disabled 
+      options={[]} 
+      placeholder="Nothing to see here"
+    />
+    <Select 
+      label="Pre-filled Select" 
+      options={[
+        { value: 'premium', label: 'Premium Subscription' },
+        { value: 'standard', label: 'Standard Subscription' }
+      ]}
+      value="premium"
+    />
+  </div>
+</Preview>
+
+```tsx
+<Select label="Disabled Select" disabled options={[]} />
+<Select label="Active Select" options={options} value="premium" />
+```
+
+## Props
+
+The component uses a custom interface for premium behavior:
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | — | Label rendered above the trigger. |
+| `description` | `string` | — | Description text rendered below the trigger. |
+| `placeholder` | `string` | `'Select an option'` | Placeholder text when no value is selected. |
+| `options` | `SelectOption[]` | — | List of options `{ value: string, label: string }`. |
+| `value` | `string` | — | The current selected value. |
+| `onChange` | `(value: string) => void` | — | Callback fired when a selection is made. |
+| `className` | `string` | — | Additional CSS classes for the trigger button. |
+| `disabled` | `boolean` | `false` | Whether the select is interactive. |
