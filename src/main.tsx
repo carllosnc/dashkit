@@ -19,6 +19,7 @@ import ToastDocs from './pages/toast.mdx'
 import DropdownMenuDocs from './pages/dropdown-menu.mdx'
 import BadgeDocs from './pages/badge.mdx'
 import CardDocs from './pages/card.mdx'
+import CliDocs from './pages/cli.mdx'
 import IntroductionDocs from './pages/introduction.mdx'
 import { DocsLayout } from './layouts/DocsLayout.tsx'
 import { MdxWrapper } from './layouts/MdxWrapper.tsx'
@@ -35,6 +36,7 @@ createRoot(document.getElementById('root')!).render(
             <Route path="/docs" element={<DocsLayout />}>
               <Route index element={<MdxWrapper Component={IntroductionDocs} />} />
               <Route path="introduction" element={<MdxWrapper Component={IntroductionDocs} />} />
+              <Route path="cli" element={<MdxWrapper Component={CliDocs} />} />
               <Route path="button" element={<MdxWrapper Component={ButtonDocs} />} />
               <Route path="input" element={<MdxWrapper Component={InputDocs} />} />
               <Route path="checkbox" element={<MdxWrapper Component={CheckboxDocs} />} />
