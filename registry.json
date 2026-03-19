@@ -125,6 +125,23 @@
           "target": "components/ui/otp-input.tsx"
         }
       ]
+    },
+    {
+      "name": "image-expander",
+      "type": "registry:ui",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "framer-motion",
+        "react-icons"
+      ],
+      "files": [
+        {
+          "path": "src/components/ImageExpander/ImageExpander.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/image-expander.tsx"
+        }
+      ]
     }
   ]
 }
