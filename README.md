@@ -5,8 +5,8 @@
 A premium, highly customizable React component library designed specifically for modern web applications and developer tools. Dashkit focuses on developer experience, bringing together best-in-class tooling, robust test coverage, and a beautiful neutral-toned aesthetic.
 
 **Status:** Active Development
-- `Button` component is designed, tested, and shipped.
-- `Input` & `Card` components are WIP.
+- `Button`, `Badge`, `Card` components are designed, tested, and shipped.
+- `Input`, `Accordion`, `Checkbox` & more are available via CLI.
 
 ## Tech Stack
 
@@ -62,38 +62,48 @@ bun run test:watch
 bun run lint
 ```
 
-## Shadcn Registry
+## Dashkit CLI
 
-Dashkit supports the [shadcn/ui](https://ui.shadcn.com/) CLI, allowing you to easily add components from this library to other projects.
+Dashkit comes with a powerful CLI to add components directly to your project without installing the entire library as a dependency.
 
-### Add to your project
-To add a component from Dashkit to your project, run:
+### Installation
+
+To add a component to your project, run:
 
 ```bash
-bunx shadcn@latest add https://raw.githubusercontent.com/carllosnc/dashkit/master/registry.json:[component-name]
+npx dashkit-ui add <component-name>
 ```
+
+### Examples
+
+**Add the Card component (includes Badge and Button):**
+```bash
+npx dashkit-ui add card
+```
+
+**Custom Output Directory:**
+```bash
+npx dashkit-ui add card -o src/components/ui
+```
+
+### Available Components
+`accordion`, `badge`, `button`, `card`, `checkbox`, `drawer`, `dropdown`, `imageexpander`, `input`, `modal`, `otpinput`, `radio`, `select`, `switch`, `tabs`, `toast`.
 
 ## How to Register a New Component
 
-Follow these steps to add a new component and make it available via the CLI registry:
+Follow these steps to add a new component and make it available via the CLI:
 
 1. **Create the component**: Add your component code in `src/components/[ComponentName]/[ComponentName].tsx`.
-2. **Add to Registry Index**: Open `registry.json` and add a new entry to the `items` array:
-   ```json
-   {
-     "name": "[component-name]",
-     "type": "registry:ui",
-     "dependencies": ["clsx", "tailwind-merge"],
-     "files": [
-       {
-         "path": "src/components/[ComponentName]/[ComponentName].tsx",
-         "type": "registry:ui",
-         "target": "components/ui/[component-name].tsx"
-       }
-     ]
+2. **Add to Registry**: Open `scripts/registry.ts` and add a new entry to the `registry` object:
+   ```ts
+   "component-name": {
+     name: "Component",
+     files: ["src/components/ComponentName/ComponentName.tsx"],
+     dependencies: ["framer-motion", "clsx", "tailwind-merge"],
+     registryDependencies: ["other-component"] 
    }
    ```
-3. **Create Component JSON**: Create a new file at `registry/[component-name].json` containing the component's metadata and the full source code as a string in the `content` field.
+3. **Build CLI**: Run `bun run build:cli` to include your changes in the distribution.
 4. **Update Docs**: Create a corresponding `.mdx` file in `src/pages/` and add the route in `main.tsx`.
 
 ## Project Structure
