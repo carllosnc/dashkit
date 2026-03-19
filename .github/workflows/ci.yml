@@ -27,5 +27,8 @@ jobs:
       - name: Build project
         run: bun run build
 
+      - name: Build CLI
+        run: bun run build:cli
+
       - name: Run test suite
         run: bun run test
