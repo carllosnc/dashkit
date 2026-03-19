@@ -10,32 +10,6 @@ function cn(...inputs: (string | undefined | null | boolean | Record<string, boo
 export type BadgeVariant = 'solid' | 'soft' | 'outline';
 export type BadgeColor = 'primary' | 'success' | 'warning' | 'error' | 'info' | 'neutral';
 export type BadgePosition = 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
-export type BadgeSize = 'xs' | 'sm' | 'md' | 'lg';
-
-export interface BadgeProps {
-  /** The element the badge will be attached to */
-  children?: React.ReactNode;
-  /** Content to display inside the badge */
-  content?: React.ReactNode;
-  /** Styling variant */
-  variant?: BadgeVariant;
-  /** Color palette */
-  color?: BadgeColor;
-  /** Placement relative to children */
-  position?: BadgePosition;
-  /** Whether to show a pulse animation (only for dots or small content) */
-  pulse?: boolean;
-  /** Whether to show just a dot */
-  dot?: boolean;
-  /** Whether the badge is visible */
-  show?: boolean;
-  /** Maximum number to display (e.g., 99+) */
-  max?: number;
-  /** Custom offset [x, y] */
-  offset?: [number, number];
-  /** Custom classes for the badge element */
-  className?: string;
-}
 
 const colorStyles: Record<BadgeColor, string> = {
   primary: "bg-black text-white dark:bg-white dark:text-black hover:opacity-90",
@@ -65,31 +39,48 @@ const outlineStyles: Record<BadgeColor, string> = {
 };
 
 const positionClasses: Record<BadgePosition, string> = {
-  'top-right': 'top-0 right-0 -translate-y-[25%] translate-x-[25%]',
-  'top-left': 'top-0 left-0 -translate-y-[25%] -translate-x-[25%]',
-  'bottom-right': 'bottom-0 right-0 translate-y-[25%] translate-x-[25%]',
-  'bottom-left': 'bottom-0 left-0 translate-y-[25%] -translate-x-[25%]'
+  'top-right': 'top-0 right-0 -translate-y-[45%] translate-x-[45%]',
+  'top-left': 'top-0 left-0 -translate-y-[45%] -translate-x-[45%]',
+  'bottom-right': 'bottom-0 right-0 translate-y-[45%] translate-x-[45%]',
+  'bottom-left': 'bottom-0 left-0 translate-y-[45%] -translate-x-[45%]'
 };
 
-export function Badge({
-  children,
+export interface BadgeProps {
+  /** Content to display inside the badge */
+  content?: React.ReactNode;
+  /** Styling variant */
+  variant?: BadgeVariant;
+  /** Color palette */
+  color?: BadgeColor;
+  /** Whether to show a pulse animation */
+  pulse?: boolean;
+  /** Whether to show just a dot */
+  dot?: boolean;
+  /** Whether the badge is visible */
+  show?: boolean;
+  /** Maximum number to display (e.g., 99+) */
+  max?: number;
+  /** Custom classes */
+  className?: string;
+}
+
+/**
+ * Standard Inline Badge component.
+ * Used for standalone status indicators or labels.
+ */
+export const Badge = ({
   content,
   variant = 'solid',
   color = 'primary',
-  position = 'top-right',
   pulse = false,
   dot = false,
   show = true,
   max = 99,
-  offset,
   className,
-}: BadgeProps) {
-  
+}: BadgeProps) => {
   const displayContent = React.useMemo(() => {
     if (dot) return null;
-    if (typeof content === 'number' && content > max) {
-      return `${max}+`;
-    }
+    if (typeof content === 'number' && content > max) return `${max}+`;
     return content;
   }, [content, max, dot]);
 
@@ -100,46 +91,69 @@ export function Badge({
   }, [variant, color]);
 
   return (
+    <AnimatePresence>
+      {show && (
+        <motion.span
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0, opacity: 0 }}
+          transition={{ type: 'spring', damping: 20, stiffness: 400 }}
+          className={cn(
+            "relative inline-flex items-center justify-center font-bold select-none whitespace-nowrap",
+            dot ? "w-2.5 h-2.5 rounded-full" : "min-w-[1.25rem] h-5 px-1.5 rounded-sm text-[10px] leading-none",
+            badgeStyles,
+            className
+          )}
+        >
+          {pulse && (
+            <span 
+              className={cn(
+                "absolute inset-0 animate-ping opacity-60",
+                dot ? "rounded-full" : "rounded-sm",
+                badgeStyles
+              )} 
+            />
+          )}
+          <span className="relative z-20">{displayContent}</span>
+        </motion.span>
+      )}
+    </AnimatePresence>
+  );
+};
+
+export interface FloatBadgeProps extends BadgeProps {
+  /** The element the badge will be attached to */
+  children: React.ReactNode;
+  /** Placement relative to children */
+  position?: BadgePosition;
+  /** Custom offset [x, y] */
+  offset?: [number, number];
+}
+
+/**
+ * FloatBadge component.
+ * Wraps an element and places a badge over it at a specific position.
+ */
+export const FloatBadge = ({
+  children,
+  position = 'top-right',
+  offset,
+  className,
+  ...props
+}: FloatBadgeProps) => {
+  return (
     <div className="relative inline-flex align-middle shrink-0">
       {children}
-      
-      <AnimatePresence>
-        {show && (
-          <motion.span
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0, opacity: 0 }}
-            transition={{ type: 'spring', damping: 20, stiffness: 400 }}
-            className={cn(
-              "absolute z-10 flex items-center justify-center font-bold pointer-events-none select-none",
-              dot ? "w-2.5 h-2.5 rounded-full" : "min-w-[1.25rem] h-5 px-1.5 rounded-full text-[10px] leading-none",
-              badgeStyles,
-              positionClasses[position],
-              className
-            )}
-            style={{
-              marginTop: offset ? offset[1] : undefined,
-              marginRight: offset && (position === 'top-right' || position === 'bottom-right') ? -offset[0] : undefined,
-              marginLeft: offset && (position === 'top-left' || position === 'bottom-left') ? offset[0] : undefined,
-              // Alternative: Just use x/y manually if provided
-            }}
-          >
-            {/* Pulse layer */}
-            {pulse && (
-              <span 
-                className={cn(
-                  "absolute inset-0 rounded-full animate-ping opacity-60",
-                  badgeStyles
-                )} 
-              />
-            )}
-            
-            <span className="relative z-20">
-              {displayContent}
-            </span>
-          </motion.span>
-        )}
-      </AnimatePresence>
+      <div 
+        className={cn("absolute z-10", positionClasses[position], className)}
+        style={{
+          marginTop: offset ? offset[1] : undefined,
+          marginRight: offset && (position === 'top-right' || position === 'bottom-right') ? -offset[0] : undefined,
+          marginLeft: offset && (position === 'top-left' || position === 'bottom-left') ? offset[0] : undefined,
+        }}
+      >
+        <Badge {...props} />
+      </div>
     </div>
   );
-}
+};

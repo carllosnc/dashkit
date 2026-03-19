@@ -1,0 +1,130 @@
+# Card
+
+A premium container component for grouping content, imagery, and actions. 
+
+Dashkit's Card is designed as a **composed wrapper**, providing total layout control through granular sub-components.
+
+## Installation
+
+Add the Card component to your project using the CLI or via manual import.
+
+### CLI
+
+```bash
+npx dashkit-ui add card
+```
+
+### Manual Import
+
+```tsx
+import { 
+  Card, 
+  CardHeader, 
+  CardTitle, 
+  CardDescription, 
+  CardComponent, 
+  CardFooter 
+} from '@/components/Card';
+```
+
+---
+
+<Preview>
+  <CardDemo />
+</Preview>
+
+### Composed Example
+
+<Preview>
+  <Card className="shadow-xl shadow-neutral-200/50 dark:shadow-black/50">
+    <CardHeader extra={<Badge content="Live" color="info" pulse />}>
+       <CardTitle>Security Check</CardTitle>
+       <CardDescription>
+          Real-time monitoring of global infrastructure and system health.
+       </CardDescription>
+    </CardHeader>
+    <CardComponent>
+       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="p-4 rounded-xl bg-neutral-50 dark:bg-white/5 border border-neutral-100 dark:border-white/5">
+             <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest">Uptime</span>
+             <p className="text-xl font-bold font-mono text-neutral-900 dark:text-white">99.99%</p>
+          </div>
+          <div className="p-4 rounded-xl bg-neutral-50 dark:bg-white/5 border border-neutral-100 dark:border-white/5">
+             <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest">Latency</span>
+             <p className="text-xl font-bold font-mono text-neutral-900 dark:text-white">12ms</p>
+          </div>
+       </div>
+    </CardComponent>
+    <CardFooter>
+       <Button variant="outlined" className="w-full">Ignore Warning</Button>
+    </CardFooter>
+  </Card>
+</Preview>
+
+---
+
+## Usage Example
+
+```tsx
+import { Card, CardHeader, CardTitle, CardDescription, CardComponent, CardFooter, Button, Badge } from 'dashkit-ui';
+
+export default () => (
+  <Card className="shadow-lg shadow-neutral-200/50 dark:shadow-black/50">
+    <CardHeader extra={<Badge content="Live" color="info" pulse />}>
+      <CardTitle>System Health</CardTitle>
+      <CardDescription>Real-time infrastructure performance</CardDescription>
+    </CardHeader>
+    <CardComponent>
+       <div className="py-2">
+         <p className="text-sm text-neutral-600 dark:text-neutral-400">
+           All services are operational. Last checked 2m ago.
+         </p>
+       </div>
+    </CardComponent>
+    <CardFooter>
+       <Button variant="outlined" className="w-full">View Global Status</Button>
+    </CardFooter>
+  </Card>
+);
+```
+
+## API Reference
+
+### Card (Root)
+The main wrapper container.
+
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `bordered` | `boolean` | `true` | Whether to show a border around the card. |
+| `animate` | `boolean" | `true` | Whether to apply entrance animations. |
+| `className` | `string` | — | Root container classes (use for shadows, e.g. `shadow-xl`). |
+
+### CardHeader
+The top section, typically containing the title and description.
+
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `extra` | `ReactNode` | — | Content on the top right (e.g. badges, status icons). |
+| `className` | `string` | — | Custom classes for the header container. |
+
+### CardTitle & CardDescription
+Supporting typography components for the header.
+
+| Component | Tag | Description |
+| :--- | :--- | :--- |
+| `CardTitle` | `h3` | Large, bold title with tight tracking. |
+| `CardDescription` | `p` | Smaller, medium-weight supporting text. |
+
+### CardComponent (CardContent)
+The main body of the card with standard internal padding and flex growth.
+
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `className` | `string` | — | Custom classes for the content body. |
+
+### CardFooter
+The bottom action area with a subtle separator.
+
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `className` | `string` | — | Custom classes for the footer container. |

@@ -32,8 +32,17 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '..
 import { AccordionDemo } from '../components/Accordion/AccordionDemo';
 import { ToastDemo } from '../components/Toast/ToastDemo';
 import { DropdownDemo, BasicMenuDemo, SelectableMenuDemo, CustomTriggerDemo } from '../components/Dropdown/DropdownDemo';
-import { Badge } from '../components/Badge/Badge';
+import { Badge, FloatBadge } from '../components/Badge/Badge';
 import { BadgeDemo } from '../components/Badge/BadgeDemo';
+import { 
+  Card, 
+  CardDemo, 
+  CardHeader, 
+  CardTitle, 
+  CardDescription, 
+  CardComponent, 
+  CardFooter 
+} from '../components/Card';
 import { FiDownload, FiArrowRight, FiCopy, FiCheck, FiSearch, FiLock, FiUser, FiSettings, FiActivity, FiCheckCircle } from 'react-icons/fi';
 
 type MdxComponentProps = { components?: Record<string, ElementType> };
@@ -125,6 +134,7 @@ const components: Record<string, ElementType> = {
   ImageExpander,
   ImageExpanderDemo,
   Badge,
+  FloatBadge,
   BadgeDemo,
   Dropdown,
   DropdownTrigger,
@@ -136,6 +146,13 @@ const components: Record<string, ElementType> = {
   BasicMenuDemo,
   SelectableMenuDemo,
   CustomTriggerDemo,
+  Card,
+  CardDemo,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardComponent,
+  CardFooter,
   FiDownload,
   FiArrowRight,
   FiSearch,
