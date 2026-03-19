@@ -111,8 +111,7 @@ Follow these steps to add a new component and make it available via the CLI:
 - `src/components/` - The core reusable UI components.
 - `src/layouts/` - Shared layouts for the main app and documentation pages.
 - `src/pages/` - Interactive documentation in MDX.
-- `registry/` - JSON definitions for Shadcn CLI support.
-- `registry.json` - Main index for the Shadcn registry.
+- `scripts/` - CLI logic and component registry.
 
 ## CI / CD
 Dashkit uses **GitHub Actions** to automatically lint, type-check, build, and test on every Pull Request and commit pushed to the `main` branch.
