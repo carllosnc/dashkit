@@ -210,6 +210,23 @@
           "target": "components/ui/toast.tsx"
         }
       ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "framer-motion",
+        "react-icons"
+      ],
+      "files": [
+        {
+          "path": "src/components/Dropdown/Dropdown.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/dropdown-menu.tsx"
+        }
+      ]
     }
   ]
 }

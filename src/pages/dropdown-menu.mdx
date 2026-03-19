@@ -1,0 +1,64 @@
+import { DropdownDemo } from '../components/Dropdown/DropdownDemo';
+
+# Dropdown Menu
+
+An interactive menu that displays a list of actions or options when triggered.
+
+<DropdownDemo />
+
+## Usage
+
+Dashkit provides a flexible dropdown system that supports alignment, icons, labels, and separators.
+
+```tsx
+import { 
+  Dropdown, 
+  DropdownTrigger, 
+  DropdownContent, 
+  DropdownItem, 
+  DropdownLabel, 
+  DropdownSeparator 
+} from '@/components/Dropdown';
+
+export function Example() {
+  return (
+    <Dropdown>
+      <DropdownTrigger asChild>
+        <button>Open Menu</button>
+      </DropdownTrigger>
+      <DropdownContent>
+        <DropdownLabel>Account</DropdownLabel>
+        <DropdownItem>Profile</DropdownItem>
+        <DropdownItem>Settings</DropdownItem>
+        <DropdownSeparator />
+        <DropdownItem destructive>Logout</DropdownItem>
+      </DropdownContent>
+    </Dropdown>
+  );
+}
+```
+
+## Features
+
+- **Animated**: Uses Framer Motion for smooth scale and opacity transitions.
+- **Accessible**: Closes automatically when clicking outside or selecting an item.
+- **Customizable**: Supports custom triggers via `asChild`, alignment (`left` or `right`), and icons.
+- **Styled**: Beautiful default styles for light and dark modes.
+
+## Component API
+
+### DropdownContent
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `align` | `'left' \| 'right'` | `'left'` | The alignment of the dropdown menu relative to the trigger. |
+| `className` | `string` | - | Additional CSS classes for the content container. |
+
+### DropdownItem
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `leftIcon` | `ReactNode` | - | Icon positioned to the left of the item text. |
+| `rightIcon` | `ReactNode` | - | Icon positioned to the right of the item text. |
+| `destructive` | `boolean` | `false` | If true, applies red "destructive" styling. |
+| `selected` | `boolean` | `false` | If true, applies a selected state with a checkmark. |
+| `disabled` | `boolean` | `false` | Disables interaction with the item. |
+| `onClick` | `() => void` | - | Callback when the item is clicked. |
