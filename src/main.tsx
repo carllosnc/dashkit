@@ -17,6 +17,7 @@ import ModalDocs from './pages/modal.mdx'
 import AccordionDocs from './pages/accordion.mdx'
 import ToastDocs from './pages/toast.mdx'
 import DropdownMenuDocs from './pages/dropdown-menu.mdx'
+import BadgeDocs from './pages/badge.mdx'
 import IntroductionDocs from './pages/introduction.mdx'
 import { DocsLayout } from './layouts/DocsLayout.tsx'
 import { MdxWrapper } from './layouts/MdxWrapper.tsx'
@@ -47,6 +48,7 @@ createRoot(document.getElementById('root')!).render(
               <Route path="accordion" element={<MdxWrapper Component={AccordionDocs} />} />
               <Route path="toast" element={<MdxWrapper Component={ToastDocs} />} />
               <Route path="dropdown-menu" element={<MdxWrapper Component={DropdownMenuDocs} />} />
+              <Route path="badge" element={<MdxWrapper Component={BadgeDocs} />} />
             </Route>
           </Routes>
         </BrowserRouter>

@@ -232,6 +232,22 @@
           "target": "components/ui/dropdown-menu.tsx"
         }
       ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "framer-motion"
+      ],
+      "files": [
+        {
+          "path": "src/components/Badge/Badge.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/badge.tsx"
+        }
+      ]
     }
   ]
 }

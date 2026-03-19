@@ -1,0 +1,51 @@
+# Badge
+
+A small, visual indicator typically used for counts, statuses, or labeling elements like buttons and icons.
+
+## Import
+
+```tsx
+import { Badge } from '@/components/Badge/Badge'
+```
+
+## Basic Usage
+
+The `Badge` component is a wrapper that places a small element (usually a count or dot) on top of the child component.
+
+<Preview>
+  <BadgeDemo />
+</Preview>
+
+```tsx
+<Badge content={5} color="error">
+  <Button variant="outlined">Messages</Button>
+</Badge>
+
+<Badge dot pulse color="success">
+  <div className="w-12 h-12 bg-neutral-200 rounded-full" />
+</Badge>
+```
+
+## Features
+
+- **Automatic Clipping**: Numbers larger than the `max` prop (default 99) are automatically formatted with a plus sign (e.g., `99+`).
+- **Pulse Effects**: Easily add a status pulse animation to dots or small content badges.
+- **Positioning**: Supports `top-right`, `top-left`, `bottom-right`, and `bottom-left`.
+- **Variants**: Includes `solid`, `soft` (tinted), and `outline`.
+
+## API
+
+### Badge Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | — | The element the badge will be attached to. |
+| `content` | `ReactNode` | — | Content to display inside the badge. |
+| `variant` | `'solid' \| 'soft' \| 'outline'` | `'solid'` | Styling variant. |
+| `color` | `'primary' \| 'success' \| 'warning' \| 'error' \| 'info' \| 'neutral'` | `'primary'` | Color palette. |
+| `position` | `'top-right' \| 'top-left' \| 'bottom-right' \| 'bottom-left'` | `'top-right'` | Placement relative to children. |
+| `pulse` | `boolean` | `false` | Shows a pulse animation layer. |
+| `dot` | `boolean` | `false` | Renders as a small dot without content. |
+| `show` | `boolean` | `true` | Whether the badge is visible. |
+| `max` | `number` | `99` | Max number to display (e.g., 99+). |
+| `className` | `string` | — | Custom classes for the badge element. |

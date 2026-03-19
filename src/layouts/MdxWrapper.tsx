@@ -23,6 +23,8 @@ import { ImageExpanderDemo } from '../components/ImageExpander/ImageExpanderDemo
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../components/Accordion/Accordion';
 import { AccordionDemo } from '../components/Accordion/AccordionDemo';
 import { ToastDemo } from '../components/Toast/ToastDemo';
+import { Badge } from '../components/Badge/Badge';
+import { BadgeDemo } from '../components/Badge/BadgeDemo';
 import { FiDownload, FiArrowRight, FiCopy, FiCheck, FiSearch, FiLock, FiUser, FiSettings, FiActivity, FiCheckCircle } from 'react-icons/fi';
 
 type MdxComponentProps = { components?: Record<string, ElementType> };
@@ -113,6 +115,8 @@ const components: Record<string, ElementType> = {
   OtpInputDemo,
   ImageExpander,
   ImageExpanderDemo,
+  Badge,
+  BadgeDemo,
   FiDownload,
   FiArrowRight,
   FiSearch,
