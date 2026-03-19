@@ -120,6 +120,53 @@ You can override or extend the styles of the input via `className`.
 />
 ```
 
+## Masking (Regex)
+
+Use the `mask` prop to filter input values in real-time. Matches to the provided regex are replaced with an empty string.
+
+<Preview>
+  <div className="w-full max-w-sm">
+    <Input 
+      label="Only Digits" 
+      placeholder="Try typing letters..." 
+      mask={/[^\d]/g} 
+    />
+  </div>
+</Preview>
+
+```tsx
+<Input 
+  label="Only Digits" 
+  mask={/[^\d]/g} 
+  placeholder="123..." 
+/>
+```
+
+## Common Patterns
+
+You can use the `mask` and `formatter` props together to implement complex patterns like phone numbers and Brasil CPF.
+
+<Preview>
+  <InputDemo />
+</Preview>
+
+```tsx
+const formatCPF = (value: string) => {
+  return value
+    .replace(/^(\d{3})(\d)/, '$1.$2')
+    .replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3')
+    .replace(/\.(\d{3})(\d)/, '.$1-$2')
+    .slice(0, 14);
+};
+
+<Input 
+  label="CPF (Brasil)" 
+  mask={/[^\d]/g}
+  formatter={formatCPF}
+  placeholder="000.000.000-00" 
+/>
+```
+
 ## Props
 
 The component extends all native `InputHTMLAttributes<HTMLInputElement>` props, plus the following:
@@ -129,6 +176,8 @@ The component extends all native `InputHTMLAttributes<HTMLInputElement>` props, 
 | `label` | `string` | — | Input label rendered above the field. |
 | `leftIcon` | `ReactNode` | — | Icon element rendered at the start of the field. |
 | `rightIcon` | `ReactNode` | — | Icon element rendered at the end of the field. |
+| `mask` | `RegExp` | — | Regex used to filter input values (matches are removed). |
+| `formatter` | `(val) => string` | — | Function to format the value after masking. |
 | `error` | `string` | — | Error message displayed below the field. |
 | `helperText` | `string` | — | Helper message displayed below the field. |
 | `className` | `string` | — | Additional CSS classes for the input element. |
