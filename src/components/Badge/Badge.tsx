@@ -12,7 +12,7 @@ export type BadgeColor = 'primary' | 'success' | 'warning' | 'error' | 'info' | 
 export type BadgePosition = 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
 
 const colorStyles: Record<BadgeColor, string> = {
-  primary: "bg-black text-white dark:bg-white dark:text-black hover:opacity-90",
+  primary: "bg-primary-600 text-white hover:bg-primary-700",
   success: "bg-emerald-500 text-white hover:bg-emerald-600",
   warning: "bg-amber-500 text-white hover:bg-amber-600",
   error: "bg-red-500 text-white hover:bg-red-600",
@@ -21,7 +21,7 @@ const colorStyles: Record<BadgeColor, string> = {
 };
 
 const softStyles: Record<BadgeColor, string> = {
-  primary: "bg-neutral-100 text-neutral-900 dark:bg-white/10 dark:text-white",
+  primary: "bg-primary-50 text-primary-700 dark:bg-primary-500/10 dark:text-primary-400",
   success: "bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400",
   warning: "bg-amber-50 text-amber-700 dark:bg-amber-500/10 dark:text-amber-400",
   error: "bg-red-50 text-red-700 dark:bg-red-500/10 dark:text-red-400",
@@ -30,7 +30,7 @@ const softStyles: Record<BadgeColor, string> = {
 };
 
 const outlineStyles: Record<BadgeColor, string> = {
-  primary: "border-black text-black dark:border-white dark:text-white",
+  primary: "border-primary-500 text-primary-600 dark:text-primary-400",
   success: "border-emerald-500 text-emerald-600 dark:text-emerald-400",
   warning: "border-amber-500 text-amber-600 dark:text-amber-400",
   error: "border-red-500 text-red-600 dark:text-red-400",
