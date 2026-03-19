@@ -1,0 +1,81 @@
+# OTP Input
+
+A premium One-Time Password component designed for high-security applications, featuring automatic focus management and full numeric support.
+
+## Import
+
+```tsx
+import { OtpInput } from '@/components/OtpInput/OtpInput'
+```
+
+## CLI
+
+Add the OTP input to your project using the shadcn CLI:
+
+```bash
+bunx shadcn@latest add https://raw.githubusercontent.com/carllosnc/dashkit/master/registry.json:otp-input
+```
+
+## Basic Usage
+
+The basic OTP input with 4 digits.
+
+<Preview>
+  <div className="w-full max-w-sm">
+    <OtpInput length={4} />
+  </div>
+</Preview>
+
+```tsx
+<OtpInput length={4} />
+```
+
+## Advanced Verification Demo
+
+Experience a full two-step verification flow with our stateful demo.
+
+<Preview>
+  <OtpInputDemo />
+</Preview>
+
+```tsx
+import { useState } from 'react'
+
+export function Verification() {
+  const [otp, setOtp] = useState('')
+
+  return (
+    <div className="flex flex-col items-center gap-8">
+      <OtpInput 
+        length={6} 
+        value={otp} 
+        onChange={setOtp} 
+      />
+      
+      <Button disabled={otp.length !== 6}>
+        Verify Code
+      </Button>
+    </div>
+  )
+}
+```
+
+## Features
+
+- **Auto-Focus**: Automatically moves focus to the next field when a digit is entered.
+- **Backspace Support**: Automatically shifts focus back when deleting digits.
+- **Copy-Paste Flow**: Intelligently handles pasted codes by spreading them across slots.
+- **Mobile Friendly**: Uses `inputMode="numeric"` to trigger numeric keypads on mobile.
+- **Numeric Filtering**: Prevents non-numeric characters from being entered.
+
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `length` | `number` | `6` | Total number of digits for the OTP. |
+| `value` | `string` | — | The current value of the input. |
+| `onChange` | `(val: string) => void` | — | Callback fired whenever the selection shifts. |
+| `disabled` | `boolean` | `false` | Whether to disable all inputs. |
+| `className` | `string` | — | Additional CSS classes for the individual inputs. |
+| `containerClassName` | `string` | — | Additional CSS classes for the horizontal container. |
