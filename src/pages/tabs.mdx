@@ -1,0 +1,106 @@
+# Tabs
+
+A performant and premium tabs component with a smooth, fluid indicator animation powered by Framer Motion.
+
+## Import
+
+```tsx
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/Tabs/Tabs'
+```
+
+## CLI
+
+Add the tabs to your project using the shadcn CLI:
+
+```bash
+bunx shadcn@latest add https://raw.githubusercontent.com/carllosnc/dashkit/master/registry.json:tabs
+```
+
+## Basic Usage
+
+The component is highly accessible and supports a fluid layout for its triggers.
+
+<Preview>
+  <div className="w-full max-w-lg p-6 rounded-2xl border border-neutral-100 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-xl">
+    <Tabs defaultValue="account">
+      <TabsList className="w-full mb-8">
+        <TabsTrigger value="account">Account</TabsTrigger>
+        <TabsTrigger value="password">Password</TabsTrigger>
+      </TabsList>
+      <TabsContent value="account">
+        <h3 className="text-lg font-bold text-neutral-900 dark:text-white mb-2">Account Settings</h3>
+        <p className="text-sm text-neutral-500 dark:text-neutral-400">Update your account email and personal information.</p>
+      </TabsContent>
+      <TabsContent value="password">
+        <h3 className="text-lg font-bold text-neutral-900 dark:text-white mb-2">Password</h3>
+        <p className="text-sm text-neutral-500 dark:text-neutral-400">Change your password and manage your security settings.</p>
+      </TabsContent>
+    </Tabs>
+  </div>
+</Preview>
+
+```tsx
+<Tabs defaultValue="account">
+  <TabsList>
+    <TabsTrigger value="account">Account</TabsTrigger>
+    <TabsTrigger value="password">Password</TabsTrigger>
+  </TabsList>
+  <TabsContent value="account">
+    Manage your account data.
+  </TabsContent>
+  <TabsContent value="password">
+    Change your password.
+  </TabsContent>
+</Tabs>
+```
+
+## Icons & Advanced Previews
+
+You can easily integrate icons and complex child layouts within your tabs.
+
+<Preview>
+  <TabsDemo />
+</Preview>
+
+```tsx
+<Tabs defaultValue="profile">
+  <TabsList className="w-full">
+    <TabsTrigger value="profile">
+      <FiUser className="mr-2 size-4" />
+      Profile
+    </TabsTrigger>
+    <TabsTrigger value="activity">
+      <FiActivity className="mr-2 size-4" />
+      Activity
+    </TabsTrigger>
+    <TabsTrigger value="settings">
+      <FiSettings className="mr-2 size-4" />
+      Settings
+    </TabsTrigger>
+  </TabsList>
+</Tabs>
+```
+
+## Animated Indicators
+
+The indicator uses Framer Motion's `layoutId` to achieve a "sliding" effect when transitioning between tabs. This happens automatically when triggers are within the same `Tabs` root.
+
+## Props
+
+### Tabs
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `defaultValue` | `string` | — | The value of the tab that should be active on mount. |
+| `value` | `string` | — | The controlled value of the active tab. |
+| `onValueChange` | `(val: string) => void` | — | Callback fired when the active tab changes. |
+| `children` | `ReactNode` | — | Content of the tabs container. |
+| `className` | `string` | — | Additional CSS classes for the container. |
+
+### TabsTrigger
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `string` | — | A unique value that identifies this tab. |
+| `children` | `ReactNode` | — | Content for the tab trigger button. |
+| `className` | `string` | — | Additional CSS classes for the trigger button. |
