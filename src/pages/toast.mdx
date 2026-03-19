@@ -10,14 +10,14 @@ import { toast, ToastProvider, useToast } from '@/components/Toast/Toast'
 
 ## Setup
 
-Wrap your application (usually in `main.tsx` or `App.tsx`) with the `ToastProvider`:
+Wrap your application (usually in `main.tsx` or `App.tsx`) with the `ToastProvider`. You can optionally specify the default position.
 
 ```tsx
 import { ToastProvider } from '@/components/Toast/Toast'
 
 function App() {
   return (
-    <ToastProvider>
+    <ToastProvider position="top-right">
       <YourApp />
     </ToastProvider>
   )
@@ -46,7 +46,8 @@ const trigger = () => {
   toast({
     title: "Project Saved",
     description: "Your changes are now live.",
-    type: "success"
+    type: "success",
+    position: "top-right" // Optional override
   })
 }
 ```
@@ -54,12 +55,19 @@ const trigger = () => {
 ## Features
 
 - **Stacked Visualization**: Toasts automatically stack as cards when multiple are active, saving screen space while remaining readable.
+- **Positioning**: Supports multiple screen positions: `top-left`, `top-right`, `top-center`, `bottom-left`, `bottom-right`, `bottom-center`.
 - **Icon Support**: Easily add custom icons or use preset types (`success`, `info`, `warning`, `error`).
 - **Global State**: Trigger toasts from non-component files using a global singleton.
 - **Framer Motion**: Smooth, spring-based entry/exit and layout animations.
 - **Auto-dismiss**: Configurable duration with a default of 5 seconds.
 
 ## API
+
+### ToastProvider
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `position` | `ToastPosition` | `'bottom-right'` | Global default position for all toasts. |
 
 ### toast(options)
 
@@ -70,4 +78,5 @@ const trigger = () => {
 | `type` | `'default' \| 'success' \| 'info' \| 'warning' \| 'error'` | `'default'` | Semantic coloring for the default icon. |
 | `icon` | `ReactNode` | — | Explicit icon override. |
 | `duration` | `number` | `5000` | MS before hiding (0 for persistent). |
+| `position` | `ToastPosition` | provider default | Override position for this specific toast. |
 | `id` | `string` | `auto` | Unique ID (use to prevent duplicate toasts). |

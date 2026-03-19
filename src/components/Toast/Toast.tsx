@@ -4,38 +4,70 @@ import { FiX, FiInfo, FiCheckCircle, FiAlertCircle, FiAlertTriangle } from 'reac
 import { createPortal } from 'react-dom';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { useToast, type ToastData, type ToastType, removeToast } from './useToast';
-export type { ToastOptions, ToastType, ToastData } from './useToast';
+import { useToast, type ToastData, type ToastType, removeToast, type ToastPosition, setToastDefaultPosition, toast } from './useToast';
+export type { ToastOptions, ToastType, ToastData, ToastPosition } from './useToast';
 
 function cn(...inputs: (string | undefined | null | boolean | Record<string, boolean>)[]) {
   return twMerge(clsx(inputs));
 }
 
+const positionClasses: Record<ToastPosition, string> = {
+  'top-left': 'top-8 left-8 items-start',
+  'top-right': 'top-8 right-8 items-end',
+  'top-center': 'top-8 left-1/2 -translate-x-1/2 items-center',
+  'bottom-left': 'bottom-8 left-8 items-start',
+  'bottom-right': 'bottom-8 right-8 items-end',
+  'bottom-center': 'bottom-8 left-1/2 -translate-x-1/2 items-center',
+};
+
 // Provider Component
-export function ToastProvider({ children }: { children: React.ReactNode }) {
+export function ToastProvider({ 
+  children, 
+  position = 'bottom-right' 
+}: { 
+  children: React.ReactNode;
+  position?: ToastPosition;
+}) {
   const { toasts } = useToast();
   const [isMounted, setIsMounted] = React.useState(false);
 
   React.useEffect(() => {
     setIsMounted(true);
-  }, []);
+    setToastDefaultPosition(position);
+  }, [position]);
 
   return (
     <>
       {children}
       {isMounted && typeof document !== 'undefined' && createPortal(
-        <div className="fixed bottom-8 right-8 z-[100] flex flex-col items-end pointer-events-none w-[380px]">
-          <AnimatePresence mode="popLayout">
-            {toasts.map((t, index) => (
-              <ToastItem 
-                key={t.id} 
-                toast={t} 
-                index={index} 
-                total={toasts.length} 
-              />
-            ))}
-          </AnimatePresence>
-        </div>,
+        <>
+          {(Object.keys(positionClasses) as ToastPosition[]).map((pos) => {
+            const posToasts = toasts.filter(t => t.position === pos);
+            if (posToasts.length === 0) return null;
+            
+            return (
+              <div 
+                key={pos} 
+                className={cn(
+                  "fixed z-[100] flex flex-col pointer-events-none w-[380px] max-w-[calc(100vw-4rem)] gap-3",
+                  positionClasses[pos]
+                )}
+              >
+                <AnimatePresence mode="popLayout">
+                  {posToasts.map((t, index) => (
+                    <ToastItem 
+                      key={t.id} 
+                      toast={t} 
+                      index={index} 
+                      total={posToasts.length} 
+                      position={pos}
+                    />
+                  ))}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+        </>,
         document.body
       )}
     </>
@@ -50,8 +82,20 @@ const typeIcons: Record<ToastType, React.ReactNode> = {
   default: null
 };
 
-function ToastItem({ toast, index, total }: { toast: ToastData; index: number; total: number }) {
+function ToastItem({ 
+  toast, 
+  index, 
+  total, 
+  position 
+}: { 
+  toast: ToastData; 
+  index: number; 
+  total: number; 
+  position: ToastPosition;
+}) {
   const isStacked = index > 0;
+  const isTop = position.startsWith('top');
+  
   const offset = index * 12;
   const scale = 1 - index * 0.05;
   const opacity = 1 - index * 0.2;
@@ -59,10 +103,10 @@ function ToastItem({ toast, index, total }: { toast: ToastData; index: number; t
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, y: 50, scale: 0.8 }}
+      initial={{ opacity: 0, y: isTop ? -50 : 50, scale: 0.8 }}
       animate={{ 
         opacity: opacity > 0 ? opacity : 0, 
-        y: -offset, 
+        y: isTop ? offset : -offset, 
         scale,
         zIndex: total - index,
         filter: isStacked ? 'blur(0.5px)' : 'none'
@@ -70,7 +114,8 @@ function ToastItem({ toast, index, total }: { toast: ToastData; index: number; t
       exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
       transition={{ type: 'spring', damping: 25, stiffness: 300 }}
       className={cn(
-        "absolute bottom-0 right-0 w-full pointer-events-auto origin-bottom",
+        "absolute w-full pointer-events-auto",
+        isTop ? "top-0 origin-top" : "bottom-0 origin-bottom",
         "bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800",
         "rounded-2xl shadow-2xl p-4 flex gap-4 group transition-shadow hover:shadow-neutral-400/20 dark:hover:shadow-black"
       )}
@@ -101,5 +146,6 @@ function ToastItem({ toast, index, total }: { toast: ToastData; index: number; t
     </motion.div>
   );
 }
+
 
 

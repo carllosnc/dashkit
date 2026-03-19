@@ -63,6 +63,33 @@ export function ToastDemo() {
       >
         Simple Toast
       </Button>
+
+      <div className="flex gap-2 w-full mt-4 flex-wrap">
+        <Button 
+          variant="outlined" 
+          onClick={() => toast({ title: 'Top Right', position: 'top-right', type: 'info' })}
+        >
+          Top Right
+        </Button>
+        <Button 
+          variant="outlined" 
+          onClick={() => toast({ title: 'Top Left', position: 'top-left', type: 'info' })}
+        >
+          Top Left
+        </Button>
+        <Button 
+          variant="outlined" 
+          onClick={() => toast({ title: 'Top Center', position: 'top-center', type: 'info' })}
+        >
+          Top Center
+        </Button>
+        <Button 
+          variant="outlined" 
+          onClick={() => toast({ title: 'Bottom Center', position: 'bottom-center', type: 'info' })}
+        >
+          Bottom Center
+        </Button>
+      </div>
     </div>
   );
 }
