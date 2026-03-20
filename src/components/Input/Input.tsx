@@ -28,6 +28,11 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
   formatter?: (value: string) => string;
 }
 
+/**
+ * Input component with labels, icons, error states, and masking support.
+ * 
+ * @see https://dashkit-ui.com/docs/input
+ */
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ({ label, leftIcon, rightIcon, error, helperText, mask, formatter, className, id, onChange, children: _children, ...props }, ref) => {

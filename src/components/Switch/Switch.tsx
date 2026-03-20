@@ -44,7 +44,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
             {/* Thumb */}
             <div className={cn(
               "absolute left-[4px] top-[4px] w-4 h-4 rounded-full bg-base-500 dark:bg-base-400 transition-all duration-300",
-              "peer-checked:translate-x-5 peer-checked:bg-base-50 dark:peer-checked:bg-base-100 shadow-sm",
+              "peer-checked:translate-x-5 peer-checked:bg-base-50 dark:peer-checked:bg-base-950 shadow-sm",
               "peer-disabled:opacity-30 peer-disabled:cursor-not-allowed"
             )} />
           </label>

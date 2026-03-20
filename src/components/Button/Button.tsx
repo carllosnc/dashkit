@@ -67,6 +67,11 @@ const LoadingSpinner = () => (
   </>
 );
 
+/**
+ * Button component with multiple variants, icons, and loading states.
+ * 
+ * @see https://dashkit-ui.com/docs/button
+ */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'filled', children, leftIcon, rightIcon, loading, disabled, ...props }, ref) => {
     const isIconOnly = !children && (!!leftIcon || !!rightIcon);

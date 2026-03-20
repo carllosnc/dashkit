@@ -67,6 +67,8 @@ export interface BadgeProps {
 /**
  * Standard Inline Badge component.
  * Used for standalone status indicators or labels.
+ * 
+ * @see https://dashkit-ui.com/docs/badge
  */
 export const Badge = ({
   content,
@@ -134,6 +136,8 @@ export interface FloatBadgeProps extends BadgeProps {
 /**
  * FloatBadge component.
  * Wraps an element and places a badge over it at a specific position.
+ * 
+ * @see https://dashkit-ui.com/docs/badge
  */
 export const FloatBadge = ({
   children,
