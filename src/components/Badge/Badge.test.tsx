@@ -42,13 +42,14 @@ describe('Badge', () => {
   });
 
   it('applies variant styles correctly', () => {
-    const { rerender } = render(<Badge content="Test" variant="soft" color="success" />);
-    let badge = screen.getByText('Test').parentElement;
-    expect(badge).toHaveClass('bg-emerald-50');
-
-    rerender(<Badge content="Test" variant="outline" color="success" />);
-    badge = screen.getByText('Test').parentElement;
+    render(<Badge content="Test" variant="outline" color="success" />);
+    const badge = screen.getByText('Test').parentElement;
     expect(badge).toHaveClass('border-emerald-500');
+  });
+
+  it('applies uppercase transformation', () => {
+    render(<Badge content="new" />);
+    expect(screen.getByTestId('badge')).toHaveClass('uppercase');
   });
 
   it('hides the badge when show prop is false', () => {

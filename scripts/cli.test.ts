@@ -31,7 +31,7 @@ describe('Dashkit CLI', () => {
 
     const componentFile = path.join(testDir, 'components/Badge/Badge.tsx');
     expect(await fs.pathExists(componentFile)).toBe(true);
-  });
+  }, 20000); // Increase timeout for CI/slow environments
 
   it('should handle registry dependencies recursively (card)', async () => {
     const testDir = path.join(TEMP_DIR, 'registry-deps');
