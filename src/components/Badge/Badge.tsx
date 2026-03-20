@@ -7,35 +7,23 @@ function cn(...inputs: (string | undefined | null | boolean | Record<string, boo
   return twMerge(clsx(inputs));
 }
 
-export type BadgeVariant = 'solid' | 'soft' | 'outline';
-export type BadgeColor = 'primary' | 'success' | 'warning' | 'error' | 'info' | 'base';
+export type BadgeVariant = 'solid' | 'outline';
+export type BadgeColor = 'success' | 'warning' | 'error' | 'info';
 export type BadgePosition = 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
 
 const colorStyles: Record<BadgeColor, string> = {
-  primary: "bg-primary text-white hover:bg-primary",
   success: "bg-emerald-500 text-white hover:bg-emerald-600",
   warning: "bg-amber-500 text-white hover:bg-amber-600",
   error: "bg-red-500 text-white hover:bg-red-600",
-  info: "bg-blue-500 text-white hover:bg-blue-600",
-  base: "bg-base-200 text-base-800 dark:bg-base-800 dark:text-base-200 hover:bg-base-300 dark:hover:bg-base-700"
+  info: "bg-blue-500 text-white hover:bg-blue-600"
 };
 
-const softStyles: Record<BadgeColor, string> = {
-  primary: "bg-base-50 text-primary dark:bg-base-500/10 dark:text-primary",
-  success: "bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400",
-  warning: "bg-amber-50 text-amber-700 dark:bg-amber-500/10 dark:text-amber-400",
-  error: "bg-red-50 text-red-700 dark:bg-red-500/10 dark:text-red-400",
-  info: "bg-blue-50 text-blue-700 dark:bg-blue-500/10 dark:text-blue-400",
-  base: "bg-base-50 text-base-600 dark:bg-base-900 dark:text-base-400"
-};
 
 const outlineStyles: Record<BadgeColor, string> = {
-  primary: "border-base-500 text-primary dark:text-primary",
   success: "border-emerald-500 text-emerald-600 dark:text-emerald-400",
   warning: "border-amber-500 text-amber-600 dark:text-amber-400",
   error: "border-red-500 text-red-600 dark:text-red-400",
-  info: "border-blue-500 text-blue-600 dark:text-blue-400",
-  base: "border-base-300 text-base-600 dark:border-base-700 dark:text-base-400"
+  info: "border-blue-500 text-blue-600 dark:text-blue-400"
 };
 
 const positionClasses: Record<BadgePosition, string> = {
@@ -73,7 +61,7 @@ export interface BadgeProps {
 export const Badge = ({
   content,
   variant = 'solid',
-  color = 'primary',
+  color = 'success',
   pulse = false,
   dot = false,
   show = true,
@@ -87,7 +75,6 @@ export const Badge = ({
   }, [content, max, dot]);
 
   const badgeStyles = React.useMemo(() => {
-    if (variant === 'soft') return softStyles[color];
     if (variant === 'outline') return `border ${outlineStyles[color]}`;
     return colorStyles[color];
   }, [variant, color]);
@@ -102,7 +89,7 @@ export const Badge = ({
           transition={{ type: 'spring', damping: 20, stiffness: 400 }}
           className={cn(
             "relative inline-flex items-center justify-center font-bold select-none whitespace-nowrap",
-            dot ? "w-2.5 h-2.5 rounded-full" : "min-w-[1.25rem] h-5 px-1.5 rounded-sm text-[10px] leading-none",
+            dot ? "w-2.5 h-2.5 rounded-full" : "min-w-[1.125rem] pt-[5px] pb-[3px] px-1.5 rounded-sm text-[11px] uppercase flex items-center justify-center leading-none",
             badgeStyles,
             className
           )}
