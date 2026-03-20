@@ -44,11 +44,11 @@ export const Skeleton = ({
       `}</style>
       <div
         className={cn(
-          "relative overflow-hidden bg-base-200 dark:bg-base-700",
+          "relative overflow-hidden bg-base-200 dark:bg-base-800",
           variant === 'text' && "h-4 w-full rounded-sm",
           variant === 'circular' && "rounded-full",
           variant === 'rectangular' && "rounded-md",
-          animation === 'shimmer' && "after:absolute after:inset-0 after:-translate-x-full after:animate-[shimmer_1.5s_infinite] after:bg-gradient-to-r after:from-transparent after:via-white/50 after:dark:via-white/30 after:to-transparent",
+          animation === 'shimmer' && "after:absolute after:inset-0 after:-translate-x-full after:animate-[shimmer_1.5s_infinite] after:bg-gradient-to-r after:from-transparent after:via-white/50 dark:after:via-white/10 after:to-transparent",
           animation === 'pulse' && "animate-[skeleton-pulse_1.2s_infinite]",
           className
         )}
