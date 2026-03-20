@@ -35,7 +35,7 @@ import { Badge } from 'dashkit-ui';
 export default () => (
   <div className="flex gap-4">
     <Badge content="Live" color="success" pulse />
-    <Badge content="Experimental" variant="soft" color="info" />
+    <Badge content="Experimental" color="info" />
     <Badge content="Critical" variant="outline" color="error" />
   </div>
 );
@@ -63,7 +63,7 @@ export default () => (
 - **Automatic Clipping**: Numbers larger than the `max` prop (default 99) are automatically formatted with a plus sign (e.g., `99+`).
 - **Pulse Effects**: Easily add a status pulse animation to dots or small content badges via the `pulse` prop.
 - **Rhythmic Corners**: All text-based badges now use a modern `rounded-sm` style, while dots remain `rounded-full`.
-- **Flexible Variants**: Choose between `solid`, `soft` (tinted), and `outline` appearances.
+- **Flexible Variants**: Choose between `solid` and `outline` appearances.
 
 ## API
 
@@ -72,8 +72,8 @@ export default () => (
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
 | `content` | `ReactNode` | — | Content to display inside the badge. |
-| `variant` | `'solid' \| 'soft' \| 'outline'` | `'solid'` | Styling variant. |
-| `color` | `BadgeColor` | `'primary'` | Color palette (primary, success, warning, error, info, base). |
+| `variant` | `'solid' \| 'outline'` | `'solid'` | Styling variant. |
+| `color` | `BadgeColor` | `'success'` | Color palette (success, warning, error, info). |
 | `pulse` | `boolean` | `false` | Shows a pulse animation layer. |
 | `dot` | `boolean` | `false` | Renders as a small dot without content. |
 | `show` | `boolean` | `true` | Whether the badge is visible (with entry/exit animation). |
