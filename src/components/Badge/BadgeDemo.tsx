@@ -10,11 +10,10 @@ export function BadgeDemo() {
       <section>
         <h3 className="text-sm font-medium text-base-500 mb-6">Standalone Badges</h3>
         <div className="flex flex-wrap gap-4 items-center">
-          <Badge content="New" color="primary" />
           <Badge content="Live" color="success" pulse />
-          <Badge content="Pending" variant="soft" color="warning" />
+          <Badge content="Pending" color="warning" />
           <Badge content="Critical" variant="outline" color="error" />
-          <Badge content="Experimental" variant="soft" color="info" />
+          <Badge content="Experimental" color="info" />
           <Badge dot pulse color="success" />
         </div>
       </section>
@@ -29,7 +28,7 @@ export function BadgeDemo() {
             </Button>
           </FloatBadge>
 
-          <FloatBadge content={12} color="primary">
+          <FloatBadge content={12} color="success">
             <div className="p-3 bg-base-100 dark:bg-white/5 border border-base-200 dark:border-white/5 rounded-xl text-base-600 dark:text-base-400">
               <FiBell size={24} />
             </div>
@@ -59,7 +58,7 @@ export function BadgeDemo() {
             </div>
           </FloatBadge>
 
-          <FloatBadge content={3} pulse color="primary">
+          <FloatBadge content={3} pulse color="success">
             <Button variant="outlined" leftIcon={<FiShoppingCart size={18} />}>
               Cart
             </Button>
