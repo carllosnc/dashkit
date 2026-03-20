@@ -2,10 +2,18 @@ import { Button } from './components/Button/Button'
 import { FiArrowRight, FiGithub } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import { ThemeToggle } from './components/ThemeToggle'
+import { Helmet } from 'react-helmet-async'
+import { Footer } from './components/Footer'
 
 function App() {
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-[#030303] font-sans">
+      <Helmet>
+        <title>Dashkit UI | Premium React Dashboard Component Library</title>
+        <meta name="description" content="Dashkit is a premium, highly-customizable React library built with Tailwind CSS and Framer Motion, designed for high-performance dashboards." />
+        <meta property="og:title" content="Dashkit UI | Premium React Dashboard Component Library" />
+        <meta property="og:description" content="Build beautiful dashboards at the speed of light with Dashkit UI." />
+      </Helmet>
       {/* Background Effect */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-base-100/50 dark:bg-base-900/20 blur-[120px]" />
@@ -74,6 +82,8 @@ function App() {
           </div>
         </div>
       </main>
+      
+      <Footer />
     </div>
   )
 }

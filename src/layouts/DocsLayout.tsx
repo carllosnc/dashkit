@@ -1,6 +1,7 @@
 import { FiGithub } from 'react-icons/fi';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { ThemeToggle } from '../components/ThemeToggle';
+import { Footer } from '../components/Footer';
 import clsx from 'clsx';
 
 export function DocsLayout() {
@@ -243,6 +244,28 @@ export function DocsLayout() {
                 >
                   Card
                 </Link>
+                <Link 
+                  to="/docs/breadcrumb" 
+                  className={clsx(
+                    "px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
+                    currentPath === '/docs/breadcrumb' 
+                      ? "bg-base-100 text-base-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
+                      : "text-base-500 hover:text-base-900 hover:bg-base-50 dark:text-base-400 dark:hover:text-white dark:hover:bg-white/5"
+                  )}
+                >
+                  Breadcrumb
+                </Link>
+                <Link 
+                  to="/docs/skeleton" 
+                  className={clsx(
+                    "px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
+                    currentPath === '/docs/skeleton' 
+                      ? "bg-base-100 text-base-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
+                      : "text-base-500 hover:text-base-900 hover:bg-base-50 dark:text-base-400 dark:hover:text-white dark:hover:bg-white/5"
+                  )}
+                >
+                  Skeleton
+                </Link>
               </nav>
             </div>
           </div>
@@ -253,6 +276,8 @@ export function DocsLayout() {
           <Outlet />
         </main>
       </div>
+
+      <Footer />
     </div>
   );
 }

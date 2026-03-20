@@ -1,4 +1,5 @@
-import React, { useState, useRef, type ComponentType, type ReactNode, type ElementType } from 'react';
+import React, { useState, useRef, useEffect, type ComponentType, type ReactNode, type ElementType } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { 
   Dropdown, 
   DropdownTrigger, 
@@ -34,6 +35,10 @@ import { ToastDemo } from '../components/Toast/ToastDemo';
 import { DropdownDemo, BasicMenuDemo, SelectableMenuDemo, CustomTriggerDemo } from '../components/Dropdown/DropdownDemo';
 import { Badge, FloatBadge } from '../components/Badge/Badge';
 import { BadgeDemo } from '../components/Badge/BadgeDemo';
+import { Skeleton } from '../components/Skeleton/Skeleton';
+import { SkeletonDemo } from '../components/Skeleton/SkeletonDemo';
+import { Breadcrumb } from '../components/Breadcrumb/Breadcrumb';
+import { BreadcrumbDemo } from '../components/Breadcrumb/BreadcrumbDemo';
 import { 
   Card, 
   CardDemo, 
@@ -161,6 +166,10 @@ const components: Record<string, ElementType> = {
   FiSettings,
   FiActivity,
   FiCheckCircle,
+  Skeleton,
+  SkeletonDemo,
+  Breadcrumb,
+  BreadcrumbDemo,
   Preview: ({ children }: { children: ReactNode }) => (
     <div className="not-prose flex gap-4 p-6 rounded-lg bg-base-50 dark:bg-base-900 border border-base-200 dark:border-base-800">
       {children}
@@ -170,8 +179,39 @@ const components: Record<string, ElementType> = {
 };
 
 export function MdxWrapper({ Component }: { Component: MdxComponent }) {
+  const [title, setTitle] = useState('Dashkit UI');
+  const [description, setDescription] = useState('Premium React component library for modern dashboards.');
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      const h1 = containerRef.current.querySelector('h1');
+      const p = containerRef.current.querySelector('p');
+      
+      if (h1 && h1.textContent) {
+        setTitle(`${h1.textContent} | Dashkit UI`);
+      }
+      
+      if (p && p.textContent) {
+        // Truncate description if too long
+        const text = p.textContent.trim();
+        setDescription(text.length > 160 ? text.substring(0, 157) + '...' : text);
+      }
+    }
+  }, [Component]);
+
   return (
-    <div className="prose dark:prose-invert max-w-full">
+    <div className="prose dark:prose-invert max-w-full" ref={containerRef}>
+      <Helmet>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+      </Helmet>
       <Component components={components} />
     </div>
   );
