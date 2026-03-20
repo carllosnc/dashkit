@@ -1,9 +1,12 @@
+import { TypingEffect } from './components/TypingEffect/TypingEffect'
 import { Button } from './components/Button/Button'
 import { FiArrowRight, FiGithub } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import { ThemeToggle } from './components/ThemeToggle'
 import { Helmet } from 'react-helmet-async'
 import { Footer } from './components/Footer'
+
+const AVAILABLE_COMPONENTS = ["badge", "button", "card", "input", "skeleton", "tabs", "modal", "drawer"];
 
 function App() {
   return (
@@ -49,7 +52,7 @@ function App() {
           A premium, highly-customizable React library built with Tailwind CSS and Framer Motion, designed for high-performance dashboards.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 items-center mb-16">
+        <div className="flex flex-col sm:flex-row gap-4 items-center mb-12">
           <Link to="/docs" tabIndex={-1}>
             <Button variant="filled" rightIcon={<FiArrowRight />} className="h-12 px-8 text-base">
               Get Started
@@ -60,6 +63,22 @@ function App() {
               View on GitHub
             </Button>
           </a>
+        </div>
+
+        {/* CLI Reference */}
+        <div className="mb-16 flex flex-col items-center animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300 fill-mode-both">
+          <code className="text-[18px] font-mono text-base-600 dark:text-base-300 flex items-center gap-3">
+            <span className="text-base-400 select-none">$</span>
+            <span>bunx carllosnc/dashkit add</span>
+            <TypingEffect
+              words={AVAILABLE_COMPONENTS}
+              className="text-blue-500 dark:text-sky-400 min-w-[100px]"
+              cursorClassName="bg-blue-500 dark:bg-sky-400"
+            />
+          </code>
+          <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.2em] text-base-400 dark:text-base-500">
+            Instant installation via CLI
+          </p>
         </div>
 
         {/* Tech Stack Badges */}

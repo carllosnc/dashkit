@@ -1,11 +1,6 @@
 import * as React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import clsx from 'clsx';
-import { twMerge } from 'tailwind-merge';
-
-function cn(...inputs: (string | undefined | null | boolean | Record<string, boolean>)[]) {
-  return twMerge(clsx(inputs));
-}
+import { cn } from '../../utils/cn';
 
 export type BadgeVariant = 'solid' | 'outline';
 export type BadgeColor = 'success' | 'warning' | 'error' | 'info';
