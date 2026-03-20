@@ -1,6 +1,6 @@
 import { useTheme } from './ThemeContext';
+import { IconButton } from './IconButton/IconButton';
 import { FiSun, FiMoon } from 'react-icons/fi';
-import clsx from 'clsx';
 
 interface ThemeToggleProps {
   className?: string;
@@ -10,15 +10,12 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <button
+    <IconButton
       onClick={toggleTheme}
-      className={clsx(
-        "text-base-500 hover:text-base-900 dark:text-base-400 dark:hover:text-white transition-colors p-1 rounded-md hover:bg-base-100 dark:hover:bg-base-900",
-        className
-      )}
+      icon={theme === 'light' ? <FiMoon size={20} /> : <FiSun size={20} />}
+      variant="ghost"
       aria-label="Toggle theme"
-    >
-      {theme === 'light' ? <FiMoon size={20} /> : <FiSun size={20} />}
-    </button>
+      className={className}
+    />
   );
 }

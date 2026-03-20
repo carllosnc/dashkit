@@ -1,0 +1,59 @@
+# Navbar
+
+<p className="text-xl text-base-500 dark:text-base-400 mt-2 mb-8">
+  A premium, responsive navigation header with support for branching, custom links, and action buttons.
+</p>
+
+## Overview
+
+The `Navbar` component provides a standard top-level container for application branding and navigation. It includes built-in support for backdrop blur effects, sticky positioning, and responsive gap handling.
+
+<Preview>
+  <NavbarDemo />
+</Preview>
+
+## Installation
+
+```bash
+bunx carllosnc/dashkit add navbar
+```
+
+## Usage
+
+```tsx
+import { Navbar, Button } from '@/components/dashkit';
+import { FiSearch, FiBell } from 'react-icons/fi';
+
+export default function Header() {
+  return (
+    <Navbar 
+      brandName="MyDashboard" 
+      logo={<LogoIcon className="h-6" />}
+      links={[
+        { label: 'Overview', href: '/overview', active: true },
+        { label: 'Reports', href: '/reports' },
+        { label: 'Settings', href: '/settings' }
+      ]}
+      actions={
+        <div className="flex items-center gap-4">
+          <button className="text-base-400 hover:text-base-900 transition-colors">
+            <FiSearch size={18} />
+          </button>
+          <Button size="sm">Get Started</Button>
+        </div>
+      }
+    />
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `logo` | `ReactNode` | `-` | Element (SVG or `<img>`) displayed as the brand mark. |
+| `brandName` | `string` | `-` | Text displayed next to the logo. |
+| `links` | `Array` | `[]` | Navigation items with `label`, `href`, and `active` properties. |
+| `actions` | `ReactNode` | `-` | Custom elements (buttons, icons) placed on the right side. |
+| `sticky` | `boolean` | `true` | Whether the navbar sticks to the top of the viewport. |
+| `blur` | `boolean` | `true` | Whether to apply glassmorphism backdrop blur. |

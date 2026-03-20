@@ -11,6 +11,7 @@ function cn(...inputs: ClassValue[]) {
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'filled' | 'outlined';
+  size?: 'sm' | 'md' | 'lg';
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   loading?: boolean;
@@ -73,7 +74,7 @@ const LoadingSpinner = () => (
  * @see https://dashkit-ui.com/docs/button
  */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = 'filled', children, leftIcon, rightIcon, loading, disabled, ...props }, ref) => {
+  ({ className, variant = 'filled', size = 'md', children, leftIcon, rightIcon, loading, disabled, ...props }, ref) => {
     const isIconOnly = !children && (!!leftIcon || !!rightIcon);
 
     return (
@@ -85,10 +86,16 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           "text-sm border",
           {
             "bg-base text-white border-transparent hover:bg-base-900 dark:bg-white dark:text-base-950 dark:hover:bg-base-100": variant === 'filled',
-            "bg-transparent text-base-800 border-base-400 hover:bg-base-50 dark:text-base-100 dark:border-base-700 dark:hover:bg-base-900/50": variant === 'outlined',
+            "bg-transparent text-base-800 border-base-300 hover:bg-base-50 dark:text-base-100 dark:border-base-700 dark:hover:bg-base-900/50": variant === 'outlined',
             "opacity-60 cursor-not-allowed": loading || disabled,
+            // Sizes
+            "h-8 text-xs": size === 'sm',
+            "h-10 text-sm": size === 'md',
+            "h-12 text-base": size === 'lg',
             // Layout
             "gap-2 px-4 py-[5px]": !isIconOnly,
+            "px-2": size === 'sm' && !isIconOnly,
+            "px-6": size === 'lg' && !isIconOnly,
             "p-[8px] aspect-square": isIconOnly,
           },
           className

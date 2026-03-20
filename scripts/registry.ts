@@ -96,5 +96,30 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Spinner',
     files: ['src/components/Spinner/Spinner.tsx'],
     dependencies: ['clsx', 'tailwind-merge'],
+  },
+  navbar: {
+    name: 'Navbar',
+    files: ['src/components/Navbar/Navbar.tsx'],
+    dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
+  },
+  skeleton: {
+    name: 'Skeleton',
+    files: ['src/components/Skeleton/Skeleton.tsx'],
+    dependencies: ['clsx', 'tailwind-merge'],
+  },
+  breadcrumb: {
+    name: 'Breadcrumb',
+    files: ['src/components/Breadcrumb/Breadcrumb.tsx'],
+    dependencies: ['clsx', 'tailwind-merge', 'lucide-react'],
+  },
+  typingeffect: {
+    name: 'TypingEffect',
+    files: ['src/components/TypingEffect/TypingEffect.tsx'],
+    dependencies: ['clsx', 'tailwind-merge'],
+  },
+  iconbutton: {
+    name: 'IconButton',
+    files: ['src/components/IconButton/IconButton.tsx'],
+    dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
   }
 };

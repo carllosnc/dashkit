@@ -24,6 +24,10 @@ import IntroductionDocs from './pages/introduction.mdx'
 import SkeletonDocs from './pages/skeleton.mdx'
 import BreadcrumbDocs from './pages/breadcrumb.mdx'
 import SpinnerDocs from './pages/spinner.mdx'
+import NavbarDocs from './pages/navbar.mdx'
+import IconButtonDocs from './pages/icon-button.mdx'
+import { LoginExample } from './pages/examples/LoginExample'
+import { ExamplesList } from './pages/examples/ExamplesList'
 import { NotFound } from './pages/NotFound.tsx'
 import { DocsLayout } from './layouts/DocsLayout.tsx'
 import { MdxWrapper } from './layouts/MdxWrapper.tsx'
@@ -62,6 +66,12 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="skeleton" element={<MdxWrapper Component={SkeletonDocs} />} />
                 <Route path="breadcrumb" element={<MdxWrapper Component={BreadcrumbDocs} />} />
                 <Route path="spinner" element={<MdxWrapper Component={SpinnerDocs} />} />
+                <Route path="icon-button" element={<MdxWrapper Component={IconButtonDocs} />} />
+                <Route path="navbar" element={<MdxWrapper Component={NavbarDocs} />} />
+              </Route>
+              <Route path="/examples">
+                <Route index element={<ExamplesList />} />
+                <Route path="login" element={<LoginExample />} />
               </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>

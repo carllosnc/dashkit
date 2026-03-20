@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { Navbar } from '../components/Navbar/Navbar';
+import { IconButton } from '../components/IconButton/IconButton';
 import { FiGithub, FiMenu } from 'react-icons/fi';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { ThemeToggle } from '../components/ThemeToggle';
@@ -18,6 +20,7 @@ const navItems = [
     title: 'Components',
     links: [
       { to: '/docs/button', label: 'Button' },
+      { to: '/docs/icon-button', label: 'Icon Button' },
       { to: '/docs/input', label: 'Input' },
       { to: '/docs/checkbox', label: 'Checkbox' },
       { to: '/docs/radio', label: 'Radio' },
@@ -35,6 +38,7 @@ const navItems = [
       { to: '/docs/card', label: 'Card' },
       { to: '/docs/breadcrumb', label: 'Breadcrumb' },
       { to: '/docs/skeleton', label: 'Skeleton' },
+      { to: '/docs/navbar', label: 'Navbar' },
       { to: '/docs/spinner', label: 'Spinner' },
     ]
   }
@@ -79,31 +83,34 @@ export function DocsLayout() {
   return (
     <div className="min-h-screen bg-white dark:bg-[#030303] font-sans flex flex-col">
       {/* Navigation */}
-      <nav className="flex items-center justify-between px-4 md:px-8 py-5 border-b border-base-200 dark:border-base-800 bg-white/70 dark:bg-[#030303]/70 backdrop-blur-xl sticky top-0 z-50">
-        <div className="flex items-center gap-4">
-          <button 
+      <Navbar 
+        logo={<img src="/logo.svg" alt="Dashkit UI Logo" className="h-6 dark:invert" />}
+        left={
+          <IconButton 
+            icon={<FiMenu size={20} />} 
             onClick={() => setIsMobileMenuOpen(true)}
-            className="md:hidden p-2 rounded-xl text-base-500 hover:bg-base-50 dark:text-base-400 dark:hover:bg-white/5"
-          >
-            <FiMenu size={20} />
-          </button>
-          <Link to="/" className="flex items-center group">
-            <img src="/logo.svg" alt="Dashkit UI Logo" className="h-6 dark:invert" />
-          </Link>
-        </div>
-        
-        <div className="flex items-center gap-4 md:gap-8">
-          <Link to="/docs" className="hidden sm:block text-sm font-medium text-base-900 dark:text-white transition-colors">
-            Documentation
-          </Link>
+            variant="ghost"
+            className="md:hidden text-base-500 dark:text-base-400"
+          />
+        }
+        links={[
+          { label: 'Documentation', href: '/docs', active: true },
+          { label: 'Examples', href: '/examples' }
+        ]}
+        actions={
           <div className="flex items-center gap-4 pl-0 sm:pl-4 sm:border-l border-base-200 dark:border-base-800">
             <ThemeToggle />
-            <a href="https://github.com/carllosnc/dashkit" target="_blank" rel="noopener noreferrer" className="text-base-400 hover:text-base-900 dark:hover:text-white">
-              <FiGithub size={20} />
-            </a>
+            <IconButton 
+              icon={<FiGithub size={20} />} 
+              href="https://github.com/carllosnc/dashkit" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              variant="ghost"
+              className="text-base-400 hover:text-base-900 dark:hover:text-white"
+            />
           </div>
-        </div>
-      </nav>
+        }
+      />
 
       {/* Mobile Drawer */}
       <Drawer 

@@ -39,6 +39,10 @@ import { Skeleton } from '../components/Skeleton/Skeleton';
 import { SkeletonDemo } from '../components/Skeleton/SkeletonDemo';
 import { Spinner } from '../components/Spinner/Spinner';
 import { SpinnerDemo } from '../components/Spinner/SpinnerDemo';
+import { Navbar } from '../components/Navbar/Navbar';
+import { NavbarDemo } from '../components/Navbar/NavbarDemo';
+import { IconButton } from '../components/IconButton/IconButton';
+import { IconButtonDemo } from '../components/IconButton/IconButtonDemo';
 import { Breadcrumb } from '../components/Breadcrumb/Breadcrumb';
 import { BreadcrumbDemo } from '../components/Breadcrumb/BreadcrumbDemo';
 import { 
@@ -172,6 +176,10 @@ const components: Record<string, ElementType> = {
   SkeletonDemo,
   Spinner,
   SpinnerDemo,
+  Navbar,
+  NavbarDemo,
+  IconButton,
+  IconButtonDemo,
   Breadcrumb,
   BreadcrumbDemo,
   Preview: ({ children }: { children: ReactNode }) => (

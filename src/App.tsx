@@ -1,5 +1,7 @@
 import { TypingEffect } from './components/TypingEffect/TypingEffect'
 import { Button } from './components/Button/Button'
+import { Navbar } from './components/Navbar/Navbar'
+import { IconButton } from './components/IconButton/IconButton'
 import { FiArrowRight, FiGithub } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import { ThemeToggle } from './components/ThemeToggle'
@@ -24,22 +26,26 @@ function App() {
       </div>
 
       {/* Navigation */}
-      <nav className="flex items-center justify-between px-8 py-5 border-b border-base-200 dark:border-base-800 bg-white/70 dark:bg-[#030303]/70 backdrop-blur-xl sticky top-0 z-50">
-        <div className="flex items-center group cursor-default">
-          <img src="/logo.svg" alt="Dashkit UI Logo" className="h-6 dark:invert" />
-        </div>
-        <div className="flex items-center gap-8">
-          <Link to="/docs" className="text-sm font-medium text-base-600 hover:text-base-900 dark:text-base-400 dark:hover:text-white">
-            Documentation
-          </Link>
+      <Navbar 
+        logo={<img src="/logo.svg" alt="Dashkit UI Logo" className="h-6 dark:invert" />}
+        links={[
+          { label: 'Documentation', href: '/docs' },
+          { label: 'Examples', href: '/examples' }
+        ]}
+        actions={
           <div className="flex items-center gap-4 pl-4 border-l border-base-200 dark:border-base-800">
             <ThemeToggle />
-            <a href="https://github.com/carllosnc/dashkit" target="_blank" rel="noopener noreferrer" className="text-base-400 hover:text-base-900 dark:hover:text-white">
-              <FiGithub size={20} />
-            </a>
+            <IconButton 
+              icon={<FiGithub size={20} />} 
+              href="https://github.com/carllosnc/dashkit" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              variant="ghost"
+              className="text-base-400 hover:text-base-900 dark:hover:text-white"
+            />
           </div>
-        </div>
-      </nav>
+        }
+      />
 
       {/* Hero Section */}
       <main className="flex-1 relative flex flex-col items-center justify-center text-center px-6 py-32 overflow-hidden">

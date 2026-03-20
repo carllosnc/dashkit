@@ -1,13 +1,5 @@
 import { forwardRef, type InputHTMLAttributes } from 'react';
-import clsx, { type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-
-/**
- * Utility for merging tailwind classes with conflict resolution
- */
-function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
+import { cn } from '../../utils/cn';
 
 export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
   label?: string;
@@ -20,7 +12,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     const checkboxId = id || (label ? `checkbox-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined);
 
     return (
-      <div className="flex gap-3 group relative items-start">
+      <div className={cn("flex gap-3 group relative transition-all duration-200", description ? "items-start" : "items-center")}>
         <div className="flex items-center h-6">
           <label htmlFor={checkboxId} className="relative flex items-center justify-center cursor-pointer">
             <input
