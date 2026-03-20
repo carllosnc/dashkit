@@ -134,8 +134,8 @@ export function DocsLayout() {
       {/* Main Layout */}
       <div className="flex-1 max-w-6xl w-full mx-auto px-4 md:px-6 flex md:grid md:grid-cols-[260px_1fr] gap-0 md:gap-12">
         {/* Sidebar */}
-        <aside className="py-12 border-r border-base-200 dark:border-base-800 hidden md:block pr-8 shrink-0">
-          <div className="sticky top-28">
+        <aside className="py-12 border-r border-base-200 dark:border-base-800 hidden md:block shrink-0">
+          <div className="sticky top-28 h-[calc(100vh-140px)] overflow-y-auto pr-8 custom-scrollbar">
             <SidebarContent currentPath={currentPath} />
           </div>
         </aside>

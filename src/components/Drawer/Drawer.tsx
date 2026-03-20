@@ -170,7 +170,7 @@ export const Drawer = ({
             </div>
 
             {/* Body */}
-            <div className="flex-1 overflow-y-auto px-6 py-2 no-scrollbar">
+            <div className="flex-1 overflow-y-auto px-6 py-2 custom-scrollbar">
               {children}
             </div>
 
