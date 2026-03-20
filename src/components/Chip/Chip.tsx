@@ -1,0 +1,119 @@
+import * as React from 'react';
+import { cn } from '../../utils/cn';
+import { FiX, FiCheck } from 'react-icons/fi';
+
+export type ChipVariant = 'filled' | 'outlined' | 'tonal';
+export type ChipColor = 'base' | 'success' | 'warning' | 'error' | 'info';
+
+export interface ChipProps {
+  /** The content of the chip. */
+  label: React.ReactNode;
+  /** Leading icon element. */
+  icon?: React.ReactNode;
+  /** Variant style of the chip. Defaults to 'tonal'. */
+  variant?: ChipVariant;
+  /** Color theme of the chip. Defaults to 'base'. */
+  color?: ChipColor;
+  /** Whether the chip is selected (shows a checkmark if filter). */
+  selected?: boolean;
+  /** Whether the chip is disabled. */
+  disabled?: boolean;
+  /** Custom classes for the chip container. */
+  className?: string;
+  /** Callback fired when the chip is clicked. */
+  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
+  /** Callback fired when the delete icon is clicked. */
+  onDelete?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+const colorStyles: Record<ChipColor, Record<ChipVariant, string>> = {
+  base: {
+    tonal: "bg-base-100 text-base-900 border-transparent dark:bg-base-900 dark:text-base-100 hover:bg-base-200 dark:hover:bg-base-800",
+    filled: "bg-base-950 text-white border-transparent dark:bg-white dark:text-base-950 hover:bg-black dark:hover:bg-base-100",
+    outlined: "bg-transparent text-base-700 border-base-300 hover:bg-base-50 dark:text-base-300 dark:border-base-800 dark:hover:bg-base-900/50",
+  },
+  success: {
+    tonal: "bg-emerald-100/50 text-emerald-800 border-transparent dark:bg-emerald-500/10 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-500/20",
+    filled: "bg-emerald-600 text-white border-transparent hover:bg-emerald-700 dark:bg-emerald-500 dark:hover:bg-emerald-400",
+    outlined: "bg-transparent text-emerald-600 border-emerald-200 hover:bg-emerald-50 dark:text-emerald-400 dark:border-emerald-500/30 dark:hover:bg-emerald-500/5",
+  },
+  warning: {
+    tonal: "bg-amber-100/50 text-amber-800 border-transparent dark:bg-amber-500/10 dark:text-amber-400 hover:bg-amber-100 dark:hover:bg-amber-500/20",
+    filled: "bg-amber-500 text-white border-transparent hover:bg-amber-600 dark:bg-amber-500 dark:hover:bg-amber-400",
+    outlined: "bg-transparent text-amber-600 border-amber-200 hover:bg-amber-50 dark:text-amber-400 dark:border-amber-500/30 dark:hover:bg-amber-500/5",
+  },
+  error: {
+    tonal: "bg-red-100/50 text-red-800 border-transparent dark:bg-red-500/10 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-500/20",
+    filled: "bg-red-600 text-white border-transparent hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-400",
+    outlined: "bg-transparent text-red-600 border-red-200 hover:bg-red-50 dark:text-red-400 dark:border-red-500/30 dark:hover:bg-red-500/5",
+  },
+  info: {
+    tonal: "bg-blue-100/50 text-blue-800 border-transparent dark:bg-blue-500/10 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-500/20",
+    filled: "bg-blue-600 text-white border-transparent hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400",
+    outlined: "bg-transparent text-blue-600 border-blue-200 hover:bg-blue-50 dark:text-blue-400 dark:border-blue-500/30 dark:hover:bg-blue-500/5",
+  },
+};
+
+/**
+ * Chip component inspired by Material Design 3.
+ * Used for actions, selection, and input.
+ */
+export const Chip = ({
+  label,
+  icon,
+  variant = 'tonal',
+  color = 'base',
+  selected = false,
+  disabled = false,
+  className,
+  onClick,
+  onDelete,
+}: ChipProps) => {
+  const isInteractive = (!!onClick || !!onDelete) && !disabled;
+
+  return (
+    <div
+      onClick={disabled ? undefined : onClick}
+      className={cn(
+        "inline-flex items-center gap-1.5 h-8 px-3 rounded-lg text-[13px] font-medium transition-all duration-200 border select-none",
+        colorStyles[color][variant],
+        isInteractive ? "cursor-pointer" : "cursor-default",
+        selected && variant === 'outlined' && "border-base-900 dark:border-white ring-1 ring-base-900 dark:ring-white",
+        disabled && "opacity-50 cursor-not-allowed pointer-events-none",
+        className
+      )}
+    >
+      {selected && (
+        <FiCheck className="size-3.5 -ml-0.5 animate-in fade-in zoom-in duration-200" />
+      )}
+      {icon && !selected && (
+        <div className="size-4 -ml-0.5 flex items-center justify-center">
+          {icon}
+        </div>
+      )}
+      
+      <span className="leading-none">{label}</span>
+
+      {onDelete && (
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            onDelete(e);
+          }}
+          disabled={disabled}
+          className={cn(
+            "size-4 -mr-1 rounded-full flex items-center justify-center transition-colors",
+            "hover:bg-black/10 dark:hover:bg-white/10",
+            disabled && "cursor-not-allowed"
+          )}
+          aria-label="Remove"
+        >
+          <FiX className="size-3" />
+        </button>
+      )}
+    </div>
+  );
+};
+
+Chip.displayName = 'Chip';

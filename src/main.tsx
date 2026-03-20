@@ -27,6 +27,7 @@ import SpinnerDocs from './pages/spinner.mdx'
 import NavbarDocs from './pages/navbar.mdx'
 import IconButtonDocs from './pages/icon-button.mdx'
 import TextareaDocs from './pages/textarea.mdx'
+import ChipDocs from './pages/chip.mdx'
 import { LoginExample } from './pages/examples/LoginExample'
 import { ComplexFormExample } from './pages/examples/ComplexFormExample'
 import { ExamplesList } from './pages/examples/ExamplesList'
@@ -52,6 +53,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="button" element={<MdxWrapper Component={ButtonDocs} />} />
                 <Route path="input" element={<MdxWrapper Component={InputDocs} />} />
                 <Route path="textarea" element={<MdxWrapper Component={TextareaDocs} />} />
+                <Route path="chip" element={<MdxWrapper Component={ChipDocs} />} />
                 <Route path="checkbox" element={<MdxWrapper Component={CheckboxDocs} />} />
                 <Route path="radio" element={<MdxWrapper Component={RadioDocs} />} />
                 <Route path="select" element={<MdxWrapper Component={SelectDocs} />} />

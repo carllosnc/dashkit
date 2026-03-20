@@ -1,0 +1,128 @@
+# Chip
+
+A compact, interactive element that represents an input, attribute, or action, inspired by Material Design 3.
+
+## Import
+
+```tsx
+import { Chip } from '@/components/Chip/Chip'
+```
+
+## Installation
+
+Add the chip component to your project using the Dashkit CLI:
+
+```bash
+bunx carllosnc/dashkit add chip
+```
+
+## Interactive Guide
+
+Explore all the features of the chip component including the different types, variants, and selection states.
+
+<Preview>
+  <ChipDemo />
+</Preview>
+
+## Basic Usage
+
+The basic tonal chip represents a simple label or filter item.
+
+<Preview>
+  <div className="flex flex-wrap gap-4">
+    <Chip label="Personal" />
+    <Chip label="Work" />
+    <Chip label="Urgent" />
+  </div>
+</Preview>
+
+```tsx
+<Chip label="Personal" />
+<Chip label="Work" />
+<Chip label="Urgent" />
+```
+
+## Variants
+
+Chips come in three distinct variants: `tonal`, `filled`, and `outlined`.
+
+<Preview>
+  <div className="flex flex-wrap gap-4">
+    <Chip label="Tonal" variant="tonal" onClick={() => {}} />
+    <Chip label="Filled" variant="filled" onClick={() => {}} />
+    <Chip label="Outlined" variant="outlined" onClick={() => {}} />
+  </div>
+</Preview>
+
+```tsx
+<Chip label="Tonal" variant="tonal" />
+<Chip label="Filled" variant="filled" />
+<Chip label="Outlined" variant="outlined" />
+```
+
+## With Icons
+
+Add metadata or visual context to chips using the `icon` or `onDelete` props.
+
+<Preview>
+  <div className="flex flex-wrap gap-4">
+    <Chip label="Schedule" icon={<FiClock />} onClick={() => {}} />
+    <Chip label="Settings" icon={<FiSettings />} onClick={() => {}} />
+    <Chip label="Remove me" onDelete={() => {}} />
+  </div>
+</Preview>
+
+```tsx
+import { FiClock, FiSettings } from 'react-icons/fi'
+
+<Chip label="Schedule" icon={<FiClock />} />
+<Chip label="Settings" icon={<FiSettings />} />
+<Chip label="Remove me" onDelete={() => alert('Deleted!')} />
+```
+
+## Selection
+
+Selection state shows a checkmark icon automatically. This is useful for filter situations.
+
+<Preview>
+  <div className="flex flex-wrap gap-4">
+    <Chip label="Selectable" selected onClick={() => {}} />
+    <Chip label="Selected Outlined" selected variant="outlined" onClick={() => {}} />
+  </div>
+</Preview>
+
+```tsx
+<Chip label="Selectable" selected />
+```
+
+## States
+
+Chips can be disabled to prevent user interaction.
+
+<Preview>
+  <div className="flex flex-wrap gap-4">
+    <Chip label="Disabled Chip" disabled onClick={() => {}} />
+    <Chip label="Disabled Removable" disabled onDelete={() => {}} />
+  </div>
+</Preview>
+
+```tsx
+<Chip label="Disabled" disabled />
+```
+
+## Props
+
+The component supports the following props:
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `ReactNode` | — | Content displayed inside the chip. |
+| `icon` | `ReactNode` | — | Optional icon displayed before the label. |
+| `variant` | `ChipVariant` | `'tonal'` | Visual style of the chip: `filled`, `outlined`, `tonal`. |
+| `color` | `ChipColor` | `'base'` | Color theme of the chip: `base`, `success`, `warning`, `error`, `info`. |
+| `selected` | `boolean` | `false` | Shows a checkmark icon to indicate selection. |
+| `disabled` | `boolean` | `false` | Prevents user interaction and fades the component. |
+| `onClick` | `function` | — | Called when the chip body is clicked. |
+| `onDelete` | `function` | — | Called when the remove icon is clicked. Adds the icon if present. |
+| `className` | `string` | — | Additional CSS classes for the container. |
+

@@ -13,6 +13,8 @@ import { Checkbox } from '../components/Checkbox/Checkbox';
 import { CheckboxDemo } from '../components/Checkbox/CheckboxDemo';
 import { Input } from '../components/Input/Input';
 import { InputDemo } from '../components/Input/InputDemo';
+import { Chip } from '../components/Chip/Chip';
+import { ChipDemo } from '../components/Chip/ChipDemo';
 import { Drawer } from '../components/Drawer/Drawer';
 import { DrawerDemo } from '../components/Drawer/DrawerDemo';
 import { Modal } from '../components/Modal/Modal';
@@ -55,7 +57,7 @@ import {
   CardComponent, 
   CardFooter 
 } from '../components/Card';
-import { FiDownload, FiArrowRight, FiCopy, FiCheck, FiSearch, FiLock, FiUser, FiSettings, FiActivity, FiCheckCircle } from 'react-icons/fi';
+import { FiDownload, FiArrowRight, FiCopy, FiCheck, FiSearch, FiLock, FiUser, FiSettings, FiActivity, FiCheckCircle, FiClock, FiMail } from 'react-icons/fi';
 
 type MdxComponentProps = { components?: Record<string, ElementType> };
 type MdxComponent = ComponentType<MdxComponentProps>;
@@ -118,6 +120,8 @@ const components: Record<string, ElementType> = {
   Button,
   Input,
   InputDemo,
+  Chip,
+  ChipDemo,
   Drawer,
   DrawerDemo,
   Modal,
@@ -174,6 +178,8 @@ const components: Record<string, ElementType> = {
   FiSettings,
   FiActivity,
   FiCheckCircle,
+  FiClock,
+  FiMail,
   Skeleton,
   SkeletonDemo,
   Spinner,

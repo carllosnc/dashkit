@@ -30,7 +30,7 @@ export const IconButton = forwardRef<HTMLElement, IconButtonProps>(
 
     const commonClasses = cn(
       "inline-flex items-center justify-center transition-all duration-200 focus:outline-none cursor-pointer border select-none shrink-0",
-      rounded ? "rounded-full" : "rounded-xl",
+      rounded ? "rounded-full" : "rounded-md",
       {
         // Variants
         "bg-base-950 text-white border-transparent hover:bg-black dark:bg-white dark:text-base-950 dark:hover:bg-base-100": variant === 'filled',

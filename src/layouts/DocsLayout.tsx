@@ -23,6 +23,7 @@ const navItems = [
       { to: '/docs/icon-button', label: 'Icon Button' },
       { to: '/docs/input', label: 'Input' },
       { to: '/docs/textarea', label: 'Textarea' },
+      { to: '/docs/chip', label: 'Chip' },
       { to: '/docs/checkbox', label: 'Checkbox' },
       { to: '/docs/radio', label: 'Radio' },
       { to: '/docs/select', label: 'Select' },
