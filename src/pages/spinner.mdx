@@ -1,0 +1,44 @@
+# Spinner
+
+<p className="text-xl text-base-500 dark:text-base-400 mt-2 mb-8">
+  A sleek, high-performance loading indicator built with SVG and CSS animations.
+</p>
+
+## Overview
+
+The `Spinner` component is designed to show background activity or loading states. It's fully customizable in size, color, and thickness.
+
+<Preview>
+  <SpinnerDemo />
+</Preview>
+
+## Installation
+
+```bash
+bunx carllosnc/dashkit add spinner
+```
+
+## Usage
+
+```tsx
+import { Spinner } from '@/components/dashkit/Spinner';
+
+export default function SpinnerUsage() {
+  return (
+    <div className="flex items-center gap-4">
+      <Spinner size={16} /> {/* Small spinner */}
+      <Spinner size={24} color="#3b82f6" thickness={2} /> {/* Themed spinner */}
+      <Spinner size={32} thickness={4} /> {/* Thick spinner */}
+    </div>
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `size` | `number \| string` | `24` | Size of the spinner in pixels or any valid CSS unit. |
+| `color` | `string` | `currentColor` | Hex, RGB, or valid CSS color for the spinner. |
+| `thickness` | `number` | `2` | Stroke width of the spinner. |
+| `className` | `string` | `-` | Additional CSS classes for the container. |

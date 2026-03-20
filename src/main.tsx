@@ -23,6 +23,7 @@ import CliDocs from './pages/cli.mdx'
 import IntroductionDocs from './pages/introduction.mdx'
 import SkeletonDocs from './pages/skeleton.mdx'
 import BreadcrumbDocs from './pages/breadcrumb.mdx'
+import SpinnerDocs from './pages/spinner.mdx'
 import { NotFound } from './pages/NotFound.tsx'
 import { DocsLayout } from './layouts/DocsLayout.tsx'
 import { MdxWrapper } from './layouts/MdxWrapper.tsx'
@@ -60,6 +61,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="card" element={<MdxWrapper Component={CardDocs} />} />
                 <Route path="skeleton" element={<MdxWrapper Component={SkeletonDocs} />} />
                 <Route path="breadcrumb" element={<MdxWrapper Component={BreadcrumbDocs} />} />
+                <Route path="spinner" element={<MdxWrapper Component={SpinnerDocs} />} />
               </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>

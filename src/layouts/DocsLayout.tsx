@@ -35,6 +35,7 @@ const navItems = [
       { to: '/docs/card', label: 'Card' },
       { to: '/docs/breadcrumb', label: 'Breadcrumb' },
       { to: '/docs/skeleton', label: 'Skeleton' },
+      { to: '/docs/spinner', label: 'Spinner' },
     ]
   }
 ];

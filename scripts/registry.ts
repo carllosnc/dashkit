@@ -91,5 +91,10 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Toast',
     files: ['src/components/Toast/Toast.tsx'],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'lucide-react'],
+  },
+  spinner: {
+    name: 'Spinner',
+    files: ['src/components/Spinner/Spinner.tsx'],
+    dependencies: ['clsx', 'tailwind-merge'],
   }
 };

@@ -37,6 +37,8 @@ import { Badge, FloatBadge } from '../components/Badge/Badge';
 import { BadgeDemo } from '../components/Badge/BadgeDemo';
 import { Skeleton } from '../components/Skeleton/Skeleton';
 import { SkeletonDemo } from '../components/Skeleton/SkeletonDemo';
+import { Spinner } from '../components/Spinner/Spinner';
+import { SpinnerDemo } from '../components/Spinner/SpinnerDemo';
 import { Breadcrumb } from '../components/Breadcrumb/Breadcrumb';
 import { BreadcrumbDemo } from '../components/Breadcrumb/BreadcrumbDemo';
 import { 
@@ -168,6 +170,8 @@ const components: Record<string, ElementType> = {
   FiCheckCircle,
   Skeleton,
   SkeletonDemo,
+  Spinner,
+  SpinnerDemo,
   Breadcrumb,
   BreadcrumbDemo,
   Preview: ({ children }: { children: ReactNode }) => (
