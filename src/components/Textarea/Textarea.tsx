@@ -70,8 +70,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             "border-base-300 dark:border-base-800 text-base-900 dark:text-white min-h-[100px]",
             "focus:border-base-900 dark:focus:border-base-400",
             "focus:ring-4 focus:ring-base-100 dark:focus:ring-base-900/40",
-            "placeholder:text-base-400 dark:placeholder:text-base-600",
-            "disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-base-50 dark:disabled:bg-base-950",
+            "placeholder:text-base-500 dark:placeholder:text-base-500",
+            "disabled:cursor-not-allowed disabled:bg-base-200 dark:disabled:bg-base-900 disabled:border-base-300 dark:disabled:border-base-800 disabled:text-base-400 dark:disabled:text-base-600",
             {
               "border-red-500/50 focus:border-red-500 focus:ring-red-50 dark:border-red-500/30 dark:focus:border-red-500/50 dark:focus:ring-red-500/10": !!error,
             },
@@ -81,7 +81,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         {(error || helperText) && (
           <span className={cn(
             "text-[12px] ml-1 tracking-tight",
-            error ? "text-red-500" : "text-base-500"
+            error ? "text-red-500" : "text-base-600"
           )}>
             {error || helperText}
           </span>

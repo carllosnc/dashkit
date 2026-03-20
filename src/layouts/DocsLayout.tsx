@@ -27,6 +27,7 @@ const navItems = [
       { to: '/docs/checkbox', label: 'Checkbox' },
       { to: '/docs/radio', label: 'Radio' },
       { to: '/docs/select', label: 'Select' },
+      { to: '/docs/combobox', label: 'Combobox' },
       { to: '/docs/switch', label: 'Switch' },
       { to: '/docs/tabs', label: 'Tabs' },
       { to: '/docs/otp-input', label: 'OTP Input' },

@@ -83,18 +83,18 @@ export const Select = ({
             "border-base-300 dark:border-base-800 text-left",
             "flex items-center justify-between gap-2",
             "focus:border-black dark:focus:border-white focus:ring-4 focus:ring-base-100 dark:focus:ring-base-900/40",
-            disabled && "opacity-50 cursor-not-allowed bg-base-50 dark:bg-base-950",
+            disabled && "cursor-not-allowed bg-base-200 dark:bg-base-900 border-base-300 dark:border-base-800 text-base-400 dark:text-base-600",
             className
           )}
         >
           <span className={cn(
             "truncate block",
-            !selectedOption && "text-base-400 dark:text-base-600"
+            !selectedOption && "text-base-500 dark:text-base-500"
           )}>
             {selectedOption ? selectedOption.label : placeholder}
           </span>
           <FiChevronDown className={cn(
-            "transition-transform duration-300 shrink-0 text-base-400",
+            "transition-transform duration-300 shrink-0 text-base-500",
             isOpen && "rotate-180 text-black dark:text-white"
           )} />
         </button>
@@ -140,7 +140,7 @@ export const Select = ({
         )}
       </div>
       {description && (
-        <span className="text-[12px] text-base-500 dark:text-base-500 ml-1 tracking-tight">
+        <span className="text-[12px] text-base-600 dark:text-base-400 ml-1 tracking-tight">
           {description}
         </span>
       )}

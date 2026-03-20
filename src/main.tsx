@@ -28,6 +28,7 @@ import NavbarDocs from './pages/navbar.mdx'
 import IconButtonDocs from './pages/icon-button.mdx'
 import TextareaDocs from './pages/textarea.mdx'
 import ChipDocs from './pages/chip.mdx'
+import ComboboxDocs from './pages/combobox.mdx'
 import { LoginExample } from './pages/examples/LoginExample'
 import { ComplexFormExample } from './pages/examples/ComplexFormExample'
 import { ExamplesList } from './pages/examples/ExamplesList'
@@ -57,6 +58,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="checkbox" element={<MdxWrapper Component={CheckboxDocs} />} />
                 <Route path="radio" element={<MdxWrapper Component={RadioDocs} />} />
                 <Route path="select" element={<MdxWrapper Component={SelectDocs} />} />
+                <Route path="combobox" element={<MdxWrapper Component={ComboboxDocs} />} />
                 <Route path="switch" element={<MdxWrapper Component={SwitchDocs} />} />
                 <Route path="tabs" element={<MdxWrapper Component={TabsDocs} />} />
                 <Route path="otp-input" element={<MdxWrapper Component={OtpInputDocs} />} />

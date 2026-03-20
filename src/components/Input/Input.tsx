@@ -63,7 +63,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         <div className="relative flex items-center group">
           {leftIcon && (
             <div className={cn(
-              "absolute left-4 inset-y-0 text-base-400 transition-colors duration-200 pointer-events-none flex items-center justify-center",
+              "absolute left-4 inset-y-0 text-base-500 transition-colors duration-200 pointer-events-none flex items-center justify-center",
               "group-focus-within:text-black dark:group-focus-within:text-white"
             )}>
               {leftIcon}
@@ -79,8 +79,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               "border-base-300 dark:border-base-800 text-base-900 dark:text-white",
               "focus:border-base-900 dark:focus:border-base-400",
               "focus:ring-4 focus:ring-base-100 dark:focus:ring-base-900/40",
-              "placeholder:text-base-400 dark:placeholder:text-base-600",
-              "disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-base-50 dark:disabled:bg-base-950",
+              "placeholder:text-base-500 dark:placeholder:text-base-500",
+              "disabled:cursor-not-allowed disabled:bg-base-200 dark:disabled:bg-base-900 disabled:border-base-300 dark:disabled:border-base-800 disabled:text-base-400 dark:disabled:text-base-600",
               {
                 "pl-11": !!leftIcon,
                 "pr-11": !!rightIcon,
@@ -91,7 +91,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           />
           {rightIcon && (
             <div className={cn(
-              "absolute right-4 inset-y-0 text-base-400 transition-colors duration-200 pointer-events-none flex items-center justify-center",
+              "absolute right-4 inset-y-0 text-base-500 transition-colors duration-200 pointer-events-none flex items-center justify-center",
               "group-focus-within:text-black dark:group-focus-within:text-white"
             )}>
               {rightIcon}
@@ -101,7 +101,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {(error || helperText) && (
           <span className={cn(
             "text-[12px] ml-1 tracking-tight",
-            error ? "text-red-500" : "text-base-500"
+            error ? "text-red-500" : "text-base-600"
           )}>
             {error || helperText}
           </span>

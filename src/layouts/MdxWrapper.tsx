@@ -15,6 +15,8 @@ import { Input } from '../components/Input/Input';
 import { InputDemo } from '../components/Input/InputDemo';
 import { Chip } from '../components/Chip/Chip';
 import { ChipDemo } from '../components/Chip/ChipDemo';
+import { Combobox } from '../components/Combobox/Combobox';
+import { ComboboxDemo } from '../components/Combobox/ComboboxDemo';
 import { Drawer } from '../components/Drawer/Drawer';
 import { DrawerDemo } from '../components/Drawer/DrawerDemo';
 import { Modal } from '../components/Modal/Modal';
@@ -122,6 +124,8 @@ const components: Record<string, ElementType> = {
   InputDemo,
   Chip,
   ChipDemo,
+  Combobox,
+  ComboboxDemo,
   Drawer,
   DrawerDemo,
   Modal,

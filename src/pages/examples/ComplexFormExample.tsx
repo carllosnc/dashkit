@@ -10,10 +10,12 @@ import { Select } from '../../components/Select/Select';
 import { Switch } from '../../components/Switch/Switch';
 import { Radio } from '../../components/Radio/Radio';
 import { Textarea } from '../../components/Textarea/Textarea';
+import { Combobox } from '../../components/Combobox/Combobox';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../../components/Card/Card';
 
 export const ComplexFormExample = () => {
   const [role, setRole] = useState('developer');
+  const [techStack, setTechStack] = useState<string[]>(['react', 'typescript', 'tailwind']);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -127,6 +129,32 @@ export const ComplexFormExample = () => {
                   leftIcon={<FiGlobe className="size-4" />}
                 />
               </div>
+            </section>
+
+            {/* Technical Stack Section */}
+            <section className="flex flex-col gap-8">
+              <h4 className="border-b border-base-200 dark:border-base-800/60 pb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-base-400">
+                Technical Expertise
+              </h4>
+              <Combobox
+                label="Core Technologies"
+                multiple
+                placeholder="Search technologies..."
+                description="List the key frameworks and tools you use daily."
+                options={[
+                  { value: 'react', label: 'React' },
+                  { value: 'typescript', label: 'TypeScript' },
+                  { value: 'tailwind', label: 'Tailwind CSS' },
+                  { value: 'nextjs', label: 'Next.js' },
+                  { value: 'nodejs', label: 'Node.js' },
+                  { value: 'postgre', label: 'PostgreSQL' },
+                  { value: 'docker', label: 'Docker' },
+                  { value: 'aws', label: 'AWS' },
+                  { value: 'framer', label: 'Framer Motion' },
+                ]}
+                value={techStack}
+                onChange={(val) => setTechStack(val as string[])}
+              />
             </section>
 
             {/* Skills Section */}

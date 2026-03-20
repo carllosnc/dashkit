@@ -1,0 +1,121 @@
+# Combobox
+
+A combobox is a flexible select component that allows users to filter a large list of options via a search input.
+
+## Import
+
+```tsx
+import { Combobox } from '@/components/Combobox/Combobox'
+```
+
+## Installation
+
+Add the combobox component to your project using the Dashkit CLI:
+
+```bash
+bunx carllosnc/dashkit add combobox
+```
+
+## Interactive Guide
+
+The combobox provides a powerful way to handle long lists of data. It filters the items as you type, and maintains accessibility by using the appropriate `listbox` and `input` roles.
+
+<Preview>
+  <ComboboxDemo />
+</Preview>
+
+## Basic Usage
+
+The component behaves like a standard select, but with a search input.
+
+<Preview>
+  <div className="max-w-md w-full">
+    <Combobox 
+      label="Country Selection"
+      placeholder="Select your country..."
+      options={[
+        { value: 'us', label: 'United States' },
+        { value: 'ca', label: 'Canada' },
+        { value: 'gb', label: 'United Kingdom' },
+        { value: 'de', label: 'Germany' },
+        { value: 'fr', label: 'France' },
+      ]}
+    />
+  </div>
+</Preview>
+
+```tsx
+<Combobox 
+  label="Country Selection"
+  placeholder="Select your country..."
+  options={[
+    { value: 'us', label: 'United States' },
+    { value: 'ca', label: 'Canada' },
+    { value: 'gb', label: 'United Kingdom' },
+  ]}
+/>
+```
+
+## Description & Feedback
+
+You can add a `description` below the input to provide context or instructions.
+
+<Preview>
+  <div className="max-w-md w-full">
+    <Combobox 
+      label="Project Tag"
+      description="Choose the tag that best describes this task."
+      placeholder="Search for a tag..."
+      options={[
+        { value: 'bug', label: 'Bug Fix' },
+        { value: 'feature', label: 'New Feature' },
+        { value: 'docs', label: 'Documentation' },
+        { value: 'style', label: 'Styling' },
+      ]}
+    />
+  </div>
+</Preview>
+
+```tsx
+<Combobox 
+  label="Project Tag"
+  description="Choose the tag that best describes this task."
+  options={tags}
+/>
+```
+
+## Disabled State
+
+The combobox can be disabled to prevent user search and selection.
+
+<Preview>
+  <div className="max-w-md w-full">
+    <Combobox 
+      label="Disabled Search"
+      disabled
+      options={[]}
+    />
+  </div>
+</Preview>
+
+```tsx
+<Combobox label="Disabled" disabled options={[]} />
+```
+
+## Props
+
+The combobox supports the following props:
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | — | An optional label displayed above the input. |
+| `description` | `string` | — | Helper text displayed below the input. |
+| `placeholder` | `string` | `'Search or select...'` | Text displayed when no value is selected. |
+| `options` | `ComboboxOption[]` | — | An array of `{ value, label }` objects. |
+| `value` | `string \| string[]` | — | The current selected value(s). |
+| `onChange` | `(value: string \| string[]) => void` | — | Callback fired when option(s) are selected. |
+| `disabled` | `boolean` | `false` | Whether the combobox is interactive. |
+| `className` | `string` | — | Additional CSS classes for the container. |
+| `multiple` | `boolean` | `false` | If `true`, allows selecting multiple options using Chips. |
+| `clearSearchOnSelect` | `boolean` | `false` | If `true`, the search query will be cleared when an item is selected. |
+
