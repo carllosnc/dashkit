@@ -12,6 +12,13 @@ const examples = [
     href: '/examples/login',
     image: '/examples/login-bg.png',
     tags: ['Auth', 'Split Screen', 'Form']
+  },
+  {
+    title: 'Complex Settings Form',
+    description: 'A comprehensive user profile and settings form featuring multi-column layouts, various input types, and section-based organization.',
+    href: '/examples/complex-form',
+    image: '/examples/settings-bg.png',
+    tags: ['Settings', 'Grid Layout', 'Form Control']
   }
 ];
 

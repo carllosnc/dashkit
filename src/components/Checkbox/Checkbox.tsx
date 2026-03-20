@@ -12,7 +12,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     const checkboxId = id || (label ? `checkbox-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined);
 
     return (
-      <div className={cn("flex gap-3 group relative transition-all duration-200", description ? "items-start" : "items-center")}>
+      <div className={cn("flex gap-3 group relative transition-all duration-200 items-center")}>
         <div className="flex items-center h-6">
           <label htmlFor={checkboxId} className="relative flex items-center justify-center cursor-pointer">
             <input

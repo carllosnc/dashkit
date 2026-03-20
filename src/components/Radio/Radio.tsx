@@ -19,7 +19,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
     const radioId = id || (label ? `radio-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined);
     
     return (
-      <div className="flex gap-3 group relative items-start">
+      <div className="flex gap-3 group relative items-center">
         <div className="flex items-center h-6">
           <label htmlFor={radioId} className="relative flex items-center justify-center cursor-pointer">
             <input

@@ -63,7 +63,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         <div className="relative flex items-center group">
           {leftIcon && (
             <div className={cn(
-              "absolute left-4 text-base-400 transition-colors duration-200 pointer-events-none flex items-center justify-center",
+              "absolute left-4 inset-y-0 text-base-400 transition-colors duration-200 pointer-events-none flex items-center justify-center",
               "group-focus-within:text-black dark:group-focus-within:text-white"
             )}>
               {leftIcon}
@@ -75,9 +75,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             onChange={handleChange}
             className={cn(
-              "w-full px-4 py-[7px] text-sm bg-white dark:bg-base-900 border rounded-md outline-none transition-all duration-200",
+              "w-full px-4 h-10 text-sm bg-white dark:bg-base-950 border rounded-md outline-none transition-all duration-200",
               "border-base-300 dark:border-base-800 text-base-900 dark:text-white",
-              "focus:border-base-900 dark:focus:border-base-100",
+              "focus:border-base-900 dark:focus:border-base-400",
               "focus:ring-4 focus:ring-base-100 dark:focus:ring-base-900/40",
               "placeholder:text-base-400 dark:placeholder:text-base-600",
               "disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-base-50 dark:disabled:bg-base-950",
@@ -91,7 +91,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           />
           {rightIcon && (
             <div className={cn(
-              "absolute right-4 text-base-400 transition-colors duration-200 pointer-events-none flex items-center justify-center",
+              "absolute right-4 inset-y-0 text-base-400 transition-colors duration-200 pointer-events-none flex items-center justify-center",
               "group-focus-within:text-black dark:group-focus-within:text-white"
             )}>
               {rightIcon}

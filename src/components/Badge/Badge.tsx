@@ -7,10 +7,10 @@ export type BadgeColor = 'success' | 'warning' | 'error' | 'info';
 export type BadgePosition = 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
 
 const colorStyles: Record<BadgeColor, string> = {
-  success: "bg-emerald-500 text-white hover:bg-emerald-600",
-  warning: "bg-amber-500 text-white hover:bg-amber-600",
-  error: "bg-red-500 text-white hover:bg-red-600",
-  info: "bg-blue-500 text-white hover:bg-blue-600"
+  success: "bg-emerald-500 text-white",
+  warning: "bg-amber-500 text-white",
+  error: "bg-red-500 text-white",
+  info: "bg-blue-500 text-white"
 };
 
 

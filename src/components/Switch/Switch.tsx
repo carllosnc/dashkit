@@ -20,7 +20,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
     const switchId = id || (label ? `switch-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined);
 
     return (
-      <div className="flex gap-4 group relative items-start">
+      <div className="flex gap-4 group relative items-center">
         <div className="flex items-center h-6">
           <label htmlFor={switchId} className="relative inline-flex items-center cursor-pointer">
             <input

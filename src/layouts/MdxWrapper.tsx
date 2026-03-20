@@ -23,6 +23,7 @@ import { Select } from '../components/Select/Select';
 import { SelectDemo } from '../components/Select/SelectDemo';
 import { Switch } from '../components/Switch/Switch';
 import { SwitchDemo } from '../components/Switch/SwitchDemo';
+import { Textarea } from '../components/Textarea/Textarea';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/Tabs/Tabs';
 import { TabsDemo } from '../components/Tabs/TabsDemo';
 import { OtpInput } from '../components/OtpInput/OtpInput';
@@ -135,6 +136,7 @@ const components: Record<string, ElementType> = {
   SelectDemo,
   Switch,
   SwitchDemo,
+  Textarea,
   Tabs,
   TabsList,
   TabsTrigger,

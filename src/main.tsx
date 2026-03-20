@@ -26,7 +26,9 @@ import BreadcrumbDocs from './pages/breadcrumb.mdx'
 import SpinnerDocs from './pages/spinner.mdx'
 import NavbarDocs from './pages/navbar.mdx'
 import IconButtonDocs from './pages/icon-button.mdx'
+import TextareaDocs from './pages/textarea.mdx'
 import { LoginExample } from './pages/examples/LoginExample'
+import { ComplexFormExample } from './pages/examples/ComplexFormExample'
 import { ExamplesList } from './pages/examples/ExamplesList'
 import { NotFound } from './pages/NotFound.tsx'
 import { DocsLayout } from './layouts/DocsLayout.tsx'
@@ -49,6 +51,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="cli" element={<MdxWrapper Component={CliDocs} />} />
                 <Route path="button" element={<MdxWrapper Component={ButtonDocs} />} />
                 <Route path="input" element={<MdxWrapper Component={InputDocs} />} />
+                <Route path="textarea" element={<MdxWrapper Component={TextareaDocs} />} />
                 <Route path="checkbox" element={<MdxWrapper Component={CheckboxDocs} />} />
                 <Route path="radio" element={<MdxWrapper Component={RadioDocs} />} />
                 <Route path="select" element={<MdxWrapper Component={SelectDocs} />} />
@@ -72,6 +75,7 @@ createRoot(document.getElementById('root')!).render(
               <Route path="/examples">
                 <Route index element={<ExamplesList />} />
                 <Route path="login" element={<LoginExample />} />
+                <Route path="complex-form" element={<ComplexFormExample />} />
               </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>
