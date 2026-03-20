@@ -1,0 +1,133 @@
+# Skeleton
+
+A placeholder component used to mimic the layout of actual content while it is loading.
+
+## Import
+
+```tsx
+import { Skeleton } from '@/components/Skeleton/Skeleton'
+```
+
+## Installation
+
+Add the skeleton to your project using the Dashkit CLI:
+
+```bash
+bunx carllosnc/dashkit add skeleton
+```
+
+## Demo
+
+<Preview>
+  <SkeletonDemo />
+</Preview>
+
+## Text Variant
+
+Use the `variant="text"` prop for text line placeholders.
+
+<Preview>
+  <div className="w-full space-y-2">
+    <Skeleton variant="text" className="w-[40%]" />
+    <Skeleton variant="text" className="w-[60%]" />
+  </div>
+</Preview>
+
+```tsx
+<div className="space-y-2">
+  <Skeleton variant="text" className="w-[40%]" />
+  <Skeleton variant="text" className="w-[60%]" />
+</div>
+```
+
+## Circular Variant
+
+Use the `variant="circular"` prop for avatars or circular elements.
+
+<Preview>
+  <Skeleton variant="circular" className="size-12" />
+</Preview>
+
+```tsx
+<Skeleton variant="circular" className="size-12" />
+```
+
+## Rectangular Variant
+
+The default `variant="rectangular"` is ideal for cards, images, or large content blocks.
+
+<Preview>
+  <Skeleton variant="rectangular" className="h-[200px] w-full" />
+</Preview>
+
+```tsx
+<Skeleton variant="rectangular" className="h-[200px] w-full" />
+```
+
+## Animation
+
+By default, skeletons use a `shimmer` animation. 
+
+<Preview>
+  <div className="w-full space-y-4">
+    <Skeleton variant="rectangular" className="h-24 w-full" />
+    <div className="space-y-2">
+      <Skeleton variant="text" />
+      <Skeleton variant="text" className="w-[80%]" />
+    </div>
+  </div>
+</Preview>
+
+```tsx
+<div className="space-y-4">
+  <Skeleton variant="rectangular" className="h-24 w-full" />
+  <div className="space-y-2">
+    <Skeleton variant="text" />
+    <Skeleton variant="text" className="w-[80%]" />
+  </div>
+</div>
+```
+
+## Pulse Animation
+
+Use the `animation="pulse"` prop for a classic fading effect. This provides a more subtle "breathing" feel to your placeholders.
+
+<Preview>
+  <div className="flex items-center gap-4 w-full">
+    <Skeleton variant="circular" className="size-12 shrink-0" animation="pulse" />
+    <div className="flex-1 space-y-2">
+      <Skeleton variant="text" className="w-[40%]" animation="pulse" />
+      <Skeleton variant="text" className="w-[60%]" animation="pulse" />
+    </div>
+  </div>
+</Preview>
+
+```tsx
+<div className="flex items-center gap-4">
+  <Skeleton variant="circular" className="size-12" animation="pulse" />
+  <div className="flex-1 space-y-2">
+    <Skeleton variant="text" className="w-[40%]" animation="pulse" />
+    <Skeleton variant="text" className="w-[60%]" animation="pulse" />
+  </div>
+</div>
+```
+
+## No Animation
+
+Disable animations entirely with `animation="none"`.
+
+<Preview>
+  <Skeleton variant="rectangular" className="h-20 w-full" animation="none" />
+</Preview>
+
+```tsx
+<Skeleton animation="none" />
+```
+
+## API
+
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `variant` | `'text' \| 'circular' \| 'rectangular'` | `'rectangular'` | The shape of the skeleton. |
+| `animation` | `'shimmer' \| 'pulse' \| 'none'` | `'shimmer'` | The animation effect to use. |
+| `className` | `string` | — | Additional CSS classes for custom sizing and styling. |
