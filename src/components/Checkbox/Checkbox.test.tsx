@@ -35,7 +35,7 @@ describe('Checkbox', () => {
     
     // Check if the visual div also reflects disabled state (via opacity)
     const container = checkbox.closest('.group');
-    const visualBox = container?.querySelector('.rounded-md');
+    const visualBox = container?.querySelector('.rounded-sm');
     expect(visualBox).toHaveClass('w-6 h-6');
     expect(visualBox).toHaveClass('peer-disabled:opacity-50');
   });
