@@ -9,15 +9,20 @@ import { Helmet } from 'react-helmet-async'
 import { Footer } from './components/Footer'
 
 const AVAILABLE_COMPONENTS = ["badge", "button", "card", "input", "skeleton", "tabs", "modal", "drawer"];
+const TITLE = "Dashkit UI | Lean, Simpler React Component Library";
+const DESCRIPTION = "A leaner, simpler React component library focused on low dependency counts and total code ownership.";
+const TAGLINE_MAIN = "Base components";
+const TAGLINE_SUB = "with zero baggage.";
+const OG_DESCRIPTION = "Build professional tools with zero baggage. No heavy abstractions, just clean code.";
 
 function App() {
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-[#030303] font-sans">
       <Helmet>
-        <title>Dashkit UI | Premium React Dashboard Component Library</title>
-        <meta name="description" content="Dashkit is a premium, highly-customizable React library built with Tailwind CSS and Framer Motion, designed for high-performance dashboards." />
-        <meta property="og:title" content="Dashkit UI | Premium React Dashboard Component Library" />
-        <meta property="og:description" content="Build beautiful dashboards at the speed of light with Dashkit UI." />
+        <title>{TITLE}</title>
+        <meta name="description" content={DESCRIPTION} />
+        <meta property="og:title" content={TITLE} />
+        <meta property="og:description" content={OG_DESCRIPTION} />
       </Helmet>
       {/* Background Effect */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
@@ -26,7 +31,7 @@ function App() {
       </div>
 
       {/* Navigation */}
-      <Navbar 
+      <Navbar
         logo={<img src="/logo.svg" alt="Dashkit UI Logo" className="h-6 dark:invert" />}
         links={[
           { label: 'Documentation', href: '/docs' },
@@ -50,12 +55,12 @@ function App() {
       {/* Hero Section */}
       <main className="flex-1 relative flex flex-col items-center justify-center text-center px-6 py-32 overflow-hidden">
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-base-950 dark:text-white max-w-4xl leading-[1.05] mb-8">
-          Build beautiful dashboards <br className="hidden md:block" />
-          <span className="text-base-400 dark:text-base-600">at the speed of light.</span>
+          {TAGLINE_MAIN} <br className="hidden md:block" />
+          <span className="text-base-400 dark:text-base-600">{TAGLINE_SUB}</span>
         </h1>
 
         <p className="text-lg md:text-xl text-base-500 dark:text-base-400 max-w-2xl mb-12">
-          A premium, highly-customizable React library built with Tailwind CSS and Framer Motion, designed for high-performance dashboards.
+          {DESCRIPTION}
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 items-center mb-12">

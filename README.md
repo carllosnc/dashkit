@@ -10,7 +10,13 @@
 
 # Dashkit UI
 
-A premium, highly customizable React component library designed specifically for modern web applications and developer tools. Dashkit focuses on developer experience, bringing together best-in-class tooling, robust test coverage, and a beautiful neutral-toned aesthetic.
+Dashkit is a leaner, simpler React component library designed for developers who value **low dependency counts** and **total code ownership**. Built for the modern web with **Tailwind CSS v4**, it provides professional-grade components without the heavy baggage of traditional UI frameworks.
+
+### Why Dashkit?
+- **Zero Baggage**: No massive runtime libraries or complex state managers. Just clean React and CSS.
+- **Copy-Paste Ownership**: You don't install a package; you own the source. Add components directly to your project using our CLI for absolute customizability.
+- **Sharp Aesthetics**: High-contrast, neutral-toned design with native dark mode support (true-black base-950).
+- **Blazing Performance**: CSS-first styling via Tailwind v4 ensures minimal bundle overhead.
 
 ## Tech Stack
 

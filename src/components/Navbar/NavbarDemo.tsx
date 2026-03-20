@@ -1,6 +1,6 @@
 import { Navbar } from './Navbar';
 import { Button } from '../Button/Button';
-import { FiGithub, FiBell, FiUser, FiSearch } from 'react-icons/fi';
+import { FiGithub, FiBell } from 'react-icons/fi';
 
 export const NavbarDemo = () => {
   return (
@@ -12,16 +12,11 @@ export const NavbarDemo = () => {
           brandName="Dashkit UI" 
           logo={<img src="/logo.svg" className="h-6 dark:invert" alt="Dashkit" />}
           links={[
-            { label: 'Documentation', href: '#', active: true },
-            { label: 'Components', href: '#' },
-            { label: 'Examples', href: '#' },
-            { label: 'Release', href: '#' }
+            { label: 'Docs', href: '#', active: true },
+            { label: 'Examples', href: '#' }
           ]}
           actions={
-            <div className="flex items-center gap-4">
-               <button className="text-base-400 hover:text-base-900 dark:hover:text-white transition-colors">
-                  <FiSearch size={18} />
-               </button>
+            <div className="flex items-center gap-3">
                <Button variant="filled" size="sm" className="h-9 px-4">
                   Explore
                </Button>
@@ -39,16 +34,12 @@ export const NavbarDemo = () => {
           logo={<div className="size-8 rounded-lg bg-black dark:bg-white" />}
           links={[
             { label: 'Platform', href: '#' },
-            { label: 'Resources', href: '#' },
             { label: 'Pricing', href: '#' }
           ]}
           actions={
             <div className="flex items-center gap-3">
-               <button className="p-2 text-base-400 hover:text-base-900 dark:hover:text-white transition-colors rounded-lg bg-base-50 dark:bg-white/5 border border-base-200 dark:border-white/10">
+               <button className="p-2 text-base-400 hover:text-base-900 dark:hover:text-white transition-colors">
                   <FiBell size={18} />
-               </button>
-               <button className="p-2 text-base-400 hover:text-base-900 dark:hover:text-white transition-colors rounded-lg bg-base-50 dark:bg-white/5 border border-base-200 dark:border-white/10">
-                  <FiUser size={18} />
                </button>
                <div className="w-px h-6 bg-base-200 dark:bg-base-800 mx-1" />
                <a href="#" className="p-2 text-base-400 hover:text-base-900 dark:hover:text-white transition-colors">
