@@ -25,8 +25,8 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             <div 
               className={cn(
                 "w-6 h-6 rounded-sm border-2 transition-all duration-200 flex items-center justify-center shrink-0",
-                "border-base-400 dark:border-base-700 bg-white dark:bg-base-900",
-                "peer-checked:border-black dark:peer-checked:border-white",
+                "border-base-border dark:border-base-dark-border bg-white dark:bg-base-900",
+                "peer-checked:border-base-border-focus dark:peer-checked:border-base-dark-border-focus",
                 "peer-focus-visible:ring-4 peer-focus-visible:ring-base-100 dark:peer-focus-visible:ring-base-900/40",
                 "group-hover:border-base-500 dark:group-hover:border-base-600",
                 "peer-disabled:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:bg-base-100 dark:peer-disabled:bg-base-800",
