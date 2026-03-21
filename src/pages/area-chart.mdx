@@ -9,7 +9,7 @@ The **AreaChart** component is a lightweight, responsive data visualization tool
 ### Default Area Chart
 
 <Preview>
-<AreaChart 
+<AreaChart
   data={[
     { label: 'Jan', value: 10 },
     { label: 'Feb', value: 25 },
@@ -17,63 +17,97 @@ The **AreaChart** component is a lightweight, responsive data visualization tool
     { label: 'Apr', value: 35 },
     { label: 'May', value: 28 },
     { label: 'Jun', value: 45 },
-  ]} 
-  color="var(--color-blue-500)"
+  ]}
+  series={[
+    { key: 'value', label: 'Total Users', color: 'var(--color-blue-500)' }
+  ]}
 />
 </Preview>
 
 ```tsx
 import { AreaChart } from 'dashkit-ui';
 
-const data = [
-  { label: 'Jan', value: 10 },
-  { label: 'Feb', value: 25 },
-  // ... more data
-];
+function Example() {
+  const data = [{ label: 'Jan', value: 10 }, { label: 'Feb', value: 25 }];
+  const series = [{ key: 'value', label: 'Total Users', color: 'var(--color-blue-500)' }];
 
-function Dashboard() {
-  return (
-    <AreaChart 
-      data={data} 
-      color="var(--color-blue-500)"
-    />
-  );
+  return <AreaChart data={data} series={series} />;
 }
 ```
 
-### Color Variances
+### Multiple Series (Mobile vs Desktop)
 
-You can control the line and fill color using CSS variables or any valid color string.
+Compare multiple data points using the `series` array.
 
-<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-  <div className="p-6 border border-layout-border dark:border-layout-dark-border rounded-block bg-block-bg dark:bg-block-dark-bg">
-    <span className="text-xs font-bold uppercase tracking-widest text-base-400 mb-6 block">Success Variance</span>
-    <AreaChart 
-      data={[
-        { label: 'Mon', value: 50 },
-        { label: 'Tue', value: 70 },
-        { label: 'Wed', value: 65 },
-        { label: 'Thu', value: 90 },
-      ]} 
-      color="var(--color-base-success)"
-      height={150}
-    />
-  </div>
-  
-  <div className="p-6 border border-layout-border dark:border-layout-dark-border rounded-block bg-block-bg dark:bg-block-dark-bg">
-    <span className="text-xs font-bold uppercase tracking-widest text-base-400 mb-6 block">Error Variance</span>
-    <AreaChart 
-      data={[
-        { label: 'Mon', value: 90 },
-        { label: 'Tue', value: 60 },
-        { label: 'Wed', value: 45 },
-        { label: 'Thu', value: 20 },
-      ]} 
-      color="var(--color-base-error)"
-      height={150}
-    />
-  </div>
-</div>
+<Preview>
+<AreaChart 
+  data={[
+    { label: 'Mon', mobile: 45, desktop: 30 },
+    { label: 'Tue', mobile: 52, desktop: 38 },
+    { label: 'Wed', mobile: 48, desktop: 45 },
+    { label: 'Thu', mobile: 61, desktop: 42 },
+    { label: 'Fri', mobile: 55, desktop: 50 },
+    { label: 'Sat', mobile: 67, desktop: 20 },
+    { label: 'Sun', mobile: 70, desktop: 15 },
+  ]} 
+  series={[
+    { key: 'mobile', label: 'Mobile Devices', color: 'var(--color-indigo-500)' },
+    { key: 'desktop', label: 'Desktop Devices', color: 'var(--color-emerald-500)' }
+  ]}
+/>
+</Preview>
+
+```tsx
+<AreaChart 
+  data={deviceData} 
+  series={[
+    { key: 'mobile', label: 'Mobile Devices', color: 'var(--color-indigo-500)' },
+    { key: 'desktop', label: 'Desktop Devices', color: 'var(--color-emerald-500)' }
+  ]}
+/>
+```
+
+### Market Trends (3+ Series)
+
+Compare complex data sets with three or more series.
+
+<Preview>
+<AreaChart 
+  data={[
+    { label: 'Jan', btc: 42000, eth: 2400, sol: 95 },
+    { label: 'Feb', btc: 43500, eth: 2600, sol: 105 },
+    { label: 'Mar', btc: 65000, eth: 3800, sol: 145 },
+    { label: 'Apr', btc: 71000, eth: 4000, sol: 180 },
+    { label: 'May', btc: 68000, eth: 3600, sol: 165 },
+    { label: 'Jun', btc: 62000, eth: 3200, sol: 150 },
+  ]} 
+  series={[
+    { key: 'btc', label: 'Bitcoin', color: '#F7931A' },
+    { key: 'eth', label: 'Ethereum', color: '#627EEA' },
+    { key: 'sol', label: 'Solana', color: '#14F195' }
+  ]}
+/>
+</Preview>
+
+### System Performance
+
+Use a single series with specialized semantic colors for status monitoring.
+
+<Preview>
+<AreaChart 
+  data={[
+    { label: '10:00', load: 12 },
+    { label: '10:10', load: 15 },
+    { label: '10:20', load: 45 },
+    { label: '10:30', load: 18 },
+    { label: '10:40', load: 14 },
+    { label: '10:50', load: 11 },
+  ]} 
+  series={[
+    { key: 'load', label: 'CPU Load %', color: 'var(--color-base-success)' }
+  ]}
+/>
+</Preview>
 
 ## API Reference
 
@@ -81,10 +115,11 @@ You can control the line and fill color using CSS variables or any valid color s
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `data` | `AreaChartDataPoint[]` | - | Array of objects with `label` and `value`. |
-| `height` | `number` | `200` | Height in pixels. |
-| `color` | `string` | `currentColor` | Color for the line and gradient area. |
+| `data` | `Record<string, string \| number>[]` | - | Array of objects containing data keys. |
+| `series` | `AreaChartSeries[]` | - | Configuration for each data series to render. |
+| `height` | `number \| string` | `'100%'` | Height of the chart container. |
 | `showGrid` | `boolean` | `true` | Display dashed horizontal lines. |
 | `showLabels` | `boolean` | `true` | Display X-axis labels. |
+| `showTooltip` | `boolean` | `true` | Enable interactive tooltips. |
 | `animate` | `boolean` | `true` | Enable entrance animations. |
 | `className` | `string` | - | Additional CSS for the container. |

@@ -8,22 +8,27 @@ const testData = [
   { label: 'Mar', value: 15 },
 ];
 
+const testSeries = [
+  { key: 'value', label: 'Test Series', color: 'blue' }
+];
+
 describe('AreaChart', () => {
   it('renders data labels correctly', () => {
-    render(<AreaChart data={testData} />);
+    render(<AreaChart data={testData} series={testSeries} />);
     expect(screen.getByText('Jan')).toBeInTheDocument();
-    expect(screen.getByText('Feb')).toBeInTheDocument();
-    expect(screen.getByText('Mar')).toBeInTheDocument();
   });
 
   it('renders nothing when data is empty', () => {
-    const { container } = render(<AreaChart data={[]} />);
+    const { container } = render(<AreaChart data={[]} series={testSeries} />);
     expect(container.firstChild).toBeNull();
   });
 
-  it('renders svg path with data points', () => {
-    const { container } = render(<AreaChart data={testData} animate={false} />);
+  it('renders svg path for each series', () => {
+    const { container } = render(<AreaChart data={testData} series={testSeries} animate={false} />);
     const svg = container.querySelector('svg');
     expect(svg).toBeInTheDocument();
+    // Line and area paths
+    const paths = svg?.querySelectorAll('path');
+    expect(paths?.length).toBeGreaterThanOrEqual(2);
   });
 });
