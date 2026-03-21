@@ -12,6 +12,7 @@ import SwitchDocs from './pages/switch.mdx'
 import TabsDocs from './pages/tabs.mdx'
 import DividerDocs from './pages/divider.mdx'
 import OtpInputDocs from './pages/otp-input.mdx'
+import ButtonGroupDocs from './pages/button-group.mdx'
 import ImageExpanderDocs from './pages/image-expander.mdx'
 import DrawerDocs from './pages/drawer.mdx'
 import ModalDocs from './pages/modal.mdx'
@@ -59,6 +60,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="badge" element={<MdxWrapper Component={BadgeDocs} />} />
                 <Route path="breadcrumb" element={<MdxWrapper Component={BreadcrumbDocs} />} />
                 <Route path="button" element={<MdxWrapper Component={ButtonDocs} />} />
+                <Route path="button-group" element={<MdxWrapper Component={ButtonGroupDocs} />} />
                 <Route path="card" element={<MdxWrapper Component={CardDocs} />} />
                 <Route path="checkbox" element={<MdxWrapper Component={CheckboxDocs} />} />
                 <Route path="chip" element={<MdxWrapper Component={ChipDocs} />} />
