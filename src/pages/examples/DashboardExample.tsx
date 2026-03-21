@@ -38,7 +38,7 @@ export function DashboardExample() {
   };
 
   return (
-    <div className="min-h-screen bg-base-50 dark:bg-base-950 font-sans flex flex-col">
+    <div className="min-h-screen bg-base-bg dark:bg-base-dark-bg font-sans flex flex-col">
       <Navbar>
         <NavbarBrand>
            <div className="flex items-center gap-2">
@@ -125,7 +125,7 @@ export function DashboardExample() {
               </div>
               <div className="text-2xl font-bold mb-1">94.2%</div>
               <div className="flex gap-1.5 mt-2">
-                 {[1,2,3,4,5].map(i => <div key={i} className="flex-1 h-3 rounded-sm bg-base-200 dark:bg-base-800" />)}
+                 {[1,2,3,4,5].map(i => <div key={i} className="flex-1 h-3 rounded-sm bg-base-border dark:bg-base-dark-border" />)}
                  <div className="flex-1 h-3 rounded-sm bg-base-900 dark:bg-white" />
               </div>
             </CardContent>
@@ -154,7 +154,7 @@ export function DashboardExample() {
                   extra={
                     <Dropdown>
                       <DropdownTrigger asChild>
-                        <IconButton size="sm" icon={<FiMoreVertical />} />
+                        <IconButton icon={<FiMoreVertical />} />
                       </DropdownTrigger>
                       <DropdownContent align="end">
                         <DropdownItem leftIcon={<FiExternalLink />} onClick={() => {}}>View all reports</DropdownItem>
@@ -172,7 +172,7 @@ export function DashboardExample() {
                     { title: 'Fix drawer animation lag', user: 'Alex', status: 'In Progress', color: 'base' as BadgeColor },
                     { title: 'Refactor Auth logic', user: 'John', status: 'Blocked', color: 'base' as BadgeColor }
                   ].map((item, i) => (
-                    <div key={i} className="flex items-center justify-between p-4 rounded-md bg-white dark:bg-base-900 border border-base-200 dark:border-base-800">
+                    <div key={i} className="flex items-center justify-between p-4 rounded-md bg-white dark:bg-base-900 border border-base-border dark:border-base-dark-border">
                       <div className="flex items-center gap-4">
                         <Checkbox />
                         <div className="flex flex-col">
@@ -322,7 +322,7 @@ export function DashboardExample() {
                     <label className="text-sm font-semibold text-base-700 dark:text-base-300">Email Address</label>
                     <Input placeholder="hello@dashkit.ui" type="email" />
                   </div>
-                  <div className="flex flex-col gap-6 md:col-span-2 border-t border-base-100 dark:border-base-800 pt-8 mt-4">
+                  <div className="flex flex-col gap-6 md:col-span-2 border-t border-base-border dark:border-base-dark-border pt-8 mt-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                       <Switch label="Public Profile" description="Allow others to see your stats." defaultChecked />
                       <Switch label="Direct Mentions" description="Enable push notifications for @mentions." />
@@ -370,7 +370,7 @@ export function DashboardExample() {
       >
         <div className="flex flex-col gap-4 py-6">
            {[1,2,3,4,5].map(i => (
-             <div key={i} className="flex gap-4 p-4 rounded-md hover:bg-base-50 dark:hover:bg-base-900 transition-colors border border-transparent hover:border-base-200 dark:hover:border-base-800">
+             <div key={i} className="flex gap-4 p-4 rounded-md hover:bg-base-50 dark:hover:bg-base-900 transition-colors border border-transparent hover:border-base-border dark:hover:border-base-dark-border">
                 <div className="size-10 rounded-full bg-blue-500/10 flex items-center justify-center shrink-0">
                    <FiBell className="text-blue-500" />
                 </div>
