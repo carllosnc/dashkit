@@ -34,7 +34,9 @@ export const ExamplesList = () => {
       {/* Navigation */}
       <Navbar>
         <NavbarBrand>
-          <img src="/logo.svg" alt="Dashkit UI Logo" className="h-6 dark:invert" />
+          <Link to="/" className="flex items-center transition-opacity hover:opacity-80">
+            <img src="/logo.svg" alt="Dashkit UI Logo" className="h-6 dark:invert" />
+          </Link>
         </NavbarBrand>
         
         <NavbarLinks>
