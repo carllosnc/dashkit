@@ -18,7 +18,29 @@
   --color-base-800: var(--color-neutral-800);
   --color-base-900: var(--color-neutral-900);
   --color-base-950: var(--color-neutral-950);
-  --color-base-foreground: var(--color-white);
+
+  --color-base-bg: var(--color-white);
+  --color-base-dark-bg: var(--color-base-950);
+
+  --color-base-border: var(--color-base-300);
+  --color-base-dark-border: var(--color-base-800);
+  --color-base-border-focus: var(--color-base-600);
+  --color-base-dark-border-focus: var(--color-base-600);
+
+  --color-base-success: var(--color-green-500);
+  --color-base-success-dark: var(--color-green-400);
+
+  --color-base-error: var(--color-red-500);
+  --color-base-error-dark: var(--color-red-400);
+
+  --color-base-warning: var(--color-amber-500);
+  --color-base-warning-dark: var(--color-amber-500);
+
+  --color-base-info: var(--color-blue-500);
+  --color-base-info-dark: var(--color-blue-500);
+
+  --color-block-bg: var(--color-white);
+  --color-block-dark-bg: var(--color-base-900);
   /* Dashkit Colors - End */
 }
 
@@ -26,7 +48,7 @@
 
 @layer base {
   body {
-    @apply antialiased text-base-900 bg-white dark:text-base-100 dark:bg-[#030303];
+    @apply antialiased text-base-900 bg-base-bg dark:text-base-100 dark:bg-base-dark-bg;
   }
 }
 
