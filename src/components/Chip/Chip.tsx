@@ -30,7 +30,7 @@ const colorStyles: Record<ChipColor, Record<ChipVariant, string>> = {
   base: {
     tonal: "bg-base-200 text-base-900 border-transparent dark:bg-base-800 dark:text-base-100 hover:bg-base-300 dark:hover:bg-base-700",
     filled: "bg-base-950 text-white border-transparent dark:bg-white dark:text-base-950 hover:bg-black dark:hover:bg-base-100",
-    outlined: "bg-transparent text-base-700 border-base-300 hover:bg-base-50 dark:text-base-300 dark:border-base-700 dark:hover:bg-base-900/50",
+    outlined: "bg-transparent text-base-700 border-base-border hover:bg-base-50 dark:text-base-300 dark:border-base-dark-border dark:hover:bg-base-900/50",
   },
   success: {
     tonal: "bg-emerald-100/50 text-emerald-800 border-transparent dark:bg-emerald-500/10 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-500/20",
@@ -78,7 +78,7 @@ export const Chip = ({
         "inline-flex items-center gap-1.5 h-8 px-3 rounded-sm text-[13px] font-medium transition-all duration-200 border select-none",
         colorStyles[color][variant],
         isInteractive ? "cursor-pointer" : "cursor-default",
-        selected && variant === 'outlined' && "border-base-900 dark:border-base-400 ring-1 ring-base-900 dark:ring-base-400",
+        selected && variant === 'outlined' && "border-base-border-focus dark:border-base-dark-border-focus ring-1 ring-base-border-focus dark:ring-base-dark-border-focus",
         disabled && "opacity-50 cursor-not-allowed pointer-events-none",
         className
       )}
