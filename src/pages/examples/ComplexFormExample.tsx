@@ -25,8 +25,8 @@ export const ComplexFormExample = () => {
   };
 
   return (
-    <div className="min-h-screen bg-base-100 dark:bg-base-950 flex items-center justify-center p-6 md:p-12 relative overflow-hidden">
-      <Card className="w-full max-w-4xl relative z-10 shrink-0 border-base-200 dark:border-base-800">
+    <div className="min-h-screen bg-base-bg dark:bg-base-dark-bg flex items-center justify-center p-6 md:p-12 relative overflow-hidden">
+      <Card className="w-full max-w-4xl relative z-10 shrink-0 border-base-border dark:border-base-dark-border">
         <CardHeader>
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-blue-50 dark:bg-blue-500/10 rounded-xl">
@@ -43,7 +43,7 @@ export const ComplexFormExample = () => {
           <CardContent className="flex flex-col gap-16 py-10">
             {/* Personal Info Section */}
             <section className="flex flex-col gap-8">
-              <h4 className="border-b border-base-200 dark:border-base-800/60 pb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-base-400">
+              <h4 className="border-b border-base-border dark:border-base-dark-border/60 pb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-base-400">
                 Personal Information
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
@@ -87,7 +87,7 @@ export const ComplexFormExample = () => {
 
             {/* Company Info Section */}
             <section className="flex flex-col gap-8 text-6">
-              <h4 className="border-b border-base-200 dark:border-base-800/60 pb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-base-400">
+              <h4 className="border-b border-base-border dark:border-base-dark-border/60 pb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-base-400">
                 Company Information
               </h4>
 
@@ -107,7 +107,7 @@ export const ComplexFormExample = () => {
 
             {/* Professional Info Section */}
             <section className="flex flex-col gap-8">
-              <h4 className="border-b border-base-200 dark:border-base-800/60 pb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-base-400">
+              <h4 className="border-b border-base-border dark:border-base-dark-border/60 pb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-base-400">
                 Professional Details
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
@@ -133,7 +133,7 @@ export const ComplexFormExample = () => {
 
             {/* Technical Stack Section */}
             <section className="flex flex-col gap-8">
-              <h4 className="border-b border-base-200 dark:border-base-800/60 pb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-base-400">
+              <h4 className="border-b border-base-border dark:border-base-dark-border/60 pb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-base-400">
                 Technical Expertise
               </h4>
               <Combobox
@@ -159,7 +159,7 @@ export const ComplexFormExample = () => {
 
             {/* Skills Section */}
             <section className="flex flex-col gap-8">
-              <h4 className="border-b border-base-200 dark:border-base-800/60 pb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-base-400">
+              <h4 className="border-b border-base-border dark:border-base-dark-border/60 pb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-base-400">
                 Skills & Interests
               </h4>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -180,7 +180,7 @@ export const ComplexFormExample = () => {
 
             {/* Social Presence Section */}
             <section className="flex flex-col gap-8">
-              <h4 className="border-b border-base-200 dark:border-base-800/60 pb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-base-400">
+              <h4 className="border-b border-base-border dark:border-base-dark-border/60 pb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-base-400">
                 Social Presence
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
@@ -206,7 +206,7 @@ export const ComplexFormExample = () => {
 
             {/* Bio Section */}
             <section className="flex flex-col gap-8">
-              <h4 className="border-b border-base-200 dark:border-base-800/60 pb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-base-400">
+              <h4 className="border-b border-base-border dark:border-base-dark-border/60 pb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-base-400">
                 About Yourself
               </h4>
               <Textarea
@@ -270,7 +270,7 @@ export const ComplexFormExample = () => {
             </section>
           </CardContent>
 
-          <CardFooter className="bg-white dark:bg-base-900 border-t border-base-200 dark:border-base-800/80 p-8 flex items-center justify-between">
+          <CardFooter className="bg-base-bg dark:bg-base-dark-bg border-t border-base-border dark:border-base-dark-border/80 p-8 flex items-center justify-between">
             <Button type="button" variant="outlined" leftIcon={<FiX />}>
               Discard
             </Button>
