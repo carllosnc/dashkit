@@ -34,8 +34,8 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
             <div 
               className={cn(
                 "w-11 h-6 rounded-full border-2 transition-all duration-300 shrink-0",
-                "border-base-800 dark:border-base-400 bg-base-100 dark:bg-base-800",
-                "peer-checked:bg-base-900 peer-checked:border-base-900 dark:peer-checked:bg-base-100 dark:peer-checked:border-base-100",
+                "border-base-border dark:border-base-dark-border bg-base-100 dark:bg-base-800",
+                "peer-checked:bg-base-900 peer-checked:border-base-border-focus dark:peer-checked:bg-base-100 dark:peer-checked:border-base-dark-border-focus",
                 "peer-focus-visible:ring-4 peer-focus-visible:ring-base-100 dark:peer-focus-visible:ring-base-900/40",
                 "peer-disabled:opacity-30 peer-disabled:cursor-not-allowed",
                 className
