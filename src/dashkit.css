@@ -14,14 +14,8 @@
   --color-base-950: var(--color-neutral-950);
 
   /* Background */
-  --color-base-bg: var(--color-white);
-  --color-base-dark-bg: var(--color-base-950);
-
-  /* Borders */
-  --color-base-border: var(--color-base-300);
-  --color-base-dark-border: var(--color-base-800);
-  --color-base-border-focus: var(--color-base-600);
-  --color-base-dark-border-focus: var(--color-base-600);
+  --color-base-page: var(--color-base-50);
+  --color-base-page-dark: var(--color-base-950);
 
   /* Success */
   --color-base-success: var(--color-green-500);
@@ -38,8 +32,179 @@
   /* Info */
   --color-base-info: var(--color-blue-500);
   --color-base-info-dark: var(--color-blue-500);
+}
 
-  /* Block */
+/* Block (Card, Modal, Drawer, etc.) */
+@theme {
+  --radius-block: var(--radius-lg);
+  --radius-block-lg: var(--radius-2xl);
+
   --color-block-bg: var(--color-white);
+  --color-block-border: var(--color-base-200);
+  --color-block-footer-bg: var(--color-white);
+
   --color-block-dark-bg: var(--color-base-900);
+  --color-block-dark-border: var(--color-base-800);
+  --color-block-dark-footer-bg: var(--color-base-900);
+
+  --shadow-block: 0 15px 30px -10px rgba(0, 0, 0, 0.05), 0 5px 15px -5px rgba(0, 0, 0, 0.02);
+  --shadow-block-dark: 0 25px 50px -12px rgba(0, 0, 0, 0.35), 0 10px 20px -5px rgba(0, 0, 0, 0.2);
+}
+
+/* Button */
+@theme {
+  --radius-button: var(--radius-md);
+
+  --color-button-filled-bg: var(--color-base-950);
+  --color-button-filled-fg: var(--color-white);
+  --color-button-filled-hover: var(--color-black);
+
+  --color-button-filled-dark-bg: var(--color-white);
+  --color-button-filled-dark-fg: var(--color-base-950);
+  --color-button-filled-dark-hover: var(--color-base-100);
+
+  --color-button-outlined-bg: transparent;
+  --color-button-outlined-fg: var(--color-base-800);
+  --color-button-outlined-border: var(--color-base-300);
+  --color-button-outlined-hover: var(--color-base-100);
+
+  --color-button-outlined-dark-bg: transparent;
+  --color-button-outlined-dark-fg: var(--color-base-100);
+  --color-button-outlined-dark-border: var(--color-base-800);
+  --color-button-outlined-dark-hover: var(--color-base-900);
+
+  --color-button-soft-bg: var(--color-base-200);
+  --color-button-soft-fg: var(--color-base-700);
+  --color-button-soft-hover: var(--color-base-200);
+
+  --color-button-soft-dark-bg: var(--color-base-800);
+  --color-button-soft-dark-fg: var(--color-white);
+  --color-button-soft-dark-hover: var(--color-base-700);
+}
+
+/* Input */
+@theme {
+  --radius-input: var(--radius-md);
+
+  --color-input-bg: var(--color-white);
+  --color-input-fg: var(--color-base-900);
+  --color-input-border: var(--color-base-300);
+  --color-input-placeholder: var(--color-base-500);
+
+  --color-input-dark-bg: var(--color-base-950);
+  --color-input-dark-fg: var(--color-white);
+  --color-input-dark-border: var(--color-base-800);
+  --color-input-dark-placeholder: var(--color-base-500);
+
+  --color-input-focus-border: var(--color-base-600);
+  --color-input-focus-ring: var(--color-base-100);
+
+  --color-input-dark-focus-border: var(--color-base-600);
+  --color-input-dark-focus-ring: color-mix(in srgb, var(--color-base-900) 40%, transparent);
+
+  --color-input-disabled-bg: var(--color-base-200);
+  --color-input-disabled-fg: var(--color-base-400);
+  --color-input-disabled-border: var(--color-base-300);
+
+  --color-input-dark-disabled-bg: var(--color-base-900);
+  --color-input-dark-disabled-fg: var(--color-base-600);
+  --color-input-dark-disabled-border: var(--color-base-800);
+}
+
+/* Selection (Checkbox & Radio) */
+@theme {
+  --radius-selection: var(--radius-sm);
+
+  --color-selection-bg: var(--color-white);
+  --color-selection-border: var(--color-base-300);
+  --color-selection-checked-border: var(--color-base-600);
+  --color-selection-checked-fill: var(--color-base-950);
+  --color-selection-hover-border: var(--color-base-500);
+
+  --color-selection-dark-bg: var(--color-base-950);
+  --color-selection-dark-border: var(--color-base-800);
+  --color-selection-dark-checked-border: var(--color-base-600);
+  --color-selection-dark-checked-fill: var(--color-white);
+  --color-selection-dark-hover-border: var(--color-base-600);
+
+  --color-selection-focus-ring: var(--color-base-100);
+  --color-selection-dark-focus-ring: color-mix(in srgb, var(--color-base-900) 40%, transparent);
+
+  --color-selection-disabled-bg: var(--color-base-100);
+  --color-selection-disabled-border: var(--color-base-300);
+
+  --color-selection-dark-disabled-bg: var(--color-base-800);
+  --color-selection-dark-disabled-border: var(--color-base-800);
+}
+
+/* Floating (Dropdown, Popover, Select menu, Combobox) */
+@theme {
+  --radius-floating: var(--radius-lg);
+
+  --color-floating-bg: var(--color-white);
+  --color-floating-border: var(--color-base-300);
+  --shadow-floating: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+  --color-floating-dark-bg: var(--color-base-900);
+  --color-floating-dark-border: var(--color-base-800);
+  --shadow-floating-dark: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+
+  /* Items inside floating containers */
+  --color-floating-item-fg: var(--color-base-700);
+  --color-floating-item-bg-hover: var(--color-base-100);
+  --color-floating-item-fg-hover: var(--color-base-950);
+
+  --color-floating-item-dark-fg: var(--color-base-300);
+  --color-floating-item-dark-bg-hover: color-mix(in srgb, var(--color-white) 5%, transparent);
+  --color-floating-item-dark-fg-hover: var(--color-white);
+
+  --color-floating-item-selected-bg: var(--color-base-50);
+  --color-floating-item-selected-fg: var(--color-base-950);
+
+  --color-floating-item-dark-selected-bg: color-mix(in srgb, var(--color-white) 5%, transparent);
+  --color-floating-item-dark-selected-fg: var(--color-white);
+}
+
+/* Layout (Navbar, Footer, Sidebar, Divider) */
+@theme {
+  --color-layout-border: var(--color-base-200);
+  --color-layout-dark-border: var(--color-base-800);
+
+  --color-layout-divider: var(--color-base-200);
+  --color-layout-dark-divider: var(--color-base-800);
+}
+
+
+/* Toast */
+@theme {
+  --radius-toast: var(--radius-md);
+
+  --color-toast-bg: var(--color-white);
+  --color-toast-border: var(--color-base-200);
+  --shadow-toast: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  --color-toast-dark-bg: var(--color-base-900);
+  --color-toast-dark-border: var(--color-base-800);
+  --shadow-toast-dark: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+/* Switch */
+@theme {
+  --color-switch-bg: var(--color-base-200);
+  --color-switch-border: var(--color-base-300);
+  --color-switch-checked-bg: var(--color-base-950);
+  --color-switch-checked-border: var(--color-base-950);
+
+  --color-switch-thumb-bg: var(--color-white);
+  --color-switch-thumb-off-bg: var(--color-base-500);
+
+  --color-switch-dark-bg: var(--color-base-800);
+  --color-switch-dark-border: var(--color-base-700);
+  --color-switch-dark-checked-bg: var(--color-white);
+  --color-switch-dark-checked-border: var(--color-white);
+
+  --color-switch-dark-thumb-bg: var(--color-base-950);
+  --color-switch-dark-thumb-off-bg: var(--color-base-400);
+
+  --color-switch-focus-ring: var(--color-base-100);
+  --color-switch-dark-focus-ring: color-mix(in srgb, var(--color-base-900) 40%, transparent);
 }

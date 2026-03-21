@@ -189,12 +189,12 @@ export const Combobox = ({
           placeholder={multiple && selectedOptions.length > 0 ? "Add more..." : placeholder}
           autoComplete="off"
           className={cn(
-            "w-full h-9 pl-10 pr-10 text-sm bg-white dark:bg-base-950 border rounded-md transition-all duration-200",
-            "border-base-border dark:border-base-dark-border outline-none",
-            "focus:border-base-border-focus dark:focus:border-base-dark-border-focus focus:ring-4 focus:ring-base-100 dark:focus:ring-base-900/40",
-            "placeholder:text-base-500 dark:placeholder:text-base-500",
-            disabled && "cursor-not-allowed bg-base-200 dark:bg-base-900 border-base-border dark:border-base-dark-border text-base-400 dark:text-base-600",
-            isOpen && "border-base-border-focus dark:border-base-dark-border-focus ring-4 ring-base-100 dark:ring-base-900/40"
+            "w-full h-9 pl-10 pr-10 text-sm bg-input-bg dark:bg-input-dark-bg border rounded-input transition-all duration-200",
+            "border-input-border dark:border-input-dark-border outline-none",
+            "focus:border-input-focus-border dark:focus:border-input-dark-focus-border focus:ring-4 focus:ring-input-focus-ring dark:focus:ring-input-dark-focus-ring",
+            "placeholder:text-input-placeholder dark:placeholder:text-input-dark-placeholder",
+            disabled && "cursor-not-allowed bg-input-disabled-bg dark:bg-input-dark-disabled-bg border-input-disabled-border dark:border-input-dark-disabled-border text-input-disabled-fg dark:text-input-dark-disabled-fg",
+            isOpen && "border-input-focus-border dark:border-input-dark-focus-border ring-4 ring-input-focus-ring dark:ring-input-dark-focus-ring"
           )}
         />
 
@@ -220,7 +220,7 @@ export const Combobox = ({
         {isOpen && (
           <div 
             className={cn(
-              "absolute top-full left-0 w-full mt-2 py-1.5 bg-white dark:bg-base-900 border border-base-border dark:border-base-dark-border rounded-lg shadow-2xl z-50 overflow-hidden",
+              "absolute top-full left-0 w-full mt-2 py-1.5 bg-floating-bg dark:bg-floating-dark-bg border border-floating-border dark:border-floating-dark-border rounded-floating shadow-floating dark:shadow-floating-dark z-50 overflow-hidden",
               "animate-in fade-in slide-in-from-top-2 duration-200"
             )}
           >
@@ -239,15 +239,17 @@ export const Combobox = ({
                       onClick={() => handleSelect(opt)}
                       className={cn(
                         "w-full px-4 py-2.5 text-sm text-left flex items-center justify-between transition-colors",
-                        "hover:bg-base-100 dark:hover:bg-base-800/80",
+                        "text-floating-item-fg dark:text-floating-item-dark-fg",
+                        "hover:bg-floating-item-bg-hover dark:hover:bg-floating-item-dark-bg-hover",
+                        "hover:text-floating-item-fg-hover dark:hover:text-floating-item-dark-fg-hover",
                         isSelected 
-                          ? "bg-base-50 dark:bg-base-800/50 font-semibold text-black dark:text-white" 
-                          : "text-base-600 dark:text-base-400"
+                          ? "bg-floating-item-selected-bg dark:bg-floating-item-dark-selected-bg font-semibold text-floating-item-selected-fg dark:text-floating-item-dark-selected-fg" 
+                          : ""
                       )}
                     >
                       <span className="truncate">{opt.label}</span>
                       {isSelected && (
-                        <FiCheck className="size-4 text-black dark:text-white shrink-0" />
+                        <FiCheck className="size-4 text-floating-item-selected-fg dark:text-floating-item-dark-selected-fg shrink-0" />
                       )}
                     </button>
                   );

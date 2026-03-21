@@ -17,7 +17,7 @@ const OG_DESCRIPTION = "Build professional tools with zero baggage. No heavy abs
 
 function App() {
   return (
-    <div className="flex flex-col min-h-screen bg-base-bg dark:bg-base-dark-bg font-sans">
+    <div className="flex flex-col min-h-screen bg-base-page dark:bg-base-page-dark font-sans">
       <Helmet>
         <title>{TITLE}</title>
         <meta name="description" content={DESCRIPTION} />

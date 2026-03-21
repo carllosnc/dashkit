@@ -82,12 +82,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         disabled={disabled || loading}
         className={cn(
-          "inline-flex items-center justify-center rounded-md transition-all duration-200 focus:outline-none cursor-pointer whitespace-nowrap",
+          "inline-flex items-center justify-center rounded-button transition-all duration-200 focus:outline-none cursor-pointer whitespace-nowrap",
           "text-sm border",
           {
-            "bg-base text-white border-transparent hover:bg-base-900 dark:bg-white dark:text-base-950 dark:hover:bg-base-100": variant === 'filled',
-            "bg-transparent text-base-800 border-base-border hover:bg-base-100 dark:text-base-100 dark:border-base-dark-border dark:hover:bg-base-900/50": variant === 'outlined',
-            "bg-base-100 text-base-700 border-transparent hover:bg-base-200 dark:bg-white/15 dark:text-white dark:hover:bg-white/20": variant === 'soft',
+            "bg-button-filled-bg text-button-filled-fg border-transparent hover:bg-button-filled-hover dark:bg-button-filled-dark-bg dark:text-button-filled-dark-fg dark:hover:bg-button-filled-dark-hover": variant === 'filled',
+            "bg-button-outlined-bg text-button-outlined-fg border-button-outlined-border hover:bg-button-outlined-hover dark:bg-button-outlined-dark-bg dark:text-button-outlined-dark-fg dark:border-button-outlined-dark-border dark:hover:bg-button-outlined-dark-hover": variant === 'outlined',
+            "bg-button-soft-bg text-button-soft-fg border-transparent hover:bg-button-soft-hover dark:bg-button-soft-dark-bg dark:text-button-soft-dark-fg dark:hover:bg-button-soft-dark-hover": variant === 'soft',
             "opacity-60 cursor-not-allowed": loading || disabled,
             // Sizes
             "h-7 text-xs": size === 'sm',

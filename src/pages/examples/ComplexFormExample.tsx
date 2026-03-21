@@ -11,6 +11,7 @@ import { Switch } from '../../components/Switch/Switch';
 import { Radio } from '../../components/Radio/Radio';
 import { Textarea } from '../../components/Textarea/Textarea';
 import { Combobox } from '../../components/Combobox/Combobox';
+import { Divider } from '../../components/Divider/Divider';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../../components/Card/Card';
 
 export const ComplexFormExample = () => {
@@ -25,8 +26,8 @@ export const ComplexFormExample = () => {
   };
 
   return (
-    <div className="min-h-screen bg-base-bg dark:bg-base-dark-bg flex items-center justify-center p-6 md:p-12 relative overflow-hidden">
-      <Card className="w-full max-w-4xl relative z-10 shrink-0 border-base-border dark:border-base-dark-border">
+    <div className="min-h-screen bg-base-page dark:bg-base-page-dark flex items-center justify-center p-6 md:p-12 relative overflow-hidden">
+      <Card className="w-full max-w-4xl relative z-10 shrink-0 border-block-border dark:border-block-dark-border">
         <CardHeader>
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-blue-50 dark:bg-blue-500/10 rounded-xl">
@@ -43,9 +44,9 @@ export const ComplexFormExample = () => {
           <CardContent className="flex flex-col gap-16 py-10">
             {/* Personal Info Section */}
             <section className="flex flex-col gap-8">
-              <h4 className="border-b border-base-border dark:border-base-dark-border/60 pb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-base-400">
+              <Divider contentPosition="left">
                 Personal Information
-              </h4>
+              </Divider>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
                 <Input
                   label="First Name"
@@ -87,9 +88,9 @@ export const ComplexFormExample = () => {
 
             {/* Company Info Section */}
             <section className="flex flex-col gap-8 text-6">
-              <h4 className="border-b border-base-border dark:border-base-dark-border/60 pb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-base-400">
+              <Divider contentPosition="left">
                 Company Information
-              </h4>
+              </Divider>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
                 <Input
@@ -107,9 +108,9 @@ export const ComplexFormExample = () => {
 
             {/* Professional Info Section */}
             <section className="flex flex-col gap-8">
-              <h4 className="border-b border-base-border dark:border-base-dark-border/60 pb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-base-400">
+              <Divider contentPosition="left">
                 Professional Details
-              </h4>
+              </Divider>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
                 <Select
                   label="Professional Role"
@@ -133,9 +134,9 @@ export const ComplexFormExample = () => {
 
             {/* Technical Stack Section */}
             <section className="flex flex-col gap-8">
-              <h4 className="border-b border-base-border dark:border-base-dark-border/60 pb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-base-400">
+              <Divider contentPosition="left">
                 Technical Expertise
-              </h4>
+              </Divider>
               <Combobox
                 label="Core Technologies"
                 multiple
@@ -159,9 +160,9 @@ export const ComplexFormExample = () => {
 
             {/* Skills Section */}
             <section className="flex flex-col gap-8">
-              <h4 className="border-b border-base-border dark:border-base-dark-border/60 pb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-base-400">
+              <Divider contentPosition="left">
                 Skills & Interests
-              </h4>
+              </Divider>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 <Checkbox label="React" defaultChecked />
                 <Checkbox label="TypeScript" defaultChecked />
@@ -180,9 +181,9 @@ export const ComplexFormExample = () => {
 
             {/* Social Presence Section */}
             <section className="flex flex-col gap-8">
-              <h4 className="border-b border-base-border dark:border-base-dark-border/60 pb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-base-400">
+              <Divider contentPosition="left">
                 Social Presence
-              </h4>
+              </Divider>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
                 <Input
                   label="LinkedIn Profile"
@@ -206,9 +207,9 @@ export const ComplexFormExample = () => {
 
             {/* Bio Section */}
             <section className="flex flex-col gap-8">
-              <h4 className="border-b border-base-border dark:border-base-dark-border/60 pb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-base-400">
+              <Divider contentPosition="left">
                 About Yourself
-              </h4>
+              </Divider>
               <Textarea
                 label="Quick Biography"
                 placeholder="Tell us a bit about your journey..."
@@ -219,9 +220,9 @@ export const ComplexFormExample = () => {
 
             {/* Location Section */}
             <section className="flex flex-col gap-8">
-              <h4 className="border-b border-base-200 dark:border-base-800/60 pb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-base-400">
+              <Divider contentPosition="left">
                 Location Details
-              </h4>
+              </Divider>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="md:col-span-2">
                   <Input
@@ -239,9 +240,9 @@ export const ComplexFormExample = () => {
 
             {/* Preferences Section */}
             <section className="flex flex-col gap-8">
-              <h4 className="border-b border-base-200 dark:border-base-800/60 pb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-base-400">
+              <Divider contentPosition="left">
                 Preferences & Security
-              </h4>
+              </Divider>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-10">
                 <div className="flex flex-col gap-8">
                   <Switch

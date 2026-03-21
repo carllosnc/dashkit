@@ -32,9 +32,9 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
     const hasContent = isHorizontal && !!children;
 
     const baseStyles = cn(
-      "shrink-0 bg-base-border dark:bg-base-dark-border",
-      variant === "dashed" && "bg-transparent border-dashed border-base-border dark:border-base-dark-border",
-      variant === "dotted" && "bg-transparent border-dotted border-base-border dark:border-base-dark-border",
+      "shrink-0 bg-layout-divider dark:bg-layout-dark-divider",
+      variant === "dashed" && "bg-transparent border-dashed border-layout-divider dark:border-layout-dark-divider",
+      variant === "dotted" && "bg-transparent border-dotted border-layout-divider dark:border-layout-dark-divider",
       isHorizontal
         ? cn("w-full", variant === "solid" ? "h-[1px]" : "h-0 border-t")
         : cn("h-auto self-stretch", variant === "solid" ? "w-[1px]" : "w-0 border-l"),
@@ -51,7 +51,7 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
           <div
             className={cn(
               "flex-1",
-              variant === "solid" ? "h-[1px] bg-base-border dark:bg-base-dark-border" : "h-0 border-t border-base-border dark:border-base-dark-border",
+              variant === "solid" ? "h-[1px] bg-layout-divider dark:bg-layout-dark-divider" : "h-0 border-t border-layout-divider dark:border-layout-dark-divider",
               variant === "dashed" && "border-dashed",
               variant === "dotted" && "border-dotted",
               contentPosition === "left" && "hidden"
@@ -63,7 +63,7 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
           <div
             className={cn(
               "flex-1",
-              variant === "solid" ? "h-[1px] bg-base-border dark:bg-base-dark-border" : "h-0 border-t border-base-border dark:border-base-dark-border",
+              variant === "solid" ? "h-[1px] bg-layout-divider dark:bg-layout-dark-divider" : "h-0 border-t border-layout-divider dark:border-layout-dark-divider",
               variant === "dashed" && "border-dashed",
               variant === "dotted" && "border-dotted",
               contentPosition === "right" && "hidden"

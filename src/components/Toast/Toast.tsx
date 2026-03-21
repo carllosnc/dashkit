@@ -93,7 +93,6 @@ function ToastItem({
   total: number; 
   position: ToastPosition;
 }) {
-  const isStacked = index > 0;
   const isTop = position.startsWith('top');
   
   const offset = index * 12;
@@ -103,21 +102,20 @@ function ToastItem({
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, y: isTop ? -50 : 50, scale: 0.8 }}
+      initial={{ opacity: 0, y: isTop ? -20 : 20, scale: 0.95 }}
       animate={{ 
         opacity: opacity > 0 ? opacity : 0, 
         y: isTop ? offset : -offset, 
         scale,
         zIndex: total - index,
-        filter: isStacked ? 'blur(0.5px)' : 'none'
       }}
-      exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
-      transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+      exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
+      transition={{ type: 'spring', damping: 20, stiffness: 300 }}
       className={cn(
         "absolute w-full pointer-events-auto",
         isTop ? "top-0 origin-top" : "bottom-0 origin-bottom",
-        "bg-white dark:bg-base-900 border border-base-border dark:border-base-dark-border",
-        "rounded-md shadow-2xl p-4 flex gap-4 group transition-shadow hover:shadow-base-400/20 dark:hover:shadow-black"
+        "bg-toast-bg dark:bg-toast-dark-bg border border-toast-border dark:border-toast-dark-border",
+        "rounded-toast shadow-toast dark:shadow-toast-dark p-4 flex gap-4 group transition-shadow hover:shadow-toast dark:hover:shadow-toast-dark"
       )}
     >
       <div className="shrink-0 mt-0.5 text-xl">
@@ -126,7 +124,7 @@ function ToastItem({
       
       <div className="flex flex-col gap-1 flex-1 overflow-hidden">
         {toast.title && (
-          <h4 className="text-sm font-bold text-base-900 dark:text-white leading-tight truncate">
+          <h4 className="text-sm font-bold text-block-fg dark:text-block-dark-fg leading-tight truncate">
             {toast.title}
           </h4>
         )}
@@ -139,7 +137,7 @@ function ToastItem({
 
       <button
         onClick={() => removeToast(toast.id)}
-        className="shrink-0 h-fit p-1 rounded-lg text-base-400 hover:text-base-900 dark:hover:text-white hover:bg-base-100 dark:hover:bg-white/5 transition-all opacity-0 group-hover:opacity-100"
+        className="shrink-0 h-fit p-1 rounded-input text-base-400 hover:text-block-fg dark:hover:text-block-dark-fg hover:bg-floating-item-bg-hover dark:hover:bg-floating-item-dark-bg-hover transition-all opacity-0 group-hover:opacity-100"
       >
         <FiX size={14} />
       </button>

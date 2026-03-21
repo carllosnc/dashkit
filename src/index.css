@@ -11,7 +11,7 @@
 
 @layer base {
   body {
-    @apply antialiased text-base-900 bg-base-bg dark:text-base-100 dark:bg-base-dark-bg;
+    @apply antialiased text-base-950 bg-base-page dark:text-base-100 dark:bg-base-page-dark;
   }
 }
 

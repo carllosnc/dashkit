@@ -30,7 +30,7 @@ const examples = [
 
 export const ExamplesList = () => {
   return (
-    <div className="min-h-screen bg-base-bg dark:bg-base-dark-bg font-sans flex flex-col">
+    <div className="min-h-screen bg-base-page dark:bg-base-page-dark font-sans flex flex-col">
       {/* Navigation */}
       <Navbar>
         <NavbarBrand>
@@ -73,7 +73,7 @@ export const ExamplesList = () => {
           </div>
         </header>
 
-        <hr className="border-base-border dark:border-base-dark-border" />
+        <hr className="border-layout-divider dark:border-layout-dark-divider" />
 
         <div className="flex flex-col mx-auto">
           {examples.map((example) => (

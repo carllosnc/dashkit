@@ -158,9 +158,9 @@ export function DropdownContent({
            transition={{ duration: 0.1, ease: "easeOut" }}
            style={style}
            className={cn(
-             "min-w-[12rem] overflow-hidden rounded-lg",
-             "bg-white dark:bg-base-900 border border-base-border dark:border-base-dark-border",
-             "shadow-2xl dark:shadow-black/60 p-1 origin-top",
+             "min-w-[12rem] overflow-hidden rounded-floating",
+             "bg-floating-bg dark:bg-floating-dark-bg border border-floating-border dark:border-floating-dark-border",
+             "shadow-floating dark:shadow-floating-dark p-1 origin-top",
              className
            )}
         >
@@ -207,17 +207,19 @@ export function DropdownItem({
         setOpen(false);
       }}
       className={cn(
-        "flex w-full items-center gap-2 px-3 py-2 text-sm font-medium rounded-lg transition-colors text-left",
-        "hover:bg-base-100 dark:hover:bg-white/5",
-        destructive ? "text-red-500 hover:text-red-600 dark:hover:bg-red-500/10" : "text-base-700 dark:text-base-300 hover:text-base-900 dark:hover:text-white",
-        selected && "bg-base-50 dark:bg-white/5 text-base-900 dark:text-white",
+        "flex w-full items-center gap-2 px-3 py-2 text-sm font-medium rounded-input transition-colors text-left",
+        "text-floating-item-fg dark:text-floating-item-dark-fg",
+        "hover:bg-floating-item-bg-hover dark:hover:bg-floating-item-dark-bg-hover",
+        "hover:text-floating-item-fg-hover dark:hover:text-floating-item-dark-fg-hover",
+        destructive ? "text-red-500 hover:text-red-600 dark:hover:bg-red-500/10" : "",
+        selected && "bg-floating-item-selected-bg dark:bg-floating-item-dark-selected-bg text-floating-item-selected-fg dark:text-floating-item-dark-selected-fg",
         disabled && "opacity-50 cursor-not-allowed",
         className
       )}
     >
       {leftIcon && <span className="shrink-0 text-base-400">{leftIcon}</span>}
       <span className="flex-1 truncate">{children}</span>
-      {selected && <FiCheck className="shrink-0 text-base-900 dark:text-white" size={14} />}
+      {selected && <FiCheck className="shrink-0 text-floating-item-selected-fg dark:text-floating-item-dark-selected-fg" size={14} />}
       {rightIcon && <span className="shrink-0 text-base-400">{rightIcon}</span>}
     </button>
   );
@@ -239,6 +241,6 @@ export function DropdownLabel({ children }: { children: React.ReactNode }) {
  */
 export function DropdownSeparator() {
   return (
-    <div className="my-1 h-px bg-base-border dark:bg-base-dark-border" />
+    <div className="my-1 h-px bg-floating-border dark:bg-floating-dark-border" />
   );
 }

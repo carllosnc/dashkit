@@ -82,8 +82,8 @@ export const Modal = ({
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
             className={cn(
-              "w-full bg-block-bg dark:bg-block-dark-bg rounded-2xl shadow-2xl overflow-hidden flex flex-col",
-              "border border-base-border dark:border-base-dark-border",
+              "w-full bg-block-bg dark:bg-block-dark-bg rounded-block-lg shadow-block dark:shadow-block-dark overflow-hidden flex flex-col",
+              "border border-block-border dark:border-block-dark-border",
               sizeClasses[size],
               className
             )}
@@ -93,7 +93,7 @@ export const Modal = ({
               <div className="flex items-start justify-between p-8 pb-4">
                 <div className="flex flex-col gap-1.5">
                   {title && (
-                    <h2 className="text-xl font-bold text-base-900 dark:text-white tracking-tight uppercase">
+                    <h2 className="text-xl font-bold text-block-fg dark:text-block-dark-fg tracking-tight uppercase">
                       {title}
                     </h2>
                   )}
@@ -106,7 +106,7 @@ export const Modal = ({
                 {showCloseButton && (
                   <button
                     onClick={onClose}
-                    className="p-2.5 rounded-xl transition-all duration-200 hover:bg-base-100 dark:hover:bg-base-900 text-base-400 hover:text-base-900 dark:hover:text-white"
+                    className="p-2.5 rounded-input transition-all duration-200 hover:bg-block-footer-bg dark:hover:bg-block-dark-footer-bg text-base-400 hover:text-base-900 dark:hover:text-white"
                   >
                     <FiX size={20} />
                   </button>
@@ -121,7 +121,7 @@ export const Modal = ({
 
             {/* Footer */}
             {footer && (
-              <div className="p-8 pt-4 flex items-center justify-end gap-3 bg-block-bg/50 dark:bg-block-dark-bg/30">
+              <div className="p-8 pt-4 flex items-center justify-end gap-3 bg-block-footer-bg dark:bg-block-dark-footer-bg border-t border-block-border dark:border-block-dark-border">
                 {footer}
               </div>
             )}

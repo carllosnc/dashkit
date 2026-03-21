@@ -103,11 +103,11 @@ export const OtpInput = ({
           onPaste={handlePaste}
           disabled={disabled}
           className={cn(
-            "w-10 h-12 sm:w-11 sm:h-13 text-center text-lg sm:text-xl font-bold bg-white dark:bg-base-900 border rounded-md outline-none transition-all duration-300",
-            "border-base-border dark:border-base-dark-border text-base-900 dark:text-base-100",
-            "focus:border-base-border-focus dark:focus:border-base-dark-border-focus focus:ring-4 focus:ring-base-100 dark:focus:ring-base-950/40",
+            "w-10 h-12 sm:w-11 sm:h-13 text-center text-lg sm:text-xl font-bold bg-input-bg dark:bg-input-dark-bg border rounded-input outline-none transition-all duration-300",
+            "border-input-border dark:border-input-dark-border text-input-fg dark:text-input-dark-fg",
+            "focus:border-input-focus-border dark:focus:border-input-dark-focus-border focus:ring-4 focus:ring-input-focus-ring dark:focus:ring-input-dark-focus-ring",
             "hover:border-base-500 dark:hover:border-base-500",
-            disabled && "opacity-50 cursor-not-allowed bg-base-50 dark:bg-base-950",
+            disabled && "opacity-50 cursor-not-allowed bg-input-disabled-bg dark:bg-input-dark-disabled-bg border-input-disabled-border dark:border-input-dark-disabled-border",
             className
           )}
         />

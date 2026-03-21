@@ -38,7 +38,7 @@ export function DashboardExample() {
   };
 
   return (
-    <div className="min-h-screen bg-base-bg dark:bg-base-dark-bg font-sans flex flex-col">
+    <div className="min-h-screen bg-base-page dark:bg-base-page-dark">
       <Navbar>
         <NavbarBrand>
            <div className="flex items-center gap-2">
@@ -172,7 +172,7 @@ export function DashboardExample() {
                     { title: 'Fix drawer animation lag', user: 'Alex', status: 'In Progress', color: 'base' as BadgeColor },
                     { title: 'Refactor Auth logic', user: 'John', status: 'Blocked', color: 'base' as BadgeColor }
                   ].map((item, i) => (
-                    <div key={i} className="flex items-center justify-between p-4 rounded-md bg-white dark:bg-base-900 border border-base-border dark:border-base-dark-border">
+                    <div key={i} className="flex items-center justify-between p-4 rounded-md bg-block-bg dark:bg-block-dark-bg border border-block-border dark:border-block-dark-border">
                       <div className="flex items-center gap-4">
                         <Checkbox />
                         <div className="flex flex-col">
@@ -324,7 +324,7 @@ export function DashboardExample() {
                     <label className="text-sm font-semibold text-base-700 dark:text-base-300">Email Address</label>
                     <Input placeholder="hello@dashkit.ui" type="email" />
                   </div>
-                  <div className="flex flex-col gap-6 md:col-span-2 border-t border-base-border dark:border-base-dark-border pt-8 mt-4">
+                  <div className="flex flex-col gap-6 md:col-span-2 border-t border-layout-divider dark:border-layout-dark-divider pt-8 mt-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                       <Switch label="Public Profile" description="Allow others to see your stats." defaultChecked />
                       <Switch label="Direct Mentions" description="Enable push notifications for @mentions." />

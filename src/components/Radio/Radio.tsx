@@ -33,17 +33,17 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
             <div 
               className={cn(
                 "w-6 h-6 rounded-full border-2 transition-all duration-200 flex items-center justify-center shrink-0",
-                "border-base-border dark:border-base-dark-border bg-white dark:bg-base-900",
-                "peer-checked:border-base-border-focus dark:peer-checked:border-base-dark-border-focus",
-                "peer-focus-visible:ring-4 peer-focus-visible:ring-base-100 dark:peer-focus-visible:ring-base-900/40",
-                "group-hover:border-base-500 dark:group-hover:border-base-600",
-                "peer-disabled:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:bg-base-100 dark:peer-disabled:bg-base-800",
+                "border-selection-border dark:border-selection-dark-border bg-selection-bg dark:bg-selection-dark-bg",
+                "peer-checked:border-selection-checked-border dark:peer-checked:border-selection-dark-checked-border",
+                "peer-focus-visible:ring-4 peer-focus-visible:ring-selection-focus-ring dark:peer-focus-visible:ring-selection-dark-focus-ring",
+                "group-hover:border-selection-hover-border dark:group-hover:border-selection-dark-hover-border",
+                "peer-disabled:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:bg-selection-disabled-bg dark:peer-disabled:bg-selection-dark-disabled-bg",
                 className
               )} 
             />
             {/* Inner Dot Fill */}
             <div className={cn(
-              "absolute w-2.5 h-2.5 rounded-full bg-base-900 dark:bg-base-100 transition-all duration-200 pointer-events-none",
+              "absolute w-2.5 h-2.5 rounded-full bg-selection-checked-fill dark:bg-selection-dark-checked-fill transition-all duration-200 pointer-events-none",
               "opacity-0 scale-50 peer-checked:opacity-100 peer-checked:scale-100"
             )} />
           </label>

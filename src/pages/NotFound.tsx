@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet-async';
 
 export function NotFound() {
   return (
-    <div className="flex flex-col min-h-screen bg-base-bg dark:bg-base-dark-bg font-sans">
+    <div className="flex flex-col min-h-screen bg-base-page dark:bg-base-page-dark font-sans">
       <Helmet>
         <title>404 - Page Not Found | Dashkit UI</title>
       </Helmet>
@@ -16,7 +16,7 @@ export function NotFound() {
         <div className="absolute bottom-[20%] -right-[10%] w-[30%] h-[50%] rounded-full bg-base-100/30 dark:bg-base-800/10 blur-[100px]" />
       </div>
 
-      <nav className="flex items-center justify-between px-8 py-5 border-b border-base-border dark:border-base-dark-border bg-base-bg/70 dark:bg-base-dark-bg/70 backdrop-blur-xl sticky top-0 z-50">
+      <nav className="flex items-center justify-between px-8 py-5 border-b border-layout-border dark:border-layout-dark-border bg-base-bg/70 dark:bg-base-dark-bg/70 backdrop-blur-xl sticky top-0 z-50">
         <Link to="/" className="flex items-center group">
           <img src="/logo.svg" alt="Dashkit UI Logo" className="h-6 dark:invert" />
         </Link>
@@ -38,7 +38,7 @@ export function NotFound() {
         </div>
       </main>
 
-      <footer className="py-8 border-t border-base-border dark:border-base-dark-border text-center">
+      <footer className="py-8 border-t border-layout-border dark:border-layout-dark-border text-center">
         <p className="text-xs text-base-400">© 2026 Dashkit UI. All rights reserved.</p>
       </footer>
     </div>
