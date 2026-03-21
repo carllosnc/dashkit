@@ -190,11 +190,11 @@ export const Combobox = ({
           autoComplete="off"
           className={cn(
             "w-full h-9 pl-10 pr-10 text-sm bg-white dark:bg-base-950 border rounded-md transition-all duration-200",
-            "border-base-300 dark:border-base-800 outline-none",
-            "focus:border-black dark:focus:border-white focus:ring-4 focus:ring-base-100 dark:focus:ring-base-900/40",
+            "border-base-border dark:border-base-dark-border outline-none",
+            "focus:border-base-border-focus dark:focus:border-base-dark-border-focus focus:ring-4 focus:ring-base-100 dark:focus:ring-base-900/40",
             "placeholder:text-base-500 dark:placeholder:text-base-500",
-            disabled && "cursor-not-allowed bg-base-200 dark:bg-base-900 border-base-300 dark:border-base-800 text-base-400 dark:text-base-600",
-            isOpen && "border-black dark:border-white ring-4 ring-base-100 dark:ring-base-900/40"
+            disabled && "cursor-not-allowed bg-base-200 dark:bg-base-900 border-base-border dark:border-base-dark-border text-base-400 dark:text-base-600",
+            isOpen && "border-base-border-focus dark:border-base-dark-border-focus ring-4 ring-base-100 dark:ring-base-900/40"
           )}
         />
 
@@ -220,7 +220,7 @@ export const Combobox = ({
         {isOpen && (
           <div 
             className={cn(
-              "absolute top-full left-0 w-full mt-2 py-1.5 bg-white dark:bg-base-900 border border-base-200 dark:border-base-800 rounded-lg shadow-2xl z-50 overflow-hidden",
+              "absolute top-full left-0 w-full mt-2 py-1.5 bg-white dark:bg-base-900 border border-base-border dark:border-base-dark-border rounded-lg shadow-2xl z-50 overflow-hidden",
               "animate-in fade-in slide-in-from-top-2 duration-200"
             )}
           >
