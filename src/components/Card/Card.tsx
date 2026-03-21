@@ -77,7 +77,7 @@ export const CardFooter = React.forwardRef<HTMLDivElement, React.HTMLAttributes<
     <div
       ref={ref}
       className={cn(
-        "px-6 py-4 bg-base-50 dark:bg-white/[0.02] border-t border-base-200 dark:border-base-800 flex items-center justify-end gap-3",
+        "px-6 py-4 bg-block-bg dark:bg-block-dark-bg border-t border-base-border dark:border-base-dark-border flex items-center justify-end gap-3",
         className
       )}
       {...props}
@@ -118,8 +118,8 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
         animate={animate ? { opacity: 1, y: 0 } : undefined}
         transition={{ duration: 0.3, ease: 'easeOut' }}
         className={cn(
-          "bg-white dark:bg-base-900 overflow-hidden flex flex-col font-sans",
-          bordered && "border border-base-200 dark:border-base-800 rounded-lg",
+          "bg-block-bg dark:bg-block-dark-bg overflow-hidden flex flex-col font-sans",
+          bordered && "border border-base-border dark:border-base-dark-border rounded-lg",
           shadowed && "shadow-md shadow-base-200/50 dark:shadow-black/40",
           className
         )}
