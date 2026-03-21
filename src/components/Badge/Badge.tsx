@@ -7,18 +7,18 @@ export type BadgeColor = 'success' | 'warning' | 'error' | 'info' | 'base';
 export type BadgePosition = 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
 
 const colorStyles: Record<BadgeColor, string> = {
-  success: "bg-emerald-500 text-white",
-  warning: "bg-amber-500 text-white",
-  error: "bg-red-500 text-white",
-  info: "bg-blue-500 text-white",
+  success: "bg-base-success dark:bg-base-success-dark text-white",
+  warning: "bg-base-warning dark:bg-base-warning-dark text-white",
+  error: "bg-base-error dark:bg-base-error-dark text-white",
+  info: "bg-base-info dark:bg-base-info-dark text-white",
   base: "bg-base-900 text-white dark:bg-white dark:text-base-950"
 };
 
 const pulseStyles: Record<BadgeColor, string> = {
-  success: "bg-emerald-500",
-  warning: "bg-amber-500",
-  error: "bg-red-500",
-  info: "bg-blue-500",
+  success: "bg-base-success dark:bg-base-success-dark",
+  warning: "bg-base-warning dark:bg-base-warning-dark",
+  error: "bg-base-error dark:bg-base-error-dark",
+  info: "bg-base-info dark:bg-base-info-dark",
   base: "bg-base-900 dark:bg-white"
 };
 
