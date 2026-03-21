@@ -126,7 +126,7 @@ export const AccordionTrigger = ({ children, className }: { children: React.Reac
       >
         <FiChevronRight size={18} />
       </motion.div>
-      <span className="text-sm tracking-tight">{children}</span>
+      <span className="text-accordion-title tracking-tight font-accordion-title">{children}</span>
     </button>
   );
 };

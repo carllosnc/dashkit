@@ -9,22 +9,16 @@ const examples = [
     title: 'Login Page',
     description: 'A premium split-screen login page with social authentication, brand positioning, and responsive design.',
     href: '/examples/login',
-    image: '/examples/login-bg.png',
-    tags: ['Auth', 'Split Screen', 'Form']
   },
   {
     title: 'Complex Settings Form',
     description: 'A comprehensive user profile and settings form featuring multi-column layouts, various input types, and section-based organization.',
     href: '/examples/complex-form',
-    image: '/examples/settings-bg.png',
-    tags: ['Settings', 'Grid Layout', 'Form Control']
   },
   {
     title: 'Admin Dashboard',
     description: 'A full-featured project management interface demonstrating cards, statistics, data filtering, and complex interactive overlays.',
     href: '/examples/dashboard',
-    image: '/examples/dashboard-bg.png',
-    tags: ['Dashboard', 'Data viz', 'Interaction']
   }
 ];
 
@@ -57,8 +51,8 @@ export const ExamplesList = () => {
         </NavbarActions>
       </Navbar>
 
-      <main className="flex-1 max-w-7xl w-full mx-auto px-6 py-20">
-        <header className="mb-16">
+      <main className="flex-1 max-w-5xl w-full mx-auto px-6 py-20">
+        <header className="mb-10">
           <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-base-500 hover:text-base-900 dark:text-base-400 dark:hover:text-white mb-6 transition-colors">
             <FiArrowLeft size={16} />
             Back to Home
@@ -75,16 +69,16 @@ export const ExamplesList = () => {
 
         <hr className="border-layout-divider dark:border-layout-dark-divider" />
 
-        <div className="flex flex-col mx-auto">
+        <div className="flex flex-col">
           {examples.map((example) => (
             <Link
               key={example.href}
               to={example.href}
-              className="group flex flex-col md:flex-row md:items-center justify-between py-8 transition-all"
+              className="group flex flex-col md:flex-row md:items-center justify-between py-6 transition-all"
             >
               <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-4">
-                  <h3 className="text-2xl font-bold text-base-950 dark:text-white group-hover:text-blue-500 dark:group-hover:text-sky-400 transition-colors">
+                  <h3 className="text-xl font-bold text-base-950 dark:text-white group-hover:text-blue-500 dark:group-hover:text-sky-400 transition-colors">
                     {example.title}
                   </h3>
                 </div>
@@ -93,9 +87,6 @@ export const ExamplesList = () => {
                 </p>
               </div>
               <div className="flex items-center gap-4 mt-4 md:mt-0">
-                <span className="text-sm font-bold uppercase tracking-widest text-base-400 opacity-0 group-hover:opacity-100 group-hover:-translate-x-2 transition-all duration-300">
-                  View Example
-                </span>
                 <FiArrowRight className="size-6 text-base-300 dark:text-base-700 group-hover:text-blue-500 dark:group-hover:text-sky-400 transition-all duration-300" />
               </div>
             </Link>

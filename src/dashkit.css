@@ -174,7 +174,6 @@
   --color-layout-dark-divider: var(--color-base-800);
 }
 
-
 /* Toast */
 @theme {
   --radius-toast: var(--radius-md);
@@ -230,4 +229,25 @@
   --color-tabs-trigger-active-bg: var(--color-white);
   --color-tabs-trigger-active-dark-bg: var(--color-base-950);
 }
+
+/* Scrollbar */
+@theme {
+  --width-scrollbar: 6px;
+  --radius-scrollbar: var(--radius-full);
+
+  --color-scrollbar-thumb: var(--color-base-300);
+  --color-scrollbar-thumb-hover: var(--color-base-400);
+
+  --color-scrollbar-dark-thumb: var(--color-base-800);
+  --color-scrollbar-dark-thumb-hover: var(--color-base-700);
+}
+
+/* Accordion */
+@theme {
+  --text-accordion-title: 1em;
+  --font-weight-accordion-title: 500;
+}
+
+
+
 
