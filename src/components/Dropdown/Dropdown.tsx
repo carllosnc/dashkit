@@ -159,7 +159,7 @@ export function DropdownContent({
            style={style}
            className={cn(
              "min-w-[12rem] overflow-hidden rounded-lg",
-             "bg-white dark:bg-base-900 border border-base-200 dark:border-base-800",
+             "bg-white dark:bg-base-900 border border-base-border dark:border-base-dark-border",
              "shadow-2xl dark:shadow-black/60 p-1 origin-top",
              className
            )}
@@ -239,6 +239,6 @@ export function DropdownLabel({ children }: { children: React.ReactNode }) {
  */
 export function DropdownSeparator() {
   return (
-    <div className="my-1 h-px bg-base-200 dark:bg-base-800" />
+    <div className="my-1 h-px bg-base-border dark:bg-base-dark-border" />
   );
 }
