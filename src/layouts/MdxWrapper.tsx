@@ -215,11 +215,11 @@ export function MdxWrapper({ Component }: { Component: MdxComponent }) {
     if (containerRef.current) {
       const h1 = containerRef.current.querySelector('h1');
       const p = containerRef.current.querySelector('p');
-      
+
       if (h1 && h1.textContent) {
         setTitle(`${h1.textContent} | Dashkit UI`);
       }
-      
+
       if (p && p.textContent) {
         // Truncate description if too long
         const text = p.textContent.trim();

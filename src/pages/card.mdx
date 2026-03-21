@@ -1,6 +1,6 @@
 # Card
 
-A premium container component for grouping content, imagery, and actions. 
+A premium container component for grouping content, imagery, and actions.
 
 Dashkit's Card is designed as a **composed wrapper**, providing total layout control through granular sub-components.
 
@@ -17,25 +17,25 @@ bunx carllosnc/dashkit add card
 ### Manual Import
 
 ```tsx
-import { 
-  Card, 
-  CardHeader, 
-  CardTitle, 
-  CardDescription, 
-  CardContent, 
-  CardFooter 
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter
 } from '@/components/Card';
 ```
 
 ---
 
-<Preview>
+<div className="not-prose">
   <CardDemo />
-</Preview>
+</div>
 
 ### Composed Example
 
-<Preview>
+<div className="not-prose">
   <Card>
     <CardHeader extra={<Badge content="Live" color="info" pulse />}>
        <CardTitle>Security Check</CardTitle>
@@ -59,7 +59,7 @@ import {
        <Button variant="outlined" className="w-full">Ignore Warning</Button>
     </CardFooter>
   </Card>
-</Preview>
+</div>
 
 ---
 
