@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Navbar } from '../components/Navbar/Navbar';
+import { Navbar, NavbarBrand, NavbarLinks, NavbarActions } from '../components/Navbar/Navbar';
 import { IconButton } from '../components/IconButton/IconButton';
 import { FiGithub, FiMenu } from 'react-icons/fi';
 import { Link, Outlet, useLocation } from 'react-router-dom';
@@ -86,21 +86,23 @@ export function DocsLayout() {
   return (
     <div className="min-h-screen bg-white dark:bg-[#030303] font-sans flex flex-col">
       {/* Navigation */}
-      <Navbar 
-        logo={<img src="/logo.svg" alt="Dashkit UI Logo" className="h-6 dark:invert" />}
-        left={
+      <Navbar>
+        <NavbarBrand>
           <IconButton 
             icon={<FiMenu size={20} />} 
             onClick={() => setIsMobileMenuOpen(true)}
             variant="ghost"
             className="md:hidden text-base-500 dark:text-base-400"
           />
-        }
-        links={[
-          { label: 'Documentation', href: '/docs', active: true },
-          { label: 'Examples', href: '/examples' }
-        ]}
-        actions={
+          <img src="/logo.svg" alt="Dashkit UI Logo" className="h-6 dark:invert" />
+        </NavbarBrand>
+        
+        <NavbarLinks>
+          <Link to="/docs" className="text-sm font-medium text-base-950 dark:text-white">Documentation</Link>
+          <Link to="/examples" className="text-sm font-medium text-base-500 dark:text-base-400 hover:text-base-950 dark:hover:text-white transition-colors">Examples</Link>
+        </NavbarLinks>
+
+        <NavbarActions>
           <div className="flex items-center gap-4 pl-0 sm:pl-4 sm:border-l border-base-200 dark:border-base-800">
             <ThemeToggle />
             <IconButton 
@@ -112,8 +114,8 @@ export function DocsLayout() {
               className="text-base-400 hover:text-base-900 dark:hover:text-white"
             />
           </div>
-        }
-      />
+        </NavbarActions>
+      </Navbar>
 
       {/* Mobile Drawer */}
       <Drawer 

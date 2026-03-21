@@ -1,6 +1,6 @@
 import { TypingEffect } from './components/TypingEffect/TypingEffect'
 import { Button } from './components/Button/Button'
-import { Navbar } from './components/Navbar/Navbar'
+import { Navbar, NavbarBrand, NavbarLinks, NavbarActions } from './components/Navbar/Navbar'
 import { IconButton } from './components/IconButton/IconButton'
 import { FiArrowRight, FiGithub } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
@@ -31,13 +31,17 @@ function App() {
       </div>
 
       {/* Navigation */}
-      <Navbar
-        logo={<img src="/logo.svg" alt="Dashkit UI Logo" className="h-6 dark:invert" />}
-        links={[
-          { label: 'Documentation', href: '/docs' },
-          { label: 'Examples', href: '/examples' }
-        ]}
-        actions={
+      <Navbar>
+        <NavbarBrand>
+          <img src="/logo.svg" alt="Dashkit UI Logo" className="h-6 dark:invert" />
+        </NavbarBrand>
+        
+        <NavbarLinks>
+          <Link to="/docs" className="text-sm font-medium text-base-500 dark:text-base-400 hover:text-base-950 dark:hover:text-white transition-colors">Documentation</Link>
+          <Link to="/examples" className="text-sm font-medium text-base-500 dark:text-base-400 hover:text-base-950 dark:hover:text-white transition-colors">Examples</Link>
+        </NavbarLinks>
+
+        <NavbarActions>
           <div className="flex items-center gap-4 pl-4 border-l border-base-200 dark:border-base-800">
             <ThemeToggle />
             <IconButton 
@@ -49,8 +53,8 @@ function App() {
               className="text-base-400 hover:text-base-900 dark:hover:text-white"
             />
           </div>
-        }
-      />
+        </NavbarActions>
+      </Navbar>
 
       {/* Hero Section */}
       <main className="flex-1 relative flex flex-col items-center justify-center text-center px-6 py-32 overflow-hidden">

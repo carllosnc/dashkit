@@ -31,6 +31,7 @@ import ChipDocs from './pages/chip.mdx'
 import ComboboxDocs from './pages/combobox.mdx'
 import { LoginExample } from './pages/examples/LoginExample'
 import { ComplexFormExample } from './pages/examples/ComplexFormExample'
+import { DashboardExample } from './pages/examples/DashboardExample'
 import { ExamplesList } from './pages/examples/ExamplesList'
 import { NotFound } from './pages/NotFound.tsx'
 import { DocsLayout } from './layouts/DocsLayout.tsx'
@@ -80,6 +81,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route index element={<ExamplesList />} />
                 <Route path="login" element={<LoginExample />} />
                 <Route path="complex-form" element={<ComplexFormExample />} />
+                <Route path="dashboard" element={<DashboardExample />} />
               </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>

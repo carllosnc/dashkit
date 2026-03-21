@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ThemeToggle } from '../../components/ThemeToggle';
-import { Navbar } from '../../components/Navbar/Navbar';
+import { Navbar, NavbarBrand, NavbarLinks, NavbarActions } from '../../components/Navbar/Navbar';
 import { IconButton } from '../../components/IconButton/IconButton';
 import { FiGithub, FiArrowRight, FiArrowLeft } from 'react-icons/fi';
 import { Badge } from '../../components/Badge/Badge';
@@ -19,6 +19,13 @@ const examples = [
     href: '/examples/complex-form',
     image: '/examples/settings-bg.png',
     tags: ['Settings', 'Grid Layout', 'Form Control']
+  },
+  {
+    title: 'Admin Dashboard',
+    description: 'A full-featured project management interface demonstrating cards, statistics, data filtering, and complex interactive overlays.',
+    href: '/examples/dashboard',
+    image: '/examples/dashboard-bg.png',
+    tags: ['Dashboard', 'Data viz', 'Interaction']
   }
 ];
 
@@ -26,26 +33,28 @@ export const ExamplesList = () => {
   return (
     <div className="min-h-screen bg-white dark:bg-[#030303] font-sans flex flex-col">
       {/* Navigation */}
-      <Navbar 
-        logo={<img src="/logo.svg" alt="Dashkit UI Logo" className="h-6 dark:invert" />}
-        links={[
-          { label: 'Documentation', href: '/docs' },
-          { label: 'Examples', href: '/examples', active: true }
-        ]}
-        actions={
-          <>
-            <ThemeToggle />
-            <IconButton 
-              icon={<FiGithub size={20} />} 
-              href="https://github.com/carllosnc/dashkit" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              variant="ghost"
-              className="text-base-400 hover:text-base-900 dark:hover:text-white"
-            />
-          </>
-        }
-      />
+      <Navbar>
+        <NavbarBrand>
+          <img src="/logo.svg" alt="Dashkit UI Logo" className="h-6 dark:invert" />
+        </NavbarBrand>
+        
+        <NavbarLinks>
+          <Link to="/docs" className="text-sm font-medium text-base-500 dark:text-base-400 hover:text-base-950 dark:hover:text-white transition-colors">Documentation</Link>
+          <Link to="/examples" className="text-sm font-medium text-base-950 dark:text-white transition-colors">Examples</Link>
+        </NavbarLinks>
+
+        <NavbarActions>
+          <ThemeToggle />
+          <IconButton 
+            icon={<FiGithub size={20} />} 
+            href="https://github.com/carllosnc/dashkit" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            variant="ghost"
+            className="text-base-400 hover:text-base-900 dark:hover:text-white"
+          />
+        </NavbarActions>
+      </Navbar>
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-6 py-20">
         <header className="mb-16">

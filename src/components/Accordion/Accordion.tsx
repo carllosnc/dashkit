@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiChevronDown } from 'react-icons/fi';
+import { FiChevronRight } from 'react-icons/fi';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -14,6 +14,7 @@ interface AccordionContextValue {
   type: AccordionType;
   value: string | string[];
   onValueChange: (value: string) => void;
+  shadowed?: boolean;
 }
 
 const AccordionContext = React.createContext<AccordionContextValue | undefined>(undefined);
@@ -25,8 +26,12 @@ export interface AccordionProps {
   onValueChange?: (value: string | string[]) => void;
   children: React.ReactNode;
   className?: string;
+  shadowed?: boolean;
 }
 
+/**
+ * A clean, card-styled Accordion component.
+ */
 export const Accordion = ({
   type = 'single',
   defaultValue,
@@ -34,6 +39,7 @@ export const Accordion = ({
   onValueChange,
   children,
   className,
+  shadowed = false,
 }: AccordionProps) => {
   const [uncontrolledValue, setUncontrolledValue] = React.useState<string | string[]>(
     defaultValue || (type === 'multiple' ? [] : '')
@@ -59,8 +65,8 @@ export const Accordion = ({
   };
 
   return (
-    <AccordionContext.Provider value={{ type, value, onValueChange: handleValueChange }}>
-      <div className={cn("flex flex-col gap-2 w-full", className)}>
+    <AccordionContext.Provider value={{ type, value, onValueChange: handleValueChange, shadowed }}>
+      <div className={cn("flex flex-col gap-3 w-full", className)}>
         {children}
       </div>
     </AccordionContext.Provider>
@@ -87,7 +93,9 @@ export const AccordionItem = ({ value, children, className, disabled }: Accordio
   return (
     <AccordionItemContext.Provider value={{ value, isOpen }}>
       <div className={cn(
-        "border-b border-base-300 dark:border-base-800 last:border-b-0 transition-colors duration-200",
+        "border border-base-200 dark:border-base-800 rounded-lg bg-white dark:bg-base-900 transition-all duration-200 overflow-hidden",
+        isOpen && "border-base-300 dark:border-base-800 bg-white dark:bg-base-900",
+        context.shadowed && "shadow-xl shadow-base-200/50 dark:shadow-black/40",
         disabled && "opacity-50 pointer-events-none",
         className
       )}>
@@ -106,19 +114,19 @@ export const AccordionTrigger = ({ children, className }: { children: React.Reac
     <button
       onClick={() => context.onValueChange(itemContext.value)}
       className={cn(
-        "flex w-full items-center justify-between py-4 text-left font-medium transition-all hover:text-base-900 dark:hover:text-white group",
-        itemContext.isOpen ? "text-base-900 dark:text-white" : "text-base-500 dark:text-base-400",
+        "flex w-full items-center gap-3 px-4 py-4 text-left transition-all hover:text-base-950 dark:hover:text-white group",
+        itemContext.isOpen ? "text-base-950 dark:text-white font-bold" : "text-base-700 dark:text-base-300 font-bold",
         className
       )}
     >
-      <span className="text-sm tracking-tight">{children}</span>
       <motion.div
-        animate={{ rotate: itemContext.isOpen ? 180 : 0 }}
+        animate={{ rotate: itemContext.isOpen ? 90 : 0 }}
         transition={{ type: 'spring', damping: 20, stiffness: 300 }}
-        className="text-base-400 group-hover:text-base-900 dark:group-hover:text-white shrink-0 ml-4"
+        className="text-base-400 group-hover:text-base-950 dark:group-hover:text-white shrink-0"
       >
-        <FiChevronDown size={16} />
+        <FiChevronRight size={18} />
       </motion.div>
+      <span className="text-sm tracking-tight">{children}</span>
     </button>
   );
 };
@@ -137,7 +145,7 @@ export const AccordionContent = ({ children, className }: { children: React.Reac
           transition={{ type: 'spring', damping: 25, stiffness: 200 }}
           className="overflow-hidden"
         >
-          <div className={cn("pb-4 text-sm text-base-500 dark:text-base-400 leading-relaxed", className)}>
+          <div className={cn("px-4 pb-4 pl-[44px] text-sm text-base-500 dark:text-base-400 leading-relaxed font-medium", className)}>
             {children}
           </div>
         </motion.div>
@@ -145,3 +153,5 @@ export const AccordionContent = ({ children, className }: { children: React.Reac
     </AnimatePresence>
   );
 };
+
+Accordion.displayName = 'Accordion';

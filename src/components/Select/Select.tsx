@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { FiChevronDown, FiCheck } from 'react-icons/fi';
 import clsx, { type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -37,20 +38,45 @@ export const Select = ({
   disabled 
 }: SelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [triggerRect, setTriggerRect] = useState<DOMRect | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   
   const selectedOption = options.find(opt => opt.value === value);
 
-  // Close when clicking outside
+  // Update trigger rect when opening
+  useEffect(() => {
+    if (isOpen && buttonRef.current) {
+      setTriggerRect(buttonRef.current.getBoundingClientRect());
+    }
+  }, [isOpen]);
+
+  // Close when clicking outside or scrolling
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+      const menu = document.getElementById('dashkit-select-portal');
+      if (
+        containerRef.current && !containerRef.current.contains(event.target as Node) &&
+        (!menu || !menu.contains(event.target as Node))
+      ) {
         setIsOpen(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+
+    const handleScroll = () => {
+      if (isOpen) setIsOpen(false);
+    };
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      window.addEventListener('scroll', handleScroll, true);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener('scroll', handleScroll, true);
+    };
+  }, [isOpen]);
 
   // Handle keyboard navigation
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -72,6 +98,7 @@ export const Select = ({
       )}
       <div className="relative">
         <button
+          ref={buttonRef}
           type="button"
           disabled={disabled}
           onClick={() => !disabled && setIsOpen(!isOpen)}
@@ -99,11 +126,19 @@ export const Select = ({
           )} />
         </button>
 
-        {isOpen && (
+        {isOpen && triggerRect && createPortal(
           <div 
+            id="dashkit-select-portal"
             role="listbox"
+            style={{
+              position: 'fixed',
+              top: triggerRect.bottom + 8,
+              left: triggerRect.left,
+              width: triggerRect.width,
+              zIndex: 9999,
+            }}
             className={cn(
-              "absolute top-full left-0 w-full mt-2 py-1.5 bg-white dark:bg-base-900 border border-base-200 dark:border-base-800 rounded-lg shadow-xl z-50 overflow-hidden",
+              "py-1.5 bg-white dark:bg-base-900 border border-base-200 dark:border-base-800 rounded-lg shadow-2xl overflow-hidden",
               "animate-in fade-in slide-in-from-top-2 duration-200"
             )}
           >
@@ -136,7 +171,8 @@ export const Select = ({
                 ))
               )}
             </div>
-          </div>
+          </div>,
+          document.body
         )}
       </div>
       {description && (

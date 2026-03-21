@@ -117,7 +117,7 @@ function ToastItem({
         "absolute w-full pointer-events-auto",
         isTop ? "top-0 origin-top" : "bottom-0 origin-bottom",
         "bg-white dark:bg-base-900 border border-base-200 dark:border-base-800",
-        "rounded-2xl shadow-2xl p-4 flex gap-4 group transition-shadow hover:shadow-base-400/20 dark:hover:shadow-black"
+        "rounded-md shadow-2xl p-4 flex gap-4 group transition-shadow hover:shadow-base-400/20 dark:hover:shadow-black"
       )}
     >
       <div className="shrink-0 mt-0.5 text-xl">

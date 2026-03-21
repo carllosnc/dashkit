@@ -91,6 +91,8 @@ CardFooter.displayName = 'CardFooter';
 export interface CardProps extends Omit<HTMLMotionProps<'div'>, 'title'> {
   /** Border style */
   bordered?: boolean;
+  /** Shadow style */
+  shadowed?: boolean;
   /** Entrance animation */
   animate?: boolean;
 }
@@ -103,7 +105,8 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
   ({ 
     children, 
     bordered = true, 
-    animate = true, 
+    shadowed = false,
+    animate = false, 
     className, 
     ...props 
   }, ref) => {
@@ -116,7 +119,8 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
         transition={{ duration: 0.3, ease: 'easeOut' }}
         className={cn(
           "bg-white dark:bg-base-900 overflow-hidden flex flex-col font-sans",
-          bordered && "border border-base-200 dark:border-base-800 rounded-2xl",
+          bordered && "border border-base-200 dark:border-base-800 rounded-lg",
+          shadowed && "shadow-xl shadow-base-200/50 dark:shadow-black/40",
           className
         )}
       >

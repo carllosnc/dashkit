@@ -4,8 +4,8 @@ import { cn } from '../../utils/cn';
 
 type IconButtonBaseProps = {
   /** The variant style of the button. Defaults to 'soft'. */
-  variant?: 'filled' | 'outlined' | 'ghost' | 'soft';
-  /** The scale of the button. Defaults to 'md'. */
+  variant?: 'filled' | 'ghost' | 'soft';
+  /** The scale of the button. Defaults to 'sm'. */
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   /** The icon element to render. */
   icon: ReactNode;
@@ -25,7 +25,7 @@ export type IconButtonProps = IconButtonBaseProps &
  * @see https://dashkit-ui.com/docs/icon-button
  */
 export const IconButton = forwardRef<HTMLElement, IconButtonProps>(
-  ({ className, variant = 'soft', size = 'md', icon, rounded = false, ...props }, ref) => {
+  ({ className, variant = 'soft', size = 'sm', icon, rounded = false, ...props }, ref) => {
     const isLink = 'href' in props && props.href !== undefined;
 
     const commonClasses = cn(
@@ -34,7 +34,6 @@ export const IconButton = forwardRef<HTMLElement, IconButtonProps>(
       {
         // Variants
         "bg-base-950 text-white border-transparent hover:bg-black dark:bg-white dark:text-base-950 dark:hover:bg-base-100": variant === 'filled',
-        "bg-transparent text-base-700 border-base-200 hover:bg-base-50 dark:text-base-300 dark:border-base-800 dark:hover:bg-white/10": variant === 'outlined',
         "bg-base-100 text-base-900 border-transparent hover:bg-base-200 dark:bg-white/10 dark:text-white dark:hover:bg-white/15": variant === 'soft',
         "bg-transparent text-base-500 border-transparent hover:bg-base-100 dark:text-base-400 dark:hover:bg-white/5": variant === 'ghost',
         "opacity-50 cursor-not-allowed": 'disabled' in props && props.disabled,

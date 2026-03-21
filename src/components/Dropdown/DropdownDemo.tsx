@@ -25,7 +25,7 @@ export function DropdownDemo() {
     <div className="flex flex-col gap-12 items-center py-10">
       <div className="flex flex-wrap gap-8 items-center justify-center">
         {/* Profile Dropdown */}
-        <Dropdown align="right">
+        <Dropdown>
           <DropdownTrigger asChild>
             <Button variant="outlined" className="gap-2">
               <FiUser /> Account <FiChevronDown />
@@ -90,7 +90,7 @@ export function DropdownDemo() {
         <div className="bg-base-50 dark:bg-white/5 rounded-2xl p-6 border border-base-200 dark:border-base-800">
           <h4 className="text-sm font-bold mb-2">Context Aware</h4>
           <p className="text-sm text-base-500 dark:text-base-400">
-            Supports alignment, labels, separators, and custom icons for a professional feel.
+            Supports labels, separators, and custom icons for a professional feel.
           </p>
         </div>
       </div>
@@ -159,7 +159,7 @@ export function CustomTriggerDemo() {
   return (
     <div className="flex gap-8 items-center">
       {/* Icon button trigger */}
-      <Dropdown align="right">
+      <Dropdown>
         <DropdownTrigger asChild>
           <button className="p-2 rounded-full hover:bg-base-100 dark:hover:bg-white/10 transition-colors text-base-500 hover:text-base-900 dark:hover:text-white border border-base-200 dark:border-base-800 shadow-sm">
             <FiSettings size={20} />

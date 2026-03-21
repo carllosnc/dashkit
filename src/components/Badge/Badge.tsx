@@ -2,23 +2,24 @@ import * as React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '../../utils/cn';
 
-export type BadgeVariant = 'solid' | 'outline';
-export type BadgeColor = 'success' | 'warning' | 'error' | 'info';
+export type BadgeVariant = 'solid';
+export type BadgeColor = 'success' | 'warning' | 'error' | 'info' | 'base';
 export type BadgePosition = 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
 
 const colorStyles: Record<BadgeColor, string> = {
   success: "bg-emerald-500 text-white",
   warning: "bg-amber-500 text-white",
   error: "bg-red-500 text-white",
-  info: "bg-blue-500 text-white"
+  info: "bg-blue-500 text-white",
+  base: "bg-base-900 text-white dark:bg-white dark:text-base-950"
 };
 
-
-const outlineStyles: Record<BadgeColor, string> = {
-  success: "border-emerald-500 text-emerald-600 dark:text-emerald-400",
-  warning: "border-amber-500 text-amber-600 dark:text-amber-400",
-  error: "border-red-500 text-red-600 dark:text-red-400",
-  info: "border-blue-500 text-blue-600 dark:text-blue-400"
+const pulseStyles: Record<BadgeColor, string> = {
+  success: "bg-emerald-500",
+  warning: "bg-amber-500",
+  error: "bg-red-500",
+  info: "bg-blue-500",
+  base: "bg-base-900 dark:bg-white"
 };
 
 const positionClasses: Record<BadgePosition, string> = {
@@ -31,8 +32,6 @@ const positionClasses: Record<BadgePosition, string> = {
 export interface BadgeProps {
   /** Content to display inside the badge */
   content?: React.ReactNode;
-  /** Styling variant */
-  variant?: BadgeVariant;
   /** Color palette */
   color?: BadgeColor;
   /** Whether to show a pulse animation */
@@ -55,7 +54,6 @@ export interface BadgeProps {
  */
 export const Badge = ({
   content,
-  variant = 'solid',
   color = 'success',
   pulse = false,
   dot = false,
@@ -70,17 +68,16 @@ export const Badge = ({
   }, [content, max, dot]);
 
   const badgeStyles = React.useMemo(() => {
-    if (variant === 'outline') return `border ${outlineStyles[color]}`;
     return colorStyles[color];
-  }, [variant, color]);
+  }, [color]);
 
   return (
     <AnimatePresence>
       {show && (
         <motion.span
           className={cn(
-            "relative inline-flex items-center justify-center font-bold select-none whitespace-nowrap",
-            dot ? "w-2.5 h-2.5 rounded-full" : "min-w-[1.125rem] pt-[5px] pb-[3px] px-1.5 rounded-sm text-[11px] uppercase flex items-center justify-center leading-none",
+            "relative inline-flex items-center justify-center font-semibold select-none whitespace-nowrap",
+            dot ? "w-2.5 h-2.5 rounded-full" : "min-w-[1.125rem] pt-[5px] pb-[3px] px-1.5 rounded-sm text-[11px] flex items-center justify-center leading-none",
             badgeStyles,
             className
           )}
@@ -91,7 +88,7 @@ export const Badge = ({
               className={cn(
                 "absolute inset-0 animate-ping opacity-60",
                 dot ? "rounded-full" : "rounded-sm",
-                badgeStyles
+                pulseStyles[color]
               )} 
             />
           )}
