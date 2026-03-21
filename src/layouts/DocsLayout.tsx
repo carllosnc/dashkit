@@ -85,7 +85,7 @@ export function DocsLayout() {
   const currentPath = location.pathname;
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#030303] font-sans flex flex-col">
+    <div className="min-h-screen bg-base-bg dark:bg-base-dark-bg font-sans flex flex-col">
       {/* Navigation */}
       <Navbar>
         <NavbarBrand>
@@ -106,7 +106,7 @@ export function DocsLayout() {
         </NavbarLinks>
 
         <NavbarActions>
-          <div className="flex items-center gap-4 pl-0 sm:pl-4 sm:border-l border-base-200 dark:border-base-800">
+          <div className="flex items-center gap-4 pl-0 sm:pl-4 sm:border-l border-base-border dark:border-base-dark-border">
             <ThemeToggle />
             <IconButton 
               icon={<FiGithub size={20} />} 
@@ -139,7 +139,7 @@ export function DocsLayout() {
       {/* Main Layout */}
       <div className="flex-1 max-w-6xl w-full mx-auto px-4 md:px-6 flex md:grid md:grid-cols-[260px_1fr] gap-0 md:gap-12">
         {/* Sidebar */}
-        <aside className="py-12 border-r border-base-200 dark:border-base-800 hidden md:block shrink-0">
+        <aside className="py-12 border-r border-base-border dark:border-base-dark-border hidden md:block shrink-0">
           <div className="sticky top-28 h-[calc(100vh-140px)] overflow-y-auto pr-8 custom-scrollbar">
             <SidebarContent currentPath={currentPath} />
           </div>
