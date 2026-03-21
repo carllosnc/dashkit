@@ -11,9 +11,8 @@ export const NavbarDemo = () => {
         <Navbar sticky={false}>
           <NavbarBrand>
             <img src="/logo.svg" className="h-6 dark:invert" alt="Dashkit" />
-            <span className="text-lg tracking-tight text-base-950 dark:text-white">Dashkit UI</span>
           </NavbarBrand>
-          
+
           <NavbarLinks>
             <a href="#" className="text-sm font-medium text-base-950 dark:text-white">Docs</a>
             <a href="#" className="text-sm font-medium text-base-500 dark:text-base-400">Examples</a>
@@ -32,7 +31,6 @@ export const NavbarDemo = () => {
         <h3 className="text-sm font-medium text-base-500 uppercase tracking-wider px-4 md:px-0">Icon Actions & Dark Style</h3>
         <Navbar sticky={false}>
           <NavbarBrand>
-            <div className="size-8 rounded-lg bg-black dark:bg-white" />
             <span className="text-lg tracking-tight text-base-950 dark:text-white">Acme Corp</span>
           </NavbarBrand>
           
