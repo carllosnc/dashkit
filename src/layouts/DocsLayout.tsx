@@ -6,7 +6,7 @@ import {
   FiType, FiMessageSquare, FiTag, FiCheckSquare, FiDisc, FiList,
   FiSearch, FiToggleRight, FiMinus, FiColumns, FiLock, FiMaximize2,
   FiSidebar, FiMaximize, FiLayers, FiBell, FiMoreVertical, FiAward,
-  FiInbox, FiChevronRight, FiGrid, FiLayout, FiLoader, FiSliders, FiMoreHorizontal
+  FiInbox, FiChevronRight, FiGrid, FiLayout, FiLoader, FiSliders, FiMoreHorizontal, FiActivity
 } from 'react-icons/fi';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { ThemeToggle } from '../components/ThemeToggle';
@@ -52,6 +52,12 @@ const navItems = [
       { to: '/docs/skeleton', label: 'Skeleton', icon: <FiGrid size={16} /> },
       { to: '/docs/navbar', label: 'Navbar', icon: <FiLayout size={16} /> },
       { to: '/docs/spinner', label: 'Spinner', icon: <FiLoader size={16} /> },
+    ]
+  },
+  {
+    title: 'Charts',
+    links: [
+      { to: '/docs/area-chart', label: 'Area Chart', icon: <FiActivity size={16} /> },
     ]
   }
 ];

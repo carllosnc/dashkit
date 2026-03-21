@@ -1,0 +1,90 @@
+import { AreaChart } from '../components/AreaChart/AreaChart';
+
+# Area Chart
+
+The **AreaChart** component is a lightweight, responsive data visualization tool built using native SVG and **Framer Motion**. It's designed to be lean, performant, and deeply customizable through theme tokens.
+
+## Examples
+
+### Default Area Chart
+
+<Preview>
+<AreaChart 
+  data={[
+    { label: 'Jan', value: 10 },
+    { label: 'Feb', value: 25 },
+    { label: 'Mar', value: 18 },
+    { label: 'Apr', value: 35 },
+    { label: 'May', value: 28 },
+    { label: 'Jun', value: 45 },
+  ]} 
+  color="var(--color-blue-500)"
+/>
+</Preview>
+
+```tsx
+import { AreaChart } from 'dashkit-ui';
+
+const data = [
+  { label: 'Jan', value: 10 },
+  { label: 'Feb', value: 25 },
+  // ... more data
+];
+
+function Dashboard() {
+  return (
+    <AreaChart 
+      data={data} 
+      color="var(--color-blue-500)"
+    />
+  );
+}
+```
+
+### Color Variances
+
+You can control the line and fill color using CSS variables or any valid color string.
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <div className="p-6 border border-layout-border dark:border-layout-dark-border rounded-block bg-block-bg dark:bg-block-dark-bg">
+    <span className="text-xs font-bold uppercase tracking-widest text-base-400 mb-6 block">Success Variance</span>
+    <AreaChart 
+      data={[
+        { label: 'Mon', value: 50 },
+        { label: 'Tue', value: 70 },
+        { label: 'Wed', value: 65 },
+        { label: 'Thu', value: 90 },
+      ]} 
+      color="var(--color-base-success)"
+      height={150}
+    />
+  </div>
+  
+  <div className="p-6 border border-layout-border dark:border-layout-dark-border rounded-block bg-block-bg dark:bg-block-dark-bg">
+    <span className="text-xs font-bold uppercase tracking-widest text-base-400 mb-6 block">Error Variance</span>
+    <AreaChart 
+      data={[
+        { label: 'Mon', value: 90 },
+        { label: 'Tue', value: 60 },
+        { label: 'Wed', value: 45 },
+        { label: 'Thu', value: 20 },
+      ]} 
+      color="var(--color-base-error)"
+      height={150}
+    />
+  </div>
+</div>
+
+## API Reference
+
+### AreaChart
+
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `data` | `AreaChartDataPoint[]` | - | Array of objects with `label` and `value`. |
+| `height` | `number` | `200` | Height in pixels. |
+| `color` | `string` | `currentColor` | Color for the line and gradient area. |
+| `showGrid` | `boolean` | `true` | Display dashed horizontal lines. |
+| `showLabels` | `boolean` | `true` | Display X-axis labels. |
+| `animate` | `boolean` | `true` | Enable entrance animations. |
+| `className` | `string` | - | Additional CSS for the container. |
