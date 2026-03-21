@@ -32,9 +32,9 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
     const hasContent = isHorizontal && !!children;
 
     const baseStyles = cn(
-      "shrink-0 bg-base-200 dark:bg-base-800",
-      variant === "dashed" && "bg-transparent border-dashed border-base-200 dark:border-base-800",
-      variant === "dotted" && "bg-transparent border-dotted border-base-200 dark:border-base-800",
+      "shrink-0 bg-base-border dark:bg-base-dark-border",
+      variant === "dashed" && "bg-transparent border-dashed border-base-border dark:border-base-dark-border",
+      variant === "dotted" && "bg-transparent border-dotted border-base-border dark:border-base-dark-border",
       isHorizontal
         ? cn("w-full", variant === "solid" ? "h-[1px]" : "h-0 border-t")
         : cn("h-auto self-stretch", variant === "solid" ? "w-[1px]" : "w-0 border-l"),
@@ -51,7 +51,7 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
           <div
             className={cn(
               "flex-1",
-              variant === "solid" ? "h-[1px] bg-base-200 dark:bg-base-800" : "h-0 border-t border-base-200 dark:border-base-800",
+              variant === "solid" ? "h-[1px] bg-base-border dark:bg-base-dark-border" : "h-0 border-t border-base-border dark:border-base-dark-border",
               variant === "dashed" && "border-dashed",
               variant === "dotted" && "border-dotted",
               contentPosition === "left" && "hidden"
@@ -63,7 +63,7 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
           <div
             className={cn(
               "flex-1",
-              variant === "solid" ? "h-[1px] bg-base-200 dark:bg-base-800" : "h-0 border-t border-base-200 dark:border-base-800",
+              variant === "solid" ? "h-[1px] bg-base-border dark:bg-base-dark-border" : "h-0 border-t border-base-border dark:border-base-dark-border",
               variant === "dashed" && "border-dashed",
               variant === "dotted" && "border-dotted",
               contentPosition === "right" && "hidden"
