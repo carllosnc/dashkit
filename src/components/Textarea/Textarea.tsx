@@ -67,11 +67,11 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           className={cn(
             "w-full px-4 py-3 text-sm bg-white dark:bg-base-950 border rounded-md outline-none transition-all duration-200 resize-none",
             autoGrow && "overflow-hidden",
-            "border-base-300 dark:border-base-800 text-base-900 dark:text-white min-h-[100px]",
-            "focus:border-base-900 dark:focus:border-base-400",
+            "border-base-border dark:border-base-dark-border text-base-900 dark:text-white min-h-[100px]",
+            "focus:border-base-border-focus dark:focus:border-base-dark-border-focus",
             "focus:ring-4 focus:ring-base-100 dark:focus:ring-base-900/40",
             "placeholder:text-base-500 dark:placeholder:text-base-500",
-            "disabled:cursor-not-allowed disabled:bg-base-200 dark:disabled:bg-base-900 disabled:border-base-300 dark:disabled:border-base-800 disabled:text-base-400 dark:disabled:text-base-600",
+            "disabled:cursor-not-allowed disabled:bg-base-200 dark:disabled:bg-base-900 disabled:border-base-border dark:disabled:border-base-dark-border disabled:text-base-400 dark:disabled:text-base-600",
             {
               "border-red-500/50 focus:border-red-500 focus:ring-red-50 dark:border-red-500/30 dark:focus:border-red-500/50 dark:focus:ring-red-500/10": !!error,
             },
