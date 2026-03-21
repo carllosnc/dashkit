@@ -71,7 +71,7 @@
   --color-button-outlined-dark-bg: transparent;
   --color-button-outlined-dark-fg: var(--color-base-100);
   --color-button-outlined-dark-border: var(--color-base-700);
-  --color-button-outlined-dark-hover: var(--color-base-800);
+  --color-button-outlined-dark-hover: var(--color-base-900);
 
   --color-button-soft-bg: var(--color-base-200);
   --color-button-soft-fg: var(--color-base-700);
