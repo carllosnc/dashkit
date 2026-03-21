@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import { Navbar, NavbarBrand, NavbarLinks, NavbarActions } from '../components/Navbar/Navbar';
 import { IconButton } from '../components/IconButton/IconButton';
-import { FiGithub, FiMenu } from 'react-icons/fi';
+import { 
+  FiGithub, FiMenu, FiBookOpen, FiDownload, FiSquare, FiCircle, 
+  FiType, FiMessageSquare, FiTag, FiCheckSquare, FiDisc, FiList, 
+  FiSearch, FiToggleRight, FiMinus, FiColumns, FiLock, FiMaximize2, 
+  FiSidebar, FiMaximize, FiLayers, FiBell, FiMoreVertical, FiAward, 
+  FiInbox, FiChevronRight, FiGrid, FiLayout, FiLoader 
+} from 'react-icons/fi';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { ThemeToggle } from '../components/ThemeToggle';
 import { Footer } from '../components/Footer';
@@ -12,38 +18,38 @@ const navItems = [
   {
     title: 'Getting Started',
     links: [
-      { to: '/docs/introduction', label: 'Introduction' },
-      { to: '/docs/cli', label: 'Installation' },
+      { to: '/docs/introduction', label: 'Introduction', icon: <FiBookOpen size={16} /> },
+      { to: '/docs/cli', label: 'Installation', icon: <FiDownload size={16} /> },
     ]
   },
   {
     title: 'Components',
     links: [
-      { to: '/docs/button', label: 'Button' },
-      { to: '/docs/icon-button', label: 'Icon Button' },
-      { to: '/docs/input', label: 'Input' },
-      { to: '/docs/textarea', label: 'Textarea' },
-      { to: '/docs/chip', label: 'Chip' },
-      { to: '/docs/checkbox', label: 'Checkbox' },
-      { to: '/docs/radio', label: 'Radio' },
-      { to: '/docs/select', label: 'Select' },
-      { to: '/docs/combobox', label: 'Combobox' },
-      { to: '/docs/switch', label: 'Switch' },
-      { to: '/docs/divider', label: 'Divider' },
-      { to: '/docs/tabs', label: 'Tabs' },
-      { to: '/docs/otp-input', label: 'OTP Input' },
-      { to: '/docs/image-expander', label: 'Image Expander' },
-      { to: '/docs/drawer', label: 'Drawer' },
-      { to: '/docs/modal', label: 'Modal' },
-      { to: '/docs/accordion', label: 'Accordion' },
-      { to: '/docs/toast', label: 'Toast' },
-      { to: '/docs/dropdown-menu', label: 'Dropdown Menu' },
-      { to: '/docs/badge', label: 'Badge' },
-      { to: '/docs/card', label: 'Card' },
-      { to: '/docs/breadcrumb', label: 'Breadcrumb' },
-      { to: '/docs/skeleton', label: 'Skeleton' },
-      { to: '/docs/navbar', label: 'Navbar' },
-      { to: '/docs/spinner', label: 'Spinner' },
+      { to: '/docs/button', label: 'Button', icon: <FiSquare size={16} /> },
+      { to: '/docs/icon-button', label: 'Icon Button', icon: <FiCircle size={16} /> },
+      { to: '/docs/input', label: 'Input', icon: <FiType size={16} /> },
+      { to: '/docs/textarea', label: 'Textarea', icon: <FiMessageSquare size={16} /> },
+      { to: '/docs/chip', label: 'Chip', icon: <FiTag size={16} /> },
+      { to: '/docs/checkbox', label: 'Checkbox', icon: <FiCheckSquare size={16} /> },
+      { to: '/docs/radio', label: 'Radio', icon: <FiDisc size={16} /> },
+      { to: '/docs/select', label: 'Select', icon: <FiList size={16} /> },
+      { to: '/docs/combobox', label: 'Combobox', icon: <FiSearch size={16} /> },
+      { to: '/docs/switch', label: 'Switch', icon: <FiToggleRight size={16} /> },
+      { to: '/docs/divider', label: 'Divider', icon: <FiMinus size={16} /> },
+      { to: '/docs/tabs', label: 'Tabs', icon: <FiColumns size={16} /> },
+      { to: '/docs/otp-input', label: 'OTP Input', icon: <FiLock size={16} /> },
+      { to: '/docs/image-expander', label: 'Image Expander', icon: <FiMaximize2 size={16} /> },
+      { to: '/docs/drawer', label: 'Drawer', icon: <FiSidebar size={16} /> },
+      { to: '/docs/modal', label: 'Modal', icon: <FiMaximize size={16} /> },
+      { to: '/docs/accordion', label: 'Accordion', icon: <FiLayers size={16} /> },
+      { to: '/docs/toast', label: 'Toast', icon: <FiBell size={16} /> },
+      { to: '/docs/dropdown-menu', label: 'Dropdown Menu', icon: <FiMoreVertical size={16} /> },
+      { to: '/docs/badge', label: 'Badge', icon: <FiAward size={16} /> },
+      { to: '/docs/card', label: 'Card', icon: <FiInbox size={16} /> },
+      { to: '/docs/breadcrumb', label: 'Breadcrumb', icon: <FiChevronRight size={16} /> },
+      { to: '/docs/skeleton', label: 'Skeleton', icon: <FiGrid size={16} /> },
+      { to: '/docs/navbar', label: 'Navbar', icon: <FiLayout size={16} /> },
+      { to: '/docs/spinner', label: 'Spinner', icon: <FiLoader size={16} /> },
     ]
   }
 ];
@@ -63,12 +69,20 @@ function SidebarContent({ currentPath, onItemClick }: { currentPath: string, onI
                 to={link.to} 
                 onClick={onItemClick}
                 className={clsx(
-                  "px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
+                  "px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200 flex items-center gap-3",
                   (currentPath === link.to || (link.to === '/docs/introduction' && currentPath === '/docs'))
                     ? "bg-base-100 text-base-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
                     : "text-base-500 hover:text-base-900 hover:bg-base-50 dark:text-base-400 dark:hover:text-white dark:hover:bg-white/5"
                 )}
               >
+                <div className={clsx(
+                  "shrink-0 transition-colors duration-200",
+                  (currentPath === link.to || (link.to === '/docs/introduction' && currentPath === '/docs'))
+                    ? "text-base-900 dark:text-white"
+                    : "text-base-400 group-hover:text-base-900 dark:text-base-500 dark:group-hover:text-white"
+                )}>
+                  {link.icon}
+                </div>
                 {link.label}
               </Link>
             ))}

@@ -25,7 +25,7 @@ export const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
         )}
         {...props}
       >
-        <div className="max-w-7xl w-full mx-auto flex items-center justify-between gap-4">
+        <div className="w-full mx-auto flex items-center justify-between gap-4">
           {children}
         </div>
       </header>

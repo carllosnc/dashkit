@@ -53,9 +53,9 @@ export function DashboardExample() {
         </NavbarLinks>
 
         <NavbarActions>
-          <IconButton icon={<FiSearch size={18} />} className="text-base-400" />
+          <IconButton icon={<FiSearch size={18} />} />
           <FloatBadge dot color="error" pulse>
-            <IconButton icon={<FiBell size={18} />} className="text-base-400" />
+            <IconButton icon={<FiBell size={18} />} />
           </FloatBadge>
           <ThemeToggle />
           <Button onClick={() => setIsModalOpen(true)}>New Project</Button>
@@ -183,9 +183,11 @@ export function DashboardExample() {
                       <Badge content={item.status} color={item.color} />
                     </div>
                   ))}
-                  <Button variant="outlined" onClick={() => setIsDrawerOpen(true)}>
-                    Show more activity
-                  </Button>
+                  <div>
+                    <Button onClick={() => setIsDrawerOpen(true)}>
+                      Show more activity
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             </div>

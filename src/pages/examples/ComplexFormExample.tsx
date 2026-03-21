@@ -270,7 +270,7 @@ export const ComplexFormExample = () => {
             </section>
           </CardContent>
 
-          <CardFooter className="bg-base-bg dark:bg-base-dark-bg border-t border-base-border dark:border-base-dark-border/80 p-8 flex items-center justify-between">
+          <CardFooter className="p-8 flex items-center justify-between">
             <Button type="button" variant="outlined" leftIcon={<FiX />}>
               Discard
             </Button>

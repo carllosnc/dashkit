@@ -20,21 +20,23 @@ bunx carllosnc/dashkit add button
 
 Use the `variant` prop to switch between visual styles.
 
-<Preview>
+<Preview className="flex-wrap items-start">
   <Button variant="filled">Filled</Button>
   <Button variant="outlined">Outlined</Button>
+  <Button variant="soft">Soft</Button>
 </Preview>
 
 ```tsx
 <Button variant="filled">Filled</Button>
 <Button variant="outlined">Outlined</Button>
+<Button variant="soft">Soft</Button>
 ```
 
 ## With Icons
 
 Use `leftIcon` and `rightIcon` to add icons before or after the label.
 
-<Preview>
+<Preview className="flex-wrap items-start">
   <Button variant="filled" leftIcon={<FiDownload />}>
     Download Data
   </Button>
@@ -59,7 +61,7 @@ import { FiDownload, FiArrowRight } from 'react-icons/fi'
 
 Set the `loading` prop to show a spinner and disable the button. When loading, the left icon is replaced by the spinner and the right icon is hidden.
 
-<Preview>
+<Preview className="flex-wrap items-start">
   <Button variant="filled" loading>
     Saving Changes
   </Button>
@@ -78,7 +80,7 @@ Set the `loading` prop to show a spinner and disable the button. When loading, t
 
 Use the native `disabled` prop. The button becomes non-interactive with reduced opacity.
 
-<Preview>
+<Preview className="flex-wrap items-start">
   <Button variant="filled" disabled>Filled Disabled</Button>
   <Button variant="outlined" disabled>Outlined Disabled</Button>
 </Preview>
@@ -92,7 +94,7 @@ Use the native `disabled` prop. The button becomes non-interactive with reduced 
 
 If you omit the `children` (label) and provide only an icon, the button will automatically switch to a circular/square layout with balanced padding. **Note:** Always provide an `aria-label` for accessibility when using icon-only buttons.
 
-<Preview>
+<Preview className="flex-wrap items-start">
   <Button variant="filled" leftIcon={<FiDownload />} aria-label="Download" />
   <Button variant="outlined" leftIcon={<FiArrowRight />} aria-label="Next" />
 </Preview>
@@ -106,7 +108,7 @@ If you omit the `children` (label) and provide only an icon, the button will aut
 
 You can easily override or extend the default styles using the `className` prop. The component uses `tailwind-merge` internally, so your custom classes will automatically take precedence over the defaults without needing the `!` (important) modifier.
 
-<Preview>
+<Preview className="flex-wrap items-start">
   <Button className="rounded-xl bg-indigo-600 hover:bg-indigo-700">
     Custom Radius & Color
   </Button>
@@ -132,7 +134,7 @@ The component extends all native `ButtonHTMLAttributes<HTMLButtonElement>` props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `variant` | `'filled' \| 'outlined'` | `'filled'` | Visual style of the button. |
+| `variant` | `'filled' \| 'outlined' \| 'soft'` | `'filled'` | Visual style of the button. |
 | `leftIcon` | `ReactNode` | — | Icon element rendered before the label. Replaced by spinner when `loading`. |
 | `rightIcon` | `ReactNode` | — | Icon element rendered after the label. Hidden when `loading`. |
 | `loading` | `boolean` | `false` | Shows a spinner, disables the button, and hides icons. |

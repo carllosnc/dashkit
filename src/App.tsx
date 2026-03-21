@@ -37,17 +37,15 @@ function App() {
         </NavbarLinks>
 
         <NavbarActions>
-          <div className="flex items-center gap-4 pl-4 border-l border-base-200 dark:border-base-800">
-            <ThemeToggle />
-            <IconButton 
-              icon={<FiGithub size={20} />} 
-              href="https://github.com/carllosnc/dashkit" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              variant="ghost"
-              className="text-base-400 hover:text-base-900 dark:hover:text-white"
-            />
-          </div>
+          <ThemeToggle />
+          <IconButton 
+            icon={<FiGithub size={20} />} 
+            href="https://github.com/carllosnc/dashkit" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            variant="ghost"
+            className="text-base-400 hover:text-base-900 dark:hover:text-white"
+          />
         </NavbarActions>
       </Navbar>
 
