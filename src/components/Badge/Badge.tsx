@@ -11,7 +11,7 @@ const colorStyles: Record<BadgeColor, string> = {
   warning: "bg-base-warning dark:bg-base-warning-dark text-white",
   error: "bg-base-error dark:bg-base-error-dark text-white",
   info: "bg-base-info dark:bg-base-info-dark text-white",
-  base: "bg-base-900 text-white dark:bg-white dark:text-base-950"
+  base: "bg-base-900 text-white dark:bg-base-300 dark:text-base-950"
 };
 
 const pulseStyles: Record<BadgeColor, string> = {
