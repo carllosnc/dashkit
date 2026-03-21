@@ -76,11 +76,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             onChange={handleChange}
             className={cn(
               "w-full px-4 h-9 text-sm bg-white dark:bg-base-950 border rounded-md outline-none transition-all duration-200",
-              "border-base-300 dark:border-base-800 text-base-900 dark:text-white",
-              "focus:border-base-900 dark:focus:border-base-400",
+              "border-base-border dark:border-base-dark-border text-base-900 dark:text-white",
+              "focus:border-base-border-focus dark:focus:border-base-dark-border-focus",
               "focus:ring-4 focus:ring-base-100 dark:focus:ring-base-900/40",
               "placeholder:text-base-500 dark:placeholder:text-base-500",
-              "disabled:cursor-not-allowed disabled:bg-base-200 dark:disabled:bg-base-900 disabled:border-base-300 dark:disabled:border-base-800 disabled:text-base-400 dark:disabled:text-base-600",
+              "disabled:cursor-not-allowed disabled:bg-base-200 dark:disabled:bg-base-900 disabled:border-base-border dark:disabled:border-base-dark-border text-base-400 dark:disabled:text-base-600",
               {
                 "pl-11": !!leftIcon,
                 "pr-11": !!rightIcon,
