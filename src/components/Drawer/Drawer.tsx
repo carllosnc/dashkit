@@ -127,8 +127,8 @@ export const Drawer = ({
             }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
             className={cn(
-              "absolute bg-white dark:bg-base-950 shadow-2xl overflow-hidden flex flex-col",
-              "border-base-200 dark:border-base-800 touch-none",
+              "absolute bg-block-bg dark:bg-block-dark-bg shadow-2xl overflow-hidden flex flex-col",
+              "border-base-border dark:border-base-dark-border touch-none",
               {
                 "border-r": position === 'left',
                 "border-l": position === 'right',
@@ -146,7 +146,7 @@ export const Drawer = ({
                 <div className="flex items-center gap-3">
                   {/* Visual Drag Handle */}
                   <div className={cn(
-                    "rounded-full bg-base-200 dark:bg-base-800 shrink-0",
+                    "rounded-full bg-base-border dark:bg-base-dark-border shrink-0",
                     (position === 'left' || position === 'right') ? "w-1 h-8" : "w-8 h-1"
                   )} />
                   {title && (
@@ -175,7 +175,7 @@ export const Drawer = ({
             </div>
 
             {/* Footer shadow fade */}
-            <div className="h-6 w-full shrink-0 bg-gradient-to-t from-white dark:from-base-950 to-transparent pointer-events-none" />
+            <div className="h-6 w-full shrink-0 bg-gradient-to-t from-block-bg dark:from-block-dark-bg to-transparent pointer-events-none" />
           </motion.div>
         </div>
       )}
