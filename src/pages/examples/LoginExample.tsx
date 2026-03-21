@@ -6,8 +6,8 @@ import { Checkbox } from '../../components/Checkbox/Checkbox';
 
 export const LoginExample = () => {
   return (
-    <div className="w-full min-h-screen bg-white dark:bg-[#030303] flex relative">
-      <div className="hidden lg:block w-1/2 relative bg-[#030303] border-r border-base-200 dark:border-base-800">
+    <div className="w-full min-h-screen bg-base-bg dark:bg-base-dark-bg flex relative">
+      <div className="hidden lg:block w-1/2 relative bg-base-dark-bg border-r border-base-border dark:border-base-dark-border">
 
         <div className="relative h-full flex flex-col items-center justify-between p-12 text-white">
           <div className="flex items-center gap-3">
@@ -76,10 +76,10 @@ export const LoginExample = () => {
 
           <div className="relative text-center">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-base-200 dark:border-base-800" />
+              <div className="w-full border-t border-base-border dark:border-base-dark-border" />
             </div>
             <div className="relative flex justify-center text-[11px] font-bold uppercase tracking-[0.2em]">
-              <span className="bg-white dark:bg-[#030303] px-4 text-base-400">Or continue with</span>
+              <span className="bg-base-bg dark:bg-base-dark-bg px-4 text-base-400">Or continue with</span>
             </div>
           </div>
 
