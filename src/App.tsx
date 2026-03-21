@@ -17,25 +17,20 @@ const OG_DESCRIPTION = "Build professional tools with zero baggage. No heavy abs
 
 function App() {
   return (
-    <div className="flex flex-col min-h-screen bg-white dark:bg-[#030303] font-sans">
+    <div className="flex flex-col min-h-screen bg-base-bg dark:bg-base-dark-bg font-sans">
       <Helmet>
         <title>{TITLE}</title>
         <meta name="description" content={DESCRIPTION} />
         <meta property="og:title" content={TITLE} />
         <meta property="og:description" content={OG_DESCRIPTION} />
       </Helmet>
-      {/* Background Effect */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-base-100/50 dark:bg-base-900/20 blur-[120px]" />
-        <div className="absolute top-[20%] -right-[10%] w-[30%] h-[50%] rounded-full bg-base-100/30 dark:bg-base-800/10 blur-[100px]" />
-      </div>
 
       {/* Navigation */}
       <Navbar>
         <NavbarBrand>
           <img src="/logo.svg" alt="Dashkit UI Logo" className="h-6 dark:invert" />
         </NavbarBrand>
-        
+
         <NavbarLinks>
           <Link to="/docs" className="text-sm font-medium text-base-500 dark:text-base-400 hover:text-base-950 dark:hover:text-white transition-colors">Documentation</Link>
           <Link to="/examples" className="text-sm font-medium text-base-500 dark:text-base-400 hover:text-base-950 dark:hover:text-white transition-colors">Examples</Link>
