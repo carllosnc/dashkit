@@ -104,8 +104,8 @@ export const OtpInput = ({
           disabled={disabled}
           className={cn(
             "w-10 h-12 sm:w-11 sm:h-13 text-center text-lg sm:text-xl font-bold bg-white dark:bg-base-900 border rounded-md outline-none transition-all duration-300",
-            "border-base-400 dark:border-base-700 text-base-900 dark:text-base-100",
-            "focus:border-black dark:focus:border-white focus:ring-4 focus:ring-base-100 dark:focus:ring-base-950/40",
+            "border-base-border dark:border-base-dark-border text-base-900 dark:text-base-100",
+            "focus:border-base-border-focus dark:focus:border-base-dark-border-focus focus:ring-4 focus:ring-base-100 dark:focus:ring-base-950/40",
             "hover:border-base-500 dark:hover:border-base-500",
             disabled && "opacity-50 cursor-not-allowed bg-base-50 dark:bg-base-950",
             className
