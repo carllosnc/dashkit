@@ -12,7 +12,7 @@ export function BadgeDemo() {
         <div className="flex flex-wrap gap-4 items-center">
           <Badge content="Live" color="success" pulse />
           <Badge content="Pending" color="warning" />
-          <Badge content="Critical" variant="outline" color="error" />
+          <Badge content="Critical" color="error" />
           <Badge content="Experimental" color="info" />
           <Badge dot pulse color="success" />
         </div>

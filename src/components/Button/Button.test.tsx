@@ -21,15 +21,15 @@ describe('Button', () => {
   it('applies standard variant by default', () => {
     render(<Button>Click Me</Button>);
     const button = screen.getByRole('button');
-    expect(button).toHaveClass('bg-base');
-    expect(button).toHaveClass('text-white');
+    expect(button).toHaveClass('bg-button-filled-bg');
+    expect(button).toHaveClass('text-button-filled-fg');
   });
 
   it('applies outlined variant when passed', () => {
     render(<Button variant="outlined">Click Me</Button>);
     const button = screen.getByRole('button');
-    expect(button).toHaveClass('bg-transparent');
-    expect(button).toHaveClass('border-base-300');
+    expect(button).toHaveClass('bg-button-outlined-bg');
+    expect(button).toHaveClass('border-button-outlined-border');
   });
 
   it('passes generic attributes to button element', () => {

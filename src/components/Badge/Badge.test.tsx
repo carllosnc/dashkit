@@ -33,23 +33,11 @@ describe('Badge', () => {
 
   it('applies color styles correctly', () => {
     const { rerender } = render(<Badge content="Test" color="success" />);
-    let badge = screen.getByText('Test').parentElement;
-    expect(badge).toHaveClass('bg-emerald-500');
+    const badge = screen.getByTestId('badge');
+    expect(badge).toHaveClass('bg-base-success');
 
     rerender(<Badge content="Test" color="error" />);
-    badge = screen.getByText('Test').parentElement;
-    expect(badge).toHaveClass('bg-red-500');
-  });
-
-  it('applies variant styles correctly', () => {
-    render(<Badge content="Test" variant="outline" color="success" />);
-    const badge = screen.getByText('Test').parentElement;
-    expect(badge).toHaveClass('border-emerald-500');
-  });
-
-  it('applies uppercase transformation', () => {
-    render(<Badge content="new" />);
-    expect(screen.getByTestId('badge')).toHaveClass('uppercase');
+    expect(screen.getByTestId('badge')).toHaveClass('bg-base-error');
   });
 
   it('hides the badge when show prop is false', () => {

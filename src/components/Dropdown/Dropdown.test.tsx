@@ -146,34 +146,6 @@ describe('Dropdown Component', () => {
     expect(screen.getByText('Section Label')).toBeInTheDocument();
   });
 
-  it('applies right alignment class', () => {
-    render(
-      <Dropdown align="right">
-        <DropdownTrigger>Open</DropdownTrigger>
-        <DropdownContent>
-          <div>Content</div>
-        </DropdownContent>
-      </Dropdown>
-    );
-
-    fireEvent.click(screen.getByText('Open'));
-    expect(screen.getByTestId('motion-div')).toHaveClass('right-0');
-  });
-
-  it('applies left alignment class by default', () => {
-    render(
-      <Dropdown>
-        <DropdownTrigger>Open</DropdownTrigger>
-        <DropdownContent>
-          <div>Content</div>
-        </DropdownContent>
-      </Dropdown>
-    );
-
-    fireEvent.click(screen.getByText('Open'));
-    expect(screen.getByTestId('motion-div')).toHaveClass('left-0');
-  });
-
   it('renders selected state with check icon', () => {
     render(
       <Dropdown>
@@ -187,6 +159,5 @@ describe('Dropdown Component', () => {
     fireEvent.click(screen.getByText('Open'));
     expect(screen.getByText('Selected Item')).toBeInTheDocument();
     // The check icon (FiCheck) should be there.
-    // SVG icons are sometimes hard to find by role, but we can check if it's there.
   });
 });

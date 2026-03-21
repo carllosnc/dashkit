@@ -125,8 +125,8 @@ export function DashboardExample() {
               </div>
               <div className="text-2xl font-bold mb-1">94.2%</div>
               <div className="flex gap-1.5 mt-2">
-                 {[1,2,3,4,5].map(i => <div key={i} className="flex-1 h-3 rounded-sm bg-base-border dark:bg-base-dark-border" />)}
-                 <div className="flex-1 h-3 rounded-sm bg-base-900 dark:bg-white" />
+                 {[1,2,3,4,5].map(i => <div key={i} className="flex-1 h-2 rounded-sm bg-base-300 dark:bg-base-700" />)}
+                 <div className="flex-1 h-2 rounded-sm bg-base-900 dark:bg-base-200" />
               </div>
             </CardContent>
           </Card>

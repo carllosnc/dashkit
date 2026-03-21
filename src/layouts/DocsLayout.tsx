@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Navbar, NavbarBrand, NavbarLinks, NavbarActions } from '../components/Navbar/Navbar';
 import { IconButton } from '../components/IconButton/IconButton';
-import { 
-  FiGithub, FiMenu, FiBookOpen, FiDownload, FiSquare, FiCircle, 
-  FiType, FiMessageSquare, FiTag, FiCheckSquare, FiDisc, FiList, 
-  FiSearch, FiToggleRight, FiMinus, FiColumns, FiLock, FiMaximize2, 
-  FiSidebar, FiMaximize, FiLayers, FiBell, FiMoreVertical, FiAward, 
-  FiInbox, FiChevronRight, FiGrid, FiLayout, FiLoader 
+import {
+  FiGithub, FiMenu, FiBookOpen, FiDownload, FiSquare, FiCircle,
+  FiType, FiMessageSquare, FiTag, FiCheckSquare, FiDisc, FiList,
+  FiSearch, FiToggleRight, FiMinus, FiColumns, FiLock, FiMaximize2,
+  FiSidebar, FiMaximize, FiLayers, FiBell, FiMoreVertical, FiAward,
+  FiInbox, FiChevronRight, FiGrid, FiLayout, FiLoader
 } from 'react-icons/fi';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { ThemeToggle } from '../components/ThemeToggle';
@@ -64,9 +64,9 @@ function SidebarContent({ currentPath, onItemClick }: { currentPath: string, onI
           </h4>
           <nav className="flex flex-col gap-1">
             {section.links.map((link) => (
-              <Link 
+              <Link
                 key={link.to}
-                to={link.to} 
+                to={link.to}
                 onClick={onItemClick}
                 className={clsx(
                   "px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200 flex items-center gap-3",
@@ -103,8 +103,8 @@ export function DocsLayout() {
       {/* Navigation */}
       <Navbar>
         <NavbarBrand>
-          <IconButton 
-            icon={<FiMenu size={20} />} 
+          <IconButton
+            icon={<FiMenu size={20} />}
             onClick={() => setIsMobileMenuOpen(true)}
             variant="ghost"
             className="md:hidden text-base-500 dark:text-base-400"
@@ -113,39 +113,37 @@ export function DocsLayout() {
             <img src="/logo.svg" alt="Dashkit UI Logo" className="h-6 dark:invert" />
           </Link>
         </NavbarBrand>
-        
+
         <NavbarLinks>
           <Link to="/docs" className="text-sm font-medium text-base-950 dark:text-white">Documentation</Link>
           <Link to="/examples" className="text-sm font-medium text-base-500 dark:text-base-400 hover:text-base-950 dark:hover:text-white transition-colors">Examples</Link>
         </NavbarLinks>
 
         <NavbarActions>
-          <div className="flex items-center gap-4 pl-0 sm:pl-4 sm:border-l border-layout-border dark:border-layout-dark-border">
             <ThemeToggle />
-            <IconButton 
-              icon={<FiGithub size={20} />} 
-              href="https://github.com/carllosnc/dashkit" 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <IconButton
+              icon={<FiGithub size={20} />}
+              href="https://github.com/carllosnc/dashkit"
+              target="_blank"
+              rel="noopener noreferrer"
               variant="ghost"
               className="text-base-400 hover:text-base-900 dark:hover:text-white"
             />
-          </div>
         </NavbarActions>
       </Navbar>
 
       {/* Mobile Drawer */}
-      <Drawer 
-        isOpen={isMobileMenuOpen} 
-        onClose={() => setIsMobileMenuOpen(false)} 
+      <Drawer
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
         position="left"
         title="Documentation"
         size="w-[80%] max-w-[300px]"
       >
         <div className="py-4">
-          <SidebarContent 
-            currentPath={currentPath} 
-            onItemClick={() => setIsMobileMenuOpen(false)} 
+          <SidebarContent
+            currentPath={currentPath}
+            onItemClick={() => setIsMobileMenuOpen(false)}
           />
         </div>
       </Drawer>
