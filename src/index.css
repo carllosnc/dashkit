@@ -1,53 +1,10 @@
 @import "tailwindcss";
+@import "./dashkit.css";
 @plugin "@tailwindcss/typography";
 @import "@fontsource-variable/inter";
 
 @theme {
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
-
-  /* Base colors */
-  --color-base: var(--color-neutral-950);
-  --color-base-50: var(--color-neutral-50);
-  --color-base-100: var(--color-neutral-100);
-  --color-base-200: var(--color-neutral-200);
-  --color-base-300: var(--color-neutral-300);
-  --color-base-400: var(--color-neutral-400);
-  --color-base-500: var(--color-neutral-500);
-  --color-base-600: var(--color-neutral-600);
-  --color-base-700: var(--color-neutral-700);
-  --color-base-800: var(--color-neutral-800);
-  --color-base-900: var(--color-neutral-900);
-  --color-base-950: var(--color-neutral-950);
-
-  /* Background */
-  --color-base-bg: var(--color-white);
-  --color-base-dark-bg: var(--color-base-950);
-
-  /* Borders */
-  --color-base-border: var(--color-base-300);
-  --color-base-dark-border: var(--color-base-800);
-  --color-base-border-focus: var(--color-base-600);
-  --color-base-dark-border-focus: var(--color-base-600);
-
-  /* Success */
-  --color-base-success: var(--color-green-500);
-  --color-base-success-dark: var(--color-green-400);
-
-  /* Error */
-  --color-base-error: var(--color-red-500);
-  --color-base-error-dark: var(--color-red-400);
-
-  /* Warning */
-  --color-base-warning: var(--color-amber-500);
-  --color-base-warning-dark: var(--color-amber-500);
-
-  /* Info */
-  --color-base-info: var(--color-blue-500);
-  --color-base-info-dark: var(--color-blue-500);
-
-  /* Block */
-  --color-block-bg: var(--color-white);
-  --color-block-dark-bg: var(--color-base-900);
 }
 
 @variant dark (&:where(.dark, .dark *));
