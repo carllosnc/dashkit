@@ -86,7 +86,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           "text-sm border",
           {
             "bg-base text-white border-transparent hover:bg-base-900 dark:bg-white dark:text-base-950 dark:hover:bg-base-100": variant === 'filled',
-            "bg-transparent text-base-800 border-base-300 hover:bg-base-100 dark:text-base-100 dark:border-base-800 dark:hover:bg-base-900/50": variant === 'outlined',
+            "bg-transparent text-base-800 border-base-border hover:bg-base-100 dark:text-base-100 dark:border-base-dark-border dark:hover:bg-base-900/50": variant === 'outlined',
             "opacity-60 cursor-not-allowed": loading || disabled,
             // Sizes
             "h-7 text-xs": size === 'sm',
