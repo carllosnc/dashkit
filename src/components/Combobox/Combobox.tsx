@@ -189,7 +189,7 @@ export const Combobox = ({
           placeholder={multiple && selectedOptions.length > 0 ? "Add more..." : placeholder}
           autoComplete="off"
           className={cn(
-            "w-full h-11 pl-10 pr-10 text-sm bg-white dark:bg-base-950 border rounded-md transition-all duration-200",
+            "w-full h-9 pl-10 pr-10 text-sm bg-white dark:bg-base-950 border rounded-md transition-all duration-200",
             "border-base-300 dark:border-base-800 outline-none",
             "focus:border-black dark:focus:border-white focus:ring-4 focus:ring-base-100 dark:focus:ring-base-900/40",
             "placeholder:text-base-500 dark:placeholder:text-base-500",

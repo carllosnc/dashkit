@@ -75,7 +75,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             onChange={handleChange}
             className={cn(
-              "w-full px-4 h-10 text-sm bg-white dark:bg-base-950 border rounded-md outline-none transition-all duration-200",
+              "w-full px-4 h-9 text-sm bg-white dark:bg-base-950 border rounded-md outline-none transition-all duration-200",
               "border-base-300 dark:border-base-800 text-base-900 dark:text-white",
               "focus:border-base-900 dark:focus:border-base-400",
               "focus:ring-4 focus:ring-base-100 dark:focus:ring-base-900/40",

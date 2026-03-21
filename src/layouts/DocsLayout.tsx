@@ -29,6 +29,7 @@ const navItems = [
       { to: '/docs/select', label: 'Select' },
       { to: '/docs/combobox', label: 'Combobox' },
       { to: '/docs/switch', label: 'Switch' },
+      { to: '/docs/divider', label: 'Divider' },
       { to: '/docs/tabs', label: 'Tabs' },
       { to: '/docs/otp-input', label: 'OTP Input' },
       { to: '/docs/image-expander', label: 'Image Expander' },

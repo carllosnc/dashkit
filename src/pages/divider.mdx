@@ -1,0 +1,52 @@
+# Divider
+
+A versatile component to visually separate sections of content with horizontal or vertical lines.
+
+## Import
+
+```tsx
+import { Divider } from '@/components/Divider/Divider';
+```
+
+## Installation
+
+```bash
+bunx carllosnc/dashkit add divider
+```
+
+## Usage
+
+```tsx
+import { Divider } from '@/components/Divider/Divider';
+
+export default function App() {
+  return (
+    <div className="flex flex-col gap-6 w-full">
+      <Divider />
+      <Divider>OR</Divider>
+      <div className="flex items-center h-10 gap-4">
+        <span>Option A</span>
+        <Divider orientation="vertical" />
+        <span>Option B</span>
+      </div>
+    </div>
+  );
+}
+```
+
+## Overview
+
+Dividers help create visual hierarchy by grouping related content or providing clear breaks between different sections.
+
+<Preview>
+  <DividerDemo />
+</Preview>
+
+## Props
+
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | The orientation of the divider. |
+| `variant` | `'solid' \| 'dashed' \| 'dotted'` | `'solid'` | The visual style of the divider line. |
+| `children` | `ReactNode` | `-` | Optional content to display in the middle (horizontal only). |
+| `contentPosition` | `'left' \| 'center' \| 'right'` | `'center'` | Position of the content relative to the line. |

@@ -17,6 +17,8 @@ import { Chip } from '../components/Chip/Chip';
 import { ChipDemo } from '../components/Chip/ChipDemo';
 import { Combobox } from '../components/Combobox/Combobox';
 import { ComboboxDemo } from '../components/Combobox/ComboboxDemo';
+import { Divider } from '../components/Divider/Divider';
+import { DividerDemo } from '../components/Divider/DividerDemo';
 import { Drawer } from '../components/Drawer/Drawer';
 import { DrawerDemo } from '../components/Drawer/DrawerDemo';
 import { Modal } from '../components/Modal/Modal';
@@ -142,6 +144,8 @@ const components: Record<string, ElementType> = {
   RadioDemo,
   Select,
   SelectDemo,
+  Divider,
+  DividerDemo,
   Switch,
   SwitchDemo,
   Textarea,
@@ -225,7 +229,7 @@ export function MdxWrapper({ Component }: { Component: MdxComponent }) {
   }, [Component]);
 
   return (
-    <div className="prose dark:prose-invert max-w-full" ref={containerRef}>
+    <div className="prose prose-neutral dark:prose-invert max-w-full" ref={containerRef}>
       <Helmet>
         <title>{title}</title>
         <meta name="description" content={description} />

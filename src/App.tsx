@@ -8,7 +8,7 @@ import { ThemeToggle } from './components/ThemeToggle'
 import { Helmet } from 'react-helmet-async'
 import { Footer } from './components/Footer'
 
-const AVAILABLE_COMPONENTS = ["badge", "button", "card", "input", "skeleton", "tabs", "modal", "drawer"];
+const AVAILABLE_COMPONENTS = ["badge", "button", "divider", "card", "input", "icon-button", "skeleton", "tabs", "modal", "drawer"];
 const TITLE = "Dashkit UI | Lean, Simpler React Component Library";
 const DESCRIPTION = "A leaner, simpler React component library focused on low dependency counts and total code ownership.";
 const TAGLINE_MAIN = "Base components";

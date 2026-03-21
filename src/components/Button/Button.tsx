@@ -89,9 +89,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             "bg-transparent text-base-800 border-base-300 hover:bg-base-100 dark:text-base-100 dark:border-base-800 dark:hover:bg-base-900/50": variant === 'outlined',
             "opacity-60 cursor-not-allowed": loading || disabled,
             // Sizes
-            "h-8 text-xs": size === 'sm',
-            "h-10 text-sm": size === 'md',
-            "h-12 text-base": size === 'lg',
+            "h-7 text-xs": size === 'sm',
+            "h-9 text-sm": size === 'md',
+            "h-11 text-base": size === 'lg',
             // Layout
             "gap-2 px-4 py-[5px]": !isIconOnly,
             "px-2": size === 'sm' && !isIconOnly,

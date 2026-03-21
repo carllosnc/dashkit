@@ -10,6 +10,7 @@ import RadioDocs from './pages/radio.mdx'
 import SelectDocs from './pages/select.mdx'
 import SwitchDocs from './pages/switch.mdx'
 import TabsDocs from './pages/tabs.mdx'
+import DividerDocs from './pages/divider.mdx'
 import OtpInputDocs from './pages/otp-input.mdx'
 import ImageExpanderDocs from './pages/image-expander.mdx'
 import DrawerDocs from './pages/drawer.mdx'
@@ -52,30 +53,31 @@ createRoot(document.getElementById('root')!).render(
                 <Route index element={<MdxWrapper Component={IntroductionDocs} />} />
                 <Route path="introduction" element={<MdxWrapper Component={IntroductionDocs} />} />
                 <Route path="cli" element={<MdxWrapper Component={CliDocs} />} />
+                <Route path="accordion" element={<MdxWrapper Component={AccordionDocs} />} />
+                <Route path="badge" element={<MdxWrapper Component={BadgeDocs} />} />
+                <Route path="breadcrumb" element={<MdxWrapper Component={BreadcrumbDocs} />} />
                 <Route path="button" element={<MdxWrapper Component={ButtonDocs} />} />
-                <Route path="input" element={<MdxWrapper Component={InputDocs} />} />
-                <Route path="textarea" element={<MdxWrapper Component={TextareaDocs} />} />
-                <Route path="chip" element={<MdxWrapper Component={ChipDocs} />} />
+                <Route path="card" element={<MdxWrapper Component={CardDocs} />} />
                 <Route path="checkbox" element={<MdxWrapper Component={CheckboxDocs} />} />
+                <Route path="chip" element={<MdxWrapper Component={ChipDocs} />} />
+                <Route path="combobox" element={<MdxWrapper Component={ComboboxDocs} />} />
+                <Route path="divider" element={<MdxWrapper Component={DividerDocs} />} />
+                <Route path="drawer" element={<MdxWrapper Component={DrawerDocs} />} />
+                <Route path="dropdown-menu" element={<MdxWrapper Component={DropdownMenuDocs} />} />
+                <Route path="icon-button" element={<MdxWrapper Component={IconButtonDocs} />} />
+                <Route path="image-expander" element={<MdxWrapper Component={ImageExpanderDocs} />} />
+                <Route path="input" element={<MdxWrapper Component={InputDocs} />} />
+                <Route path="modal" element={<MdxWrapper Component={ModalDocs} />} />
+                <Route path="navbar" element={<MdxWrapper Component={NavbarDocs} />} />
+                <Route path="otp-input" element={<MdxWrapper Component={OtpInputDocs} />} />
                 <Route path="radio" element={<MdxWrapper Component={RadioDocs} />} />
                 <Route path="select" element={<MdxWrapper Component={SelectDocs} />} />
-                <Route path="combobox" element={<MdxWrapper Component={ComboboxDocs} />} />
+                <Route path="skeleton" element={<MdxWrapper Component={SkeletonDocs} />} />
+                <Route path="spinner" element={<MdxWrapper Component={SpinnerDocs} />} />
                 <Route path="switch" element={<MdxWrapper Component={SwitchDocs} />} />
                 <Route path="tabs" element={<MdxWrapper Component={TabsDocs} />} />
-                <Route path="otp-input" element={<MdxWrapper Component={OtpInputDocs} />} />
-                <Route path="image-expander" element={<MdxWrapper Component={ImageExpanderDocs} />} />
-                <Route path="drawer" element={<MdxWrapper Component={DrawerDocs} />} />
-                <Route path="modal" element={<MdxWrapper Component={ModalDocs} />} />
-                <Route path="accordion" element={<MdxWrapper Component={AccordionDocs} />} />
+                <Route path="textarea" element={<MdxWrapper Component={TextareaDocs} />} />
                 <Route path="toast" element={<MdxWrapper Component={ToastDocs} />} />
-                <Route path="dropdown-menu" element={<MdxWrapper Component={DropdownMenuDocs} />} />
-                <Route path="badge" element={<MdxWrapper Component={BadgeDocs} />} />
-                <Route path="card" element={<MdxWrapper Component={CardDocs} />} />
-                <Route path="skeleton" element={<MdxWrapper Component={SkeletonDocs} />} />
-                <Route path="breadcrumb" element={<MdxWrapper Component={BreadcrumbDocs} />} />
-                <Route path="spinner" element={<MdxWrapper Component={SpinnerDocs} />} />
-                <Route path="icon-button" element={<MdxWrapper Component={IconButtonDocs} />} />
-                <Route path="navbar" element={<MdxWrapper Component={NavbarDocs} />} />
               </Route>
               <Route path="/examples">
                 <Route index element={<ExamplesList />} />

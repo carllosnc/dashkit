@@ -37,7 +37,7 @@ export const IconButton = forwardRef<HTMLElement, IconButtonProps>(
         "opacity-50 cursor-not-allowed": 'disabled' in props && props.disabled,
 
         // Box Size matched to default Button Component height
-        "size-10": true,
+        "size-9": true,
       },
       className
     );
@@ -45,7 +45,7 @@ export const IconButton = forwardRef<HTMLElement, IconButtonProps>(
     const iconSizeClasses = cn(
       "flex items-center justify-center transition-transform group-hover:scale-110",
       {
-        "size-5": true,
+        "size-[18px]": true,
       }
     );
 

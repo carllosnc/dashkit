@@ -106,7 +106,7 @@ export const Select = ({
           aria-haspopup="listbox"
           aria-expanded={isOpen}
           className={cn(
-            "w-full px-4 h-10 text-sm bg-white dark:bg-base-950 border rounded-md outline-none transition-all duration-200",
+            "w-full px-4 h-9 text-sm bg-white dark:bg-base-950 border rounded-md outline-none transition-all duration-200",
             "border-base-300 dark:border-base-800 text-left",
             "flex items-center justify-between gap-2",
             "focus:border-black dark:focus:border-white focus:ring-4 focus:ring-base-100 dark:focus:ring-base-900/40",
