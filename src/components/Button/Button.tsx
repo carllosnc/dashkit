@@ -10,7 +10,7 @@ function cn(...inputs: ClassValue[]) {
 }
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'filled' | 'outlined';
+  variant?: 'filled' | 'outlined' | 'soft';
   size?: 'sm' | 'md' | 'lg';
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
@@ -87,6 +87,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           {
             "bg-base text-white border-transparent hover:bg-base-900 dark:bg-white dark:text-base-950 dark:hover:bg-base-100": variant === 'filled',
             "bg-transparent text-base-800 border-base-border hover:bg-base-100 dark:text-base-100 dark:border-base-dark-border dark:hover:bg-base-900/50": variant === 'outlined',
+            "bg-base-100 text-base-700 border-transparent hover:bg-base-200 dark:bg-white/15 dark:text-white dark:hover:bg-white/20": variant === 'soft',
             "opacity-60 cursor-not-allowed": loading || disabled,
             // Sizes
             "h-7 text-xs": size === 'sm',
