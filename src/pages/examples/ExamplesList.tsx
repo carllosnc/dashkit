@@ -3,7 +3,6 @@ import { ThemeToggle } from '../../components/ThemeToggle';
 import { Navbar, NavbarBrand, NavbarLinks, NavbarActions } from '../../components/Navbar/Navbar';
 import { IconButton } from '../../components/IconButton/IconButton';
 import { FiGithub, FiArrowRight, FiArrowLeft } from 'react-icons/fi';
-import { Badge } from '../../components/Badge/Badge';
 
 const examples = [
   {
@@ -86,11 +85,6 @@ export const ExamplesList = () => {
                   <h3 className="text-2xl font-bold text-base-950 dark:text-white group-hover:text-blue-500 dark:group-hover:text-sky-400 transition-colors">
                     {example.title}
                   </h3>
-                  <div className="flex gap-2">
-                    {example.tags.map(tag => (
-                      <Badge key={tag} content={tag} color="info" variant="solid" className="text-[10px] py-0 h-5" />
-                    ))}
-                  </div>
                 </div>
                 <p className="text-base-500 dark:text-base-400 max-w-2xl leading-relaxed">
                   {example.description}
