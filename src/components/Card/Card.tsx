@@ -120,7 +120,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
         className={cn(
           "bg-white dark:bg-base-900 overflow-hidden flex flex-col font-sans",
           bordered && "border border-base-200 dark:border-base-800 rounded-lg",
-          shadowed && "shadow-xl shadow-base-200/50 dark:shadow-black/40",
+          shadowed && "shadow-md shadow-base-200/50 dark:shadow-black/40",
           className
         )}
       >

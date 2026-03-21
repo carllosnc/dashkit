@@ -1,16 +1,8 @@
 # Icon Button
 
 <p className="text-xl text-base-500 dark:text-base-400 mt-2 mb-8">
-  A premium, specialized button for icon-only actions with customizable scale, variant, and rounding.
+  A premium, specialized button for icon-only actions with customizable variant and rounding options.
 </p>
-
-## Overview
-
-The `IconButton` component provides a consistent container for circular or rounded square icon triggers. It's often used in toolbars, navigation bars, and as utility shortcuts throughout application layouts.
-
-<Preview>
-  <IconButtonDemo />
-</Preview>
 
 ## Installation
 
@@ -27,20 +19,27 @@ import { FiEdit, FiTrash, FiShare } from 'react-icons/fi';
 export default function Actions() {
   return (
     <div className="flex gap-4">
-      <IconButton icon={<FiEdit />} variant="soft" size="md" />
-      <IconButton icon={<FiShare />} variant="ghost" size="sm" />
-      <IconButton icon={<FiTrash />} variant="filled" size="lg" rounded />
+      <IconButton icon={<FiEdit />} variant="soft" />
+      <IconButton icon={<FiShare />} variant="ghost" />
+      <IconButton icon={<FiTrash />} variant="filled" rounded />
     </div>
   );
 }
 ```
+
+## Overview
+
+The `IconButton` component provides a consistent container for circular or rounded square icon triggers. It's often used in toolbars, navigation bars, and as utility shortcuts throughout application layouts.
+
+<Preview>
+  <IconButtonDemo />
+</Preview>
 
 ## Props
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
 | `icon` | `ReactNode` | `-` | The icon component to render inside the button. |
-| `variant` | `'filled' \| 'outlined' \| 'soft' \| 'ghost'` | `'soft'` | Visual style variant of the button. |
-| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'sm'` | Box size and icon scale of the component. |
-| `rounded` | `boolean` | `false` | If true, applies `rounded-full`, otherwise `rounded-xl`. |
+| `variant` | `'filled' \| 'soft' \| 'ghost'` | `'soft'` | Visual style variant of the button. |
+| `rounded` | `boolean` | `false` | If true, applies `rounded-full`, otherwise `rounded-md`. |
 | `disabled` | `boolean` | `false` | Whether the button is interactive. |

@@ -195,7 +195,7 @@ const components: Record<string, ElementType> = {
   Breadcrumb,
   BreadcrumbDemo,
   Preview: ({ children }: { children: ReactNode }) => (
-    <div className="not-prose flex flex-wrap gap-4 p-4 md:p-6 rounded-lg bg-base-50 dark:bg-base-900 border border-base-200 dark:border-base-800">
+    <div className="not-prose border border-base-200 dark:border-base-800 rounded-lg flex flex-col gap-8 py-8 px-8 first:pt-0">
       {children}
     </div>
   ),

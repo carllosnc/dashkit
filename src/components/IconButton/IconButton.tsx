@@ -5,8 +5,6 @@ import { cn } from '../../utils/cn';
 type IconButtonBaseProps = {
   /** The variant style of the button. Defaults to 'soft'. */
   variant?: 'filled' | 'ghost' | 'soft';
-  /** The scale of the button. Defaults to 'sm'. */
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   /** The icon element to render. */
   icon: ReactNode;
   /** Whether the button should be perfectly circular. Defaults to false (rounded-xl). */
@@ -25,7 +23,7 @@ export type IconButtonProps = IconButtonBaseProps &
  * @see https://dashkit-ui.com/docs/icon-button
  */
 export const IconButton = forwardRef<HTMLElement, IconButtonProps>(
-  ({ className, variant = 'soft', size = 'sm', icon, rounded = false, ...props }, ref) => {
+  ({ className, variant = 'soft', icon, rounded = false, ...props }, ref) => {
     const isLink = 'href' in props && props.href !== undefined;
 
     const commonClasses = cn(
@@ -38,12 +36,8 @@ export const IconButton = forwardRef<HTMLElement, IconButtonProps>(
         "bg-transparent text-base-500 border-transparent hover:bg-base-100 dark:text-base-400 dark:hover:bg-white/5": variant === 'ghost',
         "opacity-50 cursor-not-allowed": 'disabled' in props && props.disabled,
 
-        // Sizes (Box Size)
-        "size-7": size === 'xs',
-        "size-9": size === 'sm',
-        "size-11": size === 'md',
-        "size-14": size === 'lg',
-        "size-20": size === 'xl',
+        // Box Size matched to default Button Component height
+        "size-10": true,
       },
       className
     );
@@ -51,11 +45,7 @@ export const IconButton = forwardRef<HTMLElement, IconButtonProps>(
     const iconSizeClasses = cn(
       "flex items-center justify-center transition-transform group-hover:scale-110",
       {
-        "size-4": size === 'xs',
-        "size-5": size === 'sm',
-        "size-6": size === 'md',
-        "size-8": size === 'lg',
-        "size-12": size === 'xl',
+        "size-5": true,
       }
     );
 
