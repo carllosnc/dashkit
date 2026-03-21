@@ -32,7 +32,7 @@ export const IconButton = forwardRef<HTMLElement, IconButtonProps>(
       {
         // Variants
         "bg-base-950 text-white border-transparent hover:bg-black dark:bg-white dark:text-base-950 dark:hover:bg-base-100": variant === 'filled',
-        "bg-base-100 text-base-900 border-transparent hover:bg-base-200 dark:bg-white/10 dark:text-white dark:hover:bg-white/15": variant === 'soft',
+        "bg-base-100 text-base-950 border-transparent hover:bg-base-200 dark:bg-white/15 dark:text-white dark:hover:bg-white/20": variant === 'soft',
         "bg-transparent text-base-500 border-transparent hover:bg-base-100 dark:text-base-400 dark:hover:bg-white/5": variant === 'ghost',
         "opacity-50 cursor-not-allowed": 'disabled' in props && props.disabled,
 
