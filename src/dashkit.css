@@ -208,3 +208,25 @@
   --color-switch-focus-ring: var(--color-base-100);
   --color-switch-dark-focus-ring: color-mix(in srgb, var(--color-base-900) 40%, transparent);
 }
+
+/* Tabs */
+@theme {
+  --radius-tabs: var(--radius-xl);
+  --radius-tabs-trigger: var(--radius-lg);
+
+  --color-tabs-list-bg: var(--color-base-100);
+  --color-tabs-list-dark-bg: color-mix(in srgb, var(--color-base-800) 80%, transparent);
+
+  --color-tabs-trigger-fg: var(--color-base-500);
+  --color-tabs-trigger-dark-fg: var(--color-base-400);
+
+  --color-tabs-trigger-hover-fg: var(--color-base-700);
+  --color-tabs-trigger-hover-dark-fg: var(--color-base-200);
+
+  --color-tabs-trigger-active-fg: var(--color-base-950);
+  --color-tabs-trigger-active-dark-fg: var(--color-white);
+
+  --color-tabs-trigger-active-bg: var(--color-white);
+  --color-tabs-trigger-active-dark-bg: var(--color-base-950);
+}
+

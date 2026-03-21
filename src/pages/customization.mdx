@@ -1,0 +1,103 @@
+# Customization
+
+Dashkit UI components are built to be deeply customizable through **CSS Design Tokens**. Instead of complex configuration files, Dashkit leverages **Tailwind CSS v4's CSS-first theme system**.
+
+All global and component-specific styles are defined in `src/dashkit.css`.
+
+## How Tokens Work
+
+Dashkit uses standard CSS variables defined within a `@theme` block. These variables are automatically picked up by Tailwind and made available as utility classes.
+
+### Global Tokens
+
+Global tokens define the core brand and layout colors used across all components.
+
+```css
+@theme {
+  /* Base neutral scale */
+  --color-base-50: var(--color-neutral-50);
+  --color-base-950: var(--color-neutral-950);
+
+  /* Status colors */
+  --color-base-success: var(--color-green-500);
+  --color-base-error: var(--color-red-500);
+}
+```
+
+### Component-Specific Tokens
+
+Most components in Dashkit have their own set of tokens for colors, radii, and shadows. For example, the `Button` tokens:
+
+```css
+@theme {
+  --radius-button: var(--radius-md);
+  --color-button-filled-bg: var(--color-base-950);
+  --color-button-filled-dark-bg: var(--color-white);
+}
+```
+
+By modifying these tokens, you can globally change the appearance of all Button instances in your application without touching the component files.
+
+## Customizing Your Theme
+
+To customize Dashkit, simply edit the values in `src/dashkit.css`.
+
+### Example: Customizing Roundness
+
+If you want a more rounded look for your entire application, you can update the radius tokens:
+
+```css
+@theme {
+  --radius-button: var(--radius-full);
+  --radius-input: var(--radius-lg);
+  --radius-tabs: var(--radius-full);
+}
+```
+
+### Example: Custom Brand Color
+
+To change the primary brand color (used by default in several components), update the `base-950` and `base-900` tokens:
+
+```css
+@theme {
+  --color-base-950: #1a1a1a;
+  --color-base-900: #262626;
+}
+```
+
+## Creating Your Own Tokens
+
+When building your own components, you can add new tokens to the `@theme` block in `dashkit.css` to keep your design consistent:
+
+1.  **Define the token** in `dashkit.css`:
+    ```css
+    @theme {
+      --color-my-component-bg: var(--color-blue-500);
+    }
+    ```
+2.  **Use the token** in your component's classes:
+    ```tsx
+    <div className="bg-my-component-bg text-white px-4 py-2">
+      My custom component
+    </div>
+    ```
+
+Dashkit's token system ensures that your custom components stay in sync with the rest of the library's design language.
+
+## Creating Your Own Custom Theme
+
+The easiest way to create a completely new theme is to use an AI (like Antigravity) to generate a full set of tokens. 
+
+### AI Prompt Example
+
+You can copy and paste this prompt to your AI assistant to quickly generate a unique theme:
+
+> **AI Prompt:**
+> "I want to create a new theme for Dashkit UI. The theme should use a professional 'Slate and Indigo' palette for the base colors and components. Please update `dashkit.css` with new variables in the `@theme` blocks for:
+> 1. Base colors (neutrals, success, error)
+> 2. Buttons (filled, outlined, and soft variants)
+> 3. Inputs (radii and colors)
+> 4. Blocks (Card, Modal, Drawer)
+> Make sure it looks premium and has native dark mode support using deep slate colors."
+
+Since Dashkit's tokens are centralized in `dashkit.css`, an AI can refactor your entire application's design system in a single step.

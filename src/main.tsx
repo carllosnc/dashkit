@@ -22,6 +22,7 @@ import BadgeDocs from './pages/badge.mdx'
 import CardDocs from './pages/card.mdx'
 import CliDocs from './pages/cli.mdx'
 import IntroductionDocs from './pages/introduction.mdx'
+import CustomizationDocs from './pages/customization.mdx'
 import SkeletonDocs from './pages/skeleton.mdx'
 import BreadcrumbDocs from './pages/breadcrumb.mdx'
 import SpinnerDocs from './pages/spinner.mdx'
@@ -53,6 +54,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route index element={<MdxWrapper Component={IntroductionDocs} />} />
                 <Route path="introduction" element={<MdxWrapper Component={IntroductionDocs} />} />
                 <Route path="cli" element={<MdxWrapper Component={CliDocs} />} />
+                <Route path="customization" element={<MdxWrapper Component={CustomizationDocs} />} />
                 <Route path="accordion" element={<MdxWrapper Component={AccordionDocs} />} />
                 <Route path="badge" element={<MdxWrapper Component={BadgeDocs} />} />
                 <Route path="breadcrumb" element={<MdxWrapper Component={BreadcrumbDocs} />} />

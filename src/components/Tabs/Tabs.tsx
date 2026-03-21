@@ -55,7 +55,7 @@ export function Tabs({ defaultValue, value, onValueChange, children, className }
 export function TabsList({ children, className }: { children: ReactNode; className?: string }) {
   return (
     <div className={cn(
-      "inline-flex h-11 items-center justify-start rounded-xl bg-base-100 dark:bg-base-800/80 p-1 text-base-500",
+      "inline-flex h-11 items-center justify-start rounded-tabs bg-tabs-list-bg dark:bg-tabs-list-dark-bg p-1 text-tabs-trigger-fg dark:text-tabs-trigger-dark-fg",
       className
     )}>
       {children}
@@ -78,14 +78,16 @@ export function TabsTrigger({ value, children, className }: { value: string; chi
       className={cn(
         "relative flex-1 px-4 py-2 text-sm font-semibold transition-colors duration-200 outline-none isolate whitespace-nowrap",
         "flex items-center justify-center cursor-pointer",
-        isActive ? "text-base-900 dark:text-white" : "text-base-500 hover:text-base-700 dark:text-base-400 dark:hover:text-base-200",
+        isActive 
+          ? "text-tabs-trigger-active-fg dark:text-tabs-trigger-active-dark-fg" 
+          : "text-tabs-trigger-fg hover:text-tabs-trigger-hover-fg dark:text-tabs-trigger-dark-fg dark:hover:text-tabs-trigger-hover-dark-fg",
         className
       )}
     >
       {isActive && (
         <motion.div
           layoutId={`active-tab-${context.tabsId}`}
-          className="absolute inset-0 z-[-1] bg-white dark:bg-base-950 rounded-lg shadow-sm"
+          className="absolute inset-0 z-[-1] bg-tabs-trigger-active-bg dark:bg-tabs-trigger-active-dark-bg rounded-tabs-trigger shadow-sm"
           transition={{ 
             type: 'spring', 
             stiffness: 300, 

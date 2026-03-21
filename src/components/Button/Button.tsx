@@ -82,7 +82,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         disabled={disabled || loading}
         className={cn(
-          "inline-flex items-center justify-center rounded-button transition-all duration-200 focus:outline-none cursor-pointer whitespace-nowrap",
+          "inline-flex font-medium items-center justify-center rounded-button transition-all duration-200 focus:outline-none cursor-pointer whitespace-nowrap",
           "text-sm border",
           {
             "bg-button-filled-bg text-button-filled-fg border-transparent hover:bg-button-filled-hover dark:bg-button-filled-dark-bg dark:text-button-filled-dark-fg dark:hover:bg-button-filled-dark-hover": variant === 'filled',
