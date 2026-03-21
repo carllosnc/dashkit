@@ -116,7 +116,7 @@ function ToastItem({
       className={cn(
         "absolute w-full pointer-events-auto",
         isTop ? "top-0 origin-top" : "bottom-0 origin-bottom",
-        "bg-white dark:bg-base-900 border border-base-200 dark:border-base-800",
+        "bg-white dark:bg-base-900 border border-base-border dark:border-base-dark-border",
         "rounded-md shadow-2xl p-4 flex gap-4 group transition-shadow hover:shadow-base-400/20 dark:hover:shadow-black"
       )}
     >
