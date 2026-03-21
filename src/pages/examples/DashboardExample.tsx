@@ -8,12 +8,12 @@ import { Navbar, NavbarBrand, NavbarLinks, NavbarActions } from '../../component
 import { Button } from '../../components/Button/Button';
 import { IconButton } from '../../components/IconButton/IconButton';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/Card/Card';
-import { Badge, FloatBadge, type BadgeColor } from '../../components/Badge/Badge';
+import { Badge, FloatBadge } from '../../components/Badge/Badge';
 import { Breadcrumb } from '../../components/Breadcrumb/Breadcrumb';
 import { Select } from '../../components/Select/Select';
 import { Input } from '../../components/Input/Input';
-import { Checkbox } from '../../components/Checkbox/Checkbox';
 import { Skeleton } from '../../components/Skeleton/Skeleton';
+import { AreaChart } from '../../components/AreaChart/AreaChart';
 import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem } from '../../components/Dropdown/Dropdown';
 import { Chip } from '../../components/Chip/Chip';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../../components/Accordion/Accordion';
@@ -163,31 +163,25 @@ export function DashboardExample() {
                     </Dropdown>
                   }
                 >
-                  <CardTitle>Recent Activity</CardTitle>
-                  <CardDescription>Monitor your latest project updates.</CardDescription>
+                  <CardTitle>Performance Metrics</CardTitle>
+                  <CardDescription>Visualizing project growth and device distribution.</CardDescription>
                 </CardHeader>
-                <CardContent className="flex flex-col gap-3 flex-1">
-                  {[
-                    { title: 'Update Dashkit styles', user: 'Carllos', status: 'Completed', color: 'base' as BadgeColor },
-                    { title: 'Fix drawer animation lag', user: 'Alex', status: 'In Progress', color: 'base' as BadgeColor },
-                    { title: 'Refactor Auth logic', user: 'John', status: 'Blocked', color: 'base' as BadgeColor }
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-center justify-between p-4 rounded-md bg-block-bg dark:bg-block-dark-bg border border-block-border dark:border-block-dark-border">
-                      <div className="flex items-center gap-4">
-                        <Checkbox />
-                        <div className="flex flex-col">
-                          <span className="text-sm font-bold">{item.title}</span>
-                          <span className="text-xs text-base-400">Assigned to {item.user}</span>
-                        </div>
-                      </div>
-                      <Badge content={item.status} color={item.color} />
-                    </div>
-                  ))}
-                  <div>
-                    <Button onClick={() => setIsDrawerOpen(true)}>
-                      Show more activity
-                    </Button>
-                  </div>
+                <CardContent className="flex flex-col gap-6 flex-1 min-h-[320px]">
+                  <AreaChart 
+                    data={[
+                      { label: 'Mon', mobile: 45, desktop: 30 },
+                      { label: 'Tue', mobile: 52, desktop: 38 },
+                      { label: 'Wed', mobile: 48, desktop: 45 },
+                      { label: 'Thu', mobile: 61, desktop: 42 },
+                      { label: 'Fri', mobile: 55, desktop: 50 },
+                      { label: 'Sat', mobile: 67, desktop: 20 },
+                      { label: 'Sun', mobile: 70, desktop: 15 },
+                    ]} 
+                    series={[
+                      { key: 'mobile', label: 'Mobile Hub', color: 'var(--color-indigo-500)' },
+                      { key: 'desktop', label: 'Desktop App', color: 'var(--color-emerald-500)' }
+                    ]}
+                  />
                 </CardContent>
               </Card>
             </div>
