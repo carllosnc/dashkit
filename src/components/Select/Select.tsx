@@ -107,10 +107,10 @@ export const Select = ({
           aria-expanded={isOpen}
           className={cn(
             "w-full px-4 h-9 text-sm bg-white dark:bg-base-950 border rounded-md outline-none transition-all duration-200",
-            "border-base-300 dark:border-base-800 text-left",
+            "border-base-border dark:border-base-dark-border text-left",
             "flex items-center justify-between gap-2",
-            "focus:border-black dark:focus:border-white focus:ring-4 focus:ring-base-100 dark:focus:ring-base-900/40",
-            disabled && "cursor-not-allowed bg-base-200 dark:bg-base-900 border-base-300 dark:border-base-800 text-base-400 dark:text-base-600",
+            "focus:border-base-border-focus dark:focus:border-base-dark-border-focus focus:ring-4 focus:ring-base-100 dark:focus:ring-base-900/40",
+            disabled && "cursor-not-allowed bg-base-200 dark:bg-base-900 border-base-border dark:border-base-dark-border text-base-400 dark:text-base-600",
             className
           )}
         >
@@ -122,7 +122,7 @@ export const Select = ({
           </span>
           <FiChevronDown className={cn(
             "transition-transform duration-300 shrink-0 text-base-500",
-            isOpen && "rotate-180 text-black dark:text-white"
+            isOpen && "rotate-180 text-base-border-focus dark:text-base-dark-border-focus"
           )} />
         </button>
 
@@ -138,7 +138,7 @@ export const Select = ({
               zIndex: 9999,
             }}
             className={cn(
-              "py-1.5 bg-white dark:bg-base-900 border border-base-200 dark:border-base-800 rounded-lg shadow-2xl overflow-hidden",
+              "py-1.5 bg-white dark:bg-base-900 border border-base-border dark:border-base-dark-border rounded-lg shadow-2xl overflow-hidden",
               "animate-in fade-in slide-in-from-top-2 duration-200"
             )}
           >
