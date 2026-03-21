@@ -58,7 +58,7 @@ import {
   CardHeader, 
   CardTitle, 
   CardDescription, 
-  CardComponent, 
+  CardContent, 
   CardFooter 
 } from '../components/Card';
 import { FiDownload, FiArrowRight, FiCopy, FiCheck, FiSearch, FiLock, FiUser, FiSettings, FiActivity, FiCheckCircle, FiClock, FiMail } from 'react-icons/fi';
@@ -175,8 +175,8 @@ const components: Record<string, ElementType> = {
   CardDemo,
   CardHeader,
   CardTitle,
-  CardDescription,
-  CardComponent,
+  CardDescription, 
+  CardContent, 
   CardFooter,
   FiDownload,
   FiArrowRight,

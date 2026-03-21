@@ -22,7 +22,7 @@ import {
   CardHeader, 
   CardTitle, 
   CardDescription, 
-  CardComponent, 
+  CardContent, 
   CardFooter 
 } from '@/components/Card';
 ```
@@ -36,14 +36,14 @@ import {
 ### Composed Example
 
 <Preview>
-  <Card className="shadow-xl shadow-base-200/50 dark:shadow-black/50">
+  <Card>
     <CardHeader extra={<Badge content="Live" color="info" pulse />}>
        <CardTitle>Security Check</CardTitle>
        <CardDescription>
           Real-time monitoring of global infrastructure and system health.
        </CardDescription>
     </CardHeader>
-    <CardComponent>
+    <CardContent>
        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="p-4 rounded-xl bg-base-50 dark:bg-white/5 border border-base-100 dark:border-white/5">
              <span className="text-[10px] font-bold text-base-400 uppercase tracking-widest">Uptime</span>
@@ -54,7 +54,7 @@ import {
              <p className="text-xl font-bold font-mono text-base-900 dark:text-white">12ms</p>
           </div>
        </div>
-    </CardComponent>
+    </CardContent>
     <CardFooter>
        <Button variant="outlined" className="w-full">Ignore Warning</Button>
     </CardFooter>
@@ -66,21 +66,30 @@ import {
 ## Usage Example
 
 ```tsx
-import { Card, CardHeader, CardTitle, CardDescription, CardComponent, CardFooter, Button, Badge } from 'dashkit-ui';
+import { 
+  Card, 
+  CardHeader, 
+  CardTitle, 
+  CardDescription, 
+  CardContent, 
+  CardFooter, 
+  Button, 
+  Badge 
+} from 'dashkit-ui';
 
 export default () => (
-  <Card className="shadow-lg shadow-base-200/50 dark:shadow-black/50">
+  <Card>
     <CardHeader extra={<Badge content="Live" color="info" pulse />}>
       <CardTitle>System Health</CardTitle>
       <CardDescription>Real-time infrastructure performance</CardDescription>
     </CardHeader>
-    <CardComponent>
+    <CardContent>
        <div className="py-2">
-         <p className="text-sm text-base-600 dark:text-base-400">
+         <p className="text-sm text-base-600 dark:text-base-400 font-medium">
            All services are operational. Last checked 2m ago.
          </p>
        </div>
-    </CardComponent>
+    </CardContent>
     <CardFooter>
        <Button variant="outlined" className="w-full">View Global Status</Button>
     </CardFooter>
@@ -96,8 +105,9 @@ The main wrapper container.
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
 | `bordered` | `boolean` | `true` | Whether to show a border around the card. |
-| `animate` | `boolean" | `true` | Whether to apply entrance animations. |
-| `className` | `string` | — | Root container classes (use for shadows, e.g. `shadow-xl`). |
+| `shadowed` | `boolean` | `true` | Apply the modern layered shadow token. |
+| `animate` | `boolean` | `false` | Whether to apply entrance animations. |
+| `className` | `string` | — | Root container classes. |
 
 ### CardHeader
 The top section, typically containing the title and description.
@@ -115,7 +125,7 @@ Supporting typography components for the header.
 | `CardTitle` | `h3` | Large, bold title with tight tracking. |
 | `CardDescription` | `p` | Smaller, medium-weight supporting text. |
 
-### CardComponent (CardContent)
+### CardContent
 The main body of the card with standard internal padding and flex growth.
 
 | Prop | Type | Default | Description |
