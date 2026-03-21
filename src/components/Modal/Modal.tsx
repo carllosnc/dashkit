@@ -82,8 +82,8 @@ export const Modal = ({
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
             className={cn(
-              "w-full bg-white dark:bg-base-950 rounded-2xl shadow-2xl overflow-hidden flex flex-col",
-              "border border-base-200 dark:border-base-800",
+              "w-full bg-block-bg dark:bg-block-dark-bg rounded-2xl shadow-2xl overflow-hidden flex flex-col",
+              "border border-base-border dark:border-base-dark-border",
               sizeClasses[size],
               className
             )}
@@ -121,7 +121,7 @@ export const Modal = ({
 
             {/* Footer */}
             {footer && (
-              <div className="p-8 pt-4 flex items-center justify-end gap-3 bg-base-50/50 dark:bg-base-900/30">
+              <div className="p-8 pt-4 flex items-center justify-end gap-3 bg-block-bg/50 dark:bg-block-dark-bg/30">
                 {footer}
               </div>
             )}
