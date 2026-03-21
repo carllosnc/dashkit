@@ -44,7 +44,7 @@ export const Skeleton = ({
       `}</style>
       <div
         className={cn(
-          "relative overflow-hidden bg-base-200 dark:bg-base-800",
+          "relative overflow-hidden bg-base-border dark:bg-base-dark-border",
           variant === 'text' && "h-4 w-full rounded-sm",
           variant === 'circular' && "rounded-full",
           variant === 'rectangular' && "rounded-md",
