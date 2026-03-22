@@ -82,13 +82,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         disabled={disabled || loading}
         className={cn(
-          "inline-flex font-medium items-center justify-center rounded-button transition-all duration-200 focus:outline-none cursor-pointer whitespace-nowrap",
-          "text-sm border",
-          {
-            "bg-button-filled-bg text-button-filled-fg border-transparent hover:bg-button-filled-hover dark:bg-button-filled-dark-bg dark:text-button-filled-dark-fg dark:hover:bg-button-filled-dark-hover": variant === 'filled',
-            "bg-button-outlined-bg text-button-outlined-fg border-button-outlined-border hover:bg-button-outlined-hover dark:bg-button-outlined-dark-bg dark:text-button-outlined-dark-fg dark:border-button-outlined-dark-border dark:hover:bg-button-outlined-dark-hover": variant === 'outlined',
-            "bg-button-soft-bg text-button-soft-fg border-transparent hover:bg-button-soft-hover dark:bg-button-soft-dark-bg dark:text-button-soft-dark-fg dark:hover:bg-button-soft-dark-hover": variant === 'soft',
-            "opacity-60 cursor-not-allowed": loading || disabled,
+        "ds-btn",
+        {
+          "ds-btn-filled": variant === 'filled',
+          "ds-btn-outlined": variant === 'outlined',
+          "ds-btn-soft": variant === 'soft',
+          "opacity-60 cursor-not-allowed": loading || disabled,
             // Sizes
             "h-7 text-xs": size === 'sm',
             "h-9 text-sm": size === 'md',
