@@ -8,7 +8,7 @@ import { Divider } from '../../components/Divider/Divider';
 
 export const LoginExample = () => {
   return (
-    <div className="w-full min-h-screen bg-base-page dark:bg-base-page-dark flex relative">
+    <div className="w-full min-h-screen ds-page flex relative">
       <div className="hidden lg:flex justify-center w-full relative bg-base-950">
         <div className="relative h-full flex flex-col items-center justify-between p-12">
           <div className="flex items-center gap-3">
