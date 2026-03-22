@@ -71,16 +71,65 @@ The component includes predefined sizes to accommodate different content types.
 
 The `Modal` component accepts the following props:
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `isOpen` | `boolean` | — | Controls if the modal is shown. |
-| `onClose` | `() => void` | — | Callback fired when closing (ESC or click outside). |
-| `title` | `string` | — | Bold header title. |
-| `description` | `string` | — | Subtitle text below the title. |
-| `size` | `'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl' \| 'full'` | `'md'` | The max-width of the internal container. |
-| `footer` | `ReactNode` | — | Actions displayed at the bottom of the modal. |
-| `children` | `ReactNode` | — | Main content of the dialog. |
-| `className` | `string` | — | Custom classes for the modal container. |
-| `showCloseButton` | `boolean` | `true` | Whether to show the X icon in headers. |
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "isOpen",
+    "type": "boolean",
+    "defaultValue": "—",
+    "description": "Controls if the modal is shown."
+  },
+  {
+    "prop": "onClose",
+    "type": "() => void",
+    "defaultValue": "—",
+    "description": "Callback fired when closing (ESC or click outside)."
+  },
+  {
+    "prop": "title",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Bold header title."
+  },
+  {
+    "prop": "description",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Subtitle text below the title."
+  },
+  {
+    "prop": "size",
+    "type": "'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full'",
+    "defaultValue": "'md'",
+    "description": "The max-width of the internal container."
+  },
+  {
+    "prop": "footer",
+    "type": "ReactNode",
+    "defaultValue": "—",
+    "description": "Actions displayed at the bottom of the modal."
+  },
+  {
+    "prop": "children",
+    "type": "ReactNode",
+    "defaultValue": "—",
+    "description": "Main content of the dialog."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Custom classes for the modal container."
+  },
+  {
+    "prop": "showCloseButton",
+    "type": "boolean",
+    "defaultValue": "true",
+    "description": "Whether to show the X icon in headers."
+  }
+]}
+/>
+
 
 

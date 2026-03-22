@@ -100,41 +100,49 @@ export default () => (
 ### Card (Root)
 The main wrapper container.
 
-| Prop | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `bordered` | `boolean` | `true` | Whether to show a border around the card. |
-| `shadowed` | `boolean` | `true` | Apply the modern layered shadow token. |
-| `animate` | `boolean` | `false` | Whether to apply entrance animations. |
-| `className` | `string` | — | Root container classes. |
+<PropertyDoc
+  properties={[
+    { "prop": "bordered", "type": "boolean", "defaultValue": "true", "description": "Whether to show a border around the card." },
+    { "prop": "shadowed", "type": "boolean", "defaultValue": "true", "description": "Apply the modern layered shadow token." },
+    { "prop": "animate", "type": "boolean", "defaultValue": "false", "description": "Whether to apply entrance animations." },
+    { "prop": "className", "type": "string", "defaultValue": "—", "description": "Root container classes." }
+  ]}
+/>
 
 ### CardHeader
 The top section, typically containing the title and description.
 
-| Prop | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `extra` | `ReactNode` | — | Content on the top right (e.g. badges, status icons). |
-| `className` | `string` | — | Custom classes for the header container. |
+<PropertyDoc
+  properties={[
+    { "prop": "extra", "type": "ReactNode", "defaultValue": "—", "description": "Content on the top right (e.g. badges, status icons)." },
+    { "prop": "className", "type": "string", "defaultValue": "—", "description": "Custom classes for the header container." }
+  ]}
+/>
 
 ### CardTitle & CardDescription
 Supporting typography components for the header.
 
-| Component | Tag | Description |
-| :--- | :--- | :--- |
-| `CardTitle` | `h3` | Large, bold title with tight tracking. |
-| `CardDescription` | `p` | Smaller, medium-weight supporting text. |
+<PropertyDoc
+  properties={[
+    { "prop": "CardTitle", "type": "h3", "description": "Large, bold title with tight tracking." },
+    { "prop": "CardDescription", "type": "p", "description": "Smaller, medium-weight supporting text." }
+  ]}
+/>
 
 ### CardContent
 The main body of the card with standard internal padding and flex growth.
 
-| Prop | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `className` | `string` | — | Custom classes for the content body. |
+<PropertyDoc
+  properties={[
+    { "prop": "className", "type": "string", "defaultValue": "—", "description": "Custom classes for the content body." }
+  ]}
+/>
 
 ### CardFooter
 The bottom action area with a subtle separator.
 
-| Prop | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `className` | `string` | — | Custom classes for the footer container. |
-
-
+<PropertyDoc
+  properties={[
+    { "prop": "className", "type": "string", "defaultValue": "—", "description": "Custom classes for the footer container." }
+  ]}
+/>

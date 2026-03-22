@@ -63,6 +63,8 @@ import {
   CardFooter 
 } from '../components/Card';
 import { FiDownload, FiArrowRight, FiCopy, FiCheck, FiSearch, FiLock, FiUser, FiSettings, FiActivity, FiCheckCircle, FiClock, FiMail } from 'react-icons/fi';
+import { PropertyDoc } from '../partials/PropertyDoc';
+
 
 type MdxComponentProps = { components?: Record<string, ElementType> };
 type MdxComponent = ComponentType<MdxComponentProps>;
@@ -200,6 +202,7 @@ const components: Record<string, ElementType> = {
   IconButtonDemo,
   Breadcrumb,
   BreadcrumbDemo,
+  PropertyDoc,
   Preview: ({ children }: { children: ReactNode }) => (
     <div className="not-prose border bg-card border-neutral-200 dark:border-neutral-800 rounded-lg flex flex-col gap-8 py-8 px-8 first:pt-0 items-start">
       {children}

@@ -89,20 +89,68 @@ The indicator uses Framer Motion's `layoutId` to achieve a "sliding" effect when
 
 ### Tabs
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `defaultValue` | `string` | — | The value of the tab that should be active on mount. |
-| `value` | `string` | — | The controlled value of the active tab. |
-| `onValueChange` | `(val: string) => void` | — | Callback fired when the active tab changes. |
-| `children` | `ReactNode` | — | Content of the tabs container. |
-| `className` | `string` | — | Additional CSS classes for the container. |
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "defaultValue",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "The value of the tab that should be active on mount."
+  },
+  {
+    "prop": "value",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "The controlled value of the active tab."
+  },
+  {
+    "prop": "onValueChange",
+    "type": "(val: string) => void",
+    "defaultValue": "—",
+    "description": "Callback fired when the active tab changes."
+  },
+  {
+    "prop": "children",
+    "type": "ReactNode",
+    "defaultValue": "—",
+    "description": "Content of the tabs container."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Additional CSS classes for the container."
+  }
+]}
+/>
+
 
 ### TabsTrigger
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string` | — | A unique value that identifies this tab. |
-| `children` | `ReactNode` | — | Content for the tab trigger button. |
-| `className` | `string` | — | Additional CSS classes for the trigger button. |
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "value",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "A unique value that identifies this tab."
+  },
+  {
+    "prop": "children",
+    "type": "ReactNode",
+    "defaultValue": "—",
+    "description": "Content for the tab trigger button."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Additional CSS classes for the trigger button."
+  }
+]}
+/>
+
 
 

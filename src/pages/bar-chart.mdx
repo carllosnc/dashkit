@@ -96,17 +96,71 @@ Use semantic colors to visualize system performance or resource distribution.
 
 ### BarChart
 
-| Prop | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `data` | `Record<string, string \| number>[]` | - | Array of objects containing data keys. |
-| `series` | `BarChartSeries[]` | - | Configuration for each data series to render. |
-| `height` | `number \| string` | `'100%'` | Height of the chart container. |
-| `barGap` | `number` | `4` | Spacing between individual bars within a group. |
-| `rounded` | `boolean` | `true` | Apply rounded corners to bars. |
-| `showGrid` | `boolean` | `true` | Display dashed horizontal lines. |
-| `showLabels` | `boolean` | `true` | Display X-axis labels. |
-| `showTooltip` | `boolean` | `true` | Enable interactive tooltips. |
-| `animate` | `boolean` | `true` | Enable entrance animations. |
-| `className` | `string` | - | Additional CSS for the container. |
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "data",
+    "type": "Record<string, string | number>[]",
+    "defaultValue": "—",
+    "description": "Array of objects containing data keys."
+  },
+  {
+    "prop": "series",
+    "type": "BarChartSeries[]",
+    "defaultValue": "—",
+    "description": "Configuration for each data series to render."
+  },
+  {
+    "prop": "height",
+    "type": "number | string",
+    "defaultValue": "'100%'",
+    "description": "Height of the chart container."
+  },
+  {
+    "prop": "barGap",
+    "type": "number",
+    "defaultValue": "4",
+    "description": "Spacing between individual bars within a group."
+  },
+  {
+    "prop": "rounded",
+    "type": "boolean",
+    "defaultValue": "true",
+    "description": "Apply rounded corners to bars."
+  },
+  {
+    "prop": "showGrid",
+    "type": "boolean",
+    "defaultValue": "true",
+    "description": "Display dashed horizontal lines."
+  },
+  {
+    "prop": "showLabels",
+    "type": "boolean",
+    "defaultValue": "true",
+    "description": "Display X-axis labels."
+  },
+  {
+    "prop": "showTooltip",
+    "type": "boolean",
+    "defaultValue": "true",
+    "description": "Enable interactive tooltips."
+  },
+  {
+    "prop": "animate",
+    "type": "boolean",
+    "defaultValue": "true",
+    "description": "Enable entrance animations."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Additional CSS for the container."
+  }
+]}
+/>
+
 
 

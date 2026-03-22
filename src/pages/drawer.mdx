@@ -71,15 +71,59 @@ The component supports all four screen edges, with smooth spring animations tail
 
 The `Drawer` component accepts the following props:
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `isOpen` | `boolean` | — | Controls the visibility of the drawer. |
-| `onClose` | `() => void` | — | Callback fired when the drawer should close. |
-| `position` | `'left' \| 'right' \| 'top' \| 'bottom'` | `'right'` | The edge from which the drawer slides. |
-| `title` | `string` | — | Optional header title. |
-| `description` | `string` | — | Optional subtitle below the title. |
-| `size` | `string` | — | Custom width/height (Tailwind class e.g. `max-w-xl`). |
-| `children` | `ReactNode` | — | Content to display inside the drawer body. |
-| `className` | `string` | — | Custom classes for the drawer container. |
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "isOpen",
+    "type": "boolean",
+    "defaultValue": "—",
+    "description": "Controls the visibility of the drawer."
+  },
+  {
+    "prop": "onClose",
+    "type": "() => void",
+    "defaultValue": "—",
+    "description": "Callback fired when the drawer should close."
+  },
+  {
+    "prop": "position",
+    "type": "'left' | 'right' | 'top' | 'bottom'",
+    "defaultValue": "'right'",
+    "description": "The edge from which the drawer slides."
+  },
+  {
+    "prop": "title",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Optional header title."
+  },
+  {
+    "prop": "description",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Optional subtitle below the title."
+  },
+  {
+    "prop": "size",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Custom width/height (Tailwind class e.g. max-w-xl)."
+  },
+  {
+    "prop": "children",
+    "type": "ReactNode",
+    "defaultValue": "—",
+    "description": "Content to display inside the drawer body."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Custom classes for the drawer container."
+  }
+]}
+/>
+
 
 

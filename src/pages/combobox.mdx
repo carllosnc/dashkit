@@ -106,18 +106,72 @@ The combobox can be disabled to prevent user search and selection.
 
 The combobox supports the following props:
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `label` | `string` | — | An optional label displayed above the input. |
-| `description` | `string` | — | Helper text displayed below the input. |
-| `placeholder` | `string` | `'Search or select...'` | Text displayed when no value is selected. |
-| `options` | `ComboboxOption[]` | — | An array of `{ value, label }` objects. |
-| `value` | `string \| string[]` | — | The current selected value(s). |
-| `onChange` | `(value: string \| string[]) => void` | — | Callback fired when option(s) are selected. |
-| `disabled` | `boolean` | `false` | Whether the combobox is interactive. |
-| `className` | `string` | — | Additional CSS classes for the container. |
-| `multiple` | `boolean` | `false` | If `true`, allows selecting multiple options using Chips. |
-| `clearSearchOnSelect` | `boolean` | `false` | If `true`, the search query will be cleared when an item is selected. |
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "label",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "An optional label displayed above the input."
+  },
+  {
+    "prop": "description",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Helper text displayed below the input."
+  },
+  {
+    "prop": "placeholder",
+    "type": "string",
+    "defaultValue": "'Search or select...'",
+    "description": "Text displayed when no value is selected."
+  },
+  {
+    "prop": "options",
+    "type": "ComboboxOption[]",
+    "defaultValue": "—",
+    "description": "An array of { value, label } objects."
+  },
+  {
+    "prop": "value",
+    "type": "string | string[]",
+    "defaultValue": "—",
+    "description": "The current selected value(s)."
+  },
+  {
+    "prop": "onChange",
+    "type": "(value: string | string[]) => void",
+    "defaultValue": "—",
+    "description": "Callback fired when option(s) are selected."
+  },
+  {
+    "prop": "disabled",
+    "type": "boolean",
+    "defaultValue": "false",
+    "description": "Whether the combobox is interactive."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Additional CSS classes for the container."
+  },
+  {
+    "prop": "multiple",
+    "type": "boolean",
+    "defaultValue": "false",
+    "description": "If true, allows selecting multiple options using Chips."
+  },
+  {
+    "prop": "clearSearchOnSelect",
+    "type": "boolean",
+    "defaultValue": "false",
+    "description": "If true, the search query will be cleared when an item is selected."
+  }
+]}
+/>
+
 
 
 

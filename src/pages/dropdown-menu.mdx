@@ -130,19 +130,67 @@ The `asChild` prop allows any element to act as the dropdown trigger, from icon 
 ## Component API
 
 ### DropdownContent
-| Prop | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `align` | `'left' \| 'right'` | `'left'` | The alignment of the dropdown menu relative to the trigger. |
-| `className` | `string` | - | Additional CSS classes for the content container. |
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "align",
+    "type": "'left' | 'right'",
+    "defaultValue": "'left'",
+    "description": "The alignment of the dropdown menu relative to the trigger."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Additional CSS classes for the content container."
+  }
+]}
+/>
+
 
 ### DropdownItem
-| Prop | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `leftIcon` | `ReactNode` | - | Icon positioned to the left of the item text. |
-| `rightIcon` | `ReactNode` | - | Icon positioned to the right of the item text. |
-| `destructive` | `boolean` | `false` | If true, applies red "destructive" styling. |
-| `selected` | `boolean` | `false` | If true, applies a selected state with a checkmark. |
-| `disabled` | `boolean` | `false` | Disables interaction with the item. |
-| `onClick` | `() => void` | - | Callback when the item is clicked. |
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "leftIcon",
+    "type": "ReactNode",
+    "defaultValue": "—",
+    "description": "Icon positioned to the left of the item text."
+  },
+  {
+    "prop": "rightIcon",
+    "type": "ReactNode",
+    "defaultValue": "—",
+    "description": "Icon positioned to the right of the item text."
+  },
+  {
+    "prop": "destructive",
+    "type": "boolean",
+    "defaultValue": "false",
+    "description": "If true, applies red \"destructive\" styling."
+  },
+  {
+    "prop": "selected",
+    "type": "boolean",
+    "defaultValue": "false",
+    "description": "If true, applies a selected state with a checkmark."
+  },
+  {
+    "prop": "disabled",
+    "type": "boolean",
+    "defaultValue": "false",
+    "description": "Disables interaction with the item."
+  },
+  {
+    "prop": "onClick",
+    "type": "() => void",
+    "defaultValue": "—",
+    "description": "Callback when the item is clicked."
+  }
+]}
+/>
+
 
 

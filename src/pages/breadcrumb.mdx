@@ -69,19 +69,62 @@ Override the default chevron separator with any React node.
 
 ### Breadcrumb Props
 
-| Prop | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `items` | `BreadcrumbItem[]` | — | Array of navigation items. |
-| `separator` | `ReactNode` | `<ChevronRight />` | Custom separator element between items. |
-| `className` | `string` | — | Additional CSS classes. |
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "items",
+    "type": "BreadcrumbItem[]",
+    "defaultValue": "—",
+    "description": "Array of navigation items."
+  },
+  {
+    "prop": "separator",
+    "type": "ReactNode",
+    "defaultValue": "<ChevronRight />",
+    "description": "Custom separator element between items."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Additional CSS classes."
+  }
+]}
+/>
+
 
 ### BreadcrumbItem Props
 
-| Prop | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `label` | `ReactNode` | — | The text or element to display for the item. |
-| `href` | `string` | — | Optional URL for the breadcrumb link. |
-| `icon` | `ReactNode` | — | Optional icon to display before the label. |
-| `active` | `boolean` | `false` | Whether the item is the current page. |
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "label",
+    "type": "ReactNode",
+    "defaultValue": "—",
+    "description": "The text or element to display for the item."
+  },
+  {
+    "prop": "href",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Optional URL for the breadcrumb link."
+  },
+  {
+    "prop": "icon",
+    "type": "ReactNode",
+    "defaultValue": "—",
+    "description": "Optional icon to display before the label."
+  },
+  {
+    "prop": "active",
+    "type": "boolean",
+    "defaultValue": "false",
+    "description": "Whether the item is the current page."
+  }
+]}
+/>
+
 
 

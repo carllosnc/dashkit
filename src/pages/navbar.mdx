@@ -50,21 +50,38 @@ export default function Header() {
 
 The Navbar library includes several specialized sections:
 
-| Component | Description |
-| :--- | :--- |
-| `Navbar` | The root container that handles height, backdrop blur, and sticky behavior. |
-| `NavbarBrand` | Used for logos, brand names, and mobile menu triggers. |
-| `NavbarLinks` | A responsive container for navigation items (hidden on mobile). |
-| `NavbarActions` | Container for utility icons, themes, and primary action buttons. |
+<PropertyDoc
+  properties={[
+    { "prop": "Navbar", "description": "The root container that handles height, backdrop blur, and sticky behavior." },
+    { "prop": "NavbarBrand", "description": "Used for logos, brand names, and mobile menu triggers." },
+    { "prop": "NavbarLinks", "description": "A responsive container for navigation items (hidden on mobile)." },
+    { "prop": "NavbarActions", "description": "Container for utility icons, themes, and primary action buttons." }
+  ]}
+/>
 
 ## Props
 
 The root `Navbar` component accepts the following styling props:
 
-| Prop | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `sticky` | `boolean` | `true` | Whether the navbar sticks to the top of the viewport. |
-| `blur` | `boolean` | `true` | Whether to apply glassmorphism backdrop blur. |
-| `className` | `string` | `-` | Custom classes for the header container. |
-
-
+<PropertyDoc
+  properties={[
+  {
+    "prop": "sticky",
+    "type": "boolean",
+    "defaultValue": "true",
+    "description": "Whether the navbar sticks to the top of the viewport."
+  },
+  {
+    "prop": "blur",
+    "type": "boolean",
+    "defaultValue": "true",
+    "description": "Whether to apply glassmorphism backdrop blur."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "-",
+    "description": "Custom classes for the header container."
+  }
+]}
+/>

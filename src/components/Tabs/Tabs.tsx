@@ -3,9 +3,6 @@ import { motion } from 'framer-motion';
 import clsx, { type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
-/**
- * Utility for merging tailwind classes with conflict resolution
- */
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -26,13 +23,10 @@ export interface TabsProps {
   className?: string;
 }
 
-/**
- * Root Tabs component managing the selection state
- */
 export function Tabs({ defaultValue, value, onValueChange, children, className }: TabsProps) {
   const [internalValue, setInternalValue] = useState(defaultValue || '');
   const [tabsId] = useState(() => Math.random().toString(36).substring(7));
-  
+
   const activeTab = value !== undefined ? value : internalValue;
 
   const setActiveTab = (val: string) => {
@@ -49,9 +43,6 @@ export function Tabs({ defaultValue, value, onValueChange, children, className }
   );
 }
 
-/**
- * Container for the list of tab triggers
- */
 export function TabsList({ children, className }: { children: ReactNode; className?: string }) {
   return (
     <div className={cn("inline-flex h-11 items-center justify-start rounded-xl bg-muted p-1 text-muted-foreground", className)}>
@@ -60,13 +51,10 @@ export function TabsList({ children, className }: { children: ReactNode; classNa
   );
 }
 
-/**
- * Individual tab trigger button
- */
 export function TabsTrigger({ value, children, className }: { value: string; children: ReactNode; className?: string }) {
   const context = useContext(TabsContext);
   if (!context) throw new Error('TabsTrigger must be used within Tabs');
-  
+
   const isActive = context.activeTab === value;
 
   return (
@@ -81,11 +69,11 @@ export function TabsTrigger({ value, children, className }: { value: string; chi
       {isActive && (
         <motion.div
           layoutId={`active-tab-${context.tabsId}`}
-          className="absolute inset-0 z-[-1] bg-background rounded-lg shadow-sm"
-          transition={{ 
-            type: 'spring', 
-            stiffness: 300, 
-            damping: 30 
+          className="absolute inset-0 z-[-1] bg-accent rounded-lg shadow-sm"
+          transition={{
+            type: 'spring',
+            stiffness: 300,
+            damping: 30
           }}
         />
       )}
@@ -94,9 +82,6 @@ export function TabsTrigger({ value, children, className }: { value: string; chi
   );
 }
 
-/**
- * Content that is revealed when its tab is active
- */
 export function TabsContent({ value, children, className }: { value: string; children: ReactNode; className?: string }) {
   const context = useContext(TabsContext);
   if (!context) throw new Error('TabsContent must be used within Tabs');

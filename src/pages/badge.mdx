@@ -69,24 +69,82 @@ export default () => (
 
 ### Badge Props
 
-| Prop | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `content` | `ReactNode` | — | Content to display inside the badge. |
-| `variant` | `'solid' \| 'outline'` | `'solid'` | Styling variant. |
-| `color` | `BadgeColor` | `'success'` | Color palette (success, warning, error, info). |
-| `pulse` | `boolean` | `false` | Shows a pulse animation layer. |
-| `dot` | `boolean` | `false` | Renders as a small dot without content. |
-| `show` | `boolean` | `true` | Whether the badge is visible (with entry/exit animation). |
-| `max` | `number` | `99` | Max number to display (e.g., 99+). |
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "content",
+    "type": "ReactNode",
+    "defaultValue": "—",
+    "description": "Content to display inside the badge."
+  },
+  {
+    "prop": "variant",
+    "type": "'solid' | 'outline'",
+    "defaultValue": "'solid'",
+    "description": "Styling variant."
+  },
+  {
+    "prop": "color",
+    "type": "BadgeColor",
+    "defaultValue": "'success'",
+    "description": "Color palette (success, warning, error, info)."
+  },
+  {
+    "prop": "pulse",
+    "type": "boolean",
+    "defaultValue": "false",
+    "description": "Shows a pulse animation layer."
+  },
+  {
+    "prop": "dot",
+    "type": "boolean",
+    "defaultValue": "false",
+    "description": "Renders as a small dot without content."
+  },
+  {
+    "prop": "show",
+    "type": "boolean",
+    "defaultValue": "true",
+    "description": "Whether the badge is visible (with entry/exit animation)."
+  },
+  {
+    "prop": "max",
+    "type": "number",
+    "defaultValue": "99",
+    "description": "Max number to display (e.g., 99+)."
+  }
+]}
+/>
+
 
 ### FloatBadge Props
 
 `FloatBadge` inherits all `Badge` props and adds the following:
 
-| Prop | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `children` | `ReactNode` | — | The element the badge will be attached to. |
-| `position` | `BadgePosition` | `'top-right'` | Placement (`top-right`, `top-left`, `bottom-right`, `bottom-left`). |
-| `offset` | `[number, number]` | — | Custom [x, y] offset in pixels. |
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "children",
+    "type": "ReactNode",
+    "defaultValue": "—",
+    "description": "The element the badge will be attached to."
+  },
+  {
+    "prop": "position",
+    "type": "BadgePosition",
+    "defaultValue": "'top-right'",
+    "description": "Placement (top-right, top-left, bottom-right, bottom-left)."
+  },
+  {
+    "prop": "offset",
+    "type": "[number, number]",
+    "defaultValue": "—",
+    "description": "Custom [x, y] offset in pixels."
+  }
+]}
+/>
+
 
 

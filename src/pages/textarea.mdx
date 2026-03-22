@@ -92,14 +92,48 @@ The textarea supports error and disabled states, just like the input component.
 
 The component extends all native `TextareaHTMLAttributes<HTMLTextAreaElement>` props, plus the following:
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `label` | `string` | — | Textarea label rendered above the field. |
-| `autoGrow` | `boolean` | `false` | Whether the textarea should automatically adjust its height. |
-| `error` | `string` | — | Error message displayed below the field. |
-| `helperText` | `string` | — | Helper message displayed below the field. |
-| `className` | `string` | — | Additional CSS classes for the textarea element. |
-| `ref` | `Ref<HTMLTextAreaElement>` | — | Forwarded ref to the underlying `<textarea>` element. |
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "label",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Textarea label rendered above the field."
+  },
+  {
+    "prop": "autoGrow",
+    "type": "boolean",
+    "defaultValue": "false",
+    "description": "Whether the textarea should automatically adjust its height."
+  },
+  {
+    "prop": "error",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Error message displayed below the field."
+  },
+  {
+    "prop": "helperText",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Helper message displayed below the field."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Additional CSS classes for the textarea element."
+  },
+  {
+    "prop": "ref",
+    "type": "Ref<HTMLTextAreaElement>",
+    "defaultValue": "—",
+    "description": "Forwarded ref to the underlying <textarea> element."
+  }
+]}
+/>
+
 
 
 

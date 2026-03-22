@@ -52,19 +52,62 @@ The accordion supports `single` (default) or `multiple` expansion modes via the 
 
 ### Accordion
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `type` | `'single' \| 'multiple'` | `'single'` | Expansion logic mode. |
-| `defaultValue` | `string \| string[]` | — | Initial open item(s). |
-| `value` | `string \| string[]` | — | Controlled open item(s). |
-| `onValueChange` | `(value: string \| string[]) => void` | — | Event fired on toggle. |
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "type",
+    "type": "'single' | 'multiple'",
+    "defaultValue": "'single'",
+    "description": "Expansion logic mode."
+  },
+  {
+    "prop": "defaultValue",
+    "type": "string | string[]",
+    "defaultValue": "—",
+    "description": "Initial open item(s)."
+  },
+  {
+    "prop": "value",
+    "type": "string | string[]",
+    "defaultValue": "—",
+    "description": "Controlled open item(s)."
+  },
+  {
+    "prop": "onValueChange",
+    "type": "(value: string | string[]) => void",
+    "defaultValue": "—",
+    "description": "Event fired on toggle."
+  }
+]}
+/>
+
 
 ### AccordionItem
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string` | — | Unique identifier for the item. |
-| `disabled` | `boolean` | `false` | Prevents interaction. |
-| `className` | `string` | — | Custom styles for the container. |
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "value",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Unique identifier for the item."
+  },
+  {
+    "prop": "disabled",
+    "type": "boolean",
+    "defaultValue": "false",
+    "description": "Prevents interaction."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Custom styles for the container."
+  }
+]}
+/>
+
 
 

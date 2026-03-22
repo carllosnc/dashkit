@@ -119,11 +119,35 @@ export function ControlledCheckbox() {
 
 The component extends all native `InputHTMLAttributes<HTMLInputElement>` props (excluding `type`), plus the following:
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `label` | `string` | — | Label rendered to the right of the checkbox. |
-| `description` | `string` | — | Additional context rendered below the label. |
-| `className` | `string` | — | Additional CSS classes for the checkbox container. |
-| `ref` | `Ref<HTMLInputElement>` | — | Forwarded ref to the underlying `<input>` element. |
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "label",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Label rendered to the right of the checkbox."
+  },
+  {
+    "prop": "description",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Additional context rendered below the label."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Additional CSS classes for the checkbox container."
+  },
+  {
+    "prop": "ref",
+    "type": "Ref<HTMLInputElement>",
+    "defaultValue": "—",
+    "description": "Forwarded ref to the underlying <input> element."
+  }
+]}
+/>
+
 
 

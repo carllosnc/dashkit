@@ -171,16 +171,65 @@ const formatCPF = (value: string) => {
 
 The component extends all native `InputHTMLAttributes<HTMLInputElement>` props, plus the following:
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `label` | `string` | — | Input label rendered above the field. |
-| `leftIcon` | `ReactNode` | — | Icon element rendered at the start of the field. |
-| `rightIcon` | `ReactNode` | — | Icon element rendered at the end of the field. |
-| `mask` | `RegExp` | — | Regex used to filter input values (matches are removed). |
-| `formatter` | `(val) => string` | — | Function to format the value after masking. |
-| `error` | `string` | — | Error message displayed below the field. |
-| `helperText` | `string` | — | Helper message displayed below the field. |
-| `className` | `string` | — | Additional CSS classes for the input element. |
-| `ref` | `Ref<HTMLInputElement>` | — | Forwarded ref to the underlying `<input>` element. |
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "label",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Input label rendered above the field."
+  },
+  {
+    "prop": "leftIcon",
+    "type": "ReactNode",
+    "defaultValue": "—",
+    "description": "Icon element rendered at the start of the field."
+  },
+  {
+    "prop": "rightIcon",
+    "type": "ReactNode",
+    "defaultValue": "—",
+    "description": "Icon element rendered at the end of the field."
+  },
+  {
+    "prop": "mask",
+    "type": "RegExp",
+    "defaultValue": "—",
+    "description": "Regex used to filter input values (matches are removed)."
+  },
+  {
+    "prop": "formatter",
+    "type": "(val) => string",
+    "defaultValue": "—",
+    "description": "Function to format the value after masking."
+  },
+  {
+    "prop": "error",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Error message displayed below the field."
+  },
+  {
+    "prop": "helperText",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Helper message displayed below the field."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Additional CSS classes for the input element."
+  },
+  {
+    "prop": "ref",
+    "type": "Ref<HTMLInputElement>",
+    "defaultValue": "—",
+    "description": "Forwarded ref to the underlying <input> element."
+  }
+]}
+/>
+
 
 

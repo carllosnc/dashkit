@@ -71,13 +71,47 @@ export function Verification() {
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `length` | `number` | `6` | Total number of digits for the OTP. |
-| `value` | `string` | — | The current value of the input. |
-| `onChange` | `(val: string) => void` | — | Callback fired whenever the selection shifts. |
-| `disabled` | `boolean` | `false` | Whether to disable all inputs. |
-| `className` | `string` | — | Additional CSS classes for the individual inputs. |
-| `containerClassName` | `string` | — | Additional CSS classes for the horizontal container. |
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "length",
+    "type": "number",
+    "defaultValue": "6",
+    "description": "Total number of digits for the OTP."
+  },
+  {
+    "prop": "value",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "The current value of the input."
+  },
+  {
+    "prop": "onChange",
+    "type": "(val: string) => void",
+    "defaultValue": "—",
+    "description": "Callback fired whenever the selection shifts."
+  },
+  {
+    "prop": "disabled",
+    "type": "boolean",
+    "defaultValue": "false",
+    "description": "Whether to disable all inputs."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Additional CSS classes for the individual inputs."
+  },
+  {
+    "prop": "containerClassName",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Additional CSS classes for the horizontal container."
+  }
+]}
+/>
+
 
 

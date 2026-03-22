@@ -118,11 +118,35 @@ export function LanguageSelection() {
 
 Extends all native `RadioHTMLAttributes<HTMLInputElement>` (except `type`), plus these specialties:
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `label` | `string` | — | Label text rendered to the right. |
-| `description` | `string` | — | Subtle description text rendered below the label. |
-| `className` | `string` | — | Additional CSS classes for custom styling. |
-| `ref` | `Ref<HTMLInputElement>` | — | Forwarded ref to the underlying radio input. |
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "label",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Label text rendered to the right."
+  },
+  {
+    "prop": "description",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Subtle description text rendered below the label."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Additional CSS classes for custom styling."
+  },
+  {
+    "prop": "ref",
+    "type": "Ref<HTMLInputElement>",
+    "defaultValue": "—",
+    "description": "Forwarded ref to the underlying radio input."
+  }
+]}
+/>
+
 
 

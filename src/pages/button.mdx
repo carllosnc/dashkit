@@ -132,14 +132,53 @@ You can easily override or extend the default styles using the `className` prop.
 
 The component extends all native `ButtonHTMLAttributes<HTMLButtonElement>` props (e.g. `onClick`, `type`, `disabled`, `className`), plus the following:
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `'filled' \| 'outlined' \| 'soft'` | `'filled'` | Visual style of the button. |
-| `leftIcon` | `ReactNode` | — | Icon element rendered before the label. Replaced by spinner when `loading`. |
-| `rightIcon` | `ReactNode` | — | Icon element rendered after the label. Hidden when `loading`. |
-| `loading` | `boolean` | `false` | Shows a spinner, disables the button, and hides icons. |
-| `disabled` | `boolean` | `false` | Disables the button with reduced opacity. |
-| `className` | `string` | — | Additional CSS classes merged via `clsx`. |
-| `ref` | `Ref<HTMLButtonElement>` | — | Forwarded ref to the underlying `<button>` element. |
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "variant",
+    "type": "'filled' | 'outlined' | 'soft'",
+    "defaultValue": "'filled'",
+    "description": "Visual style of the button."
+  },
+  {
+    "prop": "leftIcon",
+    "type": "ReactNode",
+    "defaultValue": "—",
+    "description": "Icon element rendered before the label. Replaced by spinner when loading."
+  },
+  {
+    "prop": "rightIcon",
+    "type": "ReactNode",
+    "defaultValue": "—",
+    "description": "Icon element rendered after the label. Hidden when loading."
+  },
+  {
+    "prop": "loading",
+    "type": "boolean",
+    "defaultValue": "false",
+    "description": "Shows a spinner, disables the button, and hides icons."
+  },
+  {
+    "prop": "disabled",
+    "type": "boolean",
+    "defaultValue": "false",
+    "description": "Disables the button with reduced opacity."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Additional CSS classes merged via clsx."
+  },
+  {
+    "prop": "ref",
+    "type": "Ref<HTMLButtonElement>",
+    "defaultValue": "—",
+    "description": "Forwarded ref to the underlying <button> element."
+  }
+]}
+/>
+
 
 

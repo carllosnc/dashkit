@@ -114,17 +114,66 @@ Chips can be disabled to prevent user interaction.
 
 The component supports the following props:
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `label` | `ReactNode` | — | Content displayed inside the chip. |
-| `icon` | `ReactNode` | — | Optional icon displayed before the label. |
-| `variant` | `ChipVariant` | `'tonal'` | Visual style of the chip: `filled`, `outlined`, `tonal`. |
-| `color` | `ChipColor` | `'base'` | Color theme of the chip: `base`, `success`, `warning`, `error`, `info`. |
-| `selected` | `boolean` | `false` | Shows a checkmark icon to indicate selection. |
-| `disabled` | `boolean` | `false` | Prevents user interaction and fades the component. |
-| `onClick` | `function` | — | Called when the chip body is clicked. |
-| `onDelete` | `function` | — | Called when the remove icon is clicked. Adds the icon if present. |
-| `className` | `string` | — | Additional CSS classes for the container. |
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "label",
+    "type": "ReactNode",
+    "defaultValue": "—",
+    "description": "Content displayed inside the chip."
+  },
+  {
+    "prop": "icon",
+    "type": "ReactNode",
+    "defaultValue": "—",
+    "description": "Optional icon displayed before the label."
+  },
+  {
+    "prop": "variant",
+    "type": "ChipVariant",
+    "defaultValue": "'tonal'",
+    "description": "Visual style of the chip: filled, outlined, tonal."
+  },
+  {
+    "prop": "color",
+    "type": "ChipColor",
+    "defaultValue": "'base'",
+    "description": "Color theme of the chip: base, success, warning, error, info."
+  },
+  {
+    "prop": "selected",
+    "type": "boolean",
+    "defaultValue": "false",
+    "description": "Shows a checkmark icon to indicate selection."
+  },
+  {
+    "prop": "disabled",
+    "type": "boolean",
+    "defaultValue": "false",
+    "description": "Prevents user interaction and fades the component."
+  },
+  {
+    "prop": "onClick",
+    "type": "function",
+    "defaultValue": "—",
+    "description": "Called when the chip body is clicked."
+  },
+  {
+    "prop": "onDelete",
+    "type": "function",
+    "defaultValue": "—",
+    "description": "Called when the remove icon is clicked. Adds the icon if present."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Additional CSS classes for the container."
+  }
+]}
+/>
+
 
 
 

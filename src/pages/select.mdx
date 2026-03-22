@@ -112,15 +112,59 @@ Supports disabled and focus states with premium transitions.
 
 The component uses a custom interface for premium behavior:
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `label` | `string` | — | Label rendered above the trigger. |
-| `description` | `string` | — | Description text rendered below the trigger. |
-| `placeholder` | `string` | `'Select an option'` | Placeholder text when no value is selected. |
-| `options` | `SelectOption[]` | — | List of options `{ value: string, label: string }`. |
-| `value` | `string` | — | The current selected value. |
-| `onChange` | `(value: string) => void` | — | Callback fired when a selection is made. |
-| `className` | `string` | — | Additional CSS classes for the trigger button. |
-| `disabled` | `boolean` | `false` | Whether the select is interactive. |
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "label",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Label rendered above the trigger."
+  },
+  {
+    "prop": "description",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Description text rendered below the trigger."
+  },
+  {
+    "prop": "placeholder",
+    "type": "string",
+    "defaultValue": "'Select an option'",
+    "description": "Placeholder text when no value is selected."
+  },
+  {
+    "prop": "options",
+    "type": "SelectOption[]",
+    "defaultValue": "—",
+    "description": "List of options { value: string, label: string }."
+  },
+  {
+    "prop": "value",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "The current selected value."
+  },
+  {
+    "prop": "onChange",
+    "type": "(value: string) => void",
+    "defaultValue": "—",
+    "description": "Callback fired when a selection is made."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Additional CSS classes for the trigger button."
+  },
+  {
+    "prop": "disabled",
+    "type": "boolean",
+    "defaultValue": "false",
+    "description": "Whether the select is interactive."
+  }
+]}
+/>
+
 
 
