@@ -25,35 +25,17 @@ export const Skeleton = ({
   ...props
 }: SkeletonProps) => {
   return (
-    <>
-      <style>{`
-        @keyframes shimmer {
-          100% {
-            transform: translateX(200%);
-          }
-        }
-
-        @keyframes skeleton-pulse {
-          0%, 100% {
-            opacity: 1;
-          }
-          50% {
-            opacity: 0.40;
-          }
-        }
-      `}</style>
-      <div
-        className={cn(
-          "relative overflow-hidden bg-layout-divider dark:bg-layout-dark-divider",
-          variant === 'text' && "h-4 w-full rounded-sm",
-          variant === 'circular' && "rounded-full",
-          variant === 'rectangular' && "rounded-block",
-          animation === 'shimmer' && "after:absolute after:inset-0 after:-translate-x-full after:animate-[shimmer_1.5s_infinite] after:bg-gradient-to-r after:from-transparent after:via-white/50 dark:after:via-white/10 after:to-transparent",
-          animation === 'pulse' && "animate-[skeleton-pulse_1.2s_infinite]",
-          className
-        )}
-        {...props}
-      />
-    </>
+    <div
+      className={cn(
+        "ds-skeleton",
+        variant === 'text' && "h-4 w-full rounded-sm",
+        variant === 'circular' && "rounded-full",
+        variant === 'rectangular' && "rounded-lg",
+        animation === 'shimmer' && "ds-skeleton-shimmer",
+        animation === 'pulse' && "ds-skeleton-pulse",
+        className
+      )}
+      {...props}
+    />
   );
 };
