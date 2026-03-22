@@ -33,21 +33,12 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
             {/* Track */}
             <div 
               className={cn(
-                "w-11 h-6 rounded-full border-2 transition-all duration-300 shrink-0",
-                "bg-switch-bg dark:bg-switch-dark-bg border-switch-border dark:border-switch-dark-border",
-                "peer-checked:bg-switch-checked-bg peer-checked:border-switch-checked-border dark:peer-checked:bg-switch-dark-checked-bg dark:peer-checked:border-switch-dark-checked-border",
-                "peer-focus-visible:ring-4 peer-focus-visible:ring-switch-focus-ring dark:peer-focus-visible:ring-switch-dark-focus-ring",
-                "peer-disabled:opacity-30 peer-disabled:cursor-not-allowed",
+                "ds-switch peer-disabled:opacity-30 peer-disabled:cursor-not-allowed",
                 className
               )} 
             />
             {/* Thumb */}
-            <div className={cn(
-              "absolute left-[4px] top-[4px] w-4 h-4 rounded-full transition-all duration-300 shadow-sm",
-              "bg-switch-thumb-off-bg dark:bg-switch-dark-thumb-off-bg",
-              "peer-checked:translate-x-5 peer-checked:bg-switch-thumb-bg dark:peer-checked:bg-switch-dark-thumb-bg",
-              "peer-disabled:opacity-30 peer-disabled:cursor-not-allowed"
-            )} />
+            <div className="ds-switch-thumb peer-disabled:opacity-30 peer-disabled:cursor-not-allowed" />
           </label>
         </div>
         {(label || description) && (
