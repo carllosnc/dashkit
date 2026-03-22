@@ -119,7 +119,7 @@ export const LineChart = ({
               y1={svgHeight * (1 - line)}
               x2={width}
               y2={svgHeight * (1 - line)}
-              className="stroke-border/50"
+              className="stroke-border"
               strokeWidth="1"
               strokeDasharray="4 4"
             />
@@ -147,7 +147,7 @@ export const LineChart = ({
                 d={linePath}
                 fill="none"
                 stroke={s.color}
-                strokeWidth="2"
+                strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 initial={animate ? { pathLength: 0 } : false}
@@ -165,13 +165,13 @@ export const LineChart = ({
               <motion.div
                 key={`${s.key}-${i}`}
                 className={cn(
-                  "absolute rounded-full border-[1.5px] transition-all duration-200",
+                  "absolute rounded-full border-2 transition-all duration-200",
                 )}
                 style={{
                   left: `${(p.x / width) * 100}%`,
                   top: `${(p.y / svgHeight) * 100}%`,
-                  width: hoveredIndex === i ? 10 : 6,
-                  height: hoveredIndex === i ? 10 : 6,
+                  width: hoveredIndex === i ? 12 : 8,
+                  height: hoveredIndex === i ? 12 : 8,
                   x: "-50%",
                   y: "-50%",
                   backgroundColor: hoveredIndex === i ? s.color : '#fff',

@@ -112,11 +112,11 @@ export const PieChart = ({
               d={slice.path}
               fill={slice.color}
               stroke="currentColor"
-              strokeWidth="2"
-              className="text-white dark:text-neutral-950 transition-colors duration-200"
+              strokeWidth="3"
+              className="text-white dark:text-neutral-950 transition-colors duration-200 cursor-pointer"
               style={{ 
                 zIndex: hoveredIndex === i ? 10 : 1,
-                position: 'relative' // helps some browsers with z-index
+                transformOrigin: `${center}px ${center}px`
               }}
               initial={animate ? { opacity: 0, scale: 0.8, rotate: -10 } : false}
               animate={{ 
@@ -124,6 +124,10 @@ export const PieChart = ({
                 scale: 1,
                 rotate: 0,
                 transition: { type: "spring", stiffness: 400, damping: 25 }
+              }}
+              whileHover={{ 
+                scale: 1.03,
+                transition: { type: "spring", stiffness: 400, damping: 20 }
               }}
               onMouseMove={(e) => handleMouseMove(e, i)}
               onMouseLeave={() => setHoveredIndex(null)}

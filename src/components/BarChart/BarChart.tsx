@@ -121,7 +121,7 @@ export const BarChart = ({
             y1={svgHeight * (1 - line)}
             x2={width}
             y2={svgHeight * (1 - line)}
-            className="stroke-border/50"
+            className="stroke-border"
             strokeWidth="1"
             strokeDasharray="4 4"
           />
@@ -146,9 +146,14 @@ export const BarChart = ({
                   fill={s.color}
                   rx={rounded ? Math.min(barWidth / 2, 4) : 0}
                   className={cn(
-                    "transition-opacity duration-200",
+                    "transition-opacity duration-200 cursor-pointer",
                     hoveredIndex !== null && hoveredIndex !== dataIdx && "opacity-40"
                   )}
+                  style={{ transformOrigin: 'bottom' }}
+                  whileHover={{ 
+                    scaleY: 1.05,
+                    transition: { duration: 0.2 }
+                  }}
                   transition={{ 
                     duration: 0.8, 
                     delay: (dataIdx / data.length) * 0.3 + seriesIdx * 0.05,

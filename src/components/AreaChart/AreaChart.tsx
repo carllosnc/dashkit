@@ -128,7 +128,7 @@ export const AreaChart = ({
             y1={svgHeight * (1 - line)}
             x2={width}
             y2={svgHeight * (1 - line)}
-            className="stroke-border/50"
+            className="stroke-border"
             strokeWidth="1"
             strokeDasharray="4 4"
           />
@@ -166,7 +166,7 @@ export const AreaChart = ({
                 d={linePath}
                 fill="none"
                 stroke={s.color}
-                strokeWidth="1"
+                strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 initial={animate ? { pathLength: 0, opacity: 0 } : false}
@@ -179,14 +179,14 @@ export const AreaChart = ({
                   key={i}
                   cx={p.x}
                   cy={p.y}
-                  r={hoveredIndex === i ? "5" : "3"}
+                  r={hoveredIndex === i ? "6.5" : "4"}
                   className={cn(
                     "stroke-current transition-all duration-200 fill-background",
                     hoveredIndex === i && "fill-current"
                   )}
                   style={hoveredIndex === i ? { fill: s.color } : undefined}
                   stroke={s.color}
-                  strokeWidth="1.5"
+                  strokeWidth="2"
                   initial={animate ? { scale: 0, opacity: 0 } : false}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: (i / data.length) * 0.5 + 1 }}
