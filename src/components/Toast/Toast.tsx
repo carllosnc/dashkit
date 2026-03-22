@@ -112,11 +112,11 @@ function ToastItem({
       exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
       transition={{ type: 'spring', damping: 20, stiffness: 300 }}
       className={cn(
-        "absolute w-full pointer-events-auto ds-toast p-4 flex gap-4 group transition-shadow",
+        "absolute w-full pointer-events-auto ds-toast p-4 flex items-center gap-4 group transition-shadow",
         isTop ? "top-0 origin-top" : "bottom-0 origin-bottom"
       )}
     >
-      <div className="shrink-0 mt-0.5 text-xl">
+      <div className="shrink-0 text-xl">
         {toast.icon || typeIcons[toast.type]}
       </div>
       
