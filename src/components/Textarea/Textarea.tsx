@@ -65,13 +65,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           }}
           onChange={handleChange}
           className={cn(
-            "w-full px-4 py-3 text-sm bg-input-bg dark:bg-input-dark-bg border rounded-input outline-none transition-all duration-200 resize-none",
+            "w-full px-4 py-3 text-sm ds-input resize-none min-h-[100px]",
             autoGrow && "overflow-hidden",
-            "border-input-border dark:border-input-dark-border text-input-fg dark:text-input-dark-fg min-h-[100px]",
-            "focus:border-input-focus-border dark:focus:border-input-dark-focus-border",
-            "focus:ring-4 focus:ring-input-focus-ring dark:focus:ring-input-dark-focus-ring",
-            "placeholder:text-input-placeholder dark:placeholder:text-input-dark-placeholder",
-            "disabled:cursor-not-allowed disabled:bg-input-disabled-bg dark:disabled:bg-input-dark-disabled-bg disabled:border-input-disabled-border dark:disabled:border-input-dark-disabled-border disabled:text-input-disabled-fg dark:disabled:text-input-dark-disabled-fg",
             {
               "border-red-500/50 focus:border-red-500 focus:ring-red-50 dark:border-red-500/30 dark:focus:border-red-500/50 dark:focus:ring-red-500/10": !!error,
             },
