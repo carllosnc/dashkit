@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet-async';
 
 export function NotFound() {
   return (
-    <div className="flex flex-col min-h-screen bg-base-page dark:bg-base-page-dark font-sans">
+    <div className="flex flex-col min-h-screen ds-page font-sans">
       <Helmet>
         <title>404 - Page Not Found | Dashkit UI</title>
       </Helmet>
