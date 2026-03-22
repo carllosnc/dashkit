@@ -14,7 +14,7 @@ export const CardDemo = () => {
         </CardHeader>
         <CardContent>
           <div className="flex flex-col gap-4">
-            <p className="text-sm text-base-500">
+            <p className="text-sm text-neutral-500">
               A standard composed card using the modular component internal structure for full layout control.
               This design pattern allows for deep nesting and flexible content slots.
             </p>
@@ -35,13 +35,13 @@ export const CardDemo = () => {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="p-4 rounded-xl bg-base-50 dark:bg-white/5 border border-base-100 dark:border-white/5">
-              <span className="text-[10px] font-bold text-base-400 uppercase">Uptime</span>
-              <p className="text-xl font-bold font-mono text-base-950 dark:text-white">99.99%</p>
+            <div className="p-4 rounded-xl bg-neutral-50 dark:bg-white/5 border border-neutral-100 dark:border-white/5">
+              <span className="text-[10px] font-bold text-neutral-400 uppercase">Uptime</span>
+              <p className="text-xl font-bold font-mono text-foreground">99.99%</p>
             </div>
-            <div className="p-4 rounded-xl bg-base-50 dark:bg-white/5 border border-base-100 dark:border-white/5">
-              <span className="text-[10px] font-bold text-base-400 uppercase">Latency</span>
-              <p className="text-xl font-bold font-mono text-base-950 dark:text-white">12ms</p>
+            <div className="p-4 rounded-xl bg-neutral-50 dark:bg-white/5 border border-neutral-100 dark:border-white/5">
+              <span className="text-[10px] font-bold text-neutral-400 uppercase">Latency</span>
+              <p className="text-xl font-bold font-mono text-foreground">12ms</p>
             </div>
           </div>
         </CardContent>
@@ -52,3 +52,5 @@ export const CardDemo = () => {
     </div>
   );
 };
+
+

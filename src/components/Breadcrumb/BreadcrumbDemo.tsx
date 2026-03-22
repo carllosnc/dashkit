@@ -24,7 +24,7 @@ export const BreadcrumbDemo = () => {
 
       {/* Custom Separator */}
       <Breadcrumb
-        separator={<span className="text-base-300 dark:text-base-700 mx-1">/</span>}
+        separator={<span className="text-neutral-300 dark:text-neutral-700 mx-1">/</span>}
         items={[
           { label: 'Projects', href: '#' },
           { label: 'Dashkit', href: '#' },
@@ -34,3 +34,5 @@ export const BreadcrumbDemo = () => {
     </div>
   );
 };
+
+

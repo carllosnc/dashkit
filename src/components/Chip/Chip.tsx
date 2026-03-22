@@ -19,29 +19,29 @@ export interface ChipProps {
 
 const colorStyles: Record<ChipColor, Record<ChipVariant, string>> = {
   base: {
-    tonal: "ds-btn-soft",
-    filled: "ds-btn-filled",
-    outlined: "ds-btn-outlined",
+    tonal: "bg-secondary text-secondary-foreground border-transparent",
+    filled: "bg-primary text-primary-foreground border-transparent",
+    outlined: "bg-transparent text-foreground border-border",
   },
   success: {
-    tonal: "ds-status-success-soft",
-    filled: "ds-status-success-filled",
-    outlined: "ds-status-success-outlined",
+    tonal: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+    filled: "bg-emerald-500 text-white border-transparent",
+    outlined: "bg-transparent text-emerald-600 dark:text-emerald-400 border-emerald-500/30",
   },
   warning: {
-    tonal: "ds-status-warning-soft",
-    filled: "ds-status-warning-filled",
-    outlined: "ds-status-warning-outlined",
+    tonal: "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20",
+    filled: "bg-amber-500 text-white border-transparent",
+    outlined: "bg-transparent text-amber-600 dark:text-amber-400 border-amber-500/30",
   },
   error: {
-    tonal: "ds-status-error-soft",
-    filled: "ds-status-error-filled",
-    outlined: "ds-status-error-outlined",
+    tonal: "bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20",
+    filled: "bg-red-500 text-white border-transparent",
+    outlined: "bg-transparent text-red-600 dark:text-red-400 border-red-500/30",
   },
   info: {
-    tonal: "ds-status-info-soft",
-    filled: "ds-status-info-filled",
-    outlined: "ds-status-info-outlined",
+    tonal: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20",
+    filled: "bg-blue-500 text-white border-transparent",
+    outlined: "bg-transparent text-blue-600 dark:text-blue-400 border-blue-500/30",
   },
 };
 
@@ -104,3 +104,5 @@ export const Chip = ({
 };
 
 Chip.displayName = 'Chip';
+
+

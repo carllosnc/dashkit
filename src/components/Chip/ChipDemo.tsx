@@ -20,7 +20,7 @@ export const ChipDemo = () => {
     <div className="flex flex-col gap-8 w-full">
       {/* Types Section */}
       <div className="flex flex-col gap-4">
-        <h4 className="text-sm font-semibold text-base-900 dark:text-white uppercase tracking-wider">Chip Types</h4>
+        <h4 className="text-sm font-semibold text-neutral-900 dark:text-white uppercase tracking-wider">Chip Types</h4>
         <div className="flex flex-wrap gap-3">
           <Chip label="Assist Chip" icon={<FiClock />} onClick={() => {}} />
           <Chip label="Filter Chip" selected onClick={() => {}} />
@@ -31,7 +31,7 @@ export const ChipDemo = () => {
 
       {/* Variants Section */}
       <div className="flex flex-col gap-4">
-        <h4 className="text-sm font-semibold text-base-900 dark:text-white uppercase tracking-wider">Variants</h4>
+        <h4 className="text-sm font-semibold text-neutral-900 dark:text-white uppercase tracking-wider">Variants</h4>
         <div className="flex flex-wrap gap-3">
           <Chip label="Tonal (Default)" variant="tonal" onClick={() => {}} />
           <Chip label="Filled" variant="filled" onClick={() => {}} />
@@ -41,7 +41,7 @@ export const ChipDemo = () => {
 
       {/* Colors Section */}
       <div className="flex flex-col gap-4">
-        <h4 className="text-sm font-semibold text-base-900 dark:text-white uppercase tracking-wider">Colors</h4>
+        <h4 className="text-sm font-semibold text-neutral-900 dark:text-white uppercase tracking-wider">Colors</h4>
         <div className="flex flex-wrap gap-3">
           <Chip label="Default" color="base" onClick={() => {}} />
           <Chip label="Success" color="success" onClick={() => {}} />
@@ -53,8 +53,8 @@ export const ChipDemo = () => {
 
       {/* Interactive Selection */}
       <div className="flex flex-col gap-4">
-        <h4 className="text-sm font-semibold text-base-900 dark:text-white uppercase tracking-wider">Multi-Selection</h4>
-        <div className="flex flex-wrap gap-3 p-4 border border-dashed border-base-200 dark:border-base-800 rounded-xl">
+        <h4 className="text-sm font-semibold text-neutral-900 dark:text-white uppercase tracking-wider">Multi-Selection</h4>
+        <div className="flex flex-wrap gap-3 p-4 border border-dashed border-neutral-200 dark:border-neutral-800 rounded-xl">
           {['React', 'Next.js', 'Vite', 'Tailwind', 'Framer'].map(tech => (
             <Chip 
               key={tech}
@@ -69,7 +69,7 @@ export const ChipDemo = () => {
 
       {/* Removable Chips */}
       <div className="flex flex-col gap-4">
-        <h4 className="text-sm font-semibold text-base-900 dark:text-white uppercase tracking-wider">Removable Labels</h4>
+        <h4 className="text-sm font-semibold text-neutral-900 dark:text-white uppercase tracking-wider">Removable Labels</h4>
         <div className="flex flex-wrap gap-3">
           {chips.map(tag => (
             <Chip 
@@ -79,10 +79,12 @@ export const ChipDemo = () => {
             />
           ))}
           {chips.length === 0 && (
-            <p className="text-xs text-base-500 italic">No tags left. Refresh the page to reset.</p>
+            <p className="text-xs text-neutral-500 italic">No tags left. Refresh the page to reset.</p>
           )}
         </div>
       </div>
     </div>
   );
 };
+
+

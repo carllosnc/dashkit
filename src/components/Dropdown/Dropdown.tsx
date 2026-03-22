@@ -158,7 +158,7 @@ export function DropdownContent({
            transition={{ duration: 0.1, ease: "easeOut" }}
            style={style}
            className={cn(
-             "min-w-[12rem] ds-floating p-1 origin-top overflow-hidden",
+             "min-w-[12rem] bg-popover text-popover-foreground border border-border rounded-lg shadow-lg p-1 origin-top overflow-hidden",
              className
            )}
         >
@@ -205,17 +205,17 @@ export function DropdownItem({
         setOpen(false);
       }}
       className={cn(
-        "flex w-full items-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-colors text-left ds-floating-item",
+        "flex w-full items-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-colors text-left text-foreground/80 hover:bg-accent hover:text-accent-foreground duration-200",
         destructive ? "text-red-500 hover:text-red-600 dark:hover:bg-red-500/10" : "",
-        selected && "ds-floating-item-selected",
+        selected && "bg-accent text-accent-foreground font-semibold",
         disabled && "opacity-50 cursor-not-allowed",
         className
       )}
     >
-      {leftIcon && <span className="shrink-0 text-base-400">{leftIcon}</span>}
+      {leftIcon && <span className="shrink-0 text-neutral-400">{leftIcon}</span>}
       <span className="flex-1 truncate">{children}</span>
       {selected && <FiCheck className="shrink-0 text-floating-item-selected-fg dark:text-floating-item-dark-selected-fg" size={14} />}
-      {rightIcon && <span className="shrink-0 text-base-400">{rightIcon}</span>}
+      {rightIcon && <span className="shrink-0 text-neutral-400">{rightIcon}</span>}
     </button>
   );
 }
@@ -225,7 +225,7 @@ export function DropdownItem({
  */
 export function DropdownLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div className="px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-base-400 dark:text-base-500">
+    <div className="px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-neutral-400 dark:text-neutral-500">
       {children}
     </div>
   );
@@ -236,6 +236,8 @@ export function DropdownLabel({ children }: { children: React.ReactNode }) {
  */
 export function DropdownSeparator() {
   return (
-    <div className="my-1 h-px bg-floating-border dark:bg-floating-dark-border" />
+    <div className="my-1 h-px bg-border" />
   );
 }
+
+

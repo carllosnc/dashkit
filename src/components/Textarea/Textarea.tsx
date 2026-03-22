@@ -47,7 +47,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         {label && (
           <label
             htmlFor={internalId}
-            className="text-[13px] font-semibold text-base-700 dark:text-base-300 ml-1 tracking-tight"
+            className="text-[13px] font-semibold text-neutral-700 dark:text-neutral-300 ml-1 tracking-tight"
           >
             {label}
           </label>
@@ -65,7 +65,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           }}
           onChange={handleChange}
           className={cn(
-            "w-full px-4 py-3 text-sm ds-input resize-none min-h-[100px]",
+            "w-full px-4 py-3 text-sm bg-background text-foreground border border-input rounded-[var(--radius)] outline-none transition-all duration-200 focus:ring-2 focus:ring-ring focus:ring-offset-2 placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 resize-none min-h-[100px]",
             autoGrow && "overflow-hidden",
             {
               "border-red-500/50 focus:border-red-500 focus:ring-red-50 dark:border-red-500/30 dark:focus:border-red-500/50 dark:focus:ring-red-500/10": !!error,
@@ -76,7 +76,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         {(error || helperText) && (
           <span className={cn(
             "text-[12px] ml-1 tracking-tight",
-            error ? "text-red-500" : "text-base-600"
+            error ? "text-red-500" : "text-neutral-600"
           )}>
             {error || helperText}
           </span>
@@ -87,3 +87,5 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
 );
 
 Textarea.displayName = 'Textarea';
+
+

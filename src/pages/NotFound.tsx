@@ -15,10 +15,10 @@ export function NotFound() {
           <img src="/logo.svg" alt="Dashkit UI Logo" className="h-10 dark:invert" />
 
           <div className="flex flex-col gap-[10px]">
-            <h1 className="text-3xl font-bold tracking-tight text-base-950 dark:text-white">
+            <h1 className="text-3xl font-bold tracking-tight text-foreground">
               Page not found
             </h1>
-            <p className="text-base-500 dark:text-base-400 max-w-md mx-auto">
+            <p className="text-muted-foreground max-w-md mx-auto">
               The page you're looking for doesn't exist or has been moved to a new location.
             </p>
           </div>
@@ -33,3 +33,5 @@ export function NotFound() {
     </div>
   );
 }
+
+

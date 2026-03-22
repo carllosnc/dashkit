@@ -3,3 +3,5 @@ declare module '*.mdx' {
   const Component: ComponentType<{ components?: Record<string, ElementType> }>
   export default Component
 }
+
+

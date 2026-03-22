@@ -27,15 +27,17 @@ export const Skeleton = ({
   return (
     <div
       className={cn(
-        "ds-skeleton",
+        "relative overflow-hidden bg-muted",
         variant === 'text' && "h-4 w-full rounded-sm",
         variant === 'circular' && "rounded-full",
         variant === 'rectangular' && "rounded-lg",
-        animation === 'shimmer' && "ds-skeleton-shimmer",
-        animation === 'pulse' && "ds-skeleton-pulse",
+        animation === 'shimmer' && "after:absolute after:inset-0 after:-translate-x-full after:animate-[ds-shimmer_1.5s_infinite] after:bg-gradient-to-r after:from-transparent after:via-foreground/5 after:to-transparent",
+        animation === 'pulse' && "animate-[ds-pulse_1.2s_infinite]",
         className
       )}
       {...props}
     />
   );
 };
+
+

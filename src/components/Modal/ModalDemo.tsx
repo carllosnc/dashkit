@@ -49,25 +49,25 @@ export function ModalDemo() {
       >
         <div className="flex flex-col gap-6 py-4">
           <div className="grid grid-cols-2 gap-4">
-            <div className="p-4 rounded-2xl bg-base-900 text-white flex flex-col gap-1 shadow-lg shadow-base-200/50 dark:shadow-black">
+            <div className="p-4 rounded-2xl bg-neutral-900 text-white flex flex-col gap-1 shadow-lg shadow-neutral-200/50 dark:shadow-black">
               <span className="text-[10px] font-bold opacity-50 uppercase tracking-[0.2em]">Traffic</span>
               <span className="text-2xl font-bold tracking-tight">2.4M</span>
             </div>
-            <div className="p-4 rounded-2xl bg-base-50 dark:bg-base-900 border border-base-200 dark:border-base-800 flex flex-col gap-1">
-              <span className="text-[10px] font-bold text-base-400 uppercase tracking-[0.2em]">Bounces</span>
-              <span className="text-2xl font-bold tracking-tight text-base-900 dark:text-white leading-tight">12.5%</span>
+            <div className="p-4 rounded-2xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 flex flex-col gap-1">
+              <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-[0.2em]">Bounces</span>
+              <span className="text-2xl font-bold tracking-tight text-neutral-900 dark:text-white leading-tight">12.5%</span>
             </div>
           </div>
           
           <div className="space-y-3">
-            <h4 className="text-xs font-bold text-base-400 uppercase tracking-widest ml-1">Team Members</h4>
+            <h4 className="text-xs font-bold text-neutral-400 uppercase tracking-widest ml-1">Team Members</h4>
             <div className="flex -space-x-3 ml-1">
               {[1, 2, 3, 4, 5].map(i => (
-                <div key={i} className="size-10 rounded-full border-4 border-white dark:border-base-950 bg-base-100 dark:bg-base-900 overflow-hidden flex items-center justify-center text-xs font-bold ring-1 ring-base-200 dark:ring-base-800">
+                <div key={i} className="size-10 rounded-full border-4 border-white dark:border-neutral-950 bg-neutral-100 dark:bg-neutral-900 overflow-hidden flex items-center justify-center text-xs font-bold ring-1 ring-neutral-200 dark:ring-neutral-800">
                   U{i}
                 </div>
               ))}
-              <div className="size-10 rounded-full border-4 border-white dark:border-base-950 bg-base-900 text-white flex items-center justify-center text-xs font-bold ring-1 ring-base-200 dark:ring-base-800">
+              <div className="size-10 rounded-full border-4 border-white dark:border-neutral-950 bg-neutral-900 text-white flex items-center justify-center text-xs font-bold ring-1 ring-neutral-200 dark:ring-neutral-800">
                 +2
               </div>
             </div>
@@ -87,14 +87,14 @@ export function ModalDemo() {
             <FiTrash2 size={40} />
           </div>
           <div className="flex flex-col gap-2">
-            <h3 className="text-2xl font-bold text-base-900 dark:text-white tracking-tight">Delete Workspace?</h3>
-            <p className="text-sm text-base-500 dark:text-base-400 max-w-[240px]">This action is permanent and will remove all project data associated with this workspace.</p>
+            <h3 className="text-2xl font-bold text-neutral-900 dark:text-white tracking-tight">Delete Workspace?</h3>
+            <p className="text-sm text-muted-foreground max-w-[240px]">This action is permanent and will remove all project data associated with this workspace.</p>
           </div>
           <div className="grid grid-cols-1 w-full gap-3 pt-4 px-4">
             <Button variant="filled" className="bg-red-600 hover:bg-red-700 text-white h-12 rounded-xl" onClick={closeModal}>
               Yes, Delete Permanent
             </Button>
-            <Button variant="outlined" className="h-12 rounded-xl border-none hover:bg-base-50" onClick={closeModal}>
+            <Button variant="outlined" className="h-12 rounded-xl border-none hover:bg-neutral-50" onClick={closeModal}>
               Keep Workspace
             </Button>
           </div>
@@ -109,16 +109,18 @@ export function ModalDemo() {
         title="Immersive Editor"
         description="Maximize your creative potential in our distilled editing mode."
       >
-        <div className="w-full h-full flex items-center justify-center border-2 border-dashed border-base-200 dark:border-base-800 rounded-[2rem] p-12">
+        <div className="w-full h-full flex items-center justify-center border-2 border-dashed border-neutral-200 dark:border-neutral-800 rounded-[2rem] p-12">
           <div className="flex flex-col items-center gap-4 text-center">
-            <div className="size-16 rounded-2xl bg-base-100 dark:bg-base-900 flex items-center justify-center text-base-400">
+            <div className="size-16 rounded-2xl bg-neutral-100 dark:bg-neutral-900 flex items-center justify-center text-neutral-400">
               <FiCheckCircle size={32} />
             </div>
-            <h2 className="text-3xl font-bold text-base-900 dark:text-white tracking-tight leading-[1.05]">Workspace Ready</h2>
-            <p className="text-base-500 max-w-sm mx-auto">Click X to return to your dashboard or begin customizing your layout.</p>
+            <h2 className="text-3xl font-bold text-neutral-900 dark:text-white tracking-tight leading-[1.05]">Workspace Ready</h2>
+            <p className="text-neutral-500 max-w-sm mx-auto">Click X to return to your dashboard or begin customizing your layout.</p>
           </div>
         </div>
       </Modal>
     </div>
   );
 }
+
+

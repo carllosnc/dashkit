@@ -54,7 +54,7 @@ export function Tabs({ defaultValue, value, onValueChange, children, className }
  */
 export function TabsList({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <div className={cn("ds-tabs-list", className)}>
+    <div className={cn("inline-flex h-11 items-center justify-start rounded-xl bg-muted p-1 text-muted-foreground", className)}>
       {children}
     </div>
   );
@@ -73,15 +73,15 @@ export function TabsTrigger({ value, children, className }: { value: string; chi
     <button
       onClick={() => context.setActiveTab(value)}
       className={cn(
-        "ds-tabs-trigger",
-        isActive ? "ds-tabs-trigger-active" : "",
+        "relative flex-1 px-4 py-2 text-sm font-semibold transition-colors duration-200 outline-none isolate whitespace-nowrap flex items-center justify-center cursor-pointer text-muted-foreground hover:text-foreground",
+        isActive ? "text-foreground" : "",
         className
       )}
     >
       {isActive && (
         <motion.div
           layoutId={`active-tab-${context.tabsId}`}
-          className="ds-tabs-active-bg"
+          className="absolute inset-0 z-[-1] bg-background rounded-lg shadow-sm"
           transition={{ 
             type: 'spring', 
             stiffness: 300, 
@@ -115,3 +115,5 @@ export function TabsContent({ value, children, className }: { value: string; chi
     </motion.div>
   );
 }
+
+

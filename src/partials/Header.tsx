@@ -22,7 +22,7 @@ export function Header({ onMenuClick, showNavLinks = true }: HeaderProps) {
             icon={<FiMenu size={20} />}
             onClick={onMenuClick}
             variant="ghost"
-            className="md:hidden text-base-500 dark:text-base-400 mr-2"
+            className="md:hidden text-muted-foreground mr-2"
           />
         )}
         <Link to="/" className="flex items-center transition-opacity hover:opacity-80">
@@ -36,7 +36,7 @@ export function Header({ onMenuClick, showNavLinks = true }: HeaderProps) {
             to="/docs" 
             className={clsx(
               "text-sm font-medium transition-colors",
-              currentPath.startsWith('/docs') ? "text-base-950 dark:text-white" : "text-base-500 dark:text-base-400 hover:text-base-950 dark:hover:text-white"
+              currentPath.startsWith('/docs') ? "text-foreground" : "text-muted-foreground hover:text-neutral-950 dark:hover:text-white"
             )}
           >
             Documentation
@@ -45,7 +45,7 @@ export function Header({ onMenuClick, showNavLinks = true }: HeaderProps) {
             to="/charts" 
             className={clsx(
               "text-sm font-medium transition-colors",
-              currentPath.startsWith('/charts') ? "text-base-950 dark:text-white" : "text-base-500 dark:text-base-400 hover:text-base-950 dark:hover:text-white"
+              currentPath.startsWith('/charts') ? "text-foreground" : "text-muted-foreground hover:text-neutral-950 dark:hover:text-white"
             )}
           >
             Charts
@@ -54,7 +54,7 @@ export function Header({ onMenuClick, showNavLinks = true }: HeaderProps) {
             to="/examples" 
             className={clsx(
               "text-sm font-medium transition-colors",
-              currentPath.startsWith('/examples') ? "text-base-950 dark:text-white" : "text-base-500 dark:text-base-400 hover:text-base-950 dark:hover:text-white"
+              currentPath.startsWith('/examples') ? "text-foreground" : "text-muted-foreground hover:text-neutral-950 dark:hover:text-white"
             )}
           >
             Examples
@@ -70,9 +70,11 @@ export function Header({ onMenuClick, showNavLinks = true }: HeaderProps) {
           target="_blank"
           rel="noopener noreferrer"
           variant="ghost"
-          className="text-base-400 hover:text-base-900 dark:hover:text-white"
+          className="text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
         />
       </NavbarActions>
     </Navbar>
   );
 }
+
+

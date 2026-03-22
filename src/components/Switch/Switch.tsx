@@ -33,12 +33,12 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
             {/* Track */}
             <div 
               className={cn(
-                "ds-switch peer-disabled:opacity-30 peer-disabled:cursor-not-allowed",
+                "w-11 h-6 rounded-full border-2 transition-all duration-300 shrink-0 bg-input border-transparent peer-checked:bg-primary peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2 peer-disabled:opacity-30 peer-disabled:cursor-not-allowed",
                 className
               )} 
             />
             {/* Thumb */}
-            <div className="ds-switch-thumb peer-disabled:opacity-30 peer-disabled:cursor-not-allowed" />
+            <div className="absolute left-1 top-1 w-4 h-4 rounded-full transition-all duration-300 shadow-sm bg-background peer-checked:translate-x-5 peer-disabled:opacity-30 peer-disabled:cursor-not-allowed" />
           </label>
         </div>
         {(label || description) && (
@@ -47,12 +47,12 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
             className="flex flex-col cursor-pointer select-none"
           >
             {label && (
-              <span className="text-[15px] font-semibold text-base-800 dark:text-base-200 tracking-tight leading-6">
+              <span className="text-[15px] font-semibold text-neutral-800 dark:text-neutral-200 tracking-tight leading-6">
                 {label}
               </span>
             )}
             {description && (
-              <span className="text-[12px] text-base-500 dark:text-base-400 tracking-tight">
+              <span className="text-[12px] text-muted-foreground tracking-tight">
                 {description}
               </span>
             )}
@@ -64,3 +64,5 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
 );
 
 Switch.displayName = 'Switch';
+
+

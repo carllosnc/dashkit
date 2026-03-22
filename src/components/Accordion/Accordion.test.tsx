@@ -74,3 +74,5 @@ describe('Accordion', () => {
     expect(screen.getByText('Content 1')).toBeInTheDocument();
   });
 });
+
+

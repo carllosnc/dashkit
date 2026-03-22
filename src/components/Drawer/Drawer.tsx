@@ -97,7 +97,7 @@ export const Drawer = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-base-950/40 backdrop-blur-sm -z-10"
+            className="absolute inset-0 bg-neutral-950/40 backdrop-blur-sm -z-10"
           />
 
           {/* Drawer Content */}
@@ -127,7 +127,7 @@ export const Drawer = ({
             }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
             className={cn(
-              "absolute ds-block rounded-none overflow-hidden flex flex-col",
+              "absolute bg-card text-card-foreground shadow-sm border-border overflow-hidden flex flex-col",
               "touch-none",
               {
                 "border-r": position === 'left',
@@ -146,24 +146,24 @@ export const Drawer = ({
                 <div className="flex items-center gap-3">
                   {/* Visual Drag Handle */}
                   <div className={cn(
-                    "rounded-full bg-base-200 dark:bg-base-800 shrink-0",
+                    "rounded-full bg-neutral-200 dark:bg-neutral-800 shrink-0",
                     (position === 'left' || position === 'right') ? "w-1 h-8" : "w-8 h-1"
                   )} />
                   {title && (
-                    <h2 className="text-lg font-bold text-block-fg dark:text-block-dark-fg tracking-tight uppercase">
+                    <h2 className="text-lg font-bold !tracking-normal text-block-fg dark:text-block-dark-fg uppercase">
                       {title}
                     </h2>
                   )}
                 </div>
                 {description && (
-                  <p className="text-sm text-base-500 dark:text-base-400 pl-4">
+                  <p className="text-sm text-muted-foreground pl-4">
                     {description}
                   </p>
                 )}
               </div>
               <button
                 onClick={onClose}
-                className="p-2 rounded-md transition-all duration-200 hover:bg-base-100 dark:hover:bg-base-800 text-base-400 hover:text-base-900 dark:hover:text-white"
+                className="p-2 rounded-md transition-all duration-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
               >
                 <FiX size={20} />
               </button>
@@ -175,7 +175,7 @@ export const Drawer = ({
             </div>
 
             {/* Footer shadow fade */}
-            <div className="h-6 w-full shrink-0 bg-gradient-to-t from-white dark:from-base-900 to-transparent pointer-events-none" />
+            <div className="h-6 w-full shrink-0 bg-gradient-to-t from-white dark:from-neutral-900 to-transparent pointer-events-none" />
           </motion.div>
         </div>
       )}
@@ -183,3 +183,5 @@ export const Drawer = ({
     document.body
   );
 };
+
+

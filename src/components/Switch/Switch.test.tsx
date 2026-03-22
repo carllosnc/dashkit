@@ -37,3 +37,5 @@ describe('Switch', () => {
     expect(label.parentElement).toHaveAttribute('for', 'switch-my-switch');
   });
 });
+
+

@@ -15,7 +15,7 @@ const OG_DESCRIPTION = "Build professional tools with zero baggage. No heavy abs
 
 function App() {
   return (
-    <div className="flex flex-col min-h-screen ds-page font-sans">
+    <div className="flex flex-col min-h-screen bg-background text-foreground font-sans">
       <Helmet>
         <title>{TITLE}</title>
         <meta name="description" content={DESCRIPTION} />
@@ -33,12 +33,12 @@ function App() {
 
       {/* Hero Section */}
       <main className="flex-1 relative flex flex-col items-center justify-center text-center px-6 py-32 overflow-hidden">
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-base-950 dark:text-white max-w-4xl leading-[1.05] mb-8">
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground max-w-4xl leading-[1.05] mb-8">
           {TAGLINE_MAIN} <br className="hidden md:block" />
-          <span className="text-base-400 dark:text-base-600">{TAGLINE_SUB}</span>
+          <span className="text-neutral-400 dark:text-neutral-600">{TAGLINE_SUB}</span>
         </h1>
 
-        <p className="text-lg md:text-xl text-base-500 dark:text-base-400 max-w-2xl mb-12">
+        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-12">
           {DESCRIPTION}
         </p>
 
@@ -57,41 +57,41 @@ function App() {
 
         {/* CLI Reference */}
         <div className="mb-16 flex flex-col items-center animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300 fill-mode-both">
-          <code className="text-[18px] font-mono text-base-600 dark:text-base-300 flex items-center gap-3">
-            <span className="text-base-400 select-none">$</span>
+          <code className="text-[18px] font-mono text-neutral-600 dark:text-neutral-300 flex items-center gap-3">
+            <span className="text-neutral-400 select-none">$</span>
             <span>bunx carllosnc/dashkit add</span>
             <TypingEffect
               words={AVAILABLE_COMPONENTS}
-              className="text-blue-500 dark:text-sky-400 min-w-[100px]"
-              cursorClassName="bg-blue-500 dark:bg-sky-400"
+              className="text-primary min-w-[100px]"
+              cursorClassName="bg-primary"
             />
           </code>
-          <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.2em] text-base-400 dark:text-base-500">
+          <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
             Instant installation via CLI
           </p>
         </div>
 
         {/* Tech Stack Badges */}
-        <div className="flex flex-wrap justify-center gap-6 opacity-60">
-          <div className="flex items-center gap-2 text-sm font-medium text-base-600 dark:text-base-400">
-            <div className="size-1.5 rounded-full bg-sky-400" />
+        <div className="flex flex-wrap justify-center gap-6 opacity-40">
+          <div className="flex items-center gap-2 text-sm font-medium text-foreground">
+            <div className="size-1.5 rounded-full bg-foreground/80" />
             React
           </div>
-          <div className="flex items-center gap-2 text-sm font-medium text-base-600 dark:text-base-400">
-            <div className="size-1.5 rounded-full bg-teal-400" />
+          <div className="flex items-center gap-2 text-sm font-medium text-foreground">
+            <div className="size-1.5 rounded-full bg-foreground/60" />
             Tailwind CSS
           </div>
-          <div className="flex items-center gap-2 text-sm font-medium text-base-600 dark:text-base-400">
-            <div className="size-1.5 rounded-full bg-violet-400" />
+          <div className="flex items-center gap-2 text-sm font-medium text-foreground">
+            <div className="size-1.5 rounded-full bg-foreground/40" />
             Framer Motion
           </div>
-          <div className="flex items-center gap-2 text-sm font-medium text-base-600 dark:text-base-400">
-            <div className="size-1.5 rounded-full bg-amber-400" />
+          <div className="flex items-center gap-2 text-sm font-medium text-foreground">
+            <div className="size-1.5 rounded-full bg-foreground/20" />
             TypeScript
           </div>
         </div>
       </main>
-      
+
       <Footer />
     </div>
   )

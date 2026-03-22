@@ -45,3 +45,5 @@ describe('OtpInput', () => {
     expect(handleChange).toHaveBeenCalledWith('1234');
   });
 });
+
+

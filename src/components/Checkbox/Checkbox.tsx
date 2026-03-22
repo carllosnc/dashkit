@@ -24,13 +24,13 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             />
             <div 
               className={cn(
-                "ds-selection rounded-sm",
+                "w-6 h-6 border-2 transition-all duration-200 flex items-center justify-center shrink-0 bg-background border-input peer-checked:border-primary peer-checked:bg-primary peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2 group-hover:border-primary/50 peer-disabled:opacity-50 peer-disabled:cursor-not-allowed rounded-sm",
                 className
               )} 
             />
             {/* Inner Block Fill */}
             <div className={cn(
-              "absolute w-[13px] h-[13px] rounded-[2px] ds-selection-fill transition-all duration-200 pointer-events-none",
+              "absolute w-[13px] h-[13px] rounded-[2px] bg-primary-foreground transition-all duration-200 pointer-events-none",
               "opacity-0 scale-50 peer-checked:opacity-100 peer-checked:scale-100"
             )} />
           </label>
@@ -41,12 +41,12 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             className="flex flex-col cursor-pointer select-none"
           >
             {label && (
-              <span className="text-[15px] font-semibold text-base-800 dark:text-base-200 tracking-tight leading-5">
+              <span className="text-[15px] font-semibold text-neutral-800 dark:text-neutral-200 tracking-tight leading-5">
                 {label}
               </span>
             )}
             {description && (
-              <span className="text-[12px] text-base-500 dark:text-base-400 tracking-tight mt-0.5">
+              <span className="text-[12px] text-muted-foreground tracking-tight mt-0.5">
                 {description}
               </span>
             )}
@@ -58,3 +58,5 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
 );
 
 Checkbox.displayName = 'Checkbox';
+
+

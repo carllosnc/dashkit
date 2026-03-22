@@ -1,13 +1,7 @@
 @import "tailwindcss";
-@import "./dashkit.css";
 @plugin "@tailwindcss/typography";
 @import "@fontsource-variable/inter";
-
-@theme {
-  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
-}
-
-@variant dark (&:where(.dark, .dark *));
+@import "./dashkit.css";
 
 @layer base {
   html {
@@ -17,14 +11,13 @@
     }
   }
   body {
-    @apply antialiased text-base-950 ds-page dark:text-base-100;
+    @apply antialiased;
   }
 }
 
-
 @layer components {
   [data-rehype-pretty-code-figure] div {
-    @apply bg-base-900! border-none! rounded-none!;
+    @apply bg-primary border-none! rounded-none!;
   }
 
   [data-rehype-pretty-code-figure] code {
@@ -52,11 +45,12 @@
     background: transparent;
   }
   &::-webkit-scrollbar-thumb {
-    @apply bg-base-300 rounded-full hover:bg-base-400;
+    @apply bg-muted-foreground/20 rounded-full hover:bg-muted-foreground/40;
   }
   @variant dark {
     &::-webkit-scrollbar-thumb {
-      @apply bg-base-800 hover:bg-base-700;
+      @apply bg-muted-foreground/20 hover:bg-muted-foreground/40;
     }
   }
 }
+

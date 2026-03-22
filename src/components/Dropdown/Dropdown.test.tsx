@@ -161,3 +161,5 @@ describe('Dropdown Component', () => {
     // The check icon (FiCheck) should be there.
   });
 });
+
+

@@ -55,3 +55,5 @@ export function TypingEffect({
     </span>
   );
 }
+
+

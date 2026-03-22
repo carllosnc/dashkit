@@ -12,25 +12,25 @@ The **ButtonGroup** component is used to cluster multiple buttons together in a 
 
 The default layout for a button group.
 
-<div className="flex flex-col gap-6 p-8 ds-block">
-  <div className="flex flex-col gap-4">
-    <span className="text-xs font-bold uppercase tracking-widest text-base-400">Standard Buttons</span>
+<Preview>
+  <div className="flex flex-col gap-4 w-full">
+    <span className="text-xs font-bold uppercase tracking-widest text-neutral-400">Standard Buttons</span>
     <ButtonGroup>
       <Button variant="outlined">Daily</Button>
       <Button variant="outlined">Weekly</Button>
       <Button variant="outlined">Monthly</Button>
     </ButtonGroup>
   </div>
-  
-  <div className="flex flex-col gap-4">
-    <span className="text-xs font-bold uppercase tracking-widest text-base-400">Icon Buttons</span>
+
+  <div className="flex flex-col gap-4 w-full">
+    <span className="text-xs font-bold uppercase tracking-widest text-neutral-400">Icon Buttons</span>
     <ButtonGroup>
       <Button variant="outlined" leftIcon={<FiAlignLeft size={16} />} />
       <Button variant="outlined" leftIcon={<FiAlignCenter size={16} />} />
       <Button variant="outlined" leftIcon={<FiAlignRight size={16} />} />
     </ButtonGroup>
   </div>
-</div>
+</Preview>
 
 ```tsx
 import { Button, ButtonGroup } from 'dashkit-ui';
@@ -50,13 +50,13 @@ function Example() {
 
 Set the `vertical` prop to `true` to stack buttons vertically.
 
-<div className="flex flex-col gap-6 p-8 ds-block">
+<Preview>
   <ButtonGroup vertical>
     <Button variant="outlined" leftIcon={<FiBold size={16} />}>Bold</Button>
     <Button variant="outlined" leftIcon={<FiItalic size={16} />}>Italic</Button>
     <Button variant="outlined" leftIcon={<FiUnderline size={16} />}>Underline</Button>
   </ButtonGroup>
-</div>
+</Preview>
 
 ```tsx
 <ButtonGroup vertical>
@@ -70,13 +70,13 @@ Set the `vertical` prop to `true` to stack buttons vertically.
 
 ButtonGroup works with all button variants (`filled`, `outlined`, `soft`).
 
-<div className="flex flex-col gap-6 p-8 ds-block">
+<Preview>
   <ButtonGroup>
     <Button variant="soft">Option A</Button>
     <Button variant="soft">Option B</Button>
     <Button variant="soft">Option C</Button>
   </ButtonGroup>
-</div>
+</Preview>
 
 ## Props
 

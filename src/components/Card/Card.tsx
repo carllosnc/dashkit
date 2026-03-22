@@ -42,7 +42,7 @@ export function CardTitle({ className, ref, ...props }: CardTitleProps) {
   return (
     <h3
       ref={ref}
-      className={cn("text-lg font-bold text-base-950 dark:text-white tracking-tight leading-tight", className)}
+      className={cn("text-lg font-bold text-foreground tracking-tight leading-tight", className)}
       {...props}
     />
   );
@@ -52,7 +52,7 @@ export function CardDescription({ className, ref, ...props }: CardDescriptionPro
   return (
     <p
       ref={ref}
-      className={cn("text-sm text-base-500 dark:text-base-400 font-medium", className)}
+      className={cn("text-sm text-muted-foreground font-medium", className)}
       {...props}
     />
   );
@@ -73,7 +73,7 @@ export function CardFooter({ className, ref, ...props }: CardFooterProps) {
     <div
       ref={ref}
       className={cn(
-        "p-6 flex items-center justify-end gap-3 ds-block-footer",
+        "p-6 flex items-center justify-end gap-3 bg-card border-t border-border",
         className
       )}
       {...props}
@@ -107,7 +107,7 @@ export function Card({
       animate={animate ? { opacity: 1, y: 0 } : undefined}
       transition={{ duration: 0.3, ease: 'easeOut' }}
       className={cn(
-        "ds-block overflow-hidden flex flex-col font-sans",
+        "bg-card text-card-foreground rounded-lg shadow-sm overflow-hidden flex flex-col font-sans",
         !bordered && "border-none",
         !shadowed && "shadow-none",
         className
@@ -117,3 +117,5 @@ export function Card({
     </motion.div>
   );
 }
+
+

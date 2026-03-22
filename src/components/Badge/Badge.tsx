@@ -7,19 +7,19 @@ export type BadgeColor = 'success' | 'warning' | 'error' | 'info' | 'base';
 export type BadgePosition = 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
 
 const colorStyles: Record<BadgeColor, string> = {
-  success: "ds-status-success-filled",
-  warning: "ds-status-warning-filled",
-  error: "ds-status-error-filled",
-  info: "ds-status-info-filled",
-  base: "ds-status-base-filled"
+  success: "bg-emerald-500 text-white border-transparent",
+  warning: "bg-amber-500 text-white border-transparent",
+  error: "bg-red-500 text-white border-transparent",
+  info: "bg-blue-500 text-white border-transparent",
+  base: "bg-neutral-500 text-white border-transparent"
 };
 
 const pulseStyles: Record<BadgeColor, string> = {
-  success: "ds-status-success-filled",
-  warning: "ds-status-warning-filled",
-  error: "ds-status-error-filled",
-  info: "ds-status-info-filled",
-  base: "ds-status-base-filled"
+  success: "bg-emerald-500",
+  warning: "bg-amber-500",
+  error: "bg-red-500",
+  info: "bg-blue-500",
+  base: "bg-neutral-500"
 };
 
 const positionClasses: Record<BadgePosition, string> = {
@@ -137,3 +137,5 @@ export const FloatBadge = ({
     </div>
   );
 };
+
+

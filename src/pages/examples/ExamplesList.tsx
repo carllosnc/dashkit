@@ -29,15 +29,15 @@ export const ExamplesList = () => {
 
       <main className="flex-1 max-w-5xl w-full mx-auto px-6 py-20">
         <header className="mb-10">
-          <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-base-500 hover:text-base-900 dark:text-base-400 dark:hover:text-white mb-6 transition-colors">
+          <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white mb-6 transition-colors">
             <FiArrowLeft size={16} />
             Back to Home
           </Link>
           <div className="flex flex-col gap-4">
-            <h1 className="text-3xl font-bold tracking-tight text-base-950 dark:text-white">
+            <h1 className="text-3xl font-bold tracking-tight text-foreground">
               Component Examples
             </h1>
-            <p className="text-lg text-base-500 dark:text-base-400 max-w-3xl leading-relaxed">
+            <p className="text-lg text-muted-foreground max-w-3xl leading-relaxed">
               Explore real-world layout patterns and advanced interface designs built entirely with Dashkit UI's modular component system.
             </p>
           </div>
@@ -54,16 +54,16 @@ export const ExamplesList = () => {
             >
               <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-4">
-                  <h3 className="text-xl font-bold text-base-950 dark:text-white group-hover:text-blue-500 dark:group-hover:text-sky-400 transition-colors">
+                  <h3 className="text-xl font-bold text-foreground group-hover:text-blue-500 dark:group-hover:text-sky-400 transition-colors">
                     {example.title}
                   </h3>
                 </div>
-                <p className="text-base-500 dark:text-base-400 max-w-2xl leading-relaxed">
+                <p className="text-muted-foreground max-w-2xl leading-relaxed">
                   {example.description}
                 </p>
               </div>
               <div className="flex items-center gap-4 mt-4 md:mt-0">
-                <FiArrowRight className="size-6 text-base-300 dark:text-base-700 group-hover:text-blue-500 dark:group-hover:text-sky-400 transition-all duration-300" />
+                <FiArrowRight className="size-6 text-neutral-300 dark:text-neutral-700 group-hover:text-blue-500 dark:group-hover:text-sky-400 transition-all duration-300" />
               </div>
             </Link>
           ))}
@@ -73,3 +73,5 @@ export const ExamplesList = () => {
     </div>
   );
 };
+
+

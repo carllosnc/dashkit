@@ -29,9 +29,6 @@ export interface AccordionProps {
   shadowed?: boolean;
 }
 
-/**
- * A clean, card-styled Accordion component.
- */
 export const Accordion = ({
   type = 'single',
   defaultValue,
@@ -86,16 +83,16 @@ export const AccordionItem = ({ value, children, className, disabled }: Accordio
   const context = React.useContext(AccordionContext);
   if (!context) throw new Error('AccordionItem must be used within Accordion');
 
-  const isOpen = Array.isArray(context.value) 
-    ? context.value.includes(value) 
+  const isOpen = Array.isArray(context.value)
+    ? context.value.includes(value)
     : context.value === value;
 
   return (
     <AccordionItemContext.Provider value={{ value, isOpen }}>
       <div className={cn(
-        "ds-block transition-all duration-200 overflow-hidden",
-        isOpen && "ds-block",
-        context.shadowed ? "ds-block" : "shadow-none",
+        "bg-card text-card-foreground rounded-lg shadow-sm transition-all duration-200 overflow-hidden",
+        isOpen && "bg-card",
+        context.shadowed ? "bg-card" : "shadow-none",
         disabled && "opacity-50 pointer-events-none",
         className
       )}>
@@ -115,18 +112,18 @@ export const AccordionTrigger = ({ children, className }: { children: React.Reac
       onClick={() => context.onValueChange(itemContext.value)}
       className={cn(
         "flex w-full items-center gap-3 px-4 py-4 text-left transition-all hover:text-block-fg dark:hover:text-block-dark-fg group",
-        itemContext.isOpen ? "text-block-fg dark:text-block-dark-fg font-bold" : "text-base-950 dark:text-base-300 font-bold",
+        itemContext.isOpen ? "text-block-fg dark:text-block-dark-fg font-bold" : "text-neutral-950 dark:text-neutral-300 font-bold",
         className
       )}
     >
       <motion.div
         animate={{ rotate: itemContext.isOpen ? 90 : 0 }}
         transition={{ type: 'spring', damping: 20, stiffness: 300 }}
-        className="text-base-400 group-hover:text-base-950 dark:group-hover:text-white shrink-0"
+        className="text-neutral-400 group-hover:text-neutral-950 dark:group-hover:text-white shrink-0"
       >
         <FiChevronRight size={18} />
       </motion.div>
-      <span className="ds-accordion-title tracking-tight">{children}</span>
+      <span className="text-base text-foreground font-bold tracking-tight">{children}</span>
     </button>
   );
 };
@@ -145,7 +142,7 @@ export const AccordionContent = ({ children, className }: { children: React.Reac
           transition={{ type: 'spring', damping: 25, stiffness: 200 }}
           className="overflow-hidden"
         >
-          <div className={cn("px-4 pb-4 pl-[44px] text-sm text-base-500 dark:text-base-400 leading-relaxed font-medium", className)}>
+          <div className={cn("px-4 pb-4 pl-[44px] text-sm text-muted-foreground leading-relaxed font-medium", className)}>
             {children}
           </div>
         </motion.div>
@@ -155,3 +152,5 @@ export const AccordionContent = ({ children, className }: { children: React.Reac
 };
 
 Accordion.displayName = 'Accordion';
+
+

@@ -128,7 +128,7 @@ export const AreaChart = ({
             y1={svgHeight * (1 - line)}
             x2={width}
             y2={svgHeight * (1 - line)}
-            className="ds-chart-grid"
+            className="stroke-border/50"
             strokeWidth="1"
             strokeDasharray="4 4"
           />
@@ -141,7 +141,7 @@ export const AreaChart = ({
             y1="0"
             x2={(hoveredIndex / (data.length - 1)) * width}
             y2={svgHeight}
-            className="ds-chart-hover-line"
+            className="stroke-border"
             strokeWidth="1"
           />
         )}
@@ -181,8 +181,8 @@ export const AreaChart = ({
                   cy={p.y}
                   r={hoveredIndex === i ? "5" : "3"}
                   className={cn(
-                    "ds-chart-point",
-                    hoveredIndex === i && "ds-chart-point-active"
+                    "stroke-current transition-all duration-200 fill-background",
+                    hoveredIndex === i && "fill-current"
                   )}
                   style={hoveredIndex === i ? { fill: s.color } : undefined}
                   stroke={s.color}
@@ -200,14 +200,14 @@ export const AreaChart = ({
       {/* Tooltip Overlay */}
       {showTooltip && hoveredIndex !== null && (
         <div 
-          className="absolute z-10 pointer-events-none transform -translate-x-1/2 -translate-y-full mb-6 ds-chart-tooltip"
+          className="absolute z-10 pointer-events-none transform -translate-x-1/2 -translate-y-full mb-6 bg-card text-card-foreground rounded-lg border border-border p-3 shadow-2xl flex flex-col gap-2 min-w-[140px]"
           style={{ 
             left: tooltipPos.x, 
             top: tooltipPos.y - 10
           }}
         >
-          <div className="ds-chart-tooltip-header">
-             <span className="ds-chart-tooltip-title">
+          <div className="flex border-b border-border pb-1 mb-1">
+             <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
                {data[hoveredIndex].label}
              </span>
           </div>
@@ -215,9 +215,9 @@ export const AreaChart = ({
             <div key={s.key} className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-2">
                  <div className="size-2 rounded-full" style={{ backgroundColor: s.color }} />
-                 <span className="ds-chart-tooltip-label">{s.label}</span>
+                 <span className="text-xs font-medium text-foreground/80">{s.label}</span>
               </div>
-              <span className="ds-chart-tooltip-value">
+              <span className="text-xs font-bold text-foreground">
                 {Number(data[hoveredIndex][s.key]).toLocaleString()}
               </span>
             </div>
@@ -232,8 +232,8 @@ export const AreaChart = ({
             <span 
               key={i} 
               className={cn(
-                "ds-chart-label transition-colors",
-                hoveredIndex === i && "ds-chart-label-active"
+                "text-[10px] font-bold uppercase tracking-widest text-muted-foreground transition-colors",
+                hoveredIndex === i && "text-foreground"
               )}
             >
               {d.label}
@@ -246,3 +246,5 @@ export const AreaChart = ({
 };
 
 AreaChart.displayName = 'AreaChart';
+
+

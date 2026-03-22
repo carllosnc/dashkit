@@ -44,7 +44,7 @@ function SidebarContent({ currentPath, onItemClick }: { currentPath: string, onI
     <>
       {chartNavItems.map((section, idx) => (
         <div key={idx} className="mb-10 last:mb-0">
-          <h4 className="text-[11px] font-bold text-base-500 dark:text-base-400 uppercase tracking-[0.2em] mb-4">
+          <h4 className="text-[11px] font-bold text-muted-foreground uppercase tracking-[0.2em] mb-4">
             {section.title}
           </h4>
           <nav className="flex flex-col gap-1">
@@ -56,16 +56,16 @@ function SidebarContent({ currentPath, onItemClick }: { currentPath: string, onI
                 className={clsx(
                   "px-3 py-2 rounded-xl text-sm transition-all duration-200 flex items-center gap-3",
                   currentPath === link.to
-                    ? "bg-white shadow-[0_2px_8px_rgba(0,0,0,0.04)] border-white text-base-950 font-semibold dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
-                    : "text-base-500 font-medium hover:text-base-950 hover:bg-white/50 dark:text-base-400 dark:hover:text-white dark:hover:bg-white/5",
-                  link.disabled && "opacity-50 cursor-not-allowed hover:bg-transparent hover:text-base-500"
+                    ? "bg-white shadow-[0_2px_8px_rgba(0,0,0,0.04)] border-white text-neutral-950 font-semibold dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
+                    : "text-neutral-500 font-medium hover:text-neutral-950 hover:bg-white/50 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/5",
+                  link.disabled && "opacity-50 cursor-not-allowed hover:bg-transparent hover:text-neutral-500"
                 )}
               >
                 <div className={clsx(
                   "shrink-0 transition-colors duration-200",
                   currentPath === link.to
-                    ? "text-base-900 dark:text-white"
-                    : "text-base-400 group-hover:text-base-900 dark:text-base-500 dark:group-hover:text-white"
+                    ? "text-neutral-900 dark:text-white"
+                    : "text-neutral-400 group-hover:text-neutral-900 dark:text-neutral-500 dark:group-hover:text-white"
                 )}>
                   {link.icon}
                 </div>
@@ -107,7 +107,7 @@ export function ChartsLayout() {
       {/* Main Layout */}
       <div className="flex-1 max-w-6xl w-full mx-auto px-4 md:px-6 flex md:grid md:grid-cols-[260px_1fr] gap-0 md:gap-12">
         {/* Sidebar */}
-        <aside className="py-12 border-r ds-layout-border hidden md:block shrink-0">
+        <aside className="py-12 border-r border-border hidden md:block shrink-0">
           <div className="sticky top-28 h-[calc(100vh-140px)] overflow-y-auto pr-8 custom-scrollbar">
             <SidebarContent currentPath={currentPath} />
           </div>
@@ -123,3 +123,5 @@ export function ChartsLayout() {
     </div>
   );
 }
+
+

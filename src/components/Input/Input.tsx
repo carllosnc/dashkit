@@ -55,7 +55,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label
             htmlFor={inputId}
-            className="text-[13px] font-semibold text-base-700 dark:text-base-300 ml-1 tracking-tight"
+            className="text-[13px] font-semibold text-neutral-700 dark:text-neutral-300 ml-1 tracking-tight"
           >
             {label}
           </label>
@@ -63,7 +63,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         <div className="relative flex items-center group">
           {leftIcon && (
             <div className={cn(
-              "absolute left-4 inset-y-0 text-base-500 transition-colors duration-200 pointer-events-none flex items-center justify-center",
+              "absolute left-4 inset-y-0 text-neutral-500 transition-colors duration-200 pointer-events-none flex items-center justify-center",
               "group-focus-within:text-black dark:group-focus-within:text-white"
             )}>
               {leftIcon}
@@ -75,7 +75,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             onChange={handleChange}
             className={cn(
-              "w-full px-4 h-9 text-sm ds-input",
+              "w-full px-4 h-9 text-sm bg-background text-foreground border border-input rounded-[var(--radius)] outline-none transition-all duration-200 focus:ring-2 focus:ring-ring focus:ring-offset-2 placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
               {
                 "pl-11": !!leftIcon,
                 "pr-11": !!rightIcon,
@@ -86,7 +86,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           />
           {rightIcon && (
             <div className={cn(
-              "absolute right-4 inset-y-0 text-base-500 transition-colors duration-200 pointer-events-none flex items-center justify-center",
+              "absolute right-4 inset-y-0 text-neutral-500 transition-colors duration-200 pointer-events-none flex items-center justify-center",
               "group-focus-within:text-black dark:group-focus-within:text-white"
             )}>
               {rightIcon}
@@ -96,7 +96,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {(error || helperText) && (
           <span className={cn(
             "text-[12px] ml-1 tracking-tight",
-            error ? "text-red-500" : "text-base-600"
+            error ? "text-red-500" : "text-neutral-600"
           )}>
             {error || helperText}
           </span>
@@ -107,3 +107,5 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 );
 
 Input.displayName = 'Input';
+
+

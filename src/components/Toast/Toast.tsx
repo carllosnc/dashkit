@@ -112,7 +112,7 @@ function ToastItem({
       exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
       transition={{ type: 'spring', damping: 20, stiffness: 300 }}
       className={cn(
-        "absolute w-full pointer-events-auto ds-toast p-4 flex items-center gap-4 group transition-shadow",
+        "absolute w-full pointer-events-auto bg-popover text-popover-foreground border border-border rounded-md shadow-2xl p-4 flex items-center gap-4 group transition-shadow",
         isTop ? "top-0 origin-top" : "bottom-0 origin-bottom"
       )}
     >
@@ -127,7 +127,7 @@ function ToastItem({
           </h4>
         )}
         {toast.description && (
-          <p className="text-xs text-base-500 dark:text-base-400 leading-relaxed line-clamp-2">
+          <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
             {toast.description}
           </p>
         )}
@@ -135,13 +135,15 @@ function ToastItem({
 
       <button
         onClick={() => removeToast(toast.id)}
-        className="shrink-0 h-fit p-1 rounded-md text-base-400 hover:text-block-fg dark:hover:text-block-dark-fg hover:bg-floating-item-bg-hover dark:hover:bg-floating-item-dark-bg-hover transition-all opacity-0 group-hover:opacity-100"
+        className="shrink-0 h-fit p-1 rounded-md text-neutral-400 hover:text-block-fg dark:hover:text-block-dark-fg hover:bg-floating-item-bg-hover dark:hover:bg-floating-item-dark-bg-hover transition-all opacity-0 group-hover:opacity-100"
       >
         <FiX size={14} />
       </button>
     </motion.div>
   );
 }
+
+
 
 
 

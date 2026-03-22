@@ -23,7 +23,7 @@ export const ComboboxDemo = () => {
     <div className="flex flex-col gap-12 w-full max-w-md mx-auto">
       {/* Basic Combobox */}
       <section className="flex flex-col gap-4">
-        <h4 className="text-sm font-semibold text-base-900 dark:text-white uppercase tracking-wider">Basic Search</h4>
+        <h4 className="text-sm font-semibold text-neutral-900 dark:text-white uppercase tracking-wider">Basic Search</h4>
         <Combobox
           label="Frontend Framework"
           description="Type to filter the available options."
@@ -31,14 +31,14 @@ export const ComboboxDemo = () => {
           value={value}
           onChange={setValue}
         />
-        <div className="p-3 bg-base-50 dark:bg-base-900/50 rounded-lg border border-base-200 dark:border-base-800">
-          <p className="text-xs text-base-500 font-mono">Selected: {value || 'None'}</p>
+        <div className="p-3 bg-neutral-50 dark:bg-neutral-900/50 rounded-lg border border-neutral-200 dark:border-neutral-800">
+          <p className="text-xs text-neutral-500 font-mono">Selected: {value || 'None'}</p>
         </div>
       </section>
 
       {/* Multi-select Combobox */}
       <section className="flex flex-col gap-4">
-        <h4 className="text-sm font-semibold text-base-900 dark:text-white uppercase tracking-wider">Multi-Selection</h4>
+        <h4 className="text-sm font-semibold text-neutral-900 dark:text-white uppercase tracking-wider">Multi-Selection</h4>
         <Combobox
           label="Platform Tools"
           multiple
@@ -51,7 +51,7 @@ export const ComboboxDemo = () => {
 
       {/* Empty State */}
       <section className="flex flex-col gap-4">
-        <h4 className="text-sm font-semibold text-base-900 dark:text-white uppercase tracking-wider">Empty State</h4>
+        <h4 className="text-sm font-semibold text-neutral-900 dark:text-white uppercase tracking-wider">Empty State</h4>
         <Combobox
           label="Pick a library"
           placeholder="Start typing..."
@@ -63,7 +63,7 @@ export const ComboboxDemo = () => {
 
       {/* Disabled State */}
       <section className="flex flex-col gap-4">
-        <h4 className="text-sm font-semibold text-base-900 dark:text-white uppercase tracking-wider">Disabled</h4>
+        <h4 className="text-sm font-semibold text-neutral-900 dark:text-white uppercase tracking-wider">Disabled</h4>
         <Combobox
           label="Frozen Selection"
           disabled
@@ -74,3 +74,5 @@ export const ComboboxDemo = () => {
     </div>
   );
 };
+
+

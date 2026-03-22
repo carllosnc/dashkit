@@ -22,10 +22,12 @@ export function SelectDemo() {
         onChange={setValue}
       />
       {value && (
-        <div className="text-sm text-base-500 dark:text-base-400">
+        <div className="text-sm text-muted-foreground">
           Selected: <span className="font-semibold text-black dark:text-white uppercase tracking-wider">{value}</span>
         </div>
       )}
     </div>
   );
 }
+
+

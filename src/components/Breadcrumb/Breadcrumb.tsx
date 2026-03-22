@@ -28,7 +28,7 @@ export interface BreadcrumbProps {
  */
 export const Breadcrumb = ({
   items,
-  separator = <ChevronRight size={14} className="text-base-400" />,
+  separator = <ChevronRight size={14} className="text-neutral-400" />,
   className,
 }: BreadcrumbProps) => {
   return (
@@ -43,7 +43,7 @@ export const Breadcrumb = ({
                 {item.href && !isLast ? (
                   <a
                     href={item.href}
-                    className="flex items-center gap-1.5 text-sm font-medium text-base-500 hover:text-base-900 dark:text-base-400 dark:hover:text-white transition-colors"
+                    className="flex items-center gap-1.5 text-sm font-medium text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition-colors"
                   >
                     {item.icon && <span className="shrink-0">{item.icon}</span>}
                     {item.label}
@@ -53,8 +53,8 @@ export const Breadcrumb = ({
                     className={cn(
                       "flex items-center gap-1.5 text-sm font-semibold",
                       isLast || item.active
-                        ? "text-base-900 dark:text-white"
-                        : "text-base-500 dark:text-base-400"
+                        ? "text-neutral-900 dark:text-white"
+                        : "text-muted-foreground"
                     )}
                   >
                     {item.icon && <span className="shrink-0">{item.icon}</span>}
@@ -74,3 +74,5 @@ export const Breadcrumb = ({
     </nav>
   );
 };
+
+

@@ -53,7 +53,7 @@ export function ImageExpander({ children, full, caption, className }: ImageExpan
       <div
         onClick={() => setIsOpen(true)}
         className={cn(
-          "group relative cursor-zoom-in overflow-hidden rounded-2xl border border-base-200 dark:border-base-800 transition-all duration-300 hover:shadow-xl",
+          "group relative cursor-zoom-in overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-800 transition-all duration-300 hover:shadow-xl",
           className
         )}
       >
@@ -62,7 +62,7 @@ export function ImageExpander({ children, full, caption, className }: ImageExpan
         </div>
         
         {/* Hover Overlay Indicator */}
-        <div className="absolute inset-0 flex items-center justify-center bg-base-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="absolute inset-0 flex items-center justify-center bg-neutral-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <div className="p-3 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white shadow-2xl scale-75 group-hover:scale-100 transition-transform duration-300">
             <FiMaximize2 className="size-6" />
           </div>
@@ -78,7 +78,7 @@ export function ImageExpander({ children, full, caption, className }: ImageExpan
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="absolute p-4 md:p-8 inset-0 bg-base-950/80 backdrop-blur-sm -z-10"
+              className="absolute p-4 md:p-8 inset-0 bg-neutral-950/80 backdrop-blur-sm -z-10"
             />
 
             {/* Close Button Trigger Area (Clicking empty space closes) */}
@@ -101,7 +101,7 @@ export function ImageExpander({ children, full, caption, className }: ImageExpan
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="relative z-[105] w-full h-full flex flex-col items-center justify-center overflow-auto no-scrollbar scroll-smooth selection:bg-base-500/30"
+              className="relative z-[105] w-full h-full flex flex-col items-center justify-center overflow-auto no-scrollbar scroll-smooth selection:bg-neutral-500/30"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Image Container for Original Size */}
@@ -119,7 +119,7 @@ export function ImageExpander({ children, full, caption, className }: ImageExpan
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="fixed inset-x-0 bottom-0 h-48 bg-gradient-to-t from-base-950/80 via-base-950/40 to-transparent pointer-events-none z-[115]"
+                    className="fixed inset-x-0 bottom-0 h-48 bg-gradient-to-t from-neutral-950/80 via-neutral-950/40 to-transparent pointer-events-none z-[115]"
                   />
 
                   <motion.div 
@@ -147,3 +147,5 @@ export function ImageExpander({ children, full, caption, className }: ImageExpan
 }
 
 ImageExpander.displayName = 'ImageExpander';
+
+

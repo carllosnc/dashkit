@@ -48,10 +48,10 @@ export function DashboardExample() {
         </NavbarBrand>
 
         <NavbarLinks>
-           <a href="#" className="text-sm font-medium text-base-950 dark:text-white">Overview</a>
-           <a href="/charts" className="text-sm font-medium text-base-500 dark:text-base-400">Charts</a>
-           <a href="#" className="text-sm font-medium text-base-500 dark:text-base-400">Analytics</a>
-           <a href="#" className="text-sm font-medium text-base-500 dark:text-base-400">Team</a>
+           <a href="#" className="text-sm font-medium text-foreground">Overview</a>
+           <a href="/charts" className="text-sm font-medium text-muted-foreground">Charts</a>
+           <a href="#" className="text-sm font-medium text-muted-foreground">Analytics</a>
+           <a href="#" className="text-sm font-medium text-muted-foreground">Team</a>
         </NavbarLinks>
 
         <NavbarActions>
@@ -74,7 +74,7 @@ export function DashboardExample() {
                 { label: 'Dashboard', active: true }
               ]}
             />
-            <h1 className="text-xl font-bold tracking-tight text-base-950 dark:text-white">
+            <h1 className="text-xl font-bold tracking-tight text-foreground">
               Project Overview
             </h1>
           </div>
@@ -100,18 +100,18 @@ export function DashboardExample() {
           <Card shadowed>
             <CardContent className="pt-6">
               <div className="flex items-center justify-between mb-2">
-                 <span className="text-sm font-medium text-base-500 dark:text-base-400">Total Revenue</span>
+                 <span className="text-sm font-medium text-muted-foreground">Total Revenue</span>
                  <Badge content="+12.5%" color="base" />
               </div>
               <div className="text-2xl font-bold mb-1">$45,231.89</div>
-              <div className="text-[11px] text-base-400 uppercase tracking-wider font-bold">vs last month</div>
+              <div className="text-[11px] text-neutral-400 uppercase tracking-wider font-bold">vs last month</div>
             </CardContent>
           </Card>
 
           <Card shadowed>
             <CardContent className="pt-6">
               <div className="flex items-center justify-between mb-2">
-                 <span className="text-sm font-medium text-base-500 dark:text-base-400">Active Tasks</span>
+                 <span className="text-sm font-medium text-muted-foreground">Active Tasks</span>
                  <Badge content="82%" color="base" />
               </div>
               <div className="text-2xl font-bold mb-1">1,240</div>
@@ -122,31 +122,31 @@ export function DashboardExample() {
           <Card shadowed>
             <CardContent className="pt-6">
               <div className="flex items-center justify-between mb-2">
-                 <span className="text-sm font-semibold text-base-700 dark:text-base-200">Efficiency Rate</span>
+                 <span className="text-sm font-semibold text-neutral-700 dark:text-neutral-200">Efficiency Rate</span>
                  <Badge content="94%" color="base" />
               </div>
               <div className="text-2xl font-bold mb-1">94.2%</div>
               <div className="flex gap-1.5 mt-2">
-                 {[1,2,3,4,5].map(i => <div key={i} className="flex-1 h-2 rounded-sm bg-base-300 dark:bg-base-700" />)}
-                 <div className="flex-1 h-2 rounded-sm bg-base-900 dark:bg-base-200" />
+                 {[1,2,3,4,5].map(i => <div key={i} className="flex-1 h-2 rounded-sm bg-neutral-300 dark:bg-neutral-700" />)}
+                 <div className="flex-1 h-2 rounded-sm bg-neutral-900 dark:bg-neutral-200" />
               </div>
             </CardContent>
           </Card>
 
           <Card shadowed>
             <CardContent className="pt-6 text-center flex flex-col items-center justify-center min-h-[100px]">
-              <div className="size-10 rounded-full bg-base-900 dark:bg-white flex items-center justify-center mb-2">
-                <FiZap className="text-white dark:text-base-950" />
+              <div className="size-10 rounded-full bg-neutral-900 dark:bg-white flex items-center justify-center mb-2">
+                <FiZap className="text-white dark:text-neutral-950" />
               </div>
-              <div className="text-sm font-bold text-base-950 dark:text-white">Active Sprints</div>
-              <div className="text-[11px] text-base-400">3 ongoing now</div>
+              <div className="text-sm font-bold text-foreground">Active Sprints</div>
+              <div className="text-[11px] text-neutral-400">3 ongoing now</div>
             </CardContent>
           </Card>
         </div>
 
         {/* Overview Section */}
         <section className="flex flex-col gap-6">
-          <h2 className="text-sm font-bold uppercase tracking-widest text-base-400 flex items-center gap-2">
+          <h2 className="text-sm font-bold uppercase tracking-widest text-neutral-400 flex items-center gap-2">
              <FiPieChart /> Activity Overview
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -196,15 +196,15 @@ export function DashboardExample() {
                 <CardContent className="flex flex-col gap-4">
                   <div className="flex -space-x-2">
                     {[1,2,3,4].map(i => (
-                      <div key={i} className="size-10 rounded-full border-4 border-white dark:border-base-950 bg-base-200 dark:bg-base-800 flex items-center justify-center overflow-hidden">
+                      <div key={i} className="size-10 rounded-full border-4 border-white dark:border-neutral-950 bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center overflow-hidden">
                         <FiUsers className="size-4" />
                       </div>
                     ))}
-                    <div className="size-10 rounded-full border-4 border-white dark:border-base-950 bg-base-900 text-white text-[10px] font-bold flex items-center justify-center">
+                    <div className="size-10 rounded-full border-4 border-white dark:border-neutral-950 bg-neutral-900 text-white text-[10px] font-bold flex items-center justify-center">
                       +12
                     </div>
                   </div>
-                  <p className="text-sm text-base-500">Your team has completed 24 tasks today.</p>
+                  <p className="text-sm text-neutral-500">Your team has completed 24 tasks today.</p>
                   <div className="flex gap-2">
                     <Chip label="Mobile App" onDelete={() => {}} />
                     <Chip label="Dashboard" onDelete={() => {}} />
@@ -227,7 +227,7 @@ export function DashboardExample() {
 
         {/* Projects Section */}
         <section className="flex flex-col gap-6">
-          <h2 className="text-sm font-bold uppercase tracking-widest text-base-400 flex items-center gap-2">
+          <h2 className="text-sm font-bold uppercase tracking-widest text-neutral-400 flex items-center gap-2">
              <FiGrid /> Active Projects
           </h2>
 
@@ -236,16 +236,16 @@ export function DashboardExample() {
               <AccordionItem value="item-1">
                 <AccordionTrigger>
                   <div className="flex items-center gap-3">
-                    <FiCheckCircle size={20} className="text-base-500" />
+                    <FiCheckCircle size={20} className="text-neutral-500" />
                     Phase 1: Foundation
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
-                   <div className="py-2 text-sm text-base-500 flex flex-col gap-4">
+                   <div className="py-2 text-sm text-neutral-500 flex flex-col gap-4">
                      <p>Implement core UI elements and accessibility foundations. Focus on design tokens and basic interactions.</p>
                      <div className="flex items-center gap-4">
                        <Badge content="On Track" color="base" />
-                       <span className="text-xs text-base-400">Due Dec 12, 2026</span>
+                       <span className="text-xs text-neutral-400">Due Dec 12, 2026</span>
                      </div>
                    </div>
                 </AccordionContent>
@@ -253,45 +253,45 @@ export function DashboardExample() {
               <AccordionItem value="item-2">
                 <AccordionTrigger>
                   <div className="flex items-center gap-3">
-                    <FiClock size={20} className="text-base-500" />
+                    <FiClock size={20} className="text-neutral-500" />
                     Phase 2: Integration
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
-                   <p className="py-2 text-sm text-base-500">Connecting external API services and real-time database syncing across distributed nodes.</p>
+                   <p className="py-2 text-sm text-neutral-500">Connecting external API services and real-time database syncing across distributed nodes.</p>
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-3">
                 <AccordionTrigger>
                   <div className="flex items-center gap-3">
-                    <FiZap size={20} className="text-base-500" />
+                    <FiZap size={20} className="text-neutral-500" />
                     Phase 3: Performance Optimization
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
-                   <p className="py-2 text-sm text-base-500">Optimizing bundle sizes, implementing edge caching, and fine-tuning database queries for scale.</p>
+                   <p className="py-2 text-sm text-neutral-500">Optimizing bundle sizes, implementing edge caching, and fine-tuning database queries for scale.</p>
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-4">
                 <AccordionTrigger>
                   <div className="flex items-center gap-3">
-                    <FiUsers size={20} className="text-base-500" />
+                    <FiUsers size={20} className="text-neutral-500" />
                     Phase 4: Feedback & Pilot
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
-                   <p className="py-2 text-sm text-base-500">Launching to a subset of users to gather real-world usage patterns and edge cases.</p>
+                   <p className="py-2 text-sm text-neutral-500">Launching to a subset of users to gather real-world usage patterns and edge cases.</p>
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-5">
                 <AccordionTrigger>
                   <div className="flex items-center gap-3">
-                    <FiPieChart size={20} className="text-base-500" />
+                    <FiPieChart size={20} className="text-neutral-500" />
                     Phase 5: Global Rollout
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
-                   <p className="py-2 text-sm text-base-500">Final production deployment across all regions with multi-cluster traffic management.</p>
+                   <p className="py-2 text-sm text-neutral-500">Final production deployment across all regions with multi-cluster traffic management.</p>
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
@@ -300,7 +300,7 @@ export function DashboardExample() {
 
         {/* Settings Section */}
         <section className="flex flex-col gap-6">
-          <h2 className="text-sm font-bold uppercase tracking-widest text-base-400 flex items-center gap-2">
+          <h2 className="text-sm font-bold uppercase tracking-widest text-neutral-400 flex items-center gap-2">
              <FiSettings /> Account Settings
           </h2>
 
@@ -313,12 +313,12 @@ export function DashboardExample() {
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
                   <div className="flex flex-col gap-2">
-                    <label className="text-sm font-semibold text-base-700 dark:text-base-300">Username</label>
+                    <label className="text-sm font-semibold text-neutral-700 dark:text-neutral-300">Username</label>
                     <Input placeholder="carllosnc" />
-                    <p className="text-[11px] text-base-400">This is your public display name.</p>
+                    <p className="text-[11px] text-neutral-400">This is your public display name.</p>
                   </div>
                   <div className="flex flex-col gap-2">
-                    <label className="text-sm font-semibold text-base-700 dark:text-base-300">Email Address</label>
+                    <label className="text-sm font-semibold text-neutral-700 dark:text-neutral-300">Email Address</label>
                     <Input placeholder="hello@dashkit.ui" type="email" />
                   </div>
 
@@ -370,13 +370,13 @@ export function DashboardExample() {
       >
         <div className="flex flex-col gap-4 py-6">
            {[1,2,3,4,5].map(i => (
-             <div key={i} className="flex gap-4 p-4 rounded-md hover:bg-base-50 dark:hover:bg-base-900 transition-colors border border-transparent hover:border-base-border dark:hover:border-base-dark-border">
+             <div key={i} className="flex gap-4 p-4 rounded-md hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors border border-transparent hover:border-neutral-border dark:hover:border-neutral-dark-border">
                 <div className="size-10 rounded-full bg-blue-500/10 flex items-center justify-center shrink-0">
                    <FiBell className="text-blue-500" />
                 </div>
                 <div>
                    <div className="text-sm font-bold">New comment on "Auth Logic"</div>
-                   <div className="text-xs text-base-500">2 hours ago</div>
+                   <div className="text-xs text-neutral-500">2 hours ago</div>
                 </div>
              </div>
            ))}
@@ -385,3 +385,5 @@ export function DashboardExample() {
     </div>
   );
 }
+
+

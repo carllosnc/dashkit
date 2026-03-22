@@ -32,3 +32,5 @@ describe('AreaChart', () => {
     expect(paths?.length).toBeGreaterThanOrEqual(2);
   });
 });
+
+

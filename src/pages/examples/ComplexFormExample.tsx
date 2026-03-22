@@ -35,7 +35,7 @@ export const ComplexFormExample = () => {
             </div>
             <CardTitle className="text-2xl font-bold tracking-tight">Complete Your Profile</CardTitle>
           </div>
-          <CardDescription className="text-base-500 dark:text-base-400">
+          <CardDescription className="text-muted-foreground">
             Update your personal information and preferences to get started with Dashkit.
           </CardDescription>
         </CardHeader>
@@ -74,7 +74,7 @@ export const ComplexFormExample = () => {
                   leftIcon={<FiPhone className="size-4" />}
                 />
                 <div className="md:col-span-2 flex flex-col gap-4">
-                  <label className="text-[13px] font-semibold text-base-700 dark:text-base-300 ml-1 tracking-tight">
+                  <label className="text-[13px] font-semibold text-neutral-700 dark:text-neutral-300 ml-1 tracking-tight">
                     Gender
                   </label>
                   <div className="flex gap-12">
@@ -289,3 +289,5 @@ export const ComplexFormExample = () => {
     </div>
   );
 };
+
+

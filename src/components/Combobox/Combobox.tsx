@@ -143,12 +143,12 @@ export const Combobox = ({
       {(label || (multiple && selectedOptions.length > 0)) && (
         <div className="flex items-center justify-between px-1">
           {label && (
-            <label className="text-[13px] font-semibold text-base-700 dark:text-base-300 tracking-tight">
+            <label className="text-[13px] font-semibold text-neutral-700 dark:text-neutral-300 tracking-tight">
               {label}
             </label>
           )}
           {multiple && selectedOptions.length > 0 && (
-            <span className="text-[11px] font-bold text-base-400 uppercase tracking-wider">
+            <span className="text-[11px] font-bold text-neutral-400 uppercase tracking-wider">
               {selectedOptions.length} Selected
             </span>
           )}
@@ -171,7 +171,7 @@ export const Combobox = ({
       )}
       
       <div className="relative group">
-        <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-base-500 group-focus-within:text-black dark:group-focus-within:text-white transition-colors duration-200 pointer-events-none">
+        <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-500 group-focus-within:text-black dark:group-focus-within:text-white transition-colors duration-200 pointer-events-none">
           <FiSearch className="size-4" />
         </div>
 
@@ -189,8 +189,8 @@ export const Combobox = ({
           placeholder={multiple && selectedOptions.length > 0 ? "Add more..." : placeholder}
           autoComplete="off"
           className={cn(
-            "w-full h-9 pl-10 pr-10 text-sm ds-input",
-            isOpen && "border-base-600 dark:border-base-600 ring-4 ring-base-100 dark:ring-base-900/40"
+            "w-full h-9 pl-10 pr-10 text-sm bg-background text-foreground border border-input rounded-[var(--radius)] outline-none transition-all duration-200 focus:ring-2 focus:ring-ring focus:ring-offset-2 placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
+            isOpen && "ring-ring border-ring shadow-[0_0_0_2px_var(--ring)]"
           )}
         />
 
@@ -199,14 +199,14 @@ export const Combobox = ({
             <button
               type="button"
               onClick={handleClear}
-              className="p-1 rounded-full text-base-500 hover:text-black dark:hover:text-white hover:bg-base-100 dark:hover:bg-base-800 transition-all"
+              className="p-1 rounded-full text-neutral-500 hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all"
               aria-label="Clear selection"
             >
               <FiX className="size-3.5" />
             </button>
           )}
           <div className={cn(
-            "text-base-500 transition-transform duration-300 pointer-events-none",
+            "text-neutral-500 transition-transform duration-300 pointer-events-none",
             isOpen && "rotate-180"
           )}>
             <FiChevronDown className="size-4" />
@@ -216,12 +216,12 @@ export const Combobox = ({
         {isOpen && (
           <div 
             className={cn(
-              "absolute top-full left-0 w-full mt-2 py-1.5 ds-floating z-50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200"
+              "absolute top-full left-0 w-full mt-2 py-1.5 bg-popover text-popover-foreground border border-border rounded-lg shadow-lg z-50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200"
             )}
           >
             <div className="max-h-60 overflow-y-auto custom-scrollbar">
               {filteredOptions.length === 0 ? (
-                <div className="px-4 py-6 text-sm text-base-500 dark:text-base-400 italic text-center">
+                <div className="px-4 py-6 text-sm text-muted-foreground italic text-center">
                   No matches found for "{query}"
                 </div>
               ) : (
@@ -233,8 +233,8 @@ export const Combobox = ({
                       type="button"
                       onClick={() => handleSelect(opt)}
                       className={cn(
-                      "w-full px-4 py-2.5 text-sm text-left flex items-center justify-between transition-colors ds-floating-item",
-                      isSelected && "ds-floating-item-selected"
+                      "w-full px-4 py-2.5 text-sm text-left flex items-center justify-between duration-200 text-foreground/80 hover:bg-accent hover:text-accent-foreground transition-colors",
+                      isSelected && "bg-accent text-accent-foreground font-semibold"
                     )}
                     >
                       <span className="truncate">{opt.label}</span>
@@ -251,7 +251,7 @@ export const Combobox = ({
       </div>
 
       {description && (
-        <span className="text-[12px] text-base-500 dark:text-base-500 ml-1 tracking-tight">
+        <span className="text-[12px] text-neutral-500 dark:text-neutral-500 ml-1 tracking-tight">
           {description}
         </span>
       )}
@@ -260,3 +260,5 @@ export const Combobox = ({
 };
 
 Combobox.displayName = 'Combobox';
+
+

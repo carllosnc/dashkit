@@ -27,12 +27,12 @@ export const IconButton = forwardRef<HTMLElement, IconButtonProps>(
     const isLink = 'href' in props && props.href !== undefined;
 
     const commonClasses = cn(
-      "ds-btn select-none shrink-0 size-9",
+      "rounded-[var(--radius)] inline-flex font-medium items-center justify-center transition-all duration-200 focus:outline-none cursor-pointer whitespace-nowrap border select-none shrink-0 size-9",
       rounded ? "rounded-full" : "rounded-md",
       {
-        "ds-btn-filled": variant === 'filled',
-        "ds-btn-soft": variant === 'soft',
-        "ds-btn-ghost": variant === 'ghost',
+        "bg-primary text-primary-foreground border-transparent hover:opacity-90": variant === 'filled',
+        "bg-secondary text-secondary-foreground border-transparent hover:opacity-80": variant === 'soft',
+        "bg-transparent text-muted-foreground border-transparent hover:bg-accent hover:text-accent-foreground": variant === 'ghost',
         "opacity-50 cursor-not-allowed": 'disabled' in props && props.disabled,
       },
       className
@@ -77,3 +77,5 @@ export const IconButton = forwardRef<HTMLElement, IconButtonProps>(
 );
 
 IconButton.displayName = 'IconButton';
+
+

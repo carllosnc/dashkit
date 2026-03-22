@@ -92,7 +92,7 @@ export const Select = ({
   return (
     <div className="flex flex-col gap-1.5 w-full font-sans" ref={containerRef}>
       {label && (
-        <label className="text-[13px] font-semibold text-base-700 dark:text-base-300 ml-1 tracking-tight">
+        <label className="text-[13px] font-semibold text-neutral-700 dark:text-neutral-300 ml-1 tracking-tight">
           {label}
         </label>
       )}
@@ -106,18 +106,18 @@ export const Select = ({
           aria-haspopup="listbox"
           aria-expanded={isOpen}
           className={cn(
-            "w-full px-4 h-9 text-sm ds-input text-left flex items-center justify-between gap-2",
+            "w-full px-4 h-9 text-sm bg-background text-foreground border border-input rounded-[var(--radius)] outline-none transition-all duration-200 focus:ring-2 focus:ring-ring focus:ring-offset-2 placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 text-left flex items-center justify-between gap-2",
             className
           )}
         >
           <span className={cn(
             "truncate block",
-            !selectedOption && "text-base-500 dark:text-base-500"
+            !selectedOption && "text-neutral-500 dark:text-neutral-500"
           )}>
             {selectedOption ? selectedOption.label : placeholder}
           </span>
           <FiChevronDown className={cn(
-            "transition-transform duration-300 shrink-0 text-base-500",
+            "transition-transform duration-300 shrink-0 text-neutral-500",
             isOpen && "rotate-180 text-input-focus-border dark:text-input-dark-focus-border"
           )} />
         </button>
@@ -134,12 +134,12 @@ export const Select = ({
               zIndex: 9999,
             }}
             className={cn(
-              "py-1.5 ds-floating overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200"
+              "py-1.5 bg-popover text-popover-foreground border border-border rounded-lg shadow-lg overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200"
             )}
           >
             <div className="max-h-60 overflow-y-auto">
               {options.length === 0 ? (
-                <div className="px-4 py-2 text-sm text-base-400 text-center">No options available</div>
+                <div className="px-4 py-2 text-sm text-neutral-400 text-center">No options available</div>
               ) : (
                 options.map((opt) => (
                   <button
@@ -151,8 +151,8 @@ export const Select = ({
                       setIsOpen(false);
                     }}
                     className={cn(
-                      "w-full px-4 py-2.5 text-sm text-left flex items-center justify-between transition-colors ds-floating-item",
-                      opt.value === value && "ds-floating-item-selected"
+                      "w-full px-4 py-2.5 text-sm text-left flex items-center justify-between duration-200 text-foreground/80 hover:bg-accent hover:text-accent-foreground transition-colors",
+                      opt.value === value && "bg-accent text-accent-foreground font-semibold"
                     )}
                   >
                     <span className="truncate">{opt.label}</span>
@@ -168,7 +168,7 @@ export const Select = ({
         )}
       </div>
       {description && (
-        <span className="text-[12px] text-base-600 dark:text-base-400 ml-1 tracking-tight">
+        <span className="text-[12px] text-neutral-600 dark:text-neutral-400 ml-1 tracking-tight">
           {description}
         </span>
       )}
@@ -177,3 +177,5 @@ export const Select = ({
 };
 
 Select.displayName = 'Select';
+
+

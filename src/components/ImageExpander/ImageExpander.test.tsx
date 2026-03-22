@@ -52,3 +52,5 @@ describe('ImageExpander', () => {
     // State change is internal, in a real env it would close.
   });
 });
+
+

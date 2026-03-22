@@ -113,7 +113,7 @@ export const PieChart = ({
               fill={slice.color}
               stroke="currentColor"
               strokeWidth="2"
-              className="text-white dark:text-base-950 transition-colors duration-200"
+              className="text-white dark:text-neutral-950 transition-colors duration-200"
               style={{ 
                 zIndex: hoveredIndex === i ? 10 : 1,
                 position: 'relative' // helps some browsers with z-index
@@ -134,7 +134,7 @@ export const PieChart = ({
         {/* Tooltip */}
         {showTooltip && hoveredIndex !== null && (
           <div 
-            className="absolute z-10 pointer-events-none transform -translate-x-1/2 -translate-y-full mb-4 ds-chart-tooltip"
+            className="absolute z-10 pointer-events-none transform -translate-x-1/2 -translate-y-full mb-4 bg-card text-card-foreground rounded-lg shadow-2xl border border-border p-3 flex flex-col gap-1 min-w-[120px]"
             style={{ 
               left: tooltipPos.x, 
               top: tooltipPos.y - 10
@@ -142,10 +142,10 @@ export const PieChart = ({
           >
             <div className="flex items-center gap-2">
                <div className="size-2 rounded-full" style={{ backgroundColor: data[hoveredIndex].color }} />
-               <span className="ds-chart-tooltip-label">{data[hoveredIndex].label}</span>
+               <span className="text-xs font-medium text-foreground/80">{data[hoveredIndex].label}</span>
             </div>
-            <div className="ds-chart-tooltip-header mt-1">
-               <span className="ds-chart-tooltip-value">
+            <div className="flex border-b border-border pb-1 mt-1 mb-1">
+               <span className="text-xs font-bold text-foreground">
                  {data[hoveredIndex].value.toLocaleString()} 
                  <span className="ml-1 opacity-50 font-normal">
                    ({((data[hoveredIndex].value / total) * 100).toFixed(1)}%)
@@ -168,7 +168,7 @@ export const PieChart = ({
               )}
             >
               <div className="size-2.5 rounded-sm" style={{ backgroundColor: item.color }} />
-              <span className="ds-chart-label first-letter:uppercase !tracking-normal">
+              <span className="text-[10px] font-bold uppercase text-muted-foreground first-letter:uppercase !tracking-normal">
                 {item.label}
               </span>
             </div>
@@ -180,3 +180,5 @@ export const PieChart = ({
 };
 
 PieChart.displayName = 'PieChart';
+
+

@@ -15,12 +15,12 @@ Global tokens define the core brand and layout colors used across all components
 ```css
 @theme {
   /* Base neutral scale */
-  --color-base-50: var(--color-neutral-50);
-  --color-base-950: var(--color-neutral-950);
+  --color-neutral-50: var(--color-neutral-50);
+  --color-neutral-950: var(--color-neutral-950);
 
   /* Status colors */
-  --color-base-success: var(--color-green-500);
-  --color-base-error: var(--color-red-500);
+  --color-neutral-success: var(--color-green-500);
+  --color-neutral-error: var(--color-red-500);
 }
 ```
 
@@ -31,7 +31,7 @@ Most components in Dashkit have their own set of tokens for colors, radii, and s
 ```css
 @theme {
   --radius-button: var(--radius-md);
-  --color-button-filled-bg: var(--color-base-950);
+  --color-button-filled-bg: var(--color-neutral-950);
   --color-button-filled-dark-bg: var(--color-white);
 }
 ```
@@ -56,12 +56,12 @@ If you want a more rounded look for your entire application, you can update the 
 
 ### Example: Custom Brand Color
 
-To change the primary brand color (used by default in several components), update the `base-950` and `base-900` tokens:
+To change the primary brand color (used by default in several components), update the `neutral-950` and `neutral-900` tokens:
 
 ```css
 @theme {
-  --color-base-950: #1a1a1a;
-  --color-base-900: #262626;
+  --color-neutral-950: #1a1a1a;
+  --color-neutral-900: #262626;
 }
 ```
 
@@ -102,3 +102,5 @@ You can copy and paste this prompt to your AI assistant to quickly generate a un
 > Make sure it looks premium and has native dark mode support using deep slate colors."
 
 Since Dashkit's tokens are centralized in `dashkit.css`, an AI can refactor your entire application's design system in a single step.
+
+

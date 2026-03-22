@@ -34,10 +34,10 @@ describe('Badge', () => {
   it('applies color styles correctly', () => {
     const { rerender } = render(<Badge content="Test" color="success" />);
     const badge = screen.getByTestId('badge');
-    expect(badge).toHaveClass('bg-base-success');
+    expect(badge).toHaveClass('bg-neutral-success');
 
     rerender(<Badge content="Test" color="error" />);
-    expect(screen.getByTestId('badge')).toHaveClass('bg-base-error');
+    expect(screen.getByTestId('badge')).toHaveClass('bg-neutral-error');
   });
 
   it('hides the badge when show prop is false', () => {
@@ -86,3 +86,5 @@ describe('FloatBadge', () => {
     expect(container.style.marginRight).toBe('-10px');
   });
 });
+
+

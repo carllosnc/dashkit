@@ -38,3 +38,5 @@ describe('Tabs', () => {
     expect(screen.queryByText('Content 1')).not.toBeInTheDocument();
   });
 });
+
+

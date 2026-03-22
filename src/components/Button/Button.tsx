@@ -82,12 +82,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         disabled={disabled || loading}
         className={cn(
-        "ds-btn",
-        {
-          "ds-btn-filled": variant === 'filled',
-          "ds-btn-outlined": variant === 'outlined',
-          "ds-btn-soft": variant === 'soft',
-          "opacity-60 cursor-not-allowed": loading || disabled,
+          "rounded-[var(--radius)] inline-flex font-medium items-center justify-center transition-all duration-200 focus:outline-none cursor-pointer whitespace-nowrap disabled:opacity-60 disabled:cursor-not-allowed",
+          {
+            "bg-primary text-primary-foreground hover:opacity-90": variant === 'filled',
+            "bg-transparent text-foreground border border-border hover:bg-accent hover:text-accent-foreground": variant === 'outlined',
+            "bg-secondary text-secondary-foreground hover:opacity-80": variant === 'soft',
+            "opacity-60 cursor-not-allowed": loading,
             // Sizes
             "h-7 text-xs": size === 'sm',
             "h-9 text-sm": size === 'md',
@@ -112,3 +112,5 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 );
 
 Button.displayName = 'Button';
+
+

@@ -72,7 +72,7 @@ export const Modal = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-base-950/40 backdrop-blur-sm -z-10"
+            className="absolute inset-0 bg-neutral-950/40 backdrop-blur-sm -z-10"
           />
 
           {/* Modal Content */}
@@ -82,7 +82,7 @@ export const Modal = ({
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
             className={cn(
-              "w-full ds-block-lg overflow-hidden flex flex-col",
+              "w-full bg-card text-card-foreground rounded-2xl shadow-sm border border-border overflow-hidden flex flex-col",
               sizeClasses[size],
               className
             )}
@@ -97,7 +97,7 @@ export const Modal = ({
                     </h2>
                   )}
                   {description && (
-                    <p className="text-sm text-base-500 dark:text-base-400">
+                    <p className="text-sm text-muted-foreground">
                       {description}
                     </p>
                   )}
@@ -105,7 +105,7 @@ export const Modal = ({
                 {showCloseButton && (
                   <button
                     onClick={onClose}
-                    className="p-2.5 rounded-md transition-all duration-200 hover:bg-base-100 dark:hover:bg-base-800 text-base-400 hover:text-base-900 dark:hover:text-white"
+                    className="p-2.5 rounded-md transition-all duration-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
                   >
                     <FiX size={20} />
                   </button>
@@ -120,7 +120,7 @@ export const Modal = ({
 
             {/* Footer */}
             {footer && (
-              <div className="p-8 pt-4 flex items-center justify-end gap-3 ds-block-footer border-t">
+              <div className="p-8 pt-4 flex items-center justify-end gap-3 bg-card border-t border-border">
                 {footer}
               </div>
             )}
@@ -131,3 +131,5 @@ export const Modal = ({
     document.body
   );
 };
+
+
