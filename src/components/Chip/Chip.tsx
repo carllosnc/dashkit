@@ -28,9 +28,9 @@ export interface ChipProps {
 
 const colorStyles: Record<ChipColor, Record<ChipVariant, string>> = {
   base: {
-    tonal: "bg-button-soft-bg text-button-soft-fg border-transparent hover:bg-button-soft-hover dark:bg-button-soft-dark-bg dark:text-button-soft-dark-fg dark:hover:bg-button-soft-dark-hover",
-    filled: "bg-button-filled-bg text-button-filled-fg border-transparent hover:bg-button-filled-hover dark:bg-button-filled-dark-bg dark:text-button-filled-dark-fg dark:hover:bg-button-filled-dark-hover",
-    outlined: "bg-button-outlined-bg text-button-outlined-fg border-button-outlined-border hover:bg-button-outlined-hover dark:bg-button-outlined-dark-bg dark:text-button-outlined-dark-fg dark:border-button-outlined-dark-border dark:hover:bg-button-outlined-dark-hover",
+    tonal: "ds-btn-soft",
+    filled: "ds-btn-filled",
+    outlined: "ds-btn-outlined",
   },
   success: {
     tonal: "bg-emerald-100/50 text-emerald-800 border-transparent dark:bg-emerald-500/10 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-500/20",
@@ -75,7 +75,7 @@ export const Chip = ({
     <div
       onClick={disabled ? undefined : onClick}
       className={cn(
-        "inline-flex items-center gap-1.5 h-8 px-3 rounded-button text-[13px] font-medium transition-all duration-200 border select-none",
+        "inline-flex items-center gap-1.5 h-8 px-3 rounded-md text-[13px] font-medium transition-all duration-200 border select-none",
         colorStyles[color][variant === 'tonal' ? 'tonal' : variant],
         isInteractive ? "cursor-pointer" : "cursor-default",
         selected && variant === 'outlined' && "border-selection-checked-border dark:border-selection-dark-checked-border ring-1 ring-selection-checked-border dark:ring-selection-dark-checked-border",
