@@ -27,17 +27,13 @@ export const IconButton = forwardRef<HTMLElement, IconButtonProps>(
     const isLink = 'href' in props && props.href !== undefined;
 
     const commonClasses = cn(
-      "inline-flex items-center justify-center transition-all duration-200 focus:outline-none cursor-pointer border select-none shrink-0",
-      rounded ? "rounded-full" : "rounded-button",
+      "ds-btn select-none shrink-0 size-9",
+      rounded ? "rounded-full" : "rounded-md",
       {
-        // Variants
-        "bg-button-filled-bg text-button-filled-fg border-transparent hover:bg-button-filled-hover dark:bg-button-filled-dark-bg dark:text-button-filled-dark-fg dark:hover:bg-button-filled-dark-hover": variant === 'filled',
-        "bg-button-soft-bg text-button-soft-fg border-transparent hover:bg-button-soft-hover dark:bg-button-soft-dark-bg dark:text-button-soft-dark-fg dark:hover:bg-button-soft-dark-hover": variant === 'soft',
-        "bg-transparent text-base-500 border-transparent hover:bg-base-100 dark:text-base-400 dark:hover:bg-white/5": variant === 'ghost',
+        "ds-btn-filled": variant === 'filled',
+        "ds-btn-soft": variant === 'soft',
+        "ds-btn-ghost": variant === 'ghost',
         "opacity-50 cursor-not-allowed": 'disabled' in props && props.disabled,
-
-        // Box Size matched to default Button Component height
-        "size-9": true,
       },
       className
     );
