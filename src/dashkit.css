@@ -124,7 +124,7 @@
 
 /* Accordion */
 @utility ds-accordion-title {
-  @apply text-base font-bold;
+  @apply text-base dark:text-white font-bold;
 }
 
 @utility ds-layout-border {

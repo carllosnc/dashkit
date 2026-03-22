@@ -1,0 +1,73 @@
+import { LineChart } from '../components/LineChart/LineChart';
+
+# Line Chart
+
+The **LineChart** component is a clean, minimal data visualization tool built using native SVG and **Framer Motion**. It's ideal for showing precise trends without the visual weight of an area fill.
+
+## Examples
+
+### Default Line Chart
+
+<Preview>
+<LineChart
+  data={[
+    { label: 'Jan', value: 10 },
+    { label: 'Feb', value: 25 },
+    { label: 'Mar', value: 18 },
+    { label: 'Apr', value: 35 },
+    { label: 'May', value: 28 },
+    { label: 'Jun', value: 45 },
+  ]}
+  series={[
+    { key: 'value', label: 'Sessions', color: 'var(--color-indigo-500)' }
+  ]}
+/>
+</Preview>
+
+```tsx
+import { LineChart } from 'dashkit-ui';
+
+function Example() {
+  const data = [{ label: 'Jan', value: 10 }, { label: 'Feb', value: 25 }];
+  const series = [{ key: 'value', label: 'Sessions', color: 'var(--color-indigo-500)' }];
+
+  return <LineChart data={data} series={series} />;
+}
+```
+
+### Multiple Trends
+
+Compare multiple variables with distinct line styles and colors.
+
+<Preview>
+<LineChart 
+  data={[
+    { label: 'Mon', line1: 45, line2: 30 },
+    { label: 'Tue', line1: 52, line2: 38 },
+    { label: 'Wed', line1: 48, line2: 45 },
+    { label: 'Thu', line1: 61, line2: 42 },
+    { label: 'Fri', line1: 55, line2: 50 },
+    { label: 'Sat', line1: 67, line2: 20 },
+    { label: 'Sun', line1: 70, line2: 15 },
+  ]} 
+  series={[
+    { key: 'line1', label: 'Active', color: 'var(--color-blue-500)' },
+    { key: 'line2', label: 'Inactive', color: 'var(--color-rose-500)' }
+  ]}
+/>
+</Preview>
+
+## API Reference
+
+### LineChart
+
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `data` | `Record<string, string \| number>[]` | - | Array of objects containing data keys. |
+| `series` | `LineChartSeries[]` | - | Configuration for each data series to render. |
+| `height` | `number \| string` | `'100%'` | Height of the chart container. |
+| `showGrid` | `boolean` | `true` | Display dashed horizontal lines. |
+| `showLabels` | `boolean` | `true` | Display X-axis labels. |
+| `showTooltip` | `boolean` | `true` | Enable interactive tooltips. |
+| `animate` | `boolean` | `true` | Enable entrance animations. |
+| `className` | `string` | - | Additional CSS for the container. |

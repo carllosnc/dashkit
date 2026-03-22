@@ -15,6 +15,9 @@ import OtpInputDocs from './pages/otp-input.mdx'
 import ButtonGroupDocs from './pages/button-group.mdx'
 import ImageExpanderDocs from './pages/image-expander.mdx'
 import AreaChartDocs from './pages/area-chart.mdx'
+import BarChartDocs from './pages/bar-chart.mdx'
+import LineChartDocs from './pages/line-chart.mdx'
+import PieChartDocs from './pages/pie-chart.mdx'
 import ChartsDocs from './pages/charts.mdx'
 import DrawerDocs from './pages/drawer.mdx'
 import ModalDocs from './pages/modal.mdx'
@@ -90,6 +93,9 @@ createRoot(document.getElementById('root')!).render(
               <Route path="/charts" element={<ChartsLayout />}>
                 <Route index element={<MdxWrapper Component={ChartsDocs} />} />
                 <Route path="area-chart" element={<MdxWrapper Component={AreaChartDocs} />} />
+                <Route path="bar-chart" element={<MdxWrapper Component={BarChartDocs} />} />
+                <Route path="line-chart" element={<MdxWrapper Component={LineChartDocs} />} />
+                <Route path="pie-chart" element={<MdxWrapper Component={PieChartDocs} />} />
               </Route>
 
               <Route path="/examples">

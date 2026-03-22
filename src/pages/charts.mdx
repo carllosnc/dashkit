@@ -1,6 +1,9 @@
 import { AreaChart } from '../components/AreaChart/AreaChart';
+import { BarChart } from '../components/BarChart/BarChart';
+import { LineChart } from '../components/LineChart/LineChart';
+import { PieChart } from '../components/PieChart/PieChart';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/Card/Card';
-import { FiActivity } from 'react-icons/fi';
+import { FiActivity, FiBarChart2, FiTrendingUp, FiPieChart } from 'react-icons/fi';
 
 # Charts Gallery
 
@@ -28,6 +31,75 @@ Dashkit UI provides a set of high-performance, SVG-based charting components des
           { label: 'Jun', v: 45 },
         ]}
         series={[{ key: 'v', label: 'Users', color: 'var(--color-blue-500)' }]}
+      />
+    </CardContent>
+  </Card>
+
+  <Card>
+    <CardHeader>
+      <CardTitle>
+        Bar Chart
+      </CardTitle>
+      <CardDescription>
+        Ideal for comparing discrete categories or showing distribution across groups.
+      </CardDescription>
+    </CardHeader>
+    <CardContent>
+      <BarChart
+        data={[
+          { label: 'A', v: 40 },
+          { label: 'B', v: 70 },
+          { label: 'C', v: 45 },
+          { label: 'D', v: 90 },
+          { label: 'E', v: 65 },
+        ]}
+        series={[{ key: 'v', label: 'Score', color: 'var(--color-emerald-500)' }]}
+      />
+    </CardContent>
+  </Card>
+
+  <Card>
+    <CardHeader>
+      <CardTitle>
+        Line Chart
+      </CardTitle>
+      <CardDescription>
+        A clean, minimal visualization for precise trends without area fills.
+      </CardDescription>
+    </CardHeader>
+    <CardContent>
+      <LineChart
+        data={[
+          { label: 'Jan', v: 30 },
+          { label: 'Feb', v: 45 },
+          { label: 'Mar', v: 25 },
+          { label: 'Apr', v: 60 },
+          { label: 'May', v: 40 },
+          { label: 'Jun', v: 80 },
+        ]}
+        series={[{ key: 'v', label: 'Score', color: 'var(--color-indigo-500)' }]}
+      />
+    </CardContent>
+  </Card>
+
+  <Card>
+    <CardHeader>
+      <CardTitle>
+        Pie Chart
+      </CardTitle>
+      <CardDescription>
+        Ideal for visualizing categorical distributions and ratios. Supports donut mode.
+      </CardDescription>
+    </CardHeader>
+    <CardContent>
+      <PieChart
+        innerRadius={0.5}
+        data={[
+          { label: 'Chrome', value: 45, color: '#3b82f6' },
+          { label: 'Safari', value: 25, color: '#06b6d4' },
+          { label: 'Firefox', value: 20, color: '#f97316' },
+          { label: 'Other', value: 10, color: '#64748b' },
+        ]}
       />
     </CardContent>
   </Card>

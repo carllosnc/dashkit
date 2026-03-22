@@ -1,0 +1,110 @@
+import { BarChart } from '../components/BarChart/BarChart';
+
+# Bar Chart
+
+The **BarChart** component is a powerful, animated data visualization tool built for comparing discrete categories or showing distribution across groups. It supports multiple grouped series, interactive tooltips, and smooth entrance animations.
+
+## Examples
+
+### Single Series Bar Chart
+
+<Preview>
+<BarChart
+  data={[
+    { label: 'Jan', value: 400 },
+    { label: 'Feb', value: 300 },
+    { label: 'Mar', value: 200 },
+    { label: 'Apr', value: 278 },
+    { label: 'May', value: 189 },
+    { label: 'Jun', value: 239 },
+  ]}
+  series={[
+    { key: 'value', label: 'Revenue', color: 'var(--color-blue-500)' }
+  ]}
+/>
+</Preview>
+
+```tsx
+import { BarChart } from 'dashkit-ui';
+
+function Example() {
+  const data = [
+    { label: 'Jan', value: 400 },
+    { label: 'Feb', value: 300 },
+    //...
+  ];
+  const series = [{ key: 'value', label: 'Revenue', color: 'var(--color-blue-500)' }];
+
+  return <BarChart data={data} series={series} />;
+}
+```
+
+### Grouped Bar Chart (Yearly Comparison)
+
+Compare multiple metrics across the same time periods using grouped bars.
+
+<Preview>
+<BarChart 
+  data={[
+    { label: 'Mon', active: 145, inactive: 30, pending: 15 },
+    { label: 'Tue', active: 152, inactive: 38, pending: 18 },
+    { label: 'Wed', active: 148, inactive: 45, pending: 22 },
+    { label: 'Thu', active: 161, inactive: 42, pending: 25 },
+    { label: 'Fri', active: 155, inactive: 50, pending: 20 },
+    { label: 'Sat', active: 167, inactive: 20, pending: 15 },
+    { label: 'Sun', active: 170, inactive: 15, pending: 12 },
+  ]} 
+  series={[
+    { key: 'active', label: 'Active', color: 'var(--color-emerald-500)' },
+    { key: 'inactive', label: 'Inactive', color: 'var(--color-amber-500)' },
+    { key: 'pending', label: 'Pending', color: 'var(--color-blue-500)' }
+  ]}
+/>
+</Preview>
+
+```tsx
+<BarChart 
+  data={userData} 
+  series={[
+    { key: 'active', label: 'Active', color: 'var(--color-emerald-500)' },
+    { key: 'inactive', label: 'Inactive', color: 'var(--color-amber-500)' },
+    { key: 'pending', label: 'Pending', color: 'var(--color-blue-500)' }
+  ]}
+/>
+```
+
+### Resource Allocation
+
+Use semantic colors to visualize system performance or resource distribution.
+
+<Preview>
+<BarChart 
+  data={[
+    { label: 'Srv-01', cpu: 78, mem: 45 },
+    { label: 'Srv-02', cpu: 15, mem: 12 },
+    { label: 'Srv-03', cpu: 92, mem: 65 },
+    { label: 'Srv-04', cpu: 45, mem: 38 },
+  ]} 
+  series={[
+    { key: 'cpu', label: 'CPU Usage %', color: '#6366f1' },
+    { key: 'mem', label: 'Memory Usage %', color: '#10b981' }
+  ]}
+/>
+</Preview>
+
+## API Reference
+
+### BarChart
+
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `data` | `Record<string, string \| number>[]` | - | Array of objects containing data keys. |
+| `series` | `BarChartSeries[]` | - | Configuration for each data series to render. |
+| `height` | `number \| string` | `'100%'` | Height of the chart container. |
+| `barGap` | `number` | `4` | Spacing between individual bars within a group. |
+| `rounded` | `boolean` | `true` | Apply rounded corners to bars. |
+| `showGrid` | `boolean` | `true` | Display dashed horizontal lines. |
+| `showLabels` | `boolean` | `true` | Display X-axis labels. |
+| `showTooltip` | `boolean` | `true` | Enable interactive tooltips. |
+| `animate` | `boolean` | `true` | Enable entrance animations. |
+| `className` | `string` | - | Additional CSS for the container. |

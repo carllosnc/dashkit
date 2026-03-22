@@ -32,14 +32,9 @@ const chartNavItems: ChartNavSection[] = [
     title: 'Available Charts',
     links: [
       { to: '/charts/area-chart', label: 'Area Chart', icon: <FiActivity size={16} /> },
-    ]
-  },
-  {
-    title: 'Coming Soon',
-    links: [
-      { to: '#', label: 'Bar Chart', icon: <FiBarChart2 size={16} />, disabled: true },
-      { to: '#', label: 'Line Chart', icon: <FiTrendingUp size={16} />, disabled: true },
-      { to: '#', label: 'Pie Chart', icon: <FiPieChart size={16} />, disabled: true },
+      { to: '/charts/bar-chart', label: 'Bar Chart', icon: <FiBarChart2 size={16} /> },
+      { to: '/charts/line-chart', label: 'Line Chart', icon: <FiTrendingUp size={16} /> },
+      { to: '/charts/pie-chart', label: 'Pie Chart', icon: <FiPieChart size={16} /> },
     ]
   }
 ];
