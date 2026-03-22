@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { 
-  FiGrid, FiUsers, FiSettings, FiSearch, FiBell, 
+import {
+  FiGrid, FiUsers, FiSettings, FiSearch, FiBell,
   FiMoreVertical, FiExternalLink,
   FiZap, FiPieChart, FiTrendingUp, FiCheckCircle, FiClock
 } from 'react-icons/fi';
@@ -23,6 +23,7 @@ import { Drawer } from '../../components/Drawer/Drawer';
 import { toast } from '../../components/Toast/useToast';
 import { ThemeToggle } from '../../components/ThemeToggle';
 import { Footer } from '../../components/Footer';
+import { Divider } from '../../components/Divider/Divider';
 
 export function DashboardExample() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -38,7 +39,7 @@ export function DashboardExample() {
   };
 
   return (
-    <div className="min-h-screen bg-base-page dark:bg-base-page-dark">
+    <div className="min-h-screen ds-page">
       <Navbar>
         <NavbarBrand>
            <div className="flex items-center gap-2">
@@ -301,6 +302,7 @@ export function DashboardExample() {
           <h2 className="text-sm font-bold uppercase tracking-widest text-base-400 flex items-center gap-2">
              <FiSettings /> Account Settings
           </h2>
+
           <div className="w-full">
             <Card shadowed>
               <CardHeader>
@@ -318,7 +320,9 @@ export function DashboardExample() {
                     <label className="text-sm font-semibold text-base-700 dark:text-base-300">Email Address</label>
                     <Input placeholder="hello@dashkit.ui" type="email" />
                   </div>
-                  <div className="flex flex-col gap-6 md:col-span-2 border-t border-layout-divider dark:border-layout-dark-divider pt-8 mt-4">
+
+                  <div className="flex flex-col gap-6 md:col-span-2 pt-8 mt-4">
+                    <Divider />
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                       <Switch label="Public Profile" description="Allow others to see your stats." defaultChecked />
                       <Switch label="Direct Mentions" description="Enable push notifications for @mentions." />
@@ -335,9 +339,8 @@ export function DashboardExample() {
 
       <Footer />
 
-      {/* Overlays Demo */}
-      <Modal 
-        isOpen={isModalOpen} 
+      <Modal
+        isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         title="Create New Project"
       >
