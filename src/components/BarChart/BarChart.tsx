@@ -186,7 +186,7 @@ export const BarChart = ({
             <div key={s.key} className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-2">
                  <div className="size-2 rounded-full" style={{ backgroundColor: s.color }} />
-                 <span className="text-xs font-medium text-foreground/80">{s.label}</span>
+                 <span className="text-xs font-medium text-foreground/80 whitespace-nowrap">{s.label}</span>
               </div>
               <span className="text-xs font-bold text-foreground">
                 {Number(data[hoveredIndex][s.key]).toLocaleString()}

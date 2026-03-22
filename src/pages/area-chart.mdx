@@ -24,6 +24,27 @@ The **AreaChart** component is a lightweight, responsive data visualization tool
 />
 </Preview>
 
+### Weekly Performance (7 Values)
+
+A standard weekly view using 7 consecutive data points.
+
+<Preview>
+<AreaChart 
+  data={[
+    { label: 'Mon', value: 2100 },
+    { label: 'Tue', value: 2350 },
+    { label: 'Wed', value: 2150 },
+    { label: 'Thu', value: 2400 },
+    { label: 'Fri', value: 2800 },
+    { label: 'Sat', value: 3200 },
+    { label: 'Sun', value: 2900 },
+  ]} 
+  series={[
+    { key: 'value', label: 'Page Views', color: 'var(--color-primary)' }
+  ]}
+/>
+</Preview>
+
 ```tsx
 import { AreaChart } from 'dashkit-ui';
 
@@ -85,6 +106,32 @@ Compare complex data sets with three or more series.
     { key: 'btc', label: 'Bitcoin', color: '#F7931A' },
     { key: 'eth', label: 'Ethereum', color: '#627EEA' },
     { key: 'sol', label: 'Solana', color: '#14F195' }
+  ]}
+/>
+</Preview>
+
+### Complex Analytics (7 Series)
+
+Comparing seven different data streams simultaneously to demonstrate high-density visualization and overlapping areas.
+
+<Preview>
+<AreaChart 
+  data={[
+    { label: 'Jan', organic: 4500, paid: 2300, direct: 1200, social: 800, email: 500, referral: 400, other: 150 },
+    { label: 'Feb', organic: 5200, paid: 2100, direct: 1300, social: 950, email: 600, referral: 380, other: 180 },
+    { label: 'Mar', organic: 4800, paid: 2500, direct: 1100, social: 1100, email: 550, referral: 420, other: 210 },
+    { label: 'Apr', organic: 6100, paid: 2800, direct: 1500, social: 1400, email: 700, referral: 450, other: 240 },
+    { label: 'May', organic: 5900, paid: 2600, direct: 1400, social: 1300, email: 650, referral: 410, other: 200 },
+    { label: 'Jun', organic: 6500, paid: 3000, direct: 1600, social: 1600, email: 800, referral: 500, other: 300 },
+  ]} 
+  series={[
+    { key: 'organic', label: 'Organic Search', color: '#3B82F6' },
+    { key: 'paid', label: 'Paid Search', color: '#10B981' },
+    { key: 'direct', label: 'Direct Traffic', color: '#F59E0B' },
+    { key: 'social', label: 'Social Media', color: '#EF4444' },
+    { key: 'email', label: 'Email Marketing', color: '#8B5CF6' },
+    { key: 'referral', label: 'Referral', color: '#EC4899' },
+    { key: 'other', label: 'Other Sources', color: '#6B7280' }
   ]}
 />
 </Preview>

@@ -57,6 +57,27 @@ Compare multiple variables with distinct line styles and colors.
 />
 </Preview>
 
+### Growth Comparison (Multi-Line)
+
+Analyzing multiple growth vectors simultaneously to identify correlations between revenue, costs, and percentage growth.
+
+<Preview>
+<LineChart 
+  data={[
+    { label: 'Q1', revenue: 4500, expenses: 3200, profit: 1300, growth: 1200 },
+    { label: 'Q2', revenue: 5200, expenses: 3800, profit: 1400, growth: 1500 },
+    { label: 'Q3', revenue: 4800, expenses: 4500, profit: 300,  growth: 400 },
+    { label: 'Q4', revenue: 6100, expenses: 4200, profit: 1900, growth: 1800 },
+  ]} 
+  series={[
+    { key: 'revenue',  label: 'Direct Revenue', color: '#3B82F6' },
+    { key: 'expenses', label: 'Operating Costs', color: '#EF4444' },
+    { key: 'profit',   label: 'Net Profits', color: '#10B981' },
+    { key: 'growth',   label: 'Growth Trend',   color: '#8B5CF6' }
+  ]}
+/>
+</Preview>
+
 ## API Reference
 
 ### LineChart

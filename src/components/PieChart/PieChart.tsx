@@ -146,7 +146,7 @@ export const PieChart = ({
           >
             <div className="flex items-center gap-2">
                <div className="size-2 rounded-full" style={{ backgroundColor: data[hoveredIndex].color }} />
-               <span className="text-xs font-medium text-foreground/80">{data[hoveredIndex].label}</span>
+               <span className="text-xs font-medium text-foreground/80 whitespace-nowrap">{data[hoveredIndex].label}</span>
             </div>
             <div className="flex border-b border-border pb-1 mt-1 mb-1">
                <span className="text-xs font-bold text-foreground">
