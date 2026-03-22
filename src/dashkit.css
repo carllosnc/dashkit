@@ -41,8 +41,9 @@
 }
 
 @utility ds-btn-outlined {
-  @apply bg-transparent text-base-800 border-base-300 hover:border-base-400;
-  @apply dark:bg-transparent dark:text-base-100 dark:border-base-700 dark:hover:border-base-600;
+  @apply bg-transparent text-base-800 border-base-300 hover:border-base-400 hover:bg-base-100;
+  @apply dark:bg-transparent dark:text-base-100 dark:border-base-700 dark:hover:border-base-600 dark:hover:bg-base-800;
+  @apply relative hover:z-50;
 }
 
 @utility ds-btn-soft {
@@ -118,12 +119,12 @@
 
 /* Toast */
 @utility ds-toast {
-  @apply bg-white dark:bg-base-900 border border-base-200 dark:border-base-800 rounded-md shadow-2xl;
+  @apply bg-white dark:bg-base-900 border border-base-300 dark:border-base-800 rounded-md shadow-2xl;
 }
 
 /* Accordion */
 @utility ds-accordion-title {
-  @apply text-[1em] font-bold;
+  @apply text-base font-bold;
 }
 
 @utility ds-layout-border {
@@ -229,6 +230,30 @@
 @utility ds-skeleton-pulse {
   @apply animate-[ds-pulse_1.2s_infinite];
 }
+
+/* Typography */
+@utility ds-display-xl { @apply text-6xl font-black tracking-tighter text-base-950 dark:text-white; }
+@utility ds-display-lg { @apply text-5xl font-extrabold tracking-tight text-base-950 dark:text-white; }
+@utility ds-display-md { @apply text-4xl font-extrabold tracking-tight text-base-950 dark:text-white; }
+
+@utility ds-heading-h1 { @apply text-3xl font-bold tracking-tight text-base-950 dark:text-white; }
+@utility ds-heading-h2 { @apply text-2xl font-bold tracking-tight text-base-950 dark:text-white; }
+@utility ds-heading-h3 { @apply text-xl font-bold tracking-tight text-base-950 dark:text-white; }
+@utility ds-heading-h4 { @apply text-lg font-bold text-base-950 dark:text-white; }
+@utility ds-heading-h5 { @apply font-bold text-base-950 dark:text-white; }
+@utility ds-heading-h6 { @apply text-sm font-bold text-base-950 dark:text-white; }
+
+@utility ds-text-lg { @apply text-lg leading-relaxed; }
+@utility ds-text-md { @apply text-base leading-relaxed; }
+@utility ds-text-sm { @apply text-sm leading-normal; }
+@utility ds-text-xs { @apply text-xs leading-normal; }
+
+@utility ds-label { @apply text-[10px] font-bold uppercase tracking-widest; }
+
+/* Text Colors */
+@utility ds-txt-contrast { @apply text-base-950 dark:text-white; }
+@utility ds-txt-muted { @apply text-base-500 dark:text-base-400; }
+@utility ds-txt-subtitle { @apply text-base-400 dark:text-base-500; }
 
 /* Page */
 @utility ds-page {
