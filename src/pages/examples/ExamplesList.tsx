@@ -3,6 +3,8 @@ import { ThemeToggle } from '../../components/ThemeToggle';
 import { Navbar, NavbarBrand, NavbarLinks, NavbarActions } from '../../components/Navbar/Navbar';
 import { IconButton } from '../../components/IconButton/IconButton';
 import { FiGithub, FiArrowRight, FiArrowLeft } from 'react-icons/fi';
+import { Divider } from '../../components/Divider/Divider';
+import { Footer } from '../../components/Footer';
 
 const examples = [
   {
@@ -24,7 +26,7 @@ const examples = [
 
 export const ExamplesList = () => {
   return (
-    <div className="min-h-screen bg-base-page dark:bg-base-page-dark font-sans flex flex-col">
+    <div className="min-h-screen ds-page font-sans flex flex-col">
       {/* Navigation */}
       <Navbar>
         <NavbarBrand>
@@ -67,7 +69,7 @@ export const ExamplesList = () => {
           </div>
         </header>
 
-        <hr className="border-layout-divider dark:border-layout-dark-divider" />
+        <Divider />
 
         <div className="flex flex-col">
           {examples.map((example) => (
@@ -93,6 +95,7 @@ export const ExamplesList = () => {
           ))}
         </div>
       </main>
+      <Footer />
     </div>
   );
 };
