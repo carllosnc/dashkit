@@ -127,8 +127,8 @@ export const Drawer = ({
             }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
             className={cn(
-              "absolute bg-block-bg dark:bg-block-dark-bg shadow-block dark:shadow-block-dark overflow-hidden flex flex-col",
-              "border-block-border dark:border-block-dark-border touch-none",
+              "absolute ds-block rounded-none overflow-hidden flex flex-col",
+              "touch-none",
               {
                 "border-r": position === 'left',
                 "border-l": position === 'right',
@@ -146,7 +146,7 @@ export const Drawer = ({
                 <div className="flex items-center gap-3">
                   {/* Visual Drag Handle */}
                   <div className={cn(
-                    "rounded-full bg-block-border dark:bg-block-dark-border shrink-0",
+                    "rounded-full bg-base-200 dark:bg-base-800 shrink-0",
                     (position === 'left' || position === 'right') ? "w-1 h-8" : "w-8 h-1"
                   )} />
                   {title && (
@@ -163,7 +163,7 @@ export const Drawer = ({
               </div>
               <button
                 onClick={onClose}
-                className="p-2 rounded-input transition-all duration-200 hover:bg-block-footer-bg dark:hover:bg-block-dark-footer-bg text-base-400 hover:text-base-900 dark:hover:text-white"
+                className="p-2 rounded-md transition-all duration-200 hover:bg-base-100 dark:hover:bg-base-800 text-base-400 hover:text-base-900 dark:hover:text-white"
               >
                 <FiX size={20} />
               </button>
@@ -175,7 +175,7 @@ export const Drawer = ({
             </div>
 
             {/* Footer shadow fade */}
-            <div className="h-6 w-full shrink-0 bg-gradient-to-t from-block-bg dark:from-block-dark-bg to-transparent pointer-events-none" />
+            <div className="h-6 w-full shrink-0 bg-gradient-to-t from-white dark:from-base-900 to-transparent pointer-events-none" />
           </motion.div>
         </div>
       )}
