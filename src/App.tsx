@@ -62,7 +62,7 @@ function App() {
             <span>bunx carllosnc/dashkit add</span>
             <TypingEffect
               words={AVAILABLE_COMPONENTS}
-              className="text-primary min-w-[100px]"
+              className="text-blue-600 min-w-[100px]"
               cursorClassName="bg-primary"
             />
           </code>
