@@ -67,7 +67,7 @@ function SidebarContent({ currentPath, onItemClick }: { currentPath: string, onI
     <>
       {navItems.map((section, idx) => (
         <div key={idx} className="mb-10 last:mb-0">
-          <h4 className="text-[11px] font-bold text-base-400 dark:text-base-500 uppercase tracking-[0.2em] mb-4">
+          <h4 className="text-[11px] font-bold text-base-500 dark:text-base-400 uppercase tracking-[0.2em] mb-4">
             {section.title}
           </h4>
           <nav className="flex flex-col gap-1">
@@ -77,10 +77,10 @@ function SidebarContent({ currentPath, onItemClick }: { currentPath: string, onI
                 to={link.to}
                 onClick={onItemClick}
                 className={clsx(
-                  "px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200 flex items-center gap-3",
+                  "px-3 py-2 rounded-xl text-sm transition-all duration-200 flex items-center gap-3",
                   (currentPath === link.to || (link.to === '/docs/introduction' && currentPath === '/docs'))
-                    ? "bg-base-100 text-base-900 dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
-                    : "text-base-500 hover:text-base-900 hover:bg-base-50 dark:text-base-400 dark:hover:text-white dark:hover:bg-white/5"
+                    ? "bg-white shadow-[0_2px_8px_rgba(0,0,0,0.04)] border-white text-base-950 font-semibold dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
+                    : "text-base-500 font-medium hover:text-base-950 hover:bg-white/50 dark:text-base-400 dark:hover:text-white dark:hover:bg-white/5"
                 )}
               >
                 <div className={clsx(
@@ -107,7 +107,7 @@ export function DocsLayout() {
   const currentPath = location.pathname;
 
   return (
-    <div className="min-h-screen bg-base-page dark:bg-base-page-dark font-sans flex flex-col">
+    <div className="min-h-screen ds-page font-sans flex flex-col">
       {/* Navigation */}
       <Navbar>
         <NavbarBrand>
@@ -159,7 +159,7 @@ export function DocsLayout() {
       {/* Main Layout */}
       <div className="flex-1 max-w-6xl w-full mx-auto px-4 md:px-6 flex md:grid md:grid-cols-[260px_1fr] gap-0 md:gap-12">
         {/* Sidebar */}
-        <aside className="py-12 border-r border-layout-border dark:border-layout-dark-border hidden md:block shrink-0">
+        <aside className="py-12 border-r ds-layout-border hidden md:block shrink-0">
           <div className="sticky top-28 h-[calc(100vh-140px)] overflow-y-auto pr-8 custom-scrollbar">
             <SidebarContent currentPath={currentPath} />
           </div>
