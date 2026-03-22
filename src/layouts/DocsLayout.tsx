@@ -1,16 +1,14 @@
 import { useState } from 'react';
-import { Navbar, NavbarBrand, NavbarLinks, NavbarActions } from '../components/Navbar/Navbar';
-import { IconButton } from '../components/IconButton/IconButton';
 import {
-  FiGithub, FiMenu, FiBookOpen, FiDownload, FiSquare, FiCircle,
+  FiBookOpen, FiDownload, FiSquare, FiCircle,
   FiType, FiMessageSquare, FiTag, FiCheckSquare, FiDisc, FiList,
   FiSearch, FiToggleRight, FiMinus, FiColumns, FiLock, FiMaximize2,
   FiSidebar, FiMaximize, FiLayers, FiBell, FiMoreVertical, FiAward,
-  FiInbox, FiChevronRight, FiGrid, FiLayout, FiLoader, FiSliders, FiMoreHorizontal, FiActivity
+  FiInbox, FiChevronRight, FiGrid, FiLayout, FiLoader, FiSliders, FiMoreHorizontal
 } from 'react-icons/fi';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { ThemeToggle } from '../components/ThemeToggle';
-import { Footer } from '../components/Footer';
+import { Header } from '../partials/Header';
+import { Footer } from '../partials/Footer';
 import { Drawer } from '../components/Drawer/Drawer';
 import clsx from 'clsx';
 
@@ -54,12 +52,6 @@ const navItems = [
       { to: '/docs/spinner', label: 'Spinner', icon: <FiLoader size={16} /> },
     ]
   },
-  {
-    title: 'Charts',
-    links: [
-      { to: '/docs/area-chart', label: 'Area Chart', icon: <FiActivity size={16} /> },
-    ]
-  }
 ];
 
 function SidebarContent({ currentPath, onItemClick }: { currentPath: string, onItemClick?: () => void }) {
@@ -108,37 +100,7 @@ export function DocsLayout() {
 
   return (
     <div className="min-h-screen ds-page font-sans flex flex-col">
-      {/* Navigation */}
-      <Navbar>
-        <NavbarBrand>
-          <IconButton
-            icon={<FiMenu size={20} />}
-            onClick={() => setIsMobileMenuOpen(true)}
-            variant="ghost"
-            className="md:hidden text-base-500 dark:text-base-400"
-          />
-          <Link to="/" className="flex items-center transition-opacity hover:opacity-80">
-            <img src="/logo.svg" alt="Dashkit UI Logo" className="h-6 dark:invert" />
-          </Link>
-        </NavbarBrand>
-
-        <NavbarLinks>
-          <Link to="/docs" className="text-sm font-medium text-base-950 dark:text-white">Documentation</Link>
-          <Link to="/examples" className="text-sm font-medium text-base-500 dark:text-base-400 hover:text-base-950 dark:hover:text-white transition-colors">Examples</Link>
-        </NavbarLinks>
-
-        <NavbarActions>
-            <ThemeToggle />
-            <IconButton
-              icon={<FiGithub size={20} />}
-              href="https://github.com/carllosnc/dashkit"
-              target="_blank"
-              rel="noopener noreferrer"
-              variant="ghost"
-              className="text-base-400 hover:text-base-900 dark:hover:text-white"
-            />
-        </NavbarActions>
-      </Navbar>
+      <Header onMenuClick={() => setIsMobileMenuOpen(true)} />
 
       {/* Mobile Drawer */}
       <Drawer

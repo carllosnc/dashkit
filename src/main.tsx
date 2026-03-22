@@ -15,6 +15,7 @@ import OtpInputDocs from './pages/otp-input.mdx'
 import ButtonGroupDocs from './pages/button-group.mdx'
 import ImageExpanderDocs from './pages/image-expander.mdx'
 import AreaChartDocs from './pages/area-chart.mdx'
+import ChartsDocs from './pages/charts.mdx'
 import DrawerDocs from './pages/drawer.mdx'
 import ModalDocs from './pages/modal.mdx'
 import AccordionDocs from './pages/accordion.mdx'
@@ -39,8 +40,9 @@ import { DashboardExample } from './pages/examples/DashboardExample'
 import { ExamplesList } from './pages/examples/ExamplesList'
 import { NotFound } from './pages/NotFound.tsx'
 import { DocsLayout } from './layouts/DocsLayout.tsx'
+import { ChartsLayout } from './layouts/ChartsLayout.tsx'
 import { MdxWrapper } from './layouts/MdxWrapper.tsx'
-import { ThemeProvider } from './components/ThemeProvider.tsx'
+import { ThemeProvider } from './partials/ThemeProvider'
 import { ToastProvider } from './components/Toast/Toast.tsx'
 import { HelmetProvider } from 'react-helmet-async'
 
@@ -62,7 +64,6 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="breadcrumb" element={<MdxWrapper Component={BreadcrumbDocs} />} />
                 <Route path="button" element={<MdxWrapper Component={ButtonDocs} />} />
                 <Route path="button-group" element={<MdxWrapper Component={ButtonGroupDocs} />} />
-                <Route path="area-chart" element={<MdxWrapper Component={AreaChartDocs} />} />
                 <Route path="card" element={<MdxWrapper Component={CardDocs} />} />
                 <Route path="checkbox" element={<MdxWrapper Component={CheckboxDocs} />} />
                 <Route path="chip" element={<MdxWrapper Component={ChipDocs} />} />
@@ -85,6 +86,12 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="textarea" element={<MdxWrapper Component={TextareaDocs} />} />
                 <Route path="toast" element={<MdxWrapper Component={ToastDocs} />} />
               </Route>
+
+              <Route path="/charts" element={<ChartsLayout />}>
+                <Route index element={<MdxWrapper Component={ChartsDocs} />} />
+                <Route path="area-chart" element={<MdxWrapper Component={AreaChartDocs} />} />
+              </Route>
+
               <Route path="/examples">
                 <Route index element={<ExamplesList />} />
                 <Route path="login" element={<LoginExample />} />

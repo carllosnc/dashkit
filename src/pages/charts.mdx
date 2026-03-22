@@ -1,0 +1,34 @@
+import { AreaChart } from '../components/AreaChart/AreaChart';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/Card/Card';
+import { FiActivity } from 'react-icons/fi';
+
+# Charts Gallery
+
+Dashkit UI provides a set of high-performance, SVG-based charting components designed for dashboards and data-intensive applications. These components are build with **Framer Motion** for smooth transitions and are fully responsive.
+
+<div className="not-prose grid grid-cols-1 md:grid-cols-2 gap-8">
+  <Card>
+    <CardHeader>
+      <CardTitle>
+        Area Chart
+      </CardTitle>
+      <CardDescription>
+        Perfect for visualizing trends over time with filled areas for better volume representation.
+      </CardDescription>
+    </CardHeader>
+    <CardContent>
+      <AreaChart
+        animate={true}
+        data={[
+          { label: 'Jan', v: 10 },
+          { label: 'Feb', v: 25 },
+          { label: 'Mar', v: 18 },
+          { label: 'Apr', v: 35 },
+          { label: 'May', v: 28 },
+          { label: 'Jun', v: 45 },
+        ]}
+        series={[{ key: 'v', label: 'Users', color: 'var(--color-blue-500)' }]}
+      />
+    </CardContent>
+  </Card>
+</div>

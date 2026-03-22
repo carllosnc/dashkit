@@ -19,11 +19,17 @@ export function Footer() {
           >
             GitHub
           </a>
-          <Link 
-            to="/docs/introduction" 
+          <Link
+            to="/docs/introduction"
             className="text-sm font-medium text-base-500 hover:text-base-900 dark:text-base-400 dark:hover:text-white transition-colors"
           >
             Docs
+          </Link>
+          <Link
+            to="/charts"
+            className="text-sm font-medium text-base-500 hover:text-base-900 dark:text-base-400 dark:hover:text-white transition-colors"
+          >
+            Charts
           </Link>
           <span className="text-xs text-base-300 dark:text-base-700 select-none">|</span>
           <p className="text-sm text-base-400 dark:text-base-500">

@@ -1,10 +1,8 @@
 import { Link } from 'react-router-dom';
-import { ThemeToggle } from '../../components/ThemeToggle';
-import { Navbar, NavbarBrand, NavbarLinks, NavbarActions } from '../../components/Navbar/Navbar';
-import { IconButton } from '../../components/IconButton/IconButton';
-import { FiGithub, FiArrowRight, FiArrowLeft } from 'react-icons/fi';
+import { FiArrowRight, FiArrowLeft } from 'react-icons/fi';
 import { Divider } from '../../components/Divider/Divider';
-import { Footer } from '../../components/Footer';
+import { Header } from '../../partials/Header';
+import { Footer } from '../../partials/Footer';
 
 const examples = [
   {
@@ -27,31 +25,7 @@ const examples = [
 export const ExamplesList = () => {
   return (
     <div className="min-h-screen ds-page font-sans flex flex-col">
-      {/* Navigation */}
-      <Navbar>
-        <NavbarBrand>
-          <Link to="/" className="flex items-center transition-opacity hover:opacity-80">
-            <img src="/logo.svg" alt="Dashkit UI Logo" className="h-6 dark:invert" />
-          </Link>
-        </NavbarBrand>
-        
-        <NavbarLinks>
-          <Link to="/docs" className="text-sm font-medium text-base-500 dark:text-base-400 hover:text-base-950 dark:hover:text-white transition-colors">Documentation</Link>
-          <Link to="/examples" className="text-sm font-medium text-base-950 dark:text-white transition-colors">Examples</Link>
-        </NavbarLinks>
-
-        <NavbarActions>
-          <ThemeToggle />
-          <IconButton 
-            icon={<FiGithub size={20} />} 
-            href="https://github.com/carllosnc/dashkit" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            variant="ghost"
-            className="text-base-400 hover:text-base-900 dark:hover:text-white"
-          />
-        </NavbarActions>
-      </Navbar>
+      <Header />
 
       <main className="flex-1 max-w-5xl w-full mx-auto px-6 py-20">
         <header className="mb-10">

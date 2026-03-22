@@ -1,12 +1,10 @@
 import { TypingEffect } from './components/TypingEffect/TypingEffect'
 import { Button } from './components/Button/Button'
-import { Navbar, NavbarBrand, NavbarLinks, NavbarActions } from './components/Navbar/Navbar'
-import { IconButton } from './components/IconButton/IconButton'
+import { Header } from './partials/Header'
 import { FiArrowRight, FiGithub } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
-import { ThemeToggle } from './components/ThemeToggle'
 import { Helmet } from 'react-helmet-async'
-import { Footer } from './components/Footer'
+import { Footer } from './partials/Footer'
 
 const AVAILABLE_COMPONENTS = ["badge", "button", "button-group", "area-chart", "divider", "card", "input", "icon-button", "skeleton", "tabs", "modal", "drawer"];
 const TITLE = "Dashkit UI | Lean, Simpler React Component Library";
@@ -31,28 +29,7 @@ function App() {
       </Helmet>
 
       {/* Navigation */}
-      <Navbar>
-        <NavbarBrand>
-          <img src="/logo.svg" alt="Dashkit UI Logo" className="h-6 dark:invert" />
-        </NavbarBrand>
-
-        <NavbarLinks>
-          <Link to="/docs" className="text-sm font-medium text-base-500 dark:text-base-400 hover:text-base-950 dark:hover:text-white transition-colors">Documentation</Link>
-          <Link to="/examples" className="text-sm font-medium text-base-500 dark:text-base-400 hover:text-base-950 dark:hover:text-white transition-colors">Examples</Link>
-        </NavbarLinks>
-
-        <NavbarActions>
-          <ThemeToggle />
-          <IconButton 
-            icon={<FiGithub size={20} />} 
-            href="https://github.com/carllosnc/dashkit" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            variant="ghost"
-            className="text-base-400 hover:text-base-900 dark:hover:text-white"
-          />
-        </NavbarActions>
-      </Navbar>
+      <Header />
 
       {/* Hero Section */}
       <main className="flex-1 relative flex flex-col items-center justify-center text-center px-6 py-32 overflow-hidden">

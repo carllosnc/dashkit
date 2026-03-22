@@ -21,8 +21,8 @@ import { Switch } from '../../components/Switch/Switch';
 import { Modal } from '../../components/Modal/Modal';
 import { Drawer } from '../../components/Drawer/Drawer';
 import { toast } from '../../components/Toast/useToast';
-import { ThemeToggle } from '../../components/ThemeToggle';
-import { Footer } from '../../components/Footer';
+import { ThemeToggle } from '../../partials/ThemeToggle';
+import { Footer } from '../../partials/Footer';
 import { Divider } from '../../components/Divider/Divider';
 
 export function DashboardExample() {
@@ -49,6 +49,7 @@ export function DashboardExample() {
 
         <NavbarLinks>
            <a href="#" className="text-sm font-medium text-base-950 dark:text-white">Overview</a>
+           <a href="/charts" className="text-sm font-medium text-base-500 dark:text-base-400">Charts</a>
            <a href="#" className="text-sm font-medium text-base-500 dark:text-base-400">Analytics</a>
            <a href="#" className="text-sm font-medium text-base-500 dark:text-base-400">Team</a>
         </NavbarLinks>
