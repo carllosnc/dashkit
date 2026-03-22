@@ -7,7 +7,7 @@ export const ChipDemo = () => {
   const [chips, setChips] = useState(['Personal', 'Work', 'Urgent', 'Low Priority']);
 
   const toggleChip = (label: string) => {
-    setSelectedChips(prev => 
+    setSelectedChips(prev =>
       prev.includes(label) ? prev.filter(c => c !== label) : [...prev, label]
     );
   };

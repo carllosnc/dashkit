@@ -7,19 +7,19 @@ export type BadgeColor = 'success' | 'warning' | 'error' | 'info' | 'base';
 export type BadgePosition = 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
 
 const colorStyles: Record<BadgeColor, string> = {
-  success: "bg-base-success dark:bg-base-success-dark text-white",
-  warning: "bg-base-warning dark:bg-base-warning-dark text-white",
-  error: "bg-base-error dark:bg-base-error-dark text-white",
-  info: "bg-base-info dark:bg-base-info-dark text-white",
-  base: "bg-base-900 text-white dark:bg-base-300 dark:text-base-950"
+  success: "ds-status-success-filled",
+  warning: "ds-status-warning-filled",
+  error: "ds-status-error-filled",
+  info: "ds-status-info-filled",
+  base: "ds-status-base-filled"
 };
 
 const pulseStyles: Record<BadgeColor, string> = {
-  success: "bg-base-success dark:bg-base-success-dark",
-  warning: "bg-base-warning dark:bg-base-warning-dark",
-  error: "bg-base-error dark:bg-base-error-dark",
-  info: "bg-base-info dark:bg-base-info-dark",
-  base: "bg-base-900 dark:bg-white"
+  success: "ds-status-success-filled",
+  warning: "ds-status-warning-filled",
+  error: "ds-status-error-filled",
+  info: "ds-status-info-filled",
+  base: "ds-status-base-filled"
 };
 
 const positionClasses: Record<BadgePosition, string> = {

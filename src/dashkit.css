@@ -12,22 +12,6 @@
   --color-base-800: var(--color-neutral-800);
   --color-base-900: var(--color-neutral-900);
   --color-base-950: var(--color-neutral-950);
-
-  /* Success */
-  --color-base-success: var(--color-green-500);
-  --color-base-success-dark: var(--color-green-400);
-
-  /* Error */
-  --color-base-error: var(--color-red-500);
-  --color-base-error-dark: var(--color-red-400);
-
-  /* Warning */
-  --color-base-warning: var(--color-amber-500);
-  --color-base-warning-dark: var(--color-amber-500);
-
-  /* Info */
-  --color-base-info: var(--color-blue-500);
-  --color-base-info-dark: var(--color-blue-500);
 }
 
 /* Block */
@@ -251,3 +235,49 @@
   @apply bg-base-100 dark:bg-base-950;
 }
 
+/*Status */
+@utility ds-status-success-filled {
+  @apply bg-emerald-600 text-white border-transparent hover:bg-emerald-700 dark:bg-emerald-500 dark:hover:bg-emerald-400;
+}
+@utility ds-status-success-outlined {
+  @apply bg-transparent text-emerald-600 border-emerald-200 hover:bg-emerald-50 dark:text-emerald-400 dark:border-emerald-500/30 dark:hover:bg-emerald-500/5;
+}
+@utility ds-status-success-soft {
+  @apply bg-emerald-100/50 text-emerald-800 border-transparent dark:bg-emerald-500/10 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-500/20;
+}
+@utility ds-status-warning-filled {
+  @apply bg-amber-500 text-white border-transparent hover:bg-amber-600 dark:bg-amber-500 dark:hover:bg-amber-400;
+}
+@utility ds-status-warning-outlined {
+  @apply bg-transparent text-amber-600 border-amber-200 hover:bg-amber-50 dark:text-amber-400 dark:border-amber-500/30 dark:hover:bg-amber-500/5;
+}
+@utility ds-status-warning-soft {
+  @apply bg-amber-100/50 text-amber-800 border-transparent dark:bg-amber-500/10 dark:text-amber-400 hover:bg-amber-100 dark:hover:bg-amber-500/20;
+}
+@utility ds-status-error-filled {
+  @apply bg-red-600 text-white border-transparent hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-400;
+}
+@utility ds-status-error-outlined {
+  @apply bg-transparent text-red-600 border-red-200 hover:bg-red-50 dark:text-red-400 dark:border-red-500/30 dark:hover:bg-red-500/5;
+}
+@utility ds-status-error-soft {
+  @apply bg-red-100/50 text-red-800 border-transparent dark:bg-red-500/10 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-500/20;
+}
+@utility ds-status-info-filled {
+  @apply bg-blue-600 text-white border-transparent hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400;
+}
+@utility ds-status-info-outlined {
+  @apply bg-transparent text-blue-600 border-blue-200 hover:bg-blue-50 dark:text-blue-400 dark:border-blue-500/30 dark:hover:bg-blue-500/5;
+}
+@utility ds-status-info-soft {
+  @apply bg-blue-100/50 text-blue-800 border-transparent dark:bg-blue-500/10 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-500/20;
+}
+@utility ds-status-base-filled {
+  @apply bg-base-600 text-white dark:bg-base-300 dark:text-base-950;
+}
+@utility ds-status-base-outlined {
+  @apply bg-transparent text-base-900 border-base-200 hover:bg-base-50 dark:text-base-300 dark:border-base-800 dark:hover:bg-base-800;
+}
+@utility ds-status-base-soft {
+  @apply bg-base-100/50 text-base-900 border-transparent dark:bg-base-800 dark:text-base-300 hover:bg-base-100 dark:hover:bg-base-800;
+}
