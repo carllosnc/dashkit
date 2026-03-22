@@ -106,7 +106,7 @@ export const Select = ({
           aria-haspopup="listbox"
           aria-expanded={isOpen}
           className={cn(
-            "w-full px-4 h-9 text-sm bg-background text-foreground border border-input rounded-[var(--radius)] outline-none transition-all duration-200 focus:ring-2 focus:ring-ring focus:ring-offset-2 placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 text-left flex items-center justify-between gap-2",
+            "w-full px-4 h-9 text-sm bg-background text-foreground border border-input rounded-[var(--radius)] outline-none transition-all duration-200 focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-transparent placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 text-left flex items-center justify-between gap-2",
             className
           )}
         >
@@ -134,10 +134,10 @@ export const Select = ({
               zIndex: 9999,
             }}
             className={cn(
-              "py-1.5 bg-popover text-popover-foreground border border-border rounded-lg shadow-lg overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200"
+              "p-1 bg-popover text-popover-foreground border border-border rounded-md shadow-lg overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200"
             )}
           >
-            <div className="max-h-60 overflow-y-auto">
+            <div className="max-h-60 overflow-y-auto flex flex-col gap-0.5">
               {options.length === 0 ? (
                 <div className="px-4 py-2 text-sm text-neutral-400 text-center">No options available</div>
               ) : (

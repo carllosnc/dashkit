@@ -189,7 +189,7 @@ export const Combobox = ({
           placeholder={multiple && selectedOptions.length > 0 ? "Add more..." : placeholder}
           autoComplete="off"
           className={cn(
-            "w-full h-9 pl-10 pr-10 text-sm bg-background text-foreground border border-input rounded-[var(--radius)] outline-none transition-all duration-200 focus:ring-2 focus:ring-ring focus:ring-offset-2 placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
+            "w-full h-9 pl-10 pr-10 text-sm bg-background text-foreground border border-input rounded-[var(--radius)] outline-none transition-all duration-200 focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-transparent placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
             isOpen && "ring-ring border-ring shadow-[0_0_0_2px_var(--ring)]"
           )}
         />
@@ -216,10 +216,10 @@ export const Combobox = ({
         {isOpen && (
           <div 
             className={cn(
-              "absolute top-full left-0 w-full mt-2 py-1.5 bg-popover text-popover-foreground border border-border rounded-lg shadow-lg z-50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200"
+              "absolute top-full left-0 w-full mt-2 p-1 bg-popover text-popover-foreground border border-border rounded-lg shadow-lg z-50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200"
             )}
           >
-            <div className="max-h-60 overflow-y-auto custom-scrollbar">
+            <div className="max-h-60 overflow-y-auto custom-scrollbar flex flex-col gap-0.5">
               {filteredOptions.length === 0 ? (
                 <div className="px-4 py-6 text-sm text-muted-foreground italic text-center">
                   No matches found for "{query}"

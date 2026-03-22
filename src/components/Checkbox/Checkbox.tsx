@@ -24,13 +24,13 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             />
             <div 
               className={cn(
-                "w-6 h-6 border-2 transition-all duration-200 flex items-center justify-center shrink-0 bg-background border-input peer-checked:border-primary peer-checked:bg-primary peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2 group-hover:border-primary/50 peer-disabled:opacity-50 peer-disabled:cursor-not-allowed rounded-sm",
+                "w-6 h-6 border-2 transition-all duration-200 flex items-center justify-center shrink-0 bg-background border-input peer-checked:border-primary peer-checked:bg-primary-foreground peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-transparent group-hover:border-primary/50 peer-disabled:opacity-50 peer-disabled:cursor-not-allowed rounded-sm",
                 className
               )} 
             />
             {/* Inner Block Fill */}
             <div className={cn(
-              "absolute w-[13px] h-[13px] rounded-[2px] bg-primary-foreground transition-all duration-200 pointer-events-none",
+              "absolute w-[13px] h-[13px] rounded-[2px] bg-primary transition-all duration-200 pointer-events-none",
               "opacity-0 scale-50 peer-checked:opacity-100 peer-checked:scale-100"
             )} />
           </label>

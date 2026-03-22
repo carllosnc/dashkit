@@ -33,7 +33,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
             {/* Track */}
             <div 
               className={cn(
-                "w-11 h-6 rounded-full border-2 transition-all duration-300 shrink-0 bg-input border-transparent peer-checked:bg-primary peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2 peer-disabled:opacity-30 peer-disabled:cursor-not-allowed",
+                "w-11 h-6 rounded-full border-2 transition-all duration-300 shrink-0 bg-input border-transparent peer-checked:bg-primary peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-transparent peer-disabled:opacity-30 peer-disabled:cursor-not-allowed",
                 className
               )} 
             />
