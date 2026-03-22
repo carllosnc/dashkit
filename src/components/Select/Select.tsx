@@ -106,11 +106,7 @@ export const Select = ({
           aria-haspopup="listbox"
           aria-expanded={isOpen}
           className={cn(
-            "w-full px-4 h-9 text-sm bg-input-bg dark:bg-input-dark-bg border rounded-input outline-none transition-all duration-200",
-            "border-input-border dark:border-input-dark-border text-left",
-            "flex items-center justify-between gap-2",
-            "focus:border-input-focus-border dark:focus:border-input-dark-focus-border focus:ring-4 focus:ring-input-focus-ring dark:focus:ring-input-dark-focus-ring",
-            disabled && "cursor-not-allowed bg-input-disabled-bg dark:bg-input-dark-disabled-bg border-input-disabled-border dark:border-input-dark-disabled-border text-input-disabled-fg dark:text-input-dark-disabled-fg",
+            "w-full px-4 h-9 text-sm ds-input text-left flex items-center justify-between gap-2",
             className
           )}
         >
@@ -138,8 +134,7 @@ export const Select = ({
               zIndex: 9999,
             }}
             className={cn(
-              "py-1.5 bg-floating-bg dark:bg-floating-dark-bg border border-floating-border dark:border-floating-dark-border rounded-floating shadow-floating dark:shadow-floating-dark overflow-hidden",
-              "animate-in fade-in slide-in-from-top-2 duration-200"
+              "py-1.5 ds-floating overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200"
             )}
           >
             <div className="max-h-60 overflow-y-auto">
@@ -156,13 +151,8 @@ export const Select = ({
                       setIsOpen(false);
                     }}
                     className={cn(
-                      "w-full px-4 py-2.5 text-sm text-left flex items-center justify-between transition-colors",
-                      "text-floating-item-fg dark:text-floating-item-dark-fg",
-                      "hover:bg-floating-item-bg-hover dark:hover:bg-floating-item-dark-bg-hover",
-                      "hover:text-floating-item-fg-hover dark:hover:text-floating-item-dark-fg-hover",
-                      opt.value === value 
-                        ? "bg-floating-item-selected-bg dark:bg-floating-item-dark-selected-bg font-semibold text-floating-item-selected-fg dark:text-floating-item-dark-selected-fg" 
-                        : ""
+                      "w-full px-4 py-2.5 text-sm text-left flex items-center justify-between transition-colors ds-floating-item",
+                      opt.value === value && "ds-floating-item-selected"
                     )}
                   >
                     <span className="truncate">{opt.label}</span>
