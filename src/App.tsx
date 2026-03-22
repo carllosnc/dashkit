@@ -17,7 +17,7 @@ const OG_DESCRIPTION = "Build professional tools with zero baggage. No heavy abs
 
 function App() {
   return (
-    <div className="flex flex-col min-h-screen bg-base-page dark:bg-base-page-dark font-sans">
+    <div className="flex flex-col min-h-screen ds-page font-sans">
       <Helmet>
         <title>{TITLE}</title>
         <meta name="description" content={DESCRIPTION} />
@@ -67,12 +67,12 @@ function App() {
 
         <div className="flex flex-col sm:flex-row gap-4 items-center mb-12">
           <Link to="/docs" tabIndex={-1}>
-            <Button variant="filled" rightIcon={<FiArrowRight />} className="h-12 px-8 text-base">
+            <Button variant="filled" rightIcon={<FiArrowRight />}>
               Get Started
             </Button>
           </Link>
           <a href="https://github.com/carllosnc/dashkit" target="_blank" rel="noopener noreferrer">
-            <Button variant="outlined" leftIcon={<FiGithub />} className="h-12 px-8 text-base bg-white dark:bg-base-950">
+            <Button variant="outlined" leftIcon={<FiGithub />}>
               View on GitHub
             </Button>
           </a>
