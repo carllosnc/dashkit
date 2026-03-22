@@ -75,12 +75,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             onChange={handleChange}
             className={cn(
-              "w-full px-4 h-9 text-sm bg-input-bg dark:bg-input-dark-bg border rounded-input outline-none transition-all duration-200",
-              "border-input-border dark:border-input-dark-border text-input-fg dark:text-input-dark-fg",
-              "focus:border-input-focus-border dark:focus:border-input-dark-focus-border",
-              "focus:ring-4 focus:ring-input-focus-ring dark:focus:ring-input-dark-focus-ring",
-              "placeholder:text-input-placeholder dark:placeholder:text-input-dark-placeholder",
-              "disabled:cursor-not-allowed disabled:bg-input-disabled-bg dark:disabled:bg-input-dark-disabled-bg disabled:border-input-disabled-border dark:disabled:border-input-dark-disabled-border text-input-disabled-fg dark:disabled:text-input-dark-disabled-fg",
+              "w-full px-4 h-9 text-sm ds-input",
               {
                 "pl-11": !!leftIcon,
                 "pr-11": !!rightIcon,
