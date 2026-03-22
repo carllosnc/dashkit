@@ -13,10 +13,6 @@
   --color-base-900: var(--color-neutral-900);
   --color-base-950: var(--color-neutral-950);
 
-  /* Background */
-  --color-base-page: var(--color-base-100);
-  --color-base-page-dark: var(--color-base-950);
-
   /* Success */
   --color-base-success: var(--color-green-500);
   --color-base-success-dark: var(--color-green-400);
@@ -34,220 +30,224 @@
   --color-base-info-dark: var(--color-blue-500);
 }
 
-/* Block (Card, Modal, Drawer, etc.) */
-@theme {
-  --radius-block: var(--radius-lg);
-  --radius-block-lg: var(--radius-2xl);
+/* Block */
+@utility ds-block {
+  @apply bg-white rounded-lg shadow-sm border border-white;
+  @apply dark:bg-base-900 dark:shadow-sm dark:border-base-900;
+}
 
-  --color-block-bg: var(--color-white);
-  --color-block-border: var(--color-white);
-  --color-block-footer-bg: var(--color-white);
+@utility ds-block-lg {
+  @apply bg-white rounded-2xl shadow-sm border border-white;
+  @apply dark:bg-base-900 dark:shadow-sm dark:border-base-900;
+}
 
-  --color-block-dark-bg: var(--color-base-900);
-  --color-block-dark-border: var(--color-base-900);
-  --color-block-dark-footer-bg: var(--color-base-900);
-
-  --shadow-block: 0 2px 4px rgba(0, 0, 0, 0.05);
-  --shadow-block-dark: 0 4px 10px rgba(0, 0, 0, 0.25), 0 1px 4px rgba(0, 0, 0, 0.1);
+@utility ds-block-footer {
+  @apply bg-white border-t border-base-200;
+  @apply dark:bg-base-900 dark:border-base-800;
 }
 
 /* Button */
-@theme {
-  --radius-button: var(--radius-md);
+@utility ds-btn {
+  @apply rounded-md inline-flex font-medium items-center justify-center transition-all duration-200 focus:outline-none cursor-pointer whitespace-nowrap border;
+}
 
-  --color-button-filled-bg: var(--color-base-950);
-  --color-button-filled-fg: var(--color-white);
-  --color-button-filled-hover: var(--color-black);
+@utility ds-btn-filled {
+  @apply bg-base-950 text-white border-transparent hover:bg-base-800;
+  @apply dark:bg-base-300 dark:text-base-950 dark:hover:bg-base-400;
+}
 
-  --color-button-filled-dark-bg: var(--color-base-300);
-  --color-button-filled-dark-fg: var(--color-base-950);
-  --color-button-filled-dark-hover: var(--color-base-200);
+@utility ds-btn-outlined {
+  @apply bg-transparent text-base-800 border-base-300 hover:border-base-400;
+  @apply dark:bg-transparent dark:text-base-100 dark:border-base-700 dark:hover:border-base-600;
+}
 
-  --color-button-outlined-bg: transparent;
-  --color-button-outlined-fg: var(--color-base-800);
-  --color-button-outlined-border: var(--color-base-300);
-  --color-button-outlined-hover: var(--color-base-100);
+@utility ds-btn-soft {
+  @apply bg-base-200 text-base-700 border-transparent hover:bg-base-300;
+  @apply dark:bg-base-800 dark:text-white dark:hover:bg-base-700;
+}
 
-  --color-button-outlined-dark-bg: transparent;
-  --color-button-outlined-dark-fg: var(--color-base-100);
-  --color-button-outlined-dark-border: var(--color-base-700);
-  --color-button-outlined-dark-hover: var(--color-base-900);
-
-  --color-button-soft-bg: var(--color-base-200);
-  --color-button-soft-fg: var(--color-base-700);
-  --color-button-soft-hover: var(--color-base-200);
-
-  --color-button-soft-dark-bg: var(--color-base-800);
-  --color-button-soft-dark-fg: var(--color-white);
-  --color-button-soft-dark-hover: var(--color-base-700);
+@utility ds-btn-ghost {
+  @apply bg-transparent text-base-500 border-transparent hover:bg-base-100;
+  @apply dark:text-base-400 dark:hover:bg-white/5;
 }
 
 /* Input */
-@theme {
-  --radius-input: var(--radius-md);
+@utility ds-input {
+  @apply bg-white dark:bg-base-950 text-base-900 dark:text-white border border-base-300 dark:border-base-800 rounded-md outline-none transition-all duration-200;
 
-  --color-input-bg: var(--color-white);
-  --color-input-fg: var(--color-base-900);
-  --color-input-border: var(--color-base-300);
-  --color-input-placeholder: var(--color-base-500);
+  @apply focus:border-base-600 dark:focus:border-base-600 focus:ring-4 focus:ring-base-100 dark:focus:ring-base-900/40;
 
-  --color-input-dark-bg: var(--color-base-950);
-  --color-input-dark-fg: var(--color-white);
-  --color-input-dark-border: var(--color-base-800);
-  --color-input-dark-placeholder: var(--color-base-500);
+  @apply placeholder:text-base-500 dark:placeholder:text-base-500;
 
-  --color-input-focus-border: var(--color-base-600);
-  --color-input-focus-ring: var(--color-base-100);
-
-  --color-input-dark-focus-border: var(--color-base-600);
-  --color-input-dark-focus-ring: color-mix(in srgb, var(--color-base-900) 40%, transparent);
-
-  --color-input-disabled-bg: var(--color-base-200);
-  --color-input-disabled-fg: var(--color-base-400);
-  --color-input-disabled-border: var(--color-base-300);
-
-  --color-input-dark-disabled-bg: var(--color-base-900);
-  --color-input-dark-disabled-fg: var(--color-base-600);
-  --color-input-dark-disabled-border: var(--color-base-800);
-}
-
-/* Selection (Checkbox & Radio) */
-@theme {
-  --radius-selection: var(--radius-sm);
-
-  --color-selection-bg: var(--color-white);
-  --color-selection-border: var(--color-base-300);
-  --color-selection-checked-border: var(--color-base-600);
-  --color-selection-checked-fill: var(--color-base-950);
-  --color-selection-hover-border: var(--color-base-500);
-
-  --color-selection-dark-bg: var(--color-base-950);
-  --color-selection-dark-border: var(--color-base-800);
-  --color-selection-dark-checked-border: var(--color-base-600);
-  --color-selection-dark-checked-fill: var(--color-white);
-  --color-selection-dark-hover-border: var(--color-base-600);
-
-  --color-selection-focus-ring: var(--color-base-100);
-  --color-selection-dark-focus-ring: color-mix(in srgb, var(--color-base-900) 40%, transparent);
-
-  --color-selection-disabled-bg: var(--color-base-100);
-  --color-selection-disabled-border: var(--color-base-300);
-
-  --color-selection-dark-disabled-bg: var(--color-base-800);
-  --color-selection-dark-disabled-border: var(--color-base-800);
+  @apply disabled:cursor-not-allowed disabled:bg-base-200 dark:disabled:bg-base-900 disabled:border-base-300 dark:disabled:border-base-800 disabled:text-base-400 dark:disabled:text-base-600;
 }
 
 /* Floating (Dropdown, Popover, Select menu, Combobox) */
-@theme {
-  --radius-floating: var(--radius-lg);
-
-  --color-floating-bg: var(--color-white);
-  --color-floating-border: var(--color-base-300);
-  --shadow-floating: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-
-  --color-floating-dark-bg: var(--color-base-900);
-  --color-floating-dark-border: var(--color-base-800);
-  --shadow-floating-dark: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
-
-  /* Items inside floating containers */
-  --color-floating-item-fg: var(--color-base-700);
-  --color-floating-item-bg-hover: var(--color-base-100);
-  --color-floating-item-fg-hover: var(--color-base-950);
-
-  --color-floating-item-dark-fg: var(--color-base-300);
-  --color-floating-item-dark-bg-hover: color-mix(in srgb, var(--color-white) 5%, transparent);
-  --color-floating-item-dark-fg-hover: var(--color-white);
-
-  --color-floating-item-selected-bg: var(--color-base-50);
-  --color-floating-item-selected-fg: var(--color-base-950);
-
-  --color-floating-item-dark-selected-bg: color-mix(in srgb, var(--color-white) 5%, transparent);
-  --color-floating-item-dark-selected-fg: var(--color-white);
+@utility ds-floating {
+  @apply bg-white dark:bg-base-900 border border-base-300 dark:border-base-800 rounded-lg;
+  @apply shadow-lg;
+  @apply dark:shadow-lg;
 }
 
-/* Layout (Navbar, Footer, Sidebar, Divider) */
-@theme {
-  --color-layout-border: var(--color-base-300);
-  --color-layout-dark-border: var(--color-base-800);
-
-  --color-layout-divider: var(--color-base-300);
-  --color-layout-dark-divider: var(--color-base-800);
+@utility ds-floating-item {
+  @apply text-base-700 dark:text-base-300;
+  @apply hover:bg-base-100 dark:hover:bg-white/5;
+  @apply hover:text-base-950 dark:hover:text-white;
 }
 
-/* Toast */
-@theme {
-  --radius-toast: var(--radius-md);
-
-  --color-toast-bg: var(--color-white);
-  --color-toast-border: var(--color-base-200);
-  --shadow-toast: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-
-  --color-toast-dark-bg: var(--color-base-900);
-  --color-toast-dark-border: var(--color-base-800);
-  --shadow-toast-dark: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-}
-
-/* Switch */
-@theme {
-  --color-switch-bg: var(--color-base-200);
-  --color-switch-border: var(--color-base-300);
-  --color-switch-checked-bg: var(--color-base-950);
-  --color-switch-checked-border: var(--color-base-950);
-
-  --color-switch-thumb-bg: var(--color-white);
-  --color-switch-thumb-off-bg: var(--color-base-500);
-
-  --color-switch-dark-bg: var(--color-base-800);
-  --color-switch-dark-border: var(--color-base-700);
-  --color-switch-dark-checked-bg: var(--color-base-200);
-  --color-switch-dark-checked-border: var(--color-base-200);
-
-  --color-switch-dark-thumb-bg: var(--color-base-950);
-  --color-switch-dark-thumb-off-bg: var(--color-base-400);
-
-  --color-switch-focus-ring: var(--color-base-100);
-  --color-switch-dark-focus-ring: color-mix(in srgb, var(--color-base-900) 40%, transparent);
+@utility ds-floating-item-selected {
+  @apply bg-base-50 text-base-950 font-semibold;
+  @apply dark:bg-white/5 dark:text-white;
 }
 
 /* Tabs */
-@theme {
-  --radius-tabs: var(--radius-xl);
-  --radius-tabs-trigger: var(--radius-lg);
-
-  --color-tabs-list-bg: var(--color-base-100);
-  --color-tabs-list-dark-bg: color-mix(in srgb, var(--color-base-800) 80%, transparent);
-
-  --color-tabs-trigger-fg: var(--color-base-500);
-  --color-tabs-trigger-dark-fg: var(--color-base-400);
-
-  --color-tabs-trigger-hover-fg: var(--color-base-700);
-  --color-tabs-trigger-hover-dark-fg: var(--color-base-200);
-
-  --color-tabs-trigger-active-fg: var(--color-base-950);
-  --color-tabs-trigger-active-dark-fg: var(--color-white);
-
-  --color-tabs-trigger-active-bg: var(--color-white);
-  --color-tabs-trigger-active-dark-bg: var(--color-base-950);
+@utility ds-tabs-list {
+  @apply inline-flex h-11 items-center justify-start rounded-xl bg-base-100 dark:bg-base-900/80 p-1 text-base-500 dark:text-base-400;
 }
 
-/* Scrollbar */
-@theme {
-  --width-scrollbar: 6px;
-  --radius-scrollbar: var(--radius-full);
+@utility ds-tabs-trigger {
+  @apply relative flex-1 px-4 py-2 text-sm font-semibold transition-colors duration-200 outline-none isolate whitespace-nowrap flex items-center justify-center cursor-pointer;
+  @apply text-base-500 hover:text-base-700 dark:text-base-400 dark:hover:text-base-200;
+}
 
-  --color-scrollbar-thumb: var(--color-base-300);
-  --color-scrollbar-thumb-hover: var(--color-base-400);
+@utility ds-tabs-trigger-active {
+  @apply text-base-950 dark:text-white;
+}
 
-  --color-scrollbar-dark-thumb: var(--color-base-800);
-  --color-scrollbar-dark-thumb-hover: var(--color-base-700);
+@utility ds-tabs-active-bg {
+  @apply absolute inset-0 z-[-1] bg-white dark:bg-base-950 rounded-lg shadow-sm;
+}
+
+/* Switch */
+@utility ds-switch {
+  @apply w-11 h-6 rounded-full border-2 transition-all duration-300 shrink-0;
+  @apply bg-base-200 dark:bg-base-800 border-base-300 dark:border-base-700;
+  @apply peer-checked:bg-base-950 peer-checked:border-base-950 dark:peer-checked:bg-base-200 dark:peer-checked:border-base-200;
+  @apply peer-focus-visible:ring-4 peer-focus-visible:ring-base-100 dark:peer-focus-visible:ring-base-900/40;
+}
+
+@utility ds-switch-thumb {
+  @apply absolute left-[4px] top-[4px] w-4 h-4 rounded-full transition-all duration-300 shadow-sm;
+  @apply bg-base-500 dark:bg-base-400;
+  @apply peer-checked:translate-x-5 peer-checked:bg-white dark:peer-checked:bg-base-950;
+}
+
+/* Toast */
+@utility ds-toast {
+  @apply bg-white dark:bg-base-900 border border-base-200 dark:border-base-800 rounded-md shadow-2xl;
 }
 
 /* Accordion */
-@theme {
-  --text-accordion-title: 1em;
-  --font-weight-accordion-title: 700;
+@utility ds-accordion-title {
+  @apply text-[1em] font-bold;
 }
 
+@utility ds-layout-border {
+  @apply border-base-300 dark:border-base-800;
+}
 
+@utility ds-layout-divider {
+  @apply bg-base-300 dark:bg-base-800;
+}
 
+@utility ds-layout-divider-border {
+  @apply border-base-300 dark:border-base-800;
+}
+
+/* Selection (Checkbox & Radio) */
+@utility ds-selection {
+  @apply w-6 h-6 border-2 transition-all duration-200 flex items-center justify-center shrink-0;
+
+  @apply bg-white dark:bg-base-950 border-base-300 dark:border-base-800;
+
+  @apply peer-checked:border-base-600 dark:peer-checked:border-base-600;
+
+  @apply peer-focus-visible:ring-4 peer-focus-visible:ring-base-100 dark:peer-focus-visible:ring-base-900/40;
+
+  @apply group-hover:border-base-500 dark:group-hover:border-base-600;
+
+  @apply peer-disabled:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:bg-base-100 dark:peer-disabled:bg-base-800;
+}
+
+@utility ds-selection-fill {
+  @apply bg-base-950 dark:bg-white;
+}
+
+/* Area Chart */
+@utility ds-chart-grid {
+  @apply stroke-base-300 dark:stroke-base-700;
+}
+
+@utility ds-chart-hover-line {
+  @apply stroke-base-300 dark:stroke-base-700;
+}
+
+@utility ds-chart-label {
+  @apply text-[10px] font-bold uppercase tracking-widest text-base-400;
+}
+
+@utility ds-chart-label-active {
+  @apply text-base-950 dark:text-white;
+}
+
+@utility ds-chart-tooltip {
+  @apply ds-block border border-base-300 dark:border-base-700 p-3 shadow-2xl flex flex-col gap-2 min-w-[140px];
+}
+
+@utility ds-chart-tooltip-header {
+  @apply flex border-b ds-layout-border pb-1 mb-1;
+}
+
+@utility ds-chart-tooltip-title {
+  @apply text-[10px] font-bold uppercase tracking-widest text-base-500;
+}
+
+@utility ds-chart-tooltip-label {
+  @apply text-xs font-medium text-base-700 dark:text-base-300;
+}
+
+@utility ds-chart-tooltip-value {
+  @apply text-xs font-bold text-base-950 dark:text-white;
+}
+
+@utility ds-chart-point {
+  @apply stroke-current transition-all duration-200 fill-white dark:fill-base-950;
+}
+
+@utility ds-chart-point-active {
+  @apply fill-current;
+}
+
+/* Skeleton */
+@keyframes ds-shimmer {
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+@keyframes ds-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@utility ds-skeleton {
+  @apply relative overflow-hidden bg-base-200 dark:bg-base-800;
+}
+
+@utility ds-skeleton-shimmer {
+  @apply after:absolute after:inset-0 after:-translate-x-full after:animate-[ds-shimmer_1.5s_infinite] after:bg-gradient-to-r after:from-transparent after:via-white/20 dark:after:via-white/10 after:to-transparent;
+}
+
+@utility ds-skeleton-pulse {
+  @apply animate-[ds-pulse_1.2s_infinite];
+}
+
+/* Page */
+@utility ds-page {
+  @apply bg-base-100 dark:bg-base-950;
+}
 
