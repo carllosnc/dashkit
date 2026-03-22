@@ -54,10 +54,7 @@ export function Tabs({ defaultValue, value, onValueChange, children, className }
  */
 export function TabsList({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <div className={cn(
-      "inline-flex h-11 items-center justify-start rounded-tabs bg-tabs-list-bg dark:bg-tabs-list-dark-bg p-1 text-tabs-trigger-fg dark:text-tabs-trigger-dark-fg",
-      className
-    )}>
+    <div className={cn("ds-tabs-list", className)}>
       {children}
     </div>
   );
@@ -76,18 +73,15 @@ export function TabsTrigger({ value, children, className }: { value: string; chi
     <button
       onClick={() => context.setActiveTab(value)}
       className={cn(
-        "relative flex-1 px-4 py-2 text-sm font-semibold transition-colors duration-200 outline-none isolate whitespace-nowrap",
-        "flex items-center justify-center cursor-pointer",
-        isActive 
-          ? "text-tabs-trigger-active-fg dark:text-tabs-trigger-active-dark-fg" 
-          : "text-tabs-trigger-fg hover:text-tabs-trigger-hover-fg dark:text-tabs-trigger-dark-fg dark:hover:text-tabs-trigger-hover-dark-fg",
+        "ds-tabs-trigger",
+        isActive ? "ds-tabs-trigger-active" : "",
         className
       )}
     >
       {isActive && (
         <motion.div
           layoutId={`active-tab-${context.tabsId}`}
-          className="absolute inset-0 z-[-1] bg-tabs-trigger-active-bg dark:bg-tabs-trigger-active-dark-bg rounded-tabs-trigger shadow-sm"
+          className="ds-tabs-active-bg"
           transition={{ 
             type: 'spring', 
             stiffness: 300, 
