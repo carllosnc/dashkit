@@ -12,7 +12,7 @@ The **ButtonGroup** component is used to cluster multiple buttons together in a 
 
 The default layout for a button group.
 
-<div className="flex flex-col gap-6 p-8 border border-layout-border dark:border-layout-dark-border rounded-block bg-block-bg dark:bg-block-dark-bg">
+<div className="flex flex-col gap-6 p-8 ds-block">
   <div className="flex flex-col gap-4">
     <span className="text-xs font-bold uppercase tracking-widest text-base-400">Standard Buttons</span>
     <ButtonGroup>
@@ -50,7 +50,7 @@ function Example() {
 
 Set the `vertical` prop to `true` to stack buttons vertically.
 
-<div className="flex flex-col gap-6 p-8 border border-layout-border dark:border-layout-dark-border rounded-block bg-block-bg dark:bg-block-dark-bg">
+<div className="flex flex-col gap-6 p-8 ds-block">
   <ButtonGroup vertical>
     <Button variant="outlined" leftIcon={<FiBold size={16} />}>Bold</Button>
     <Button variant="outlined" leftIcon={<FiItalic size={16} />}>Italic</Button>
@@ -70,7 +70,7 @@ Set the `vertical` prop to `true` to stack buttons vertically.
 
 ButtonGroup works with all button variants (`filled`, `outlined`, `soft`).
 
-<div className="flex flex-col gap-6 p-8 border border-layout-border dark:border-layout-dark-border rounded-block bg-block-bg dark:bg-block-dark-bg">
+<div className="flex flex-col gap-6 p-8 ds-block">
   <ButtonGroup>
     <Button variant="soft">Option A</Button>
     <Button variant="soft">Option B</Button>
