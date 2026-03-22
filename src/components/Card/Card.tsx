@@ -73,7 +73,7 @@ export function CardFooter({ className, ref, ...props }: CardFooterProps) {
     <div
       ref={ref}
       className={cn(
-        "p-6 flex items-center justify-end gap-3",
+        "p-6 flex items-center justify-end gap-3 ds-block-footer",
         className
       )}
       {...props}
@@ -107,9 +107,9 @@ export function Card({
       animate={animate ? { opacity: 1, y: 0 } : undefined}
       transition={{ duration: 0.3, ease: 'easeOut' }}
       className={cn(
-        "bg-block-bg dark:bg-block-dark-bg overflow-hidden flex flex-col font-sans",
-        bordered && "border border-block-border dark:border-block-dark-border rounded-block",
-        shadowed && "shadow-block dark:shadow-block-dark",
+        "ds-block overflow-hidden flex flex-col font-sans",
+        !bordered && "border-none",
+        !shadowed && "shadow-none",
         className
       )}
     >
