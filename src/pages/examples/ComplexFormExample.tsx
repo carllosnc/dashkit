@@ -26,8 +26,8 @@ export const ComplexFormExample = () => {
   };
 
   return (
-    <div className="min-h-screen bg-base-page dark:bg-base-page-dark flex items-center justify-center p-6 md:p-12 relative overflow-hidden">
-      <Card className="w-full max-w-4xl relative z-10 shrink-0 border-block-border dark:border-block-dark-border">
+    <div className="min-h-screen ds-page flex items-center justify-center p-6 md:p-12 relative overflow-hidden">
+      <Card className="w-full max-w-4xl relative z-10 shrink-0">
         <CardHeader>
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-blue-50 dark:bg-blue-500/10 rounded-xl">
