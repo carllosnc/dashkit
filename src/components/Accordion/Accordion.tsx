@@ -93,9 +93,9 @@ export const AccordionItem = ({ value, children, className, disabled }: Accordio
   return (
     <AccordionItemContext.Provider value={{ value, isOpen }}>
       <div className={cn(
-        "border border-block-border dark:border-block-dark-border rounded-block bg-block-bg dark:bg-block-dark-bg transition-all duration-200 overflow-hidden",
-        isOpen && "border-block-border dark:border-block-dark-border bg-block-bg dark:bg-block-dark-bg",
-        context.shadowed && "shadow-block dark:shadow-block-dark",
+        "ds-block transition-all duration-200 overflow-hidden",
+        isOpen && "ds-block",
+        context.shadowed ? "ds-block" : "shadow-none",
         disabled && "opacity-50 pointer-events-none",
         className
       )}>
@@ -115,7 +115,7 @@ export const AccordionTrigger = ({ children, className }: { children: React.Reac
       onClick={() => context.onValueChange(itemContext.value)}
       className={cn(
         "flex w-full items-center gap-3 px-4 py-4 text-left transition-all hover:text-block-fg dark:hover:text-block-dark-fg group",
-        itemContext.isOpen ? "text-block-fg dark:text-block-dark-fg font-bold" : "text-base-700 dark:text-base-300 font-bold",
+        itemContext.isOpen ? "text-block-fg dark:text-block-dark-fg font-bold" : "text-base-950 dark:text-base-300 font-bold",
         className
       )}
     >
@@ -126,7 +126,7 @@ export const AccordionTrigger = ({ children, className }: { children: React.Reac
       >
         <FiChevronRight size={18} />
       </motion.div>
-      <span className="text-accordion-title tracking-tight font-accordion-title">{children}</span>
+      <span className="ds-accordion-title tracking-tight">{children}</span>
     </button>
   );
 };
