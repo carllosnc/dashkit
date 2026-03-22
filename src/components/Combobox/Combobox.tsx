@@ -189,12 +189,8 @@ export const Combobox = ({
           placeholder={multiple && selectedOptions.length > 0 ? "Add more..." : placeholder}
           autoComplete="off"
           className={cn(
-            "w-full h-9 pl-10 pr-10 text-sm bg-input-bg dark:bg-input-dark-bg border rounded-input transition-all duration-200",
-            "border-input-border dark:border-input-dark-border outline-none",
-            "focus:border-input-focus-border dark:focus:border-input-dark-focus-border focus:ring-4 focus:ring-input-focus-ring dark:focus:ring-input-dark-focus-ring",
-            "placeholder:text-input-placeholder dark:placeholder:text-input-dark-placeholder",
-            disabled && "cursor-not-allowed bg-input-disabled-bg dark:bg-input-dark-disabled-bg border-input-disabled-border dark:border-input-dark-disabled-border text-input-disabled-fg dark:text-input-dark-disabled-fg",
-            isOpen && "border-input-focus-border dark:border-input-dark-focus-border ring-4 ring-input-focus-ring dark:ring-input-dark-focus-ring"
+            "w-full h-9 pl-10 pr-10 text-sm ds-input",
+            isOpen && "border-base-600 dark:border-base-600 ring-4 ring-base-100 dark:ring-base-900/40"
           )}
         />
 
@@ -220,8 +216,7 @@ export const Combobox = ({
         {isOpen && (
           <div 
             className={cn(
-              "absolute top-full left-0 w-full mt-2 py-1.5 bg-floating-bg dark:bg-floating-dark-bg border border-floating-border dark:border-floating-dark-border rounded-floating shadow-floating dark:shadow-floating-dark z-50 overflow-hidden",
-              "animate-in fade-in slide-in-from-top-2 duration-200"
+              "absolute top-full left-0 w-full mt-2 py-1.5 ds-floating z-50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200"
             )}
           >
             <div className="max-h-60 overflow-y-auto custom-scrollbar">
@@ -238,14 +233,9 @@ export const Combobox = ({
                       type="button"
                       onClick={() => handleSelect(opt)}
                       className={cn(
-                        "w-full px-4 py-2.5 text-sm text-left flex items-center justify-between transition-colors",
-                        "text-floating-item-fg dark:text-floating-item-dark-fg",
-                        "hover:bg-floating-item-bg-hover dark:hover:bg-floating-item-dark-bg-hover",
-                        "hover:text-floating-item-fg-hover dark:hover:text-floating-item-dark-fg-hover",
-                        isSelected 
-                          ? "bg-floating-item-selected-bg dark:bg-floating-item-dark-selected-bg font-semibold text-floating-item-selected-fg dark:text-floating-item-dark-selected-fg" 
-                          : ""
-                      )}
+                      "w-full px-4 py-2.5 text-sm text-left flex items-center justify-between transition-colors ds-floating-item",
+                      isSelected && "ds-floating-item-selected"
+                    )}
                     >
                       <span className="truncate">{opt.label}</span>
                       {isSelected && (
