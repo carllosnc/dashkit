@@ -128,7 +128,7 @@ export const AreaChart = ({
             y1={svgHeight * (1 - line)}
             x2={width}
             y2={svgHeight * (1 - line)}
-            className="stroke-layout-divider dark:stroke-layout-dark-divider"
+            className="ds-chart-grid"
             strokeWidth="1"
             strokeDasharray="4 4"
           />
@@ -141,8 +141,8 @@ export const AreaChart = ({
             y1="0"
             x2={(hoveredIndex / (data.length - 1)) * width}
             y2={svgHeight}
-            className="stroke-base-300 dark:stroke-base-700"
-            strokeWidth="2"
+            className="ds-chart-hover-line"
+            strokeWidth="1"
           />
         )}
 
@@ -166,7 +166,7 @@ export const AreaChart = ({
                 d={linePath}
                 fill="none"
                 stroke={s.color}
-                strokeWidth="4"
+                strokeWidth="1"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 initial={animate ? { pathLength: 0, opacity: 0 } : false}
@@ -179,14 +179,14 @@ export const AreaChart = ({
                   key={i}
                   cx={p.x}
                   cy={p.y}
-                  r={hoveredIndex === i ? "8" : "4"}
-                  fill={hoveredIndex === i ? s.color : "var(--color-block-bg)"}
+                  r={hoveredIndex === i ? "5" : "3"}
                   className={cn(
-                    "stroke-current transition-all duration-200",
-                    hoveredIndex === i ? "fill-current" : "dark:fill-block-dark-bg"
+                    "ds-chart-point",
+                    hoveredIndex === i && "ds-chart-point-active"
                   )}
+                  style={hoveredIndex === i ? { fill: s.color } : undefined}
                   stroke={s.color}
-                  strokeWidth="2.5"
+                  strokeWidth="1.5"
                   initial={animate ? { scale: 0, opacity: 0 } : false}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: (i / data.length) * 0.5 + 1 }}
@@ -200,14 +200,14 @@ export const AreaChart = ({
       {/* Tooltip Overlay */}
       {showTooltip && hoveredIndex !== null && (
         <div 
-          className="absolute z-10 pointer-events-none transform -translate-x-1/2 -translate-y-full mb-6 bg-block-bg dark:bg-block-dark-bg border border-block-border dark:border-block-dark-border rounded-lg p-3 shadow-2xl flex flex-col gap-2 min-w-[140px]"
+          className="absolute z-10 pointer-events-none transform -translate-x-1/2 -translate-y-full mb-6 ds-chart-tooltip"
           style={{ 
             left: tooltipPos.x, 
             top: tooltipPos.y - 10
           }}
         >
-          <div className="flex border-b border-layout-divider dark:border-layout-dark-divider pb-1 mb-1">
-             <span className="text-[10px] font-bold uppercase tracking-widest text-base-500">
+          <div className="ds-chart-tooltip-header">
+             <span className="ds-chart-tooltip-title">
                {data[hoveredIndex].label}
              </span>
           </div>
@@ -215,9 +215,9 @@ export const AreaChart = ({
             <div key={s.key} className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-2">
                  <div className="size-2 rounded-full" style={{ backgroundColor: s.color }} />
-                 <span className="text-xs font-medium text-base-700 dark:text-base-300">{s.label}</span>
+                 <span className="ds-chart-tooltip-label">{s.label}</span>
               </div>
-              <span className="text-xs font-bold text-base-950 dark:text-white">
+              <span className="ds-chart-tooltip-value">
                 {Number(data[hoveredIndex][s.key]).toLocaleString()}
               </span>
             </div>
@@ -232,8 +232,8 @@ export const AreaChart = ({
             <span 
               key={i} 
               className={cn(
-                "text-[10px] font-bold uppercase tracking-widest transition-colors",
-                hoveredIndex === i ? "text-base-950 dark:text-white" : "text-base-400"
+                "ds-chart-label transition-colors",
+                hoveredIndex === i && "ds-chart-label-active"
               )}
             >
               {d.label}
