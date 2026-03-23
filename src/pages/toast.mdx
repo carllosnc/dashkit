@@ -80,14 +80,14 @@ const trigger = () => {
 
 ### toast(options)
 
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `title` | `string` | — | Bold heading for the toast. |
-| `description` | `string` | — | Body text for the message. |
-| `type` | `'default' \| 'success' \| 'info' \| 'warning' \| 'error'` | `'default'` | Semantic coloring for the default icon. |
-| `icon` | `ReactNode` | — | Explicit icon override. |
-| `duration` | `number` | `5000` | MS before hiding (0 for persistent). |
-| `position` | `ToastPosition` | provider default | Override position for this specific toast. |
-| `id` | `string` | `auto` | Unique ID (use to prevent duplicate toasts). |
-
-
+<PropertyDoc
+  properties={[
+    { "prop": "title", "type": "string", "defaultValue": "—", "description": "Bold heading for the toast." },
+    { "prop": "description", "type": "string", "defaultValue": "—", "description": "Body text for the message." },
+    { "prop": "type", "type": "'default' | 'success' | 'info' | 'warning' | 'error'", "defaultValue": "'default'", "description": "Semantic coloring for the default icon." },
+    { "prop": "icon", "type": "ReactNode", "defaultValue": "—", "description": "Explicit icon override." },
+    { "prop": "duration", "type": "number", "defaultValue": "5000", "description": "MS before hiding (0 for persistent)." },
+    { "prop": "position", "type": "ToastPosition", "defaultValue": "provider default", "description": "Override position for this specific toast." },
+    { "prop": "id", "type": "string", "defaultValue": "auto", "description": "Unique ID (use to prevent duplicate toasts)." }
+  ]}
+/>
