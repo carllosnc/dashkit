@@ -1,5 +1,5 @@
 import { Badge } from './components/Badge/Badge'
-import { TypingEffect } from './components/TypingEffect/TypingEffect'
+import { TypingEffect } from './partials/TypingEffect'
 import { Button } from './components/Button/Button'
 import { Header } from './partials/Header'
 import { FiArrowRight, FiGithub } from 'react-icons/fi'

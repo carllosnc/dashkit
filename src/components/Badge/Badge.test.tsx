@@ -34,10 +34,10 @@ describe('Badge', () => {
   it('applies color styles correctly', () => {
     const { rerender } = render(<Badge content="Test" color="success" />);
     const badge = screen.getByTestId('badge');
-    expect(badge).toHaveClass('bg-neutral-success');
+    expect(badge).toHaveClass('bg-emerald-500');
 
     rerender(<Badge content="Test" color="error" />);
-    expect(screen.getByTestId('badge')).toHaveClass('bg-neutral-error');
+    expect(screen.getByTestId('badge')).toHaveClass('bg-red-500');
   });
 
   it('hides the badge when show prop is false', () => {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { cn } from '../../utils/cn';
+import { cn } from '../utils/cn';
 
 interface TypingEffectProps {
   words: string[];
@@ -55,5 +55,3 @@ export function TypingEffect({
     </span>
   );
 }
-
-
