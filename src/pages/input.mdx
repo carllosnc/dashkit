@@ -1,3 +1,28 @@
+import { Input } from '../components/Input/Input';
+import { FiSearch, FiLock } from 'react-icons/fi';
+
+export const PatternsExample = () => {
+  const formatCPF = (val) => val
+    .replace(/^(\d{3})(\d)/, '$1.$2')
+    .replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3')
+    .replace(/\.(\d{3})(\d)/, '.$1-$2')
+    .slice(0, 14);
+
+  const formatPhone = (val) => {
+    if (val.length <= 10) {
+      return val.replace(/^(\d{2})(\d)/, '($1) $2').replace(/(\d{4})(\d)/, '$1-$2').slice(0, 14);
+    }
+    return val.replace(/^(\d{2})(\d)/, '($1) $2').replace(/(\d{5})(\d)/, '$1-$2').slice(0, 15);
+  };
+
+  return (
+    <div className="flex flex-col gap-6 w-full max-w-sm">
+      <Input label="CPF (Brasil)" placeholder="000.000.000-00" mask={/[^\d]/g} formatter={formatCPF} />
+      <Input label="Phone Number" placeholder="(00) 00000-0000" mask={/[^\d]/g} formatter={formatPhone} />
+    </div>
+  );
+};
+
 # Input
 
 A primitive input component with support for labels, icons, error states, and helper text.
@@ -21,7 +46,7 @@ bunx carllosnc/dashkit add input
 The basic usage of the input with a label and placeholder.
 
 <Preview>
-  <Input label="Email Address" placeholder="Enter your email" />
+  <Input label="Email Address" placeholder="Enter your email" className="max-w-sm" />
 </Preview>
 
 ```tsx
@@ -37,17 +62,8 @@ Use `leftIcon` and `rightIcon` to add icons to the input. The icons automaticall
 
 <Preview>
   <div className="flex flex-col gap-6 w-full max-w-sm">
-    <Input 
-      label="Search" 
-      placeholder="Search documentation..." 
-      leftIcon={<FiSearch />} 
-    />
-    <Input 
-      label="Password" 
-      type="password" 
-      placeholder="••••••••" 
-      rightIcon={<FiLock />} 
-    />
+    <Input label="Search" placeholder="Search documentation..." leftIcon={<FiSearch />} />
+    <Input label="Password" type="password" placeholder="••••••••" rightIcon={<FiLock />} />
   </div>
 </Preview>
 
@@ -73,17 +89,8 @@ The input supports error and disabled states.
 
 <Preview>
   <div className="flex flex-col gap-6 w-full max-w-sm">
-    <Input 
-      label="Username" 
-      error="Username is already taken" 
-      defaultValue="carllosnc" 
-    />
-    <Input 
-      label="API Key" 
-      disabled 
-      value="sk_test_51Mz..." 
-      helperText="You cannot edit this key" 
-    />
+    <Input label="Username" error="Username is already taken" defaultValue="carllosnc" />
+    <Input label="API Key" disabled value="sk_test_51Mz..." helperText="You cannot edit this key" />
   </div>
 </Preview>
 
@@ -107,10 +114,7 @@ The input supports error and disabled states.
 You can override or extend the styles of the input via `className`.
 
 <Preview>
-  <Input 
-    className="rounded-full border-indigo-200 focus:border-indigo-500 focus:ring-indigo-100" 
-    placeholder="Custom rounded & border"
-  />
+  <Input className="rounded-full border-indigo-200 focus:border-indigo-500 focus:ring-indigo-100 max-w-sm" placeholder="Custom style" />
 </Preview>
 
 ```tsx
@@ -120,39 +124,37 @@ You can override or extend the styles of the input via `className`.
 />
 ```
 
-## Masking (Regex)
+## Masking & Formatting
 
-Use the `mask` prop to filter input values in real-time. Matches to the provided regex are replaced with an empty string.
+The input component provides built-in support for masking (to filter characters) and formatting (to transform the displayed string).
+
+### Digit Only Mask
 
 <Preview>
   <div className="w-full max-w-sm">
-    <Input 
-      label="Only Digits" 
-      placeholder="Try typing letters..." 
-      mask={/[^\d]/g} 
-    />
+    <Input label="Numeric Only" placeholder="Try typing letters..." mask={/[^\d]/g} />
   </div>
 </Preview>
 
 ```tsx
 <Input 
-  label="Only Digits" 
+  label="Numeric Only" 
   mask={/[^\d]/g} 
   placeholder="123..." 
 />
 ```
 
-## Common Patterns
+### Complex Patterns
 
-You can use the `mask` and `formatter` props together to implement complex patterns like phone numbers and Brasil CPF.
+Using `mask` and `formatter` together enables masking for specific formats like Brasil CPF and phone numbers.
 
 <Preview>
-  <InputDemo />
+  <PatternsExample />
 </Preview>
 
 ```tsx
-const formatCPF = (value: string) => {
-  return value
+const formatCPF = (val) => {
+  return val
     .replace(/^(\d{3})(\d)/, '$1.$2')
     .replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3')
     .replace(/\.(\d{3})(\d)/, '.$1-$2')
@@ -167,10 +169,7 @@ const formatCPF = (value: string) => {
 />
 ```
 
-## Props
-
-The component extends all native `InputHTMLAttributes<HTMLInputElement>` props, plus the following:
-
+## Props (API)
 
 <PropertyDoc
   properties={[
@@ -230,6 +229,3 @@ The component extends all native `InputHTMLAttributes<HTMLInputElement>` props, 
   }
 ]}
 />
-
-
-

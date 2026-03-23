@@ -1,3 +1,73 @@
+import { useState } from 'react';
+import { Modal } from '../components/Modal/Modal';
+import { Button } from '../components/Button/Button';
+import { FiLayers, FiDownload, FiTrash2, FiAlertTriangle, FiCheckCircle } from 'react-icons/fi';
+
+export const BasicModal = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <>
+      <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
+      <Modal
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        title="Project Overview"
+        description="Review your latest project stats and activity log."
+      >
+        <p className="text-sm py-4">This is a standard modal with a title and description.</p>
+      </Modal>
+    </>
+  );
+};
+
+export const AlertModalExample = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <>
+      <Button variant="outlined" color="error" leftIcon={<FiAlertTriangle />} onClick={() => setIsOpen(true)}>Delete Workspace</Button>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} size="sm" className="text-center">
+        <div className="flex flex-col items-center gap-6 py-6">
+          <div className="size-20 rounded-full bg-red-50 dark:bg-red-500/10 flex items-center justify-center text-red-600 dark:text-red-400 border border-red-100 dark:border-red-500/20">
+            <FiTrash2 size={40} />
+          </div>
+          <div className="flex flex-col gap-2">
+            <h3 className="text-2xl font-bold text-neutral-900 dark:text-white tracking-tight">Delete Workspace?</h3>
+            <p className="text-sm text-neutral-500 max-w-[240px]">This action is permanent and will remove all project data associated with this workspace.</p>
+          </div>
+          <div className="grid grid-cols-1 w-full gap-3 pt-4 px-4">
+            <Button variant="filled" className="bg-red-600 hover:bg-red-700 text-white h-12 rounded-xl" onClick={() => setIsOpen(false)}>
+              Yes, Delete Permanent
+            </Button>
+            <Button variant="outlined" className="h-12 border-none hover:bg-neutral-50" onClick={() => setIsOpen(false)}>
+              Keep Workspace
+            </Button>
+          </div>
+        </div>
+      </Modal>
+    </>
+  );
+};
+
+export const FullScreenExample = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <>
+      <Button variant="outlined" leftIcon={<FiLayers />} onClick={() => setIsOpen(true)}>Immersive Editor</Button>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} size="full" title="Immersive Editor" description="Maximize your creative potential in our distilled editing mode.">
+        <div className="w-full h-full flex items-center justify-center border-2 border-dashed border-neutral-200 dark:border-neutral-800 rounded-[2rem] p-12">
+          <div className="flex flex-col items-center gap-4 text-center">
+            <div className="size-16 rounded-2xl bg-neutral-100 dark:bg-neutral-900 flex items-center justify-center text-neutral-400">
+              <FiCheckCircle size={32} />
+            </div>
+            <h2 className="text-3xl font-bold text-neutral-900 dark:text-white tracking-tight leading-[1.05]">Workspace Ready</h2>
+            <p className="text-neutral-500 max-w-sm mx-auto">Click X to return to your dashboard or begin customizing your layout.</p>
+          </div>
+        </div>
+      </Modal>
+    </>
+  );
+};
+
 # Modal
 
 A centered, layered dialog component that focuses user attention on critical information or actions.
@@ -18,34 +88,79 @@ bunx carllosnc/dashkit add modal
 
 ## Basic Usage
 
-The modal is a controlled component toggled by the `isOpen` prop.
+The modal is a controlled component toggled by the `isOpen` prop. It includes built-in support for titles, descriptions, and custom footers.
 
 <Preview>
-  <ModalDemo />
+  <div className="flex flex-wrap gap-4">
+    <BasicModal />
+  </div>
 </Preview>
 
 ```tsx
 import { useState } from 'react'
-import { Modal } from '@/components/Modal/Modal'
+import { Modal, Button } from '@/components/dashkit'
 
-export default function MyPage() {
+export default function App() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
     <>
-      <button onClick={() => setIsOpen(true)}>Open Modal</button>
-      
+      <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
       <Modal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
-        title="Delete Item"
-        description="Are you sure you want to proceed?"
+        title="Project Overview"
+        description="Review your latest project stats."
       >
-        <p>This action cannot be undone.</p>
+        <p>Main content area...</p>
       </Modal>
     </>
   )
 }
+```
+
+## Formats & Examples
+
+Modals can be customized for different scenarios using sizes, alignments, and custom children.
+
+### Alert Modal
+
+Smaller modals are perfect for destructive actions or critical confirmations.
+
+<Preview>
+  <AlertModalExample />
+</Preview>
+
+```tsx
+<Modal 
+  isOpen={isOpen} 
+  size="sm" 
+  className="text-center"
+>
+  <div className="flex flex-col items-center gap-6">
+    <FiTrash2 size={40} className="text-red-500" />
+    <h3>Delete everything?</h3>
+    <Button variant="filled" className="bg-red-600">Yes, delete</Button>
+  </div>
+</Modal>
+```
+
+### Full-Screen (Immersive)
+
+The `full` size provides a take-over experience while maintaining focus on a single task.
+
+<Preview>
+  <FullScreenExample />
+</Preview>
+
+```tsx
+<Modal 
+  isOpen={isOpen} 
+  size="full" 
+  title="Editor Mode"
+>
+  <div className="content">...</div>
+</Modal>
 ```
 
 ## Features
@@ -53,24 +168,14 @@ export default function MyPage() {
 - **Spring-Based Animations**: Uses `framer-motion` for a premium scale/fade entry.
 - **Backdrop Blur**: Softly blurs background content for better focus.
 - **Body Scroll Lock**: Automatically prevents scrolling when the modal is active.
-- **Portalled Rendering**: Renders at the document root to avoid z-index layering issues.
+- **Portalled Rendering**: Renders at the document root to avoid layering issues.
 - **Keyboard Accessible**: Closes instantly when the `Escape` key is pressed.
 
 ## Sizes
 
-The component includes predefined sizes to accommodate different content types.
+Predefined sizes to accommodate different content types: `sm`, `md` (default), `lg`, `xl`, `2xl`, and `full`.
 
-- `sm`: Max width 384px (Task alerts)
-- `md` (Default): Max width 448px (Standard forms)
-- `lg`: Max width 512px
-- `xl`: Max width 576px
-- `2xl`: Max width 672px
-- `full`: Immersive, full-screen takeover with rounded corners.
-
-## Props
-
-The `Modal` component accepts the following props:
-
+## Props (API)
 
 <PropertyDoc
   properties={[
@@ -117,19 +222,16 @@ The `Modal` component accepts the following props:
     "description": "Main content of the dialog."
   },
   {
+    "prop": "showCloseButton",
+    "type": "boolean",
+    "defaultValue": "true",
+    "description": "Whether to show the close (X) icon."
+  },
+  {
     "prop": "className",
     "type": "string",
     "defaultValue": "—",
     "description": "Custom classes for the modal container."
-  },
-  {
-    "prop": "showCloseButton",
-    "type": "boolean",
-    "defaultValue": "true",
-    "description": "Whether to show the X icon in headers."
   }
 ]}
 />
-
-
-

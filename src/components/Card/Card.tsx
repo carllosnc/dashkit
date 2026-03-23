@@ -1,14 +1,8 @@
 import * as React from 'react';
 import { motion, type HTMLMotionProps } from 'framer-motion';
-import clsx from 'clsx';
-import { twMerge } from 'tailwind-merge';
-
-function cn(...inputs: (string | undefined | null | boolean | Record<string, boolean>)[]) {
-  return twMerge(clsx(inputs));
-}
+import { cn } from '../../utils/cn';
 
 export type CardHeaderProps = React.HTMLAttributes<HTMLDivElement> & {
-  extra?: React.ReactNode;
   ref?: React.Ref<HTMLDivElement>;
 };
 
@@ -19,7 +13,6 @@ export type CardFooterProps = React.ComponentPropsWithRef<'div'>;
 
 export function CardHeader({
   className,
-  extra,
   children,
   ref,
   ...props
@@ -27,13 +20,10 @@ export function CardHeader({
   return (
     <div
       ref={ref}
-      className={cn("p-6 flex items-center justify-between", className)}
+      className={cn("px-6 pt-6 flex flex-col gap-1", className)}
       {...props}
     >
-      <div className="flex flex-col gap-1 flex-1">
-        {children}
-      </div>
-      {extra && <div className="shrink-0">{extra}</div>}
+      {children}
     </div>
   );
 }
@@ -52,7 +42,7 @@ export function CardDescription({ className, ref, ...props }: CardDescriptionPro
   return (
     <p
       ref={ref}
-      className={cn("text-sm text-muted-foreground font-medium", className)}
+      className={cn("text-sm text-muted-foreground", className)}
       {...props}
     />
   );
@@ -62,7 +52,7 @@ export function CardContent({ className, ref, ...props }: CardContentProps) {
   return (
     <div
       ref={ref}
-      className={cn("p-6 flex-1", className)}
+      className={cn("px-6 flex-1", className)}
       {...props}
     />
   );
@@ -73,15 +63,13 @@ export function CardFooter({ className, ref, ...props }: CardFooterProps) {
     <div
       ref={ref}
       className={cn(
-        "p-6 flex items-center justify-end gap-3 bg-card border-t border-border",
+        "p-6 flex gap-3 bg-card border-t border-border",
         className
       )}
       {...props}
     />
   );
 }
-
-// --- Main Component ---
 
 export type CardProps = Omit<HTMLMotionProps<'div'>, 'title'> & {
   bordered?: boolean;
@@ -107,7 +95,7 @@ export function Card({
       animate={animate ? { opacity: 1, y: 0 } : undefined}
       transition={{ duration: 0.3, ease: 'easeOut' }}
       className={cn(
-        "bg-card text-card-foreground rounded-lg shadow-sm overflow-hidden flex flex-col font-sans",
+        "bg-card text-card-foreground rounded-lg shadow-sm overflow-hidden gap-6 flex flex-col font-sans",
         !bordered && "border-none",
         !shadowed && "shadow-none",
         className

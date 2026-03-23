@@ -1,3 +1,50 @@
+import { useState } from 'react';
+import { Chip } from '../components/Chip/Chip';
+import { FiClock, FiSettings } from 'react-icons/fi';
+
+export const MultiSelectExample = () => {
+  const [selectedChips, setSelectedChips] = useState(['React', 'Vite']);
+  const toggleChip = (label) => {
+    setSelectedChips(prev =>
+      prev.includes(label) ? prev.filter(c => c !== label) : [...prev, label]
+    );
+  };
+  return (
+    <div className="flex flex-wrap gap-3">
+      {['React', 'Next.js', 'Vite', 'Tailwind', 'Framer'].map(tech => (
+        <Chip
+          key={tech}
+          label={tech}
+          selected={selectedChips.includes(tech)}
+          variant="outlined"
+          onClick={() => toggleChip(tech)}
+        />
+      ))}
+    </div>
+  );
+};
+
+export const RemovableExample = () => {
+  const [chips, setChips] = useState(['Personal', 'Work', 'Urgent', 'Low Priority']);
+  const removeChip = (label) => {
+    setChips(prev => prev.filter(c => c !== label));
+  };
+  return (
+    <div className="flex flex-wrap gap-3">
+      {chips.map(tag => (
+        <Chip
+          key={tag}
+          label={tag}
+          onDelete={() => removeChip(tag)}
+        />
+      ))}
+      {chips.length === 0 && (
+        <p className="text-xs text-neutral-400 italic">No tags left.</p>
+      )}
+    </div>
+  );
+};
+
 # Chip
 
 A compact, interactive element that represents an input, attribute, or action, inspired by Material Design 3.
@@ -15,14 +62,6 @@ Add the chip component to your project using the Dashkit CLI:
 ```bash
 bunx carllosnc/dashkit add chip
 ```
-
-## Interactive Guide
-
-Explore all the features of the chip component including the different types, variants, and selection states.
-
-<Preview>
-  <ChipDemo />
-</Preview>
 
 ## Basic Usage
 
@@ -42,78 +81,144 @@ The basic tonal chip represents a simple label or filter item.
 <Chip label="Urgent" />
 ```
 
-## Variants
+## Types
 
-Chips come in three distinct variants: `tonal`, `filled`, and `outlined`.
+Chips can be used for different purposes, and their visual behavior changes based on provided props.
 
 <Preview>
-  <div className="flex flex-wrap gap-4">
-    <Chip label="Tonal" variant="tonal" onClick={() => {}} />
-    <Chip label="Filled" variant="filled" onClick={() => {}} />
-    <Chip label="Outlined" variant="outlined" onClick={() => {}} />
+  <div className="flex flex-wrap gap-3">
+    <Chip label="Assist Chip" icon={<FiClock />} onClick={() => {}} />
+    <Chip label="Filter Chip" selected onClick={() => {}} />
+    <Chip label="Input Chip" onDelete={() => {}} />
+    <Chip label="Action Chip" icon={<FiSettings />} onClick={() => {}} color="info" />
   </div>
 </Preview>
 
 ```tsx
+import { FiClock, FiSettings } from 'react-icons/fi';
+
+<Chip label="Assist Chip" icon={<FiClock />} onClick={() => {}} />
+<Chip label="Filter Chip" selected onClick={() => {}} />
+<Chip label="Input Chip" onDelete={() => {}} />
+<Chip label="Action Chip" icon={<FiSettings />} color="info" />
+```
+
+## Visual Styles
+
+Chips combine three `variants` with five semantic `colors` to provide maximum flexibility for different UI contexts.
+
+<Preview>
+  <div className="flex flex-col gap-8 w-full">
+    {/* Tonal Row */}
+    <div className="flex flex-col gap-3">
+      <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest">Tonal (Default)</span>
+      <div className="flex flex-wrap gap-3">
+        <Chip label="Base tonal" color="base" variant="tonal" onClick={() => {}} />
+        <Chip label="Success tonal" color="success" variant="tonal" onClick={() => {}} />
+        <Chip label="Warning tonal" color="warning" variant="tonal" onClick={() => {}} />
+        <Chip label="Error tonal" color="error" variant="tonal" onClick={() => {}} />
+        <Chip label="Info tonal" color="info" variant="tonal" onClick={() => {}} />
+      </div>
+    </div>
+
+    {/* Filled Row */}
+    <div className="flex flex-col gap-3">
+      <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest">Filled</span>
+      <div className="flex flex-wrap gap-3">
+        <Chip label="Base filled" color="base" variant="filled" onClick={() => {}} />
+        <Chip label="Success filled" color="success" variant="filled" onClick={() => {}} />
+        <Chip label="Warning filled" color="warning" variant="filled" onClick={() => {}} />
+        <Chip label="Error filled" color="error" variant="filled" onClick={() => {}} />
+        <Chip label="Info filled" color="info" variant="filled" onClick={() => {}} />
+      </div>
+    </div>
+
+    {/* Outlined Row */}
+    <div className="flex flex-col gap-3">
+      <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest">Outlined</span>
+      <div className="flex flex-wrap gap-3">
+        <Chip label="Base outlined" color="base" variant="outlined" onClick={() => {}} />
+        <Chip label="Success outlined" color="success" variant="outlined" onClick={() => {}} />
+        <Chip label="Warning outlined" color="warning" variant="outlined" onClick={() => {}} />
+        <Chip label="Error outlined" color="error" variant="outlined" onClick={() => {}} />
+        <Chip label="Info outlined" color="info" variant="outlined" onClick={() => {}} />
+      </div>
+    </div>
+  </div>
+</Preview>
+
+```tsx
+// Using different variants
 <Chip label="Tonal" variant="tonal" />
 <Chip label="Filled" variant="filled" />
 <Chip label="Outlined" variant="outlined" />
+
+// Combining with colors
+<Chip label="Success" color="success" variant="filled" />
+<Chip label="Error" color="error" variant="tonal" />
 ```
 
-## With Icons
-
-Add metadata or visual context to chips using the `icon` or `onDelete` props.
-
-<Preview>
-  <div className="flex flex-wrap gap-4">
-    <Chip label="Schedule" icon={<FiClock />} onClick={() => {}} />
-    <Chip label="Settings" icon={<FiSettings />} onClick={() => {}} />
-    <Chip label="Remove me" onDelete={() => {}} />
-  </div>
-</Preview>
-
-```tsx
-import { FiClock, FiSettings } from 'react-icons/fi'
-
-<Chip label="Schedule" icon={<FiClock />} />
-<Chip label="Settings" icon={<FiSettings />} />
-<Chip label="Remove me" onDelete={() => alert('Deleted!')} />
-```
-
-## Selection
+## Multi-Selection
 
 Selection state shows a checkmark icon automatically. This is useful for filter situations.
 
 <Preview>
-  <div className="flex flex-wrap gap-4">
-    <Chip label="Selectable" selected onClick={() => {}} />
-    <Chip label="Selected Outlined" selected variant="outlined" onClick={() => {}} />
-  </div>
+  <MultiSelectExample />
 </Preview>
 
 ```tsx
-<Chip label="Selectable" selected />
+import { useState } from 'react';
+
+export const MultiSelectExample = () => {
+  const [selected, setSelected] = useState(['React']);
+  const toggle = (label) => {
+    setSelected(prev =>
+      prev.includes(label) ? prev.filter(c => c !== label) : [...prev, label]
+    );
+  };
+
+  return (
+    <div className="flex gap-3">
+      {['React', 'Vite', 'Next.js'].map(tech => (
+        <Chip
+          key={tech}
+          label={tech}
+          selected={selected.includes(tech)}
+          variant="outlined"
+          onClick={() => toggle(tech)}
+        />
+      ))}
+    </div>
+  );
+};
 ```
 
-## States
+## Removable Labels
 
-Chips can be disabled to prevent user interaction.
+Chips can include a delete action, useful for tag systems.
 
 <Preview>
-  <div className="flex flex-wrap gap-4">
-    <Chip label="Disabled Chip" disabled onClick={() => {}} />
-    <Chip label="Disabled Removable" disabled onDelete={() => {}} />
-  </div>
+  <RemovableExample />
 </Preview>
 
 ```tsx
-<Chip label="Disabled" disabled />
+import { useState } from 'react';
+
+export const RemovableExample = () => {
+  const [chips, setChips] = useState(['Work', 'Personal']);
+  const remove = (label) => setChips(prev => prev.filter(c => c !== label));
+
+  return (
+    <div className="flex gap-3">
+      {chips.map(tag => (
+        <Chip key={tag} label={tag} onDelete={() => remove(tag)} />
+      ))}
+    </div>
+  );
+};
 ```
 
-## Props
-
-The component supports the following props:
-
+## Props (API)
 
 <PropertyDoc
   properties={[
@@ -173,7 +278,3 @@ The component supports the following props:
   }
 ]}
 />
-
-
-
-

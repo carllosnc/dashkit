@@ -1,47 +1,108 @@
+import { IconButton } from '../components/IconButton/IconButton';
+import { FiBell, FiSettings, FiTrash, FiEdit, FiShare2 } from 'react-icons/fi';
+
 # Icon Button
 
 A premium, specialized button for icon-only actions with customizable variant and rounding options.
 
+## Import
+
+```tsx
+import { IconButton } from '@/components/IconButton/IconButton'
+```
+
 ## Installation
+
+Add the icon button component to your project using the Dashkit CLI:
 
 ```bash
 bunx carllosnc/dashkit add icon-button
 ```
 
-## Usage
+## Basic Usage
 
-```tsx
-import { IconButton } from '@/components/dashkit';
-import { FiEdit, FiTrash, FiShare } from 'react-icons/fi';
-
-export default function Actions() {
-  return (
-    <div className="flex gap-4">
-      <IconButton icon={<FiEdit />} variant="soft" />
-      <IconButton icon={<FiShare />} variant="ghost" />
-      <IconButton icon={<FiTrash />} variant="filled" rounded />
-    </div>
-  );
-}
-```
-
-## Overview
-
-The `IconButton` component provides a consistent container for circular or rounded square icon triggers. It's often used in toolbars, navigation bars, and as utility shortcuts throughout application layouts.
+Icon buttons are compact triggers that display only an icon. They are perfect for toolbars and navigation.
 
 <Preview>
-  <IconButtonDemo />
+  <div className="flex items-center gap-6">
+    <IconButton icon={<FiBell size={20} />} variant="filled" onClick={() => {}} />
+    <IconButton icon={<FiSettings size={20} />} variant="soft" onClick={() => {}} />
+    <IconButton icon={<FiShare2 size={20} />} variant="ghost" onClick={() => {}} />
+  </div>
 </Preview>
 
-## Props
+```tsx
+import { FiBell, FiSettings, FiShare2 } from 'react-icons/fi';
 
+<IconButton icon={<FiBell />} variant="filled" />
+<IconButton icon={<FiSettings />} variant="soft" />
+<IconButton icon={<FiShare2 />} variant="ghost" />
+```
+
+## Variants
+
+Choose between three distinct visual styles: `filled`, `soft`, and `ghost`.
+
+<Preview>
+  <div className="flex items-center gap-6">
+    <IconButton icon={<FiEdit size={18} />} variant="filled" />
+    <IconButton icon={<FiEdit size={18} />} variant="soft" />
+    <IconButton icon={<FiEdit size={18} />} variant="ghost" />
+  </div>
+</Preview>
+
+```tsx
+<IconButton icon={<FiEdit />} variant="filled" />
+<IconButton icon={<FiEdit />} variant="soft" />
+<IconButton icon={<FiEdit />} variant="ghost" />
+```
+
+## Shapes
+
+The `rounded` prop allows you to switch between a rounded-square (default) and a full circular shape.
+
+<Preview>
+  <div className="flex items-center gap-12">
+    <div className="flex flex-col gap-3 items-center">
+      <IconButton icon={<FiTrash size={18} />} rounded={false} onClick={() => {}} />
+      <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">Default (MD)</span>
+    </div>
+    <div className="flex flex-col gap-3 items-center">
+      <IconButton icon={<FiTrash size={18} />} rounded={true} onClick={() => {}} />
+      <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">Circular</span>
+    </div>
+  </div>
+</Preview>
+
+```tsx
+<IconButton icon={<FiTrash />} rounded={false} />
+<IconButton icon={<FiTrash />} rounded={true} />
+```
+
+## States
+
+Icon buttons can be disabled to prevent user interaction while remaining visually consistent.
+
+<Preview>
+  <div className="flex items-center gap-6">
+    <IconButton icon={<FiSettings size={18} />} disabled />
+    <IconButton icon={<FiTrash size={18} />} variant="filled" disabled />
+  </div>
+</Preview>
+
+```tsx
+<IconButton icon={<FiSettings />} disabled />
+<IconButton icon={<FiTrash />} variant="filled" disabled />
+```
+
+## Props (API)
 
 <PropertyDoc
   properties={[
   {
     "prop": "icon",
     "type": "ReactNode",
-    "defaultValue": "-",
+    "defaultValue": "—",
     "description": "The icon component to render inside the button."
   },
   {
@@ -54,16 +115,25 @@ The `IconButton` component provides a consistent container for circular or round
     "prop": "rounded",
     "type": "boolean",
     "defaultValue": "false",
-    "description": "If true, applies rounded-full, otherwise rounded-md."
+    "description": "If true, applies rounded-full (circular), otherwise rounded-md."
   },
   {
     "prop": "disabled",
     "type": "boolean",
     "defaultValue": "false",
     "description": "Whether the button is interactive."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Additional CSS classes for the container."
+  },
+  {
+    "prop": "onClick",
+    "type": "function",
+    "defaultValue": "—",
+    "description": "Standard click event handler."
   }
 ]}
 />
-
-
-

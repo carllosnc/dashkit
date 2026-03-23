@@ -1,54 +1,135 @@
+import { Spinner } from '../components/Spinner/Spinner';
+
 # Spinner
 
 <p className="text-xl text-muted-foreground mt-2 mb-8">
   A sleek, high-performance loading indicator built with SVG and CSS animations.
 </p>
 
-## Overview
+## Import
 
-The `Spinner` component is designed to show background activity or loading states. It's fully customizable in size, color, and thickness.
-
-<Preview>
-  <SpinnerDemo />
-</Preview>
+```tsx
+import { Spinner } from '@/components/Spinner/Spinner'
+```
 
 ## Installation
+
+Add the spinner to your project using the Dashkit CLI:
 
 ```bash
 bunx carllosnc/dashkit add spinner
 ```
 
-## Usage
+## Basic Usage
+
+The basic spinner uses a standard size and the current text color.
+
+<Preview>
+  <Spinner />
+</Preview>
 
 ```tsx
-import { Spinner } from '@/components/dashkit/Spinner';
-
-export default function SpinnerUsage() {
-  return (
-    <div className="flex items-center gap-4">
-      <Spinner size={16} /> {/* Small spinner */}
-      <Spinner size={24} color="#3b82f6" thickness={2} /> {/* Themed spinner */}
-      <Spinner size={32} thickness={4} /> {/* Thick spinner */}
-    </div>
-  );
-}
+<Spinner />
 ```
 
-## Props
+## Sizes
 
+Use the `size` prop to scale the spinner. The default is 24px.
+
+<Preview>
+  <div className="flex items-center gap-8 py-4">
+    <Spinner size={16} />
+    <Spinner size={24} />
+    <Spinner size={32} />
+    <Spinner size={48} />
+  </div>
+</Preview>
+
+```tsx
+<Spinner size={16} />
+<Spinner size={24} />
+<Spinner size={32} />
+<Spinner size={48} />
+```
+
+## Colors
+
+The spinner accepts any valid CSS color. It defaults to `currentColor` for easier theme integration.
+
+<Preview>
+  <div className="flex items-center gap-8 py-4">
+    <Spinner color="#10b981" />
+    <Spinner color="#3b82f6" />
+    <Spinner color="#f59e0b" />
+    <Spinner color="#ef4444" />
+  </div>
+</Preview>
+
+```tsx
+<Spinner color="#10b981" />
+<Spinner color="#3b82f6" />
+<Spinner color="#f59e0b" />
+<Spinner color="#ef4444" />
+```
+
+## Thickness
+
+Adjust the `thickness` of the spinner's stroke for different visual densities.
+
+<Preview>
+  <div className="flex items-center gap-8 py-4">
+    <Spinner size={32} thickness={1} />
+    <Spinner size={32} thickness={2} />
+    <Spinner size={32} thickness={3} />
+    <Spinner size={32} thickness={4} />
+  </div>
+</Preview>
+
+```tsx
+<Spinner thickness={1} />
+<Spinner thickness={2} />
+<Spinner thickness={3} />
+<Spinner thickness={4} />
+```
+
+## Context Integration
+
+Spinners are commonly used alongside text labels to indicate specific processing states.
+
+<Preview>
+  <div className="flex flex-col gap-4 w-full max-w-xs">
+    <div className="flex items-center gap-3 px-4 py-3 bg-neutral-50 dark:bg-white/5 rounded-xl border border-neutral-200 dark:border-white/10">
+      <Spinner size={18} thickness={2} color="#3b82f6" />
+      <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Fetching data...</span>
+    </div>
+    <div className="flex items-center gap-3 px-4 py-3 bg-emerald-500/10 rounded-xl border border-emerald-500/20">
+      <Spinner size={18} thickness={2} color="#10b981" />
+      <span className="text-sm font-medium text-emerald-600 dark:text-emerald-400">Processing update...</span>
+    </div>
+  </div>
+</Preview>
+
+```tsx
+<div className="flex items-center gap-2">
+  <Spinner size={18} color="#3b82f6" />
+  <span>Loading...</span>
+</div>
+```
+
+## Props (API)
 
 <PropertyDoc
   properties={[
   {
     "prop": "size",
-    "type": "number | string",
+    "type": "number",
     "defaultValue": "24",
-    "description": "Size of the spinner in pixels or any valid CSS unit."
+    "description": "Size of the spinner in pixels."
   },
   {
     "prop": "color",
     "type": "string",
-    "defaultValue": "currentColor",
+    "defaultValue": "'currentColor'",
     "description": "Hex, RGB, or valid CSS color for the spinner."
   },
   {
@@ -60,11 +141,8 @@ export default function SpinnerUsage() {
   {
     "prop": "className",
     "type": "string",
-    "defaultValue": "-",
+    "defaultValue": "—",
     "description": "Additional CSS classes for the container."
   }
 ]}
 />
-
-
-

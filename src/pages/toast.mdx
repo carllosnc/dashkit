@@ -1,6 +1,79 @@
+import { toast } from '../components/Toast/useToast';
+import { Button } from '../components/Button/Button';
+import { FiCheck, FiInfo, FiAlertTriangle, FiTrash2, FiDownload, FiBell } from 'react-icons/fi';
+
+export const ToastExamples = () => {
+  const showStacked = () => {
+    toast({ title: 'Success!', description: 'The operation completed successfully.', type: 'success' });
+    setTimeout(() => toast({ title: 'New Update', description: 'V5.2.0 is now available.', type: 'info' }), 400);
+    setTimeout(() => toast({ title: 'Security Warning', description: 'Your password expires in 3 days.', type: 'warning' }), 800);
+  };
+
+  return (
+    <div className="flex flex-wrap gap-4 w-full">
+      <Button variant="filled" onClick={showStacked} leftIcon={<FiDownload />}>
+        Trigger Stacked Toasts
+      </Button>
+      <Button 
+        variant="outlined" 
+        onClick={() => toast({ title: 'Deleted', description: 'The project has been removed.', type: 'error' })}
+        className="text-red-600 border-red-100 hover:bg-neutral-50"
+      >
+        Trigger Error
+      </Button>
+      <Button 
+        variant="outlined" 
+        onClick={() => toast({ title: 'Manual Icon', description: 'Custom styled toast.', icon: <FiBell className="text-indigo-500" /> })}
+      >
+        Custom Icon
+      </Button>
+    </div>
+  );
+};
+
+export const PositionExamples = () => {
+  return (
+    <div className="flex flex-wrap gap-3 w-full">
+      <Button variant="outlined" onClick={() => toast({ title: 'Top Right', position: 'top-right', type: 'info' })}>
+        Top Right
+      </Button>
+      <Button variant="outlined" onClick={() => toast({ title: 'Top Center', position: 'top-center', type: 'info' })}>
+        Top Center
+      </Button>
+      <Button variant="outlined" onClick={() => toast({ title: 'Bottom Center', position: 'bottom-center', type: 'info' })}>
+        Bottom Center
+      </Button>
+    </div>
+  );
+};
+
 # Toast
 
 A succinct message that provides feedback about an operation in a small, non-intrusive card.
+
+## Installation
+
+Add the toast component to your project using the Dashkit CLI:
+
+```bash
+bunx carllosnc/dashkit add toast
+```
+
+## Setup
+
+Wrap your application (usually in `main.tsx` or `App.tsx`) with the `ToastProvider`.
+
+```tsx
+import { ToastProvider } from '@/components/Toast/Toast'
+
+function App() {
+  return (
+    <ToastProvider position="bottom-right">
+      <YourApp />
+    </ToastProvider>
+  )
+}
+```
 
 ## Import
 
@@ -8,63 +81,49 @@ A succinct message that provides feedback about an operation in a small, non-int
 import { toast, ToastProvider, useToast } from '@/components/Toast/Toast'
 ```
 
-## Setup
-
-Wrap your application (usually in `main.tsx` or `App.tsx`) with the `ToastProvider`. You can optionally specify the default position.
-
-```tsx
-import { ToastProvider } from '@/components/Toast/Toast'
-
-function App() {
-  return (
-    <ToastProvider position="top-right">
-      <YourApp />
-    </ToastProvider>
-  )
-}
-```
-
-## Installation
-
-```bash
-bunx carllosnc/dashkit add toast
-```
-
 ## Basic Usage
 
-You can trigger a toast from anywhere by importing the `toast` function directly, or using the `useToast` hook within a component.
+Trigger a toast from anywhere by calling the `toast` function. Toasts automatically stack as cards to save space.
 
 <Preview>
-  <ToastDemo />
+  <ToastExamples />
 </Preview>
 
 ```tsx
-import { toast } from '@/components/Toast/Toast'
+import { toast } from '@/components/dashkit'
 
-// Inside a component or function
-const trigger = () => {
+const notify = () => {
   toast({
     title: "Project Saved",
     description: "Your changes are now live.",
     type: "success",
-    position: "top-right" // Optional override
   })
 }
 ```
 
+## Positioning
+
+Supports multiple screen positions for different layout requirements.
+
+<Preview>
+  <PositionExamples />
+</Preview>
+
+```tsx
+toast({ title: "Alert", position: "top-center" })
+toast({ title: "Feedback", position: "top-right" })
+```
+
 ## Features
 
-- **Stacked Visualization**: Toasts automatically stack as cards when multiple are active, saving screen space while remaining readable.
-- **Positioning**: Supports multiple screen positions: `top-left`, `top-right`, `top-center`, `bottom-left`, `bottom-right`, `bottom-center`.
-- **Icon Support**: Easily add custom icons or use preset types (`success`, `info`, `warning`, `error`).
-- **Global State**: Trigger toasts from non-component files using a global singleton.
+- **Stacked Visualization**: Toasts stack vertically, revealing themselves as the top ones are dismissed.
+- **Portalled Layout**: Renders at the document root to avoid z-index layering issues.
 - **Framer Motion**: Smooth, spring-based entry/exit and layout animations.
 - **Auto-dismiss**: Configurable duration with a default of 5 seconds.
 
-## API
+## API Reference
 
 ### ToastProvider
-
 
 <PropertyDoc
   properties={[
@@ -77,17 +136,15 @@ const trigger = () => {
 ]}
 />
 
-
 ### toast(options)
 
 <PropertyDoc
   properties={[
     { "prop": "title", "type": "string", "defaultValue": "—", "description": "Bold heading for the toast." },
     { "prop": "description", "type": "string", "defaultValue": "—", "description": "Body text for the message." },
-    { "prop": "type", "type": "'default' | 'success' | 'info' | 'warning' | 'error'", "defaultValue": "'default'", "description": "Semantic coloring for the default icon." },
+    { "prop": "type", "type": "'default' | 'success' | 'info' | 'warning' | 'error'", "defaultValue": "'default'", "description": "Semantic style preset." },
     { "prop": "icon", "type": "ReactNode", "defaultValue": "—", "description": "Explicit icon override." },
     { "prop": "duration", "type": "number", "defaultValue": "5000", "description": "MS before hiding (0 for persistent)." },
-    { "prop": "position", "type": "ToastPosition", "defaultValue": "provider default", "description": "Override position for this specific toast." },
-    { "prop": "id", "type": "string", "defaultValue": "auto", "description": "Unique ID (use to prevent duplicate toasts)." }
+    { "prop": "position", "type": "ToastPosition", "defaultValue": "provider default", "description": "Specific override for this toast." }
   ]}
 />

@@ -132,4 +132,3 @@ Dashkit is released under the [MIT License](LICENSE).
 ---
 
 Dashkit is created and maintained by [CarllosNC](https://github.com/carllosnc).
-

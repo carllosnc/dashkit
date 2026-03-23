@@ -11,19 +11,13 @@ import {
 import { Button } from '../components/Button/Button';
 import { ButtonGroup } from '../components/ButtonGroup/ButtonGroup';
 import { Checkbox } from '../components/Checkbox/Checkbox';
-import { CheckboxDemo } from '../components/Checkbox/CheckboxDemo';
 import { Input } from '../components/Input/Input';
-import { InputDemo } from '../components/Input/InputDemo';
 import { Chip } from '../components/Chip/Chip';
-import { ChipDemo } from '../components/Chip/ChipDemo';
 import { Combobox } from '../components/Combobox/Combobox';
-import { ComboboxDemo } from '../components/Combobox/ComboboxDemo';
 import { Divider } from '../components/Divider/Divider';
-import { DividerDemo } from '../components/Divider/DividerDemo';
 import { Drawer } from '../components/Drawer/Drawer';
 import { DrawerDemo } from '../components/Drawer/DrawerDemo';
 import { Modal } from '../components/Modal/Modal';
-import { ModalDemo } from '../components/Modal/ModalDemo';
 import { Radio } from '../components/Radio/Radio';
 import { RadioDemo } from '../components/Radio/RadioDemo';
 import { Select } from '../components/Select/Select';
@@ -35,33 +29,26 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/Tabs/Tab
 import { OtpInput } from '../components/OtpInput/OtpInput';
 import { OtpInputDemo } from '../components/OtpInput/OtpInputDemo';
 import { Sidebar, SidebarHeader, SidebarFooter, SidebarSection, SidebarSectionItem } from '../components/Sidebar/Sidebar';
-import { SidebarDemo } from '../components/Sidebar/SidebarDemo';
 import { ImageExpander } from '../components/ImageExpander/ImageExpander';
 import { ImageExpanderDemo } from '../components/ImageExpander/ImageExpanderDemo';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../components/Accordion/Accordion';
-import { ToastDemo } from '../components/Toast/ToastDemo';
 import { DropdownDemo, BasicMenuDemo, SelectableMenuDemo, CustomTriggerDemo } from '../components/Dropdown/DropdownDemo';
 import { Badge, FloatBadge } from '../components/Badge/Badge';
 import { Skeleton } from '../components/Skeleton/Skeleton';
 import { SkeletonDemo } from '../components/Skeleton/SkeletonDemo';
 import { Spinner } from '../components/Spinner/Spinner';
-import { SpinnerDemo } from '../components/Spinner/SpinnerDemo';
 import { Navbar } from '../components/Navbar/Navbar';
-import { NavbarDemo } from '../components/Navbar/NavbarDemo';
 import { IconButton } from '../components/IconButton/IconButton';
-import { IconButtonDemo } from '../components/IconButton/IconButtonDemo';
 import { Breadcrumb } from '../components/Breadcrumb/Breadcrumb';
-import { BreadcrumbDemo } from '../components/Breadcrumb/BreadcrumbDemo';
 import {
   Card,
-  CardDemo,
   CardHeader,
   CardTitle,
   CardDescription,
   CardContent,
   CardFooter
-} from '../components/Card';
-import { FiDownload, FiArrowRight, FiCopy, FiCheck, FiSearch, FiLock, FiUser, FiSettings, FiActivity, FiCheckCircle, FiClock, FiMail, FiShield, FiZap, FiBell, FiMessageSquare, FiShoppingCart } from 'react-icons/fi';
+} from '../components/Card/Card';
+import { FiDownload, FiArrowRight, FiCopy, FiCheck, FiSearch, FiLock, FiUser, FiSettings, FiActivity, FiCheckCircle, FiClock, FiMail, FiShield, FiZap, FiBell, FiMessageSquare, FiShoppingCart, FiHome } from 'react-icons/fi';
 import { PropertyDoc } from '../partials/PropertyDoc';
 
 
@@ -124,28 +111,21 @@ const components: Record<string, ElementType> = {
   Button,
   ButtonGroup,
   Input,
-  InputDemo,
   Chip,
-  ChipDemo,
   Combobox,
-  ComboboxDemo,
   Drawer,
   DrawerDemo,
   Modal,
-  ModalDemo,
   Accordion,
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
-  ToastDemo,
   Checkbox,
-  CheckboxDemo,
   Radio,
   RadioDemo,
   Select,
   SelectDemo,
   Divider,
-  DividerDemo,
   Switch,
   SwitchDemo,
   Textarea,
@@ -160,7 +140,6 @@ const components: Record<string, ElementType> = {
   SidebarFooter,
   SidebarSection,
   SidebarSectionItem,
-  SidebarDemo,
   ImageExpander,
   ImageExpanderDemo,
   Badge,
@@ -176,7 +155,6 @@ const components: Record<string, ElementType> = {
   SelectableMenuDemo,
   CustomTriggerDemo,
   Card,
-  CardDemo,
   CardHeader,
   CardTitle,
   CardDescription,
@@ -197,16 +175,13 @@ const components: Record<string, ElementType> = {
   FiBell,
   FiMessageSquare,
   FiShoppingCart,
+  FiHome,
   Skeleton,
   SkeletonDemo,
   Spinner,
-  SpinnerDemo,
   Navbar,
-  NavbarDemo,
   IconButton,
-  IconButtonDemo,
   Breadcrumb,
-  BreadcrumbDemo,
   PropertyDoc,
   Preview: ({ children }: { children: ReactNode }) => (
     <div className="not-prose border bg-card border-neutral-200 dark:border-neutral-800 rounded-lg flex flex-col gap-8 py-4 px-4 first:pt-0 items-start">

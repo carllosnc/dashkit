@@ -16,15 +16,19 @@ Add the breadcrumb to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add breadcrumb
 ```
 
-## Demo
-
-<Preview>
-  <BreadcrumbDemo />
-</Preview>
-
 ## Basic Usage
 
 Pass an array of `items` to the component. The last item is automatically styled as the active location.
+
+<Preview>
+  <Breadcrumb
+    items={[
+      { label: 'Home', href: '/' },
+      { label: 'Components', href: '/' },
+      { label: 'Breadcrumb' },
+    ]}
+  />
+</Preview>
 
 ```tsx
 <Breadcrumb
@@ -38,15 +42,26 @@ Pass an array of `items` to the component. The last item is automatically styled
 
 ## With Icons
 
-You can add icons to each item for better visual guidance.
+You can add icons to each item for better visual guidance. In this example we use `react-icons/fi`.
+
+<Preview>
+  <Breadcrumb
+    items={[
+      { label: 'Home', href: '/', icon: <FiHome size={14} /> },
+      { label: 'Settings', href: '/', icon: <FiSettings size={14} /> },
+      { label: 'Profile', icon: <FiUser size={14} /> },
+    ]}
+  />
+</Preview>
 
 ```tsx
-import { Home, User } from 'lucide-react';
+import { FiHome, FiSettings, FiUser } from 'react-icons/fi';
 
 <Breadcrumb
   items={[
-    { label: 'Home', href: '/', icon: <Home size={14} /> },
-    { label: 'Profile', icon: <User size={14} /> },
+    { label: 'Home', href: '/', icon: <FiHome size={14} /> },
+    { label: 'Settings', href: '/', icon: <FiSettings size={14} /> },
+    { label: 'Profile', icon: <FiUser size={14} /> },
   ]}
 />
 ```
@@ -55,12 +70,24 @@ import { Home, User } from 'lucide-react';
 
 Override the default chevron separator with any React node.
 
+<Preview>
+  <Breadcrumb
+    separator={<span className="text-neutral-300 dark:text-neutral-700 mx-1">/</span>}
+    items={[
+      { label: 'Projects', href: '#' },
+      { label: 'Dashkit', href: '#' },
+      { label: 'Releases' },
+    ]}
+  />
+</Preview>
+
 ```tsx
 <Breadcrumb
-  separator={<span className="text-neutral-300 mx-1">/</span>}
+  separator={<span className="text-neutral-300 dark:text-neutral-700 mx-1">/</span>}
   items={[
     { label: 'Projects', href: '#' },
-    { label: 'Dashkit' },
+    { label: 'Dashkit', href: '#' },
+    { label: 'Releases' },
   ]}
 />
 ```
@@ -125,6 +152,3 @@ Override the default chevron separator with any React node.
   }
 ]}
 />
-
-
-

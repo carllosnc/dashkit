@@ -1,3 +1,50 @@
+import { useState } from 'react';
+import { Combobox } from '../components/Combobox/Combobox';
+
+export const frameworks = [
+  { value: 'nextjs', label: 'Next.js' },
+  { value: 'sveltekit', label: 'SvelteKit' },
+  { value: 'nuxt', label: 'Nuxt.js' },
+  { value: 'remix', label: 'Remix' },
+  { value: 'astro', label: 'Astro' },
+  { value: 'gatsby', label: 'Gatsby' },
+  { value: 'vite', label: 'Vite' },
+  { value: 'webpack', label: 'Webpack' },
+  { value: 'parcel', label: 'Parcel' },
+  { value: 'rollup', label: 'Rollup' },
+];
+
+export const BasicExample = () => {
+  const [value, setValue] = useState('nextjs');
+  return (
+    <div className="w-full max-w-md">
+      <Combobox
+        label="Frontend Framework"
+        placeholder="Search for a framework..."
+        options={frameworks}
+        value={value}
+        onChange={setValue}
+      />
+    </div>
+  );
+};
+
+export const MultiSelectExample = () => {
+  const [multiValue, setMultiValue] = useState(['nextjs', 'vite']);
+  return (
+    <div className="w-full max-w-md">
+      <Combobox
+        label="Platform Tools"
+        multiple
+        placeholder="Select multiple tools..."
+        options={frameworks}
+        value={multiValue}
+        onChange={setMultiValue}
+      />
+    </div>
+  );
+};
+
 # Combobox
 
 A combobox is a flexible select component that allows users to filter a large list of options via a search input.
@@ -16,44 +63,57 @@ Add the combobox component to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add combobox
 ```
 
-## Interactive Guide
+## Basic Search
 
-The combobox provides a powerful way to handle long lists of data. It filters the items as you type, and maintains accessibility by using the appropriate `listbox` and `input` roles.
-
-<Preview>
-  <ComboboxDemo />
-</Preview>
-
-## Basic Usage
-
-The component behaves like a standard select, but with a search input.
+The component behaves like a standard select, but with a built-in search input to handle long lists of data.
 
 <Preview>
-  <div className="max-w-md w-full">
-    <Combobox 
-      label="Country Selection"
-      placeholder="Select your country..."
-      options={[
-        { value: 'us', label: 'United States' },
-        { value: 'ca', label: 'Canada' },
-        { value: 'gb', label: 'United Kingdom' },
-        { value: 'de', label: 'Germany' },
-        { value: 'fr', label: 'France' },
-      ]}
-    />
-  </div>
+  <BasicExample />
 </Preview>
 
 ```tsx
-<Combobox 
-  label="Country Selection"
-  placeholder="Select your country..."
-  options={[
-    { value: 'us', label: 'United States' },
-    { value: 'ca', label: 'Canada' },
-    { value: 'gb', label: 'United Kingdom' },
-  ]}
-/>
+import { useState } from 'react';
+
+const frameworks = [
+  { value: 'nextjs', label: 'Next.js' },
+  { value: 'vite', label: 'Vite' },
+  { value: 'astro', label: 'Astro' },
+];
+
+export const BasicExample = () => {
+  const [value, setValue] = useState('nextjs');
+  return (
+    <Combobox
+      label="Frontend Framework"
+      options={frameworks}
+      value={value}
+      onChange={setValue}
+    />
+  );
+};
+```
+
+## Multi-Selection
+
+Use the `multiple` prop to allow users to select more than one option. Selected items are displayed as removable chips.
+
+<Preview>
+  <MultiSelectExample />
+</Preview>
+
+```tsx
+export const MultiSelectExample = () => {
+  const [values, setValues] = useState(['nextjs', 'vite']);
+  return (
+    <Combobox
+      label="Platform Tools"
+      multiple
+      options={frameworks}
+      value={values}
+      onChange={setValues}
+    />
+  );
+};
 ```
 
 ## Description & Feedback
@@ -63,14 +123,14 @@ You can add a `description` below the input to provide context or instructions.
 <Preview>
   <div className="max-w-md w-full">
     <Combobox 
-      label="Project Tag"
-      description="Choose the tag that best describes this task."
-      placeholder="Search for a tag..."
+      label="Deployment Target"
+      description="Choose the region where your application will be deployed."
+      placeholder="Search for a region..."
       options={[
-        { value: 'bug', label: 'Bug Fix' },
-        { value: 'feature', label: 'New Feature' },
-        { value: 'docs', label: 'Documentation' },
-        { value: 'style', label: 'Styling' },
+        { value: 'us-east', label: 'US East (N. Virginia)' },
+        { value: 'us-west', label: 'US West (Oregon)' },
+        { value: 'eu-central', label: 'EU (Frankfurt)' },
+        { value: 'ap-south', label: 'Asia Pacific (Mumbai)' },
       ]}
     />
   </div>
@@ -78,34 +138,38 @@ You can add a `description` below the input to provide context or instructions.
 
 ```tsx
 <Combobox 
-  label="Project Tag"
-  description="Choose the tag that best describes this task."
-  options={tags}
+  label="Deployment Target"
+  description="Choose the region where your application will be deployed."
+  options={regions}
 />
 ```
 
-## Disabled State
+## States
 
-The combobox can be disabled to prevent user search and selection.
+The combobox supports different visual states like `disabled` or pre-filled values.
 
 <Preview>
-  <div className="max-w-md w-full">
+  <div className="flex flex-col gap-12 max-w-md w-full">
     <Combobox 
-      label="Disabled Search"
+      label="Disabled State"
       disabled
+      options={frameworks}
+      value="nextjs"
+    />
+    <Combobox 
+      label="Empty Search"
+      placeholder="No options available..."
       options={[]}
     />
   </div>
 </Preview>
 
 ```tsx
-<Combobox label="Disabled" disabled options={[]} />
+<Combobox label="Disabled" disabled value="nextjs" options={frameworks} />
+<Combobox label="Empty" options={[]} />
 ```
 
-## Props
-
-The combobox supports the following props:
-
+## Props (API)
 
 <PropertyDoc
   properties={[
@@ -152,26 +216,22 @@ The combobox supports the following props:
     "description": "Whether the combobox is interactive."
   },
   {
-    "prop": "className",
-    "type": "string",
-    "defaultValue": "—",
-    "description": "Additional CSS classes for the container."
-  },
-  {
     "prop": "multiple",
     "type": "boolean",
     "defaultValue": "false",
-    "description": "If true, allows selecting multiple options using Chips."
+    "description": "Allows selecting multiple options using Chips."
   },
   {
     "prop": "clearSearchOnSelect",
     "type": "boolean",
     "defaultValue": "false",
     "description": "If true, the search query will be cleared when an item is selected."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Additional CSS classes for the container."
   }
 ]}
 />
-
-
-
-

@@ -152,8 +152,12 @@ export function DashboardExample() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2 flex flex-col gap-6">
               <Card className="h-full" shadowed>
-                <CardHeader 
-                  extra={
+                <CardHeader>
+                  <div className="flex items-start justify-between w-full">
+                    <div className="flex flex-col gap-1">
+                      <CardTitle>Performance Metrics</CardTitle>
+                      <CardDescription>Visualizing project growth and device distribution.</CardDescription>
+                    </div>
                     <Dropdown>
                       <DropdownTrigger asChild>
                         <IconButton icon={<FiMoreVertical />} />
@@ -163,10 +167,7 @@ export function DashboardExample() {
                         <DropdownItem leftIcon={<FiTrendingUp />} onClick={() => {}}>Export to CSV</DropdownItem>
                       </DropdownContent>
                     </Dropdown>
-                  }
-                >
-                  <CardTitle>Performance Metrics</CardTitle>
-                  <CardDescription>Visualizing project growth and device distribution.</CardDescription>
+                  </div>
                 </CardHeader>
                 <CardContent className="flex flex-col gap-6 flex-1 min-h-[320px]">
                   <AreaChart 

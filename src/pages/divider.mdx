@@ -1,49 +1,99 @@
+import { Divider } from '../components/Divider/Divider';
+
 # Divider
 
-A versatile component to visually separate sections of content with horizontal or vertical lines.
+A versatile component used to separate sections of content with horizontal or vertical lines.
 
 ## Import
 
 ```tsx
-import { Divider } from '@/components/Divider/Divider';
+import { Divider } from '@/components/Divider/Divider'
 ```
 
 ## Installation
+
+Add the divider component to your project using the Dashkit CLI:
 
 ```bash
 bunx carllosnc/dashkit add divider
 ```
 
-## Usage
+## Basic Usage
 
-```tsx
-import { Divider } from '@/components/Divider/Divider';
-
-export default function App() {
-  return (
-    <div className="flex flex-col gap-6 w-full">
-      <Divider />
-      <Divider>OR</Divider>
-      <div className="flex items-center h-10 gap-4">
-        <span>Option A</span>
-        <Divider orientation="vertical" />
-        <span>Option B</span>
-      </div>
-    </div>
-  );
-}
-```
-
-## Overview
-
-Dividers help create visual hierarchy by grouping related content or providing clear breaks between different sections.
+The basic horizontal divider represents a solid line.
 
 <Preview>
-  <DividerDemo />
+  <div className="flex flex-col gap-4 w-full">
+    <p className="text-sm">Section Above</p>
+    <Divider />
+    <p className="text-sm">Section Below</p>
+  </div>
 </Preview>
 
-## Props
+```tsx
+<Divider />
+```
 
+## Orientation
+
+Dividers can be horizontal (default) or vertical. For vertical dividers, ensure the parent container has a defined height.
+
+<Preview>
+  <div className="flex items-center h-10 gap-6">
+    <span className="text-sm font-medium">Dashboard</span>
+    <Divider orientation="vertical" />
+    <span className="text-sm font-medium">Settings</span>
+    <Divider orientation="vertical" />
+    <span className="text-sm font-medium">Profile</span>
+  </div>
+</Preview>
+
+```tsx
+<div className="flex items-center h-10 gap-6">
+  <span className="text-sm font-medium">Dashboard</span>
+  <Divider orientation="vertical" />
+  <span className="text-sm font-medium">Settings</span>
+</div>
+```
+
+## Variants
+
+You can change the visual style of the line using the `variant` prop.
+
+<Preview>
+  <div className="flex flex-col gap-6 w-full">
+    <Divider />
+    <Divider variant="dashed" />
+    <Divider variant="dotted" />
+  </div>
+</Preview>
+
+```tsx
+<Divider variant="solid" />   {/* Default */}
+<Divider variant="dashed" />
+<Divider variant="dotted" />
+```
+
+## Labels & Content
+
+Horizontal dividers can contain text or other components, positioned along the line.
+
+<Preview>
+  <div className="flex flex-col gap-8 w-full">
+    <Divider>Today</Divider>
+    <Divider contentPosition="left">Left Aligned</Divider>
+    <Divider contentPosition="right">Right Aligned</Divider>
+    <Divider variant="dashed">Dashed with Content</Divider>
+  </div>
+</Preview>
+
+```tsx
+<Divider>Center Label</Divider>
+<Divider contentPosition="left">Left Label</Divider>
+<Divider contentPosition="right">Right Label</Divider>
+```
+
+## Props (API)
 
 <PropertyDoc
   properties={[
@@ -62,7 +112,7 @@ Dividers help create visual hierarchy by grouping related content or providing c
   {
     "prop": "children",
     "type": "ReactNode",
-    "defaultValue": "-",
+    "defaultValue": "—",
     "description": "Optional content to display in the middle (horizontal only)."
   },
   {
@@ -70,9 +120,12 @@ Dividers help create visual hierarchy by grouping related content or providing c
     "type": "'left' | 'center' | 'right'",
     "defaultValue": "'center'",
     "description": "Position of the content relative to the line."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Additional CSS classes for the container."
   }
 ]}
 />
-
-
-

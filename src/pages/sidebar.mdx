@@ -1,12 +1,75 @@
+import { useState } from 'react';
+import { 
+  Sidebar, 
+  SidebarHeader, 
+  SidebarFooter, 
+  SidebarSection, 
+  SidebarSectionItem 
+} from '../components/Sidebar/Sidebar';
+import { 
+  FiLayout, 
+  FiUsers, 
+  FiSettings, 
+  FiActivity, 
+  FiPieChart, 
+  FiShield, 
+  FiLifeBuoy,
+  FiUser
+} from 'react-icons/fi';
+
+export const InteractiveSidebar = () => {
+  const [activeTab, setActiveTab] = useState('dashboard');
+  return (
+    <div className="flex h-[500px] w-full border border-neutral-200 dark:border-neutral-800 rounded-2xl overflow-hidden bg-white dark:bg-neutral-950 shadow-sm">
+      <Sidebar className="w-64 border-r border-neutral-100 dark:border-neutral-900 shrink-0">
+        <SidebarHeader className="h-16 flex items-center gap-3 px-6">
+          <div className="size-8 rounded-lg bg-indigo-500/10 flex items-center justify-center">
+            <div className="size-4 rounded-full bg-indigo-500" />
+          </div>
+          <span className="font-bold text-lg tracking-tight">Dashkit</span>
+        </SidebarHeader>
+
+        <div className="flex-1 overflow-y-auto pt-4">
+          <SidebarSection title="General">
+            <SidebarSectionItem icon={<FiLayout />} active={activeTab === 'dashboard'} onClick={() => setActiveTab('dashboard')}>
+              Overview
+            </SidebarSectionItem>
+            <SidebarSectionItem icon={<FiActivity />} active={activeTab === 'analytics'} onClick={() => setActiveTab('analytics')}>
+              Analytics
+            </SidebarSectionItem>
+          </SidebarSection>
+          <SidebarSection title="Management">
+            <SidebarSectionItem icon={<FiUsers />} active={activeTab === 'team'} onClick={() => setActiveTab('team')}>
+              Team
+            </SidebarSectionItem>
+            <SidebarSectionItem icon={<FiSettings />} active={activeTab === 'settings'} onClick={() => setActiveTab('settings')}>
+              Settings
+            </SidebarSectionItem>
+          </SidebarSection>
+        </div>
+
+        <SidebarFooter className="p-4 border-t border-neutral-100 dark:border-neutral-900">
+          <div className="flex items-center gap-3 px-2 py-2 rounded-xl bg-neutral-50 dark:bg-white/5 border border-neutral-100 dark:border-white/5">
+            <div className="size-8 rounded-full bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center overflow-hidden">
+              <FiUser size={18} />
+            </div>
+            <div className="flex-1 overflow-hidden">
+              <p className="text-xs font-bold truncate">Alex Rivera</p>
+              <p className="text-[10px] text-neutral-500 truncate">Free Tier</p>
+            </div>
+          </div>
+        </SidebarFooter>
+      </Sidebar>
+      <div className="flex-1 bg-neutral-50/50 dark:bg-neutral-900/20 p-8 flex items-center justify-center">
+        <p className="text-neutral-400 text-sm font-medium italic">Active: {activeTab}</p>
+      </div>
+    </div>
+  );
+};
+
 # Sidebar
 
 A versatile and premium navigation sidebar component that supports complex layouts, branding, and status indicators using a flexible composition pattern.
-
-## Overview
-
-The `Sidebar` component provides the core scaffolding for a dashboard navigation system. By using specialized sub-components, you can easily build highly structured and interactive menus with minimal code.
-
-<SidebarDemo />
 
 ## Import
 
@@ -28,9 +91,43 @@ Add the sidebar into your project using the Dashkit CLI:
 bunx carllosnc/dashkit add sidebar
 ```
 
-## Elements
+## Basic Usage
 
-The Sidebar library is composed of several specialized layers:
+The `Sidebar` uses a semantic composition of headers, sections, and footers to create a cohesive navigation experience.
+
+<InteractiveSidebar />
+
+```tsx
+import { Sidebar, SidebarHeader, SidebarSection, SidebarSectionItem } from '@/components/dashkit';
+import { FiLayout, FiActivity, FiSettings } from 'react-icons/fi';
+
+export default function App() {
+  const [activeTab, setActiveTab] = useState('dashboard');
+
+  return (
+    <Sidebar className="w-64 border-r">
+      <SidebarHeader>
+        <Logo />
+        <span>Dashkit</span>
+      </SidebarHeader>
+
+      <SidebarSection title="General">
+        <SidebarSectionItem 
+          icon={<FiLayout />} 
+          active={activeTab === 'dashboard'}
+          onClick={() => setActiveTab('dashboard')}
+        >
+          Overview
+        </SidebarSectionItem>
+      </SidebarSection>
+    </Sidebar>
+  );
+}
+```
+
+## Components Breakdown
+
+The Sidebar library is composed of several specialized layers designed for specific layout roles:
 
 <PropertyDoc
   properties={[
@@ -45,7 +142,6 @@ The Sidebar library is composed of several specialized layers:
 ## API Reference
 
 ### Sidebar
-The root provider and layout container.
 
 <PropertyDoc
   properties={[
@@ -55,7 +151,6 @@ The root provider and layout container.
 />
 
 ### SidebarSection
-A logical grouping of navigation items.
 
 <PropertyDoc
   properties={[
@@ -65,11 +160,10 @@ A logical grouping of navigation items.
 />
 
 ### SidebarSectionItem
-The primary interactive navigation element.
 
 <PropertyDoc
   properties={[
-    { "prop": "active", "type": "boolean", "defaultValue": "false", "description": "Applies primary styling and the sidebar indicator." },
+    { "prop": "active", "type": "boolean", "defaultValue": "false", "description": "Applies active highlight styling." },
     { "prop": "icon", "type": "ReactNode", "defaultValue": "—", "description": "Icon to be displayed beside the text." },
     { "prop": "children", "type": "ReactNode", "defaultValue": "—", "description": "Descriptive text for the nav link." },
     { "prop": "onClick", "type": "() => void", "defaultValue": "—", "description": "Standard click event handler." }
