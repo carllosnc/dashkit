@@ -25,18 +25,88 @@ bunx carllosnc/dashkit add accordion
 
 The accordion supports `single` (default) or `multiple` expansion modes via the `type` prop.
 
-<Preview>
-  <AccordionDemo />
-</Preview>
+<div className="not-prose mb-8">
+  <Accordion shadowed type="single" defaultValue="item-1">
+    <AccordionItem value="item-1">
+      <AccordionTrigger>Minimalist Performance</AccordionTrigger>
+      <AccordionContent>
+        No boxes, no shadows. Just clean spacers and thin lines for a modern, high-density dashboard look. We've removed the container styling to let your content breathe.
+      </AccordionContent>
+    </AccordionItem>
+
+    <AccordionItem value="item-2">
+      <AccordionTrigger>Seamless Integration</AccordionTrigger>
+      <AccordionContent>
+        Designed to fit anywhere—sidebars, settings pages, or complex forms without added visual noise. The spring animations provide a premium feel without being distracting.
+      </AccordionContent>
+    </AccordionItem>
+
+    <AccordionItem value="item-3">
+      <AccordionTrigger>Accessibility First</AccordionTrigger>
+      <AccordionContent>
+        Fully accessible via keyboard navigation. Users can toggle items using the Enter or Space key, following the standard WAI-ARIA design pattern for accordions.
+      </AccordionContent>
+    </AccordionItem>
+  </Accordion>
+</div>
 
 ```tsx
 <Accordion type="single" defaultValue="item-1">
   <AccordionItem value="item-1">
-    <AccordionTrigger>Is it accessible?</AccordionTrigger>
+    <AccordionTrigger>Minimalist Performance</AccordionTrigger>
     <AccordionContent>
-      Yes. It follows the WAI-ARIA design pattern.
+      No boxes, no shadows. Just clean spacers and thin lines for a modern, high-density dashboard look.
     </AccordionContent>
   </AccordionItem>
+  {/* ... other items */}
+</Accordion>
+```
+
+## Multiple
+
+Use the `type="multiple"` prop to allow more than one item to be expanded at the same time.
+
+<div className="not-prose mb-8">
+  <Accordion shadowed type="multiple">
+    <AccordionItem value="m-1">
+      <AccordionTrigger>
+        <div className="flex items-center gap-2 text-sm font-medium">
+          <FiZap className="text-amber-500" size={14} />
+          <span>Real-time Updates</span>
+        </div>
+      </AccordionTrigger>
+      <AccordionContent>
+        Synchronize state across multiple browser tabs with zero latency using our optimized WebSocket provider.
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="m-2">
+      <AccordionTrigger>
+        <div className="flex items-center gap-2 text-sm font-medium">
+          <FiShield className="text-blue-500" size={14} />
+          <span>Audit Logs Tracking</span>
+        </div>
+      </AccordionTrigger>
+      <AccordionContent>
+        Every action is recorded and verifiable. Export logs to CSV or JSON for compliance reporting.
+      </AccordionContent>
+    </AccordionItem>
+  </Accordion>
+</div>
+
+```tsx
+<Accordion type="multiple">
+  <AccordionItem value="m-1">
+    <AccordionTrigger>
+      <div className="flex items-center gap-2">
+        <FiZap size={14} />
+        <span>Real-time Updates</span>
+      </div>
+    </AccordionTrigger>
+    <AccordionContent>
+      Synchronize state across multiple browser tabs with zero latency using our optimized WebSocket provider.
+    </AccordionContent>
+  </AccordionItem>
+  {/* ... other items */}
 </Accordion>
 ```
 

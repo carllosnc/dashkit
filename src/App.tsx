@@ -66,12 +66,12 @@ function App() {
 
         {/* CLI Reference */}
         <div className="mb-16 flex flex-col items-center animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300 fill-mode-both">
-          <code className="text-[18px] font-mono text-neutral-600 dark:text-neutral-300 flex items-center gap-3">
+          <code className="text-[14px] md:text-[18px] font-mono text-neutral-600 dark:text-neutral-300 flex items-center gap-2 md:gap-3">
             <span className="text-neutral-400 select-none">$</span>
             <span>bunx carllosnc/dashkit add</span>
             <TypingEffect
               words={AVAILABLE_COMPONENTS}
-              className="text-blue-600 min-w-[100px]"
+              className="text-blue-600 min-w-[80px] md:min-w-[100px]"
               cursorClassName="bg-primary"
             />
           </code>

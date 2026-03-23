@@ -23,10 +23,10 @@ const pulseStyles: Record<BadgeColor, string> = {
 };
 
 const positionClasses: Record<BadgePosition, string> = {
-  'top-right': 'top-0 right-0 -translate-y-[45%] translate-x-[45%]',
-  'top-left': 'top-0 left-0 -translate-y-[45%] -translate-x-[45%]',
-  'bottom-right': 'bottom-0 right-0 translate-y-[45%] translate-x-[45%]',
-  'bottom-left': 'bottom-0 left-0 translate-y-[45%] -translate-x-[45%]'
+  'top-right': 'top-0 right-0 -translate-y-1/2 translate-x-1/2',
+  'top-left': 'top-0 left-0 -translate-y-1/2 -translate-x-1/2',
+  'bottom-right': 'bottom-0 right-0 translate-y-1/2 translate-x-1/2',
+  'bottom-left': 'bottom-0 left-0 translate-y-1/2 -translate-x-1/2'
 };
 
 export interface BadgeProps {
@@ -124,8 +124,18 @@ export const FloatBadge = ({
   return (
     <div className="relative inline-flex align-middle shrink-0">
       {children}
-      <div 
-        className={cn("absolute z-10", positionClasses[position], className)}
+      <div
+        className={cn(
+          "absolute z-10",
+          positionClasses[position],
+          props.dot && (
+            position === 'top-right' ? "-translate-y-[50%] translate-x-[20%]" :
+            position === 'top-left' ? "-translate-y-[50%] -translate-x-[20%]" :
+            position === 'bottom-right' ? "translate-y-[10%] translate-x-[10%]" :
+            "translate-y-[10%] -translate-x-[10%]"
+          ),
+          className
+        )}
         style={{
           marginTop: offset ? offset[1] : undefined,
           marginRight: offset && (position === 'top-right' || position === 'bottom-right') ? -offset[0] : undefined,

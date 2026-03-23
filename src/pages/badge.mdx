@@ -16,18 +16,19 @@ Add the badge to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add badge
 ```
 
-<Preview>
-  <BadgeDemo />
-</Preview>
-
-## Components
-
-- **`Badge`**: A standalone indicator. Use this for status labels or tags in lists.
-- **`FloatBadge`**: A wrapper that places a badge over another element (e.g., notification counts on icons).
-
 ## Standalone Badge
 
-Use the `Badge` component for simple labels or indicators that don't need to be attached to another element.
+Use the `Badge` component for simple labels or indicators.
+
+<Preview>
+  <div className="not-prose flex flex-wrap gap-4 items-center">
+    <Badge content="Live" color="success" pulse />
+    <Badge content="Pending" color="warning" />
+    <Badge content="Critical" color="error" />
+    <Badge content="Experimental" color="info" />
+    <Badge dot pulse color="success" />
+  </div>
+</Preview>
 
 ```tsx
 import { Badge } from 'dashkit-ui';
@@ -36,7 +37,8 @@ export default () => (
   <div className="flex gap-4">
     <Badge content="Live" color="success" pulse />
     <Badge content="Experimental" color="info" />
-    <Badge content="Critical" variant="outline" color="error" />
+    <Badge content="Critical" color="error" />
+    <Badge dot pulse color="success" />
   </div>
 );
 ```
@@ -44,6 +46,31 @@ export default () => (
 ## Floating Badge 
 
 Use the `FloatBadge` component to wrap an element and position a badge relative to its corners.
+
+<Preview>
+  <div className="flex gap-8 items-center">
+    <FloatBadge content={5} color="error">
+      <Button variant="outlined" leftIcon={<FiMail size={18} />}>
+        Messages
+      </Button>
+    </FloatBadge>
+    <FloatBadge content={12} color="success">
+      <div className="p-3 bg-neutral-100 dark:bg-white/5 border border-neutral-200 dark:border-white/5 rounded-xl text-neutral-600 dark:text-neutral-400">
+        <FiBell size={24} />
+      </div>
+    </FloatBadge>
+    <FloatBadge dot pulse color="success" position="bottom-right">
+      <div className="w-12 h-12 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-full flex items-center justify-center overflow-hidden">
+        <FiUser size={24} className="text-neutral-400" />
+      </div>
+    </FloatBadge>
+    <FloatBadge content={120} max={99} color="error" position="top-right">
+      <div className="p-3 bg-neutral-100 dark:bg-white/5 border border-neutral-200 dark:border-white/5 rounded-xl text-neutral-600 dark:text-neutral-400">
+        <FiMessageSquare size={24} />
+      </div>
+    </FloatBadge>
+  </div>
+</Preview>
 
 ```tsx
 import { FloatBadge, Button } from 'dashkit-ui';
@@ -56,6 +83,81 @@ export default () => (
     </Button>
   </FloatBadge>
 );
+```
+
+## Badge Positions
+
+Dot badges can be positioned at any corner of the element.
+
+<Preview>
+  <div className="flex flex-wrap gap-12 items-center">
+    <div className="flex flex-col items-center gap-2">
+      <FloatBadge dot color="success" position="top-right">
+        <div className="size-10 bg-neutral-100 dark:bg-neutral-800 rounded-lg" />
+      </FloatBadge>
+      <span className="text-[10px] text-muted-foreground uppercase font-bold">Top-Right</span>
+    </div>
+    
+    <div className="flex flex-col items-center gap-2">
+      <FloatBadge dot color="success" position="top-left">
+        <div className="size-10 bg-neutral-100 dark:bg-neutral-800 rounded-lg" />
+      </FloatBadge>
+      <span className="text-[10px] text-muted-foreground uppercase font-bold">Top-Left</span>
+    </div>
+
+    <div className="flex flex-col items-center gap-2">
+      <FloatBadge dot color="success" position="bottom-right">
+        <div className="size-10 bg-neutral-100 dark:bg-neutral-800 rounded-lg" />
+      </FloatBadge>
+      <span className="text-[10px] text-muted-foreground uppercase font-bold">Bottom-Right</span>
+    </div>
+
+    <div className="flex flex-col items-center gap-2">
+      <FloatBadge dot color="success" position="bottom-left">
+        <div className="size-10 bg-neutral-100 dark:bg-neutral-800 rounded-lg" />
+      </FloatBadge>
+      <span className="text-[10px] text-muted-foreground uppercase font-bold">Bottom-Left</span>
+    </div>
+  </div>
+</Preview>
+
+```tsx
+<FloatBadge dot position="top-right">...</FloatBadge>
+<FloatBadge dot position="top-left">...</FloatBadge>
+<FloatBadge dot position="bottom-right">...</FloatBadge>
+<FloatBadge dot position="bottom-left">...</FloatBadge>
+```
+
+## Status Indicators
+
+Combine badges with other components to create rich status indicators.
+
+<Preview>
+  <div className="not-prose flex flex-wrap gap-12 items-center">
+    <FloatBadge dot pulse color="error">
+      <div className="p-3 bg-red-50 dark:bg-red-500/10 rounded-xl text-red-500">
+        <FiZap size={24} />
+      </div>
+    </FloatBadge>
+
+    <FloatBadge content={3} pulse color="success">
+      <Button variant="outlined" leftIcon={<FiShoppingCart size={18} />}>
+        Cart
+      </Button>
+    </FloatBadge>
+
+    <div className="flex items-center gap-2">
+      <Badge dot color="success" pulse />
+      <span className="text-sm font-semibold">Server Online</span>
+    </div>
+  </div>
+</Preview>
+
+```tsx
+<div className="flex items-center gap-2">
+  <Badge dot color="success" pulse />
+  <span className="text-sm font-semibold">Server Online</span>
+</div>
 ```
 
 ## Features
@@ -145,6 +247,3 @@ export default () => (
   }
 ]}
 />
-
-
-

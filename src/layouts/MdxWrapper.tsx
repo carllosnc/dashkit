@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect, type ComponentType, type ReactNode, type ElementType } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { 
-  Dropdown, 
-  DropdownTrigger, 
-  DropdownContent, 
-  DropdownLabel, 
-  DropdownItem, 
-  DropdownSeparator 
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownContent,
+  DropdownLabel,
+  DropdownItem,
+  DropdownSeparator
 } from '../components/Dropdown/Dropdown';
 import { Button } from '../components/Button/Button';
 import { ButtonGroup } from '../components/ButtonGroup/ButtonGroup';
@@ -39,11 +39,9 @@ import { SidebarDemo } from '../components/Sidebar/SidebarDemo';
 import { ImageExpander } from '../components/ImageExpander/ImageExpander';
 import { ImageExpanderDemo } from '../components/ImageExpander/ImageExpanderDemo';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../components/Accordion/Accordion';
-import { AccordionDemo } from '../components/Accordion/AccordionDemo';
 import { ToastDemo } from '../components/Toast/ToastDemo';
 import { DropdownDemo, BasicMenuDemo, SelectableMenuDemo, CustomTriggerDemo } from '../components/Dropdown/DropdownDemo';
 import { Badge, FloatBadge } from '../components/Badge/Badge';
-import { BadgeDemo } from '../components/Badge/BadgeDemo';
 import { Skeleton } from '../components/Skeleton/Skeleton';
 import { SkeletonDemo } from '../components/Skeleton/SkeletonDemo';
 import { Spinner } from '../components/Spinner/Spinner';
@@ -54,16 +52,16 @@ import { IconButton } from '../components/IconButton/IconButton';
 import { IconButtonDemo } from '../components/IconButton/IconButtonDemo';
 import { Breadcrumb } from '../components/Breadcrumb/Breadcrumb';
 import { BreadcrumbDemo } from '../components/Breadcrumb/BreadcrumbDemo';
-import { 
-  Card, 
-  CardDemo, 
-  CardHeader, 
-  CardTitle, 
-  CardDescription, 
-  CardContent, 
-  CardFooter 
+import {
+  Card,
+  CardDemo,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter
 } from '../components/Card';
-import { FiDownload, FiArrowRight, FiCopy, FiCheck, FiSearch, FiLock, FiUser, FiSettings, FiActivity, FiCheckCircle, FiClock, FiMail } from 'react-icons/fi';
+import { FiDownload, FiArrowRight, FiCopy, FiCheck, FiSearch, FiLock, FiUser, FiSettings, FiActivity, FiCheckCircle, FiClock, FiMail, FiShield, FiZap, FiBell, FiMessageSquare, FiShoppingCart } from 'react-icons/fi';
 import { PropertyDoc } from '../partials/PropertyDoc';
 
 
@@ -107,12 +105,10 @@ const CopyButton = ({ preRef }: { preRef: React.RefObject<HTMLPreElement | null>
 const CustomPre = ({ children, ...props }: CustomPreProps) => {
   const preRef = useRef<HTMLPreElement>(null);
 
-  // Cast props to Div attributes but maintain data-* attributes
-  // In MDX, most props passed to 'pre' are standard or safe for 'div' wrappers
   const divProps = props as React.HTMLAttributes<HTMLDivElement>;
 
   return (
-    <div 
+    <div
       {...divProps}
       className="relative group mt-6 first:mt-0 overflow-hidden rounded-lg border border-neutral-200 dark:border-neutral-800"
     >
@@ -141,7 +137,6 @@ const components: Record<string, ElementType> = {
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
-  AccordionDemo,
   ToastDemo,
   Checkbox,
   CheckboxDemo,
@@ -170,7 +165,6 @@ const components: Record<string, ElementType> = {
   ImageExpanderDemo,
   Badge,
   FloatBadge,
-  BadgeDemo,
   Dropdown,
   DropdownTrigger,
   DropdownContent,
@@ -185,8 +179,8 @@ const components: Record<string, ElementType> = {
   CardDemo,
   CardHeader,
   CardTitle,
-  CardDescription, 
-  CardContent, 
+  CardDescription,
+  CardContent,
   CardFooter,
   FiDownload,
   FiArrowRight,
@@ -198,6 +192,11 @@ const components: Record<string, ElementType> = {
   FiCheckCircle,
   FiClock,
   FiMail,
+  FiShield,
+  FiZap,
+  FiBell,
+  FiMessageSquare,
+  FiShoppingCart,
   Skeleton,
   SkeletonDemo,
   Spinner,
@@ -210,7 +209,7 @@ const components: Record<string, ElementType> = {
   BreadcrumbDemo,
   PropertyDoc,
   Preview: ({ children }: { children: ReactNode }) => (
-    <div className="not-prose border bg-card border-neutral-200 dark:border-neutral-800 rounded-lg flex flex-col gap-8 py-8 px-8 first:pt-0 items-start">
+    <div className="not-prose border bg-card border-neutral-200 dark:border-neutral-800 rounded-lg flex flex-col gap-8 py-4 px-4 first:pt-0 items-start">
       {children}
     </div>
   ),
@@ -240,7 +239,7 @@ export function MdxWrapper({ Component }: { Component: MdxComponent }) {
   }, [Component]);
 
   return (
-    <div className="prose prose-neutral dark:prose-invert max-w-full" ref={containerRef}>
+    <div className="prose prose-sm md:prose-base md:prose-pre:text-base prose-neutral dark:prose-invert max-w-full" ref={containerRef}>
       <Helmet>
         <title>{title}</title>
         <meta name="description" content={description} />
