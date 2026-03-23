@@ -8,7 +8,7 @@ The **LineChart** component is a clean, minimal data visualization tool built us
 
 ### Default Line Chart
 
-<Preview>
+<Card className='not-prose'>
 <LineChart
   data={[
     { label: 'Jan', value: 10 },
@@ -22,7 +22,7 @@ The **LineChart** component is a clean, minimal data visualization tool built us
     { key: 'value', label: 'Sessions', color: 'var(--color-indigo-500)' }
   ]}
 />
-</Preview>
+</Card>
 
 ```tsx
 import { LineChart } from 'dashkit-ui';
@@ -39,7 +39,7 @@ function Example() {
 
 Compare multiple variables with distinct line styles and colors.
 
-<Preview>
+<Card className='not-prose'>
 <LineChart 
   data={[
     { label: 'Mon', line1: 45, line2: 30 },
@@ -55,20 +55,20 @@ Compare multiple variables with distinct line styles and colors.
     { key: 'line2', label: 'Inactive', color: 'var(--color-rose-500)' }
   ]}
 />
-</Preview>
+</Card>
 
 ### Growth Comparison (Multi-Line)
 
 Analyzing multiple growth vectors simultaneously to identify correlations between revenue, costs, and percentage growth.
 
-<Preview>
-<LineChart 
+<Card className='not-prose'>
+<LineChart
   data={[
     { label: 'Q1', revenue: 4500, expenses: 3200, profit: 1300, growth: 1200 },
     { label: 'Q2', revenue: 5200, expenses: 3800, profit: 1400, growth: 1500 },
     { label: 'Q3', revenue: 4800, expenses: 4500, profit: 300,  growth: 400 },
     { label: 'Q4', revenue: 6100, expenses: 4200, profit: 1900, growth: 1800 },
-  ]} 
+  ]}
   series={[
     { key: 'revenue',  label: 'Direct Revenue', color: '#3B82F6' },
     { key: 'expenses', label: 'Operating Costs', color: '#EF4444' },
@@ -76,7 +76,7 @@ Analyzing multiple growth vectors simultaneously to identify correlations betwee
     { key: 'growth',   label: 'Growth Trend',   color: '#8B5CF6' }
   ]}
 />
-</Preview>
+</Card>
 
 ## API Reference
 
@@ -96,12 +96,6 @@ Analyzing multiple growth vectors simultaneously to identify correlations betwee
     "type": "LineChartSeries[]",
     "defaultValue": "—",
     "description": "Configuration for each data series to render."
-  },
-  {
-    "prop": "height",
-    "type": "number | string",
-    "defaultValue": "'100%'",
-    "description": "Height of the chart container."
   },
   {
     "prop": "showGrid",

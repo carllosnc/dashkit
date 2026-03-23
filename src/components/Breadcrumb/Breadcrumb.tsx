@@ -1,78 +1,146 @@
 import * as React from 'react';
-import { ChevronRight } from 'lucide-react';
-import clsx from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import { ChevronRight, MoreHorizontal } from 'lucide-react';
+import { cn } from '../../utils/cn';
 
-function cn(...inputs: (string | undefined | null | boolean | Record<string, boolean>)[]) {
-  return twMerge(clsx(inputs));
+export interface BreadcrumbProps extends React.ComponentPropsWithoutRef<'nav'> {
+  separator?: React.ReactNode;
+  items?: {
+    label: React.ReactNode;
+    href?: string;
+    active?: boolean;
+    icon?: React.ReactNode;
+  }[];
 }
 
-export interface BreadcrumbItem {
-  label: React.ReactNode;
+export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
+  ({ items, separator, className, children, ...props }, ref) => {
+    if (items) {
+      return (
+        <nav
+          ref={ref}
+          aria-label="Breadcrumb"
+          className={cn('flex', className)}
+          {...props}
+        >
+          <BreadcrumbList>
+            {items.map((item, index) => {
+              const isLast = index === items.length - 1;
+              return (
+                <React.Fragment key={index}>
+                  <BreadcrumbItem
+                    href={!isLast ? item.href : undefined}
+                    active={isLast || item.active}
+                  >
+                    {item.icon && (
+                      <span className="shrink-0">{item.icon}</span>
+                    )}
+                    {item.label}
+                  </BreadcrumbItem>
+                  {!isLast && (
+                    <BreadcrumbSeparator>
+                      {separator || <ChevronRight size={14} className="text-neutral-400" />}
+                    </BreadcrumbSeparator>
+                  )}
+                </React.Fragment>
+              );
+            })}
+          </BreadcrumbList>
+        </nav>
+      );
+    }
+
+    return (
+      <nav
+        ref={ref}
+        aria-label="breadcrumb"
+        className={cn('flex', className)}
+        {...props}
+      >
+        {children}
+      </nav>
+    );
+  }
+);
+Breadcrumb.displayName = 'Breadcrumb';
+
+export const BreadcrumbList = React.forwardRef<
+  HTMLOListElement,
+  React.ComponentPropsWithoutRef<'ol'>
+>(({ className, ...props }, ref) => (
+  <ol
+    ref={ref}
+    className={cn(
+      'flex items-center gap-1.5 text-sm text-neutral-500 sm:gap-2.5 dark:text-neutral-400',
+      className
+    )}
+    {...props}
+  />
+));
+BreadcrumbList.displayName = 'BreadcrumbList';
+
+export interface BreadcrumbItemProps extends React.ComponentPropsWithoutRef<'li'> {
   href?: string;
   active?: boolean;
-  icon?: React.ReactNode;
 }
 
-export interface BreadcrumbProps {
-  items: BreadcrumbItem[];
-  separator?: React.ReactNode;
-  className?: string;
-}
+export const BreadcrumbItem = React.forwardRef<HTMLLIElement, BreadcrumbItemProps>(
+  ({ href, active, className, children, ...props }, ref) => {
+    const Component = href ? 'a' : 'span';
 
-/**
- * Breadcrumb component for secondary navigation.
- * Helps users understand their current location within the hierarchy.
- * 
- * @see https://dashkit-ui.com/docs/breadcrumb
- */
-export const Breadcrumb = ({
-  items,
-  separator = <ChevronRight size={14} className="text-neutral-400" />,
+    return (
+      <li
+        ref={ref}
+        className={cn('flex items-center gap-1.5 whitespace-nowrap', className)}
+        {...props}
+      >
+        <Component
+          href={href}
+          className={cn(
+            "flex items-center gap-1.5 text-sm transition-colors",
+            href
+              ? "text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white" 
+              : "text-neutral-500 font-medium",
+            active && "font-semibold text-neutral-900 dark:text-white"
+          )}
+        >
+          {children}
+        </Component>
+      </li>
+    );
+  }
+);
+BreadcrumbItem.displayName = 'BreadcrumbItem';
+
+export const BreadcrumbSeparator = ({
+  children,
   className,
-}: BreadcrumbProps) => {
-  return (
-    <nav aria-label="Breadcrumb" className={cn("flex", className)}>
-      <ol className="flex items-center gap-2 list-none p-0 m-0">
-        {items.map((item, index) => {
-          const isLast = index === items.length - 1;
-          
-          return (
-            <React.Fragment key={index}>
-              <li className="flex items-center gap-1.5">
-                {item.href && !isLast ? (
-                  <a
-                    href={item.href}
-                    className="flex items-center gap-1.5 text-sm font-medium text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition-colors"
-                  >
-                    {item.icon && <span className="shrink-0">{item.icon}</span>}
-                    {item.label}
-                  </a>
-                ) : (
-                  <span
-                    className={cn(
-                      "flex items-center gap-1.5 text-sm font-semibold",
-                      isLast || item.active
-                        ? "text-neutral-900 dark:text-white"
-                        : "text-muted-foreground"
-                    )}
-                  >
-                    {item.icon && <span className="shrink-0">{item.icon}</span>}
-                    {item.label}
-                  </span>
-                )}
-              </li>
-              {!isLast && (
-                <li className="flex items-center" role="presentation">
-                  {separator}
-                </li>
-              )}
-            </React.Fragment>
-          );
-        })}
-      </ol>
-    </nav>
-  );
-};
+  ...props
+}: React.ComponentPropsWithoutRef<'li'>) => (
+  <li
+    role="presentation"
+    aria-hidden="true"
+    className={cn('[&>svg]:size-3.5', className)}
+    {...props}
+  >
+    {children ?? <ChevronRight size={14} className="text-neutral-400" />}
+  </li>
+);
+BreadcrumbSeparator.displayName = 'BreadcrumbSeparator';
+
+export const BreadcrumbEllipsis = ({
+  className,
+  ...props
+}: React.ComponentPropsWithoutRef<'span'>) => (
+  <span
+    role="presentation"
+    aria-hidden="true"
+    className={cn('flex h-9 w-9 items-center justify-center', className)}
+    {...props}
+  >
+    <MoreHorizontal className="size-4" />
+    <span className="sr-only">More</span>
+  </span>
+);
+BreadcrumbEllipsis.displayName = 'BreadcrumbEllipsis';
 
 

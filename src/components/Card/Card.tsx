@@ -20,7 +20,7 @@ export function CardHeader({
   return (
     <div
       ref={ref}
-      className={cn("px-6 pt-6 flex flex-col gap-1", className)}
+      className={cn("flex flex-col gap-1", className)}
       {...props}
     >
       {children}
@@ -52,7 +52,7 @@ export function CardContent({ className, ref, ...props }: CardContentProps) {
   return (
     <div
       ref={ref}
-      className={cn("px-6 flex-1", className)}
+      className={cn("flex-1", className)}
       {...props}
     />
   );
@@ -63,7 +63,7 @@ export function CardFooter({ className, ref, ...props }: CardFooterProps) {
     <div
       ref={ref}
       className={cn(
-        "p-6 flex gap-3 bg-card border-t border-border",
+        "flex gap-3",
         className
       )}
       {...props}
@@ -95,7 +95,7 @@ export function Card({
       animate={animate ? { opacity: 1, y: 0 } : undefined}
       transition={{ duration: 0.3, ease: 'easeOut' }}
       className={cn(
-        "bg-card text-card-foreground rounded-lg shadow-sm overflow-hidden gap-6 flex flex-col font-sans",
+        "bg-card text-card-foreground p-6 rounded-lg shadow-sm overflow-hidden gap-6 flex flex-col font-sans",
         !bordered && "border-none",
         !shadowed && "shadow-none",
         className

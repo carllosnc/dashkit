@@ -39,7 +39,13 @@ import { SkeletonDemo } from '../components/Skeleton/SkeletonDemo';
 import { Spinner } from '../components/Spinner/Spinner';
 import { Navbar } from '../components/Navbar/Navbar';
 import { IconButton } from '../components/IconButton/IconButton';
-import { Breadcrumb } from '../components/Breadcrumb/Breadcrumb';
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbSeparator,
+  BreadcrumbEllipsis
+} from '../components/Breadcrumb/Breadcrumb';
 import {
   Card,
   CardHeader,
@@ -182,6 +188,10 @@ const components: Record<string, ElementType> = {
   Navbar,
   IconButton,
   Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbSeparator,
+  BreadcrumbEllipsis,
   PropertyDoc,
   Preview: ({ children }: { children: ReactNode }) => (
     <div className="not-prose border bg-card border-neutral-200 dark:border-neutral-800 rounded-lg flex flex-col gap-8 py-4 px-4 first:pt-0 items-start">

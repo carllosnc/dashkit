@@ -1,3 +1,12 @@
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbSeparator,
+  BreadcrumbEllipsis
+} from '../components/Breadcrumb/Breadcrumb';
+import { FiHome, FiSettings, FiUser } from 'react-icons/fi';
+
 # Breadcrumb
 
 A secondary navigation component that helps users understand their current location in the application hierarchy.
@@ -5,7 +14,13 @@ A secondary navigation component that helps users understand their current locat
 ## Import
 
 ```tsx
-import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb'
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbSeparator,
+  BreadcrumbEllipsis
+} from '@/components/Breadcrumb/Breadcrumb'
 ```
 
 ## Installation
@@ -18,17 +33,133 @@ bunx carllosnc/dashkit add breadcrumb
 
 ## Basic Usage
 
-Pass an array of `items` to the component. The last item is automatically styled as the active location.
+The `Breadcrumb` component uses a composition pattern. `BreadcrumbItem` can automatically render as a link if an `href` is provided.
 
 <Preview>
-  <Breadcrumb
-    items={[
-      { label: 'Home', href: '/' },
-      { label: 'Components', href: '/' },
-      { label: 'Breadcrumb' },
-    ]}
-  />
+  <Breadcrumb>
+    <BreadcrumbList>
+      <BreadcrumbItem href="/">Home</BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem href="/docs">Components</BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem active>Breadcrumb</BreadcrumbItem>
+    </BreadcrumbList>
+  </Breadcrumb>
 </Preview>
+
+```tsx
+<Breadcrumb>
+  <BreadcrumbList>
+    <BreadcrumbItem href="/">Home</BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem href="/docs">Components</BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem active>Breadcrumb</BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>
+```
+
+## With Icons
+
+You can add icons to your breadcrumb items by passing them as children alongside the text.
+
+<Preview>
+  <Breadcrumb>
+    <BreadcrumbList>
+      <BreadcrumbItem href="/">
+        <FiHome size={14} /> <span> Home </span>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem href="/settings">
+        <FiSettings size={14} /> <span> Settings </span>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem active>
+        <FiUser size={14} /> <span> Profile </span>
+      </BreadcrumbItem>
+    </BreadcrumbList>
+  </Breadcrumb>
+</Preview>
+
+```tsx
+import { FiHome, FiSettings, FiUser } from 'react-icons/fi';
+
+<Breadcrumb>
+  <BreadcrumbList>
+    <BreadcrumbItem href="/">
+      <FiHome size={14} /> Home
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem href="/settings">
+      <FiSettings size={14} /> Settings
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem active>
+      <FiUser size={14} /> Profile
+    </BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>
+```
+
+## Custom Separator
+
+Override the default separator with any React node.
+
+<Preview>
+  <Breadcrumb>
+    <BreadcrumbList>
+      <BreadcrumbItem href="/">Home</BreadcrumbItem>
+      <BreadcrumbSeparator>/</BreadcrumbSeparator>
+      <BreadcrumbItem active>Components</BreadcrumbItem>
+    </BreadcrumbList>
+  </Breadcrumb>
+</Preview>
+
+```tsx
+<Breadcrumb>
+  <BreadcrumbList>
+    <BreadcrumbItem href="/">Home</BreadcrumbItem>
+    <BreadcrumbSeparator>/</BreadcrumbSeparator>
+    <BreadcrumbItem active>Components</BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>
+```
+
+## Collapsed (Ellipsis)
+
+Use `BreadcrumbEllipsis` to show a collapsed state for long paths.
+
+<Preview>
+  <Breadcrumb>
+    <BreadcrumbList>
+      <BreadcrumbItem href="/">Home</BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbEllipsis />
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem active>Active Page</BreadcrumbItem>
+    </BreadcrumbList>
+  </Breadcrumb>
+</Preview>
+
+```tsx
+<Breadcrumb>
+  <BreadcrumbList>
+    <BreadcrumbItem href="/">Home</BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbEllipsis />
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem active>Active Page</BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>
+```
+
+## Simplified Usage (Legacy)
+
+You can still use the `items` prop for simpler cases.
 
 ```tsx
 <Breadcrumb
@@ -40,76 +171,17 @@ Pass an array of `items` to the component. The last item is automatically styled
 />
 ```
 
-## With Icons
-
-You can add icons to each item for better visual guidance. In this example we use `react-icons/fi`.
-
-<Preview>
-  <Breadcrumb
-    items={[
-      { label: 'Home', href: '/', icon: <FiHome size={14} /> },
-      { label: 'Settings', href: '/', icon: <FiSettings size={14} /> },
-      { label: 'Profile', icon: <FiUser size={14} /> },
-    ]}
-  />
-</Preview>
-
-```tsx
-import { FiHome, FiSettings, FiUser } from 'react-icons/fi';
-
-<Breadcrumb
-  items={[
-    { label: 'Home', href: '/', icon: <FiHome size={14} /> },
-    { label: 'Settings', href: '/', icon: <FiSettings size={14} /> },
-    { label: 'Profile', icon: <FiUser size={14} /> },
-  ]}
-/>
-```
-
-## Custom Separator
-
-Override the default chevron separator with any React node.
-
-<Preview>
-  <Breadcrumb
-    separator={<span className="text-neutral-300 dark:text-neutral-700 mx-1">/</span>}
-    items={[
-      { label: 'Projects', href: '#' },
-      { label: 'Dashkit', href: '#' },
-      { label: 'Releases' },
-    ]}
-  />
-</Preview>
-
-```tsx
-<Breadcrumb
-  separator={<span className="text-neutral-300 dark:text-neutral-700 mx-1">/</span>}
-  items={[
-    { label: 'Projects', href: '#' },
-    { label: 'Dashkit', href: '#' },
-    { label: 'Releases' },
-  ]}
-/>
-```
-
 ## API
 
 ### Breadcrumb Props
 
-
 <PropertyDoc
   properties={[
   {
-    "prop": "items",
-    "type": "BreadcrumbItem[]",
-    "defaultValue": "—",
-    "description": "Array of navigation items."
-  },
-  {
-    "prop": "separator",
+    "prop": "children",
     "type": "ReactNode",
-    "defaultValue": "<ChevronRight />",
-    "description": "Custom separator element between items."
+    "defaultValue": "—",
+    "description": "The composition of BreadcrumbList and items."
   },
   {
     "prop": "className",
@@ -120,29 +192,28 @@ Override the default chevron separator with any React node.
 ]}
 />
 
-
-### BreadcrumbItem Props
-
+### BreadcrumbList Props
 
 <PropertyDoc
   properties={[
   {
-    "prop": "label",
+    "prop": "children",
     "type": "ReactNode",
     "defaultValue": "—",
-    "description": "The text or element to display for the item."
-  },
+    "description": "The items and separators."
+  }
+]}
+/>
+
+### BreadcrumbItem Props
+
+<PropertyDoc
+  properties={[
   {
     "prop": "href",
     "type": "string",
     "defaultValue": "—",
     "description": "Optional URL for the breadcrumb link."
-  },
-  {
-    "prop": "icon",
-    "type": "ReactNode",
-    "defaultValue": "—",
-    "description": "Optional icon to display before the label."
   },
   {
     "prop": "active",

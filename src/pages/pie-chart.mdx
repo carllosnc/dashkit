@@ -1,4 +1,5 @@
 import { PieChart } from '../components/PieChart/PieChart';
+import { Card } from '../components/Card/Card';
 
 # Pie Chart
 
@@ -8,7 +9,7 @@ The **PieChart** component is an expressive tool for visualizing categorical dis
 
 ### Classic Pie Chart
 
-<Preview>
+<Card className='not-prose'>
 <PieChart
   data={[
     { label: 'Chrome', value: 400, color: 'var(--color-blue-500)' },
@@ -17,7 +18,7 @@ The **PieChart** component is an expressive tool for visualizing categorical dis
     { label: 'Edge', value: 100, color: 'var(--color-emerald-500)' },
   ]}
 />
-</Preview>
+</Card>
 
 ```tsx
 import { PieChart } from 'dashkit-ui';
@@ -37,7 +38,7 @@ function Example() {
 
 Transform any pie chart into a donut chart by setting the `innerRadius` property (0 to 1).
 
-<Preview>
+<Card className='not-prose'>
 <PieChart 
   innerRadius={0.6}
   data={[
@@ -46,7 +47,7 @@ Transform any pie chart into a donut chart by setting the `innerRadius` property
     { label: 'Pending', value: 48, color: '#3b82f6' },
   ]}
 />
-</Preview>
+</Card>
 
 ```tsx
 <PieChart 
@@ -67,12 +68,6 @@ Transform any pie chart into a donut chart by setting the `innerRadius` property
     "type": "PieChartDataItem[]",
     "defaultValue": "—",
     "description": "Array of objects with label, value, and color."
-  },
-  {
-    "prop": "height",
-    "type": "number | string",
-    "defaultValue": "300",
-    "description": "Height of the chart container."
   },
   {
     "prop": "innerRadius",

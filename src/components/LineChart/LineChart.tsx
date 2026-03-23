@@ -16,7 +16,6 @@ export interface LineChartSeries {
 export interface LineChartProps {
   data: Record<string, string | number>[];
   series: LineChartSeries[];
-  height?: number | string;
   className?: string;
   showGrid?: boolean;
   showLabels?: boolean;
@@ -24,15 +23,9 @@ export interface LineChartProps {
   animate?: boolean;
 }
 
-/**
- * A lightweight, animated Line Chart component built with native SVG that supports multiple series.
- * 
- * @see https://dashkit-ui.com/docs/line-chart
- */
 export const LineChart = ({
   data,
   series,
-  height = '100%',
   className,
   showGrid = true,
   showLabels = true,
@@ -42,15 +35,14 @@ export const LineChart = ({
   const chartRef = React.useRef<SVGSVGElement>(null);
   const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
   const [tooltipPos, setTooltipPos] = React.useState<{ x: number, y: number }>({ x: 0, y: 0 });
-  
+
   if (!data || data.length === 0 || !series || series.length === 0) return null;
 
-  // Calculate global max value across all series to normalize scales
   const maxVal = Math.max(
     ...data.flatMap(d => series.map(s => Number(d[s.key]) || 0)),
     0
-  ) * 1.1; 
-  
+  ) * 1.1;
+
   const minVal = 0;
   const range = maxVal - minVal;
 
@@ -78,31 +70,29 @@ export const LineChart = ({
     const rect = svg.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const normalizedX = (x / rect.width) * width;
-    
+
     const index = Math.round((normalizedX / width) * (data.length - 1));
     const clampedIndex = Math.max(0, Math.min(data.length - 1, index));
-    
+
     setHoveredIndex(clampedIndex);
-    
-    // Position tooltip above the "highest" point at this X index
+
     const highestY = Math.min(...allSeriesPoints.map(s => s.points[clampedIndex].y));
-    
+
     const tooltipWidth = 140;
     const rawX = (clampedIndex / (data.length - 1)) * rect.width;
     const clampedX = Math.max(tooltipWidth / 2 + 8, Math.min(rect.width - tooltipWidth / 2 - 8, rawX));
 
-    setTooltipPos({ 
+    setTooltipPos({
       x: clampedX,
       y: (highestY / svgHeight) * rect.height
     });
   };
 
   return (
-    <div 
-      className={cn("w-full flex-1 flex flex-col relative", className)} 
-      style={{ height }}
+    <div
+      className={cn("w-full flex flex-col relative", className)}
     >
-      <div className="flex-1 relative">
+      <div className="relative w-full aspect-[2.5/1]">
         <svg
           ref={chartRef}
           viewBox={`0 0 ${width} ${svgHeight}`}
@@ -140,7 +130,7 @@ export const LineChart = ({
           {/* Series Paths */}
           {allSeriesPoints.map((s) => {
             const linePath = s.points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
-            
+
             return (
               <motion.path
                 key={s.key}
@@ -178,8 +168,8 @@ export const LineChart = ({
                   borderColor: s.color,
                 }}
                 initial={animate ? { scale: 0, opacity: 0 } : false}
-                animate={{ 
-                  scale: 1, 
+                animate={{
+                  scale: 1,
                   opacity: 1,
                 }}
                 transition={{ delay: (i / data.length) * 0.5 + 1 }}
@@ -191,10 +181,10 @@ export const LineChart = ({
 
       {/* Tooltip Overlay */}
       {showTooltip && hoveredIndex !== null && (
-        <div 
+        <div
           className="absolute z-10 pointer-events-none transform -translate-x-1/2 -translate-y-full mb-6 bg-card text-card-foreground rounded-lg border border-border p-3 shadow-2xl flex flex-col gap-2 min-w-[140px]"
-          style={{ 
-            left: tooltipPos.x, 
+          style={{
+            left: tooltipPos.x,
             top: tooltipPos.y - 10
           }}
         >
@@ -221,8 +211,8 @@ export const LineChart = ({
       {showLabels && (
         <div className="flex justify-between mt-4">
           {data.map((d, i) => (
-            <span 
-              key={i} 
+            <span
+              key={i}
               className={cn(
                 "text-[10px] font-bold uppercase tracking-widest text-muted-foreground transition-colors",
                 hoveredIndex === i && "text-foreground"
@@ -238,5 +228,3 @@ export const LineChart = ({
 };
 
 LineChart.displayName = 'LineChart';
-
-

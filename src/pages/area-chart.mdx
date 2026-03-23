@@ -1,4 +1,5 @@
 import { AreaChart } from '../components/AreaChart/AreaChart';
+import { Card } from '../components/Card/Card';
 
 # Area Chart
 
@@ -8,7 +9,7 @@ The **AreaChart** component is a lightweight, responsive data visualization tool
 
 ### Default Area Chart
 
-<Preview>
+<Card className='not-prose'>
 <AreaChart
   data={[
     { label: 'Jan', value: 10 },
@@ -22,14 +23,14 @@ The **AreaChart** component is a lightweight, responsive data visualization tool
     { key: 'value', label: 'Total Users', color: 'var(--color-blue-500)' }
   ]}
 />
-</Preview>
+</Card>
 
 ### Weekly Performance (7 Values)
 
 A standard weekly view using 7 consecutive data points.
 
-<Preview>
-<AreaChart 
+<Card className='not-prose'>
+<AreaChart
   data={[
     { label: 'Mon', value: 2100 },
     { label: 'Tue', value: 2350 },
@@ -38,12 +39,12 @@ A standard weekly view using 7 consecutive data points.
     { label: 'Fri', value: 2800 },
     { label: 'Sat', value: 3200 },
     { label: 'Sun', value: 2900 },
-  ]} 
+  ]}
   series={[
     { key: 'value', label: 'Page Views', color: 'var(--color-primary)' }
   ]}
 />
-</Preview>
+</Card>
 
 ```tsx
 import { AreaChart } from 'dashkit-ui';
@@ -61,7 +62,7 @@ function Example() {
 Compare multiple data points using the `series` array.
 
 <Preview>
-<AreaChart 
+<AreaChart
   data={[
     { label: 'Mon', mobile: 45, desktop: 30 },
     { label: 'Tue', mobile: 52, desktop: 38 },
@@ -70,7 +71,7 @@ Compare multiple data points using the `series` array.
     { label: 'Fri', mobile: 55, desktop: 50 },
     { label: 'Sat', mobile: 67, desktop: 20 },
     { label: 'Sun', mobile: 70, desktop: 15 },
-  ]} 
+  ]}
   series={[
     { key: 'mobile', label: 'Mobile Devices', color: 'var(--color-indigo-500)' },
     { key: 'desktop', label: 'Desktop Devices', color: 'var(--color-emerald-500)' }
@@ -79,8 +80,8 @@ Compare multiple data points using the `series` array.
 </Preview>
 
 ```tsx
-<AreaChart 
-  data={deviceData} 
+<AreaChart
+  data={deviceData}
   series={[
     { key: 'mobile', label: 'Mobile Devices', color: 'var(--color-indigo-500)' },
     { key: 'desktop', label: 'Desktop Devices', color: 'var(--color-emerald-500)' }
@@ -92,8 +93,8 @@ Compare multiple data points using the `series` array.
 
 Compare complex data sets with three or more series.
 
-<Preview>
-<AreaChart 
+<Card className='not-prose'>
+<AreaChart
   data={[
     { label: 'Jan', btc: 42000, eth: 2400, sol: 95 },
     { label: 'Feb', btc: 43500, eth: 2600, sol: 105 },
@@ -101,21 +102,21 @@ Compare complex data sets with three or more series.
     { label: 'Apr', btc: 71000, eth: 4000, sol: 180 },
     { label: 'May', btc: 68000, eth: 3600, sol: 165 },
     { label: 'Jun', btc: 62000, eth: 3200, sol: 150 },
-  ]} 
+  ]}
   series={[
     { key: 'btc', label: 'Bitcoin', color: '#F7931A' },
     { key: 'eth', label: 'Ethereum', color: '#627EEA' },
     { key: 'sol', label: 'Solana', color: '#14F195' }
   ]}
 />
-</Preview>
+</Card>
 
 ### Complex Analytics (7 Series)
 
 Comparing seven different data streams simultaneously to demonstrate high-density visualization and overlapping areas.
 
-<Preview>
-<AreaChart 
+<Card className='not-prose'>
+<AreaChart
   data={[
     { label: 'Jan', organic: 4500, paid: 2300, direct: 1200, social: 800, email: 500, referral: 400, other: 150 },
     { label: 'Feb', organic: 5200, paid: 2100, direct: 1300, social: 950, email: 600, referral: 380, other: 180 },
@@ -123,7 +124,7 @@ Comparing seven different data streams simultaneously to demonstrate high-densit
     { label: 'Apr', organic: 6100, paid: 2800, direct: 1500, social: 1400, email: 700, referral: 450, other: 240 },
     { label: 'May', organic: 5900, paid: 2600, direct: 1400, social: 1300, email: 650, referral: 410, other: 200 },
     { label: 'Jun', organic: 6500, paid: 3000, direct: 1600, social: 1600, email: 800, referral: 500, other: 300 },
-  ]} 
+  ]}
   series={[
     { key: 'organic', label: 'Organic Search', color: '#3B82F6' },
     { key: 'paid', label: 'Paid Search', color: '#10B981' },
@@ -134,14 +135,14 @@ Comparing seven different data streams simultaneously to demonstrate high-densit
     { key: 'other', label: 'Other Sources', color: '#6B7280' }
   ]}
 />
-</Preview>
+</Card>
 
 ### System Performance
 
 Use a single series with specialized semantic colors for status monitoring.
 
-<Preview>
-<AreaChart 
+<Card className='not-prose'>
+<AreaChart
   data={[
     { label: '10:00', load: 12 },
     { label: '10:10', load: 15 },
@@ -149,12 +150,12 @@ Use a single series with specialized semantic colors for status monitoring.
     { label: '10:30', load: 18 },
     { label: '10:40', load: 14 },
     { label: '10:50', load: 11 },
-  ]} 
+  ]}
   series={[
     { key: 'load', label: 'CPU Load %', color: 'var(--color-neutral-success)' }
   ]}
 />
-</Preview>
+</Card>
 
 ## API Reference
 

@@ -15,22 +15,15 @@ export interface PieChartDataItem {
 
 export interface PieChartProps {
   data: PieChartDataItem[];
-  height?: number | string;
   className?: string;
-  innerRadius?: number; // 0 for Pie, > 0 for Donut (0 to 1)
+  innerRadius?: number;
   showLabels?: boolean;
   showTooltip?: boolean;
   animate?: boolean;
 }
 
-/**
- * A lightweight, animated Pie & Donut Chart component built with native SVG.
- * 
- * @see https://dashkit-ui.com/docs/pie-chart
- */
 export const PieChart = ({
   data,
-  height = 300,
   className,
   innerRadius = 0,
   showLabels = true,
@@ -79,14 +72,14 @@ export const PieChart = ({
       slices: [...currentSlices, { ...item, path, startAngle, endAngle }],
       currentAngle: endAngle
     };
-  }, { 
-    slices: [] as (PieChartDataItem & { path: string, startAngle: number, endAngle: number })[], 
-    currentAngle: -Math.PI / 2 
+  }, {
+    slices: [] as (PieChartDataItem & { path: string, startAngle: number, endAngle: number })[],
+    currentAngle: -Math.PI / 2
   }).slices;
 
   const handleMouseMove = (e: React.MouseEvent, index: number) => {
     if (!showTooltip || !containerRef.current) return;
-    
+
     const rect = containerRef.current.getBoundingClientRect();
     setTooltipPos({
       x: e.clientX - rect.left,
@@ -96,12 +89,11 @@ export const PieChart = ({
   };
 
   return (
-    <div 
+    <div
       ref={containerRef}
-      className={cn("w-full flex flex-col items-center justify-center relative", className)} 
-      style={{ height }}
+      className={cn("w-full flex flex-col items-center justify-center relative", className)}
     >
-      <div className="relative flex-1 aspect-square">
+      <div className="relative w-full aspect-square max-w-[400px]">
         <svg
           viewBox={`0 0 ${size} ${size}`}
           className="w-full h-full overflow-visible"
@@ -114,18 +106,18 @@ export const PieChart = ({
               stroke="currentColor"
               strokeWidth="3"
               className="text-white dark:text-neutral-950 transition-colors duration-200 cursor-pointer"
-              style={{ 
+              style={{
                 zIndex: hoveredIndex === i ? 10 : 1,
                 transformOrigin: `${center}px ${center}px`
               }}
               initial={animate ? { opacity: 0, scale: 0.8, rotate: -10 } : false}
-              animate={{ 
-                opacity: 1, 
+              animate={{
+                opacity: 1,
                 scale: 1,
                 rotate: 0,
                 transition: { type: "spring", stiffness: 400, damping: 25 }
               }}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.03,
                 transition: { type: "spring", stiffness: 400, damping: 20 }
               }}
@@ -135,12 +127,11 @@ export const PieChart = ({
           ))}
         </svg>
 
-        {/* Tooltip */}
         {showTooltip && hoveredIndex !== null && (
-          <div 
+          <div
             className="absolute z-10 pointer-events-none transform -translate-x-1/2 -translate-y-full mb-4 bg-card text-card-foreground rounded-lg shadow-2xl border border-border p-3 flex flex-col gap-1 min-w-[120px]"
-            style={{ 
-              left: tooltipPos.x, 
+            style={{
+              left: tooltipPos.x,
               top: tooltipPos.y - 10
             }}
           >
@@ -150,7 +141,7 @@ export const PieChart = ({
             </div>
             <div className="flex border-b border-border pb-1 mt-1 mb-1">
                <span className="text-xs font-bold text-foreground">
-                 {data[hoveredIndex].value.toLocaleString()} 
+                 {data[hoveredIndex].value.toLocaleString()}
                  <span className="ml-1 opacity-50 font-normal">
                    ({((data[hoveredIndex].value / total) * 100).toFixed(1)}%)
                  </span>
@@ -159,13 +150,11 @@ export const PieChart = ({
           </div>
         )}
       </div>
-
-      {/* Legend */}
       {showLabels && (
-        <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 mt-6">
+        <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
           {data.map((item, i) => (
-            <div 
-              key={i} 
+            <div
+              key={i}
               className={cn(
                 "flex items-center gap-2 transition-opacity duration-200",
                 hoveredIndex !== null && hoveredIndex !== i && "opacity-40"

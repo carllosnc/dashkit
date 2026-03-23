@@ -1,43 +1,54 @@
 import { render, screen } from '@testing-library/react';
-import { Breadcrumb } from './Breadcrumb';
+import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbSeparator } from './Breadcrumb';
 import { FiHome } from 'react-icons/fi';
 import { describe, it, expect } from 'vitest';
 
 describe('Breadcrumb', () => {
-  const items = [
-    { label: 'Home', href: '/', icon: <FiHome data-testid="home-icon" /> },
-    { label: 'Components', href: '/docs' },
-    { label: 'Breadcrumb', active: true }
-  ];
-
-  it('renders breadcrumb items correctly', () => {
-    render(<Breadcrumb items={items} />);
+  it('renders breadcrumb items correctly with composition', () => {
+    render(
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem href="/">Home</BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem active>Dashboard</BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+    );
     expect(screen.getByText('Home')).toBeInTheDocument();
-    expect(screen.getByText('Components')).toBeInTheDocument();
-    expect(screen.getByText('Breadcrumb')).toBeInTheDocument();
+    expect(screen.getByText('Dashboard')).toBeInTheDocument();
   });
 
-  it('renders icons for items that have them', () => {
-    render(<Breadcrumb items={items} />);
+  it('renders icons when passed as children', () => {
+    render(
+      <BreadcrumbItem href="/">
+        <FiHome data-testid="home-icon" /> Home
+      </BreadcrumbItem>
+    );
     expect(screen.getByTestId('home-icon')).toBeInTheDocument();
   });
 
-  it('renders links for non-last items with href', () => {
-    render(<Breadcrumb items={items} />);
-    const links = screen.getAllByRole('link');
-    expect(links).toHaveLength(2);
-    expect(links[0]).toHaveAttribute('href', '/');
-    expect(links[1]).toHaveAttribute('href', '/docs');
+  it('renders link when href is provided', () => {
+    render(<BreadcrumbItem href="/docs">Docs</BreadcrumbItem>);
+    const link = screen.getByRole('link');
+    expect(link).toHaveAttribute('href', '/docs');
   });
 
-  it('applies active styling to the last item', () => {
-    render(<Breadcrumb items={items} />);
-    const breadcrumb = screen.getByText('Breadcrumb');
-    expect(breadcrumb).toHaveClass('text-neutral-900');
+  it('applies active styling to the active item', () => {
+    render(<BreadcrumbItem active>Current Page</BreadcrumbItem>);
+    const item = screen.getByText('Current Page');
+    expect(item).toHaveClass('text-neutral-900');
   });
 
   it('renders a custom separator', () => {
-    render(<Breadcrumb items={items} separator={<span data-testid="custom-sep">/</span>} />);
-    expect(screen.getAllByTestId('custom-sep')).toHaveLength(2);
+    render(
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem href="/">Home</BreadcrumbItem>
+          <BreadcrumbSeparator data-testid="custom-sep">/</BreadcrumbSeparator>
+          <BreadcrumbItem active>Dashboard</BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+    );
+    expect(screen.getByTestId('custom-sep')).toHaveTextContent('/');
   });
 });

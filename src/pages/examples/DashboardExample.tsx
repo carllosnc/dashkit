@@ -9,7 +9,7 @@ import { Button } from '../../components/Button/Button';
 import { IconButton } from '../../components/IconButton/IconButton';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/Card/Card';
 import { Badge, FloatBadge } from '../../components/Badge/Badge';
-import { Breadcrumb } from '../../components/Breadcrumb/Breadcrumb';
+import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbSeparator } from '../../components/Breadcrumb/Breadcrumb';
 import { Select } from '../../components/Select/Select';
 import { Input } from '../../components/Input/Input';
 import { Skeleton } from '../../components/Skeleton/Skeleton';
@@ -65,15 +65,15 @@ export function DashboardExample() {
       </Navbar>
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-6 py-8 flex flex-col gap-12">
-        {/* Header with Breadcrumb */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="flex flex-col gap-2">
-            <Breadcrumb
-              items={[
-                { label: 'Home', href: '/' },
-                { label: 'Dashboard', active: true }
-              ]}
-            />
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem href="/">Home</BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem active>Dashboard</BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
             <h1 className="text-xl font-bold tracking-tight text-foreground">
               Project Overview
             </h1>
@@ -98,7 +98,7 @@ export function DashboardExample() {
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <Card shadowed>
-            <CardContent className="pt-6">
+            <CardContent>
               <div className="flex items-center justify-between mb-2">
                  <span className="text-sm font-medium text-muted-foreground">Total Revenue</span>
                  <Badge content="+12.5%" color="base" />
@@ -109,7 +109,7 @@ export function DashboardExample() {
           </Card>
 
           <Card shadowed>
-            <CardContent className="pt-6">
+            <CardContent>
               <div className="flex items-center justify-between mb-2">
                  <span className="text-sm font-medium text-muted-foreground">Active Tasks</span>
                  <Badge content="82%" color="base" />
@@ -120,7 +120,7 @@ export function DashboardExample() {
           </Card>
 
           <Card shadowed>
-            <CardContent className="pt-6">
+            <CardContent>
               <div className="flex items-center justify-between mb-2">
                  <span className="text-sm font-semibold text-neutral-700 dark:text-neutral-200">Efficiency Rate</span>
                  <Badge content="94%" color="base" />
@@ -134,7 +134,7 @@ export function DashboardExample() {
           </Card>
 
           <Card shadowed>
-            <CardContent className="pt-6 text-center flex flex-col items-center justify-center min-h-[100px]">
+            <CardContent className="text-center flex flex-col items-center justify-center min-h-[100px]">
               <div className="size-10 rounded-full bg-neutral-900 dark:bg-white flex items-center justify-center mb-2">
                 <FiZap className="text-white dark:text-neutral-950" />
               </div>

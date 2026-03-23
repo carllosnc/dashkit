@@ -25,9 +25,9 @@ The basic usage of the textarea with a label and placeholder.
 </Preview>
 
 ```tsx
-<Textarea 
-  label="Biography" 
-  placeholder="Tell us about yourself..." 
+<Textarea
+  label="Biography"
+  placeholder="Tell us about yourself..."
 />
 ```
 
@@ -36,20 +36,20 @@ The basic usage of the textarea with a label and placeholder.
 Use the `autoGrow` prop to allow the textarea to automatically adjust its height based on the content. This provides a better user experience for long-form content.
 
 <Preview>
-  <div className="w-full max-w-sm">
-    <Textarea 
-      label="Message" 
-      placeholder="Type something long to see it grow..." 
-      autoGrow 
+  <div className="w-full">
+    <Textarea
+      label="Message"
+      placeholder="Type something long to see it grow..."
+      autoGrow
     />
   </div>
 </Preview>
 
 ```tsx
-<Textarea 
-  label="Message" 
-  placeholder="Type away..." 
-  autoGrow 
+<Textarea
+  label="Message"
+  placeholder="Type away..."
+  autoGrow
 />
 ```
 
@@ -58,33 +58,33 @@ Use the `autoGrow` prop to allow the textarea to automatically adjust its height
 The textarea supports error and disabled states, just like the input component.
 
 <Preview>
-  <div className="flex flex-col gap-6 w-full max-w-sm">
-    <Textarea 
-      label="Notes" 
-      error="Something went wrong" 
-      defaultValue="Invalid input content..." 
+  <div className="flex flex-col gap-6 w-full">
+    <Textarea
+      label="Notes"
+      error="Something went wrong"
+      defaultValue="Invalid input content..."
     />
-    <Textarea 
-      label="Locked Field" 
-      disabled 
-      value="This content is read-only." 
-      helperText="You cannot edit this information" 
+    <Textarea
+      label="Locked Field"
+      disabled
+      value="This content is read-only."
+      helperText="You cannot edit this information"
     />
   </div>
 </Preview>
 
 ```tsx
-<Textarea 
-  label="Notes" 
-  error="Something went wrong" 
-  defaultValue="Invalid content..." 
+<Textarea
+  label="Notes"
+  error="Something went wrong"
+  defaultValue="Invalid content..."
 />
 
-<Textarea 
-  label="Locked Field" 
-  disabled 
-  value="Read-only text." 
-  helperText="You cannot edit this" 
+<Textarea
+  label="Locked Field"
+  disabled
+  value="Read-only text."
+  helperText="You cannot edit this"
 />
 ```
 

@@ -1,4 +1,5 @@
 import { BarChart } from '../components/BarChart/BarChart';
+import { Card } from '../components/Card/Card';
 
 # Bar Chart
 
@@ -8,7 +9,7 @@ The **BarChart** component is a powerful, animated data visualization tool built
 
 ### Single Series Bar Chart
 
-<Preview>
+<Card className='not-prose'>
 <BarChart
   data={[
     { label: 'Jan', value: 400 },
@@ -22,7 +23,7 @@ The **BarChart** component is a powerful, animated data visualization tool built
     { key: 'value', label: 'Revenue', color: 'var(--color-blue-500)' }
   ]}
 />
-</Preview>
+</Card>
 
 ```tsx
 import { BarChart } from 'dashkit-ui';
@@ -43,7 +44,7 @@ function Example() {
 
 Compare multiple metrics across the same time periods using grouped bars.
 
-<Preview>
+<Card className='not-prose'>
 <BarChart 
   data={[
     { label: 'Mon', active: 145, inactive: 30, pending: 15 },
@@ -60,7 +61,7 @@ Compare multiple metrics across the same time periods using grouped bars.
     { key: 'pending', label: 'Pending', color: 'var(--color-blue-500)' }
   ]}
 />
-</Preview>
+</Card>
 
 ```tsx
 <BarChart 
@@ -77,7 +78,7 @@ Compare multiple metrics across the same time periods using grouped bars.
 
 Use semantic colors to visualize system performance or resource distribution.
 
-<Preview>
+<Card className='not-prose'>
 <BarChart 
   data={[
     { label: 'Srv-01', cpu: 78, mem: 45 },
@@ -90,12 +91,11 @@ Use semantic colors to visualize system performance or resource distribution.
     { key: 'mem', label: 'Memory Usage %', color: '#10b981' }
   ]}
 />
-</Preview>
+</Card>
 
 ## API Reference
 
 ### BarChart
-
 
 <PropertyDoc
   properties={[
