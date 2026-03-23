@@ -112,14 +112,60 @@ export const registry: Record<string, ComponentConfig> = {
     files: ['src/components/Breadcrumb/Breadcrumb.tsx'],
     dependencies: ['clsx', 'tailwind-merge', 'lucide-react'],
   },
-  typingeffect: {
-    name: 'TypingEffect',
-    files: ['src/components/TypingEffect/TypingEffect.tsx'],
-    dependencies: ['clsx', 'tailwind-merge'],
-  },
   iconbutton: {
     name: 'IconButton',
     files: ['src/components/IconButton/IconButton.tsx'],
     dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
+  },
+  areachart: {
+    name: 'AreaChart',
+    files: ['src/components/AreaChart/AreaChart.tsx'],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
+  },
+  barchart: {
+    name: 'BarChart',
+    files: ['src/components/BarChart/BarChart.tsx'],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
+  },
+  linechart: {
+    name: 'LineChart',
+    files: ['src/components/LineChart/LineChart.tsx'],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
+  },
+  piechart: {
+    name: 'PieChart',
+    files: ['src/components/PieChart/PieChart.tsx'],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
+  },
+  buttongroup: {
+    name: 'ButtonGroup',
+    files: ['src/components/ButtonGroup/ButtonGroup.tsx'],
+    dependencies: ['clsx', 'tailwind-merge'],
+  },
+  chip: {
+    name: 'Chip',
+    files: ['src/components/Chip/Chip.tsx'],
+    dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
+  },
+  combobox: {
+    name: 'Combobox',
+    files: ['src/components/Combobox/Combobox.tsx'],
+    dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
+    registryDependencies: ['chip'],
+  },
+  divider: {
+    name: 'Divider',
+    files: ['src/components/Divider/Divider.tsx'],
+    dependencies: ['clsx', 'tailwind-merge'],
+  },
+  sidebar: {
+    name: 'Sidebar',
+    files: ['src/components/Sidebar/Sidebar.tsx'],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
+  },
+  textarea: {
+    name: 'Textarea',
+    files: ['src/components/Textarea/Textarea.tsx'],
+    dependencies: ['clsx', 'tailwind-merge'],
   }
 };
