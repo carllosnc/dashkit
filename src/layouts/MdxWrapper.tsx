@@ -32,9 +32,10 @@ import { Switch } from '../components/Switch/Switch';
 import { SwitchDemo } from '../components/Switch/SwitchDemo';
 import { Textarea } from '../components/Textarea/Textarea';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/Tabs/Tabs';
-import { TabsDemo } from '../components/Tabs/TabsDemo';
 import { OtpInput } from '../components/OtpInput/OtpInput';
 import { OtpInputDemo } from '../components/OtpInput/OtpInputDemo';
+import { Sidebar, SidebarHeader, SidebarFooter, SidebarSection, SidebarSectionItem } from '../components/Sidebar/Sidebar';
+import { SidebarDemo } from '../components/Sidebar/SidebarDemo';
 import { ImageExpander } from '../components/ImageExpander/ImageExpander';
 import { ImageExpanderDemo } from '../components/ImageExpander/ImageExpanderDemo';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../components/Accordion/Accordion';
@@ -157,9 +158,14 @@ const components: Record<string, ElementType> = {
   TabsList,
   TabsTrigger,
   TabsContent,
-  TabsDemo,
   OtpInput,
   OtpInputDemo,
+  Sidebar,
+  SidebarHeader,
+  SidebarFooter,
+  SidebarSection,
+  SidebarSectionItem,
+  SidebarDemo,
   ImageExpander,
   ImageExpanderDemo,
   Badge,

@@ -1,0 +1,77 @@
+# Sidebar
+
+A versatile and premium navigation sidebar component that supports complex layouts, branding, and status indicators using a flexible composition pattern.
+
+## Overview
+
+The `Sidebar` component provides the core scaffolding for a dashboard navigation system. By using specialized sub-components, you can easily build highly structured and interactive menus with minimal code.
+
+<SidebarDemo />
+
+## Import
+
+```tsx
+import { 
+  Sidebar, 
+  SidebarHeader, 
+  SidebarFooter, 
+  SidebarSection, 
+  SidebarSectionItem 
+} from '@/components/Sidebar/Sidebar'
+```
+
+## Installation
+
+Add the sidebar into your project using the Dashkit CLI:
+
+```bash
+bunx carllosnc/dashkit add sidebar
+```
+
+## Elements
+
+The Sidebar library is composed of several specialized layers:
+
+<PropertyDoc
+  properties={[
+    { "prop": "Sidebar", "description": "The main container that handles height, width, and background colors." },
+    { "prop": "SidebarHeader", "description": "Designed for branding, logos, or organization switchers." },
+    { "prop": "SidebarFooter", "description": "Bottom section for user profiles, help links, or versioning." },
+    { "prop": "SidebarSection", "description": "Groups related items with an optional title." },
+    { "prop": "SidebarSectionItem", "description": "Individual navigation links or interactive buttons." }
+  ]}
+/>
+
+## API Reference
+
+### Sidebar
+The root provider and layout container.
+
+<PropertyDoc
+  properties={[
+    { "prop": "children", "type": "ReactNode", "defaultValue": "—", "description": "The content of the sidebar." },
+    { "prop": "className", "type": "string", "defaultValue": "—", "description": "Custom classes for the container." }
+  ]}
+/>
+
+### SidebarSection
+A logical grouping of navigation items.
+
+<PropertyDoc
+  properties={[
+    { "prop": "title", "type": "string", "defaultValue": "—", "description": "Uppercase header above the section." },
+    { "prop": "children", "type": "ReactNode", "defaultValue": "—", "description": "SidebarSectionItems to be rendered." }
+  ]}
+/>
+
+### SidebarSectionItem
+The primary interactive navigation element.
+
+<PropertyDoc
+  properties={[
+    { "prop": "active", "type": "boolean", "defaultValue": "false", "description": "Applies primary styling and the sidebar indicator." },
+    { "prop": "icon", "type": "ReactNode", "defaultValue": "—", "description": "Icon to be displayed beside the text." },
+    { "prop": "children", "type": "ReactNode", "defaultValue": "—", "description": "Descriptive text for the nav link." },
+    { "prop": "onClick", "type": "() => void", "defaultValue": "—", "description": "Standard click event handler." }
+  ]}
+/>

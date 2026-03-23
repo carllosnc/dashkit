@@ -36,7 +36,7 @@ export function Tabs({ defaultValue, value, onValueChange, children, className }
 
   return (
     <TabsContext.Provider value={{ activeTab, setActiveTab, tabsId }}>
-      <div className={cn("w-full h-full flex flex-col font-sans", className)}>
+      <div className={cn("w-full flex flex-col font-sans rounded-xl shadow-sm overflow-hidden bg-card", className)}>
         {children}
       </div>
     </TabsContext.Provider>
@@ -45,7 +45,7 @@ export function Tabs({ defaultValue, value, onValueChange, children, className }
 
 export function TabsList({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <div className={cn("inline-flex h-11 items-center justify-start rounded-xl bg-muted p-1 text-muted-foreground", className)}>
+    <div className={cn("flex w-full items-stretch justify-start border-b border-border bg-muted/20", className)}>
       {children}
     </div>
   );
@@ -61,19 +61,21 @@ export function TabsTrigger({ value, children, className }: { value: string; chi
     <button
       onClick={() => context.setActiveTab(value)}
       className={cn(
-        "relative flex-1 px-4 py-2 text-sm font-semibold transition-colors duration-200 outline-none isolate whitespace-nowrap flex items-center justify-center cursor-pointer text-muted-foreground hover:text-foreground",
-        isActive ? "text-foreground" : "",
+        "relative flex-1 px-4 py-3 text-sm font-semibold transition-all duration-200 outline-none isolate whitespace-nowrap flex items-center justify-center cursor-pointer border-r border-border last:border-r-0 bg-card",
+        isActive
+          ? "text-foreground"
+          : "text-muted-foreground hover:text-foreground",
         className
       )}
     >
       {isActive && (
         <motion.div
-          layoutId={`active-tab-${context.tabsId}`}
-          className="absolute inset-0 z-[-1] bg-accent rounded-lg shadow-sm"
+          layoutId={`active-tab-line-${context.tabsId}`}
+          className="absolute bottom-[-1px] left-0 right-0 h-[2px] bg-primary/60 z-10"
           transition={{
             type: 'spring',
-            stiffness: 300,
-            damping: 30
+            stiffness: 400,
+            damping: 32
           }}
         />
       )}
@@ -90,11 +92,11 @@ export function TabsContent({ value, children, className }: { value: string; chi
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 5 }}
+      initial={{ opacity: 0, y: 2 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 5 }}
-      transition={{ duration: 0.2, ease: "easeOut" }}
-      className={cn("mt-4 flex-1 outline-none", className)}
+      exit={{ opacity: 0, y: 2 }}
+      transition={{ duration: 0.15, ease: "easeOut" }}
+      className={cn("p-6 flex-1 outline-none", className)}
     >
       {children}
     </motion.div>

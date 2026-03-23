@@ -48,6 +48,7 @@ const navItems = [
       { to: '/docs/spinner', label: 'Spinner', icon: <FiLoader size={16} /> },
       { to: '/docs/switch', label: 'Switch', icon: <FiToggleRight size={16} /> },
       { to: '/docs/tabs', label: 'Tabs', icon: <FiColumns size={16} /> },
+      { to: '/docs/sidebar', label: 'Sidebar', icon: <FiSidebar size={16} /> },
       { to: '/docs/textarea', label: 'Textarea', icon: <FiMessageSquare size={16} /> },
       { to: '/docs/toast', label: 'Toast', icon: <FiBell size={16} /> },
     ]

@@ -10,6 +10,7 @@ import RadioDocs from './pages/radio.mdx'
 import SelectDocs from './pages/select.mdx'
 import SwitchDocs from './pages/switch.mdx'
 import TabsDocs from './pages/tabs.mdx'
+import SidebarDocs from './pages/sidebar.mdx'
 import DividerDocs from './pages/divider.mdx'
 import OtpInputDocs from './pages/otp-input.mdx'
 import ButtonGroupDocs from './pages/button-group.mdx'
@@ -85,6 +86,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="skeleton" element={<MdxWrapper Component={SkeletonDocs} />} />
                 <Route path="spinner" element={<MdxWrapper Component={SpinnerDocs} />} />
                 <Route path="switch" element={<MdxWrapper Component={SwitchDocs} />} />
+                <Route path="sidebar" element={<MdxWrapper Component={SidebarDocs} />} />
                 <Route path="tabs" element={<MdxWrapper Component={TabsDocs} />} />
                 <Route path="textarea" element={<MdxWrapper Component={TextareaDocs} />} />
                 <Route path="toast" element={<MdxWrapper Component={ToastDocs} />} />
