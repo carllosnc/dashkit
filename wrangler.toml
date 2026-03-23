@@ -1,0 +1,5 @@
+name = "dashkit-ui"
+pages_build_output_dir = "dist"
+
+[vars]
+# Add any environment variables if needed
