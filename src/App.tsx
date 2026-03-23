@@ -1,3 +1,4 @@
+import { Badge } from './components/Badge/Badge'
 import { TypingEffect } from './components/TypingEffect/TypingEffect'
 import { Button } from './components/Button/Button'
 import { Header } from './partials/Header'
@@ -33,6 +34,14 @@ function App() {
 
       {/* Hero Section */}
       <main className="flex-1 relative flex flex-col items-center justify-center text-center px-6 py-32 overflow-hidden">
+        <div className="mb-8 animate-in fade-in slide-in-from-top-4 duration-1000 delay-100 fill-mode-both">
+          <Badge
+            color="warning"
+            content="Dashkit is currently under construction"
+            className="px-4 py-1.5 rounded-full text-[10px] uppercase font-bold tracking-[0.15em] bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20"
+          />
+        </div>
+
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground max-w-4xl leading-[1.05] mb-8">
           {TAGLINE_MAIN} <br className="hidden md:block" />
           <span className="text-neutral-400 dark:text-neutral-600">{TAGLINE_SUB}</span>
