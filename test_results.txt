@@ -1,0 +1,93 @@
+
+ RUN  v4.1.0 D:/Projects/open/dashkit
+
+- Adding Badge...
+Ô£ö 
+Successfully added Badge!
+
+Installing missing dependencies: framer-motion, clsx, tailwind-merge
+- Running bun add framer-motion clsx tailwind-merge...
+bun add v1.3.11 (af24e281)
+Resolving dependencies
+Resolved, downloaded and extracted [3]
+Saved lockfile
+
+installed framer-motion@12.38.0
+installed clsx@2.1.1
+installed tailwind-merge@3.5.0
+
+[716.00ms] done
+Ô£ö Dependencies installed successfully!
+Location: D:\Projects\open\dashkit\tmp\cli-tests\basic-component\components\Badge
+
+ Ô£ô src/components/Divider/Divider.test.tsx (5 tests) 328ms
+ Ô£ô src/components/Dropdown/Dropdown.test.tsx (8 tests) 349ms
+ Ô£ô src/components/Checkbox/Checkbox.test.tsx (6 tests) 400ms
+ Ô£ô src/components/Toast/Toast.test.tsx (7 tests) 371ms
+- Adding Card...
+- Adding dependency Badge...
+- Adding dependency Button...
+Ô£ö 
+Successfully added Card!
+
+Installing missing dependencies: framer-motion, clsx, tailwind-merge, lucide-react, react-icons
+- Running bun add framer-motion clsx tailwind-merge lucide-react react-icons...
+Not implemented: Window's scrollTo() method
+bun add v1.3.11 (af24e281)
+ Ô£ô src/components/Accordion/Accordion.test.tsx (4 tests) 344ms
+Resolving dependencies
+ Ô£ô src/components/DatePicker/DatePicker.test.tsx (6 tests) 451ms
+Resolved, downloaded and extracted [2]
+Saved lockfile
+
+installed framer-motion@12.38.0
+installed clsx@2.1.1
+installed tailwind-merge@3.5.0
+installed lucide-react@1.0.1
+installed react-icons@5.6.0
+
+[729.00ms] done
+Ô£ö Dependencies installed successfully!
+Location: D:\Projects\open\dashkit\tmp\cli-tests\registry-deps\components\Card
+
+- Adding Badge...
+Ô£ö 
+Successfully added Badge!
+ Ô£ô src/components/Select/Select.test.tsx (5 tests) 353ms
+ Ô£ô src/components/OtpInput/OtpInput.test.tsx (4 tests) 372ms
+ Ô£ô src/components/IconButton/IconButton.test.tsx (6 tests) 289ms
+ Ô£ô src/components/Combobox/Combobox.test.tsx (5 tests) 366ms
+ Ô£ô scripts/cli.test.ts (4 tests) 5605ms
+     Ô£ô should add a basic component (badge)  1833ms
+     Ô£ô should handle registry dependencies recursively (card)  1913ms
+     Ô£ô should not install dependencies if --no-install is flag is set  1041ms
+     Ô£ô should fail with an error for non-existent components  805ms
+ Ô£ô src/components/Input/Input.test.tsx (7 tests) 263ms
+ Ô£ô src/components/Badge/Badge.test.tsx (10 tests) 275ms
+ Ô£ô src/components/Button/Button.test.tsx (7 tests) 267ms
+ Ô£ô src/components/Switch/Switch.test.tsx (4 tests) 296ms
+ Ô£ô src/components/Modal/Modal.test.tsx (9 tests) 283ms
+ Ô£ô src/components/Sidebar/Sidebar.test.tsx (4 tests) 260ms
+ Ô£ô src/components/BarChart/BarChart.test.tsx (4 tests) 285ms
+ Ô£ô src/components/ImageExpander/ImageExpander.test.tsx (3 tests) 313ms
+ Ô£ô src/components/Breadcrumb/Breadcrumb.test.tsx (5 tests) 250ms
+ Ô£ô src/components/Radio/Radio.test.tsx (4 tests) 336ms
+ Ô£ô src/components/Table/Table.test.tsx (2 tests) 281ms
+ Ô£ô src/components/Navbar/Navbar.test.tsx (3 tests) 291ms
+ Ô£ô src/components/LineChart/LineChart.test.tsx (4 tests) 145ms
+ Ô£ô src/components/PieChart/PieChart.test.tsx (4 tests) 134ms
+ Ô£ô src/components/Drawer/Drawer.test.tsx (4 tests) 121ms
+ Ô£ô src/components/AreaChart/AreaChart.test.tsx (3 tests) 106ms
+ Ô£ô src/components/Textarea/Textarea.test.tsx (6 tests) 78ms
+ Ô£ô src/components/Chip/Chip.test.tsx (6 tests) 97ms
+ Ô£ô src/components/Tabs/Tabs.test.tsx (2 tests) 88ms
+ Ô£ô src/components/Spinner/Spinner.test.tsx (4 tests) 39ms
+ Ô£ô src/components/ButtonGroup/ButtonGroup.test.tsx (3 tests) 37ms
+ Ô£ô src/components/Skeleton/Skeleton.test.tsx (5 tests) 30ms
+ Ô£ô src/components/Card/Card.test.tsx (2 tests) 36ms
+
+ Test Files  34 passed (34)
+      Tests  165 passed (165)
+   Start at  01:16:38
+   Duration  14.30s (transform 1.18s, setup 5.36s, import 15.48s, tests 13.54s, environment 53.33s)
+

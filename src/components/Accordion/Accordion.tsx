@@ -112,7 +112,7 @@ export const AccordionTrigger = ({ children, className }: { children: React.Reac
       onClick={() => context.onValueChange(itemContext.value)}
       className={cn(
         "flex w-full items-center gap-3 px-4 py-4 text-left transition-all hover:text-block-fg dark:hover:text-block-dark-fg group",
-        itemContext.isOpen ? "text-block-fg dark:text-block-dark-fg font-bold" : "text-neutral-950 dark:text-neutral-300 font-bold",
+        itemContext.isOpen ? "text-block-fg dark:text-block-dark-fg font-medium" : "text-neutral-950 dark:text-neutral-300 font-medium",
         className
       )}
     >
@@ -123,7 +123,7 @@ export const AccordionTrigger = ({ children, className }: { children: React.Reac
       >
         <FiChevronRight size={18} />
       </motion.div>
-      <span className="text-base text-foreground font-bold tracking-tight">{children}</span>
+      <span className="text-base text-foreground font-medium tracking-tight">{children}</span>
     </button>
   );
 };
