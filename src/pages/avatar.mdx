@@ -1,0 +1,165 @@
+import { Avatar, AvatarGroup } from '../components/Avatar/Avatar'
+
+# Avatar
+
+A versatile component for presenting user profile pictures, with built-in fallback Support and smooth loading transitions.
+
+## Installation
+
+Add the Avatar to your project using the Dashkit CLI:
+
+```bash
+bunx carllosnc/dashkit add avatar
+```
+
+## Basic usage
+
+By default, the Avatar component will show initials as a fallback if the image source is not provided or fails to load.
+
+<Preview>
+  <div className="flex items-center gap-4">
+    <Avatar src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=80&h=80&fit=crop" alt="John Doe" />
+    <Avatar alt="Jane Smith" />
+    <Avatar fallback="JD" className="bg-blue-500 text-white" />
+  </div>
+</Preview>
+
+```tsx
+import { Avatar } from 'dashkit-ui'
+
+function Example() {
+  return (
+    <>
+      <Avatar src="..." alt="John Doe" />
+      <Avatar alt="Jane Smith" />
+      <Avatar fallback="JD" className="bg-blue-500 text-white" />
+    </>
+  )
+}
+```
+
+## Sizes
+
+Available in five standard sizes: `xs`, `sm`, `md` (default), `lg`, and `xl`.
+
+<Preview>
+  <div className="flex items-end gap-4">
+    <Avatar size="xs" alt="XS" />
+    <Avatar size="sm" alt="SM" />
+    <Avatar size="md" alt="MD" />
+    <Avatar size="lg" alt="LG" />
+    <Avatar size="xl" alt="XL" />
+  </div>
+</Preview>
+
+## Shapes
+
+Choose between `circle` (default) and `square` shapes.
+
+<Preview>
+  <div className="flex items-center gap-4">
+    <Avatar src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=80&h=80&fit=crop" shape="circle" />
+    <Avatar src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=80&h=80&fit=crop" shape="square" />
+  </div>
+</Preview>
+
+## Avatar Group
+
+Cluster multiple avatars together with automatic truncation using the `max` prop.
+
+<Preview>
+  <div className="flex flex-col gap-8">
+    <AvatarGroup max={3}>
+      <Avatar src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=80&h=80&fit=crop" />
+      <Avatar src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=80&h=80&fit=crop" />
+      <Avatar src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=80&h=80&fit=crop" />
+      <Avatar src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&h=80&fit=crop" />
+    </AvatarGroup>
+
+    <AvatarGroup max={2} size="sm">
+      <Avatar fallback="A" />
+      <Avatar fallback="B" />
+      <Avatar fallback="C" />
+      <Avatar fallback="D" />
+    </AvatarGroup>
+  </div>
+</Preview>
+
+```tsx
+<AvatarGroup max={3}>
+  <Avatar src="..." />
+  <Avatar src="..." />
+  <Avatar src="..." />
+  <Avatar src="..." />
+</AvatarGroup>
+```
+
+## API Reference
+
+### Avatar
+
+<PropertyDoc
+  properties={[
+    {
+      "prop": "src",
+      "type": "string",
+      "defaultValue": "—",
+      "description": "The image source URL."
+    },
+    {
+      "prop": "alt",
+      "type": "string",
+      "defaultValue": "—",
+      "description": "Alt text (also used for initials fallback)."
+    },
+    {
+      "prop": "fallback",
+      "type": "ReactNode",
+      "defaultValue": "—",
+      "description": "Custom fallback content."
+    },
+    {
+      "prop": "size",
+      "type": "'xs' | 'sm' | 'md' | 'lg' | 'xl'",
+      "defaultValue": "'md'",
+      "description": "Horizontal/vertical dimensions."
+    },
+    {
+      "prop": "shape",
+      "type": "'circle' | 'square'",
+      "defaultValue": "'circle'",
+      "description": "The border radius style."
+    },
+    {
+      "prop": "bordered",
+      "type": "boolean",
+      "defaultValue": "false",
+      "description": "Whether to show a focus-like ring border."
+    }
+  ]}
+/>
+
+### AvatarGroup
+
+<PropertyDoc
+  properties={[
+    {
+      "prop": "max",
+      "type": "number",
+      "defaultValue": "—",
+      "description": "Maximum visible avatars."
+    },
+    {
+      "prop": "size",
+      "type": "'xs' | 'sm' | 'md' | 'lg' | 'xl'",
+      "defaultValue": "'md'",
+      "description": "Size for all child avatars."
+    },
+    {
+      "prop": "spacing",
+      "type": "'sm' | 'md' | 'lg'",
+      "defaultValue": "'md'",
+      "description": "Overlap distance between avatars."
+    }
+  ]}
+/>
