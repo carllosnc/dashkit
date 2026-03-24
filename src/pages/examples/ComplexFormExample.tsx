@@ -13,10 +13,12 @@ import { Textarea } from '../../components/Textarea/Textarea';
 import { Combobox } from '../../components/Combobox/Combobox';
 import { Divider } from '../../components/Divider/Divider';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../../components/Card/Card';
+import { DatePicker } from '../../components/DatePicker/DatePicker';
 
 export const ComplexFormExample = () => {
   const [role, setRole] = useState('developer');
   const [techStack, setTechStack] = useState<string[]>(['react', 'typescript', 'tailwind']);
+  const [birthDate, setBirthDate] = useState<Date | undefined>();
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -72,6 +74,13 @@ export const ComplexFormExample = () => {
                   type="tel"
                   placeholder="+1 (555) 000-0000"
                   leftIcon={<FiPhone className="size-4" />}
+                />
+                <DatePicker
+                  label="Date of Birth"
+                  placeholder="Select your birth date"
+                  value={birthDate}
+                  onChange={setBirthDate}
+                  description="Required for identity verification."
                 />
                 <div className="md:col-span-2 flex flex-col gap-4">
                   <label className="text-[13px] font-semibold text-neutral-700 dark:text-neutral-300 ml-1 tracking-tight">
@@ -271,7 +280,7 @@ export const ComplexFormExample = () => {
             </section>
           </CardContent>
 
-          <CardFooter className="p-8 flex items-center justify-between">
+          <CardFooter className="flex items-center justify-between">
             <Button type="button" variant="outlined" leftIcon={<FiX />}>
               Discard
             </Button>
