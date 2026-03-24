@@ -53,14 +53,14 @@ export function ImageExpander({ children, full, caption, className }: ImageExpan
       <div
         onClick={() => setIsOpen(true)}
         className={cn(
-          "group relative cursor-zoom-in overflow-hidden rounded-2xl border border-ds-200 dark:border-ds-800 transition-all duration-300 hover:shadow-xl",
+          "group relative cursor-zoom-in overflow-hidden rounded-lg border border-ds-200 dark:border-ds-800 transition-all duration-300 hover:shadow-xl",
           className
         )}
       >
         <div className="flex w-full h-full transition-transform duration-500 group-hover:scale-105">
           {children}
         </div>
-        
+
         {/* Hover Overlay Indicator */}
         <div className="absolute inset-0 flex items-center justify-center bg-ds-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <div className="p-3 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white shadow-2xl scale-75 group-hover:scale-100 transition-transform duration-300">

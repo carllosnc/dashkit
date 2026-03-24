@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useMemo } from 'react';
+import { createPortal } from 'react-dom';
 import { FiChevronDown, FiCheck, FiSearch, FiX } from 'react-icons/fi';
 import { cn } from '../../utils/cn';
 import { Chip } from '../Chip/Chip';
@@ -41,9 +42,18 @@ export const Combobox = ({
 }: ComboboxProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
+  const [triggerRect, setTriggerRect] = useState<DOMRect | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const inputWrapperRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   
+  // Update trigger rect when opening
+  useEffect(() => {
+    if (isOpen && inputWrapperRef.current) {
+      setTriggerRect(inputWrapperRef.current.getBoundingClientRect());
+    }
+  }, [isOpen]);
+
   const selectedOptions = useMemo(() => {
     if (multiple && Array.isArray(value)) {
       return options.filter(opt => value.includes(opt.value));
@@ -84,13 +94,29 @@ export const Combobox = ({
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+      const menu = document.getElementById('dashkit-combobox-portal');
+      if (
+        containerRef.current && !containerRef.current.contains(event.target as Node) &&
+        (!menu || !menu.contains(event.target as Node))
+      ) {
         setIsOpen(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+
+    const handleScroll = () => {
+      if (isOpen) setIsOpen(false);
+    };
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      window.addEventListener('scroll', handleScroll, true);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener('scroll', handleScroll, true);
+    };
+  }, [isOpen]);
 
   const handleSelect = (option: ComboboxOption) => {
     if (multiple) {
@@ -170,7 +196,7 @@ export const Combobox = ({
         </div>
       )}
       
-      <div className="relative group">
+      <div className="relative group" ref={inputWrapperRef}>
         <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ds-500 group-focus-within:text-black dark:group-focus-within:text-white transition-colors duration-200 pointer-events-none">
           <FiSearch className="size-4" />
         </div>
@@ -213,13 +239,22 @@ export const Combobox = ({
           </div>
         </div>
 
-        {isOpen && (
+        {isOpen && triggerRect && createPortal(
           <div 
+            id="dashkit-combobox-portal"
+            role="listbox"
+            style={{
+              position: 'fixed',
+              top: triggerRect.bottom + 8,
+              left: triggerRect.left,
+              width: triggerRect.width,
+              zIndex: 9999,
+            }}
             className={cn(
-              "absolute top-full left-0 w-full mt-2 p-1 bg-popover text-popover-foreground border border-border rounded-lg shadow-lg z-50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200"
+              "p-1 bg-popover text-popover-foreground border border-border rounded-lg shadow-lg overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200"
             )}
           >
-            <div className="max-h-60 overflow-y-auto custom-scrollbar flex flex-col gap-0.5">
+            <div className="max-h-60 overflow-y-auto custom-scrollbar flex flex-col gap-0.5 font-sans">
               {filteredOptions.length === 0 ? (
                 <div className="px-4 py-6 text-sm text-muted-foreground italic text-center">
                   No matches found for "{query}"
@@ -233,9 +268,9 @@ export const Combobox = ({
                       type="button"
                       onClick={() => handleSelect(opt)}
                       className={cn(
-                      "w-full px-4 py-2.5 text-sm text-left flex items-center justify-between duration-200 text-foreground/80 hover:bg-accent hover:text-accent-foreground transition-colors",
-                      isSelected && "bg-accent text-accent-foreground font-semibold"
-                    )}
+                        "w-full px-4 py-2.5 text-sm text-left flex items-center justify-between duration-200 text-foreground/80 hover:bg-accent hover:text-accent-foreground transition-colors",
+                        isSelected && "bg-accent text-accent-foreground font-semibold"
+                      )}
                     >
                       <span className="truncate">{opt.label}</span>
                       {isSelected && (
@@ -246,7 +281,8 @@ export const Combobox = ({
                 })
               )}
             </div>
-          </div>
+          </div>,
+          document.body
         )}
       </div>
 

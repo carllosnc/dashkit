@@ -19,6 +19,11 @@ const examples = [
     title: 'Admin Dashboard',
     description: 'A full-featured project management interface demonstrating cards, statistics, data filtering, and complex interactive overlays.',
     href: '/examples/dashboard',
+  },
+  {
+    title: 'All Components Showcase',
+    description: 'A comprehensive display of every component in the Dashkit UI library, including variants, states, and interactive examples.',
+    href: '/examples/all-components',
   }
 ];
 

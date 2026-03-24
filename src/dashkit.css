@@ -78,13 +78,13 @@
   --color-foreground: var(--color-ds-900);
 
   /* Raised components */
-  --color-card:            var(--color-ds-50);
+  --color-card:            var(--color-ds-0);
   --color-card-foreground: var(--color-ds-900);
   --color-popover:         var(--color-ds-50);
   --color-popover-foreground: var(--color-ds-900);
 
   /* Brand / Primary Action */
-  --color-primary:             var(--color-ds-950);
+  --color-primary:             var(--color-blue-600);
   --color-primary-foreground:  var(--color-ds-50);
 
   /* Secondary / Muted actions (Raised against 100 bg) */
@@ -130,8 +130,8 @@
   --color-popover-foreground:   var(--color-ds-100);
 
   /* Brand / Primary Action */
-  --color-primary:              var(--color-ds-50);
-  --color-primary-foreground:   var(--color-ds-950);
+  --color-primary:              var(--color-blue-500);
+  --color-primary-foreground:   var(--color-ds-0);
   --color-secondary:             var(--color-ds-800);
   --color-secondary-foreground:  var(--color-ds-100);
 
