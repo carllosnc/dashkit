@@ -98,7 +98,7 @@ export const TableCaption = forwardRef<HTMLTableCaptionElement, HTMLAttributes<H
   ({ className, ...props }, ref) => (
     <caption
       ref={ref}
-      className={cn("mb-4 font-medium text-sm text-foreground text-left", className)}
+      className={cn("mb-4 font-medium text-sm text-muted-foreground text-left", className)}
       {...props}
     />
   )

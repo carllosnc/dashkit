@@ -52,16 +52,6 @@
   --color-ds-800:   var(--color-ds-800);
   --color-ds-900:   var(--color-ds-900);
   --color-ds-950:   var(--color-ds-950);
-
-  /* Typography */
-  --color-text-title: var(--color-text-title);
-  --color-text-body: var(--color-text-body);
-  --color-text-description: var(--color-text-description);
-
-  --font-weight-bold: var(--font-weight-bold);
-  --font-weight-semibold: var(--font-weight-semibold);
-  --font-weight-medium: var(--font-weight-medium);
-  --font-weight-normal: var(--font-weight-normal);
 }
 
 :root {
@@ -124,17 +114,6 @@
 
   --radius:             0.5rem;
 
-  /* ────────────────────────────────────────────────
-     3. Typography Tokens
-  ──────────────────────────────────────────────── */
-  --color-text-title:       var(--color-ds-950);
-  --color-text-body:        var(--color-ds-700);
-  --color-text-description: var(--color-ds-500);
-
-  --font-weight-bold:       700;
-  --font-weight-semibold:   600;
-  --font-weight-medium:     500;
-  --font-weight-normal:     400;
 }
 
 /* ────────────────────────────────────────────────
@@ -176,11 +155,6 @@
   --color-border:               var(--color-ds-800);
   --color-input:                var(--color-ds-800);
   --color-ring:                 var(--color-ds-800);
-
-  /* Typography */
-  --color-text-title:       var(--color-ds-50);
-  --color-text-body:        var(--color-ds-300);
-  --color-text-description: var(--color-ds-500);
 }
 
 /* Animations */

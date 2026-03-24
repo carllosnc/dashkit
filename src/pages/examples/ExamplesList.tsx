@@ -54,7 +54,7 @@ export const ExamplesList = () => {
             >
               <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-4">
-                  <h3 className="text-xl font-bold text-foreground group-hover:text-blue-500 dark:group-hover:text-sky-400 transition-colors">
+                  <h3 className="text-xl font-bold text-foreground transition-colors hover:underline">
                     {example.title}
                   </h3>
                 </div>
@@ -63,7 +63,7 @@ export const ExamplesList = () => {
                 </p>
               </div>
               <div className="flex items-center gap-4 mt-4 md:mt-0">
-                <FiArrowRight className="size-6 text-ds-300 dark:text-ds-700 group-hover:text-blue-500 dark:group-hover:text-sky-400 transition-all duration-300" />
+                <FiArrowRight className="size-6 text-ds-300 dark:text-ds-700 transition-all duration-300" />
               </div>
             </Link>
           ))}
