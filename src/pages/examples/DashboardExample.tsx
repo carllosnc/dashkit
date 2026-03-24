@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { cn } from '../../utils/cn';
 import {
   FiGrid, FiUsers, FiSettings, FiSearch, FiBell,
   FiMoreVertical, FiExternalLink,
@@ -10,10 +11,23 @@ import { IconButton } from '../../components/IconButton/IconButton';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/Card/Card';
 import { Badge, FloatBadge } from '../../components/Badge/Badge';
 import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbSeparator } from '../../components/Breadcrumb/Breadcrumb';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '../../components/Tabs/Tabs';
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+  TableCaption
+} from '../../components/Table/Table';
+import { Avatar, AvatarGroup } from '../../components/Avatar/Avatar';
 import { Select } from '../../components/Select/Select';
 import { Input } from '../../components/Input/Input';
 import { Skeleton } from '../../components/Skeleton/Skeleton';
 import { AreaChart } from '../../components/AreaChart/AreaChart';
+import { BarChart } from '../../components/BarChart/BarChart';
+import { PieChart } from '../../components/PieChart/PieChart';
 import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem } from '../../components/Dropdown/Dropdown';
 import { Chip } from '../../components/Chip/Chip';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../../components/Accordion/Accordion';
@@ -24,6 +38,71 @@ import { toast } from '../../components/Toast/useToast';
 import { ThemeToggle } from '../../partials/ThemeToggle';
 import { Footer } from '../../partials/Footer';
 import { Divider } from '../../components/Divider/Divider';
+
+const PERFORMANCE_DATA = [
+  { label: 'Mon', mobile: 45, desktop: 30 },
+  { label: 'Tue', mobile: 52, desktop: 38 },
+  { label: 'Wed', mobile: 48, desktop: 45 },
+  { label: 'Thu', mobile: 61, desktop: 42 },
+  { label: 'Fri', mobile: 55, desktop: 50 },
+  { label: 'Sat', mobile: 67, desktop: 20 },
+  { label: 'Sun', mobile: 70, desktop: 15 },
+];
+
+const PERFORMANCE_SERIES = [
+  { key: 'mobile', label: 'Mobile Hub', color: 'var(--color-indigo-500)' },
+  { key: 'desktop', label: 'Desktop App', color: 'var(--color-emerald-500)' }
+];
+
+const LATEST_UPDATES = [
+  { title: "Project Milestones reached", date: "2 hours ago", author: "Sarah M.", category: "Engineering" },
+  { title: "New design system guidelines", date: "5 hours ago", author: "John D.", category: "Design" },
+  { title: "Infrastructure migration complete", date: "1 day ago", author: "DevOps", category: "Ops" }
+];
+
+const SYSTEM_LOGS = [
+  { time: '2024-03-12 14:23:01', event: 'Database Backup Completed', source: 'SQL-Primary', status: 'Success' },
+  { time: '2024-03-12 14:20:45', event: 'Node Auto-scaled', source: 'AWS-East-1', status: 'Info' },
+  { time: '2024-03-12 14:18:12', event: 'Failed Login Attempt', source: 'Auth-API', status: 'Warning' },
+  { time: '2024-03-12 14:15:33', event: 'CDN Cache Purged', source: 'Cloudflare', status: 'Success' },
+  { time: '2024-03-12 14:12:09', event: 'SSL Certificate Renewed', source: 'Let\'s Encrypt', status: 'Success' },
+];
+
+const BAR_CHART_DATA = [
+  { label: 'Jan', revenue: 4500, profit: 3200 },
+  { label: 'Feb', revenue: 5200, profit: 3800 },
+  { label: 'Mar', revenue: 4800, profit: 3400 },
+  { label: 'Apr', revenue: 6100, profit: 4200 },
+  { label: 'May', revenue: 5500, profit: 4000 },
+  { label: 'Jun', revenue: 6700, profit: 4800 },
+  { label: 'Jul', revenue: 7000, profit: 5100 },
+  { label: 'Aug', revenue: 7200, profit: 5300 },
+];
+
+const BAR_CHART_SERIES = [
+  { key: 'revenue', label: 'Revenue', color: 'var(--color-blue-500)' },
+  { key: 'profit', label: 'Profit', color: 'var(--color-indigo-500)' },
+];
+
+const PIE_CHART_DATA = [
+  { label: 'Direct', value: 4500, color: 'var(--color-blue-500)' },
+  { label: 'Organic', value: 3800, color: 'var(--color-indigo-500)' },
+  { label: 'Referral', value: 2400, color: 'var(--color-purple-500)' },
+  { label: 'Social', value: 1200, color: 'var(--color-emerald-500)' },
+];
+
+const TEAM_AVATARS = [
+  "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=80&h=80&fit=crop",
+  "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop",
+  "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=80&h=80&fit=crop",
+  "https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=80&h=80&fit=crop",
+  "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop",
+  "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop",
+  "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&h=80&fit=crop",
+  "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&h=80&fit=crop",
+  "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&h=80&fit=crop",
+  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop",
+];
 
 export function DashboardExample() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -61,6 +140,7 @@ export function DashboardExample() {
           </FloatBadge>
           <ThemeToggle />
           <Button onClick={() => setIsModalOpen(true)}>New Project</Button>
+          <Avatar src={TEAM_AVATARS[0]} size="sm" bordered className="cursor-pointer" />
         </NavbarActions>
       </Navbar>
 
@@ -171,19 +251,8 @@ export function DashboardExample() {
                 </CardHeader>
                 <CardContent className="flex flex-col gap-6 flex-1 min-h-[320px]">
                   <AreaChart 
-                    data={[
-                      { label: 'Mon', mobile: 45, desktop: 30 },
-                      { label: 'Tue', mobile: 52, desktop: 38 },
-                      { label: 'Wed', mobile: 48, desktop: 45 },
-                      { label: 'Thu', mobile: 61, desktop: 42 },
-                      { label: 'Fri', mobile: 55, desktop: 50 },
-                      { label: 'Sat', mobile: 67, desktop: 20 },
-                      { label: 'Sun', mobile: 70, desktop: 15 },
-                    ]} 
-                    series={[
-                      { key: 'mobile', label: 'Mobile Hub', color: 'var(--color-indigo-500)' },
-                      { key: 'desktop', label: 'Desktop App', color: 'var(--color-emerald-500)' }
-                    ]}
+                    data={PERFORMANCE_DATA} 
+                    series={PERFORMANCE_SERIES}
                   />
                 </CardContent>
               </Card>
@@ -195,16 +264,11 @@ export function DashboardExample() {
                   <CardTitle>Team Status</CardTitle>
                 </CardHeader>
                 <CardContent className="flex flex-col gap-4">
-                  <div className="flex -space-x-2">
-                    {[1,2,3,4].map(i => (
-                      <div key={i} className="size-10 rounded-full border-4 border-white dark:border-neutral-950 bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center overflow-hidden">
-                        <FiUsers className="size-4" />
-                      </div>
+                  <AvatarGroup max={4} size="md" spacing="md">
+                    {TEAM_AVATARS.map((url, i) => (
+                      <Avatar key={i} src={url} alt={`Member ${i + 1}`} />
                     ))}
-                    <div className="size-10 rounded-full border-4 border-white dark:border-neutral-950 bg-neutral-900 text-white text-[10px] font-bold flex items-center justify-center">
-                      +12
-                    </div>
-                  </div>
+                  </AvatarGroup>
                   <p className="text-sm text-neutral-500">Your team has completed 24 tasks today.</p>
                   <div className="flex gap-2">
                     <Chip label="Mobile App" onDelete={() => {}} />
@@ -226,6 +290,149 @@ export function DashboardExample() {
           </div>
         </section>
 
+        {/* Financial Section */}
+        <section className="flex flex-col gap-6">
+          <h2 className="text-sm font-bold uppercase tracking-widest text-neutral-400 flex items-center gap-2">
+             <FiTrendingUp /> Financial Performance
+          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card shadowed className="h-full">
+              <CardHeader>
+                <div className="flex items-start justify-between w-full">
+                  <div className="flex flex-col gap-1">
+                    <CardTitle>Revenue & Profit Trends</CardTitle>
+                    <CardDescription>Comparison of monthly gross revenue vs net profit margins.</CardDescription>
+                  </div>
+                  <div className="flex items-center gap-2">
+                     <Badge content="Live Data" color="base" />
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="flex flex-col justify-end pt-12 pb-4">
+                <BarChart 
+                  data={BAR_CHART_DATA}
+                  series={BAR_CHART_SERIES}
+                  height={260}
+                  rounded
+                />
+              </CardContent>
+            </Card>
+
+            <Card shadowed className="h-full">
+              <CardHeader>
+                <div className="flex flex-col gap-1">
+                  <CardTitle>Acquisition Channels</CardTitle>
+                  <CardDescription>Distribution of traffic and conversion across primary sources.</CardDescription>
+                </div>
+              </CardHeader>
+              <CardContent className="flex flex-col items-center justify-center py-6">
+                <PieChart 
+                  data={PIE_CHART_DATA}
+                  innerRadius={0.6}
+                  className="max-w-[280px]"
+                />
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* Resources & Activity Section */}
+        <section className="flex flex-col gap-6">
+          <h2 className="text-sm font-bold uppercase tracking-widest text-neutral-400 flex items-center gap-2">
+             <FiGrid /> Resources & Logs
+          </h2>
+          <div className="w-full">
+            <Tabs defaultValue="blog">
+              <TabsList>
+                <TabsTrigger value="blog">Latest Updates</TabsTrigger>
+                <TabsTrigger value="logs">System Logs</TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="blog">
+                <div className="pt-2">
+                  <Table framed={false} className="table-fixed">
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Category</TableHead>
+                        <TableHead>Activity</TableHead>
+                        <TableHead>Author</TableHead>
+                        <TableHead>Timeline</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {LATEST_UPDATES.map((post, i) => (
+                        <TableRow key={i}>
+                          <TableCell>
+                            <div className="w-fit">
+                              <Badge
+                                content={post.category}
+                                className={cn(
+                                  "border-none uppercase whitespace-nowrap px-2 pt-[5px] pb-[3px]",
+                                  post.category === 'Engineering' && "bg-blue-500/10 text-blue-600",
+                                  post.category === 'Design' && "bg-amber-500/10 text-amber-600",
+                                  post.category === 'Ops' && "bg-purple-500/10 text-purple-600",
+                                )}
+                              />
+                            </div>
+                          </TableCell>
+                          <TableCell className="font-medium">{post.title}</TableCell>
+                          <TableCell className="font-medium">
+                            <div className="flex items-center gap-2">
+                              <Avatar src={TEAM_AVATARS[i + 1]} alt={post.author} size="sm" />
+                              <span>{post.author}</span>
+                            </div>
+                          </TableCell>
+                          <TableCell className="font-medium">
+                            {post.date}
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="logs">
+                <div className="pt-2">
+                  <Table framed={false} className="table-fixed">
+                    <TableCaption>Real-time system event logs across all clusters.</TableCaption>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Timestamp</TableHead>
+                        <TableHead>Event</TableHead>
+                        <TableHead>Source</TableHead>
+                        <TableHead>Status</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {SYSTEM_LOGS.map((log, i) => (
+                        <TableRow key={i}>
+                          <TableCell className="font-medium">{log.time}</TableCell>
+                          <TableCell className="font-medium">{log.event}</TableCell>
+                          <TableCell className="font-medium">{log.source}</TableCell>
+                          <TableCell className="font-medium">
+                            <div className="flex">
+                              <Badge
+                                content={log.status}
+                                className={cn(
+                                  "border-none uppercase w-fit",
+                                  log.status === 'Success' && "bg-emerald-500/10 text-emerald-600",
+                                  log.status === 'Warning' && "bg-rose-500/10 text-rose-600",
+                                  log.status === 'Info' && "bg-blue-500/10 text-blue-600",
+                                )}
+                              />
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
+              </TabsContent>
+            </Tabs>
+          </div>
+        </section>
+
         {/* Projects Section */}
         <section className="flex flex-col gap-6">
           <h2 className="text-sm font-bold uppercase tracking-widest text-neutral-400 flex items-center gap-2">
@@ -244,9 +451,17 @@ export function DashboardExample() {
                 <AccordionContent>
                    <div className="py-2 text-sm text-neutral-500 flex flex-col gap-4">
                      <p>Implement core UI elements and accessibility foundations. Focus on design tokens and basic interactions.</p>
-                     <div className="flex items-center gap-4">
-                       <Badge content="On Track" color="base" />
-                       <span className="text-xs text-neutral-400">Due Dec 12, 2026</span>
+                     <div className="flex items-center justify-between">
+                       <div className="flex items-center gap-4">
+                         <Badge content="On Track" color="base" />
+                         <span className="text-xs text-neutral-400">Due Dec 12, 2026</span>
+                       </div>
+                       <AvatarGroup max={3} size="md" spacing="sm">
+                         <Avatar src={TEAM_AVATARS[1]} alt="Sarah M." />
+                         <Avatar src={TEAM_AVATARS[2]} alt="John D." />
+                         <Avatar src={TEAM_AVATARS[3]} alt="Alex K." />
+                         <Avatar alt="More" />
+                       </AvatarGroup>
                      </div>
                    </div>
                 </AccordionContent>
