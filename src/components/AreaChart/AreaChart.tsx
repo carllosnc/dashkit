@@ -101,7 +101,7 @@ export const AreaChart = ({
   return (
     <div 
       className={cn("w-full flex-1 flex flex-col relative", className)} 
-      style={{ height }}
+      style={{ height: typeof height === 'number' ? `${height}px` : height }}
     >
       <svg
         ref={chartRef}
