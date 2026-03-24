@@ -1,0 +1,182 @@
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableRow,
+  TableHead,
+  TableCell,
+  TableCaption
+} from '../components/Table/Table';
+import { Badge } from '../components/Badge/Badge';
+
+# Table
+
+A simple, responsive table component for displaying structured data.
+
+## Basic usage
+
+Built with a composition pattern for ultimate flexibility. By default, it uses a card style with a clean border and subtle shadow.
+
+<div className="not-prose">
+<Table>
+  <TableCaption>Inventory list exported today.</TableCaption>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Invoice</TableHead>
+      <TableHead>Status</TableHead>
+      <TableHead>Method</TableHead>
+      <TableHead className="text-right">Amount</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell className="font-medium">INV001</TableCell>
+      <TableCell>Paid</TableCell>
+      <TableCell>Credit Card</TableCell>
+      <TableCell className="text-right">$250.00</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">INV002</TableCell>
+      <TableCell>Pending</TableCell>
+      <TableCell>PayPal</TableCell>
+      <TableCell className="text-right">$150.00</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">INV003</TableCell>
+      <TableCell>Unpaid</TableCell>
+      <TableCell>Bank Transfer</TableCell>
+      <TableCell className="text-right">$350.00</TableCell>
+    </TableRow>
+  </TableBody>
+  <TableFooter>
+    <TableRow>
+      <TableCell><b>Total:</b> $750.00</TableCell>
+    </TableRow>
+  </TableFooter>
+</Table>
+</div>
+
+## Actions Support
+
+Tables often need a way to perform operations on specific rows. You can easily integrate a `Dropdown` for clean, consolidated actions.
+
+<div className="not-prose">
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Customer</TableHead>
+      <TableHead>Email</TableHead>
+      <TableHead className="text-right">Actions</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    {[
+      { name: 'John Cooper', email: 'john@example.com' },
+      { name: 'Sarah Miller', email: 'sarah@example.com' },
+    ].map((user) => (
+      <TableRow key={user.email}>
+        <TableCell className="font-medium">{user.name}</TableCell>
+        <TableCell>{user.email}</TableCell>
+        <TableCell className="text-right">
+          <Dropdown>
+            <DropdownTrigger>
+              <IconButton icon={<FiMoreVertical />} variant="ghost" size="sm" />
+            </DropdownTrigger>
+            <DropdownContent align="end">
+              <DropdownLabel>Actions</DropdownLabel>
+              <DropdownItem>View details</DropdownItem>
+              <DropdownItem>Edit customer</DropdownItem>
+              <DropdownSeparator />
+              <DropdownItem className="text-rose-500 hover:bg-rose-50">Delete customer</DropdownItem>
+            </DropdownContent>
+          </Dropdown>
+        </TableCell>
+      </TableRow>
+    ))}
+  </TableBody>
+</Table>
+</div>
+
+```tsx
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Product</TableHead>
+      <TableHead>Category</TableHead>
+      <TableHead className="text-right">Price</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>Wireless Headphones</TableCell>
+      <TableCell>Electronics</TableCell>
+      <TableCell className="text-right">$199.99</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>Smart Watch</TableCell>
+      <TableCell>Accessories</TableCell>
+      <TableCell className="text-right">$249.00</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+```
+
+## API Reference
+
+### Table
+
+<PropertyDoc
+  properties={[
+    {
+      "prop": "framed",
+      "type": "boolean",
+      "defaultValue": "true",
+      "description": "Whether to wrap the table in a card-like container with padding and shadows."
+    },
+    {
+      "prop": "className",
+      "type": "string",
+      "defaultValue": "—",
+      "description": "Additional CSS classes for the outer container."
+    },
+    {
+      "prop": "children",
+      "type": "ReactNode",
+      "defaultValue": "—",
+      "description": "The table content (Header, Body, etc)."
+    }
+  ]}
+/>
+
+### TableHead
+
+<PropertyDoc
+  properties={[
+    {
+      "prop": "className",
+      "type": "string",
+      "defaultValue": "—",
+      "description": "Custom styles for the header cell."
+    }
+  ]}
+/>
+
+### TableCell
+
+<PropertyDoc
+  properties={[
+    {
+      "prop": "className",
+      "type": "string",
+      "defaultValue": "—",
+      "description": "Custom styles for the body cell."
+    },
+    {
+      "prop": "colSpan",
+      "type": "number",
+      "defaultValue": "—",
+      "description": "The number of columns the cell should span."
+    }
+  ]}
+/>
