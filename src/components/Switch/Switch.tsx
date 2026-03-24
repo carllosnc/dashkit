@@ -47,12 +47,12 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
             className="flex flex-col cursor-pointer select-none"
           >
             {label && (
-              <span className="text-[15px] font-semibold text-neutral-800 dark:text-neutral-200 tracking-tight leading-6">
+              <span className="text-sm font-medium text-neutral-800 dark:text-neutral-200 tracking-tight leading-6">
                 {label}
               </span>
             )}
             {description && (
-              <span className="text-[12px] text-muted-foreground tracking-tight">
+              <span className="text-sm text-muted-foreground tracking-tight">
                 {description}
               </span>
             )}

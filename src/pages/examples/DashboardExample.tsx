@@ -24,7 +24,6 @@ import {
 import { Avatar, AvatarGroup } from '../../components/Avatar/Avatar';
 import { Select } from '../../components/Select/Select';
 import { Input } from '../../components/Input/Input';
-import { Skeleton } from '../../components/Skeleton/Skeleton';
 import { AreaChart } from '../../components/AreaChart/AreaChart';
 import { BarChart } from '../../components/BarChart/BarChart';
 import { PieChart } from '../../components/PieChart/PieChart';
@@ -176,50 +175,43 @@ export function DashboardExample() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <Card shadowed>
-            <CardContent>
-              <div className="flex items-center justify-between mb-2">
-                 <span className="text-sm font-medium text-muted-foreground">Total Revenue</span>
-                 <Badge content="+12.5%" color="base" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <Card shadowed className="border-none">
+            <CardContent className="flex flex-col gap-1">
+              <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider">Total Revenue</p>
+              <div className="flex items-baseline justify-between">
+                <h3 className="text-2xl font-bold tracking-tight text-foreground">$45,231.89</h3>
+                <span className="text-[11px] font-bold text-success bg-success/10 px-2 py-0.5 rounded-full">+12.5%</span>
               </div>
-              <div className="text-2xl font-bold mb-1">$45,231.89</div>
-              <div className="text-[11px] text-neutral-400 uppercase tracking-wider font-bold">vs last month</div>
+              <p className="text-sm text-neutral-400 mt-1">vs last month</p>
             </CardContent>
           </Card>
 
-          <Card shadowed>
-            <CardContent>
-              <div className="flex items-center justify-between mb-2">
-                 <span className="text-sm font-medium text-muted-foreground">Active Tasks</span>
-                 <Badge content="82%" color="base" />
+          <Card shadowed className="border-none">
+            <CardContent className="flex flex-col gap-1">
+              <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider">Active Tasks</p>
+              <div className="flex items-baseline justify-between">
+                <h3 className="text-2xl font-bold tracking-tight text-foreground">1,240</h3>
+                <span className="text-[11px] font-bold text-neutral-500 bg-neutral-100 dark:bg-neutral-800 px-2 py-0.5 rounded-full">82%</span>
               </div>
-              <div className="text-2xl font-bold mb-1">1,240</div>
-              <Skeleton className="h-1.5 w-full mt-2" />
-            </CardContent>
-          </Card>
-
-          <Card shadowed>
-            <CardContent>
-              <div className="flex items-center justify-between mb-2">
-                 <span className="text-sm font-semibold text-neutral-700 dark:text-neutral-200">Efficiency Rate</span>
-                 <Badge content="94%" color="base" />
-              </div>
-              <div className="text-2xl font-bold mb-1">94.2%</div>
-              <div className="flex gap-1.5 mt-2">
-                 {[1,2,3,4,5].map(i => <div key={i} className="flex-1 h-2 rounded-sm bg-neutral-300 dark:bg-neutral-700" />)}
-                 <div className="flex-1 h-2 rounded-sm bg-neutral-900 dark:bg-neutral-200" />
+              <div className="h-1 w-full bg-neutral-100 dark:bg-neutral-800 rounded-full mt-3 overflow-hidden">
+                <div className="h-full bg-primary w-[82%]" />
               </div>
             </CardContent>
           </Card>
 
-          <Card shadowed>
-            <CardContent className="text-center flex flex-col items-center justify-center min-h-[100px]">
-              <div className="size-10 rounded-full bg-neutral-900 dark:bg-white flex items-center justify-center mb-2">
-                <FiZap className="text-white dark:text-neutral-950" />
+          <Card shadowed className="border-none">
+            <CardContent className="flex flex-col gap-1">
+              <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider">Efficiency Rate</p>
+              <div className="flex items-baseline justify-between">
+                <h3 className="text-2xl font-bold tracking-tight text-foreground">94.2%</h3>
+                <span className="text-[11px] font-bold text-info bg-info/10 px-2 py-0.5 rounded-full">94%</span>
               </div>
-              <div className="text-sm font-bold text-foreground">Active Sprints</div>
-              <div className="text-[11px] text-neutral-400">3 ongoing now</div>
+              <div className="flex gap-1 mt-3">
+                 {[1,2,3,4,5,6].map(i => (
+                   <div key={i} className={cn("h-1 flex-1 rounded-full", i <= 5 ? "bg-foreground" : "bg-neutral-100 dark:bg-neutral-800")} />
+                 ))}
+              </div>
             </CardContent>
           </Card>
         </div>

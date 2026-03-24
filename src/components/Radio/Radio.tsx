@@ -34,7 +34,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
               className={cn(
                 "w-6 h-6 border-2 transition-all duration-200 flex items-center justify-center shrink-0 bg-background border-input peer-checked:border-primary peer-checked:bg-primary-foreground peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-transparent group-hover:border-primary/50 peer-disabled:opacity-50 peer-disabled:cursor-not-allowed rounded-full",
                 className
-              )} 
+              )}
             />
             {/* Inner Dot Fill */}
             <div className={cn(
@@ -44,17 +44,17 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
           </label>
         </div>
         {(label || description) && (
-          <label 
+          <label
             htmlFor={radioId}
             className="flex flex-col cursor-pointer select-none"
           >
             {label && (
-              <span className="text-[15px] font-semibold text-neutral-800 dark:text-neutral-200 tracking-tight leading-5">
+              <span className="text-sm font-medium text-neutral-800 dark:text-neutral-200 tracking-tight leading-5">
                 {label}
               </span>
             )}
             {description && (
-              <span className="text-[12px] text-muted-foreground tracking-tight mt-0.5">
+              <span className="text-sm text-muted-foreground tracking-tight mt-0.5">
                 {description}
               </span>
             )}
