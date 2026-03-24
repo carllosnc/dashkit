@@ -20,7 +20,7 @@ import { DatePicker } from '../../components/DatePicker/DatePicker';
 import { Spinner } from '../../components/Spinner/Spinner';
 import { Skeleton } from '../../components/Skeleton/Skeleton';
 import { Modal } from '../../components/Modal/Modal';
-import { Drawer } from '../../components/Drawer/Drawer';
+import { Drawer, DrawerHeader, DrawerContent, DrawerFooter } from '../../components/Drawer/Drawer';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../../components/Tabs/Tabs';
 import { OtpInput } from '../../components/OtpInput/OtpInput';
 import { AreaChart } from '../../components/AreaChart/AreaChart';
@@ -125,6 +125,13 @@ export const AllComponentsExample = () => {
       <Header />
 
       <main className="flex-1 flex flex-col gap-[50px] max-w-3xl w-full mx-auto px-6 py-20">
+        <header className="flex flex-col gap-2 mb-4">
+          <h1 className="text-4xl font-medium tracking-tighter">Kitchen Sink</h1>
+          <p className="text-lg text-muted-foreground">
+            Explore the complete Dashkit component library and design system in one place.
+          </p>
+        </header>
+
         <Card>
           <CardHeader>
             <CardTitle>Buttons</CardTitle>
@@ -602,14 +609,22 @@ export const AllComponentsExample = () => {
               isOpen={isDrawerOpen}
               onClose={() => setIsDrawerOpen(false)}
               position={drawerPosition}
-              title={`Drawer ${drawerPosition.toUpperCase()}`}
-              description="A clean side panel for secondary content."
             >
-              <div className="flex flex-col gap-4 py-4">
-                <div className="h-[200px] border-2 border-dashed border-border rounded-xl flex items-center justify-center text-muted-foreground text-xs uppercase tracking-widest">
-                  Content Area
+              <DrawerHeader>
+                <h2 className="text-lg font-bold uppercase tracking-tight">Drawer {drawerPosition.toUpperCase()}</h2>
+                <p className="text-sm text-muted-foreground">A clean side panel for secondary content.</p>
+              </DrawerHeader>
+              <DrawerContent>
+                <div className="flex flex-col gap-4 py-8">
+                  <div className="h-[500px] border-2 border-dashed border-border rounded-xl flex items-center justify-center text-muted-foreground text-xs uppercase tracking-widest">
+                    Content Area
+                  </div>
                 </div>
-              </div>
+              </DrawerContent>
+              <DrawerFooter>
+                <Button variant="outlined" onClick={() => setIsDrawerOpen(false)}>Cancel</Button>
+                <Button onClick={() => setIsDrawerOpen(false)}>Action</Button>
+              </DrawerFooter>
             </Drawer>
           </CardContent>
         </Card>
@@ -814,14 +829,6 @@ export const AllComponentsExample = () => {
             <CardDescription>Comparing discrete categories with grouped vertical bars.</CardDescription>
           </CardHeader>
           <CardContent>
-             <div className="mb-6 flex flex-wrap gap-6 justify-center">
-              {barChartSeries.map(s => (
-                <div key={s.key} className="flex items-center gap-2">
-                  <div className="size-3 rounded-full" style={{ backgroundColor: s.color }} />
-                  <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{s.label}</span>
-                </div>
-              ))}
-            </div>
             <div className="w-full">
               <BarChart 
                 data={barChartData} 
@@ -840,16 +847,14 @@ export const AllComponentsExample = () => {
           <CardContent className="flex flex-col gap-12">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <div className="flex flex-col items-center gap-6">
-                 <h4 className="text-sm font-medium text-muted-foreground">Standard Pie</h4>
-                 <PieChart 
-                  data={pieChartData} 
+                 <PieChart
+                  data={pieChartData}
                   animate
                 />
               </div>
               <div className="flex flex-col items-center gap-6">
-                 <h4 className="text-sm font-medium text-muted-foreground">Donut Variant</h4>
-                 <PieChart 
-                  data={pieChartData} 
+                 <PieChart
+                  data={pieChartData}
                   innerRadius={0.6}
                   animate
                 />

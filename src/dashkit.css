@@ -69,7 +69,7 @@
   --color-ds-700:   var(--color-neutral-700);
   --color-ds-800:   var(--color-neutral-800);
   --color-ds-900:   var(--color-neutral-900);
-  --color-ds-950:   var(--color-neutral-950);
+  --color-ds-950:   #121212;
 
   /* ────────────────────────────────────────────────
      2. Semantic Theme Mapping
@@ -103,17 +103,16 @@
   --color-ring:         var(--color-ds-200);
 
   /* Status Colors (Optimized for Neutral aesthetic) */
-  --color-success:             oklch(0.62 0.08 145);
+  --color-success:             #00ae56;
   --color-success-foreground:  var(--color-ds-50);
-  --color-warning:             oklch(0.78 0.08 85);
-  --color-warning-foreground:  var(--color-ds-950);
-  --color-danger:              oklch(0.58 0.12 28);
+  --color-warning:             #e58700;
+  --color-warning-foreground:  var(--color-ds-50);
+  --color-danger:              #cc0000;
   --color-danger-foreground:   var(--color-ds-50);
-  --color-info:                oklch(0.65 0.08 245);
+  --color-info:                #0077b6;
   --color-info-foreground:     var(--color-ds-50);
 
   --radius:             0.5rem;
-
 }
 
 /* ────────────────────────────────────────────────
@@ -142,13 +141,13 @@
   --color-accent-foreground:    var(--color-ds-50);
 
   /* Status Colors (Optimized for Neutral aesthetic) */
-  --color-success:             oklch(0.65 0.08 145);
+  --color-success:             #49ff6c;
   --color-success-foreground:  var(--color-ds-950);
-  --color-warning:             oklch(0.82 0.08 85);
+  --color-warning:             #e58700;
   --color-warning-foreground:  var(--color-ds-950);
-  --color-danger:              oklch(0.62 0.12 28);
-  --color-danger-foreground:   var(--color-ds-50);
-  --color-info:                oklch(0.72 0.08 245);
+  --color-danger:              #ff7171;
+  --color-danger-foreground:   var(--color-ds-950);
+  --color-info:                #00ccff;
   --color-info-foreground:     var(--color-ds-950);
 
   /* Borders & Controls */

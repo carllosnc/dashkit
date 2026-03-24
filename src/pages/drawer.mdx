@@ -1,11 +1,16 @@
 # Drawer
 
-A premium panel component that slides in from the edges of the screen, providing a temporary surface for navigation, settings, or details.
+A premium panel component that slides in from the edges of the screen, providing a temporary surface for navigation, settings, or details. It uses a compositional pattern to give you full control over the header, content, and footer sections.
 
 ## Import
 
 ```tsx
-import { Drawer } from '@/components/Drawer/Drawer'
+import { 
+  Drawer, 
+  DrawerHeader, 
+  DrawerContent, 
+  DrawerFooter 
+} from '@/components/Drawer/Drawer'
 ```
 
 ## Installation
@@ -18,7 +23,7 @@ bunx carllosnc/dashkit add drawer
 
 ## Basic Usage
 
-The Drawer is controlled via the `isOpen` prop and requires an `onClose` callback.
+The Drawer is controlled via the `isOpen` prop and requires an `onClose` callback. You can compose your drawer using the provided sub-components.
 
 <Preview>
   <DrawerDemo />
@@ -26,23 +31,39 @@ The Drawer is controlled via the `isOpen` prop and requires an `onClose` callbac
 
 ```tsx
 import { useState } from 'react'
-import { Drawer } from '@/components/Drawer/Drawer'
+import { 
+  Drawer, 
+  DrawerHeader, 
+  DrawerContent, 
+  DrawerFooter,
+  Button 
+} from '@/components/dashkit'
 
 export default function MyPage() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
     <>
-      <button onClick={() => setIsOpen(true)}>Open Drawer</button>
+      <Button onClick={() => setIsOpen(true)}>Open Drawer</Button>
       
       <Drawer
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         position="right"
-        title="Settings"
-        description="Manage your account preferences."
       >
-        <p>Drawer content goes here...</p>
+        <DrawerHeader>
+          <h2 className="text-lg font-bold uppercase tracking-tight">Settings</h2>
+          <p className="text-sm text-muted-foreground">Manage your account preferences.</p>
+        </DrawerHeader>
+        
+        <DrawerContent>
+          <p>This is the main scrollable area of the drawer.</p>
+        </DrawerContent>
+
+        <DrawerFooter>
+          <Button variant="outlined" onClick={() => setIsOpen(false)}>Cancel</Button>
+          <Button onClick={() => setIsOpen(false)}>Save Changes</Button>
+        </DrawerFooter>
       </Drawer>
     </>
   )
@@ -63,14 +84,13 @@ The component supports all four screen edges, with smooth spring animations tail
 - **Spring Physics**: Natural, bouncy transitions using Framer Motion.
 - **Backdrop Blur**: Softly blurs content behind the drawer for focus.
 - **Gesture Support**: Swipe the drawer towards its edge to close it instantly.
-- **Visual Handles**: Integrated drag indicators based on screen position.
 - **Body Lock**: Automatically prevents background scrolling when open.
+- **Compositional**: Use `DrawerHeader`, `DrawerContent`, and `DrawerFooter` for modular layouts.
 - **Responsive**: Adapts its width or height based on the `size` prop or position.
 
 ## Props
 
-The `Drawer` component accepts the following props:
-
+### Drawer
 
 <PropertyDoc
   properties={[
@@ -93,18 +113,6 @@ The `Drawer` component accepts the following props:
     "description": "The edge from which the drawer slides."
   },
   {
-    "prop": "title",
-    "type": "string",
-    "defaultValue": "—",
-    "description": "Optional header title."
-  },
-  {
-    "prop": "description",
-    "type": "string",
-    "defaultValue": "—",
-    "description": "Optional subtitle below the title."
-  },
-  {
     "prop": "size",
     "type": "string",
     "defaultValue": "—",
@@ -114,7 +122,7 @@ The `Drawer` component accepts the following props:
     "prop": "children",
     "type": "ReactNode",
     "defaultValue": "—",
-    "description": "Content to display inside the drawer body."
+    "description": "Compositional components (Header, Content, Footer)."
   },
   {
     "prop": "className",
@@ -125,5 +133,10 @@ The `Drawer` component accepts the following props:
 ]}
 />
 
+### Sub-components
 
+The sub-components `DrawerHeader`, `DrawerContent`, and `DrawerFooter` all accept `children` and an optional `className`.
 
+- `DrawerHeader`: Standard padding and vertical layout for titles/descriptions.
+- `DrawerContent`: Auto-scrolling container with custom scrollbars.
+- `DrawerFooter`: Bottom-aligned flex container for action buttons.

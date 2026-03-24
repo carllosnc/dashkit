@@ -76,7 +76,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         {(error || helperText) && (
           <span className={cn(
             "text-[12px] ml-1 tracking-tight",
-            error ? "text-red-500" : "text-ds-600"
+            error ? "text-red-500 dark:text-red-300" : "text-ds-600"
           )}>
             {error || helperText}
           </span>

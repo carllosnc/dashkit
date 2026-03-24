@@ -15,12 +15,28 @@ export interface DrawerProps {
   isOpen: boolean;
   onClose: () => void;
   position?: DrawerPosition;
-  title?: string;
-  description?: string;
   children: ReactNode;
   size?: string;
   className?: string;
 }
+
+export const DrawerHeader = ({ children, className }: { children: ReactNode; className?: string }) => (
+  <div className={cn("p-6 pb-4 flex flex-col gap-1", className)}>
+    {children}
+  </div>
+);
+
+export const DrawerContent = ({ children, className }: { children: ReactNode; className?: string }) => (
+  <div className={cn("flex-1 overflow-y-auto px-6 py-2 custom-scrollbar", className)}>
+    {children}
+  </div>
+);
+
+export const DrawerFooter = ({ children, className }: { children: ReactNode; className?: string }) => (
+  <div className={cn("p-6 pt-4 flex items-center justify-end gap-3", className)}>
+    {children}
+  </div>
+);
 
 const positionVariants: Record<DrawerPosition, Variants> = {
   right: {
@@ -58,8 +74,6 @@ export const Drawer = ({
   isOpen,
   onClose,
   position = 'right',
-  title,
-  description,
   children,
   size,
   className,
@@ -100,7 +114,7 @@ export const Drawer = ({
             className="absolute inset-0 bg-ds-950/40 backdrop-blur-sm -z-10"
           />
 
-          {/* Drawer Content */}
+          {/* Drawer Wrapper */}
           <motion.div
             data-testid="drawer-content"
             variants={positionVariants[position]}
@@ -117,12 +131,12 @@ export const Drawer = ({
             dragElastic={0.1}
             onDragEnd={(_, info) => {
               const threshold = 100;
-              const isClosing = 
+              const isClosing =
                 (position === 'right' && info.offset.x > threshold) ||
                 (position === 'left' && info.offset.x < -threshold) ||
                 (position === 'bottom' && info.offset.y > threshold) ||
                 (position === 'top' && info.offset.y < -threshold);
-              
+
               if (isClosing) onClose();
             }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
@@ -140,42 +154,19 @@ export const Drawer = ({
               className
             )}
           >
-            {/* Header */}
-            <div className="flex items-start justify-between p-6 pb-4">
-              <div className="flex flex-col gap-1">
-                <div className="flex items-center gap-3">
-                  {/* Visual Drag Handle */}
-                  <div className={cn(
-                    "rounded-full bg-ds-200 dark:bg-ds-800 shrink-0",
-                    (position === 'left' || position === 'right') ? "w-1 h-8" : "w-8 h-1"
-                  )} />
-                  {title && (
-                    <h2 className="text-lg font-bold !tracking-normal text-block-fg dark:text-block-dark-fg uppercase">
-                      {title}
-                    </h2>
-                  )}
-                </div>
-                {description && (
-                  <p className="text-sm text-muted-foreground pl-4">
-                    {description}
-                  </p>
-                )}
-              </div>
-              <button
-                onClick={onClose}
-                className="p-2 rounded-md transition-all duration-200 hover:bg-ds-100 dark:hover:bg-ds-800 text-ds-400 hover:text-ds-900 dark:hover:text-white"
-              >
-                <FiX size={20} />
-              </button>
-            </div>
+            {/* Close Button Area */}
+            <button
+              onClick={onClose}
+              className="absolute top-4 right-4 p-2 rounded-md transition-all duration-200 hover:bg-ds-100 dark:hover:bg-ds-800 text-ds-400 hover:text-ds-900 dark:hover:text-white z-[60]"
+              aria-label="Close drawer"
+            >
+              <FiX size={20} />
+            </button>
 
-            {/* Body */}
-            <div className="flex-1 overflow-y-auto px-6 py-2 custom-scrollbar">
-              {children}
-            </div>
+            {children}
 
-            {/* Footer shadow fade */}
-            <div className="h-6 w-full shrink-0 bg-gradient-to-t from-white dark:from-ds-900 to-transparent pointer-events-none" />
+            {/* Content shadow fade */}
+            <div className="absolute bottom-0 h-6 w-full shrink-0 bg-gradient-to-t from-white dark:from-ds-900 to-transparent pointer-events-none z-10" />
           </motion.div>
         </div>
       )}
@@ -183,5 +174,3 @@ export const Drawer = ({
     document.body
   );
 };
-
-

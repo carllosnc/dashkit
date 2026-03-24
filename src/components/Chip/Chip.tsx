@@ -70,7 +70,7 @@ export const Chip = ({
         "inline-flex items-center gap-1.5 h-8 px-3 rounded-md text-[13px] font-medium transition-all duration-200 border select-none",
         colorStyles[color][variant === 'tonal' ? 'tonal' : variant],
         isInteractive ? "cursor-pointer" : "cursor-default",
-        selected && variant === 'outlined' && "border-selection-checked-border dark:border-selection-dark-checked-border ring-2 ring-selection-checked-border dark:ring-selection-dark-checked-border",
+        selected && variant === 'outlined' && "ring-2 ring-current border-transparent",
         disabled && "opacity-50 cursor-not-allowed pointer-events-none",
         className
       )}
