@@ -1,0 +1,124 @@
+import { DatePicker } from '../components/DatePicker/DatePicker'
+
+# DatePicker
+
+A minimal, animated date selection component built with native React and Framer Motion. Ideal for dashboards and forms that require single date selection with a premium look.
+
+## Import
+
+```tsx
+import { DatePicker } from 'dashkit-ui'
+```
+
+## Installation
+
+Add the Date Picker to your project using the Dashkit CLI:
+
+```bash
+bunx carllosnc/dashkit add datepicker
+```
+
+## Basic Usage
+
+The `DatePicker` component provides a clean calendar interface for date selection.
+
+<Preview>
+  <div className="max-w-xs">
+    <DatePicker label="Select Birthday" />
+  </div>
+</Preview>
+
+```tsx
+import { DatePicker } from 'dashkit-ui';
+import { useState } from 'react';
+
+function Example() {
+  const [date, setDate] = useState<Date>();
+
+  return (
+    <div className="max-w-xs">
+      <DatePicker 
+        label="Select Birthday" 
+        value={date} 
+        onChange={setDate} 
+      />
+    </div>
+  );
+}
+```
+
+## Controlled State
+
+Pass a `value` and `onChange` handler to fully control the selection.
+
+<Preview>
+  <div className="max-w-xs">
+    <DatePicker 
+      label="Controlled Picker" 
+      description="The selected date is tracked in parent state"
+      value={new Date()}
+    />
+  </div>
+</Preview>
+
+## Customization
+
+You can provide custom labels, descriptions, and placeholders.
+
+<Preview>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+    <DatePicker label="Shipment Date" placeholder="Choose a date" />
+    <DatePicker label="Delivery Date" description="Estimated delivery windows" />
+  </div>
+</Preview>
+
+## API Reference
+
+### DatePicker
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "value",
+    "type": "Date",
+    "defaultValue": "—",
+    "description": "The currently selected Date object."
+  },
+  {
+    "prop": "onChange",
+    "type": "(date: Date) => void",
+    "defaultValue": "—",
+    "description": "Callback triggered when a new date is selected."
+  },
+  {
+    "prop": "label",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Label text displayed above the input."
+  },
+  {
+    "prop": "description",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Helper text displayed below the input."
+  },
+  {
+    "prop": "placeholder",
+    "type": "string",
+    "defaultValue": "'Select date'",
+    "description": "Placeholder when no date is selected."
+  },
+  {
+    "prop": "disabled",
+    "type": "boolean",
+    "defaultValue": "false",
+    "description": "Whether the picker is interactable."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Additional CSS for the outer container."
+  }
+]}
+/>
