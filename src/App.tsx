@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { Footer } from './partials/Footer'
 
-const AVAILABLE_COMPONENTS = ["badge", "button", "button-group", "area-chart", "divider", "card", "input", "icon-button", "skeleton", "tabs", "sidebar", "modal", "drawer"];
+const AVAILABLE_COMPONENTS = ["badge", "button", "button-group", "area-chart", "divider", "datepicker", "table", "card", "input", "icon-button", "skeleton", "tabs", "sidebar", "modal", "drawer"];
 const TITLE = "Dashkit UI | Lean, Simpler React Component Library";
 const DESCRIPTION = "A leaner, simpler React component library focused on low dependency counts and total code ownership.";
 const TAGLINE_MAIN = "Base components";
