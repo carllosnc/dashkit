@@ -24,8 +24,17 @@
   --color-accent: var(--color-accent);
   --color-accent-foreground: var(--color-accent-foreground);
 
-  --color-destructive: var(--color-destructive);
-  --color-destructive-foreground: var(--color-destructive-foreground);
+  --color-success: var(--color-success);
+  --color-success-foreground: var(--color-success-foreground);
+
+  --color-warning: var(--color-warning);
+  --color-warning-foreground: var(--color-warning-foreground);
+
+  --color-danger: var(--color-danger);
+  --color-danger-foreground: var(--color-danger-foreground);
+
+  --color-info: var(--color-info);
+  --color-info-foreground: var(--color-info-foreground);
 
   --color-border: var(--color-border);
   --color-input: var(--color-input);
@@ -81,10 +90,14 @@
   --color-ring:         var(--color-neutral-200);
 
   /* Status Colors (Optimized for Neutral aesthetic) */
-  --color-success:      oklch(60% 0.05 145);
-  --color-warning:      oklch(75% 0.05 80);
-  --color-danger:       oklch(55% 0.08 30);
-  --color-info:         oklch(65% 0.05 240);
+  --color-success:             oklch(0.62 0.08 145);
+  --color-success-foreground:  var(--color-neutral-50);
+  --color-warning:             oklch(0.78 0.08 85);
+  --color-warning-foreground:  var(--color-neutral-950);
+  --color-danger:              oklch(0.58 0.12 28);
+  --color-danger-foreground:   var(--color-neutral-50);
+  --color-info:                oklch(0.65 0.08 245);
+  --color-info-foreground:     var(--color-neutral-50);
 
   --radius:             0.5rem;
 }
@@ -96,27 +109,35 @@
   --color-background:           var(--color-neutral-950);
   --color-foreground:           var(--color-neutral-100);
 
+  /* Raised components */
   --color-card:                 var(--color-neutral-900);
   --color-card-foreground:      var(--color-neutral-100);
-
   --color-popover:              var(--color-neutral-950);
   --color-popover-foreground:   var(--color-neutral-100);
 
+  /* Brand / Primary Action */
   --color-primary:              var(--color-neutral-50);
   --color-primary-foreground:   var(--color-neutral-950);
-
   --color-secondary:             var(--color-neutral-800);
   --color-secondary-foreground:  var(--color-neutral-100);
 
+  /* Interaction States */
   --color-muted:                 var(--color-neutral-800);
   --color-muted-foreground:      var(--color-neutral-500);
-
   --color-accent:               var(--color-neutral-900);
   --color-accent-foreground:    var(--color-neutral-50);
 
-  --color-destructive:           oklch(50% 0.08 30);
-  --color-destructive-foreground: var(--color-neutral-50);
+  /* Status Colors (Optimized for Neutral aesthetic) */
+  --color-success:             oklch(0.65 0.08 145);
+  --color-success-foreground:  var(--color-neutral-950);
+  --color-warning:             oklch(0.82 0.08 85);
+  --color-warning-foreground:  var(--color-neutral-950);
+  --color-danger:              oklch(0.62 0.12 28);
+  --color-danger-foreground:   var(--color-neutral-50);
+  --color-info:                oklch(0.72 0.08 245);
+  --color-info-foreground:     var(--color-neutral-950);
 
+  /* Borders & Controls */
   --color-border:               var(--color-neutral-800);
   --color-input:                var(--color-neutral-800);
   --color-ring:                 var(--color-neutral-800);

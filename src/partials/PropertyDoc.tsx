@@ -37,31 +37,31 @@ export function PropertyDoc({ title, properties, className }: PropertyDocProps) 
           </thead>
           <tbody className="divide-y divide-border">
             {properties.map((property, idx) => (
-              <tr 
-                key={idx} 
-                className="group hover:bg-neutral-50/50 dark:hover:bg-neutral-900/30 transition-colors duration-150"
+              <tr
+                key={idx}
+                className="group hover:bg-neutral-50 dark:hover:bg-neutral-900/30 transition-colors duration-150"
               >
                 <td className="px-3 py-4 align-top whitespace-nowrap border-r border-border">
-                  <code className="text-[14px] font-mono font-bold text-foreground">
+                  <span className="text-[14px] font-bold text-neutral-500 dark:text-neutral-400">
                     {property.prop}
-                  </code>
+                  </span>
                 </td>
                 {hasType && (
                   <td className="px-3 py-4 align-top border-r border-border">
-                    <code className="text-[13px] font-mono text-foreground/80 break-all">
+                    <span className="text-[14px] text-neutral-500 dark:text-neutral-400 break-all">
                       {property.type}
-                    </code>
+                    </span>
                   </td>
                 )}
                 {hasDefault && (
-                  <td className="px-3 py-4 align-top whitespace-nowrap font-mono text-[12px] border-r border-border">
+                  <td className="px-3 py-4 align-top whitespace-nowrap font-mono text-[14px] border-r border-border">
                     <span className="text-neutral-500 dark:text-neutral-400">
                       {property.defaultValue || '—'}
                     </span>
                   </td>
                 )}
                 <td className="px-3 py-4 align-top">
-                  <p className="text-[14px] text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors max-w-lg">
+                  <p className="text-[14px] text-muted-foreground leading-relaxed transition-colors max-w-lg">
                     {property.description}
                   </p>
                 </td>

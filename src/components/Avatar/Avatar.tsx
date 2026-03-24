@@ -14,37 +14,29 @@ const sizeMap: Record<AvatarSize, string> = {
 };
 
 export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** The image source URL */
   src?: string;
-  /** Alt text for the image */
   alt?: string;
-  /** Fallback content if image is missing or fails to load */
   fallback?: React.ReactNode;
-  /** The size of the avatar */
   size?: AvatarSize;
-  /** The shape of the avatar */
   shape?: AvatarShape;
-  /** Whether to show a border around the avatar */
   bordered?: boolean;
 }
 
-/**
- * Avatar component for displaying user profile pictures or fallback initials.
- * Features smooth loading transitions using Framer Motion.
- */
 export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
   ({ src, alt, fallback, size = 'md', shape = 'circle', bordered = false, className, ...props }, ref) => {
     const [isLoaded, setIsLoaded] = React.useState(false);
-    const [hasError, setHasError] = React.useState(false);
+    const [hasError, setHasError] = React.useState(!src);
+    const imgRef = React.useRef<HTMLImageElement>(null);
 
-    // If no src is provided, immediately set as no error but not loaded, so fallback shows
-    React.useEffect(() => {
-      if (!src) {
-        setHasError(true);
-      } else {
-        setHasError(false);
-        setIsLoaded(false);
+    React.useLayoutEffect(() => {
+      if (imgRef.current?.complete) {
+        setIsLoaded(true);
       }
+    }, [src]);
+
+    React.useEffect(() => {
+      setIsLoaded(false);
+      setHasError(!src);
     }, [src]);
 
     return (
@@ -61,6 +53,7 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
       >
         {src && !hasError && (
           <motion.img
+            ref={imgRef}
             key={src}
             src={src}
             alt={alt}
@@ -92,11 +85,8 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
 Avatar.displayName = 'Avatar';
 
 export interface AvatarGroupProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** The maximum number of avatars to display before truncation */
   max?: number;
-  /** The size of all avatars in the group */
   size?: AvatarSize;
-  /** Horizontal spacing between avatars */
   spacing?: 'sm' | 'md' | 'lg';
 }
 
@@ -106,10 +96,6 @@ const spacingMap = {
   lg: '-space-x-4'
 };
 
-/**
- * AvatarGroup component for clustering multiple avatars.
- * Automatically handles truncation and consistent sizing.
- */
 export const AvatarGroup = ({ children, max, size = 'md', spacing = 'md', className, ...props }: AvatarGroupProps) => {
   const childrenArray = React.Children.toArray(children);
   const visibleAvatars = max ? childrenArray.slice(0, max) : childrenArray;

@@ -3,22 +3,22 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '../../utils/cn';
 
 export type BadgeVariant = 'solid';
-export type BadgeColor = 'success' | 'warning' | 'error' | 'info' | 'base';
+export type BadgeColor = 'success' | 'warning' | 'danger' | 'info' | 'base';
 export type BadgePosition = 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
 
 const colorStyles: Record<BadgeColor, string> = {
-  success: "bg-emerald-500 text-white border-transparent",
-  warning: "bg-amber-500 text-white border-transparent",
-  error: "bg-red-500 text-white border-transparent",
-  info: "bg-blue-500 text-white border-transparent",
+  success: "bg-success text-success-foreground border-transparent",
+  warning: "bg-warning text-warning-foreground border-transparent",
+  danger: "bg-danger text-danger-foreground border-transparent",
+  info: "bg-info text-info-foreground border-transparent",
   base: "bg-neutral-500 text-white border-transparent"
 };
 
 const pulseStyles: Record<BadgeColor, string> = {
-  success: "bg-emerald-500",
-  warning: "bg-amber-500",
-  error: "bg-red-500",
-  info: "bg-blue-500",
+  success: "bg-success",
+  warning: "bg-warning",
+  danger: "bg-danger",
+  info: "bg-info",
   base: "bg-neutral-500"
 };
 

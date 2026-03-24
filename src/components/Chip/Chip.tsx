@@ -3,7 +3,7 @@ import { cn } from '../../utils/cn';
 import { FiX, FiCheck } from 'react-icons/fi';
 
 export type ChipVariant = 'filled' | 'outlined' | 'tonal';
-export type ChipColor = 'base' | 'success' | 'warning' | 'error' | 'info';
+export type ChipColor = 'base' | 'success' | 'warning' | 'danger' | 'info';
 
 export interface ChipProps {
   label: React.ReactNode;
@@ -24,24 +24,24 @@ const colorStyles: Record<ChipColor, Record<ChipVariant, string>> = {
     outlined: "bg-transparent text-foreground border-border",
   },
   success: {
-    tonal: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-    filled: "bg-emerald-500 text-white border-transparent",
-    outlined: "bg-transparent text-emerald-600 dark:text-emerald-400 border-emerald-500/30",
+    tonal: "bg-success/10 text-success border-success/20",
+    filled: "bg-success text-success-foreground border-transparent",
+    outlined: "bg-transparent text-success border-success/30",
   },
   warning: {
-    tonal: "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20",
-    filled: "bg-amber-500 text-white border-transparent",
-    outlined: "bg-transparent text-amber-600 dark:text-amber-400 border-amber-500/30",
+    tonal: "bg-warning/10 text-warning border-warning/20",
+    filled: "bg-warning text-warning-foreground border-transparent",
+    outlined: "bg-transparent text-warning border-warning/30",
   },
-  error: {
-    tonal: "bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20",
-    filled: "bg-red-500 text-white border-transparent",
-    outlined: "bg-transparent text-red-600 dark:text-red-400 border-red-500/30",
+  danger: {
+    tonal: "bg-danger/10 text-danger border-danger/20",
+    filled: "bg-danger text-danger-foreground border-transparent",
+    outlined: "bg-transparent text-danger border-danger/30",
   },
   info: {
-    tonal: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20",
-    filled: "bg-blue-500 text-white border-transparent",
-    outlined: "bg-transparent text-blue-600 dark:text-blue-400 border-blue-500/30",
+    tonal: "bg-info/10 text-info border-info/20",
+    filled: "bg-info text-info-foreground border-transparent",
+    outlined: "bg-transparent text-info border-info/30",
   },
 };
 
