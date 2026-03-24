@@ -3,7 +3,7 @@ import { cn } from '../../utils/cn';
 import { FiX, FiCheck } from 'react-icons/fi';
 
 export type ChipVariant = 'filled' | 'outlined' | 'tonal';
-export type ChipColor = 'base' | 'success' | 'warning' | 'danger' | 'info';
+export type ChipColor = 'base' | 'success' | 'warning' | 'danger' | 'error' | 'info';
 
 export interface ChipProps {
   label: React.ReactNode;
@@ -34,6 +34,11 @@ const colorStyles: Record<ChipColor, Record<ChipVariant, string>> = {
     outlined: "bg-transparent text-warning border-warning/30",
   },
   danger: {
+    tonal: "bg-danger/10 text-danger border-danger/20",
+    filled: "bg-danger text-danger-foreground border-transparent",
+    outlined: "bg-transparent text-danger border-danger/30",
+  },
+  error: {
     tonal: "bg-danger/10 text-danger border-danger/20",
     filled: "bg-danger text-danger-foreground border-transparent",
     outlined: "bg-transparent text-danger border-danger/30",
