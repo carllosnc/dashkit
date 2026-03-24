@@ -93,7 +93,7 @@ export const PieChart = ({
       ref={containerRef}
       className={cn("w-full flex flex-col items-center justify-center relative", className)}
     >
-      <div className="relative w-full aspect-square">
+      <div className="relative w-full aspect-square max-w-[280px]">
         <svg
           viewBox={`0 0 ${size} ${size}`}
           className="w-full h-full overflow-visible"
