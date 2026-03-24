@@ -11,6 +11,11 @@ export const registry: Record<string, ComponentConfig> = {
     files: ['src/components/Accordion/Accordion.tsx'],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'lucide-react'],
   },
+  avatar: {
+    name: 'Avatar',
+    files: ['src/components/Avatar/Avatar.tsx'],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
+  },
   badge: {
     name: 'Badge',
     files: ['src/components/Badge/Badge.tsx'],
@@ -166,6 +171,16 @@ export const registry: Record<string, ComponentConfig> = {
   textarea: {
     name: 'Textarea',
     files: ['src/components/Textarea/Textarea.tsx'],
+    dependencies: ['clsx', 'tailwind-merge'],
+  },
+  datepicker: {
+    name: 'DatePicker',
+    files: ['src/components/DatePicker/DatePicker.tsx'],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
+  },
+  table: {
+    name: 'Table',
+    files: ['src/components/Table/Table.tsx'],
     dependencies: ['clsx', 'tailwind-merge'],
   }
 };
