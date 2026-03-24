@@ -12,6 +12,8 @@ import SwitchDocs from './pages/switch.mdx'
 import TabsDocs from './pages/tabs.mdx'
 import SidebarDocs from './pages/sidebar.mdx'
 import DividerDocs from './pages/divider.mdx'
+import DatePickerDocs from './pages/datepicker.mdx'
+import TableDocs from './pages/table.mdx'
 import OtpInputDocs from './pages/otp-input.mdx'
 import ButtonGroupDocs from './pages/button-group.mdx'
 import ImageExpanderDocs from './pages/image-expander.mdx'
@@ -38,6 +40,7 @@ import IconButtonDocs from './pages/icon-button.mdx'
 import TextareaDocs from './pages/textarea.mdx'
 import ChipDocs from './pages/chip.mdx'
 import ComboboxDocs from './pages/combobox.mdx'
+import AvatarDocs from './pages/avatar.mdx'
 import { LoginExample } from './pages/examples/LoginExample'
 import { ComplexFormExample } from './pages/examples/ComplexFormExample'
 import { DashboardExample } from './pages/examples/DashboardExample'
@@ -73,7 +76,9 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="chip" element={<MdxWrapper Component={ChipDocs} />} />
                 <Route path="combobox" element={<MdxWrapper Component={ComboboxDocs} />} />
                 <Route path="divider" element={<MdxWrapper Component={DividerDocs} />} />
+                <Route path="datepicker" element={<MdxWrapper Component={DatePickerDocs} />} />
                 <Route path="drawer" element={<MdxWrapper Component={DrawerDocs} />} />
+                <Route path="avatar" element={<MdxWrapper Component={AvatarDocs} />} />
                 <Route path="dropdown-menu" element={<MdxWrapper Component={DropdownMenuDocs} />} />
                 <Route path="icon-button" element={<MdxWrapper Component={IconButtonDocs} />} />
                 <Route path="image-expander" element={<MdxWrapper Component={ImageExpanderDocs} />} />
@@ -85,6 +90,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="select" element={<MdxWrapper Component={SelectDocs} />} />
                 <Route path="skeleton" element={<MdxWrapper Component={SkeletonDocs} />} />
                 <Route path="spinner" element={<MdxWrapper Component={SpinnerDocs} />} />
+                <Route path="table" element={<MdxWrapper Component={TableDocs} />} />
                 <Route path="switch" element={<MdxWrapper Component={SwitchDocs} />} />
                 <Route path="sidebar" element={<MdxWrapper Component={SidebarDocs} />} />
                 <Route path="tabs" element={<MdxWrapper Component={TabsDocs} />} />
