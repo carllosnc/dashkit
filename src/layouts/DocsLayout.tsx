@@ -4,7 +4,7 @@ import {
   FiType, FiMessageSquare, FiTag, FiCheckSquare, FiDisc, FiList,
   FiSearch, FiToggleRight, FiMinus, FiColumns, FiLock, FiMaximize2,
   FiSidebar, FiMaximize, FiLayers, FiBell, FiMoreVertical, FiAward,
-  FiInbox, FiChevronRight, FiGrid, FiLayout, FiLoader, FiSliders, FiMoreHorizontal
+  FiInbox, FiChevronRight, FiGrid, FiLayout, FiLoader, FiSliders, FiMoreHorizontal, FiCalendar, FiTable, FiUser
 } from 'react-icons/fi';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Header } from '../partials/Header';
@@ -25,6 +25,7 @@ const navItems = [
     title: 'Components',
     links: [
       { to: '/docs/accordion', label: 'Accordion', icon: <FiLayers size={16} /> },
+      { to: '/docs/avatar', label: 'Avatar', icon: <FiUser size={16} /> },
       { to: '/docs/badge', label: 'Badge', icon: <FiAward size={16} /> },
       { to: '/docs/breadcrumb', label: 'Breadcrumb', icon: <FiChevronRight size={16} /> },
       { to: '/docs/button', label: 'Button', icon: <FiSquare size={16} /> },
@@ -34,6 +35,7 @@ const navItems = [
       { to: '/docs/chip', label: 'Chip', icon: <FiTag size={16} /> },
       { to: '/docs/combobox', label: 'Combobox', icon: <FiSearch size={16} /> },
       { to: '/docs/divider', label: 'Divider', icon: <FiMinus size={16} /> },
+      { to: '/docs/datepicker', label: 'Date Picker', icon: <FiCalendar size={16} /> },
       { to: '/docs/drawer', label: 'Drawer', icon: <FiSidebar size={16} /> },
       { to: '/docs/dropdown-menu', label: 'Dropdown Menu', icon: <FiMoreVertical size={16} /> },
       { to: '/docs/icon-button', label: 'Icon Button', icon: <FiCircle size={16} /> },
@@ -48,6 +50,7 @@ const navItems = [
       { to: '/docs/spinner', label: 'Spinner', icon: <FiLoader size={16} /> },
       { to: '/docs/switch', label: 'Switch', icon: <FiToggleRight size={16} /> },
       { to: '/docs/tabs', label: 'Tabs', icon: <FiColumns size={16} /> },
+      { to: '/docs/table', label: 'Table', icon: <FiTable size={16} /> },
       { to: '/docs/sidebar', label: 'Sidebar', icon: <FiSidebar size={16} /> },
       { to: '/docs/textarea', label: 'Textarea', icon: <FiMessageSquare size={16} /> },
       { to: '/docs/toast', label: 'Toast', icon: <FiBell size={16} /> },
