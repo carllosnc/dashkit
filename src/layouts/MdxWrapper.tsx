@@ -9,6 +9,7 @@ import {
   DropdownSeparator
 } from '../components/Dropdown/Dropdown';
 import { Button } from '../components/Button/Button';
+import { DatePicker } from '../components/DatePicker/DatePicker';
 import { ButtonGroup } from '../components/ButtonGroup/ButtonGroup';
 import { Checkbox } from '../components/Checkbox/Checkbox';
 import { Input } from '../components/Input/Input';
@@ -54,7 +55,18 @@ import {
   CardContent,
   CardFooter
 } from '../components/Card/Card';
-import { FiDownload, FiArrowRight, FiCopy, FiCheck, FiSearch, FiLock, FiUser, FiSettings, FiActivity, FiCheckCircle, FiClock, FiMail, FiShield, FiZap, FiBell, FiMessageSquare, FiShoppingCart, FiHome } from 'react-icons/fi';
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableRow,
+  TableHead,
+  TableCell,
+  TableCaption
+} from '../components/Table/Table';
+import { Avatar, AvatarGroup } from '../components/Avatar/Avatar';
+import { FiDownload, FiArrowRight, FiCopy, FiCheck, FiSearch, FiLock, FiUser, FiSettings, FiActivity, FiCheckCircle, FiClock, FiMail, FiShield, FiZap, FiBell, FiMessageSquare, FiShoppingCart, FiHome, FiMoreVertical } from 'react-icons/fi';
 import { PropertyDoc } from '../partials/PropertyDoc';
 
 
@@ -115,6 +127,7 @@ const CustomPre = ({ children, ...props }: CustomPreProps) => {
 
 const components: Record<string, ElementType> = {
   Button,
+  DatePicker,
   ButtonGroup,
   Input,
   Chip,
@@ -139,6 +152,14 @@ const components: Record<string, ElementType> = {
   TabsList,
   TabsTrigger,
   TabsContent,
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableRow,
+  TableHead,
+  TableCell,
+  TableCaption,
   OtpInput,
   OtpInputDemo,
   Sidebar,
@@ -148,6 +169,8 @@ const components: Record<string, ElementType> = {
   SidebarSectionItem,
   ImageExpander,
   ImageExpanderDemo,
+  Avatar,
+  AvatarGroup,
   Badge,
   FloatBadge,
   Dropdown,
@@ -182,6 +205,7 @@ const components: Record<string, ElementType> = {
   FiMessageSquare,
   FiShoppingCart,
   FiHome,
+  FiMoreVertical,
   Skeleton,
   SkeletonDemo,
   Spinner,
