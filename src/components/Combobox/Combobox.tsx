@@ -190,7 +190,7 @@ export const Combobox = ({
           autoComplete="off"
           className={cn(
             "w-full h-9 pl-10 pr-10 text-sm bg-background text-foreground border border-input rounded-[var(--radius)] outline-none transition-all duration-200 focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-transparent placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
-            isOpen && "ring-ring border-ring shadow-[0_0_0_2px_var(--ring)]"
+            isOpen && "ring-2 ring-ring ring-offset-2 ring-offset-transparent border-input"
           )}
         />
 
