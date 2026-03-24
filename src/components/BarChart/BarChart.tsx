@@ -170,10 +170,10 @@ export const BarChart = ({
 
       {/* Tooltip Overlay */}
       {showTooltip && hoveredIndex !== null && (
-        <div 
+        <div
           className="absolute z-10 pointer-events-none transform -translate-x-1/2 -translate-y-full mb-6 bg-card text-card-foreground rounded-lg shadow-2xl border border-border p-3 flex flex-col gap-2 min-w-[140px]"
-          style={{ 
-            left: tooltipPos.x, 
+          style={{
+            left: tooltipPos.x,
             top: tooltipPos.y - 10
           }}
         >
@@ -201,7 +201,7 @@ export const BarChart = ({
         <div className="flex w-full mt-4">
           {data.map((d, i) => (
             <div key={i} className="flex-1 text-center">
-              <span 
+              <span
                 className={cn(
                   "text-[10px] font-bold uppercase tracking-widest text-muted-foreground transition-colors inline-block",
                   hoveredIndex === i && "text-foreground"

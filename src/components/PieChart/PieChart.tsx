@@ -93,7 +93,7 @@ export const PieChart = ({
       ref={containerRef}
       className={cn("w-full flex flex-col items-center justify-center relative", className)}
     >
-      <div className="relative w-full aspect-square max-w-[400px]">
+      <div className="relative w-full aspect-square">
         <svg
           viewBox={`0 0 ${size} ${size}`}
           className="w-full h-full overflow-visible"
@@ -151,7 +151,7 @@ export const PieChart = ({
         )}
       </div>
       {showLabels && (
-        <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
+        <div className="flex w-full flex-wrap justify-center gap-x-6 gap-y-2">
           {data.map((item, i) => (
             <div
               key={i}

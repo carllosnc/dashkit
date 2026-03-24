@@ -318,7 +318,7 @@ export function DashboardExample() {
                 </div>
               </CardHeader>
               <CardContent className="flex flex-col items-center justify-center py-6">
-                <PieChart 
+                <PieChart
                   data={PIE_CHART_DATA}
                   innerRadius={0.6}
                   className="max-w-[280px]"
