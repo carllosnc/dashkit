@@ -38,7 +38,7 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
                   </BreadcrumbItem>
                   {!isLast && (
                     <BreadcrumbSeparator>
-                      {separator || <ChevronRight size={14} className="text-neutral-400" />}
+                      {separator || <ChevronRight size={14} className="text-ds-400" />}
                     </BreadcrumbSeparator>
                   )}
                 </React.Fragment>
@@ -70,7 +70,7 @@ export const BreadcrumbList = React.forwardRef<
   <ol
     ref={ref}
     className={cn(
-      'flex items-center gap-1.5 text-sm text-neutral-500 sm:gap-2.5 dark:text-neutral-400',
+      'flex items-center gap-1.5 text-sm text-ds-500 sm:gap-2.5 dark:text-ds-400',
       className
     )}
     {...props}
@@ -98,9 +98,9 @@ export const BreadcrumbItem = React.forwardRef<HTMLLIElement, BreadcrumbItemProp
           className={cn(
             "flex items-center gap-1.5 text-sm transition-colors",
             href
-              ? "text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white" 
-              : "text-neutral-500 font-medium",
-            active && "font-semibold text-neutral-900 dark:text-white"
+              ? "text-ds-500 hover:text-ds-900 dark:text-ds-400 dark:hover:text-white" 
+              : "text-ds-500 font-medium",
+            active && "font-semibold text-ds-900 dark:text-white"
           )}
         >
           {children}
@@ -122,7 +122,7 @@ export const BreadcrumbSeparator = ({
     className={cn('[&>svg]:size-3.5', className)}
     {...props}
   >
-    {children ?? <ChevronRight size={14} className="text-neutral-400" />}
+    {children ?? <ChevronRight size={14} className="text-ds-400" />}
   </li>
 );
 BreadcrumbSeparator.displayName = 'BreadcrumbSeparator';

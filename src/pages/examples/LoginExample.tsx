@@ -9,7 +9,7 @@ import { Divider } from '../../components/Divider/Divider';
 export const LoginExample = () => {
   return (
     <div className="w-full min-h-screen ds-page flex relative">
-      <div className="hidden lg:flex justify-center w-full relative bg-neutral-950">
+      <div className="hidden lg:flex justify-center w-full relative bg-ds-950">
         <div className="relative h-full flex flex-col items-center justify-between p-12">
           <div className="flex items-center gap-3">
             <img src="/logo.svg" className="h-8 invert" alt="Dashkit" />
@@ -19,14 +19,14 @@ export const LoginExample = () => {
             <h2 className="text-3xl font-bold leading-tight mb-8 text-white">
               Design gorgeous interfaces at the speed of light.
             </h2>
-            <p className="text-neutral-400 text-lg">
+            <p className="text-ds-400 text-lg">
               The most advanced UI library for high-performance React applications and modern dashboards.
             </p>
           </div>
 
-          <div className="flex items-center gap-4 text-sm font-medium text-neutral-400">
+          <div className="flex items-center gap-4 text-sm font-medium text-ds-400">
             <span>By carllosnc</span>
-            <span className="size-1 rounded-full bg-neutral-700" />
+            <span className="size-1 rounded-full bg-ds-700" />
             <span>Premium UI Kit</span>
           </div>
         </div>
@@ -65,7 +65,7 @@ export const LoginExample = () => {
                 />
                 <div className="flex mt-[20px] items-center justify-between px-1">
                   <Checkbox label="Remember me" />
-                  <button type="button" className="text-sm text-neutral-950 dark:text-neutral-100 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
+                  <button type="button" className="text-sm text-ds-950 dark:text-ds-100 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
                     Forgot password?
                   </button>
                 </div>
@@ -90,7 +90,7 @@ export const LoginExample = () => {
 
           <p className="text-center text-sm text-muted-foreground">
             Don't have an account?{' '}
-            <button className="font-semibold text-neutral-900 dark:text-neutral-100 hover:text-blue-500 dark:hover:text-sky-400 transition-colors">
+            <button className="font-semibold text-ds-900 dark:text-ds-100 hover:text-blue-500 dark:hover:text-sky-400 transition-colors">
               Request access
             </button>
           </p>

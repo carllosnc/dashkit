@@ -18,9 +18,9 @@ export function OtpInputDemo() {
   };
 
   return (
-    <div className="w-full max-w-lg p-8 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-card shadow-xl overflow-hidden">
+    <div className="w-full max-w-lg p-8 rounded-2xl border border-ds-200 dark:border-ds-800 bg-card shadow-xl overflow-hidden">
       <div className="text-center mb-8">
-        <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">Two-Step Verification</h3>
+        <h3 className="text-xl font-bold text-ds-900 dark:text-white mb-2">Two-Step Verification</h3>
         <p className="text-sm text-muted-foreground">
           Enter the 6-digit code sent to your device.
         </p>
@@ -51,7 +51,7 @@ export function OtpInputDemo() {
         )}
 
         {!isComplete && (
-          <button className="text-sm font-medium text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">
+          <button className="text-sm font-medium text-ds-400 hover:text-ds-900 dark:hover:text-white transition-colors">
             Didn't receive the code? <span className="underline decoration-dotted">Resend</span>
           </button>
         )}

@@ -99,7 +99,7 @@ const CopyButton = ({ preRef }: { preRef: React.RefObject<HTMLPreElement | null>
     <button
       onClick={copy}
       type="button"
-      className="absolute top-2 right-2 p-1.5 rounded-md transition-all duration-200 bg-neutral-800 hover:bg-neutral-700 text-neutral-400 hover:text-white border border-neutral-700 z-20 opacity-0 group-hover:opacity-100 focus:opacity-100"
+      className="absolute top-2 right-2 p-1.5 rounded-md transition-all duration-200 bg-ds-800 hover:bg-ds-700 text-ds-400 hover:text-white border border-ds-700 z-20 opacity-0 group-hover:opacity-100 focus:opacity-100"
       aria-label="Copy code"
     >
       {isCopied ? <FiCheck size={14} className="text-emerald-400" /> : <FiCopy size={14} />}
@@ -115,7 +115,7 @@ const CustomPre = ({ children, ...props }: CustomPreProps) => {
   return (
     <div
       {...divProps}
-      className="relative group mt-6 first:mt-0 overflow-hidden rounded-lg border border-neutral-200 dark:border-neutral-800"
+      className="relative group mt-6 first:mt-0 overflow-hidden rounded-lg border border-ds-200 dark:border-ds-800"
     >
       <pre ref={preRef} className="m-0! bg-transparent!">
         {children}
@@ -218,7 +218,7 @@ const components: Record<string, ElementType> = {
   BreadcrumbEllipsis,
   PropertyDoc,
   Preview: ({ children }: { children: ReactNode }) => (
-    <div className="not-prose border bg-card border-neutral-200 dark:border-neutral-800 rounded-lg flex flex-col gap-8 py-4 px-4 first:pt-0 items-start">
+    <div className="not-prose border bg-card border-ds-200 dark:border-ds-800 rounded-lg flex flex-col gap-8 py-4 px-4 first:pt-0 items-start">
       {children}
     </div>
   ),

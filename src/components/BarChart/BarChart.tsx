@@ -100,16 +100,18 @@ export const BarChart = ({
     });
   };
 
+  const isNearTop = tooltipPos.y < 100;
+
   return (
     <div 
-      className={cn("w-full flex-1 flex flex-col relative", className)} 
+      className={cn("w-full flex-1 flex flex-col relative overflow-visible", className)} 
       style={{ height: typeof height === 'number' ? `${height}px` : height }}
     >
       <svg
         ref={chartRef}
         viewBox={`0 0 ${width} ${svgHeight}`}
         preserveAspectRatio="none"
-        className="flex-1 w-full"
+        className="flex-1 w-full overflow-visible"
         onMouseMove={handleMouseMove}
         onMouseLeave={() => setHoveredIndex(null)}
       >
@@ -171,10 +173,13 @@ export const BarChart = ({
       {/* Tooltip Overlay */}
       {showTooltip && hoveredIndex !== null && (
         <div
-          className="absolute z-10 pointer-events-none transform -translate-x-1/2 -translate-y-full mb-6 bg-card text-card-foreground rounded-lg shadow-2xl border border-border p-3 flex flex-col gap-2 min-w-[140px]"
+          className={cn(
+            "absolute z-50 pointer-events-none transform -translate-x-1/2 bg-card text-card-foreground rounded-lg shadow-2xl border border-border p-3 flex flex-col gap-2 min-w-[140px] transition-transform duration-200",
+            isNearTop ? "translate-y-4" : "-translate-y-full -mt-12"
+          )}
           style={{
             left: tooltipPos.x,
-            top: tooltipPos.y - 10
+            top: tooltipPos.y
           }}
         >
           <div className="flex border-b border-border pb-1 mb-1">

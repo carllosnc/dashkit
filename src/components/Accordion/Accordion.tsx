@@ -112,14 +112,14 @@ export const AccordionTrigger = ({ children, className }: { children: React.Reac
       onClick={() => context.onValueChange(itemContext.value)}
       className={cn(
         "flex w-full items-center gap-3 px-4 py-4 text-left transition-all hover:text-block-fg dark:hover:text-block-dark-fg group",
-        itemContext.isOpen ? "text-block-fg dark:text-block-dark-fg font-medium" : "text-neutral-950 dark:text-neutral-300 font-medium",
+        itemContext.isOpen ? "text-block-fg dark:text-block-dark-fg font-medium" : "text-ds-950 dark:text-ds-300 font-medium",
         className
       )}
     >
       <motion.div
         animate={{ rotate: itemContext.isOpen ? 90 : 0 }}
         transition={{ type: 'spring', damping: 20, stiffness: 300 }}
-        className="text-neutral-400 group-hover:text-neutral-950 dark:group-hover:text-white shrink-0"
+        className="text-ds-400 group-hover:text-ds-950 dark:group-hover:text-white shrink-0"
       >
         <FiChevronRight size={18} />
       </motion.div>

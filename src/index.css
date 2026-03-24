@@ -17,7 +17,7 @@
 
 @layer components {
   [data-rehype-pretty-code-figure] div {
-    @apply bg-neutral-900! border-none! rounded-none!;
+    @apply bg-ds-900! border-none! rounded-none!;
   }
 
   [data-rehype-pretty-code-figure] code {

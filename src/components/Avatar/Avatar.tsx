@@ -43,10 +43,10 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
       <div
         ref={ref}
         className={cn(
-          "relative flex shrink-0 items-center justify-center overflow-hidden bg-neutral-100 dark:bg-neutral-800",
+          "relative flex shrink-0 items-center justify-center overflow-hidden bg-ds-100 dark:bg-ds-800",
           sizeMap[size],
           shape === 'circle' ? "rounded-full" : "rounded-lg",
-          bordered && "ring-2 ring-white dark:ring-neutral-900 border border-neutral-200 dark:border-neutral-700",
+          bordered && "ring-2 ring-white dark:ring-ds-900 border border-ds-200 dark:border-ds-700",
           className
         )}
         {...props}
@@ -72,7 +72,7 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="flex h-full w-full items-center justify-center font-bold text-neutral-500 uppercase select-none tracking-tighter"
+              className="flex h-full w-full items-center justify-center font-bold text-ds-500 uppercase select-none tracking-tighter"
             >
               {fallback || (alt ? alt.split(' ').map(n => n[0]).join('').slice(0, 2) : '?')}
             </motion.div>
@@ -115,7 +115,7 @@ export const AvatarGroup = ({ children, max, size = 'md', spacing = 'md', classN
           fallback={`+${remainingCount}`}
           size={size}
           bordered
-          className="bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 z-0 text-[10px]"
+          className="bg-ds-900 text-white dark:bg-white dark:text-ds-900 z-0 text-[10px]"
         />
       )}
     </div>

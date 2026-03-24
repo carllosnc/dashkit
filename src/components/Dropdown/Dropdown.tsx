@@ -212,10 +212,10 @@ export function DropdownItem({
         className
       )}
     >
-      {leftIcon && <span className="shrink-0 text-neutral-400">{leftIcon}</span>}
+      {leftIcon && <span className="shrink-0 text-ds-400">{leftIcon}</span>}
       <span className="flex-1 truncate">{children}</span>
       {selected && <FiCheck className="shrink-0 text-floating-item-selected-fg dark:text-floating-item-dark-selected-fg" size={14} />}
-      {rightIcon && <span className="shrink-0 text-neutral-400">{rightIcon}</span>}
+      {rightIcon && <span className="shrink-0 text-ds-400">{rightIcon}</span>}
     </button>
   );
 }
@@ -225,7 +225,7 @@ export function DropdownItem({
  */
 export function DropdownLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div className="px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-neutral-400 dark:text-neutral-500">
+    <div className="px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-ds-400 dark:text-ds-500">
       {children}
     </div>
   );

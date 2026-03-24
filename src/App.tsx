@@ -44,7 +44,7 @@ function App() {
 
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground max-w-4xl leading-[1.05] mb-8">
           {TAGLINE_MAIN} <br className="hidden md:block" />
-          <span className="text-neutral-400 dark:text-neutral-600">{TAGLINE_SUB}</span>
+          <span className="text-ds-400 dark:text-ds-600">{TAGLINE_SUB}</span>
         </h1>
 
         <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-12">
@@ -66,8 +66,8 @@ function App() {
 
         {/* CLI Reference */}
         <div className="mb-16 flex flex-col items-center animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300 fill-mode-both">
-          <code className="text-[14px] md:text-[18px] font-mono text-neutral-600 dark:text-neutral-300 flex items-center gap-2 md:gap-3">
-            <span className="text-neutral-400 select-none">$</span>
+          <code className="text-[14px] md:text-[18px] font-mono text-ds-600 dark:text-ds-300 flex items-center gap-2 md:gap-3">
+            <span className="text-ds-400 select-none">$</span>
             <span>bunx carllosnc/dashkit add</span>
             <TypingEffect
               words={AVAILABLE_COMPONENTS}

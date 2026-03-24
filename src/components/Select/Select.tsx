@@ -92,7 +92,7 @@ export const Select = ({
   return (
     <div className="flex flex-col gap-1.5 w-full font-sans" ref={containerRef}>
       {label && (
-        <label className="text-[13px] font-semibold text-neutral-700 dark:text-neutral-300 ml-1 tracking-tight">
+        <label className="text-[13px] font-semibold text-ds-700 dark:text-ds-300 ml-1 tracking-tight">
           {label}
         </label>
       )}
@@ -112,12 +112,12 @@ export const Select = ({
         >
           <span className={cn(
             "truncate block",
-            !selectedOption && "text-neutral-500 dark:text-neutral-500"
+            !selectedOption && "text-ds-500 dark:text-ds-500"
           )}>
             {selectedOption ? selectedOption.label : placeholder}
           </span>
           <FiChevronDown className={cn(
-            "transition-transform duration-300 shrink-0 text-neutral-500",
+            "transition-transform duration-300 shrink-0 text-ds-500",
             isOpen && "rotate-180 text-input-focus-border dark:text-input-dark-focus-border"
           )} />
         </button>
@@ -139,7 +139,7 @@ export const Select = ({
           >
             <div className="max-h-60 overflow-y-auto flex flex-col gap-0.5">
               {options.length === 0 ? (
-                <div className="px-4 py-2 text-sm text-neutral-400 text-center">No options available</div>
+                <div className="px-4 py-2 text-sm text-ds-400 text-center">No options available</div>
               ) : (
                 options.map((opt) => (
                   <button
@@ -168,7 +168,7 @@ export const Select = ({
         )}
       </div>
       {description && (
-        <span className="text-[12px] text-neutral-600 dark:text-neutral-400 ml-1 tracking-tight">
+        <span className="text-[12px] text-ds-600 dark:text-ds-400 ml-1 tracking-tight">
           {description}
         </span>
       )}

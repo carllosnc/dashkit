@@ -98,9 +98,11 @@ export const AreaChart = ({
     });
   };
 
+  const isNearTop = tooltipPos.y < 100;
+
   return (
     <div 
-      className={cn("w-full flex-1 flex flex-col relative", className)} 
+      className={cn("w-full flex-1 flex flex-col relative overflow-visible", className)} 
       style={{ height: typeof height === 'number' ? `${height}px` : height }}
     >
       <svg
@@ -200,10 +202,13 @@ export const AreaChart = ({
       {/* Tooltip Overlay */}
       {showTooltip && hoveredIndex !== null && (
         <div 
-          className="absolute z-10 pointer-events-none transform -translate-x-1/2 -translate-y-full mb-6 bg-card text-card-foreground rounded-lg border border-border p-3 shadow-2xl flex flex-col gap-2 min-w-[140px]"
+          className={cn(
+            "absolute z-50 pointer-events-none transform -translate-x-1/2 bg-card text-card-foreground rounded-lg border border-border p-3 shadow-2xl flex flex-col gap-2 min-w-[140px] transition-transform duration-200",
+            isNearTop ? "translate-y-4" : "-translate-y-full -mt-12"
+          )}
           style={{ 
             left: tooltipPos.x, 
-            top: tooltipPos.y - 10
+            top: tooltipPos.y
           }}
         >
           <div className="flex border-b border-border pb-1 mb-1">

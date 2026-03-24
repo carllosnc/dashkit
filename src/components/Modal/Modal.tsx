@@ -72,7 +72,7 @@ export const Modal = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-neutral-950/40 backdrop-blur-sm -z-10"
+            className="absolute inset-0 bg-ds-950/40 backdrop-blur-sm -z-10"
           />
 
           {/* Modal Content */}
@@ -105,7 +105,7 @@ export const Modal = ({
                 {showCloseButton && (
                   <button
                     onClick={onClose}
-                    className="p-2.5 rounded-md transition-all duration-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
+                    className="p-2.5 rounded-md transition-all duration-200 hover:bg-ds-100 dark:hover:bg-ds-800 text-ds-400 hover:text-ds-900 dark:hover:text-white"
                   >
                     <FiX size={20} />
                   </button>

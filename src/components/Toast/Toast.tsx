@@ -135,7 +135,7 @@ function ToastItem({
 
       <button
         onClick={() => removeToast(toast.id)}
-        className="shrink-0 h-fit p-1 rounded-md text-neutral-400 hover:text-block-fg dark:hover:text-block-dark-fg hover:bg-floating-item-bg-hover dark:hover:bg-floating-item-dark-bg-hover transition-all opacity-0 group-hover:opacity-100"
+        className="shrink-0 h-fit p-1 rounded-md text-ds-400 hover:text-block-fg dark:hover:text-block-dark-fg hover:bg-floating-item-bg-hover dark:hover:bg-floating-item-dark-bg-hover transition-all opacity-0 group-hover:opacity-100"
       >
         <FiX size={14} />
       </button>

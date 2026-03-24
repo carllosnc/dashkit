@@ -83,7 +83,7 @@ export const ComplexFormExample = () => {
                   description="Required for identity verification."
                 />
                 <div className="md:col-span-2 flex flex-col gap-4">
-                  <label className="text-[13px] font-semibold text-neutral-700 dark:text-neutral-300 ml-1 tracking-tight">
+                  <label className="text-[13px] font-semibold text-ds-700 dark:text-ds-300 ml-1 tracking-tight">
                     Gender
                   </label>
                   <div className="flex gap-12">

@@ -20,8 +20,8 @@ import {
 export const InteractiveSidebar = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
   return (
-    <div className="flex h-[500px] w-full border border-neutral-200 dark:border-neutral-800 rounded-2xl overflow-hidden bg-white dark:bg-neutral-950 shadow-sm">
-      <Sidebar className="w-64 border-r border-neutral-100 dark:border-neutral-900 shrink-0">
+    <div className="flex h-[500px] w-full border border-ds-200 dark:border-ds-800 rounded-2xl overflow-hidden bg-white dark:bg-ds-950 shadow-sm">
+      <Sidebar className="w-64 border-r border-ds-100 dark:border-ds-900 shrink-0">
         <SidebarHeader className="h-16 flex items-center gap-3 px-6">
           <div className="size-8 rounded-lg bg-indigo-500/10 flex items-center justify-center">
             <div className="size-4 rounded-full bg-indigo-500" />
@@ -48,20 +48,20 @@ export const InteractiveSidebar = () => {
           </SidebarSection>
         </div>
 
-        <SidebarFooter className="p-4 border-t border-neutral-100 dark:border-neutral-900">
-          <div className="flex items-center gap-3 px-2 py-2 rounded-xl bg-neutral-50 dark:bg-white/5 border border-neutral-100 dark:border-white/5">
-            <div className="size-8 rounded-full bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center overflow-hidden">
+        <SidebarFooter className="p-4 border-t border-ds-100 dark:border-ds-900">
+          <div className="flex items-center gap-3 px-2 py-2 rounded-xl bg-ds-50 dark:bg-white/5 border border-ds-100 dark:border-white/5">
+            <div className="size-8 rounded-full bg-ds-200 dark:bg-ds-800 flex items-center justify-center overflow-hidden">
               <FiUser size={18} />
             </div>
             <div className="flex-1 overflow-hidden">
               <p className="text-xs font-bold truncate">Alex Rivera</p>
-              <p className="text-[10px] text-neutral-500 truncate">Free Tier</p>
+              <p className="text-[10px] text-ds-500 truncate">Free Tier</p>
             </div>
           </div>
         </SidebarFooter>
       </Sidebar>
-      <div className="flex-1 bg-neutral-50/50 dark:bg-neutral-900/20 p-8 flex items-center justify-center">
-        <p className="text-neutral-400 text-sm font-medium italic">Active: {activeTab}</p>
+      <div className="flex-1 bg-ds-50/50 dark:bg-ds-900/20 p-8 flex items-center justify-center">
+        <p className="text-ds-400 text-sm font-medium italic">Active: {activeTab}</p>
       </div>
     </div>
   );

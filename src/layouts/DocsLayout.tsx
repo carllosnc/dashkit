@@ -75,15 +75,15 @@ function SidebarContent({ currentPath, onItemClick }: { currentPath: string, onI
                 className={clsx(
                   "px-3 py-2 rounded-xl text-sm transition-all duration-200 flex items-center gap-3",
                   (currentPath === link.to || (link.to === '/docs/introduction' && currentPath === '/docs'))
-                    ? "bg-white shadow-[0_2px_8px_rgba(0,0,0,0.04)] border-white text-neutral-950 font-semibold dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
-                    : "text-neutral-500 font-medium hover:text-neutral-950 hover:bg-white/50 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/5"
+                    ? "bg-white shadow-[0_2px_8px_rgba(0,0,0,0.04)] border-white text-ds-950 font-semibold dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
+                    : "text-ds-500 font-medium hover:text-ds-950 hover:bg-white/50 dark:text-ds-400 dark:hover:text-white dark:hover:bg-white/5"
                 )}
               >
                 <div className={clsx(
                   "shrink-0 transition-colors duration-200",
                   (currentPath === link.to || (link.to === '/docs/introduction' && currentPath === '/docs'))
-                    ? "text-neutral-900 dark:text-white"
-                    : "text-neutral-400 group-hover:text-neutral-900 dark:text-neutral-500 dark:group-hover:text-white"
+                    ? "text-ds-900 dark:text-white"
+                    : "text-ds-400 group-hover:text-ds-900 dark:text-ds-500 dark:group-hover:text-white"
                 )}>
                   {link.icon}
                 </div>

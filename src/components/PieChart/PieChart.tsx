@@ -88,12 +88,14 @@ export const PieChart = ({
     setHoveredIndex(index);
   };
 
+  const isNearTop = tooltipPos.y < 100;
+
   return (
     <div
       ref={containerRef}
-      className={cn("w-full flex flex-col items-center justify-center relative", className)}
+      className={cn("w-full flex flex-col items-center justify-center relative overflow-visible", className)}
     >
-      <div className="relative w-full aspect-square max-w-[280px]">
+      <div className="relative w-full aspect-square max-w-[280px] overflow-visible">
         <svg
           viewBox={`0 0 ${size} ${size}`}
           className="w-full h-full overflow-visible"
@@ -105,7 +107,7 @@ export const PieChart = ({
               fill={slice.color}
               stroke="currentColor"
               strokeWidth="3"
-              className="text-white dark:text-neutral-950 transition-colors duration-200 cursor-pointer"
+              className="text-white dark:text-ds-950 transition-colors duration-200 cursor-pointer"
               style={{
                 zIndex: hoveredIndex === i ? 10 : 1,
                 transformOrigin: `${center}px ${center}px`
@@ -129,10 +131,13 @@ export const PieChart = ({
 
         {showTooltip && hoveredIndex !== null && (
           <div
-            className="absolute z-10 pointer-events-none transform -translate-x-1/2 -translate-y-full mb-4 bg-card text-card-foreground rounded-lg shadow-2xl border border-border p-3 flex flex-col gap-1 min-w-[120px]"
+            className={cn(
+              "absolute z-50 pointer-events-none transform -translate-x-1/2 bg-card text-card-foreground rounded-lg shadow-2xl border border-border p-3 flex flex-col gap-1 min-w-[120px] transition-transform duration-200",
+              isNearTop ? "translate-y-4" : "-translate-y-full -mt-8"
+            )}
             style={{
               left: tooltipPos.x,
-              top: tooltipPos.y - 10
+              top: tooltipPos.y
             }}
           >
             <div className="flex items-center gap-2">

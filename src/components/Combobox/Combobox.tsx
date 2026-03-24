@@ -143,12 +143,12 @@ export const Combobox = ({
       {(label || (multiple && selectedOptions.length > 0)) && (
         <div className="flex items-center justify-between px-1">
           {label && (
-            <label className="text-[13px] font-semibold text-neutral-700 dark:text-neutral-300 tracking-tight">
+            <label className="text-[13px] font-semibold text-ds-700 dark:text-ds-300 tracking-tight">
               {label}
             </label>
           )}
           {multiple && selectedOptions.length > 0 && (
-            <span className="text-[11px] font-bold text-neutral-400 uppercase tracking-wider">
+            <span className="text-[11px] font-bold text-ds-400 uppercase tracking-wider">
               {selectedOptions.length} Selected
             </span>
           )}
@@ -171,7 +171,7 @@ export const Combobox = ({
       )}
       
       <div className="relative group">
-        <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-500 group-focus-within:text-black dark:group-focus-within:text-white transition-colors duration-200 pointer-events-none">
+        <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ds-500 group-focus-within:text-black dark:group-focus-within:text-white transition-colors duration-200 pointer-events-none">
           <FiSearch className="size-4" />
         </div>
 
@@ -199,14 +199,14 @@ export const Combobox = ({
             <button
               type="button"
               onClick={handleClear}
-              className="p-1 rounded-full text-neutral-500 hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all"
+              className="p-1 rounded-full text-ds-500 hover:text-black dark:hover:text-white hover:bg-ds-100 dark:hover:bg-ds-800 transition-all"
               aria-label="Clear selection"
             >
               <FiX className="size-3.5" />
             </button>
           )}
           <div className={cn(
-            "text-neutral-500 transition-transform duration-300 pointer-events-none",
+            "text-ds-500 transition-transform duration-300 pointer-events-none",
             isOpen && "rotate-180"
           )}>
             <FiChevronDown className="size-4" />
@@ -251,7 +251,7 @@ export const Combobox = ({
       </div>
 
       {description && (
-        <span className="text-[12px] text-neutral-500 dark:text-neutral-500 ml-1 tracking-tight">
+        <span className="text-[12px] text-ds-500 dark:text-ds-500 ml-1 tracking-tight">
           {description}
         </span>
       )}

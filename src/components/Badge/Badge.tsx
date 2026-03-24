@@ -12,7 +12,7 @@ const colorStyles: Record<BadgeColor, string> = {
   danger: "bg-danger text-danger-foreground border-transparent",
   error: "bg-danger text-danger-foreground border-transparent",
   info: "bg-info text-info-foreground border-transparent",
-  base: "bg-neutral-500 text-white border-transparent"
+  base: "bg-ds-500 text-white border-transparent"
 };
 
 const pulseStyles: Record<BadgeColor, string> = {
@@ -21,7 +21,7 @@ const pulseStyles: Record<BadgeColor, string> = {
   danger: "bg-danger",
   error: "bg-danger",
   info: "bg-info",
-  base: "bg-neutral-500"
+  base: "bg-ds-500"
 };
 
 const positionClasses: Record<BadgePosition, string> = {

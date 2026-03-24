@@ -97,7 +97,7 @@ export const Drawer = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-neutral-950/40 backdrop-blur-sm -z-10"
+            className="absolute inset-0 bg-ds-950/40 backdrop-blur-sm -z-10"
           />
 
           {/* Drawer Content */}
@@ -146,7 +146,7 @@ export const Drawer = ({
                 <div className="flex items-center gap-3">
                   {/* Visual Drag Handle */}
                   <div className={cn(
-                    "rounded-full bg-neutral-200 dark:bg-neutral-800 shrink-0",
+                    "rounded-full bg-ds-200 dark:bg-ds-800 shrink-0",
                     (position === 'left' || position === 'right') ? "w-1 h-8" : "w-8 h-1"
                   )} />
                   {title && (
@@ -163,7 +163,7 @@ export const Drawer = ({
               </div>
               <button
                 onClick={onClose}
-                className="p-2 rounded-md transition-all duration-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
+                className="p-2 rounded-md transition-all duration-200 hover:bg-ds-100 dark:hover:bg-ds-800 text-ds-400 hover:text-ds-900 dark:hover:text-white"
               >
                 <FiX size={20} />
               </button>
@@ -175,7 +175,7 @@ export const Drawer = ({
             </div>
 
             {/* Footer shadow fade */}
-            <div className="h-6 w-full shrink-0 bg-gradient-to-t from-white dark:from-neutral-900 to-transparent pointer-events-none" />
+            <div className="h-6 w-full shrink-0 bg-gradient-to-t from-white dark:from-ds-900 to-transparent pointer-events-none" />
           </motion.div>
         </div>
       )}

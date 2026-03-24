@@ -39,23 +39,23 @@ export function PropertyDoc({ title, properties, className }: PropertyDocProps) 
             {properties.map((property, idx) => (
               <tr
                 key={idx}
-                className="group hover:bg-neutral-50 dark:hover:bg-neutral-900/30 transition-colors duration-150"
+                className="group hover:bg-ds-50 dark:hover:bg-ds-900/30 transition-colors duration-150"
               >
                 <td className="px-3 py-4 align-top whitespace-nowrap border-r border-border">
-                  <span className="text-[14px] font-bold text-neutral-500 dark:text-neutral-400">
+                  <span className="text-[14px] font-bold text-ds-500 dark:text-ds-400">
                     {property.prop}
                   </span>
                 </td>
                 {hasType && (
                   <td className="px-3 py-4 align-top border-r border-border">
-                    <span className="text-[14px] text-neutral-500 dark:text-neutral-400 break-all">
+                    <span className="text-[14px] text-ds-500 dark:text-ds-400 break-all">
                       {property.type}
                     </span>
                   </td>
                 )}
                 {hasDefault && (
                   <td className="px-3 py-4 align-top whitespace-nowrap font-mono text-[14px] border-r border-border">
-                    <span className="text-neutral-500 dark:text-neutral-400">
+                    <span className="text-ds-500 dark:text-ds-400">
                       {property.defaultValue || '—'}
                     </span>
                   </td>

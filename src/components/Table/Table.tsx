@@ -60,7 +60,7 @@ export const TableRow = forwardRef<HTMLTableRowElement, HTMLAttributes<HTMLTable
     <tr
       ref={ref}
       className={cn(
-        "border-b border-border/60 transition-colors hover:bg-neutral-50 dark:hover:bg-neutral-950/20 data-[state=selected]:bg-muted",
+        "border-b border-border/60 transition-colors hover:bg-ds-50 dark:hover:bg-ds-950/20 data-[state=selected]:bg-muted",
         className
       )}
       {...props}
@@ -74,7 +74,7 @@ export const TableHead = forwardRef<HTMLTableCellElement, ThHTMLAttributes<HTMLT
     <th
       ref={ref}
       className={cn(
-        "h-10 px-0 text-left align-middle font-semibold text-neutral-500 dark:text-neutral-400 [&:has([role=checkbox])]:pr-0 text-[12px]",
+        "h-10 px-0 text-left align-middle font-semibold text-ds-500 dark:text-ds-400 [&:has([role=checkbox])]:pr-0 text-[12px]",
         className
       )}
       {...props}

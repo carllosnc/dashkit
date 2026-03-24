@@ -142,7 +142,7 @@ export const DatePicker = ({
   return (
     <div className="flex flex-col gap-1.5 w-full font-sans" ref={containerRef}>
       {label && (
-        <label className="text-[13px] font-semibold text-neutral-700 dark:text-neutral-300 ml-1 tracking-tight">
+        <label className="text-[13px] font-semibold text-ds-700 dark:text-ds-300 ml-1 tracking-tight">
           {label}
         </label>
       )}
@@ -159,11 +159,11 @@ export const DatePicker = ({
         >
           <span className={cn(
             "truncate",
-            !value && "text-neutral-500"
+            !value && "text-ds-500"
           )}>
             {value ? formatDate(value) : placeholder}
           </span>
-          <FiCalendar className="size-4 text-neutral-400" />
+          <FiCalendar className="size-4 text-ds-400" />
         </button>
 
         {isOpen && triggerRect && createPortal(
@@ -262,7 +262,7 @@ export const DatePicker = ({
         )}
       </div>
       {description && (
-        <span className="text-[12px] text-neutral-600 dark:text-neutral-400 ml-1 tracking-tight">
+        <span className="text-[12px] text-ds-600 dark:text-ds-400 ml-1 tracking-tight">
           {description}
         </span>
       )}

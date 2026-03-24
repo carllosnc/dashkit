@@ -29,7 +29,7 @@ export const ExamplesList = () => {
 
       <main className="flex-1 max-w-5xl w-full mx-auto px-6 py-20">
         <header className="mb-10">
-          <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white mb-6 transition-colors">
+          <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-ds-500 hover:text-ds-900 dark:text-ds-400 dark:hover:text-white mb-6 transition-colors">
             <FiArrowLeft size={16} />
             Back to Home
           </Link>
@@ -63,7 +63,7 @@ export const ExamplesList = () => {
                 </p>
               </div>
               <div className="flex items-center gap-4 mt-4 md:mt-0">
-                <FiArrowRight className="size-6 text-neutral-300 dark:text-neutral-700 group-hover:text-blue-500 dark:group-hover:text-sky-400 transition-all duration-300" />
+                <FiArrowRight className="size-6 text-ds-300 dark:text-ds-700 group-hover:text-blue-500 dark:group-hover:text-sky-400 transition-all duration-300" />
               </div>
             </Link>
           ))}

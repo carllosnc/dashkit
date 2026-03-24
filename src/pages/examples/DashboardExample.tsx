@@ -183,7 +183,7 @@ export function DashboardExample() {
                 <h3 className="text-2xl font-bold tracking-tight text-foreground">$45,231.89</h3>
                 <span className="text-[11px] font-bold text-success bg-success/10 px-2 py-0.5 rounded-full">+12.5%</span>
               </div>
-              <p className="text-sm text-neutral-400 mt-1">vs last month</p>
+              <p className="text-sm text-ds-400 mt-1">vs last month</p>
             </CardContent>
           </Card>
 
@@ -192,9 +192,9 @@ export function DashboardExample() {
               <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider">Active Tasks</p>
               <div className="flex items-baseline justify-between">
                 <h3 className="text-2xl font-bold tracking-tight text-foreground">1,240</h3>
-                <span className="text-[11px] font-bold text-neutral-500 bg-neutral-100 dark:bg-neutral-800 px-2 py-0.5 rounded-full">82%</span>
+                <span className="text-[11px] font-bold text-ds-500 bg-ds-100 dark:bg-ds-800 px-2 py-0.5 rounded-full">82%</span>
               </div>
-              <div className="h-1 w-full bg-neutral-100 dark:bg-neutral-800 rounded-full mt-3 overflow-hidden">
+              <div className="h-1 w-full bg-ds-200 dark:bg-ds-800 rounded-full mt-3 overflow-hidden">
                 <div className="h-full bg-primary w-[82%]" />
               </div>
             </CardContent>
@@ -209,7 +209,7 @@ export function DashboardExample() {
               </div>
               <div className="flex gap-1 mt-3">
                  {[1,2,3,4,5,6].map(i => (
-                   <div key={i} className={cn("h-1 flex-1 rounded-full", i <= 5 ? "bg-foreground" : "bg-neutral-100 dark:bg-neutral-800")} />
+                   <div key={i} className={cn("h-1 flex-1 rounded-full", i <= 5 ? "bg-foreground" : "bg-ds-100 dark:bg-ds-800")} />
                  ))}
               </div>
             </CardContent>
@@ -218,7 +218,7 @@ export function DashboardExample() {
 
         {/* Overview Section */}
         <section className="flex flex-col gap-6">
-          <h2 className="text-sm font-bold uppercase tracking-widest text-neutral-400 flex items-center gap-2">
+          <h2 className="text-sm font-bold uppercase tracking-widest text-ds-400 flex items-center gap-2">
              <FiPieChart /> Activity Overview
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -261,7 +261,7 @@ export function DashboardExample() {
                       <Avatar key={i} src={url} alt={`Member ${i + 1}`} />
                     ))}
                   </AvatarGroup>
-                  <p className="text-sm text-neutral-500">Your team has completed 24 tasks today.</p>
+                  <p className="text-sm text-ds-500">Your team has completed 24 tasks today.</p>
                   <div className="flex gap-2">
                     <Chip label="Mobile App" onDelete={() => {}} />
                     <Chip label="Dashboard" onDelete={() => {}} />
@@ -284,7 +284,7 @@ export function DashboardExample() {
 
         {/* Financial Section */}
         <section className="flex flex-col gap-6">
-          <h2 className="text-sm font-bold uppercase tracking-widest text-neutral-400 flex items-center gap-2">
+          <h2 className="text-sm font-bold uppercase tracking-widest text-ds-400 flex items-center gap-2">
              <FiTrendingUp /> Financial Performance
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -330,7 +330,7 @@ export function DashboardExample() {
 
         {/* Resources & Activity Section */}
         <section className="flex flex-col gap-6">
-          <h2 className="text-sm font-bold uppercase tracking-widest text-neutral-400 flex items-center gap-2">
+          <h2 className="text-sm font-bold uppercase tracking-widest text-ds-400 flex items-center gap-2">
              <FiGrid /> Resources & Logs
           </h2>
           <div className="w-full">
@@ -427,7 +427,7 @@ export function DashboardExample() {
 
         {/* Projects Section */}
         <section className="flex flex-col gap-6">
-          <h2 className="text-sm font-bold uppercase tracking-widest text-neutral-400 flex items-center gap-2">
+          <h2 className="text-sm font-bold uppercase tracking-widest text-ds-400 flex items-center gap-2">
              <FiGrid /> Active Projects
           </h2>
 
@@ -436,17 +436,17 @@ export function DashboardExample() {
               <AccordionItem value="item-1">
                 <AccordionTrigger>
                   <div className="flex items-center gap-3">
-                    <FiCheckCircle size={20} className="text-neutral-500" />
+                    <FiCheckCircle size={20} className="text-ds-500" />
                     Phase 1: Foundation
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
-                   <div className="py-2 text-sm text-neutral-500 flex flex-col gap-4">
+                   <div className="py-2 text-sm text-ds-500 flex flex-col gap-4">
                      <p>Implement core UI elements and accessibility foundations. Focus on design tokens and basic interactions.</p>
                      <div className="flex items-center justify-between">
                        <div className="flex items-center gap-4">
                          <Badge content="On Track" color="base" />
-                         <span className="text-xs text-neutral-400">Due Dec 12, 2026</span>
+                         <span className="text-xs text-ds-400">Due Dec 12, 2026</span>
                        </div>
                        <AvatarGroup max={3} size="md" spacing="sm">
                          <Avatar src={TEAM_AVATARS[1]} alt="Sarah M." />
@@ -461,45 +461,45 @@ export function DashboardExample() {
               <AccordionItem value="item-2">
                 <AccordionTrigger>
                   <div className="flex items-center gap-3">
-                    <FiClock size={20} className="text-neutral-500" />
+                    <FiClock size={20} className="text-ds-500" />
                     Phase 2: Integration
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
-                   <p className="py-2 text-sm text-neutral-500">Connecting external API services and real-time database syncing across distributed nodes.</p>
+                   <p className="py-2 text-sm text-ds-500">Connecting external API services and real-time database syncing across distributed nodes.</p>
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-3">
                 <AccordionTrigger>
                   <div className="flex items-center gap-3">
-                    <FiZap size={20} className="text-neutral-500" />
+                    <FiZap size={20} className="text-ds-500" />
                     Phase 3: Performance Optimization
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
-                   <p className="py-2 text-sm text-neutral-500">Optimizing bundle sizes, implementing edge caching, and fine-tuning database queries for scale.</p>
+                   <p className="py-2 text-sm text-ds-500">Optimizing bundle sizes, implementing edge caching, and fine-tuning database queries for scale.</p>
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-4">
                 <AccordionTrigger>
                   <div className="flex items-center gap-3">
-                    <FiUsers size={20} className="text-neutral-500" />
+                    <FiUsers size={20} className="text-ds-500" />
                     Phase 4: Feedback & Pilot
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
-                   <p className="py-2 text-sm text-neutral-500">Launching to a subset of users to gather real-world usage patterns and edge cases.</p>
+                   <p className="py-2 text-sm text-ds-500">Launching to a subset of users to gather real-world usage patterns and edge cases.</p>
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-5">
                 <AccordionTrigger>
                   <div className="flex items-center gap-3">
-                    <FiPieChart size={20} className="text-neutral-500" />
+                    <FiPieChart size={20} className="text-ds-500" />
                     Phase 5: Global Rollout
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
-                   <p className="py-2 text-sm text-neutral-500">Final production deployment across all regions with multi-cluster traffic management.</p>
+                   <p className="py-2 text-sm text-ds-500">Final production deployment across all regions with multi-cluster traffic management.</p>
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
@@ -508,7 +508,7 @@ export function DashboardExample() {
 
         {/* Settings Section */}
         <section className="flex flex-col gap-6">
-          <h2 className="text-sm font-bold uppercase tracking-widest text-neutral-400 flex items-center gap-2">
+          <h2 className="text-sm font-bold uppercase tracking-widest text-ds-400 flex items-center gap-2">
              <FiSettings /> Account Settings
           </h2>
 
@@ -521,12 +521,12 @@ export function DashboardExample() {
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
                   <div className="flex flex-col gap-2">
-                    <label className="text-sm font-semibold text-neutral-700 dark:text-neutral-300">Username</label>
+                    <label className="text-sm font-semibold text-ds-700 dark:text-ds-300">Username</label>
                     <Input placeholder="carllosnc" />
-                    <p className="text-[11px] text-neutral-400">This is your public display name.</p>
+                    <p className="text-[11px] text-ds-400">This is your public display name.</p>
                   </div>
                   <div className="flex flex-col gap-2">
-                    <label className="text-sm font-semibold text-neutral-700 dark:text-neutral-300">Email Address</label>
+                    <label className="text-sm font-semibold text-ds-700 dark:text-ds-300">Email Address</label>
                     <Input placeholder="hello@dashkit.ui" type="email" />
                   </div>
 
@@ -578,13 +578,13 @@ export function DashboardExample() {
       >
         <div className="flex flex-col gap-4 py-6">
            {[1,2,3,4,5].map(i => (
-             <div key={i} className="flex gap-4 p-4 rounded-md hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors border border-transparent hover:border-neutral-border dark:hover:border-neutral-dark-border">
+             <div key={i} className="flex gap-4 p-4 rounded-md hover:bg-ds-50 dark:hover:bg-ds-900 transition-colors border border-transparent hover:border-ds-border dark:hover:border-ds-dark-border">
                 <div className="size-10 rounded-full bg-blue-500/10 flex items-center justify-center shrink-0">
                    <FiBell className="text-blue-500" />
                 </div>
                 <div>
                    <div className="text-sm font-bold">New comment on "Auth Logic"</div>
-                   <div className="text-xs text-neutral-500">2 hours ago</div>
+                   <div className="text-xs text-ds-500">2 hours ago</div>
                 </div>
              </div>
            ))}

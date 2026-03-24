@@ -57,7 +57,7 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
               contentPosition === "left" && "hidden"
             )}
           />
-          <span className="text-[11px] font-bold uppercase tracking-widest text-neutral-400 select-none whitespace-nowrap">
+          <span className="text-[11px] font-bold uppercase tracking-widest text-ds-400 select-none whitespace-nowrap">
             {children}
           </span>
           <div

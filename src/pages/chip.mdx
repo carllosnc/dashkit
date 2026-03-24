@@ -39,7 +39,7 @@ export const RemovableExample = () => {
         />
       ))}
       {chips.length === 0 && (
-        <p className="text-xs text-neutral-400 italic">No tags left.</p>
+        <p className="text-xs text-ds-400 italic">No tags left.</p>
       )}
     </div>
   );
@@ -111,7 +111,7 @@ Chips combine three `variants` with five semantic `colors` to provide maximum fl
   <div className="flex flex-col gap-8 w-full">
     {/* Tonal Row */}
     <div className="flex flex-col gap-3">
-      <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest">Tonal (Default)</span>
+      <span className="text-[10px] font-bold text-ds-400 uppercase tracking-widest">Tonal (Default)</span>
       <div className="flex flex-wrap gap-3">
         <Chip label="Base tonal" color="base" variant="tonal" onClick={() => {}} />
         <Chip label="Success tonal" color="success" variant="tonal" onClick={() => {}} />
@@ -123,7 +123,7 @@ Chips combine three `variants` with five semantic `colors` to provide maximum fl
 
     {/* Filled Row */}
     <div className="flex flex-col gap-3">
-      <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest">Filled</span>
+      <span className="text-[10px] font-bold text-ds-400 uppercase tracking-widest">Filled</span>
       <div className="flex flex-wrap gap-3">
         <Chip label="Base filled" color="base" variant="filled" onClick={() => {}} />
         <Chip label="Success filled" color="success" variant="filled" onClick={() => {}} />
@@ -135,7 +135,7 @@ Chips combine three `variants` with five semantic `colors` to provide maximum fl
 
     {/* Outlined Row */}
     <div className="flex flex-col gap-3">
-      <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest">Outlined</span>
+      <span className="text-[10px] font-bold text-ds-400 uppercase tracking-widest">Outlined</span>
       <div className="flex flex-wrap gap-3">
         <Chip label="Base outlined" color="base" variant="outlined" onClick={() => {}} />
         <Chip label="Success outlined" color="success" variant="outlined" onClick={() => {}} />
