@@ -6,7 +6,7 @@ import {
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Header } from '../partials/Header';
 import { Footer } from '../partials/Footer';
-import { Drawer } from '../components/Drawer/Drawer';
+import { Drawer, DrawerHeader } from '../components/Drawer/Drawer';
 import clsx from 'clsx';
 
 interface ChartNavLink {
@@ -93,10 +93,14 @@ export function ChartsLayout() {
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
         position="left"
-        title="Charts Gallery"
         size="w-[80%] max-w-[300px]"
       >
-        <div className="py-4">
+        <DrawerHeader>
+          <h2 className="text-xl font-bold text-block-fg dark:text-block-dark-fg tracking-tight">
+             Charts Gallery
+          </h2>
+        </DrawerHeader>
+        <div className="py-4 px-6 overflow-y-auto">
           <SidebarContent
             currentPath={currentPath}
             onItemClick={() => setIsMobileMenuOpen(false)}

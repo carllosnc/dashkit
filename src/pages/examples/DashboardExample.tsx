@@ -32,7 +32,7 @@ import { Chip } from '../../components/Chip/Chip';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../../components/Accordion/Accordion';
 import { Switch } from '../../components/Switch/Switch';
 import { Modal } from '../../components/Modal/Modal';
-import { Drawer } from '../../components/Drawer/Drawer';
+import { Drawer, DrawerHeader } from '../../components/Drawer/Drawer';
 import { toast } from '../../components/Toast/useToast';
 import { ThemeToggle } from '../../partials/ThemeToggle';
 import { Footer } from '../../partials/Footer';
@@ -573,10 +573,16 @@ export function DashboardExample() {
       <Drawer
         isOpen={isDrawerOpen}
         onClose={() => setIsDrawerOpen(false)}
-        title="Notifications"
-        description="Stay up to date with your team's progress."
       >
-        <div className="flex flex-col gap-4 py-6">
+        <DrawerHeader>
+          <h2 className="text-xl font-bold text-block-fg dark:text-block-dark-fg tracking-tight">
+             Notifications
+          </h2>
+          <p className="text-sm text-ds-500">
+             Stay up to date with your team's progress.
+          </p>
+        </DrawerHeader>
+        <div className="flex flex-col gap-4 py-6 px-6 overflow-y-auto">
            {[1,2,3,4,5].map(i => (
              <div key={i} className="flex gap-4 p-4 rounded-md hover:bg-ds-50 dark:hover:bg-ds-900 transition-colors border border-transparent hover:border-ds-border dark:hover:border-ds-dark-border">
                 <div className="size-10 rounded-full bg-blue-500/10 flex items-center justify-center shrink-0">

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Drawer, type DrawerPosition } from './Drawer';
+import { Drawer, DrawerHeader, type DrawerPosition } from './Drawer';
 import { Button } from '../Button/Button';
 import { FiLayout, FiSidebar, FiAlignLeft, FiUser, FiSettings, FiActivity } from 'react-icons/fi';
 
@@ -47,11 +47,17 @@ export function DrawerDemo() {
         isOpen={!!activeDrawer}
         onClose={closeDrawer}
         position={activeDrawer || 'right'}
-        title="Settings & Overview"
-        description="Manage your global application settings and view latest activity."
         className={activeDrawer === 'left' ? 'max-w-xs' : undefined}
       >
-        <div className="flex flex-col gap-6 py-4">
+        <DrawerHeader>
+          <h2 className="text-xl font-bold text-block-fg dark:text-block-dark-fg tracking-tight">
+            Settings & Overview
+          </h2>
+          <p className="text-sm text-ds-500">
+            Manage your global application settings and view latest activity.
+          </p>
+        </DrawerHeader>
+        <div className="flex flex-col gap-6 py-4 px-6 overflow-y-auto">
           <div className="space-y-4">
             <h4 className="text-xs font-bold text-ds-400 uppercase tracking-widest">General</h4>
             <div className="grid gap-2">
