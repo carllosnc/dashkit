@@ -132,7 +132,7 @@ export const PieChart = ({
         {showTooltip && hoveredIndex !== null && (
           <div
             className={cn(
-              "absolute z-50 pointer-events-none transform -translate-x-1/2 bg-card text-card-foreground rounded-lg shadow-2xl border border-border p-3 flex flex-col gap-1 min-w-[120px] transition-transform duration-200",
+              "absolute z-50 pointer-events-none transform -translate-x-1/2 bg-ds-950 text-white rounded-lg shadow-2xl border border-ds-800 p-3 flex flex-col gap-1 min-w-[120px] transition-transform duration-200",
               isNearTop ? "translate-y-4" : "-translate-y-full -mt-8"
             )}
             style={{
@@ -142,10 +142,10 @@ export const PieChart = ({
           >
             <div className="flex items-center gap-2">
                <div className="size-2 rounded-full" style={{ backgroundColor: data[hoveredIndex].color }} />
-               <span className="text-xs font-medium text-foreground/80 whitespace-nowrap">{data[hoveredIndex].label}</span>
+               <span className="text-xs font-medium text-ds-200 whitespace-nowrap">{data[hoveredIndex].label}</span>
             </div>
-            <div className="flex border-b border-border pb-1 mt-1 mb-1">
-               <span className="text-xs font-bold text-foreground">
+            <div className="flex border-b border-ds-800 pb-1 mt-1 mb-1">
+               <span className="text-xs font-bold text-white">
                  {data[hoveredIndex].value.toLocaleString()}
                  <span className="ml-1 opacity-50 font-normal">
                    ({((data[hoveredIndex].value / total) * 100).toFixed(1)}%)

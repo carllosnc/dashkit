@@ -185,7 +185,7 @@ export const LineChart = ({
       {showTooltip && hoveredIndex !== null && (
         <div
           className={cn(
-            "absolute z-50 pointer-events-none transform -translate-x-1/2 bg-card text-card-foreground rounded-lg border border-border p-3 shadow-2xl flex flex-col gap-2 min-w-[140px] transition-transform duration-200",
+            "absolute z-50 pointer-events-none transform -translate-x-1/2 bg-ds-950 text-white rounded-lg border border-ds-800 p-3 shadow-2xl flex flex-col gap-2 min-w-[140px] transition-transform duration-200",
             isNearTop ? "translate-y-4" : "-translate-y-full -mt-12"
           )}
           style={{
@@ -193,8 +193,8 @@ export const LineChart = ({
             top: tooltipPos.y
           }}
         >
-          <div className="flex border-b border-border pb-1 mb-1">
-             <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+          <div className="flex border-b border-ds-800 pb-1 mb-1">
+             <span className="text-[10px] font-bold uppercase tracking-widest text-ds-400">
                {data[hoveredIndex].label}
              </span>
           </div>
@@ -202,9 +202,9 @@ export const LineChart = ({
             <div key={s.key} className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-2">
                  <div className="size-2 rounded-full" style={{ backgroundColor: s.color }} />
-                  <span className="text-xs font-medium text-foreground/80 whitespace-nowrap">{s.label}</span>
+                  <span className="text-xs font-medium text-ds-200 whitespace-nowrap">{s.label}</span>
               </div>
-              <span className="text-xs font-bold text-foreground">
+              <span className="text-xs font-bold text-white">
                 {Number(data[hoveredIndex][s.key]).toLocaleString()}
               </span>
             </div>

@@ -28,6 +28,15 @@ import { LineChart } from '../../components/LineChart/LineChart';
 import { BarChart } from '../../components/BarChart/BarChart';
 import { PieChart } from '../../components/PieChart/PieChart';
 import { ImageExpander } from '../../components/ImageExpander/ImageExpander';
+import { 
+  Table, 
+  TableHeader, 
+  TableBody, 
+  TableRow, 
+  TableHead, 
+  TableCell,
+  TableCaption
+} from '../../components/Table/Table';
 import {
   FiPlus,
   FiTrash2,
@@ -118,6 +127,14 @@ export const AllComponentsExample = () => {
     { label: 'Mobile', value: 3200, color: 'var(--color-success)' },
     { label: 'Tablet', value: 1200, color: 'var(--color-blue-400)' },
     { label: 'Other', value: 600, color: 'var(--color-ds-300)' },
+  ];
+
+  const transactions = [
+    { id: 'TRX-001', customer: 'Alex Rivers', amount: 1250.00, status: 'Completed', date: '2024-03-20' },
+    { id: 'TRX-002', customer: 'Jordan Smith', amount: 840.50, status: 'Pending', date: '2024-03-21' },
+    { id: 'TRX-003', customer: 'Taylor Brooks', amount: 2100.00, status: 'Completed', date: '2024-03-21' },
+    { id: 'TRX-004', customer: 'Morgan Lee', amount: 450.00, status: 'Failed', date: '2024-03-22' },
+    { id: 'TRX-005', customer: 'Casey Jones', amount: 1100.25, status: 'Completed', date: '2024-03-22' },
   ];
 
    return (
@@ -919,6 +936,41 @@ export const AllComponentsExample = () => {
             </div>
           </CardContent>
         </Card>
+
+        <section className="flex flex-col gap-4">
+          <Table framed>
+            <TableCaption>A list of your recent invoices and their current payment status.</TableCaption>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="w-[100px]">Invoice</TableHead>
+                <TableHead>Customer</TableHead>
+                <TableHead>Date</TableHead>
+                <TableHead className="text-right">Amount</TableHead>
+                <TableHead className="text-center">Status</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {transactions.map((trx) => (
+                <TableRow key={trx.id}>
+                  <TableCell className="font-bold">{trx.id}</TableCell>
+                  <TableCell>{trx.customer}</TableCell>
+                  <TableCell className="text-ds-500">{trx.date}</TableCell>
+                  <TableCell className="text-right font-medium">${trx.amount.toFixed(2)}</TableCell>
+                  <TableCell className="flex justify-end">
+                    <Badge
+                      content={trx.status}
+                      color={
+                        trx.status === 'Completed' ? 'success' :
+                          trx.status === 'Pending' ? 'warning' :
+                            'danger'
+                      }
+                    />
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </section>
       </main>
 
       <Footer />
