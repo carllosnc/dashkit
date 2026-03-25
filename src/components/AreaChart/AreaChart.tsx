@@ -102,17 +102,18 @@ export const AreaChart = ({
 
   return (
     <div 
-      className={cn("w-full flex-1 flex flex-col relative overflow-visible", className)} 
+      className={cn("w-full flex-1 flex flex-col overflow-visible", className)} 
       style={{ height: typeof height === 'number' ? `${height}px` : height }}
     >
-      <svg
-        ref={chartRef}
-        viewBox={`0 0 ${width} ${svgHeight}`}
-        preserveAspectRatio="none"
-        className="flex-1 w-full overflow-visible"
-        onMouseMove={handleMouseMove}
-        onMouseLeave={() => setHoveredIndex(null)}
-      >
+      <div className="relative flex-1 w-full overflow-visible">
+        <svg
+          ref={chartRef}
+          viewBox={`0 0 ${width} ${svgHeight}`}
+          preserveAspectRatio="none"
+          className="w-full h-full overflow-visible"
+          onMouseMove={handleMouseMove}
+          onMouseLeave={() => setHoveredIndex(null)}
+        >
         <defs>
           {series.map(s => (
             <linearGradient key={`grad-${s.key}`} id={`grad-${s.key}`} x1="0" y1="0" x2="0" y2="1">
@@ -133,6 +134,7 @@ export const AreaChart = ({
             className="stroke-border"
             strokeWidth="1"
             strokeDasharray="4 4"
+            vectorEffect="non-scaling-stroke"
           />
         ))}
 
@@ -145,6 +147,7 @@ export const AreaChart = ({
             y2={svgHeight}
             className="stroke-border"
             strokeWidth="1"
+            vectorEffect="non-scaling-stroke"
           />
         )}
 
@@ -174,30 +177,42 @@ export const AreaChart = ({
                 initial={animate ? { pathLength: 0, opacity: 0 } : false}
                 animate={{ pathLength: 1, opacity: 1 }}
                 transition={{ duration: 1.5, ease: "easeInOut" }}
+                vectorEffect="non-scaling-stroke"
               />
-              {/* Data points (dots) */}
-              {s.points.map((p, i) => (
-                <motion.circle
-                  key={i}
-                  cx={p.x}
-                  cy={p.y}
-                  r={hoveredIndex === i ? "6.5" : "4"}
-                  className={cn(
-                    "stroke-current transition-all duration-200 fill-background",
-                    hoveredIndex === i && "fill-current"
-                  )}
-                  style={hoveredIndex === i ? { fill: s.color } : undefined}
-                  stroke={s.color}
-                  strokeWidth="2"
-                  initial={animate ? { scale: 0, opacity: 0 } : false}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: (i / data.length) * 0.5 + 1 }}
-                />
-              ))}
             </React.Fragment>
           );
         })}
       </svg>
+      
+      {/* HTML Dots Overlay - Prevents distortion while keeping alignment */}
+      <div className="absolute inset-0 pointer-events-none touch-none">
+        {allSeriesPoints.map((s) => (
+          s.points.map((p, i) => (
+            <motion.div
+              key={`${s.key}-${i}`}
+              className={cn(
+                "absolute rounded-full border-2 transition-all duration-200",
+              )}
+              style={{
+                left: `${(p.x / width) * 100}%`,
+                top: `${(p.y / svgHeight) * 100}%`,
+                width: hoveredIndex === i ? 12 : 8,
+                height: hoveredIndex === i ? 12 : 8,
+                x: "-50%",
+                y: "-50%",
+                backgroundColor: hoveredIndex === i ? s.color : '#fff',
+                borderColor: s.color,
+              }}
+              initial={animate ? { scale: 0, opacity: 0 } : false}
+              animate={{ 
+                scale: 1, 
+                opacity: 1,
+              }}
+              transition={{ delay: (i / data.length) * 0.5 + 1 }}
+            />
+          ))
+        ))}
+      </div>
 
       {/* Tooltip Overlay */}
       {showTooltip && hoveredIndex !== null && (
@@ -228,7 +243,8 @@ export const AreaChart = ({
             </div>
           ))}
         </div>
-      )}
+        )}
+      </div>
 
       {/* X-Axis Labels */}
       {showLabels && (

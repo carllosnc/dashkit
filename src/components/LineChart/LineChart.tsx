@@ -114,6 +114,7 @@ export const LineChart = ({
               className="stroke-border"
               strokeWidth="1"
               strokeDasharray="4 4"
+              vectorEffect="non-scaling-stroke"
             />
           ))}
 
@@ -126,6 +127,7 @@ export const LineChart = ({
               y2={svgHeight}
               className="stroke-border"
               strokeWidth="1"
+              vectorEffect="non-scaling-stroke"
             />
           )}
 
@@ -142,6 +144,7 @@ export const LineChart = ({
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                vectorEffect="non-scaling-stroke"
                 initial={animate ? { pathLength: 0 } : false}
                 animate={{ pathLength: 1 }}
                 transition={{ duration: 1.5, ease: "easeInOut" }}

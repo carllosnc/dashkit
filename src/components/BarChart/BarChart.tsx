@@ -126,6 +126,7 @@ export const BarChart = ({
             className="stroke-border"
             strokeWidth="1"
             strokeDasharray="4 4"
+            vectorEffect="non-scaling-stroke"
           />
         ))}
 
