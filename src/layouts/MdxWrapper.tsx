@@ -29,7 +29,7 @@ import { Textarea } from '../components/Textarea/Textarea';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/Tabs/Tabs';
 import { OtpInput } from '../components/OtpInput/OtpInput';
 import { OtpInputDemo } from '../components/OtpInput/OtpInputDemo';
-import { Sidebar, SidebarHeader, SidebarFooter, SidebarSection, SidebarSectionItem } from '../components/Sidebar/Sidebar';
+import { Sidebar, SidebarHeader, SidebarFooter, SidebarSection, SidebarItem } from '../components/Sidebar/Sidebar';
 import { ImageExpander } from '../components/ImageExpander/ImageExpander';
 import { ImageExpanderDemo } from '../components/ImageExpander/ImageExpanderDemo';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../components/Accordion/Accordion';
@@ -166,7 +166,7 @@ const components: Record<string, ElementType> = {
   SidebarHeader,
   SidebarFooter,
   SidebarSection,
-  SidebarSectionItem,
+  SidebarItem,
   ImageExpander,
   ImageExpanderDemo,
   Avatar,

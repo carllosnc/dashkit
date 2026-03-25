@@ -1,0 +1,331 @@
+import { useState } from 'react';
+import {
+  FiGrid, FiUsers, FiSettings,
+  FiMoreVertical, FiExternalLink,
+  FiZap, FiTrendingUp, FiCheckCircle,
+  FiCalendar, FiMessageSquare, FiFileText, FiLayout
+} from 'react-icons/fi';
+import { Sidebar, SidebarHeader, SidebarFooter, SidebarSection, SidebarItem, SidebarHeaderOpen, SidebarHeaderClose, SidebarFooterOpen } from '../../components/Sidebar/Sidebar';
+import { Button } from '../../components/Button/Button';
+import { IconButton } from '../../components/IconButton/IconButton';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/Card/Card';
+import { Badge } from '../../components/Badge/Badge';
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from '../../components/Table/Table';
+import { Avatar, AvatarGroup } from '../../components/Avatar/Avatar';
+import { AreaChart } from '../../components/AreaChart/AreaChart';
+import { BarChart } from '../../components/BarChart/BarChart';
+import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem, DropdownSeparator } from '../../components/Dropdown/Dropdown';
+
+const PROJECT_HEALTH_DATA = [
+  { label: 'Jan', health: 65, velocity: 40 },
+  { label: 'Feb', health: 72, velocity: 38 },
+  { label: 'Mar', health: 85, velocity: 55 },
+  { label: 'Apr', health: 80, velocity: 62 },
+  { label: 'May', health: 92, velocity: 58 },
+  { label: 'Jun', health: 95, velocity: 70 },
+];
+
+const PERFORMANCE_DATA = [
+  { label: 'Front', completed: 65, pending: 35 },
+  { label: 'Back', completed: 48, pending: 52 },
+  { label: 'Design', completed: 90, pending: 10 },
+  { label: 'Ops', completed: 55, pending: 45 },
+];
+
+const AVATARS = [
+  "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=100&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=100&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=100&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=100&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=100&auto=format&fit=crop",
+];
+
+export const SidebarDashboardExample = () => {
+  const [activeTab, setActiveTab] = useState('Overview');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
+  return (
+    <div className="flex h-screen bg-background overflow-hidden font-sans">
+      {/* Sidebar */}
+      <Sidebar
+        open={isSidebarOpen}
+        onOpenChange={setIsSidebarOpen}
+      >
+        <SidebarHeader>
+          <SidebarHeaderOpen>
+            <div className="flex items-center gap-3">
+              <span className="font-bold text-lg tracking-tight">
+                Dashkit
+              </span>
+            </div>
+          </SidebarHeaderOpen>
+          <SidebarHeaderClose>
+            <div className="flex items-center gap-3">
+              <span className="font-bold text-xl tracking-tight">
+                D
+              </span>
+            </div>
+          </SidebarHeaderClose>
+        </SidebarHeader>
+
+        <div className="flex-1 overflow-y-auto">
+          <SidebarSection title="Main">
+            <SidebarItem
+              icon={<FiGrid size={18} />}
+              active={activeTab === 'Overview'}
+              onClick={() => setActiveTab('Overview')}
+            >
+              Overview
+            </SidebarItem>
+            <SidebarItem
+              icon={<FiLayout size={18} />}
+              active={activeTab === 'Projects'}
+              onClick={() => setActiveTab('Projects')}
+              badgeSlot={<Badge content="novo" variant="soft" />}
+            >
+              Projects
+            </SidebarItem>
+            <SidebarItem
+              icon={<FiCalendar size={18} />}
+              active={activeTab === 'Calendar'}
+              onClick={() => setActiveTab('Calendar')}
+            >
+              Calendar
+            </SidebarItem>
+          </SidebarSection>
+
+          <SidebarSection
+            title="Management"
+            badge={isSidebarOpen && <Badge color="warning" content="Beta" variant="soft" />}
+          >
+            <SidebarItem icon={<FiUsers size={18} />} badgeSlot={<Badge color="success" dot />}>Team</SidebarItem>
+            <SidebarItem icon={<FiMessageSquare size={18} />} badgeSlot={<Badge color="danger" content={5} />}>Messages</SidebarItem>
+            <SidebarItem icon={<FiFileText size={18} />}>Reports</SidebarItem>
+          </SidebarSection>
+        </div>
+
+        <SidebarFooter>
+          <Dropdown>
+            <DropdownTrigger asChild>
+              <button className="flex items-center gap-3 w-full p-2 md:p-1.5 rounded-xl transition-colors hover:bg-muted/50 text-left outline-none group shrink-0">
+                <Avatar src={AVATARS[0]} size="sm" className="shrink-0" />
+                <SidebarFooterOpen>
+                  <div className="flex-1 overflow-hidden py-0.5">
+                    <p className="text-sm font-bold truncate leading-tight">John Doe</p>
+                    <p className="text-[10px] text-muted-foreground truncate leading-tight">john@example.com</p>
+                  </div>
+                  <FiMoreVertical className="size-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
+                </SidebarFooterOpen>
+              </button>
+            </DropdownTrigger>
+            <DropdownContent align="end" className="w-56" side="right" sideOffset={12}>
+               <div className="px-3 py-2 flex items-center gap-3 border-b border-border/50 mb-1">
+                 <Avatar src={AVATARS[0]} size="xs" />
+                 <div className="flex flex-col">
+                   <p className="text-xs font-bold leading-none">John Doe</p>
+                   <p className="text-[10px] text-muted-foreground mt-1">Free Plan</p>
+                 </div>
+               </div>
+               <DropdownItem leftIcon={<FiSettings size={14} />}>Profile Settings</DropdownItem>
+               <DropdownItem leftIcon={<FiZap size={14} />}>Upgrade to Pro</DropdownItem>
+               <DropdownSeparator />
+               <DropdownItem destructive leftIcon={<FiExternalLink size={14} />}>Sign Out</DropdownItem>
+            </DropdownContent>
+          </Dropdown>
+        </SidebarFooter>
+      </Sidebar>
+
+      <div className="flex-1 flex flex-col h-full overflow-hidden relative">
+        <main className="flex-1 overflow-y-auto p-6 md:p-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <div className="max-w-6xl mx-auto w-full space-y-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+              <h1 className="text-3xl font-bold tracking-tight mb-1">Project Portfolio</h1>
+              <p className="text-muted-foreground">Monitor your team performance and project health.</p>
+            </div>
+            <div className="flex items-center gap-3">
+              <Button variant="outlined" leftIcon={<FiExternalLink />}>Share Report</Button>
+              <Button variant="filled" leftIcon={<FiZap />}>Optimize Workflow</Button>
+            </div>
+          </div>
+
+          {/* Stats Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Card>
+               <CardContent>
+                  <div className="flex items-center justify-between mb-2">
+                     <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest">Total Revenue</span>
+                     <div className="size-8 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
+                       <FiTrendingUp className="size-4" />
+                     </div>
+                  </div>
+                  <div className="flex items-baseline gap-2">
+                     <span className="text-2xl font-bold tracking-tight">$48,250</span>
+                     <Badge color="success" className="text-[10px] py-0 px-1" content="+12%" />
+                  </div>
+               </CardContent>
+            </Card>
+
+            <Card>
+               <CardContent>
+                  <div className="flex items-center justify-between mb-2">
+                     <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest">Active Users</span>
+                     <div className="size-8 rounded-lg bg-sky-500/10 text-sky-500 flex items-center justify-center">
+                       <FiUsers className="size-4" />
+                     </div>
+                  </div>
+                  <div className="flex items-baseline gap-2">
+                     <span className="text-2xl font-bold tracking-tight">2,420</span>
+                     <Badge color="info" className="text-[10px] py-0 px-1" content="+5%" />
+                  </div>
+               </CardContent>
+            </Card>
+
+            <Card>
+               <CardContent>
+                  <div className="flex items-center justify-between mb-2">
+                     <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest">Completed Tasks</span>
+                     <div className="size-8 rounded-lg bg-indigo-500/10 text-indigo-500 flex items-center justify-center">
+                       <FiCheckCircle className="size-4" />
+                     </div>
+                  </div>
+                  <div className="flex items-baseline gap-2">
+                     <span className="text-2xl font-bold tracking-tight">128</span>
+                     <span className="text-xs text-muted-foreground">/ 150</span>
+                  </div>
+               </CardContent>
+            </Card>
+
+            <Card>
+               <CardContent>
+                  <div className="flex items-center justify-between mb-2">
+                     <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest">Avg. Velocity</span>
+                     <div className="size-8 rounded-lg bg-amber-500/10 text-amber-500 flex items-center justify-center">
+                       <FiZap className="size-4" />
+                     </div>
+                  </div>
+                  <div className="flex items-baseline gap-2">
+                     <span className="text-2xl font-bold tracking-tight">64.5</span>
+                     <span className="text-xs text-muted-foreground">pts / week</span>
+                  </div>
+               </CardContent>
+            </Card>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <Card className="lg:col-span-2">
+              <CardHeader>
+                <CardTitle>Project Health Score</CardTitle>
+                <CardDescription>Visualizing project stability and velocity over the last 6 months.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <AreaChart
+                  data={PROJECT_HEALTH_DATA}
+                  series={[
+                    { key: 'health', label: 'Health', color: '#2563eb' },
+                    { key: 'velocity', label: 'Velocity', color: '#38bdf8' }
+                  ]}
+                />
+              </CardContent>
+            </Card>
+
+            <Card>
+               <CardHeader>
+                 <CardTitle>Performance by Team</CardTitle>
+                 <CardDescription>Distribution of tasks across departments.</CardDescription>
+               </CardHeader>
+               <CardContent>
+                 <BarChart
+                   data={PERFORMANCE_DATA}
+                   series={[
+                     { key: 'completed', label: 'Completed', color: '#3b82f6' },
+                     { key: 'pending', label: 'Pending', color: '#93c5fd' }
+                   ]}
+                   height={300}
+                 />
+               </CardContent>
+            </Card>
+          </div>
+
+          {/* Project Table */}
+          <Card>
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <div>
+                  <CardTitle>Recent Projects</CardTitle>
+                  <CardDescription>Overview of currently active development sprints.</CardDescription>
+                </div>
+                <Button variant="soft" size="sm">View All</Button>
+              </div>
+            </CardHeader>
+            <CardContent className="pb-0 px-0">
+              <Table framed={false}>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-[30%]">Project Name</TableHead>
+                    <TableHead className="w-[20%]">Status</TableHead>
+                    <TableHead className="w-[25%]">Progress</TableHead>
+                    <TableHead className="w-[15%]">Assignees</TableHead>
+                    <TableHead className="text-right w-[10%]">Action</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {[
+                    { name: 'Mobile App Redesign', status: 'In Progress', color: 'info' as const, progress: 65, users: 3 },
+                    { name: 'Cloud Migration', status: 'Completed', color: 'success' as const, progress: 100, users: 4 },
+                    { name: 'Security Audit', status: 'On Hold', color: 'warning' as const, progress: 45, users: 2 },
+                    { name: 'API Documentation', status: 'In Progress', color: 'info' as const, progress: 20, users: 5 },
+                  ].map((p, i) => (
+                    <TableRow key={i}>
+                      <TableCell className="font-medium">{p.name}</TableCell>
+                      <TableCell>
+                        <Badge color={p.color} content={p.status} className="w-fit font-bold" variant="soft" />
+                      </TableCell>
+                      <TableCell>
+                        <div className="flex items-center gap-3">
+                          <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden max-w-[100px]">
+                             <div className="h-full bg-primary" style={{ width: `${p.progress}%` }} />
+                          </div>
+                          <span className="text-xs font-semibold text-muted-foreground w-8">{p.progress}%</span>
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                         <AvatarGroup size="xs" spacing="sm">
+                            {[1, 2, 3].slice(0, p.users).map((u, idx) => (
+                              <Avatar
+                                key={u}
+                                src={AVATARS[(i + idx + 1) % AVATARS.length]}
+                              />
+                            ))}
+                         </AvatarGroup>
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <Dropdown>
+                          <DropdownTrigger>
+                             <IconButton variant="ghost" icon={<FiMoreVertical />} />
+                          </DropdownTrigger>
+                          <DropdownContent align="end">
+                             <DropdownItem leftIcon={<FiLayout size={14} />}>Details</DropdownItem>
+                             <DropdownItem leftIcon={<FiSettings size={14} />}>Settings</DropdownItem>
+                          </DropdownContent>
+                        </Dropdown>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+          </div>
+        </main>
+      </div>
+    </div>
+  );
+};

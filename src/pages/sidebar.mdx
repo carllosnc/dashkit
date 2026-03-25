@@ -2,9 +2,13 @@ import { useState } from 'react';
 import { 
   Sidebar, 
   SidebarHeader, 
+  SidebarHeaderOpen,
+  SidebarHeaderClose,
   SidebarFooter, 
+  SidebarFooterOpen,
+  SidebarFooterClose,
   SidebarSection, 
-  SidebarSectionItem 
+  SidebarItem 
 } from '../components/Sidebar/Sidebar';
 import { 
   FiLayout, 
@@ -19,32 +23,48 @@ import {
 
 export const InteractiveSidebar = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
+  const [isOpen, setIsOpen] = useState(true);
+
   return (
-    <div className="flex h-[500px] w-full border border-ds-200 dark:border-ds-800 rounded-2xl overflow-hidden bg-white dark:bg-ds-950 shadow-sm">
-      <Sidebar className="w-64 border-r border-ds-100 dark:border-ds-900 shrink-0">
-        <SidebarHeader className="h-16 flex items-center gap-3 px-6">
-          <div className="size-8 rounded-lg bg-indigo-500/10 flex items-center justify-center">
-            <div className="size-4 rounded-full bg-indigo-500" />
-          </div>
-          <span className="font-bold text-lg tracking-tight">Dashkit</span>
+    <div className="flex h-[500px] w-full border border-ds-200 dark:border-ds-800 rounded-2xl overflow-hidden bg-white dark:bg-ds-950 shadow-sm relative">
+      <Sidebar 
+        collapsible 
+        open={isOpen} 
+        onOpenChange={setIsOpen}
+        className="border-r border-ds-100 dark:border-ds-900 shrink-0"
+      >
+        <SidebarHeader>
+          <SidebarHeaderOpen>
+            <div className="flex items-center gap-3">
+              <div className="size-8 rounded-lg bg-indigo-500/10 flex items-center justify-center">
+                <div className="size-4 rounded-full bg-indigo-500" />
+              </div>
+              <span className="font-bold text-lg tracking-tight transition-all duration-300">Dashkit</span>
+            </div>
+          </SidebarHeaderOpen>
+          <SidebarHeaderClose>
+            <div className="size-8 rounded-lg bg-indigo-500/10 flex items-center justify-center mx-auto">
+              <div className="size-4 rounded-full bg-indigo-500" />
+            </div>
+          </SidebarHeaderClose>
         </SidebarHeader>
 
         <div className="flex-1 overflow-y-auto pt-4">
-          <SidebarSection title="General">
-            <SidebarSectionItem icon={<FiLayout />} active={activeTab === 'dashboard'} onClick={() => setActiveTab('dashboard')}>
+          <SidebarSection>
+            <SidebarItem icon={<FiLayout size={18} />} active={activeTab === 'dashboard'} onClick={() => setActiveTab('dashboard')}>
               Overview
-            </SidebarSectionItem>
-            <SidebarSectionItem icon={<FiActivity />} active={activeTab === 'analytics'} onClick={() => setActiveTab('analytics')}>
+            </SidebarItem>
+            <SidebarItem icon={<FiActivity size={18} />} active={activeTab === 'analytics'} onClick={() => setActiveTab('analytics')}>
               Analytics
-            </SidebarSectionItem>
+            </SidebarItem>
           </SidebarSection>
           <SidebarSection title="Management">
-            <SidebarSectionItem icon={<FiUsers />} active={activeTab === 'team'} onClick={() => setActiveTab('team')}>
+            <SidebarItem icon={<FiUsers />} active={activeTab === 'team'} onClick={() => setActiveTab('team')}>
               Team
-            </SidebarSectionItem>
-            <SidebarSectionItem icon={<FiSettings />} active={activeTab === 'settings'} onClick={() => setActiveTab('settings')}>
+            </SidebarItem>
+            <SidebarItem icon={<FiSettings />} active={activeTab === 'settings'} onClick={() => setActiveTab('settings')}>
               Settings
-            </SidebarSectionItem>
+            </SidebarItem>
           </SidebarSection>
         </div>
 
@@ -75,11 +95,14 @@ A versatile and premium navigation sidebar component that supports complex layou
 
 ```tsx
 import { 
-  Sidebar, 
   SidebarHeader, 
+  SidebarHeaderOpen,
+  SidebarHeaderClose,
   SidebarFooter, 
+  SidebarFooterOpen,
+  SidebarFooterClose,
   SidebarSection, 
-  SidebarSectionItem 
+  SidebarItem 
 } from '@/components/Sidebar/Sidebar'
 ```
 
@@ -98,7 +121,7 @@ The `Sidebar` uses a semantic composition of headers, sections, and footers to c
 <InteractiveSidebar />
 
 ```tsx
-import { Sidebar, SidebarHeader, SidebarSection, SidebarSectionItem } from '@/components/dashkit';
+import { Sidebar, SidebarHeader, SidebarSection, SidebarItem } from '@/components/dashkit';
 import { FiLayout, FiActivity, FiSettings } from 'react-icons/fi';
 
 export default function App() {
@@ -112,13 +135,13 @@ export default function App() {
       </SidebarHeader>
 
       <SidebarSection title="General">
-        <SidebarSectionItem 
+        <SidebarItem 
           icon={<FiLayout />} 
           active={activeTab === 'dashboard'}
           onClick={() => setActiveTab('dashboard')}
         >
           Overview
-        </SidebarSectionItem>
+        </SidebarItem>
       </SidebarSection>
     </Sidebar>
   );
@@ -131,13 +154,29 @@ The Sidebar library is composed of several specialized layers designed for speci
 
 <PropertyDoc
   properties={[
-    { "prop": "Sidebar", "description": "The main container that handles height, width, and background colors." },
+    { "prop": "Sidebar", "description": "The main container that handles height, width, and transitions." },
     { "prop": "SidebarHeader", "description": "Designed for branding, logos, or organization switchers." },
+    { "prop": "SidebarHeaderOpen/Close", "description": "Conditional wrappers that show content based on sidebar expansion." },
     { "prop": "SidebarFooter", "description": "Bottom section for user profiles, help links, or versioning." },
+    { "prop": "SidebarFooterOpen/Close", "description": "Conditional wrappers for specialized footer layouts." },
     { "prop": "SidebarSection", "description": "Groups related items with an optional title." },
-    { "prop": "SidebarSectionItem", "description": "Individual navigation links or interactive buttons." }
+    { "prop": "SidebarItem", "description": "Individual navigation links or interactive buttons." }
   ]}
 />
+
+## Collapsible Sidebar
+
+Enable the `collapsible` prop to show a floating toggle button on the sidebar edge. You can use the `isOpen` state to conditionally render content using native utility components.
+
+```tsx
+<Sidebar collapsible defaultOpen={true}>
+  <SidebarHeader>
+    <SidebarHeaderOpen>Full Branding</SidebarHeaderOpen>
+    <SidebarHeaderClose>Logo</SidebarHeaderClose>
+  </SidebarHeader>
+  {/* ... items ... */}
+</Sidebar>
+```
 
 ## API Reference
 
@@ -146,6 +185,10 @@ The Sidebar library is composed of several specialized layers designed for speci
 <PropertyDoc
   properties={[
     { "prop": "children", "type": "ReactNode", "defaultValue": "—", "description": "The content of the sidebar." },
+    { "prop": "collapsible", "type": "boolean", "defaultValue": "true", "description": "Shows a floating toggle button on the edge." },
+    { "prop": "defaultOpen", "type": "boolean", "defaultValue": "true", "description": "Initial state for uncontrolled sidebar." },
+    { "prop": "open", "type": "boolean", "defaultValue": "—", "description": "Controlled open state." },
+    { "prop": "onOpenChange", "type": "(open: boolean) => void", "defaultValue": "—", "description": "Event handler for state changes." },
     { "prop": "className", "type": "string", "defaultValue": "—", "description": "Custom classes for the container." }
   ]}
 />
@@ -155,11 +198,11 @@ The Sidebar library is composed of several specialized layers designed for speci
 <PropertyDoc
   properties={[
     { "prop": "title", "type": "string", "defaultValue": "—", "description": "Uppercase header above the section." },
-    { "prop": "children", "type": "ReactNode", "defaultValue": "—", "description": "SidebarSectionItems to be rendered." }
+    { "prop": "children", "type": "ReactNode", "defaultValue": "—", "description": "SidebarItems to be rendered." }
   ]}
 />
 
-### SidebarSectionItem
+### SidebarItem
 
 <PropertyDoc
   properties={[

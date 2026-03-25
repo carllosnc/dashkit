@@ -14,7 +14,7 @@ export const Table = forwardRef<HTMLTableElement, TableProps>(
   ({ className, framed = true, ...props }, ref) => (
     <div className={cn(
       "relative w-full overflow-auto",
-      framed && "rounded-[var(--radius)] bg-card shadow-sm p-6"
+      framed && "rounded-[var(--radius)] bg-card shadow-sm p-4 md:p-6"
     )}>
       <table
         ref={ref}
@@ -74,7 +74,7 @@ export const TableHead = forwardRef<HTMLTableCellElement, ThHTMLAttributes<HTMLT
     <th
       ref={ref}
       className={cn(
-        "h-10 px-0 text-left align-middle font-semibold text-ds-500 dark:text-ds-400 [&:has([role=checkbox])]:pr-0 text-[12px]",
+        "h-10 px-0 text-left align-middle font-bold text-ds-500 dark:text-ds-400 [&:has([role=checkbox])]:pr-0 text-[10px] uppercase tracking-wider",
         className
       )}
       {...props}

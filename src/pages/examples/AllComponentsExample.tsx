@@ -797,8 +797,8 @@ export const AllComponentsExample = () => {
             </TabsContent>
             <TabsContent value="password">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-                <Input label="Current Password" type="password" />
-                <Input label="New Password" type="password" />
+                <Input label="Current Password" type="password" placeholder="••••••••" />
+                <Input label="New Password" type="password" placeholder="••••••••" />
               </div>
             </TabsContent>
             <TabsContent value="settings">

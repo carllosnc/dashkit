@@ -32,7 +32,7 @@ export function CardTitle({ className, ref, ...props }: CardTitleProps) {
   return (
     <h3
       ref={ref}
-      className={cn("text-lg font-medium text-foreground tracking-tight leading-tight", className)}
+      className={cn("text-base font-medium text-foreground tracking-tight leading-tight", className)}
       {...props}
     />
   );

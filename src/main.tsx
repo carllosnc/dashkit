@@ -44,6 +44,7 @@ import AvatarDocs from './pages/avatar.mdx'
 import { LoginExample } from './pages/examples/LoginExample'
 import { ComplexFormExample } from './pages/examples/ComplexFormExample'
 import { DashboardExample } from './pages/examples/DashboardExample'
+import { SidebarDashboardExample } from './pages/examples/SidebarDashboardExample'
 import { AllComponentsExample } from './pages/examples/AllComponentsExample'
 import { ExamplesList } from './pages/examples/ExamplesList'
 import { NotFound } from './pages/NotFound.tsx'
@@ -112,6 +113,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="login" element={<LoginExample />} />
                 <Route path="complex-form" element={<ComplexFormExample />} />
                 <Route path="dashboard" element={<DashboardExample />} />
+                <Route path="sidebar-dashboard" element={<SidebarDashboardExample />} />
                 <Route path="all-components" element={<AllComponentsExample />} />
               </Route>
               <Route path="*" element={<NotFound />} />

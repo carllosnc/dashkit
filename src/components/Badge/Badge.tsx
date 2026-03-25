@@ -2,17 +2,26 @@ import * as React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '../../utils/cn';
 
-export type BadgeVariant = 'solid';
+export type BadgeVariant = 'solid' | 'soft';
 export type BadgeColor = 'success' | 'warning' | 'danger' | 'error' | 'info' | 'base';
 export type BadgePosition = 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
 
-const colorStyles: Record<BadgeColor, string> = {
+const solidColorStyles: Record<BadgeColor, string> = {
   success: "bg-success text-success-foreground border-transparent",
   warning: "bg-warning text-warning-foreground border-transparent",
   danger: "bg-danger text-danger-foreground border-transparent",
   error: "bg-danger text-danger-foreground border-transparent",
   info: "bg-info text-info-foreground border-transparent",
   base: "bg-ds-500 text-white border-transparent"
+};
+
+const softColorStyles: Record<BadgeColor, string> = {
+  success: "bg-success/15 text-success dark:bg-success/20 border-transparent",
+  warning: "bg-warning/15 text-warning dark:bg-warning/20 border-transparent",
+  danger: "bg-danger/15 text-danger dark:bg-danger/20 border-transparent",
+  error: "bg-danger/15 text-danger dark:bg-danger/20 border-transparent",
+  info: "bg-info/15 text-info dark:bg-info/20 border-transparent",
+  base: "bg-ds-500/15 text-ds-600 dark:text-ds-400 border-transparent"
 };
 
 const pulseStyles: Record<BadgeColor, string> = {
@@ -36,6 +45,8 @@ export interface BadgeProps {
   content?: React.ReactNode;
   /** Color palette */
   color?: BadgeColor;
+  /** Visual style variant */
+  variant?: BadgeVariant;
   /** Whether to show a pulse animation */
   pulse?: boolean;
   /** Whether to show just a dot */
@@ -57,6 +68,7 @@ export interface BadgeProps {
 export const Badge = ({
   content,
   color = 'success',
+  variant = 'solid',
   pulse = false,
   dot = false,
   show = true,
@@ -70,8 +82,8 @@ export const Badge = ({
   }, [content, max, dot]);
 
   const badgeStyles = React.useMemo(() => {
-    return colorStyles[color];
-  }, [color]);
+    return variant === 'solid' ? solidColorStyles[color] : softColorStyles[color];
+  }, [color, variant]);
 
   return (
     <AnimatePresence>

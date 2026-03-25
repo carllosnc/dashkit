@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { Sidebar, SidebarHeader, SidebarFooter, SidebarSection, SidebarSectionItem } from './Sidebar';
+import { Sidebar, SidebarHeader, SidebarFooter, SidebarSection, SidebarItem } from './Sidebar';
 import { FiLayout } from 'react-icons/fi';
 import { describe, it, expect, vi } from 'vitest';
 
@@ -9,7 +9,7 @@ describe('Sidebar', () => {
       <Sidebar>
         <SidebarHeader>My App</SidebarHeader>
         <SidebarSection title="General">
-          <SidebarSectionItem>Home</SidebarSectionItem>
+          <SidebarItem>Home</SidebarItem>
         </SidebarSection>
         <SidebarFooter>Logout</SidebarFooter>
       </Sidebar>
@@ -21,20 +21,20 @@ describe('Sidebar', () => {
     expect(screen.getByText('Logout')).toBeInTheDocument();
   });
 
-  it('renders an icon in SidebarSectionItem', () => {
+  it('renders an icon in SidebarItem', () => {
     render(
-      <SidebarSectionItem icon={<FiLayout data-testid="sidebar-icon" />}>
+      <SidebarItem icon={<FiLayout data-testid="sidebar-icon" />}>
         Dashboard
-      </SidebarSectionItem>
+      </SidebarItem>
     );
     expect(screen.getByTestId('sidebar-icon')).toBeInTheDocument();
   });
 
-  it('applies active styles to SidebarSectionItem', () => {
+  it('applies active styles to SidebarItem', () => {
     render(
-      <SidebarSectionItem active>
+      <SidebarItem active>
         Active Item
-      </SidebarSectionItem>
+      </SidebarItem>
     );
     const button = screen.getByRole('button');
     expect(button).toHaveClass('text-primary');
@@ -43,9 +43,9 @@ describe('Sidebar', () => {
   it('triggers onClick when an item is clicked', () => {
     const handleClick = vi.fn();
     render(
-      <SidebarSectionItem onClick={handleClick}>
+      <SidebarItem onClick={handleClick}>
         Click me
-      </SidebarSectionItem>
+      </SidebarItem>
     );
     fireEvent.click(screen.getByText('Click me'));
     expect(handleClick).toHaveBeenCalledTimes(1);

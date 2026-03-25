@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FiArrowRight, FiArrowLeft } from 'react-icons/fi';
+import { FiArrowRight, FiArrowLeft, FiLogIn, FiSettings, FiGrid, FiLayers, FiLayout } from 'react-icons/fi';
 import { Divider } from '../../components/Divider/Divider';
 import { Header } from '../../partials/Header';
 import { Footer } from '../../partials/Footer';
@@ -9,21 +9,46 @@ const examples = [
     title: 'Login Page',
     description: 'A premium split-screen login page with social authentication, brand positioning, and responsive design.',
     href: '/examples/login',
+    icon: <FiLogIn size={20} />,
+    color: 'text-sky-500',
+    bg: 'bg-sky-500/10',
+    border: 'border-sky-500/20'
   },
   {
     title: 'Complex Settings Form',
     description: 'A comprehensive user profile and settings form featuring multi-column layouts, various input types, and section-based organization.',
     href: '/examples/complex-form',
+    icon: <FiSettings size={20} />,
+    color: 'text-amber-500',
+    bg: 'bg-amber-500/10',
+    border: 'border-amber-500/20'
   },
   {
     title: 'Admin Dashboard',
     description: 'A full-featured project management interface demonstrating cards, statistics, data filtering, and complex interactive overlays.',
     href: '/examples/dashboard',
+    icon: <FiGrid size={20} />,
+    color: 'text-indigo-500',
+    bg: 'bg-indigo-500/10',
+    border: 'border-indigo-500/20'
+  },
+  {
+    title: 'Sidebar Dashboard',
+    description: 'A modern SaaS-style dashboard layout featuring a fixed sidebar, collapsible navigation, and dense data visualizations.',
+    href: '/examples/sidebar-dashboard',
+    icon: <FiLayout size={20} />,
+    color: 'text-violet-500',
+    bg: 'bg-violet-500/10',
+    border: 'border-violet-500/20'
   },
   {
     title: 'All Components Showcase',
     description: 'A comprehensive display of every component in the Dashkit UI library, including variants, states, and interactive examples.',
     href: '/examples/all-components',
+    icon: <FiLayers size={20} />,
+    color: 'text-emerald-500',
+    bg: 'bg-emerald-500/10',
+    border: 'border-emerald-500/20'
   }
 ];
 
@@ -59,7 +84,10 @@ export const ExamplesList = () => {
             >
               <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-4">
-                  <h3 className="text-xl font-bold text-foreground transition-colors hover:underline">
+                  <div className={`size-10 rounded-xl ${example.bg} ${example.color} ${example.border} flex items-center justify-center shrink-0 border transition-all duration-300 group-hover:scale-110`}>
+                    {example.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground transition-colors group-hover:text-primary">
                     {example.title}
                   </h3>
                 </div>

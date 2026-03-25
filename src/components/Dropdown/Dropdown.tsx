@@ -17,6 +17,8 @@ interface DropdownContextValue {
   setOpen: (open: boolean) => void;
   triggerRect: DOMRect | null;
   setTriggerRect: (rect: DOMRect | null) => void;
+  triggerElement: HTMLElement | null;
+  setTriggerElement: (el: HTMLElement | null) => void;
 }
 
 const DropdownContext = React.createContext<DropdownContextValue | undefined>(undefined);
@@ -40,6 +42,7 @@ export interface DropdownProps {
 export function Dropdown({ children }: DropdownProps) {
   const [open, setOpen] = React.useState(false);
   const [triggerRect, setTriggerRect] = React.useState<DOMRect | null>(null);
+  const [triggerElement, setTriggerElement] = React.useState<HTMLElement | null>(null);
   const containerRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
@@ -59,8 +62,8 @@ export function Dropdown({ children }: DropdownProps) {
     };
 
     const handleScroll = () => {
-        if (open) setOpen(false);
-    }
+      if (open) setOpen(false);
+    };
 
     if (open) {
       document.addEventListener('mousedown', handleClickOutside);
@@ -76,7 +79,7 @@ export function Dropdown({ children }: DropdownProps) {
   }, [open]);
 
   return (
-    <DropdownContext.Provider value={{ open, setOpen, triggerRect, setTriggerRect }}>
+    <DropdownContext.Provider value={{ open, setOpen, triggerRect, setTriggerRect, triggerElement, setTriggerElement }}>
       <div className="relative inline-block text-left" ref={containerRef}>
         {children}
       </div>
@@ -88,7 +91,7 @@ export function Dropdown({ children }: DropdownProps) {
  * Dropdown Trigger
  */
 export function DropdownTrigger({ children, asChild }: { children: React.ReactNode; asChild?: boolean }) {
-  const { open, setOpen, setTriggerRect } = useDropdown();
+  const { open, setOpen, setTriggerRect, setTriggerElement } = useDropdown();
 
   const toggleOpen = (e: React.MouseEvent) => {
     const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
@@ -96,17 +99,22 @@ export function DropdownTrigger({ children, asChild }: { children: React.ReactNo
     setOpen(!open);
   };
 
+  const internalRef = (node: HTMLElement | null) => {
+    setTriggerElement(node);
+  };
+
   if (asChild && React.isValidElement(children)) {
-    return React.cloneElement(children as React.ReactElement<{ onClick?: React.MouseEventHandler }>, {
+    return React.cloneElement(children as React.ReactElement<{ onClick?: React.MouseEventHandler; ref?: React.Ref<HTMLElement> }>, {
+      ref: internalRef,
       onClick: (e: React.MouseEvent) => {
-        (children.props as unknown as { onClick?: React.MouseEventHandler }).onClick?.(e);
+        (children.props as { onClick?: React.MouseEventHandler }).onClick?.(e);
         toggleOpen(e);
       },
     });
   }
 
   return (
-    <div onClick={toggleOpen} className="cursor-pointer inline-block">
+    <div ref={internalRef} onClick={toggleOpen} className="cursor-pointer inline-block">
       {children}
     </div>
   );
@@ -119,30 +127,85 @@ export function DropdownTrigger({ children, asChild }: { children: React.ReactNo
 export function DropdownContent({ 
     children, 
     className,
-    align = 'start'
+    align = 'start',
+    side = 'bottom',
+    sideOffset = 8
 }: { 
     children: React.ReactNode; 
     className?: string;
-    align?: 'start' | 'end';
+    align?: 'start' | 'end' | 'center';
+    side?: 'top' | 'bottom' | 'left' | 'right';
+    sideOffset?: number;
 }) {
-  const { open, triggerRect } = useDropdown();
+  const { open, triggerElement, setTriggerRect, triggerRect } = useDropdown();
   const [contentRect, setContentRect] = React.useState<DOMRect | null>(null);
   const contentRef = React.useRef<HTMLDivElement>(null);
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     if (open && contentRef.current) {
         setContentRect(contentRef.current.getBoundingClientRect());
     }
   }, [open]);
 
+  React.useEffect(() => {
+    if (!open) return;
+
+    const updatePosition = () => {
+      if (triggerElement) {
+        setTriggerRect(triggerElement.getBoundingClientRect());
+      }
+    };
+
+    window.addEventListener('resize', updatePosition);
+
+    return () => {
+      window.removeEventListener('resize', updatePosition);
+    };
+  }, [open, triggerElement, setTriggerRect]);
+
   if (!triggerRect) return null;
+
+  const dropdownHeight = contentRect?.height || 0;
+  const dropdownWidth = contentRect?.width || 0;
+
+  let top = 0;
+  let left = 0;
+
+  if (side === 'bottom' || side === 'top') {
+    const spaceBelow = window.innerHeight - triggerRect.bottom;
+    const spaceAbove = triggerRect.top;
+    const actualSide = (side === 'bottom' && spaceBelow < dropdownHeight && spaceAbove > spaceBelow) || (side === 'top' && spaceAbove < dropdownHeight && spaceBelow > spaceAbove)
+      ? (side === 'bottom' ? 'top' : 'bottom')
+      : side;
+
+    top = actualSide === 'top' ? triggerRect.top - dropdownHeight - sideOffset : triggerRect.bottom + sideOffset;
+    
+    if (align === 'start') left = triggerRect.left;
+    else if (align === 'end') left = triggerRect.right - dropdownWidth;
+    else left = triggerRect.left + (triggerRect.width - dropdownWidth) / 2;
+  } else {
+    // Left or Right
+    const spaceRight = window.innerWidth - triggerRect.right;
+    const spaceLeft = triggerRect.left;
+    const actualSide = (side === 'right' && spaceRight < dropdownWidth && spaceLeft > spaceRight) || (side === 'left' && spaceLeft < dropdownWidth && spaceRight > spaceLeft)
+      ? (side === 'right' ? 'left' : 'right')
+      : side;
+
+    left = actualSide === 'right' ? triggerRect.right + sideOffset : triggerRect.left - dropdownWidth - sideOffset;
+    
+    if (align === 'start') top = triggerRect.top;
+    else if (align === 'end') top = triggerRect.bottom - dropdownHeight;
+    else top = triggerRect.top + (triggerRect.height - dropdownHeight) / 2;
+  }
+
+  // Final viewport constraints
+  left = Math.max(8, Math.min(left, window.innerWidth - dropdownWidth - 8));
+  top = Math.max(8, Math.min(top, window.innerHeight - dropdownHeight - 8));
 
   const style: React.CSSProperties = {
     position: 'fixed',
-    top: triggerRect.bottom + 8,
-    left: align === 'start' 
-        ? triggerRect.left 
-        : triggerRect.right - (contentRect?.width || 192), // Default min-w-48 is 192px
+    top,
+    left,
     zIndex: 9999,
   };
 
