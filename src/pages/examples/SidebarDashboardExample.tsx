@@ -3,13 +3,15 @@ import {
   FiGrid, FiUsers, FiSettings,
   FiMoreVertical, FiExternalLink,
   FiZap, FiTrendingUp, FiCheckCircle,
-  FiCalendar, FiMessageSquare, FiFileText, FiLayout
+  FiCalendar, FiMessageSquare, FiFileText, FiLayout,
+  FiSearch, FiBell
 } from 'react-icons/fi';
 import { Sidebar, SidebarHeader, SidebarFooter, SidebarSection, SidebarItem, SidebarHeaderOpen, SidebarHeaderClose, SidebarFooterOpen } from '../../components/Sidebar/Sidebar';
 import { Button } from '../../components/Button/Button';
 import { IconButton } from '../../components/IconButton/IconButton';
+import { Input } from '../../components/Input/Input';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/Card/Card';
-import { Badge } from '../../components/Badge/Badge';
+import { Badge, FloatBadge } from '../../components/Badge/Badge';
 import {
   Table,
   TableHeader,
@@ -22,6 +24,7 @@ import { Avatar, AvatarGroup } from '../../components/Avatar/Avatar';
 import { AreaChart } from '../../components/AreaChart/AreaChart';
 import { BarChart } from '../../components/BarChart/BarChart';
 import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem, DropdownSeparator } from '../../components/Dropdown/Dropdown';
+import { Navbar, NavbarBrand, NavbarActions } from '../../components/Navbar/Navbar';
 
 const PROJECT_HEALTH_DATA = [
   { label: 'Jan', health: 65, velocity: 40 },
@@ -143,6 +146,43 @@ export const SidebarDashboardExample = () => {
       </Sidebar>
 
       <div className="flex-1 flex flex-col h-full overflow-hidden relative">
+        <Navbar blur={false} sticky={false} className="bg-card">
+           <NavbarBrand>
+              <div className="flex items-center gap-2.5 px-1">
+                 <div className="size-7 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <FiTrendingUp className="size-4 text-primary" />
+                 </div>
+                 <h2 className="font-bold text-sm tracking-tight hidden sm:block">Growth Overview</h2>
+              </div>
+           </NavbarBrand>
+
+           <div className="flex-1 flex items-center justify-center max-w-md mx-auto">
+              <Input
+                placeholder="Search metrics, reports... (⌘K)"
+                leftIcon={<FiSearch size={18} />}
+              />
+           </div>
+
+           <NavbarActions>
+              <FloatBadge dot color="danger" pulse>
+                <IconButton
+                  variant="soft"
+                  className="size-10 hover:bg-muted/50 rounded-xl"
+                  icon={
+                      <FiBell className="size-[1.2rem]" />
+                  }
+                />
+              </FloatBadge>
+              <IconButton
+                variant="soft"
+                className="size-10 hover:bg-muted/50 rounded-xl hidden md:flex"
+                icon={<FiSettings className="size-[1.2rem]" />}
+              />
+              <div className="h-6 w-px bg-border/50 mx-1 hidden lg:block" />
+              <Button variant="filled" size="sm" leftIcon={<FiZap size={14} />}>Upgrade</Button>
+           </NavbarActions>
+        </Navbar>
+
         <main className="flex-1 overflow-y-auto p-6 md:p-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
           <div className="max-w-6xl mx-auto w-full space-y-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">

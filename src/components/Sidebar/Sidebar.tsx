@@ -93,7 +93,7 @@ export function SidebarHeader({ children, className }: { children: React.ReactNo
         justifyContent: isOpen ? 'flex-start' : 'center'
       }}
       className={cn(
-        "h-16 flex items-center shrink-0 border-b border-border/50 overflow-hidden", 
+        "h-16 flex items-center shrink-0 border-b border-border overflow-hidden", 
         className
       )}
     >
@@ -129,7 +129,7 @@ export function SidebarFooter({ children, className }: { children: React.ReactNo
         alignItems: isOpen ? 'stretch' : 'center'
       }}
       className={cn(
-        "mt-auto shrink-0 border-t border-border/50 flex flex-col",
+        "mt-auto shrink-0 border-t border-border flex flex-col",
         className
       )}
     >
