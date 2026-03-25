@@ -84,9 +84,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         className={cn(
           "rounded-[var(--radius)] inline-flex font-medium items-center justify-center transition-all duration-200 focus:outline-none cursor-pointer whitespace-nowrap disabled:opacity-60 disabled:cursor-not-allowed",
           {
-            "bg-primary text-primary-foreground hover:opacity-90": variant === 'filled',
-            "bg-transparent text-foreground border border-border hover:bg-accent hover:text-accent-foreground": variant === 'outlined',
-            "bg-secondary text-secondary-foreground hover:opacity-80": variant === 'soft',
+            "bg-primary text-primary-foreground hover:brightness-110 active:scale-[0.98]": variant === 'filled',
+            "bg-transparent text-foreground border border-border hover:border-primary hover:bg-primary/5 hover:text-primary active:scale-[0.98]": variant === 'outlined',
+            "bg-secondary text-secondary-foreground hover:brightness-105 active:scale-[0.98]": variant === 'soft',
             "opacity-60 cursor-not-allowed": loading,
             // Sizes
             "h-7 text-xs": size === 'sm',

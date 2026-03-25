@@ -30,9 +30,9 @@ export const IconButton = forwardRef<HTMLElement, IconButtonProps>(
       "rounded-[var(--radius)] inline-flex font-medium items-center justify-center transition-all duration-200 focus:outline-none cursor-pointer whitespace-nowrap border select-none shrink-0 size-9",
       rounded ? "rounded-full" : "rounded-md",
       {
-        "bg-primary text-primary-foreground border-transparent hover:opacity-90": variant === 'filled',
-        "bg-secondary text-secondary-foreground border-transparent hover:opacity-80": variant === 'soft',
-        "bg-transparent text-muted-foreground border-transparent hover:bg-accent hover:text-accent-foreground": variant === 'ghost',
+        "bg-primary text-primary-foreground border-transparent hover:brightness-110 active:scale-95": variant === 'filled',
+        "bg-secondary text-secondary-foreground border-transparent hover:brightness-105 active:scale-95": variant === 'soft',
+        "bg-transparent text-muted-foreground border-transparent hover:bg-accent hover:text-accent-foreground active:scale-95": variant === 'ghost',
         "opacity-50 cursor-not-allowed": 'disabled' in props && props.disabled,
       },
       className

@@ -119,7 +119,7 @@ export const AccordionTrigger = ({ children, className }: { children: React.Reac
       <motion.div
         animate={{ rotate: itemContext.isOpen ? 90 : 0 }}
         transition={{ type: 'spring', damping: 20, stiffness: 300 }}
-        className="text-ds-400 group-hover:text-ds-950 dark:group-hover:text-white shrink-0"
+        className="text-ds-400 shrink-0"
       >
         <FiChevronRight size={18} />
       </motion.div>

@@ -23,17 +23,28 @@ import { Modal } from '../../components/Modal/Modal';
 import { Drawer, DrawerHeader, DrawerContent, DrawerFooter } from '../../components/Drawer/Drawer';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../../components/Tabs/Tabs';
 import { OtpInput } from '../../components/OtpInput/OtpInput';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../../components/Accordion/Accordion';
+import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbSeparator } from '../../components/Breadcrumb/Breadcrumb';
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownContent,
+  DropdownItem,
+  DropdownLabel,
+  DropdownSeparator
+} from '../../components/Dropdown/Dropdown';
+import { useToast } from '../../components/Toast/useToast';
 import { AreaChart } from '../../components/AreaChart/AreaChart';
 import { LineChart } from '../../components/LineChart/LineChart';
 import { BarChart } from '../../components/BarChart/BarChart';
 import { PieChart } from '../../components/PieChart/PieChart';
 import { ImageExpander } from '../../components/ImageExpander/ImageExpander';
-import { 
-  Table, 
-  TableHeader, 
-  TableBody, 
-  TableRow, 
-  TableHead, 
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
   TableCell,
   TableCaption
 } from '../../components/Table/Table';
@@ -48,7 +59,8 @@ import {
   FiMail,
   FiUser,
   FiLock,
-  FiSearch
+  FiSearch,
+  FiChevronRight
 } from 'react-icons/fi';
 
 export const AllComponentsExample = () => {
@@ -61,6 +73,7 @@ export const AllComponentsExample = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [drawerPosition, setDrawerPosition] = useState<'left' | 'right' | 'top' | 'bottom'>('right');
   const [otp, setOtp] = useState('');
+  const { toast } = useToast();
 
   const options = [
     { value: 'daily', label: 'Daily Reports' },
@@ -154,14 +167,36 @@ export const AllComponentsExample = () => {
             <CardTitle>Buttons</CardTitle>
             <CardDescription>Buttons are used to trigger actions.</CardDescription>
           </CardHeader>
-          <CardContent className="flex flex-wrap gap-4">
-            <Button variant="filled">Button</Button>
-            <Button variant="outlined">Button</Button>
-            <Button variant="soft">Button</Button>
-            <Button disabled>Button</Button>
-            <Button loading>Loading</Button>
-            <Button leftIcon={<FiPlus />}>With Icon</Button>
-            <Button rightIcon={<FiPlus />} variant="outlined">With Icon</Button>
+          <CardContent className="flex flex-col gap-4">
+            <div className="flex flex-wrap gap-4">
+              <Button variant="filled">Button</Button>
+              <Button variant="outlined">Button</Button>
+              <Button variant="soft">Button</Button>
+            </div>
+
+            <div className="flex flex-wrap gap-4">
+              <Button variant="filled" size="lg">Button</Button>
+              <Button variant="outlined" size="lg">Button</Button>
+              <Button variant="soft" size="lg">Button</Button>
+            </div>
+
+            <div className="flex flex-wrap gap-4">
+              <Button variant="filled" size="sm">Button</Button>
+              <Button variant="outlined" size="sm">Button</Button>
+              <Button variant="soft" size="sm">Button</Button>
+            </div>
+
+            <div className="flex flex-wrap gap-4">
+              <Button variant="filled" leftIcon={<FiPlus />}>Button</Button>
+              <Button variant="outlined" leftIcon={<FiPlus />}>Button</Button>
+              <Button variant="soft" leftIcon={<FiPlus />}>Button</Button>
+            </div>
+
+            <div className="flex flex-wrap gap-4">
+              <Button variant="filled" loading>Button</Button>
+              <Button variant="outlined" loading>Button</Button>
+              <Button variant="soft" loading>Button</Button>
+            </div>
           </CardContent>
         </Card>
 
@@ -249,6 +284,40 @@ export const AllComponentsExample = () => {
             </div>
           </CardContent>
         </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle>Breadcrumbs</CardTitle>
+            <CardDescription>Navigation helpers to show the current page's location within a hierarchy.</CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-6">
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem href="/">Home</BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem href="/components">Components</BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem active>Kitchen Sink</BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+
+            <Divider variant="dashed" />
+
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem href="/">Dashboard</BreadcrumbItem>
+                <BreadcrumbSeparator>
+                  <FiChevronRight className="size-4 text-ds-400" />
+                </BreadcrumbSeparator>
+                <BreadcrumbItem href="/projects">Projects</BreadcrumbItem>
+                <BreadcrumbSeparator>
+                  <FiChevronRight className="size-4 text-ds-400" />
+                </BreadcrumbSeparator>
+                <BreadcrumbItem active>Dashkit UI</BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </CardContent>
+        </Card>
+
         <Card>
           <CardHeader>
             <CardTitle>Inputs & Forms</CardTitle>
@@ -371,21 +440,47 @@ export const AllComponentsExample = () => {
           </CardHeader>
           <CardContent className="flex flex-col gap-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Select 
-                label="Report Type" 
-                options={options} 
-                value={selected} 
-                onChange={setSelected} 
+              <Select
+                label="Report Type"
+                options={options}
+                value={selected}
+                onChange={setSelected}
                 description="Select how the data should be grouped."
               />
-              <Select 
-                label="Disabled Selection" 
-                options={options} 
-                value="weekly" 
-                disabled 
+              <Select
+                label="Disabled Selection"
+                options={options}
+                value="weekly"
+                disabled
                 description="This selection is currently locked."
               />
             </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Dropdown Menu</CardTitle>
+            <CardDescription>Overlays for lists of actions or selection options.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Dropdown>
+              <DropdownTrigger>
+                <Button variant="outlined" rightIcon={<FiChevronRight className="rotate-90" />}>
+                  Open Menu
+                </Button>
+              </DropdownTrigger>
+              <DropdownContent className="w-56">
+                <DropdownLabel>My Account</DropdownLabel>
+                <DropdownSeparator />
+                <DropdownItem leftIcon={<FiUser />}>Profile</DropdownItem>
+                <DropdownItem leftIcon={<FiEdit2 />}>Project Settings</DropdownItem>
+                <DropdownItem leftIcon={<FiShare2 />}>Team Access</DropdownItem>
+                <DropdownSeparator />
+                <DropdownLabel>Danger Zone</DropdownLabel>
+                <DropdownItem destructive leftIcon={<FiTrash2 />}>Delete Account</DropdownItem>
+              </DropdownContent>
+            </Dropdown>
           </CardContent>
         </Card>
         <Card>
@@ -609,6 +704,47 @@ export const AllComponentsExample = () => {
             </Modal>
           </CardContent>
         </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Toast Notifications</CardTitle>
+            <CardDescription>Temporary notifications that appear in the corner of the screen.</CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-wrap gap-4">
+            <Button 
+              variant="outlined" 
+              color="success" 
+              onClick={() => toast({ 
+                title: "Action Successful", 
+                description: "Your changes have been saved to the cloud.",
+                type: "success"
+              })}
+            >
+              Success Toast
+            </Button>
+            <Button 
+              variant="outlined" 
+              color="danger" 
+              onClick={() => toast({ 
+                title: "Sync Failed", 
+                description: "Could not connect to the server. Please try again.",
+                type: "error"
+              })}
+            >
+              Error Toast
+            </Button>
+            <Button 
+              variant="outlined" 
+              onClick={() => toast({ 
+                title: "New Update", 
+                description: "A new version of Dashkit is available.",
+                type: "info"
+              })}
+            >
+              Info Toast
+            </Button>
+          </CardContent>
+        </Card>
         <Card>
           <CardHeader>
             <CardTitle>Drawers</CardTitle>
@@ -616,10 +752,10 @@ export const AllComponentsExample = () => {
           </CardHeader>
           <CardContent className="flex flex-col gap-8">
             <div className="flex flex-wrap gap-4">
-              <Button variant="outlined" onClick={() => { setDrawerPosition('left'); setIsDrawerOpen(true); }}>Left Drawer</Button>
-              <Button variant="outlined" onClick={() => { setDrawerPosition('right'); setIsDrawerOpen(true); }}>Right Drawer</Button>
-              <Button variant="outlined" onClick={() => { setDrawerPosition('top'); setIsDrawerOpen(true); }}>Top Drawer</Button>
-              <Button variant="outlined" onClick={() => { setDrawerPosition('bottom'); setIsDrawerOpen(true); }}>Bottom Drawer</Button>
+              <Button onClick={() => { setDrawerPosition('left'); setIsDrawerOpen(true); }}>Left Drawer</Button>
+              <Button onClick={() => { setDrawerPosition('right'); setIsDrawerOpen(true); }}>Right Drawer</Button>
+              <Button onClick={() => { setDrawerPosition('top'); setIsDrawerOpen(true); }}>Top Drawer</Button>
+              <Button onClick={() => { setDrawerPosition('bottom'); setIsDrawerOpen(true); }}>Bottom Drawer</Button>
             </div>
 
             <Drawer
@@ -666,12 +802,33 @@ export const AllComponentsExample = () => {
               </div>
             </TabsContent>
             <TabsContent value="settings">
-              <div className="flex flex-col gap-4 py-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
                 <Switch label="Marketing Emails" description="Receive updates about new features." defaultChecked />
                 <Switch label="Security Alerts" description="Get notified about login attempts." defaultChecked />
               </div>
             </TabsContent>
           </Tabs>
+
+          <Accordion shadowed type="single" defaultValue="item-1">
+            <AccordionItem value="item-1">
+              <AccordionTrigger>Is it accessible?</AccordionTrigger>
+              <AccordionContent>
+                Yes. It adheres to the WAI-ARIA design pattern.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-2">
+              <AccordionTrigger>Is it styled?</AccordionTrigger>
+              <AccordionContent>
+                Yes. It comes with default styles that matches the design system.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-3">
+              <AccordionTrigger>Is it animated?</AccordionTrigger>
+              <AccordionContent>
+                Yes. It uses Framer Motion for smooth transitions.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
 
         <Card>
           <CardHeader>
@@ -749,11 +906,11 @@ export const AllComponentsExample = () => {
             <CardTitle>Avatar</CardTitle>
             <CardDescription>Visual representation of a user or entity.</CardDescription>
           </CardHeader>
-          <CardContent className="flex flex-col gap-10">
+          <CardContent className="flex flex-col gap-4">
             {/* Sizes */}
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-2">
               <h4 className="text-sm font-medium text-muted-foreground">Sizes</h4>
-              <div className="flex items-center gap-6">
+              <div className="flex items-center gap-2">
                 <Avatar size="xs" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop" />
                 <Avatar size="sm" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop" />
                 <Avatar size="md" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop" />
@@ -765,7 +922,7 @@ export const AllComponentsExample = () => {
             <Divider variant="dashed" />
 
             {/* Shapes & Fallbacks */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div className="flex flex-col gap-6">
                 <h4 className="text-sm font-medium text-muted-foreground">Shapes</h4>
                 <div className="flex items-center gap-6">
@@ -886,52 +1043,37 @@ export const AllComponentsExample = () => {
             <CardDescription>Interactive image viewer with smooth zoom and backdrop blur.</CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="flex flex-col gap-4">
-                <h4 className="text-sm font-medium text-muted-foreground">Landscape with Caption</h4>
-                <ImageExpander
-                  caption="Modern workspace with minimalist design and natural lighting."
-                >
+            <div className="flex flex-col gap-4 max-w-[300px]">
+              <h4 className="text-sm font-medium text-muted-foreground">Interactive Grid</h4>
+              <div className="grid grid-cols-2 gap-3">
+                <ImageExpander caption="Abstract geometric patterns #1">
                   <img
-                    src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1000&q=100"
-                    alt="Workspace"
-                    className="aspect-video object-cover w-full"
+                    src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=1000&q=100"
+                    className="aspect-square object-cover"
+                    alt="Abstract 1"
                   />
                 </ImageExpander>
-              </div>
-
-              <div className="flex flex-col gap-4">
-                <h4 className="text-sm font-medium text-muted-foreground">Interactive Grid</h4>
-                <div className="grid grid-cols-2 gap-3">
-                  <ImageExpander caption="Abstract geometric patterns #1">
-                    <img
-                      src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=1000&q=100"
-                      className="aspect-square object-cover"
-                      alt="Abstract 1"
-                    />
-                  </ImageExpander>
-                  <ImageExpander caption="Abstract geometric patterns #2">
-                    <img
-                      src="https://images.unsplash.com/photo-1550684847-75bdda21cc95?w=1000&q=100"
-                      className="aspect-square object-cover"
-                      alt="Abstract 2"
-                    />
-                  </ImageExpander>
-                  <ImageExpander caption="Abstract geometric patterns #3">
-                    <img
-                      src="https://images.unsplash.com/photo-1550684848-86a5d8727436?w=1000&q=100"
-                      className="aspect-square object-cover"
-                      alt="Abstract 3"
-                    />
-                  </ImageExpander>
-                  <ImageExpander caption="Abstract geometric patterns #4">
-                    <img
-                      src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1000&q=100"
-                      className="aspect-square object-cover"
-                      alt="Abstract 4"
-                    />
-                  </ImageExpander>
-                </div>
+                <ImageExpander caption="Abstract geometric patterns #2">
+                  <img
+                    src="https://images.unsplash.com/photo-1550684847-75bdda21cc95?w=1000&q=100"
+                    className="aspect-square object-cover"
+                    alt="Abstract 2"
+                  />
+                </ImageExpander>
+                <ImageExpander caption="Abstract geometric patterns #3">
+                  <img
+                    src="https://images.unsplash.com/photo-1550684848-86a5d8727436?w=1000&q=100"
+                    className="aspect-square object-cover"
+                    alt="Abstract 3"
+                  />
+                </ImageExpander>
+                <ImageExpander caption="Abstract geometric patterns #4">
+                  <img
+                    src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1000&q=100"
+                    className="aspect-square object-cover"
+                    alt="Abstract 4"
+                  />
+                </ImageExpander>
               </div>
             </div>
           </CardContent>
