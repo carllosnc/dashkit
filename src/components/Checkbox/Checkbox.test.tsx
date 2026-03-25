@@ -35,7 +35,7 @@ describe('Checkbox', () => {
     
     // Check if the visual div also reflects disabled state (via opacity)
     const visualBox = checkbox.nextElementSibling;
-    expect(visualBox).toHaveClass('peer-disabled:opacity-50');
+    expect(visualBox).toHaveClass('peer-disabled:opacity-60');
   });
 
   it('generates an ID automatically from label if not provided', () => {

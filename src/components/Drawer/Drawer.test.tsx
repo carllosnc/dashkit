@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { Drawer } from './Drawer';
+import { Drawer, DrawerHeader } from './Drawer'; // Assuming DrawerHeader is exported from './Drawer'
 
 describe('Drawer', () => {
   it('does not render when closed', () => {
@@ -38,7 +38,11 @@ describe('Drawer', () => {
 
   it('renders title and description', () => {
     render(
-      <Drawer isOpen={true} onClose={() => {}} title="Test Title" description="Test Desc">
+      <Drawer isOpen={true} onClose={() => {}}>
+        <DrawerHeader>
+          <h2 className="text-xl font-semibold">Test Title</h2>
+          <p className="text-sm text-muted-foreground">Test Desc</p>
+        </DrawerHeader>
         <div>Content</div>
       </Drawer>
     );

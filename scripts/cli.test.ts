@@ -37,8 +37,8 @@ describe('Dashkit CLI', () => {
     const testDir = path.join(TEMP_DIR, 'registry-deps');
     await fs.ensureDir(testDir);
     
-    // Run CLI
-    execSync(`bun x tsx ${CLI_PATH} add card -o components`, {
+    // Run CLI with --no-install to avoid slow package manager installs in tests
+    execSync(`bun x tsx ${CLI_PATH} add card -o components --no-install`, {
       cwd: testDir,
       stdio: 'inherit'
     });
