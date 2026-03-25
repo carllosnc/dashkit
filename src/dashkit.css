@@ -69,7 +69,7 @@
   --color-ds-700:   var(--color-neutral-700);
   --color-ds-800:   var(--color-neutral-800);
   --color-ds-900:   var(--color-neutral-900);
-  --color-ds-950:   #121212;
+  --color-ds-950:   var(--color-neutral-950);
 
   /* ────────────────────────────────────────────────
      2. Semantic Theme Mapping
@@ -173,5 +173,31 @@
     color: var(--color-foreground);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Scrollbar Utilities */
+@utility no-scrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@utility custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/20 hover:bg-muted-foreground/40;
+  }
+  @variant dark {
+    &::-webkit-scrollbar-thumb {
+      @apply bg-muted-foreground/20 hover:bg-muted-foreground/40;
+    }
   }
 }

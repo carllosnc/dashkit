@@ -4,7 +4,8 @@ import {
   FiMoreVertical, FiExternalLink,
   FiZap, FiTrendingUp, FiCheckCircle,
   FiCalendar, FiMessageSquare, FiFileText, FiLayout,
-  FiSearch, FiBell
+  FiSearch, FiBell, FiDatabase, FiDollarSign, FiCreditCard,
+  FiActivity, FiPieChart, FiShield, FiBriefcase, FiArchive
 } from 'react-icons/fi';
 import { Sidebar, SidebarHeader, SidebarFooter, SidebarSection, SidebarItem, SidebarHeaderOpen, SidebarHeaderClose, SidebarFooterOpen } from '../../components/Sidebar/Sidebar';
 import { Button } from '../../components/Button/Button';
@@ -25,6 +26,7 @@ import { AreaChart } from '../../components/AreaChart/AreaChart';
 import { BarChart } from '../../components/BarChart/BarChart';
 import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem, DropdownSeparator } from '../../components/Dropdown/Dropdown';
 import { Navbar, NavbarBrand, NavbarActions } from '../../components/Navbar/Navbar';
+import { ProgressBar } from '../../components/ProgressBar/ProgressBar';
 
 const PROJECT_HEALTH_DATA = [
   { label: 'Jan', health: 65, velocity: 40 },
@@ -78,7 +80,7 @@ export const SidebarDashboardExample = () => {
           </SidebarHeaderClose>
         </SidebarHeader>
 
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto custom-scrollbar">
           <SidebarSection title="Main">
             <SidebarItem
               icon={<FiGrid size={18} />}
@@ -91,7 +93,7 @@ export const SidebarDashboardExample = () => {
               icon={<FiLayout size={18} />}
               active={activeTab === 'Projects'}
               onClick={() => setActiveTab('Projects')}
-              badgeSlot={<Badge content="novo" variant="soft" />}
+              badgeSlot={<Badge content="New" variant="soft" />}
             >
               Projects
             </SidebarItem>
@@ -109,8 +111,22 @@ export const SidebarDashboardExample = () => {
             badge={isSidebarOpen && <Badge color="warning" content="Beta" variant="soft" />}
           >
             <SidebarItem icon={<FiUsers size={18} />} badgeSlot={<Badge color="success" dot />}>Team</SidebarItem>
-            <SidebarItem icon={<FiMessageSquare size={18} />} badgeSlot={<Badge color="danger" content={5} />}>Messages</SidebarItem>
+            <SidebarItem icon={<FiMessageSquare size={18} />} badgeSlot={<Badge variant="soft" color="danger" content={+99} />}>Messages</SidebarItem>
             <SidebarItem icon={<FiFileText size={18} />}>Reports</SidebarItem>
+            <SidebarItem icon={<FiBriefcase size={18} />}>Clients</SidebarItem>
+          </SidebarSection>
+
+          <SidebarSection title="Data & Analytics">
+            <SidebarItem icon={<FiActivity size={18} />}>Realtime</SidebarItem>
+            <SidebarItem icon={<FiPieChart size={18} />}>Analytics</SidebarItem>
+            <SidebarItem icon={<FiArchive size={18} />}>Logs</SidebarItem>
+          </SidebarSection>
+
+          <SidebarSection title="Infrastructure">
+            <SidebarItem icon={<FiDatabase size={18} />}>Databases</SidebarItem>
+            <SidebarItem icon={<FiShield size={18} />} badgeSlot={<Badge color="success" content="Encrypted" variant="soft" />}>Security</SidebarItem>
+            <SidebarItem icon={<FiCreditCard size={18} />}>Billing</SidebarItem>
+            <SidebarItem icon={<FiDollarSign size={18} />}>Transactions</SidebarItem>
           </SidebarSection>
         </div>
 
@@ -187,7 +203,7 @@ export const SidebarDashboardExample = () => {
           <div className="max-w-6xl mx-auto w-full space-y-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
-              <h1 className="text-3xl font-bold tracking-tight mb-1">Project Portfolio</h1>
+              <h1 className="text-lg font-medium tracking-tight mb-1">Project Portfolio</h1>
               <p className="text-muted-foreground">Monitor your team performance and project health.</p>
             </div>
             <div className="flex items-center gap-3">
@@ -329,12 +345,13 @@ export const SidebarDashboardExample = () => {
                         <Badge color={p.color} content={p.status} className="w-fit font-bold" variant="soft" />
                       </TableCell>
                       <TableCell>
-                        <div className="flex items-center gap-3">
-                          <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden max-w-[100px]">
-                             <div className="h-full bg-primary" style={{ width: `${p.progress}%` }} />
-                          </div>
-                          <span className="text-xs font-semibold text-muted-foreground w-8">{p.progress}%</span>
-                        </div>
+                        <ProgressBar
+                          value={p.progress}
+                          size="xs"
+                          showLabel
+                          labelPosition="side"
+                          className="max-w-[140px]"
+                        />
                       </TableCell>
                       <TableCell>
                          <AvatarGroup size="xs" spacing="sm">

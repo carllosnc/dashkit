@@ -4,9 +4,10 @@ import {
   FiType, FiMessageSquare, FiTag, FiCheckSquare, FiDisc, FiList,
   FiSearch, FiToggleRight, FiMinus, FiColumns, FiLock, FiMaximize2,
   FiSidebar, FiMaximize, FiLayers, FiBell, FiMoreVertical, FiAward,
-  FiInbox, FiChevronRight, FiGrid, FiLayout, FiLoader, FiSliders, FiMoreHorizontal, FiCalendar, FiTable, FiUser
+  FiInbox, FiChevronRight, FiGrid, FiLayout, FiLoader, FiSliders, FiMoreHorizontal, FiCalendar, FiTable, FiUser, FiActivity
 } from 'react-icons/fi';
 import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { Header } from '../partials/Header';
 import { Footer } from '../partials/Footer';
 import { Drawer, DrawerHeader } from '../components/Drawer/Drawer';
@@ -48,6 +49,7 @@ const navItems = [
       { to: '/docs/select', label: 'Select', icon: <FiList size={16} /> },
       { to: '/docs/skeleton', label: 'Skeleton', icon: <FiGrid size={16} /> },
       { to: '/docs/spinner', label: 'Spinner', icon: <FiLoader size={16} /> },
+      { to: '/docs/progressbar', label: 'Progress Bar', icon: <FiActivity size={16} /> },
       { to: '/docs/switch', label: 'Switch', icon: <FiToggleRight size={16} /> },
       { to: '/docs/tabs', label: 'Tabs', icon: <FiColumns size={16} /> },
       { to: '/docs/table', label: 'Table', icon: <FiTable size={16} /> },
@@ -104,6 +106,10 @@ export function DocsLayout() {
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans flex flex-col">
+      <Helmet>
+        <title>Documentation | Dashkit UI</title>
+        <meta name="description" content="Explore Dashkit UI's comprehensive documentation, component APIs, and implementation guides." />
+      </Helmet>
       <Header onMenuClick={() => setIsMobileMenuOpen(true)} />
 
       {/* Mobile Drawer */}

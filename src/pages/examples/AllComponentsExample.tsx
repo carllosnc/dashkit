@@ -154,7 +154,7 @@ export const AllComponentsExample = () => {
     <div className="min-h-screen bg-background text-foreground font-sans flex flex-col">
       <Header />
 
-      <main className="flex-1 flex flex-col gap-[50px] max-w-3xl w-full mx-auto px-6 py-20">
+      <main className="flex-1 flex flex-col gap-[20px] max-w-3xl w-full mx-auto px-6 py-20">
         <header className="flex flex-col gap-2 mb-4">
           <h1 className="text-4xl font-medium tracking-tighter">Kitchen Sink</h1>
           <p className="text-lg text-muted-foreground">

@@ -68,6 +68,7 @@ import {
 import { Avatar, AvatarGroup } from '../components/Avatar/Avatar';
 import { FiDownload, FiArrowRight, FiCopy, FiCheck, FiSearch, FiLock, FiUser, FiSettings, FiActivity, FiCheckCircle, FiClock, FiMail, FiShield, FiZap, FiBell, FiMessageSquare, FiShoppingCart, FiHome, FiMoreVertical } from 'react-icons/fi';
 import { PropertyDoc } from '../partials/PropertyDoc';
+import { ProgressBar } from '../components/ProgressBar/ProgressBar';
 
 
 type MdxComponentProps = { components?: Record<string, ElementType> };
@@ -184,6 +185,7 @@ const components: Record<string, ElementType> = {
   SelectableMenuDemo,
   CustomTriggerDemo,
   Card,
+  ProgressBar,
   CardHeader,
   CardTitle,
   CardDescription,

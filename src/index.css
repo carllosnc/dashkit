@@ -29,28 +29,5 @@
   }
 }
 
-@utility no-scrollbar {
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
 
-@utility custom-scrollbar {
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  &::-webkit-scrollbar-thumb {
-    @apply bg-muted-foreground/20 rounded-full hover:bg-muted-foreground/40;
-  }
-  @variant dark {
-    &::-webkit-scrollbar-thumb {
-      @apply bg-muted-foreground/20 hover:bg-muted-foreground/40;
-    }
-  }
-}
 

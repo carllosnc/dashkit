@@ -4,6 +4,7 @@ import {
   FiGrid as FiGridIcon
 } from 'react-icons/fi';
 import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { Header } from '../partials/Header';
 import { Footer } from '../partials/Footer';
 import { Drawer, DrawerHeader } from '../components/Drawer/Drawer';
@@ -86,6 +87,10 @@ export function ChartsLayout() {
 
   return (
     <div className="min-h-screen ds-page font-sans flex flex-col">
+      <Helmet>
+        <title>Charts Showcase | Dashkit UI</title>
+        <meta name="description" content="Explore Dashkit UI's interactive chart components, including Area, Bar, Line, and Pie charts optimized for dashboards." />
+      </Helmet>
       <Header onMenuClick={() => setIsMobileMenuOpen(true)} />
 
       {/* Mobile Drawer */}

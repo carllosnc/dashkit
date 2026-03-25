@@ -163,9 +163,9 @@ export function SidebarSection({ title, badge, children, className }: { title?: 
     <div className={cn("py-4", className)}>
       {title && (
         <div className="flex items-center justify-between overflow-hidden">
-          <motion.h4 
+          <motion.h4
             initial={false}
-            animate={{ 
+            animate={{
               opacity: isOpen ? 1 : 0,
               height: isOpen ? 'auto' : 0,
               marginBottom: isOpen ? 8 : 0
@@ -210,7 +210,7 @@ export function SidebarItem({ icon, active, children, badgeSlot, className, ...p
   return (
     <motion.button
       className={cn(
-        "relative flex w-full items-center py-2.5 text-sm font-medium transition-all duration-150 outline-none group isolate",
+        "relative flex w-full items-center py-[8px] text-sm font-medium transition-all duration-150 outline-none group isolate",
         active
           ? "text-primary"
           : "text-muted-foreground hover:text-foreground hover:bg-muted/30",

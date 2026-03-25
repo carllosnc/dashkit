@@ -41,6 +41,7 @@ import TextareaDocs from './pages/textarea.mdx'
 import ChipDocs from './pages/chip.mdx'
 import ComboboxDocs from './pages/combobox.mdx'
 import AvatarDocs from './pages/avatar.mdx'
+import ProgressBarDocs from './pages/progressbar.mdx'
 import { LoginExample } from './pages/examples/LoginExample'
 import { ComplexFormExample } from './pages/examples/ComplexFormExample'
 import { DashboardExample } from './pages/examples/DashboardExample'
@@ -93,6 +94,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="skeleton" element={<MdxWrapper Component={SkeletonDocs} />} />
                 <Route path="spinner" element={<MdxWrapper Component={SpinnerDocs} />} />
                 <Route path="table" element={<MdxWrapper Component={TableDocs} />} />
+                <Route path="progressbar" element={<MdxWrapper Component={ProgressBarDocs} />} />
                 <Route path="switch" element={<MdxWrapper Component={SwitchDocs} />} />
                 <Route path="sidebar" element={<MdxWrapper Component={SidebarDocs} />} />
                 <Route path="tabs" element={<MdxWrapper Component={TabsDocs} />} />

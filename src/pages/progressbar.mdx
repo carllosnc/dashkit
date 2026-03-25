@@ -1,0 +1,118 @@
+# ProgressBar
+
+Animated, fluid indicators for tracking task completion, loading states, or data metrics with high precision.
+
+## Import
+
+```tsx
+import { ProgressBar } from '@/components/ProgressBar/ProgressBar'
+```
+
+## Installation
+
+Add the progress bar into your project using the Dashkit CLI:
+
+```bash
+bunx carllosnc/dashkit add progressbar
+```
+
+## Basic Usage
+
+A simple progress bar with a controlled value. It uses spring-based animations for width changes by default.
+
+<Preview>
+  <div className="w-full max-w-md">
+    <ProgressBar value={65} showLabel />
+  </div>
+</Preview>
+
+```tsx
+<ProgressBar value={65} showLabel />
+```
+
+## Colors
+
+The component supports all semantic color palettes from your design system.
+
+<Preview>
+  <div className="w-full max-w-md flex flex-col gap-6">
+    <ProgressBar value={100} color="success" showLabel label="Deployment Complete" />
+    <ProgressBar value={75} color="primary" showLabel label="Uploading Assets" />
+    <ProgressBar value={45} color="warning" showLabel label="Background Task" />
+    <ProgressBar value={20} color="danger" showLabel label="System Overload" />
+    <ProgressBar value={90} color="info" showLabel label="Syncing Cloud" />
+  </div>
+</Preview>
+
+```tsx
+<ProgressBar value={100} color="success" showLabel label="Deployment Complete" />
+<ProgressBar value={75} color="primary" showLabel label="Uploading Assets" />
+```
+
+## Sizes
+
+Choose from four predefined heights to fit different UI contexts.
+
+<Preview>
+  <div className="w-full max-w-md flex flex-col gap-8">
+    <div className="flex flex-col gap-2">
+      <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Extra Small (xs - 4px)</span>
+      <ProgressBar size="xs" value={60} />
+    </div>
+    <div className="flex flex-col gap-2">
+      <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Small (sm - 6px)</span>
+      <ProgressBar size="sm" value={70} />
+    </div>
+    <div className="flex flex-col gap-2">
+      <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Medium (md - 10px)</span>
+      <ProgressBar size="md" value={80} />
+    </div>
+    <div className="flex flex-col gap-2">
+      <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Large (lg - 16px)</span>
+      <ProgressBar size="lg" value={90} />
+    </div>
+  </div>
+</Preview>
+
+```tsx
+<ProgressBar size="xs" value={60} />
+<ProgressBar size="sm" value={70} />
+<ProgressBar size="md" value={80} />
+<ProgressBar size="lg" value={90} />
+```
+
+## Label Positions
+
+Labels can be placed either above the bar or to the side, which is ideal for compact layouts like table cells.
+
+<Preview>
+  <div className="w-full max-w-md flex flex-col gap-8">
+    <ProgressBar label="System Resources" value={45} showLabel labelPosition="top" />
+    <ProgressBar label="Build Progress" value={88} showLabel labelPosition="side" />
+  </div>
+</Preview>
+
+```tsx
+// Stacked layout (default)
+<ProgressBar value={45} showLabel labelPosition="top" />
+
+// Inline layout
+<ProgressBar value={88} showLabel labelPosition="side" />
+```
+
+## API Reference
+
+### ProgressBar Props
+
+<PropertyDoc
+  properties={[
+    { "prop": "value", "type": "number", "defaultValue": "0", "description": "Current value of the progress bar." },
+    { "prop": "max", "type": "number", "defaultValue": "100", "description": "The target/maximum value." },
+    { "prop": "color", "type": "ProgressBarColor", "defaultValue": "'primary'", "description": "Semantic color theme (primary, success, etc)." },
+    { "prop": "size", "type": "ProgressBarSize", "defaultValue": "'sm'", "description": "Height variant (xs, sm, md, lg)." },
+    { "prop": "showLabel", "type": "boolean", "defaultValue": "false", "description": "Display the percentage text." },
+    { "prop": "label", "type": "ReactNode", "defaultValue": "—", "description": "Custom descriptive text." },
+    { "prop": "labelPosition", "type": "'top' | 'side'", "defaultValue": "'top'", "description": "Layout strategy for the labels." },
+    { "prop": "animate", "type": "boolean", "defaultValue": "true", "description": "Spring-based width transitions." }
+  ]}
+/>
