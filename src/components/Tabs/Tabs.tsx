@@ -45,7 +45,7 @@ export function Tabs({ defaultValue, value, onValueChange, children, className }
 
 export function TabsList({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <div className={cn("flex w-full items-stretch justify-start border-b border-border/50 bg-muted/20", className)}>
+    <div className={cn("flex w-full items-stretch justify-start border-b border-border/70 bg-muted/20", className)}>
       {children}
     </div>
   );
@@ -61,7 +61,7 @@ export function TabsTrigger({ value, children, className }: { value: string; chi
     <button
       onClick={() => context.setActiveTab(value)}
       className={cn(
-        "relative flex-1 px-4 py-3 font-medium transition-all duration-200 outline-none isolate whitespace-nowrap flex items-center justify-center cursor-pointer border-r border-border/50 last:border-r-0 bg-card",
+        "relative flex-1 text-sm px-4 py-3 font-medium transition-all duration-200 outline-none isolate whitespace-nowrap flex items-center justify-center cursor-pointer border-r border-border/70 last:border-r-0 bg-card",
         isActive
           ? "text-foreground"
           : "text-muted-foreground hover:text-foreground",
@@ -71,7 +71,7 @@ export function TabsTrigger({ value, children, className }: { value: string; chi
       {isActive && (
         <motion.div
           layoutId={`active-tab-line-${context.tabsId}`}
-          className="absolute bottom-[-1px] left-0 right-0 h-[2px] bg-primary/60 z-10"
+          className="absolute bottom-[-1px] left-0 right-0 h-[2px] bg-primary z-10"
           transition={{
             type: 'spring',
             stiffness: 400,
