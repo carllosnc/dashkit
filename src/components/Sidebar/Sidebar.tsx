@@ -64,7 +64,7 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
               onClick={toggle}
               rounded
               className={cn(
-                "absolute -right-3 top-16 -translate-y-1/2 z-[60] size-6 shadow-md transition-transform hover:scale-110",
+                "absolute -right-3 top-16 -translate-y-1/2 z-[60] size-6 shadow-md hover:scale-110",
                 !isOpen && "rotate-180"
               )}
             />
@@ -210,7 +210,7 @@ export function SidebarItem({ icon, active, children, badgeSlot, className, href
   const { isOpen } = sidebarContext;
 
   const sharedClasses = cn(
-    "relative flex w-full items-center py-[8px] text-sm font-medium transition-all duration-150 outline-none group isolate",
+    "relative flex w-full items-center py-[8px] text-sm font-medium outline-none group isolate",
     active
       ? "text-primary"
       : "text-muted-foreground hover:text-foreground hover:bg-muted/30",
@@ -233,7 +233,7 @@ export function SidebarItem({ icon, active, children, badgeSlot, className, href
       )}
       {icon && (
         <span className={cn(
-          "shrink-0 transition-colors relative flex items-center justify-center",
+          "shrink-0 relative flex items-center justify-center",
           active ? "text-primary" : "text-muted-foreground group-hover:text-foreground"
         )}>
           {icon}
@@ -256,7 +256,7 @@ export function SidebarItem({ icon, active, children, badgeSlot, className, href
       </motion.span>
 
       {isOpen && badgeSlot && (
-        <div className="ml-auto pointer-events-none origin-right transition-opacity duration-200">
+        <div className="ml-auto pointer-events-none origin-right">
           {badgeSlot}
         </div>
       )}

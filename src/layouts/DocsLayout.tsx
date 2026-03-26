@@ -4,7 +4,7 @@ import {
   FiType, FiMessageSquare, FiTag, FiCheckSquare, FiDisc, FiList,
   FiSearch, FiToggleRight, FiMinus, FiColumns, FiLock, FiMaximize2,
   FiSidebar, FiMaximize, FiLayers, FiBell, FiMoreVertical, FiAward,
-  FiInbox, FiChevronRight, FiGrid, FiLayout, FiLoader, FiSliders, FiMoreHorizontal, FiCalendar, FiTable, FiUser, FiActivity
+  FiInbox, FiChevronRight, FiGrid, FiLayout, FiLoader, FiSliders, FiMoreHorizontal, FiCalendar, FiTable, FiUser, FiActivity, FiMenu
 } from 'react-icons/fi';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -56,6 +56,7 @@ const navItems = [
       { to: '/docs/sidebar', label: 'Sidebar', icon: <FiSidebar size={16} /> },
       { to: '/docs/textarea', label: 'Textarea', icon: <FiMessageSquare size={16} /> },
       { to: '/docs/toast', label: 'Toast', icon: <FiBell size={16} /> },
+      { to: '/docs/float-action-menu', label: 'Float Action Menu', icon: <FiMenu size={16} /> },
     ]
   },
 ];

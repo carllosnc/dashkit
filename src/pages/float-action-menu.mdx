@@ -1,0 +1,143 @@
+import { FloatActionMenu } from '../components/FloatActionMenu/FloatActionMenu'
+import {
+  FiSettings,
+  FiBell,
+  FiMessageCircle,
+  FiUser,
+  FiCommand,
+  FiPlus,
+  FiUsers
+} from 'react-icons/fi'
+import { cn } from '../utils/cn'
+
+export const FloatActionMenuDemo = () => (
+  <div className="relative w-full h-[600px] border border-border dark:border-ds-800 rounded-xl overflow-hidden bg-ds-200 dark:bg-ds-800 flex flex-col items-center justify-center p-8 not-prose">
+    <div className="text-center max-w-sm">
+      <h3 className="text-2xl font-bold text-ds-950 dark:text-ds-50 mb-3 tracking-tight">
+        Slide-in Interaction
+      </h3>
+      <p className="text-ds-500 text-sm leading-relaxed mb-8">
+        The button remains fixed while the menu slides in from the right to left.
+      </p>
+    </div>
+
+    <FloatActionMenu
+      label="Actions"
+      icon={<FiCommand />}
+      position="bottom-right"
+      className="absolute"
+    >
+      <div className="space-y-2">
+        {[
+          { icon: <FiBell />, label: 'Enable Alerts', color: 'text-orange-500' },
+          { icon: <FiMessageCircle />, label: 'View messages', color: 'text-emerald-500' },
+          { icon: <FiSettings />, label: 'Global Settings', color: 'text-ds-500' },
+          { icon: <FiUser />, label: 'My profile', color: 'text-blue-500' },
+        ].map((item, i) => (
+          <button
+            key={i}
+            className="flex items-center gap-3 w-full p-2.5 rounded-lg hover:bg-ds-50 dark:hover:bg-ds-800 text-left group"
+          >
+            <span className="text-sm font-medium text-ds-700 dark:text-ds-300 group-hover:text-ds-950 dark:group-hover:text-ds-50">{item.label}</span>
+          </button>
+        ))}
+      </div>
+    </FloatActionMenu>
+  </div>
+)
+
+# Float Action Menu
+
+A premium floating action button that reveals an interactive menu card sliding from right to left.
+
+## Usage
+
+```tsx
+import { FloatActionMenu } from 'dashkit-ui'
+import { FiCommand, FiPlus, FiUsers } from 'react-icons/fi'
+
+export function MyComponent() {
+  return (
+    <FloatActionMenu label="Actions" icon={<FiCommand />}>
+      <div className="space-y-4">
+        <button className="flex items-center gap-2 w-full p-2 hover:bg-ds-50 rounded-lg">
+          <FiPlus className="size-4" />
+          <span>New Project</span>
+        </button>
+        <button className="flex items-center gap-2 w-full p-2 hover:bg-ds-50 rounded-lg">
+          <FiUsers className="size-4" />
+          <span>Invite Team</span>
+        </button>
+      </div>
+    </FloatActionMenu>
+  )
+}
+```
+
+## Interactive Demo
+
+The demo below showcases the snappy, right-to-left slide transition. The button remains visible and acts as a toggle while the menu is open.
+
+<div className="my-10">
+  <FloatActionMenuDemo />
+</div>
+
+## Positions
+
+The menu can be positioned at any corner of the parent container or screen.
+
+```tsx
+<FloatActionMenu position="bottom-right" label="Bottom Right" />
+<FloatActionMenu position="bottom-left" label="Bottom Left" />
+<FloatActionMenu position="top-right" label="Top Right" />
+<FloatActionMenu position="top-left" label="Top Left" />
+```
+
+## Props
+
+<PropertyDoc
+  properties={[
+    {
+      "prop": "icon",
+      "type": "ReactNode",
+      "defaultValue": "<FiMenu />",
+      "description": "Icon to display in the floating button."
+    },
+    {
+      "prop": "label",
+      "type": "string",
+      "defaultValue": "—",
+      "description": "Text label for the button and menu header."
+    },
+    {
+      "prop": "children",
+      "type": "ReactNode",
+      "defaultValue": "—",
+      "description": "The content to display when expanded."
+    },
+    {
+      "prop": "position",
+      "type": "'bottom-right' | 'bottom-left' | 'top-right' | 'top-left'",
+      "defaultValue": "'bottom-right'",
+      "description": "Fixed position on the screen."
+    },
+    {
+      "prop": "className",
+      "type": "string",
+      "defaultValue": "—",
+      "description": "Additional CSS classes for the container."
+    },
+    {
+      "prop": "buttonClassName",
+      "type": "string",
+      "defaultValue": "—",
+      "description": "Additional CSS classes for the button."
+    },
+    {
+      "prop": "menuClassName",
+      "type": "string",
+      "defaultValue": "—",
+      "description": "Additional CSS classes for the menu board."
+    }
+  ]}
+/>

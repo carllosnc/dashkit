@@ -37,6 +37,10 @@ describe('IconButton', () => {
     rerender(<IconButton icon={<FiPlus />} variant="soft" />);
     button = screen.getByRole('button');
     expect(button).toHaveClass('bg-secondary');
+
+    rerender(<IconButton icon={<FiPlus />} variant="outlined" />);
+    button = screen.getByRole('button');
+    expect(button).toHaveClass('bg-linear-to-b');
   });
 
   it('is disabled when disabled prop is true', () => {

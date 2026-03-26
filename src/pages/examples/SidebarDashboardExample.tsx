@@ -6,9 +6,11 @@ import {
   FiZap, FiTrendingUp, FiCheckCircle,
   FiCalendar, FiMessageSquare, FiFileText, FiLayout,
   FiSearch, FiBell, FiDatabase, FiDollarSign, FiCreditCard,
-  FiActivity, FiPieChart, FiShield, FiBriefcase, FiArchive
+  FiActivity, FiPieChart, FiShield, FiBriefcase, FiArchive, FiCommand, FiPlus, FiHelpCircle
 } from 'react-icons/fi';
 import { Sidebar, SidebarHeader, SidebarFooter, SidebarSection, SidebarItem, SidebarHeaderOpen, SidebarHeaderClose, SidebarFooterOpen } from '../../components/Sidebar/Sidebar';
+import { FloatActionMenu } from '../../components/FloatActionMenu/FloatActionMenu';
+import { cn } from '../../utils/cn';
 import { Button } from '../../components/Button/Button';
 import { IconButton } from '../../components/IconButton/IconButton';
 import { Input } from '../../components/Input/Input';
@@ -28,6 +30,7 @@ import { BarChart } from '../../components/BarChart/BarChart';
 import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem, DropdownSeparator } from '../../components/Dropdown/Dropdown';
 import { Navbar, NavbarBrand, NavbarActions } from '../../components/Navbar/Navbar';
 import { ProgressBar } from '../../components/ProgressBar/ProgressBar';
+import { ThemeToggle } from '../../partials/ThemeToggle';
 
 const PROJECT_HEALTH_DATA = [
   { label: 'Jan', health: 65, velocity: 40 },
@@ -138,14 +141,14 @@ export const SidebarDashboardExample = () => {
         <SidebarFooter>
           <Dropdown>
             <DropdownTrigger asChild>
-              <button className="flex items-center gap-3 w-full p-2 md:p-1.5 rounded-xl transition-colors hover:bg-muted/50 text-left outline-none group shrink-0">
+              <button className="flex items-center gap-3 w-full p-2 md:p-1.5 rounded-xl hover:bg-muted/50 text-left outline-none group shrink-0">
                 <Avatar src={AVATARS[0]} size="sm" className="shrink-0" />
                 <SidebarFooterOpen>
                   <div className="flex-1 overflow-hidden py-0.5">
                     <p className="text-sm font-bold truncate leading-tight">John Doe</p>
                     <p className="text-[10px] text-muted-foreground truncate leading-tight">john@example.com</p>
                   </div>
-                  <FiMoreVertical className="size-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
+                  <FiMoreVertical className="size-4 text-muted-foreground group-hover:text-foreground shrink-0" />
                 </SidebarFooterOpen>
               </button>
             </DropdownTrigger>
@@ -185,6 +188,7 @@ export const SidebarDashboardExample = () => {
            </div>
 
            <NavbarActions>
+              <ThemeToggle />
               <FloatBadge dot color="danger" pulse>
                 <IconButton
                   variant="soft"
@@ -385,6 +389,35 @@ export const SidebarDashboardExample = () => {
           </Card>
           </div>
         </main>
+
+        <FloatActionMenu
+          label="Commands"
+          icon={<FiCommand />}
+          position="bottom-right"
+          className="absolute"
+        >
+          <div className="grid grid-cols-1 gap-1">
+            {[
+              { label: 'New Project', icon: <FiPlus />, color: 'text-primary' },
+              { label: 'Invite Team', icon: <FiUsers />, color: 'text-emerald-500' },
+              { label: 'Project Files', icon: <FiFileText />, color: 'text-blue-500' },
+              { label: 'Activity Logs', icon: <FiActivity />, color: 'text-ds-400' },
+              { label: 'Support & Help', icon: <FiHelpCircle />, color: 'text-amber-500' },
+            ].map((action, i) => (
+              <button
+                key={i}
+                className="flex items-center gap-3 w-full p-2.5 rounded-lg hover:bg-ds-50 dark:hover:bg-ds-800 group text-left"
+              >
+                <div className={cn("size-8 rounded-lg bg-ds-100 dark:bg-ds-800 flex items-center justify-center group-hover:bg-ds-200 dark:group-hover:bg-ds-700", action.color)}>
+                  {action.icon}
+                </div>
+                <span className="text-sm font-medium text-ds-700 dark:text-ds-300 group-hover:text-ds-950 dark:group-hover:text-ds-50">
+                  {action.label}
+                </span>
+              </button>
+            ))}
+          </div>
+        </FloatActionMenu>
       </div>
     </div>
   );

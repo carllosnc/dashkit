@@ -46,7 +46,7 @@ const LoadingSpinner = () => (
 
 const variantClasses = {
   filled: "bg-primary text-primary-foreground hover:brightness-120 active:scale-[0.98]",
-  outlined: "bg-linear-to-b from-ds-0 to-ds-100 dark:from-ds-900 dark:to-ds-950 text-foreground border border-border hover:from-ds-50 hover:to-ds-100 dark:hover:from-ds-800 dark:hover:to-ds-900 hover:border-ds-400 dark:hover:border-ds-700 active:scale-[0.98] backdrop-blur-md transition-all",
+  outlined: "bg-linear-to-b from-ds-0 to-ds-100 dark:from-ds-900 dark:to-ds-950 text-foreground border border-border hover:from-ds-50 hover:to-ds-100 dark:hover:from-ds-800 dark:hover:to-ds-900 hover:border-ds-400 dark:hover:border-ds-700 active:scale-[0.98] backdrop-blur-md",
   soft: "bg-secondary text-secondary-foreground hover:brightness-105 active:scale-[0.98]",
 } as const;
 
@@ -65,7 +65,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         disabled={disabled || loading}
         className={cn(
-          "rounded-[var(--radius)] inline-flex font-medium items-center justify-center transition-all duration-200 focus:outline-none cursor-pointer whitespace-nowrap disabled:opacity-60 disabled:cursor-not-allowed",
+          "rounded-[var(--radius)] inline-flex font-medium items-center justify-center focus:outline-none cursor-pointer whitespace-nowrap disabled:opacity-60 disabled:cursor-not-allowed",
           variantClasses[variant],
           sizeClasses[size],
           {

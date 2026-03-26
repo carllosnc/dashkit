@@ -26,6 +26,7 @@ Icon buttons are compact triggers that display only an icon. They are perfect fo
 <Preview>
   <div className="flex items-center gap-6">
     <IconButton icon={<FiBell size={20} />} variant="filled" onClick={() => {}} />
+    <IconButton icon={<FiEdit size={20} />} variant="outlined" onClick={() => {}} />
     <IconButton icon={<FiSettings size={20} />} variant="soft" onClick={() => {}} />
     <IconButton icon={<FiShare2 size={20} />} variant="ghost" onClick={() => {}} />
   </div>
@@ -35,17 +36,19 @@ Icon buttons are compact triggers that display only an icon. They are perfect fo
 import { FiBell, FiSettings, FiShare2 } from 'react-icons/fi';
 
 <IconButton icon={<FiBell />} variant="filled" />
+<IconButton icon={<FiEdit />} variant="outlined" />
 <IconButton icon={<FiSettings />} variant="soft" />
 <IconButton icon={<FiShare2 />} variant="ghost" />
 ```
 
 ## Variants
 
-Choose between three distinct visual styles: `filled`, `soft`, and `ghost`.
+Choose between four distinct visual styles: `filled`, `outlined`, `soft`, and `ghost`.
 
 <Preview>
   <div className="flex items-center gap-6">
     <IconButton icon={<FiEdit size={18} />} variant="filled" />
+    <IconButton icon={<FiEdit size={18} />} variant="outlined" />
     <IconButton icon={<FiEdit size={18} />} variant="soft" />
     <IconButton icon={<FiEdit size={18} />} variant="ghost" />
   </div>
@@ -53,6 +56,7 @@ Choose between three distinct visual styles: `filled`, `soft`, and `ghost`.
 
 ```tsx
 <IconButton icon={<FiEdit />} variant="filled" />
+<IconButton icon={<FiEdit />} variant="outlined" />
 <IconButton icon={<FiEdit />} variant="soft" />
 <IconButton icon={<FiEdit />} variant="ghost" />
 ```
@@ -107,7 +111,7 @@ Icon buttons can be disabled to prevent user interaction while remaining visuall
   },
   {
     "prop": "variant",
-    "type": "'filled' | 'soft' | 'ghost'",
+    "type": "'filled' | 'outlined' | 'soft' | 'ghost'",
     "defaultValue": "'soft'",
     "description": "Visual style variant of the button."
   },
