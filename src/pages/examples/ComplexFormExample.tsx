@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import {
   FiUser, FiMail, FiPhone, FiGlobe, FiMapPin,
   FiSave, FiX, FiBriefcase, FiLinkedin, FiGithub, FiTwitter, FiLayers,
@@ -29,6 +30,10 @@ export const ComplexFormExample = () => {
 
   return (
     <div className="min-h-screen ds-page flex items-center justify-center p-6 md:p-12 relative overflow-hidden">
+      <Helmet>
+        <title>User Profile Settings | Dashkit UI</title>
+        <meta name="description" content="An advanced multi-section form layout for user profiles and account settings, demonstrating Dashkit UI form components." />
+      </Helmet>
       <Card className="w-full max-w-4xl relative z-10 shrink-0">
         <CardHeader>
           <div className="flex items-center gap-3 mb-2">

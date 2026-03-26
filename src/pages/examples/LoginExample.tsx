@@ -1,4 +1,5 @@
 import { FiMail, FiLock, FiArrowRight, FiGithub } from 'react-icons/fi';
+import { Helmet } from 'react-helmet-async';
 import { FcGoogle } from 'react-icons/fc';
 import { Input } from '../../components/Input/Input';
 import { Button } from '../../components/Button/Button';
@@ -9,6 +10,10 @@ import { Divider } from '../../components/Divider/Divider';
 export const LoginExample = () => {
   return (
     <div className="w-full min-h-screen ds-page flex relative">
+      <Helmet>
+        <title>Login | Dashkit UI</title>
+        <meta name="description" content="A premium split-screen login page with social authentication and brand positioning built with Dashkit UI." />
+      </Helmet>
       <div className="hidden lg:flex justify-center w-full relative bg-ds-950">
         <div className="relative h-full flex flex-col items-center justify-between p-12">
           <div className="flex items-center gap-3">

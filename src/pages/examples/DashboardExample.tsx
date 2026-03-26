@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { cn } from '../../utils/cn';
 import {
   FiGrid, FiUsers, FiSettings, FiSearch, FiBell,
@@ -118,6 +119,10 @@ export function DashboardExample() {
 
   return (
     <div className="min-h-screen ds-page">
+      <Helmet>
+        <title>Analytics Dashboard | Dashkit UI</title>
+        <meta name="description" content="A full-featured analytics and management interface demonstrating cards, interactive charts, and real-time statistics built with Dashkit UI." />
+      </Helmet>
       <Navbar>
         <NavbarBrand>
            <div className="flex items-center gap-2">

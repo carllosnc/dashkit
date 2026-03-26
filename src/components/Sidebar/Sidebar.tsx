@@ -195,30 +195,31 @@ export function SidebarSection({ title, badge, children, className }: { title?: 
   );
 }
 
-export interface SidebarItemProps extends Omit<HTMLMotionProps<'button'>, 'children'> {
+export interface SidebarItemProps extends Omit<HTMLMotionProps<'button'>, 'children' | 'onDrag' | 'onDragStart' | 'onDragEnd'> {
   icon?: React.ReactNode;
   active?: boolean;
   children: React.ReactNode;
   badgeSlot?: React.ReactNode;
+  href?: string;
+  target?: string;
 }
 
-export function SidebarItem({ icon, active, children, badgeSlot, className, ...props }: SidebarItemProps) {
+export function SidebarItem({ icon, active, children, badgeSlot, className, href, target, ...props }: SidebarItemProps) {
   const sidebarContext = React.useContext(SidebarContext);
   if (!sidebarContext) throw new Error('SidebarItem must be used within Sidebar');
   const { isOpen } = sidebarContext;
 
-  return (
-    <motion.button
-      className={cn(
-        "relative flex w-full items-center py-[8px] text-sm font-medium transition-all duration-150 outline-none group isolate",
-        active
-          ? "text-primary"
-          : "text-muted-foreground hover:text-foreground hover:bg-muted/30",
-        isOpen ? "px-6 gap-3 text-left" : "px-0 justify-center text-center",
-        className
-      )}
-      {...props}
-    >
+  const sharedClasses = cn(
+    "relative flex w-full items-center py-[8px] text-sm font-medium transition-all duration-150 outline-none group isolate",
+    active
+      ? "text-primary"
+      : "text-muted-foreground hover:text-foreground hover:bg-muted/30",
+    isOpen ? "px-6 gap-3 text-left" : "px-0 justify-center text-center",
+    className
+  );
+
+  const content = (
+    <>
       {active && (
         <motion.div
           layoutId="sidebar-active"
@@ -259,6 +260,29 @@ export function SidebarItem({ icon, active, children, badgeSlot, className, ...p
           {badgeSlot}
         </div>
       )}
+    </>
+  );
+
+  if (href) {
+    return (
+      <motion.a
+        href={href}
+        target={target}
+        className={sharedClasses}
+        {...props as HTMLMotionProps<'a'>}
+      >
+        {content}
+      </motion.a>
+    );
+  }
+
+  return (
+    <motion.button
+      type="button"
+      className={sharedClasses}
+      {...props as HTMLMotionProps<'button'>}
+    >
+      {content}
     </motion.button>
   );
 }

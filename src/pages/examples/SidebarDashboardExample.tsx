@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import {
   FiGrid, FiUsers, FiSettings,
   FiMoreVertical, FiExternalLink,
@@ -58,6 +59,10 @@ export const SidebarDashboardExample = () => {
 
   return (
     <div className="flex h-screen bg-background overflow-hidden font-sans">
+      <Helmet>
+        <title>SaaS Dashboard | Dashkit UI</title>
+        <meta name="description" content="A high-fidelity SaaS-style dashboard layout featuring a fixed sidebar, collapsible navigation, and dense data visualizations built with Dashkit UI." />
+      </Helmet>
       {/* Sidebar */}
       <Sidebar
         open={isSidebarOpen}
@@ -183,7 +188,6 @@ export const SidebarDashboardExample = () => {
               <FloatBadge dot color="danger" pulse>
                 <IconButton
                   variant="soft"
-                  className="size-10 hover:bg-muted/50 rounded-xl"
                   icon={
                       <FiBell className="size-[1.2rem]" />
                   }
@@ -191,7 +195,6 @@ export const SidebarDashboardExample = () => {
               </FloatBadge>
               <IconButton
                 variant="soft"
-                className="size-10 hover:bg-muted/50 rounded-xl hidden md:flex"
                 icon={<FiSettings className="size-[1.2rem]" />}
               />
               <div className="h-6 w-px bg-border/50 mx-1 hidden lg:block" />

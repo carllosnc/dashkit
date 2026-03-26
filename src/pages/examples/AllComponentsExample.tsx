@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Header } from '../../partials/Header';
 import { Footer } from '../../partials/Footer';
 import { Button } from '../../components/Button/Button';
@@ -39,6 +40,7 @@ import { LineChart } from '../../components/LineChart/LineChart';
 import { BarChart } from '../../components/BarChart/BarChart';
 import { PieChart } from '../../components/PieChart/PieChart';
 import { ImageExpander } from '../../components/ImageExpander/ImageExpander';
+import { ProgressBar } from '../../components/ProgressBar/ProgressBar';
 import {
   Table,
   TableHeader,
@@ -152,6 +154,10 @@ export const AllComponentsExample = () => {
 
    return (
     <div className="min-h-screen bg-background text-foreground font-sans flex flex-col">
+      <Helmet>
+        <title>Component Showcase | Dashkit UI</title>
+        <meta name="description" content="Explore the complete Dashkit component library and design system. A comprehensive exhibition of all UI elements including charts, forms, and interactive components." />
+      </Helmet>
       <Header />
 
       <main className="flex-1 flex flex-col gap-[20px] max-w-3xl w-full mx-auto px-6 py-20">
@@ -657,6 +663,61 @@ export const AllComponentsExample = () => {
             </div>
 
             <Divider variant="dashed" />
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Progress Bars</CardTitle>
+            <CardDescription>Visual indicators for task completion and data metrics.</CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-10">
+            {/* Colors */}
+            <div className="flex flex-col gap-6">
+              <h4 className="text-sm font-medium text-muted-foreground">Colors</h4>
+              <div className="flex flex-col gap-4">
+                <ProgressBar value={100} color="success" showLabel label="Deployment Complete" />
+                <ProgressBar value={75} color="primary" showLabel label="Syncing Cloud" />
+                <ProgressBar value={45} color="warning" showLabel label="Background Task" />
+                <ProgressBar value={20} color="danger" showLabel label="System Overload" />
+              </div>
+            </div>
+
+            <Divider variant="dashed" />
+
+            {/* Sizes */}
+            <div className="flex flex-col gap-6">
+              <h4 className="text-sm font-medium text-muted-foreground">Sizes</h4>
+              <div className="flex flex-col gap-6">
+                 <div className="flex flex-col gap-1.5">
+                    <span className="text-[10px] font-bold text-muted-foreground uppercase">Extra Small (xs)</span>
+                    <ProgressBar size="xs" value={60} />
+                 </div>
+                 <div className="flex flex-col gap-1.5">
+                    <span className="text-[10px] font-bold text-muted-foreground uppercase">Small (sm)</span>
+                    <ProgressBar size="sm" value={70} />
+                 </div>
+                 <div className="flex flex-col gap-1.5">
+                    <span className="text-[10px] font-bold text-muted-foreground uppercase">Medium (md)</span>
+                    <ProgressBar size="md" value={80} />
+                 </div>
+                 <div className="flex flex-col gap-1.5">
+                    <span className="text-[10px] font-bold text-muted-foreground uppercase">Large (lg)</span>
+                    <ProgressBar size="lg" value={90} />
+                 </div>
+              </div>
+            </div>
+
+            <Divider variant="dashed" />
+
+            {/* Label Positions */}
+            <div className="flex flex-col gap-6">
+              <h4 className="text-sm font-medium text-muted-foreground">Label Positions</h4>
+              <div className="flex flex-col gap-6">
+                <ProgressBar label="System Resources" value={45} showLabel labelPosition="top" />
+                <ProgressBar label="Build Progress" value={88} showLabel labelPosition="side" />
+              </div>
+            </div>
           </CardContent>
         </Card>
         <Card>
