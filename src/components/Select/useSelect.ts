@@ -10,15 +10,45 @@ export interface UseSelectProps {
 export function useSelect({ options, value, disabled }: UseSelectProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [triggerRect, setTriggerRect] = useState<DOMRect | null>(null);
+  const [side, setSide] = useState<'top' | 'bottom'>('bottom');
   const containerRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   const selectedOption = options.find(opt => opt.value === value);
 
   useEffect(() => {
-    if (isOpen && buttonRef.current) {
-      setTriggerRect(buttonRef.current.getBoundingClientRect());
+    const updateRect = () => {
+      if (isOpen && buttonRef.current) {
+        const rect = buttonRef.current.getBoundingClientRect();
+        setTriggerRect(rect);
+        
+        // Check space below (60 * 4 = 240px approx max height)
+        const spaceBelow = window.innerHeight - rect.bottom;
+        const spaceAbove = rect.top;
+        
+        if (spaceBelow < 250 && spaceAbove > spaceBelow) {
+          setSide('top');
+        } else {
+          setSide('bottom');
+        }
+      }
+    };
+
+    updateRect();
+
+    const handleScroll = () => {
+      if (isOpen) setIsOpen(false);
+    };
+
+    if (isOpen) {
+      window.addEventListener('scroll', handleScroll, true);
+      window.addEventListener('resize', updateRect);
     }
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll, true);
+      window.removeEventListener('resize', updateRect);
+    };
   }, [isOpen]);
 
   useEffect(() => {
@@ -32,18 +62,12 @@ export function useSelect({ options, value, disabled }: UseSelectProps) {
       }
     };
 
-    const handleScroll = () => {
-      if (isOpen) setIsOpen(false);
-    };
-
     if (isOpen) {
       document.addEventListener('mousedown', handleClickOutside);
-      window.addEventListener('scroll', handleScroll, true);
     }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
-      window.removeEventListener('scroll', handleScroll, true);
     };
   }, [isOpen]);
 
@@ -61,6 +85,7 @@ export function useSelect({ options, value, disabled }: UseSelectProps) {
     isOpen,
     setIsOpen,
     triggerRect,
+    side,
     containerRef,
     buttonRef,
     selectedOption,

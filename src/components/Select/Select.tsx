@@ -39,6 +39,7 @@ export const Select = ({
     isOpen,
     setIsOpen,
     triggerRect,
+    side,
     containerRef,
     buttonRef,
     selectedOption,
@@ -62,7 +63,7 @@ export const Select = ({
           aria-haspopup="listbox"
           aria-expanded={isOpen}
           className={cn(
-            "w-full px-4 h-9 text-sm bg-background text-foreground border border-input rounded-[var(--radius)] outline-none transition-all duration-200 focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-transparent placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 text-left flex items-center justify-between gap-2",
+            "w-full px-4 h-9 text-sm bg-background text-foreground border border-input rounded-[var(--radius)] outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-transparent placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 text-left flex items-center justify-between gap-2",
             className
           )}
         >
@@ -73,7 +74,7 @@ export const Select = ({
             {selectedOption ? selectedOption.label : placeholder}
           </span>
           <FiChevronDown className={cn(
-            "transition-transform duration-300 shrink-0 text-ds-500",
+            "shrink-0 text-ds-500",
             isOpen && "rotate-180 text-input-focus-border dark:text-input-dark-focus-border"
           )} />
         </button>
@@ -84,13 +85,15 @@ export const Select = ({
             role="listbox"
             style={{
               position: 'fixed',
-              top: triggerRect.bottom + 8,
+              ...(side === 'bottom'
+                ? { top: triggerRect.bottom + 8 }
+                : { bottom: (window.innerHeight - triggerRect.top) + 8 }),
               left: triggerRect.left,
               width: triggerRect.width,
               zIndex: 9999,
             }}
             className={cn(
-              "p-1 bg-popover text-popover-foreground border border-border rounded-md shadow-lg overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200"
+              "p-1 bg-popover text-popover-foreground border border-border rounded-md shadow-lg overflow-hidden"
             )}
           >
             <div className="max-h-60 overflow-y-auto flex flex-col gap-0.5">

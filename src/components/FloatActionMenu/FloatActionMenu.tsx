@@ -73,10 +73,10 @@ export function FloatActionMenu({
               menuPositionClasses[position],
               menuClassName
             )}
-            initial={{ x: isRight ? 40 : -40, opacity: 0, scale: 0.95 }}
-            animate={{ x: 0, opacity: 1, scale: 1 }}
-            exit={{ x: isRight ? 40 : -40, opacity: 0, scale: 0.95 }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            initial={{ x: isRight ? 20 : -20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: isRight ? 20 : -20, opacity: 0 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 350 }}
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={0.1}
