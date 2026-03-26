@@ -1,76 +1,113 @@
+import { useState } from 'react';
+import { OtpInput } from '../components/OtpInput/OtpInput';
+import { Button } from '../components/Button/Button';
+import { FiCheckCircle } from 'react-icons/fi';
+
+export const OtpInputDemo = () => {
+  const [otp, setOtp] = useState('');
+  const [isVerifying, setIsVerifying] = useState(false);
+  const [isComplete, setIsComplete] = useState(false);
+
+  const handleVerify = () => {
+    setIsVerifying(true);
+    setTimeout(() => {
+      setIsVerifying(false);
+      setIsComplete(true);
+    }, 1500);
+  };
+
+  return (
+    <div className="w-full max-w-lg p-8 rounded-2xl border border-ds-200 dark:border-ds-800 bg-card shadow-xl overflow-hidden mt-4">
+      <div className="text-center mb-8">
+        <h3 className="text-xl font-bold text-ds-900 dark:text-white mb-2">Two-Step Verification</h3>
+        <p className="text-sm text-muted-foreground">
+          Enter the 6-digit code sent to your device.
+        </p>
+      </div>
+
+      <div className="flex flex-col items-center gap-8">
+        <OtpInput 
+          length={6} 
+          value={otp} 
+          onChange={setOtp} 
+          disabled={isVerifying || isComplete}
+        />
+
+        {isComplete ? (
+          <div className="flex items-center gap-2 text-emerald-500 font-semibold animate-in fade-in zoom-in duration-300">
+            <FiCheckCircle className="size-5" />
+            Verification successful
+          </div>
+        ) : (
+          <Button 
+            variant="filled" 
+            onClick={handleVerify}
+            disabled={otp.length !== 6 || isVerifying}
+            loading={isVerifying}
+          >
+            Verify Code
+          </Button>
+        )}
+
+        {!isComplete && (
+          <button className="text-sm font-medium text-ds-400 hover:text-ds-900 dark:hover:text-white transition-colors">
+            Didn't receive the code? <span className="underline decoration-dotted">Resend</span>
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
 # OTP Input
 
-A premium One-Time Password component designed for high-security applications, featuring automatic focus management and full numeric support.
+A premium input component optimized for One-Time Passwords, featuring automatic focus shifting, digit masking, and full paste support.
 
 ## Import
 
 ```tsx
-import { OtpInput } from '@/components/OtpInput/OtpInput'
+import { OtpInput } from '@/components/OtpInput/OtpInput';
 ```
 
 ## Installation
 
-Add the OTP input to your project using the Dashkit CLI:
-
 ```bash
-bunx carllosnc/dashkit add otpinput
+bunx carllosnc/dashkit add otp-input
 ```
 
-## Basic Usage
+## Examples
 
-The basic OTP input with 4 digits.
+### Security Verification
 
-<Preview>
-  <div className="w-full max-w-sm">
-    <OtpInput length={4} />
-  </div>
-</Preview>
-
-```tsx
-<OtpInput length={4} />
-```
-
-## Advanced Verification Demo
-
-Experience a full two-step verification flow with our stateful demo.
+Integrating the OTP input into a verification workflow with controlled state and loading feedback.
 
 <Preview>
   <OtpInputDemo />
 </Preview>
 
 ```tsx
-import { useState } from 'react'
-
-export function Verification() {
-  const [otp, setOtp] = useState('')
-
+export function VerificationForm() {
+  const [otp, setOtp] = useState('');
+  
   return (
-    <div className="flex flex-col items-center gap-8">
-      <OtpInput 
-        length={6} 
-        value={otp} 
-        onChange={setOtp} 
-      />
-      
-      <Button disabled={otp.length !== 6}>
-        Verify Code
-      </Button>
-    </div>
-  )
+    <OtpInput 
+      length={6} 
+      value={otp} 
+      onChange={setOtp} 
+    />
+  );
 }
 ```
 
 ## Features
 
-- **Auto-Focus**: Automatically moves focus to the next field when a digit is entered.
-- **Backspace Support**: Automatically shifts focus back when deleting digits.
-- **Copy-Paste Flow**: Intelligently handles pasted codes by spreading them across slots.
-- **Mobile Friendly**: Uses `inputMode="numeric"` to trigger numeric keypads on mobile.
-- **Numeric Filtering**: Prevents non-numeric characters from being entered.
+- **Auto-Focus Logic**: Automatically moves focus to the next field as the user types.
+- **Smart Backspace**: Deletes the current character and moves focus back when backspace is pressed.
+- **Paste Support**: Intelligently handles pasted content by distributing digits across all input fields.
+- **Input Filtering**: Only accepts numeric input to prevent accidental character entries.
+- **Accessibility**: Includes proper `inputMode` and `autoComplete` attributes for mobile device optimization.
 
-
-## Props
-
+## Properties
 
 <PropertyDoc
   properties={[
@@ -78,40 +115,37 @@ export function Verification() {
     "prop": "length",
     "type": "number",
     "defaultValue": "6",
-    "description": "Total number of digits for the OTP."
+    "description": "Total number of digits for the OTP code."
   },
   {
     "prop": "value",
     "type": "string",
-    "defaultValue": "—",
-    "description": "The current value of the input."
+    "defaultValue": "''",
+    "description": "The current value of the combined input string."
   },
   {
     "prop": "onChange",
-    "type": "(val: string) => void",
+    "type": "(value: string) => void",
     "defaultValue": "—",
-    "description": "Callback fired whenever the selection shifts."
+    "description": "Callback triggered whenever any field value changes."
   },
   {
     "prop": "disabled",
     "type": "boolean",
     "defaultValue": "false",
-    "description": "Whether to disable all inputs."
+    "description": "Prevent any interaction with the input fields."
   },
   {
     "prop": "className",
     "type": "string",
     "defaultValue": "—",
-    "description": "Additional CSS classes for the individual inputs."
+    "description": "Additional CSS for individual digit containers."
   },
   {
     "prop": "containerClassName",
     "type": "string",
     "defaultValue": "—",
-    "description": "Additional CSS classes for the horizontal container."
+    "description": "Styles for the parent flex container."
   }
 ]}
 />
-
-
-

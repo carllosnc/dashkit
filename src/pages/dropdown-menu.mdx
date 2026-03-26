@@ -1,4 +1,191 @@
-import { DropdownDemo, BasicMenuDemo, SelectableMenuDemo, CustomTriggerDemo } from '../components/Dropdown/DropdownDemo';
+import { useState } from 'react';
+import { 
+  Dropdown, 
+  DropdownTrigger, 
+  DropdownContent, 
+  DropdownItem, 
+  DropdownLabel, 
+  DropdownSeparator 
+} from '../components/Dropdown/Dropdown';
+import { Button } from '../components/Button/Button';
+import {
+  FiUser,
+  FiSettings,
+  FiMail,
+  FiPlusCircle,
+  FiLogOut,
+  FiBell,
+  FiChevronDown
+} from 'react-icons/fi';
+
+export const DropdownDemo = () => {
+  const [selected, setSelected] = useState('Personal');
+
+  return (
+    <div className="flex flex-col gap-12 items-center py-10 w-full">
+      <div className="flex flex-wrap gap-8 items-center justify-center">
+        <Dropdown>
+          <DropdownTrigger asChild>
+            <Button variant="outlined" className="gap-2">
+              <FiUser /> Account <FiChevronDown />
+            </Button>
+          </DropdownTrigger>
+          <DropdownContent className="w-56">
+            <DropdownLabel>My Account</DropdownLabel>
+            <DropdownItem leftIcon={<FiUser />}>Profile</DropdownItem>
+            <DropdownItem leftIcon={<FiMail />}>Messages</DropdownItem>
+            <DropdownItem leftIcon={<FiBell />}>Notifications</DropdownItem>
+            <DropdownSeparator />
+            <DropdownLabel>Settings</DropdownLabel>
+            <DropdownItem leftIcon={<FiSettings />}>Preferences</DropdownItem>
+            <DropdownItem leftIcon={<FiPlusCircle />}>Invite Team</DropdownItem>
+            <DropdownSeparator />
+            <DropdownItem leftIcon={<FiLogOut />} destructive>Log out</DropdownItem>
+          </DropdownContent>
+        </Dropdown>
+
+        <Dropdown>
+          <DropdownTrigger asChild>
+            <Button variant="filled" className="gap-2 min-w-[140px] justify-between">
+              {selected} <FiChevronDown />
+            </Button>
+          </DropdownTrigger>
+          <DropdownContent className="w-48">
+            <DropdownLabel>Select Workspace</DropdownLabel>
+            <DropdownItem
+              selected={selected === 'Personal'}
+              onClick={() => setSelected('Personal')}
+            >
+              Personal
+            </DropdownItem>
+            <DropdownItem
+              selected={selected === 'Dashkit Team'}
+              onClick={() => setSelected('Dashkit Team')}
+            >
+              Dashkit Team
+            </DropdownItem>
+            <DropdownItem
+              selected={selected === 'Side Projects'}
+              onClick={() => setSelected('Side Projects')}
+            >
+              Side Projects
+            </DropdownItem>
+            <DropdownSeparator />
+            <DropdownItem leftIcon={<FiPlusCircle />} className="text-sky-500 hover:text-sky-600">
+              New Workspace
+            </DropdownItem>
+          </DropdownContent>
+        </Dropdown>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-2xl px-4">
+        <div className="bg-ds-50 dark:bg-white/5 rounded-2xl p-6 border border-ds-200 dark:border-ds-800">
+          <h4 className="text-sm font-bold mb-2 text-foreground">Clean Design</h4>
+          <p className="text-sm text-muted-foreground">
+            Minimalist aesthetics with smooth Framer Motion animations and subtle glassmorphism.
+          </p>
+        </div>
+        <div className="bg-ds-50 dark:bg-white/5 rounded-2xl p-6 border border-ds-200 dark:border-ds-800">
+          <h4 className="text-sm font-bold mb-2 text-foreground">Context Aware</h4>
+          <p className="text-sm text-muted-foreground">
+            Supports labels, separators, and custom icons for a professional feel.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export const BasicMenuDemo = () => {
+  return (
+    <Dropdown>
+      <DropdownTrigger asChild>
+        <Button variant="filled" className="gap-2">
+          Options <FiChevronDown />
+        </Button>
+      </DropdownTrigger>
+      <DropdownContent className="w-48">
+        <DropdownItem leftIcon={<FiUser />}>Profile</DropdownItem>
+        <DropdownItem leftIcon={<FiSettings />}>Settings</DropdownItem>
+        <DropdownSeparator />
+        <DropdownItem leftIcon={<FiLogOut />} destructive>Logout</DropdownItem>
+      </DropdownContent>
+    </Dropdown>
+  );
+}
+
+export const SelectableMenuDemo = () => {
+  const [selected, setSelected] = useState('Personal');
+
+  return (
+    <Dropdown>
+      <DropdownTrigger asChild>
+        <Button variant="outlined" className="gap-2 min-w-[160px] justify-between">
+          {selected} <FiChevronDown />
+        </Button>
+        </DropdownTrigger>
+        <DropdownContent className="w-56">
+          <DropdownLabel>Select Category</DropdownLabel>
+          <DropdownItem
+            selected={selected === 'Personal'}
+            onClick={() => setSelected('Personal')}
+          >
+            Personal
+          </DropdownItem>
+          <DropdownItem
+            selected={selected === 'Work'}
+            onClick={() => setSelected('Work')}
+          >
+            Work
+          </DropdownItem>
+          <DropdownItem
+            selected={selected === 'Shared'}
+            onClick={() => setSelected('Shared')}
+          >
+            Shared
+          </DropdownItem>
+          <DropdownSeparator />
+          <DropdownItem leftIcon={<FiPlusCircle />} className="text-sky-500 hover:text-sky-600">
+            Create New
+          </DropdownItem>
+        </DropdownContent>
+      </Dropdown>
+  );
+}
+
+export const CustomTriggerDemo = () => {
+  return (
+    <div className="flex gap-8 items-center">
+      <Dropdown>
+        <DropdownTrigger asChild>
+          <button className="p-2 rounded-full hover:bg-ds-100 dark:hover:bg-white/10 transition-colors text-ds-500 hover:text-ds-900 dark:hover:text-white border border-ds-200 dark:border-ds-800 shadow-sm">
+            <FiSettings size={20} />
+          </button>
+        </DropdownTrigger>
+        <DropdownContent className="w-48">
+          <DropdownLabel>Settings</DropdownLabel>
+          <DropdownItem leftIcon={<FiUser />}>Account</DropdownItem>
+          <DropdownItem leftIcon={<FiBell />}>Notifications</DropdownItem>
+          <DropdownSeparator />
+          <DropdownItem leftIcon={<FiLogOut />} destructive>Logout</DropdownItem>
+        </DropdownContent>
+      </Dropdown>
+
+      <Dropdown>
+        <DropdownTrigger asChild>
+          <button className="text-sm font-semibold text-sky-500 hover:text-sky-600 underline decoration-2 underline-offset-4 flex items-center gap-1">
+            Actions <FiChevronDown />
+          </button>
+        </DropdownTrigger>
+        <DropdownContent className="w-48">
+          <DropdownItem>Download PDF</DropdownItem>
+          <DropdownItem>Export CSV</DropdownItem>
+          <DropdownItem>Print Report</DropdownItem>
+        </DropdownContent>
+      </Dropdown>
+    </div>
+  );
+}
 
 # Dropdown Menu
 
@@ -191,6 +378,3 @@ The `asChild` prop allows any element to act as the dropdown trigger, from icon 
   }
 ]}
 />
-
-
-

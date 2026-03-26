@@ -18,16 +18,10 @@ export interface ComboboxProps {
   onChange?: (value: string | string[]) => void;
   className?: string;
   disabled?: boolean;
-  /** Whether to clear search when an option is selected. Defaults to false. */
   clearSearchOnSelect?: boolean;
-  /** Whether to allow multiple selections. Defaults to false. */
   multiple?: boolean;
 }
 
-/**
- * A searchable select component that combines an input for filtering with a dropdown for selection.
- * Supports single and multiple selection modes.
- */
 export const Combobox = ({
   label,
   description,
@@ -46,8 +40,7 @@ export const Combobox = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const inputWrapperRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  
-  // Update trigger rect when opening
+
   useEffect(() => {
     if (isOpen && inputWrapperRef.current) {
       setTriggerRect(inputWrapperRef.current.getBoundingClientRect());
@@ -67,7 +60,6 @@ export const Combobox = ({
 
   const selectedOption = selectedOptions[0];
 
-  // When dropdown opens, we might want to reset query to the selected label (single only)
   const [prevIsOpen, setPrevIsOpen] = useState(isOpen);
 
   if (isOpen !== prevIsOpen) {
@@ -82,12 +74,10 @@ export const Combobox = ({
 
   const filteredOptions = useMemo(() => {
     const safeQuery = query.toLowerCase().trim();
-    // In multi-mode we filter by query always
-    // In single-mode we filter by query unless matches exactly the selected option
     if (!safeQuery || (!multiple && selectedOption && query === selectedOption.label)) {
       return options;
     }
-    return options.filter(opt => 
+    return options.filter(opt =>
       opt.label.toLowerCase().includes(safeQuery)
     );
   }, [options, query, selectedOption, multiple]);
@@ -122,12 +112,12 @@ export const Combobox = ({
     if (multiple) {
       const currentValue = Array.isArray(value) ? value : [];
       const isSelected = currentValue.includes(option.value);
-      const nextValue = isSelected 
+      const nextValue = isSelected
         ? currentValue.filter(v => v !== option.value)
         : [...currentValue, option.value];
-      
+
       onChange?.(nextValue);
-      setQuery(''); // Always clear search on multi-select
+      setQuery('');
     } else {
       onChange?.(option.value);
       if (clearSearchOnSelect) {
@@ -181,13 +171,12 @@ export const Combobox = ({
         </div>
       )}
 
-      {/* Multi-select Chips Container (Outside for cleaner input) */}
       {multiple && selectedOptions.length > 0 && (
         <div className="flex flex-wrap gap-2 mb-1 animate-in fade-in duration-300">
           {selectedOptions.map(opt => (
-            <Chip 
-              key={opt.value} 
-              label={opt.label} 
+            <Chip
+              key={opt.value}
+              label={opt.label}
               onDelete={() => handleRemoveOption(opt.value)}
               disabled={disabled}
               className="h-7"
@@ -195,7 +184,7 @@ export const Combobox = ({
           ))}
         </div>
       )}
-      
+
       <div className="relative group" ref={inputWrapperRef}>
         <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ds-500 group-focus-within:text-black dark:group-focus-within:text-white transition-colors duration-200 pointer-events-none">
           <FiSearch className="size-4" />
@@ -240,7 +229,7 @@ export const Combobox = ({
         </div>
 
         {isOpen && triggerRect && createPortal(
-          <div 
+          <div
             id="dashkit-combobox-portal"
             role="listbox"
             style={{
@@ -296,5 +285,3 @@ export const Combobox = ({
 };
 
 Combobox.displayName = 'Combobox';
-
-

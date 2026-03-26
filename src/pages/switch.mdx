@@ -1,3 +1,24 @@
+import { useState } from 'react';
+import { Switch } from '../components/Switch/Switch';
+
+export const SwitchDemo = () => {
+  const [enabled, setEnabled] = useState(false);
+
+  return (
+    <div className="flex flex-col gap-6 w-full max-w-sm mt-4">
+      <Switch 
+        label="Push Notifications" 
+        description="Receive alerts for all incoming activity."
+        checked={enabled}
+        onChange={(e) => setEnabled(e.target.checked)}
+      />
+      <div className="text-sm text-muted-foreground bg-ds-50 dark:bg-white/5 p-4 rounded-xl border border-ds-200 dark:border-white/10">
+        Status: <span className="font-bold text-foreground">{enabled ? 'Active' : 'Inactive'}</span>
+      </div>
+    </div>
+  );
+}
+
 # Switch
 
 A high-performance, premium toggle switch component for binary choices, with support for labels and descriptions.
@@ -128,6 +149,3 @@ Extends all native `CheckboxHTMLAttributes<HTMLInputElement>` (except `type`), p
   }
 ]}
 />
-
-
-

@@ -1,77 +1,94 @@
+import { ImageExpander } from '../components/ImageExpander/ImageExpander';
+
+export const ImageExpanderDemo = () => {
+  const images = [
+    {
+      url: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?q=80&w=1176&auto=format&fit=crop",
+      caption: "Serene Forest",
+      alt: "Forest landscape"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1518495973542-4542c06a5843?q=80&w=687&auto=format&fit=crop",
+      caption: "Sunlight through Trees",
+      alt: "Sunlight"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=80&w=687&auto=format&fit=crop",
+      caption: "Nature's Waterfall",
+      alt: "Waterfall"
+    }
+  ];
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+      {images.map((img, index) => (
+        <div key={index} className="flex flex-col gap-3">
+          <ImageExpander 
+            caption={img.caption}
+            className="aspect-[3/4]"
+            full={
+              <img 
+                src={img.url} 
+                alt={img.alt}
+                className="w-auto h-auto rounded-lg max-h-[85vh] object-contain" 
+              />
+            }
+          >
+            <img 
+              src={img.url} 
+              alt={img.alt}
+              className="w-full h-full object-cover"
+            />
+          </ImageExpander>
+          <span className="text-xs font-medium text-ds-400 dark:text-ds-500 text-center uppercase tracking-widest">{img.caption}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 # Image Expander
 
-A premium image zoom-in/expansion component designed to showcase high-fidelity dashboard views, screenshots, or any visual detail with an immersive experience.
+A premium component that enables cinematic image expansion with smooth animations, backdrop blur, and caption support.
 
 ## Import
 
 ```tsx
-import { ImageExpander } from '@/components/ImageExpander/ImageExpander'
+import { ImageExpander } from '@/components/ImageExpander/ImageExpander';
 ```
 
 ## Installation
 
-Add the image expander to your project using the Dashkit CLI:
-
 ```bash
-bunx carllosnc/dashkit add imageexpander
+bunx carllosnc/dashkit add image-expander
 ```
 
-## Basic Usage
+## Examples
 
-The component is easy to use. Just wrap your image or any element you want to expand.
-
-<Preview>
-  <div className="w-full max-w-lg">
-    <ImageExpander caption="Serene Forest View">
-      <img 
-        src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?q=80&w=1000&auto=format&fit=crop" 
-        alt="Forest Landscape" 
-        className="w-full h-full object-cover rounded-xl" 
-      />
-    </ImageExpander>
-  </div>
-</Preview>
-
-```tsx
-import { ImageExpander } from '@/components/ImageExpander/ImageExpander'
-
-<ImageExpander caption="A clean dashboard mockup">
-  <img src="/path/to/image.jpg" alt="Dashboard View" />
-</ImageExpander>
-```
-
-## Advanced Demos
-
-Experience the component on both light and dark mode screenshots with full immersive expansion.
+Building a clean gallery with expanding visuals.
 
 <Preview>
   <ImageExpanderDemo />
 </Preview>
 
 ```tsx
-<div className="grid grid-cols-2 gap-8">
-  <ImageExpander caption="Light Theme View">
-    <img src="/mockup-light.png" alt="Light Dashboard" />
-  </ImageExpander>
-  
-  <ImageExpander caption="Dark Theme View">
-    <img src="/mockup-dark.png" alt="Dark Dashboard" />
-  </ImageExpander>
-</div>
+<ImageExpander 
+  caption="Cinematic Waterfall"
+  full={<img src="/large.jpg" className="w-auto h-auto max-h-[85vh] rounded-lg" />}
+>
+  <img src="/thumb.jpg" className="w-full h-full object-cover rounded-lg" />
+</ImageExpander>
 ```
 
 ## Features
 
-- **Spring Dynamics**: Uses Framer Motion's physical spring model for a "premium" feel.
-- **Backdrop Blur**: The UI softly blurs the background to maintain focus on the content.
-- **Dark Mode Ready**: Automatically shifts UI elements like borders and backgrounds.
-- **Auto Body Lock**: Prevents background scrolling when the image is expanded.
-- **Keyboard Friendly**: Easily close using the `Escape` key.
+- **Spring Dynamics**: Natural, bouncy transitions powered by Framer Motion.
+- **Glassmorphism**: Elegant backdrop blur and translucent overlays.
+- **Compositional**: Supports any ReactNode as the thumbnail or full-size content.
+- **Responsive**: Adapts perfectly to mobile and desktop viewports.
+- **Esc to Close**: Closes automatically when the Escape key is pressed.
 
-## Props
-
-The component uses a custom interface for high-end expansion:
-
+## Properties
 
 <PropertyDoc
   properties={[
@@ -79,28 +96,25 @@ The component uses a custom interface for high-end expansion:
     "prop": "children",
     "type": "ReactNode",
     "defaultValue": "—",
-    "description": "The content used for the thumbnail and fallback full view."
+    "description": "The thumbnail content (usually an <img>)."
   },
   {
     "prop": "full",
     "type": "ReactNode",
-    "defaultValue": "—",
-    "description": "(Optional) A higher-resolution version to show when expanded."
+    "defaultValue": "children",
+    "description": "The content to display in the expanded modal state."
   },
   {
     "prop": "caption",
     "type": "string",
     "defaultValue": "—",
-    "description": "Optional subtitle displayed below the expanded view."
+    "description": "An optional label shown at the bottom of the expanded view."
   },
   {
     "prop": "className",
     "type": "string",
     "defaultValue": "—",
-    "description": "Custom styling for the thumbnail container."
+    "description": "Styles for the thumbnail container."
   }
 ]}
 />
-
-
-

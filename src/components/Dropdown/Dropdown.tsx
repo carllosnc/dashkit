@@ -4,79 +4,26 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FiCheck } from 'react-icons/fi';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { useDropdown, useDropdownContext, DropdownContext } from './useDropdown';
 
-/**
- * Utility function to merge tailwind classes
- */
 function cn(...inputs: (string | undefined | null | boolean | Record<string, boolean>)[]) {
   return twMerge(clsx(inputs));
-}
-
-interface DropdownContextValue {
-  open: boolean;
-  setOpen: (open: boolean) => void;
-  triggerRect: DOMRect | null;
-  setTriggerRect: (rect: DOMRect | null) => void;
-  triggerElement: HTMLElement | null;
-  setTriggerElement: (el: HTMLElement | null) => void;
-}
-
-const DropdownContext = React.createContext<DropdownContextValue | undefined>(undefined);
-
-function useDropdown() {
-  const context = React.useContext(DropdownContext);
-  if (!context) {
-    throw new Error('Dropdown components must be used within a Dropdown');
-  }
-  return context;
 }
 
 export interface DropdownProps {
   children: React.ReactNode;
 }
 
-/**
- * Root Dropdown component.
- * Tracks the trigger position to allow the menu to portal out of restricted containers.
- */
 export function Dropdown({ children }: DropdownProps) {
-  const [open, setOpen] = React.useState(false);
-  const [triggerRect, setTriggerRect] = React.useState<DOMRect | null>(null);
-  const [triggerElement, setTriggerElement] = React.useState<HTMLElement | null>(null);
-  const containerRef = React.useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      // If portal is used, we need to check both container and the menu itself
-      const menu = document.getElementById('dashkit-dropdown-portal');
-      if (
-        containerRef.current && !containerRef.current.contains(event.target as Node) &&
-        (!menu || !menu.contains(event.target as Node))
-      ) {
-        setOpen(false);
-      }
-    };
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setOpen(false);
-    };
-
-    const handleScroll = () => {
-      if (open) setOpen(false);
-    };
-
-    if (open) {
-      document.addEventListener('mousedown', handleClickOutside);
-      document.addEventListener('keydown', handleKeyDown);
-      window.addEventListener('scroll', handleScroll, true);
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('keydown', handleKeyDown);
-      window.removeEventListener('scroll', handleScroll, true);
-    };
-  }, [open]);
+  const {
+    open,
+    setOpen,
+    triggerRect,
+    setTriggerRect,
+    triggerElement,
+    setTriggerElement,
+    containerRef
+  } = useDropdown();
 
   return (
     <DropdownContext.Provider value={{ open, setOpen, triggerRect, setTriggerRect, triggerElement, setTriggerElement }}>
@@ -87,11 +34,8 @@ export function Dropdown({ children }: DropdownProps) {
   );
 }
 
-/**
- * Dropdown Trigger
- */
 export function DropdownTrigger({ children, asChild }: { children: React.ReactNode; asChild?: boolean }) {
-  const { open, setOpen, setTriggerRect, setTriggerElement } = useDropdown();
+  const { open, setOpen, setTriggerRect, setTriggerElement } = useDropdownContext();
 
   const toggleOpen = (e: React.MouseEvent) => {
     const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
@@ -120,24 +64,20 @@ export function DropdownTrigger({ children, asChild }: { children: React.ReactNo
   );
 }
 
-/**
- * Dropdown Content.
- * Portals to the document body to escape `overflow: hidden` restrictions and use a high z-index.
- */
-export function DropdownContent({ 
-    children, 
+export function DropdownContent({
+    children,
     className,
     align = 'start',
     side = 'bottom',
     sideOffset = 8
-}: { 
-    children: React.ReactNode; 
+}: {
+    children: React.ReactNode;
     className?: string;
     align?: 'start' | 'end' | 'center';
     side?: 'top' | 'bottom' | 'left' | 'right';
     sideOffset?: number;
 }) {
-  const { open, triggerElement, setTriggerRect, triggerRect } = useDropdown();
+  const { open, triggerElement, setTriggerRect, triggerRect } = useDropdownContext();
   const [contentRect, setContentRect] = React.useState<DOMRect | null>(null);
   const contentRef = React.useRef<HTMLDivElement>(null);
 
@@ -179,12 +119,11 @@ export function DropdownContent({
       : side;
 
     top = actualSide === 'top' ? triggerRect.top - dropdownHeight - sideOffset : triggerRect.bottom + sideOffset;
-    
+
     if (align === 'start') left = triggerRect.left;
     else if (align === 'end') left = triggerRect.right - dropdownWidth;
     else left = triggerRect.left + (triggerRect.width - dropdownWidth) / 2;
   } else {
-    // Left or Right
     const spaceRight = window.innerWidth - triggerRect.right;
     const spaceLeft = triggerRect.left;
     const actualSide = (side === 'right' && spaceRight < dropdownWidth && spaceLeft > spaceRight) || (side === 'left' && spaceLeft < dropdownWidth && spaceRight > spaceLeft)
@@ -192,13 +131,12 @@ export function DropdownContent({
       : side;
 
     left = actualSide === 'right' ? triggerRect.right + sideOffset : triggerRect.left - dropdownWidth - sideOffset;
-    
+
     if (align === 'start') top = triggerRect.top;
     else if (align === 'end') top = triggerRect.bottom - dropdownHeight;
     else top = triggerRect.top + (triggerRect.height - dropdownHeight) / 2;
   }
 
-  // Final viewport constraints
   left = Math.max(8, Math.min(left, window.innerWidth - dropdownWidth - 8));
   top = Math.max(8, Math.min(top, window.innerHeight - dropdownHeight - 8));
 
@@ -233,9 +171,6 @@ export function DropdownContent({
   );
 }
 
-/**
- * Dropdown Item
- */
 interface DropdownItemProps {
   children: React.ReactNode;
   onClick?: () => void;
@@ -257,7 +192,7 @@ export function DropdownItem({
   destructive,
   selected
 }: DropdownItemProps) {
-  const { setOpen } = useDropdown();
+  const { setOpen } = useDropdownContext();
 
   return (
     <button
@@ -283,9 +218,6 @@ export function DropdownItem({
   );
 }
 
-/**
- * Dropdown Label (Section title)
- */
 export function DropdownLabel({ children }: { children: React.ReactNode }) {
   return (
     <div className="px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-ds-400 dark:text-ds-500">
@@ -294,13 +226,8 @@ export function DropdownLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
-/**
- * Dropdown Separator
- */
 export function DropdownSeparator() {
   return (
     <div className="my-1 h-px bg-border" />
   );
 }
-
-

@@ -5,10 +5,8 @@ import type { HTMLMotionProps } from 'framer-motion';
 import { FiChevronsLeft, FiMenu } from 'react-icons/fi';
 import { IconButton } from '../IconButton/IconButton';
 import { SidebarContext } from './SidebarContext';
+import { useSidebar } from './useSidebar';
 
-/* ────────────────────────────────────────────────
-   1. Root Sidebar component
-──────────────────────────────────────────────── */
 export interface SidebarProps extends
   Omit<HTMLMotionProps<'aside'>, 'children' | 'defaultValue'> {
   children: React.ReactNode;
@@ -20,24 +18,10 @@ export interface SidebarProps extends
 
 export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
   ({ className, children, collapsible = true, defaultOpen = true, open: controlledOpen, onOpenChange, ...props }, ref) => {
-    const [internalOpen, setInternalOpen] = React.useState(defaultOpen);
-
-    const isOpen = controlledOpen !== undefined ? controlledOpen : internalOpen;
-
-    const setIsOpen = React.useCallback(
-      (value: boolean) => {
-        if (controlledOpen === undefined) {
-          setInternalOpen(value);
-        }
-        onOpenChange?.(value);
-      },
-      [controlledOpen, onOpenChange]
-    );
-
-    const toggle = React.useCallback(() => setIsOpen(!isOpen), [isOpen, setIsOpen]);
+    const { isOpen, toggle } = useSidebar({ defaultOpen, open: controlledOpen, onOpenChange });
 
     return (
-      <SidebarContext.Provider value={{ isOpen, setIsOpen, toggle }}>
+      <SidebarContext.Provider value={{ isOpen, setIsOpen: () => {}, toggle }}>
         <motion.aside
           ref={ref as React.Ref<HTMLDivElement>}
           initial={false}
@@ -74,11 +58,9 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
     );
   }
 );
+
 Sidebar.displayName = 'Sidebar';
 
-/* ────────────────────────────────────────────────
-   2. Header & Footer
-──────────────────────────────────────────────── */
 export function SidebarHeader({ children, className }: { children: React.ReactNode; className?: string }) {
   const sidebarContext = React.useContext(SidebarContext);
   if (!sidebarContext) throw new Error('SidebarHeader must be used within Sidebar');
@@ -93,7 +75,7 @@ export function SidebarHeader({ children, className }: { children: React.ReactNo
         justifyContent: isOpen ? 'flex-start' : 'center'
       }}
       className={cn(
-        "h-16 flex items-center shrink-0 border-b border-border overflow-hidden", 
+        "h-16 flex items-center shrink-0 border-b border-border overflow-hidden",
         className
       )}
     >
@@ -122,9 +104,9 @@ export function SidebarFooter({ children, className }: { children: React.ReactNo
   const { isOpen } = sidebarContext;
 
   return (
-    <motion.div 
+    <motion.div
       initial={false}
-      animate={{ 
+      animate={{
         padding: 16,
         alignItems: isOpen ? 'stretch' : 'center'
       }}
@@ -152,9 +134,6 @@ export function SidebarFooterClose({ children }: { children: React.ReactNode }) 
   return <>{children}</>;
 }
 
-/* ────────────────────────────────────────────────
-   3. Sections and Items
-──────────────────────────────────────────────── */
 export function SidebarSection({ title, badge, children, className }: { title?: string; badge?: React.ReactNode; children: React.ReactNode; className?: string }) {
   const sidebarContext = React.useContext(SidebarContext);
   const isOpen = sidebarContext?.isOpen ?? true;

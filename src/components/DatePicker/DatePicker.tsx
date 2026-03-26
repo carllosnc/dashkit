@@ -1,9 +1,9 @@
-import { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { FiCalendar, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import { twMerge } from 'tailwind-merge';
 import clsx, { type ClassValue } from 'clsx';
+import { useDatePicker, months, daysOfWeek } from './useDatePicker';
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -28,116 +28,25 @@ export const DatePicker = ({
   className,
   disabled
 }: DatePickerProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [viewDate, setViewDate] = useState(value || new Date());
-  const [triggerRect, setTriggerRect] = useState<DOMRect | null>(null);
-  const [position, setPosition] = useState<'bottom' | 'top'>('bottom');
-  const containerRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
-
-  const toggleOpen = () => {
-    if (disabled) return;
-
-    if (!isOpen && buttonRef.current) {
-      const rect = buttonRef.current.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      const spaceBelow = viewportHeight - rect.bottom;
-      const pickerHeight = 360; // Approximate height with today button
-
-      if (spaceBelow < pickerHeight && rect.top > pickerHeight) {
-        setPosition('top');
-      } else {
-        setPosition('bottom');
-      }
-      setTriggerRect(rect);
-    }
-    setIsOpen(!isOpen);
-  };
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const menu = document.getElementById('dashkit-datepicker-portal');
-      if (
-        containerRef.current && !containerRef.current.contains(event.target as Node) &&
-        (!menu || !menu.contains(event.target as Node))
-      ) {
-        setIsOpen(false);
-      }
-    };
-
-    const handleScroll = () => {
-      if (isOpen) setIsOpen(false);
-    };
-
-    if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-      window.addEventListener('scroll', handleScroll, true);
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      window.removeEventListener('scroll', handleScroll, true);
-    };
-  }, [isOpen]);
-
-  const months = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
-  ];
-
-  const daysOfWeek = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-
-  const getDaysInMonth = (year: number, month: number) => {
-    return new Date(year, month + 1, 0).getDate();
-  };
-
-  const getFirstDayOfMonth = (year: number, month: number) => {
-    return new Date(year, month, 1).getDay();
-  };
-
-  const currentYear = viewDate.getFullYear();
-  const currentMonth = viewDate.getMonth();
-
-  const prevMonth = () => {
-    setViewDate(new Date(currentYear, currentMonth - 1, 1));
-  };
-
-  const nextMonth = () => {
-    setViewDate(new Date(currentYear, currentMonth + 1, 1));
-  };
-
-  const handleDateSelect = (day: number) => {
-    const selected = new Date(currentYear, currentMonth, day);
-    onChange?.(selected);
-    setIsOpen(false);
-  };
-
-  const isToday = (day: number) => {
-    const today = new Date();
-    return today.getDate() === day &&
-           today.getMonth() === currentMonth &&
-           today.getFullYear() === currentYear;
-  };
-
-  const isSelected = (day: number) => {
-    if (!value) return false;
-    return value.getDate() === day &&
-           value.getMonth() === currentMonth &&
-           value.getFullYear() === currentYear;
-  };
-
-  const daysInMonth = getDaysInMonth(currentYear, currentMonth);
-  const firstDay = getFirstDayOfMonth(currentYear, currentMonth);
-  const days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
-  const emptyDays = Array.from({ length: firstDay }, (_, i) => i);
-
-  const formatDate = (date: Date) => {
-    return date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
-    });
-  };
+  const {
+    isOpen,
+    triggerRect,
+    position,
+    containerRef,
+    buttonRef,
+    toggleOpen,
+    currentMonth,
+    currentYear,
+    days,
+    emptyDays,
+    prevMonth,
+    nextMonth,
+    handleDateSelect,
+    isToday,
+    isSelected,
+    formatDate,
+    setViewDate
+  } = useDatePicker({ value, onChange, disabled });
 
   return (
     <div className="flex flex-col gap-1.5 w-full font-sans" ref={containerRef}>
@@ -191,7 +100,6 @@ export const DatePicker = ({
               }}
               className="w-[280px] bg-popover text-popover-foreground border border-border rounded-xl shadow-2xl p-4 overflow-hidden"
             >
-              {/* Header */}
               <div className="flex items-center justify-between mb-4">
                 <button
                   onClick={prevMonth}
@@ -210,7 +118,6 @@ export const DatePicker = ({
                 </button>
               </div>
 
-              {/* Grid Header */}
               <div className="grid grid-cols-7 mb-2">
                 {daysOfWeek.map(day => (
                   <div key={day} className="text-[10px] uppercase font-bold text-muted-foreground text-center">
@@ -219,7 +126,6 @@ export const DatePicker = ({
                 ))}
               </div>
 
-              {/* Grid Days */}
               <div className="grid grid-cols-7 gap-1">
                 {emptyDays.map(i => (
                   <div key={`empty-${i}`} />
@@ -230,8 +136,8 @@ export const DatePicker = ({
                     onClick={() => handleDateSelect(day)}
                     className={cn(
                       "size-8 text-xs rounded-lg flex items-center justify-center transition-all duration-200",
-                      isSelected(day) 
-                        ? "bg-primary text-primary-foreground font-bold shadow-md transform scale-110" 
+                      isSelected(day)
+                        ? "bg-primary text-primary-foreground font-bold shadow-md transform scale-110"
                         : "hover:bg-muted font-medium",
                       isToday(day) && !isSelected(day) && "text-primary border border-primary/20 bg-primary/5"
                     )}
@@ -241,15 +147,11 @@ export const DatePicker = ({
                 ))}
               </div>
 
-              {/* Today Button */}
               <div className="mt-4 pt-4 border-t border-border flex justify-center">
                 <button
                   onClick={() => {
                     const today = new Date();
                     setViewDate(today);
-                    // Optionally select today immediately or just jump to it
-                    // onChange?.(today);
-                    // setIsOpen(false);
                   }}
                   className="text-xs font-bold text-primary hover:underline"
                 >

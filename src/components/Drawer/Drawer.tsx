@@ -1,15 +1,16 @@
-import { useEffect, type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
-import { motion, AnimatePresence, type Variants } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FiX } from 'react-icons/fi';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { useDrawer, type DrawerPosition } from './useDrawer';
 
 function cn(...inputs: (string | undefined | null | boolean | Record<string, boolean>)[]) {
   return twMerge(clsx(inputs));
 }
 
-export type DrawerPosition = 'left' | 'right' | 'top' | 'bottom';
+export { type DrawerPosition };
 
 export interface DrawerProps {
   isOpen: boolean;
@@ -38,38 +39,6 @@ export const DrawerFooter = ({ children, className }: { children: ReactNode; cla
   </div>
 );
 
-const positionVariants: Record<DrawerPosition, Variants> = {
-  right: {
-    initial: { x: '100%' },
-    animate: { x: 0 },
-    exit: { x: '100%' },
-  },
-  left: {
-    initial: { x: '-100%' },
-    animate: { x: 0 },
-    exit: { x: '-100%' },
-  },
-  top: {
-    initial: { y: '-100%' },
-    animate: { y: 0 },
-    exit: { y: '-100%' },
-  },
-  bottom: {
-    initial: { y: '100%' },
-    animate: { y: 0 },
-    exit: { y: '100%' },
-  },
-};
-
-const getPositionClasses = (position: DrawerPosition) => {
-  switch (position) {
-    case 'left': return 'left-0 top-0 h-full';
-    case 'right': return 'right-0 top-0 h-full';
-    case 'top': return 'top-0 left-0 w-full';
-    case 'bottom': return 'bottom-0 left-0 w-full';
-  }
-};
-
 export const Drawer = ({
   isOpen,
   onClose,
@@ -78,34 +47,17 @@ export const Drawer = ({
   size,
   className,
 }: DrawerProps) => {
-  // Lock body scroll
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isOpen]);
-
-  // Handle ESC key
-  useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-    };
-    window.addEventListener('keydown', handleEsc);
-    return () => window.removeEventListener('keydown', handleEsc);
-  }, [onClose]);
-
-  const defaultSize = (position === 'left' || position === 'right') ? 'max-w-md w-full' : 'max-h-[80vh] h-auto';
+  const {
+    defaultSize,
+    handleDragEnd,
+    positionVariants,
+    getPositionClasses
+  } = useDrawer({ isOpen, onClose, position });
 
   return createPortal(
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-[100] isolate overflow-hidden flex items-center justify-center">
-          {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -114,7 +66,6 @@ export const Drawer = ({
             className="absolute inset-0 bg-ds-950/40 backdrop-blur-sm -z-10"
           />
 
-          {/* Drawer Wrapper */}
           <motion.div
             data-testid="drawer-content"
             variants={positionVariants[position]}
@@ -129,16 +80,7 @@ export const Drawer = ({
               { bottom: 0 }
             }
             dragElastic={0.1}
-            onDragEnd={(_, info) => {
-              const threshold = 100;
-              const isClosing =
-                (position === 'right' && info.offset.x > threshold) ||
-                (position === 'left' && info.offset.x < -threshold) ||
-                (position === 'bottom' && info.offset.y > threshold) ||
-                (position === 'top' && info.offset.y < -threshold);
-
-              if (isClosing) onClose();
-            }}
+            onDragEnd={handleDragEnd}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
             className={cn(
               "absolute bg-card text-card-foreground shadow-sm border-border overflow-hidden flex flex-col",
@@ -154,7 +96,6 @@ export const Drawer = ({
               className
             )}
           >
-            {/* Close Button Area */}
             <button
               onClick={onClose}
               className="absolute top-4 right-4 p-2 rounded-md transition-all duration-200 hover:bg-ds-100 dark:hover:bg-ds-800 text-ds-400 hover:text-ds-900 dark:hover:text-white z-[60]"
@@ -165,7 +106,6 @@ export const Drawer = ({
 
             {children}
 
-            {/* Content shadow fade */}
             <div className="absolute bottom-0 h-6 w-full shrink-0 bg-gradient-to-t from-white dark:from-ds-900 to-transparent pointer-events-none z-10" />
           </motion.div>
         </div>

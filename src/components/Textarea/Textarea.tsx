@@ -1,6 +1,7 @@
-import React, { forwardRef, useEffect, useRef, type TextareaHTMLAttributes } from 'react';
+import { forwardRef, type TextareaHTMLAttributes } from 'react';
 import clsx, { type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { useTextarea } from './useTextarea';
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -13,34 +14,15 @@ export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
   autoGrow?: boolean;
 }
 
-/**
- * Textarea component with labels, error states, and optional auto-grow support.
- */
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ label, error, helperText, autoGrow = false, className, id, onChange, ...props }, ref) => {
-    const textareaRef = useRef<HTMLTextAreaElement | null>(null);
-    const internalId = id || (label ? `textarea-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined);
-
-    const adjustHeight = React.useCallback(() => {
-      const textarea = textareaRef.current;
-      if (autoGrow && textarea) {
-        textarea.style.height = 'auto';
-        textarea.style.height = `${textarea.scrollHeight}px`;
-      }
-    }, [autoGrow]);
-
-    useEffect(() => {
-      if (autoGrow) {
-        adjustHeight();
-      }
-    }, [props.value, autoGrow, adjustHeight]);
-
-    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-      if (autoGrow) {
-        adjustHeight();
-      }
-      onChange?.(e);
-    };
+    const { textareaRef, internalId, handleChange } = useTextarea({
+      id,
+      label,
+      autoGrow,
+      value: props.value,
+      onChange
+    });
 
     return (
       <div className="flex flex-col gap-1.5 w-full font-sans">
@@ -87,5 +69,3 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
 );
 
 Textarea.displayName = 'Textarea';
-
-

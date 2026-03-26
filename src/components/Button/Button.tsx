@@ -70,7 +70,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           sizeClasses[size],
           {
             "opacity-60 cursor-not-allowed": loading,
-            // Dynamic Layout
             "gap-2 px-4 py-[5px]": !isIconOnly,
             "px-2": size === 'sm' && !isIconOnly,
             "px-6": size === 'lg' && !isIconOnly,

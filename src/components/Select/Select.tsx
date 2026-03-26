@@ -1,12 +1,10 @@
-import { useState, useRef, useEffect } from 'react';
+import { type KeyboardEvent } from 'react';
 import { createPortal } from 'react-dom';
 import { FiChevronDown, FiCheck } from 'react-icons/fi';
 import clsx, { type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { useSelect } from './useSelect';
 
-/**
- * Utility for merging tailwind classes with conflict resolution
- */
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -27,67 +25,25 @@ export interface SelectProps {
   disabled?: boolean;
 }
 
-export const Select = ({ 
-  label, 
-  description, 
-  placeholder = 'Select an option', 
-  options, 
-  value, 
-  onChange, 
-  className, 
-  disabled 
+export const Select = ({
+  label,
+  description,
+  placeholder = 'Select an option',
+  options,
+  value,
+  onChange,
+  className,
+  disabled
 }: SelectProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [triggerRect, setTriggerRect] = useState<DOMRect | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
-  
-  const selectedOption = options.find(opt => opt.value === value);
-
-  // Update trigger rect when opening
-  useEffect(() => {
-    if (isOpen && buttonRef.current) {
-      setTriggerRect(buttonRef.current.getBoundingClientRect());
-    }
-  }, [isOpen]);
-
-  // Close when clicking outside or scrolling
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const menu = document.getElementById('dashkit-select-portal');
-      if (
-        containerRef.current && !containerRef.current.contains(event.target as Node) &&
-        (!menu || !menu.contains(event.target as Node))
-      ) {
-        setIsOpen(false);
-      }
-    };
-
-    const handleScroll = () => {
-      if (isOpen) setIsOpen(false);
-    };
-
-    if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-      window.addEventListener('scroll', handleScroll, true);
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      window.removeEventListener('scroll', handleScroll, true);
-    };
-  }, [isOpen]);
-
-  // Handle keyboard navigation
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (disabled) return;
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      setIsOpen(!isOpen);
-    } else if (e.key === 'Escape') {
-      setIsOpen(false);
-    }
-  };
+  const {
+    isOpen,
+    setIsOpen,
+    triggerRect,
+    containerRef,
+    buttonRef,
+    selectedOption,
+    handleKeyDown
+  } = useSelect({ options, value, disabled });
 
   return (
     <div className="flex flex-col gap-1.5 w-full font-sans" ref={containerRef}>
@@ -102,7 +58,7 @@ export const Select = ({
           type="button"
           disabled={disabled}
           onClick={() => !disabled && setIsOpen(!isOpen)}
-          onKeyDown={handleKeyDown}
+          onKeyDown={handleKeyDown as (e: KeyboardEvent<HTMLButtonElement>) => void}
           aria-haspopup="listbox"
           aria-expanded={isOpen}
           className={cn(
@@ -123,7 +79,7 @@ export const Select = ({
         </button>
 
         {isOpen && triggerRect && createPortal(
-          <div 
+          <div
             id="dashkit-select-portal"
             role="listbox"
             style={{
@@ -177,5 +133,3 @@ export const Select = ({
 };
 
 Select.displayName = 'Select';
-
-

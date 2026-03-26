@@ -1,9 +1,10 @@
-import { useEffect, type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiX } from 'react-icons/fi';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { useModal } from './useModal';
 
 function cn(...inputs: (string | undefined | null | boolean | Record<string, boolean>)[]) {
   return twMerge(clsx(inputs));
@@ -41,32 +42,12 @@ export const Modal = ({
   className,
   showCloseButton = true,
 }: ModalProps) => {
-  // Lock body scroll
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isOpen]);
-
-  // Handle ESC key
-  useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-    };
-    window.addEventListener('keydown', handleEsc);
-    return () => window.removeEventListener('keydown', handleEsc);
-  }, [onClose]);
+  useModal({ isOpen, onClose });
 
   return createPortal(
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-[100] isolate flex items-center justify-center p-4">
-          {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -75,7 +56,6 @@ export const Modal = ({
             className="absolute inset-0 bg-ds-950/40 backdrop-blur-sm -z-10"
           />
 
-          {/* Modal Content */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -87,7 +67,6 @@ export const Modal = ({
               className
             )}
           >
-            {/* Header */}
             {(title || description || showCloseButton) && (
               <div className="flex items-start justify-between p-8 pb-4">
                 <div className="flex flex-col gap-1.5">
@@ -113,12 +92,10 @@ export const Modal = ({
               </div>
             )}
 
-            {/* Body */}
             <div className="flex-1 overflow-y-auto px-8 py-4 no-scrollbar min-h-[100px]">
               {children}
             </div>
 
-            {/* Footer */}
             {footer && (
               <div className="p-8 pt-4 flex items-center justify-end gap-3 bg-card border-t border-border">
                 {footer}
@@ -132,4 +109,4 @@ export const Modal = ({
   );
 };
 
-
+Modal.displayName = 'Modal';

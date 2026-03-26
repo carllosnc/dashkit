@@ -1,14 +1,13 @@
 import { forwardRef, type InputHTMLAttributes } from 'react';
 import { cn } from '../../utils/cn';
 
-export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
+export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'children'> {
   label?: string;
   description?: string;
 }
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  ({ label, description, className, id, children, ...props }, ref) => {
+  ({ label, description, className, id, ...props }, ref) => {
     const checkboxId = id || (label ? `checkbox-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined);
 
     return (
@@ -28,7 +27,6 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
                 className
               )}
             />
-            {/* Inner Block Fill */}
             <div className={cn(
               "absolute w-[13px] h-[13px] rounded-[2px] bg-primary transition-all duration-200 pointer-events-none",
               "opacity-0 scale-50 peer-checked:opacity-100 peer-checked:scale-100 peer-checked:peer-disabled:opacity-60"
@@ -58,5 +56,3 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
 );
 
 Checkbox.displayName = 'Checkbox';
-
-

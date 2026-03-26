@@ -17,26 +17,18 @@ import { Chip } from '../components/Chip/Chip';
 import { Combobox } from '../components/Combobox/Combobox';
 import { Divider } from '../components/Divider/Divider';
 import { Drawer } from '../components/Drawer/Drawer';
-import { DrawerDemo } from '../components/Drawer/DrawerDemo';
 import { Modal } from '../components/Modal/Modal';
 import { Radio } from '../components/Radio/Radio';
-import { RadioDemo } from '../components/Radio/RadioDemo';
 import { Select } from '../components/Select/Select';
-import { SelectDemo } from '../components/Select/SelectDemo';
 import { Switch } from '../components/Switch/Switch';
-import { SwitchDemo } from '../components/Switch/SwitchDemo';
 import { Textarea } from '../components/Textarea/Textarea';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/Tabs/Tabs';
 import { OtpInput } from '../components/OtpInput/OtpInput';
-import { OtpInputDemo } from '../components/OtpInput/OtpInputDemo';
 import { Sidebar, SidebarHeader, SidebarFooter, SidebarSection, SidebarItem } from '../components/Sidebar/Sidebar';
 import { ImageExpander } from '../components/ImageExpander/ImageExpander';
-import { ImageExpanderDemo } from '../components/ImageExpander/ImageExpanderDemo';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../components/Accordion/Accordion';
-import { DropdownDemo, BasicMenuDemo, SelectableMenuDemo, CustomTriggerDemo } from '../components/Dropdown/DropdownDemo';
 import { Badge, FloatBadge } from '../components/Badge/Badge';
 import { Skeleton } from '../components/Skeleton/Skeleton';
-import { SkeletonDemo } from '../components/Skeleton/SkeletonDemo';
 import { Spinner } from '../components/Spinner/Spinner';
 import { Navbar } from '../components/Navbar/Navbar';
 import { IconButton } from '../components/IconButton/IconButton';
@@ -134,7 +126,6 @@ const components: Record<string, ElementType> = {
   Chip,
   Combobox,
   Drawer,
-  DrawerDemo,
   Modal,
   Accordion,
   AccordionItem,
@@ -142,12 +133,9 @@ const components: Record<string, ElementType> = {
   AccordionContent,
   Checkbox,
   Radio,
-  RadioDemo,
   Select,
-  SelectDemo,
   Divider,
   Switch,
-  SwitchDemo,
   Textarea,
   Tabs,
   TabsList,
@@ -162,14 +150,12 @@ const components: Record<string, ElementType> = {
   TableCell,
   TableCaption,
   OtpInput,
-  OtpInputDemo,
   Sidebar,
   SidebarHeader,
   SidebarFooter,
   SidebarSection,
   SidebarItem,
   ImageExpander,
-  ImageExpanderDemo,
   Avatar,
   AvatarGroup,
   Badge,
@@ -180,10 +166,6 @@ const components: Record<string, ElementType> = {
   DropdownLabel,
   DropdownItem,
   DropdownSeparator,
-  DropdownDemo,
-  BasicMenuDemo,
-  SelectableMenuDemo,
-  CustomTriggerDemo,
   Card,
   ProgressBar,
   CardHeader,
@@ -209,7 +191,6 @@ const components: Record<string, ElementType> = {
   FiHome,
   FiMoreVertical,
   Skeleton,
-  SkeletonDemo,
   Spinner,
   Navbar,
   IconButton,

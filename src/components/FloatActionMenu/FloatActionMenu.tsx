@@ -1,49 +1,21 @@
 import * as React from 'react';
-import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '../../utils/cn';
 import { FiX, FiMenu } from 'react-icons/fi';
 import { IconButton } from '../IconButton/IconButton';
+import { useFloatActionMenu, type FloatActionPosition } from './useFloatActionMenu';
 
 export interface FloatActionMenuProps {
-  /**
-   * Icon to display in the floating button
-   * @default <FiMenu />
-   */
   icon?: React.ReactNode;
-  /**
-   * Label to display in the floating button
-   */
   label?: string;
-  /**
-   * The content to display when the menu is expanded
-   */
   children: React.ReactNode;
-  /**
-   * Position of the button on the screen
-   * @default 'bottom-right'
-   */
-  position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left';
-  /**
-   * Additional classes for the container
-   */
+  position?: FloatActionPosition;
   className?: string;
-  /**
-   * Additional classes for the button
-   */
   buttonClassName?: string;
-  /**
-   * Additional classes for the menu board
-   */
   menuClassName?: string;
 }
 
-  const positionClasses = {
-  'bottom-right': 'bottom-6 right-6',
-  'bottom-left': 'bottom-6 left-6',
-  'top-right': 'top-6 right-6',
-  'top-left': 'top-6 left-6',
-};
+export { type FloatActionPosition };
 
 export function FloatActionMenu({
   icon = <FiMenu />,
@@ -54,32 +26,15 @@ export function FloatActionMenu({
   buttonClassName,
   menuClassName,
 }: FloatActionMenuProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
-
-  // Close on Escape key
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setIsOpen(false);
-    };
-    if (isOpen) {
-      window.addEventListener('keydown', handleKeyDown);
-    }
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen]);
-
-  // Close on outside click
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-    if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isOpen]);
+  const {
+    isOpen,
+    setIsOpen,
+    menuRef,
+    isRight,
+    handleDragEnd,
+    positionClasses,
+    menuPositionClasses
+  } = useFloatActionMenu({ position });
 
   const hasPosition = className?.includes('fixed') || className?.includes('absolute') || className?.includes('relative') || className?.includes('sticky');
 
@@ -94,7 +49,7 @@ export function FloatActionMenu({
         key="fab"
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          'flex items-center gap-2.5 px-4 py-3 rounded-lg bg-linear-to-br from-primary to-blue-600 text-white shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.18)] active:scale-95 transition-all cursor-pointer border border-white/10',
+          'flex items-center gap-2.5 px-4 py-3 rounded-lg bg-linear-to-br from-primary to-blue-600 text-white shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.18)] active:scale-95 transition-all cursor-pointer border border-white/10 relative z-10',
           buttonClassName
         )}
       >
@@ -114,21 +69,18 @@ export function FloatActionMenu({
             key="menu"
             ref={menuRef}
             className={cn(
-              'absolute bottom-0 right-0 w-[400px] max-w-[400px] min-h-[300px] bg-white dark:bg-ds-900 rounded-lg shadow-md border border-border dark:border-ds-800 overflow-hidden flex flex-col',
+              'absolute w-[calc(100vw-3rem)] sm:w-[400px] max-w-[400px] min-h-[300px] bg-white dark:bg-ds-900 rounded-lg shadow-2xl border border-border dark:border-ds-800 overflow-hidden flex flex-col z-20',
+              menuPositionClasses[position],
               menuClassName
             )}
-            initial={{ x: 40, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: 40, opacity: 0 }}
-            transition={{ type: 'spring', damping: 40, stiffness: 450 }}
+            initial={{ x: isRight ? 40 : -40, opacity: 0, scale: 0.95 }}
+            animate={{ x: 0, opacity: 1, scale: 1 }}
+            exit={{ x: isRight ? 40 : -40, opacity: 0, scale: 0.95 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={0.1}
-            onDragEnd={(_, info) => {
-              if (info.offset.x > 100 || info.velocity.x > 500) {
-                setIsOpen(false);
-              }
-            }}
+            onDragEnd={handleDragEnd}
           >
             <div className="flex-1">
               <div className="flex items-center justify-between px-4 py-2 border-b border-border/60 dark:border-ds-800">

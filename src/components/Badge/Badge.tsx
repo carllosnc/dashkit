@@ -41,30 +41,16 @@ const positionClasses: Record<BadgePosition, string> = {
 };
 
 export interface BadgeProps {
-  /** Content to display inside the badge */
   content?: React.ReactNode;
-  /** Color palette */
   color?: BadgeColor;
-  /** Visual style variant */
   variant?: BadgeVariant;
-  /** Whether to show a pulse animation */
   pulse?: boolean;
-  /** Whether to show just a dot */
   dot?: boolean;
-  /** Whether the badge is visible */
   show?: boolean;
-  /** Maximum number to display (e.g., 99+) */
   max?: number;
-  /** Custom classes */
   className?: string;
 }
 
-/**
- * Standard Inline Badge component.
- * Used for standalone status indicators or labels.
- * 
- * @see https://dashkit-ui.com/docs/badge
- */
 export const Badge = ({
   content,
   color = 'success',
@@ -98,12 +84,12 @@ export const Badge = ({
           data-testid="badge"
         >
           {pulse && (
-            <span 
+            <span
               className={cn(
                 "absolute inset-0 animate-ping opacity-60",
                 dot ? "rounded-full" : "rounded-sm",
                 pulseStyles[color]
-              )} 
+              )}
             />
           )}
           <span className="relative z-20">{displayContent}</span>
@@ -114,20 +100,11 @@ export const Badge = ({
 };
 
 export interface FloatBadgeProps extends BadgeProps {
-  /** The element the badge will be attached to */
   children: React.ReactNode;
-  /** Placement relative to children */
   position?: BadgePosition;
-  /** Custom offset [x, y] */
   offset?: [number, number];
 }
 
-/**
- * FloatBadge component.
- * Wraps an element and places a badge over it at a specific position.
- * 
- * @see https://dashkit-ui.com/docs/badge
- */
 export const FloatBadge = ({
   children,
   position = 'top-right',
@@ -161,5 +138,3 @@ export const FloatBadge = ({
     </div>
   );
 };
-
-

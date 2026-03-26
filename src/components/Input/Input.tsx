@@ -2,9 +2,6 @@ import { forwardRef, type InputHTMLAttributes, type ReactNode } from 'react';
 import clsx, { type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
-/**
- * Utility for merging tailwind classes with conflict resolution
- */
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -15,27 +12,12 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
   rightIcon?: ReactNode;
   error?: string;
   helperText?: string;
-  /**
-   * Optional regex to mask/filter the input value.
-   * Matches will be replaced with an empty string.
-   * Example: /[^\d]/g to only allow digits.
-   */
   mask?: RegExp;
-  /**
-   * Optional formatter function to apply after masking.
-   * Useful for dynamic patterns like CPF (000.000.000-00).
-   */
   formatter?: (value: string) => string;
 }
 
-/**
- * Input component with labels, icons, error states, and masking support.
- * 
- * @see https://dashkit-ui.com/docs/input
- */
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  ({ label, leftIcon, rightIcon, error, helperText, mask, formatter, className, id, onChange, children: _children, ...props }, ref) => {
+  ({ label, leftIcon, rightIcon, error, helperText, mask, formatter, className, id, onChange, ...props }, ref) => {
     const inputId = id || (label ? `input-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -107,5 +89,3 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 );
 
 Input.displayName = 'Input';
-
-

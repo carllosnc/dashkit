@@ -2,12 +2,13 @@ import * as React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiX, FiInfo, FiCheckCircle, FiAlertCircle, FiAlertTriangle } from 'react-icons/fi';
 import { createPortal } from 'react-dom';
-import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { useToast, type ToastData, type ToastType, removeToast, type ToastPosition, setToastDefaultPosition} from './useToast';
+import clsx, { type ClassValue } from 'clsx';
+import { useToast, type ToastData, type ToastType, removeToast, type ToastPosition, setToastDefaultPosition } from './useToast';
+
 export type { ToastOptions, ToastType, ToastData, ToastPosition } from './useToast';
 
-function cn(...inputs: (string | undefined | null | boolean | Record<string, boolean>)[]) {
+function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
@@ -20,11 +21,10 @@ const positionClasses: Record<ToastPosition, string> = {
   'bottom-center': 'bottom-8 left-1/2 -translate-x-1/2 items-center',
 };
 
-// Provider Component
-export function ToastProvider({ 
-  children, 
-  position = 'bottom-right' 
-}: { 
+export function ToastProvider({
+  children,
+  position = 'bottom-right'
+}: {
   children: React.ReactNode;
   position?: ToastPosition;
 }) {
@@ -44,10 +44,10 @@ export function ToastProvider({
           {(Object.keys(positionClasses) as ToastPosition[]).map((pos) => {
             const posToasts = toasts.filter(t => t.position === pos);
             if (posToasts.length === 0) return null;
-            
+
             return (
-              <div 
-                key={pos} 
+              <div
+                key={pos}
                 className={cn(
                   "fixed z-[100] flex flex-col pointer-events-none w-[380px] max-w-[calc(100vw-4rem)] gap-3",
                   positionClasses[pos]
@@ -55,11 +55,11 @@ export function ToastProvider({
               >
                 <AnimatePresence mode="popLayout">
                   {posToasts.map((t, index) => (
-                    <ToastItem 
-                      key={t.id} 
-                      toast={t} 
-                      index={index} 
-                      total={posToasts.length} 
+                    <ToastItem
+                      key={t.id}
+                      toast={t}
+                      index={index}
+                      total={posToasts.length}
                       position={pos}
                     />
                   ))}
@@ -82,19 +82,19 @@ const typeIcons: Record<ToastType, React.ReactNode> = {
   default: null
 };
 
-function ToastItem({ 
-  toast, 
-  index, 
-  total, 
-  position 
-}: { 
-  toast: ToastData; 
-  index: number; 
-  total: number; 
+function ToastItem({
+  toast,
+  index,
+  total,
+  position
+}: {
+  toast: ToastData;
+  index: number;
+  total: number;
   position: ToastPosition;
 }) {
   const isTop = position.startsWith('top');
-  
+
   const offset = index * 12;
   const scale = 1 - index * 0.05;
   const opacity = 1 - index * 0.2;
@@ -103,9 +103,9 @@ function ToastItem({
     <motion.div
       layout
       initial={{ opacity: 0, y: isTop ? -20 : 20, scale: 0.95 }}
-      animate={{ 
-        opacity: opacity > 0 ? opacity : 0, 
-        y: isTop ? offset : -offset, 
+      animate={{
+        opacity: opacity > 0 ? opacity : 0,
+        y: isTop ? offset : -offset,
         scale,
         zIndex: total - index,
       }}
@@ -119,7 +119,7 @@ function ToastItem({
       <div className="shrink-0 text-xl">
         {toast.icon || typeIcons[toast.type]}
       </div>
-      
+
       <div className="flex flex-col gap-1 flex-1 overflow-hidden">
         {toast.title && (
           <h4 className="text-sm font-bold text-block-fg dark:text-block-dark-fg leading-tight truncate">
@@ -142,8 +142,3 @@ function ToastItem({
     </motion.div>
   );
 }
-
-
-
-
-

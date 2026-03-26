@@ -1,7 +1,7 @@
-import * as React from 'react';
 import { motion } from 'framer-motion';
 import { twMerge } from 'tailwind-merge';
 import clsx from 'clsx';
+import { useLineChart } from './useLineChart';
 
 function cn(...inputs: (string | undefined | null | boolean | Record<string, boolean>)[]) {
   return twMerge(clsx(inputs));
@@ -32,68 +32,22 @@ export const LineChart = ({
   showTooltip = true,
   animate = true,
 }: LineChartProps) => {
-  const chartRef = React.useRef<SVGSVGElement>(null);
-  const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
-  const [tooltipPos, setTooltipPos] = React.useState<{ x: number, y: number }>({ x: 0, y: 0 });
+  const {
+    chartRef,
+    hoveredIndex,
+    setHoveredIndex,
+    tooltipPos,
+    allSeriesPoints,
+    handleMouseMove,
+    isNearTop,
+    width,
+    svgHeight
+  } = useLineChart({ data, series });
 
   if (!data || data.length === 0 || !series || series.length === 0) return null;
 
-  const maxVal = Math.max(
-    ...data.flatMap(d => series.map(s => Number(d[s.key]) || 0)),
-    0
-  ) * 1.1;
-
-  const minVal = 0;
-  const range = maxVal - minVal;
-
-  const width = 1000;
-  const svgHeight = 400;
-
-  const getSeriesPoints = (seriesKey: string) => {
-    return data.map((d, i) => {
-      const value = Number(d[seriesKey]) || 0;
-      const x = (i / (data.length - 1)) * width;
-      const y = svgHeight - ((value - minVal) / range) * svgHeight;
-      return { x, y, value };
-    });
-  };
-
-  const allSeriesPoints = series.map(s => ({
-    ...s,
-    points: getSeriesPoints(s.key)
-  }));
-
-  const handleMouseMove = (e: React.MouseEvent<SVGSVGElement>) => {
-    const svg = chartRef.current;
-    if (!svg) return;
-
-    const rect = svg.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const normalizedX = (x / rect.width) * width;
-
-    const index = Math.round((normalizedX / width) * (data.length - 1));
-    const clampedIndex = Math.max(0, Math.min(data.length - 1, index));
-
-    setHoveredIndex(clampedIndex);
-
-    const highestY = Math.min(...allSeriesPoints.map(s => s.points[clampedIndex].y));
-
-    const tooltipWidth = 140;
-    const rawX = (clampedIndex / (data.length - 1)) * rect.width;
-    const clampedX = Math.max(tooltipWidth / 2 + 8, Math.min(rect.width - tooltipWidth / 2 - 8, rawX));
-
-    setTooltipPos({
-      x: clampedX,
-      y: (highestY / svgHeight) * rect.height
-    });
-  };
-
-  const isNearTop = tooltipPos.y < 100;
-
   return (
-    <div
-      className={cn("w-full flex flex-col relative overflow-visible", className)}
-    >
+    <div className={cn("w-full flex flex-col relative overflow-visible", className)}>
       <div className="relative w-full aspect-[2.5/1] overflow-visible">
         <svg
           ref={chartRef}
@@ -103,7 +57,6 @@ export const LineChart = ({
           onMouseMove={handleMouseMove}
           onMouseLeave={() => setHoveredIndex(null)}
         >
-          {/* Grid Lines */}
           {showGrid && [0.25, 0.5, 0.75, 1].map((line, i) => (
             <line
               key={i}
@@ -118,7 +71,6 @@ export const LineChart = ({
             />
           ))}
 
-          {/* Vertical hover line */}
           {showTooltip && hoveredIndex !== null && (
             <line
               x1={(hoveredIndex / (data.length - 1)) * width}
@@ -131,7 +83,6 @@ export const LineChart = ({
             />
           )}
 
-          {/* Series Paths */}
           {allSeriesPoints.map((s) => {
             const linePath = s.points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
 
@@ -153,15 +104,12 @@ export const LineChart = ({
           })}
         </svg>
 
-        {/* HTML Dots Overlay - Prevents distortion while keeping alignment */}
         <div className="absolute inset-0 pointer-events-none touch-none">
           {allSeriesPoints.map((s) => (
             s.points.map((p, i) => (
               <motion.div
                 key={`${s.key}-${i}`}
-                className={cn(
-                  "absolute rounded-full border-2 transition-all duration-200",
-                )}
+                className={cn("absolute rounded-full border-2 transition-all duration-200")}
                 style={{
                   left: `${(p.x / width) * 100}%`,
                   top: `${(p.y / svgHeight) * 100}%`,
@@ -184,7 +132,6 @@ export const LineChart = ({
         </div>
       </div>
 
-      {/* Tooltip Overlay */}
       {showTooltip && hoveredIndex !== null && (
         <div
           className={cn(
@@ -215,7 +162,6 @@ export const LineChart = ({
         </div>
       )}
 
-      {/* X-Axis Labels */}
       {showLabels && (
         <div className="flex justify-between mt-4">
           {data.map((d, i) => (

@@ -10,32 +10,32 @@ export function DrawerDemo() {
 
   return (
     <div className="flex flex-wrap gap-4 w-full">
-      <Button 
-        variant="outlined" 
+      <Button
+        variant="outlined"
         onClick={() => setActiveDrawer('left')}
         leftIcon={<FiAlignLeft />}
       >
         Left Drawer
       </Button>
-      
-      <Button 
-        variant="filled" 
+
+      <Button
+        variant="filled"
         onClick={() => setActiveDrawer('right')}
         leftIcon={<FiSidebar />}
       >
         Right Drawer
       </Button>
 
-      <Button 
-        variant="outlined" 
+      <Button
+        variant="outlined"
         onClick={() => setActiveDrawer('top')}
         leftIcon={<FiLayout />}
       >
         Top Drawer
       </Button>
 
-      <Button 
-        variant="outlined" 
+      <Button
+        variant="outlined"
         onClick={() => setActiveDrawer('bottom')}
         leftIcon={<FiLayout className="rotate-180" />}
       >
@@ -109,7 +109,6 @@ export function DrawerDemo() {
   );
 }
 
-// Utility local for demo
 function cn(...inputs: (string | undefined | null | boolean | Record<string, boolean>)[]) {
   return inputs.filter(Boolean).join(' ');
 }

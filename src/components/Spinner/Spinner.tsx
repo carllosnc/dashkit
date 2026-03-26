@@ -2,21 +2,12 @@ import * as React from 'react';
 import { cn } from '../../utils/cn';
 
 export interface SpinnerProps extends React.SVGAttributes<SVGSVGElement> {
-  /** Size of the spinner in pixels or any valid CSS unit. Defaults to 24px. */
   size?: number | string;
-  /** Color of the spinner. Defaults to currentColor. */
   color?: string;
-  /** Thickness of the spinner stroke. Defaults to 2. */
   thickness?: number;
-  /** Additional CSS classes for the container. */
   className?: string;
 }
 
-/**
- * A sleek, high-performance loading spinner built with SVG and standard Tailwind CSS animations.
- * 
- * @see https://dashkit-ui.com/docs/spinner
- */
 export const Spinner = ({
   size = 24,
   color = 'currentColor',
@@ -45,4 +36,4 @@ export const Spinner = ({
   );
 };
 
-
+Spinner.displayName = 'Spinner';

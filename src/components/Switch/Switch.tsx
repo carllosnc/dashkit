@@ -1,10 +1,8 @@
 import { forwardRef, type InputHTMLAttributes } from 'react';
 import clsx, { type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { useSwitch } from './useSwitch';
 
-/**
- * Utility for merging tailwind classes with conflict resolution
- */
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -15,9 +13,8 @@ export interface SwitchProps extends Omit<InputHTMLAttributes<HTMLInputElement>,
 }
 
 export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  ({ label, description, className, id, children, ...props }, ref) => {
-    const switchId = id || (label ? `switch-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined);
+  ({ label, description, className, id, ...props }, ref) => {
+    const { switchId } = useSwitch({ id, label });
 
     return (
       <div className="flex gap-4 group relative items-center">
@@ -30,19 +27,17 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
               ref={ref}
               className="peer sr-only"
             />
-            {/* Track */}
-            <div 
+            <div
               className={cn(
                 "w-11 h-6 rounded-full border-2 transition-all duration-300 shrink-0 bg-input border-transparent peer-checked:bg-primary peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-transparent peer-disabled:opacity-60 peer-disabled:cursor-not-allowed",
                 className
-              )} 
+              )}
             />
-            {/* Thumb */}
             <div className="absolute left-1 top-1 w-4 h-4 rounded-full transition-all duration-300 shadow-sm bg-background peer-checked:translate-x-5 peer-disabled:opacity-60 peer-disabled:cursor-not-allowed" />
           </label>
         </div>
         {(label || description) && (
-          <label 
+          <label
             htmlFor={switchId}
             className="flex flex-col cursor-pointer select-none"
           >
@@ -64,5 +59,3 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
 );
 
 Switch.displayName = 'Switch';
-
-

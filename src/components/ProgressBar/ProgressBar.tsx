@@ -1,26 +1,19 @@
 import * as React from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '../../utils/cn';
+import { useProgressBar } from './useProgressBar';
 
 export type ProgressBarColor = 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'neutral';
 export type ProgressBarSize = 'xs' | 'sm' | 'md' | 'lg';
 
 export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** The value of the progress bar (0 to max) */
   value: number;
-  /** The maximum value of the progress bar */
   max?: number;
-  /** Whether to show the percentage label */
   showLabel?: boolean;
-  /** Where to position the label(s) */
   labelPosition?: 'top' | 'side';
-  /** The visual color of the bar */
   color?: ProgressBarColor;
-  /** The height/thickness of the bar */
   size?: ProgressBarSize;
-  /** Whether to animate the width change using Framer Motion */
   animate?: boolean;
-  /** Custom label to show instead of percentage */
   label?: React.ReactNode;
 }
 
@@ -40,24 +33,20 @@ const sizeStyles: Record<ProgressBarSize, string> = {
   lg: "h-4"
 };
 
-/**
- * ProgressBar Component
- * A fluid, animated progress indicator for tracking task completion or data metrics.
- */
 export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
-  ({ 
-    value, 
-    max = 100, 
-    showLabel = false, 
+  ({
+    value,
+    max = 100,
+    showLabel = false,
     labelPosition = 'top',
-    color = 'primary', 
-    size = 'sm', 
-    animate = true, 
+    color = 'primary',
+    size = 'sm',
+    animate = true,
     label,
     className,
-    ...props 
+    ...props
   }, ref) => {
-    const percentage = Math.min(Math.max((value / max) * 100, 0), 100);
+    const { percentage } = useProgressBar({ value, max });
 
     const BarContainer = (
       <div className={cn(
@@ -72,7 +61,7 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
             className={cn("h-full rounded-full transition-colors", colorStyles[color])}
           />
         ) : (
-          <div 
+          <div
             className={cn("h-full rounded-full transition-all", colorStyles[color])}
             style={{ width: `${percentage}%` }}
           />
@@ -82,8 +71,8 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
 
     if (labelPosition === 'side') {
       return (
-        <div 
-          ref={ref} 
+        <div
+          ref={ref}
           className={cn("w-full flex items-center gap-3", className)}
           {...props}
         >
@@ -103,8 +92,8 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
     }
 
     return (
-      <div 
-        ref={ref} 
+      <div
+        ref={ref}
         className={cn("w-full flex flex-col gap-2", className)}
         {...props}
       >

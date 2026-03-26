@@ -1,6 +1,38 @@
+import { useState } from 'react';
+import { Select } from '../components/Select/Select';
+
+export const SelectDemo = () => {
+  const [value, setValue] = useState('');
+
+  const shippingOptions = [
+    { value: 'standard', label: 'Standard Shipping' },
+    { value: 'priority', label: 'Priority Shipping' },
+    { value: 'express', label: 'Express Delivery' },
+    { value: 'overnight', label: 'Overnight Air' },
+  ];
+
+  return (
+    <div className="flex flex-col gap-6 w-full max-w-sm mt-4 font-sans">
+      <Select
+        label="Shipping Method"
+        description="Choose how you'd like your order delivered."
+        placeholder="Choose method..."
+        options={shippingOptions}
+        value={value}
+        onChange={setValue}
+      />
+      {value && (
+        <div className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest bg-ds-50 dark:bg-ds-800/50 p-3 rounded-lg border border-ds-200 dark:border-ds-800 animate-in fade-in duration-300">
+          Selected Strategy: <span className="text-ds-900 dark:text-white font-black">{value}</span>
+        </div>
+      )}
+    </div>
+  );
+}
+
 # Select
 
-A high-performance, premium dropdown select component with support for labels, descriptions, and keyboard navigation.
+A high-performance dropdown component for single choices, featuring portalled rendering to prevent layout overflow and full keyboard accessibility.
 
 ## Import
 
@@ -10,134 +42,58 @@ import { Select } from '@/components/Select/Select'
 
 ## Installation
 
-Add the select component to your project using the Dashkit CLI:
+Add the select component using the Dashkit CLI:
 
 ```bash
 bunx carllosnc/dashkit add select
 ```
 
-## Basic Usage
+## Examples
 
-The component is easy to use with an array of `SelectOption` objects.
+### Shipping Configuration
 
-<Preview>
-  <div className="w-full max-w-sm">
-    <Select 
-      label="Choose Category" 
-      placeholder="Select Category..." 
-      options={[
-        { value: 'tech', label: 'Technology' },
-        { value: 'life', label: 'Lifestyle' },
-        { value: 'busi', label: 'Business' }
-      ]} 
-    />
-  </div>
-</Preview>
-
-```tsx
-import { Select } from '@/components/Select/Select'
-
-const options = [
-  { value: 'tech', label: 'Technology' },
-  { value: 'life', label: 'Lifestyle' },
-  { value: 'busi', label: 'Business' }
-]
-
-<Select 
-  label="Choose Category" 
-  options={options} 
-  placeholder="Select Category..."
-/>
-```
-
-## Controlled State
-
-Manage the selected value using React state.
+A standard implementation with labels, descriptions, and controlled state.
 
 <Preview>
   <SelectDemo />
 </Preview>
 
 ```tsx
-import { useState } from 'react'
-
-export function PricingSelect() {
-  const [value, setValue] = useState('')
-
-  const options = [
-    { value: 'm', label: 'Monthly billing' },
-    { value: 'y', label: 'Yearly billing' }
-  ]
-
+export function ShippingForm() {
+  const [method, setMethod] = useState('');
+  
   return (
     <Select 
-      label="Billing Cycle" 
-      options={options} 
-      value={value} 
-      onChange={setValue} 
+      label="Shipping Method"
+      placeholder="Select method..."
+      options={[
+        { value: 'ground', label: 'Ground (3-5 days)' },
+        { value: 'air', label: 'Air (Next day)' }
+      ]}
+      value={method}
+      onChange={setMethod}
     />
-  )
+  );
 }
 ```
 
-## States
+## Features
 
-Supports disabled and focus states with premium transitions.
+- **Portalled Rendering**: Renders the dropdown list using `createPortal` to the `document.body`, ensuring it stays on top of all other elements regardless of container overflow.
+- **Dynamic Positioning**: Automatically calculates the trigger's position to align the popup accurately.
+- **Interaction Guards**: Automatically closes the menu when the user scrolls or clicks outside to preserve UI intent.
+- **Keyboard Friendly**: Fully supports `Enter`, `Space`, and `Escape` keys for navigation without a pointer.
+- **Empty State Support**: Built-in messaging when no options are provided.
 
-<Preview>
-  <div className="flex flex-col gap-6 w-full max-w-sm">
-    <Select 
-      label="Disabled Select" 
-      disabled 
-      options={[]} 
-      placeholder="Nothing to see here"
-    />
-    <Select 
-      label="Pre-filled Select" 
-      options={[
-        { value: 'premium', label: 'Premium Subscription' },
-        { value: 'standard', label: 'Standard Subscription' }
-      ]}
-      value="premium"
-    />
-  </div>
-</Preview>
-
-```tsx
-<Select label="Disabled Select" disabled options={[]} />
-<Select label="Active Select" options={options} value="premium" />
-```
-
-## Props
-
-The component uses a custom interface for premium behavior:
-
+## Properties
 
 <PropertyDoc
   properties={[
   {
-    "prop": "label",
-    "type": "string",
-    "defaultValue": "—",
-    "description": "Label rendered above the trigger."
-  },
-  {
-    "prop": "description",
-    "type": "string",
-    "defaultValue": "—",
-    "description": "Description text rendered below the trigger."
-  },
-  {
-    "prop": "placeholder",
-    "type": "string",
-    "defaultValue": "'Select an option'",
-    "description": "Placeholder text when no value is selected."
-  },
-  {
     "prop": "options",
     "type": "SelectOption[]",
     "defaultValue": "—",
-    "description": "List of options { value: string, label: string }."
+    "description": "List of available choices (value and label)."
   },
   {
     "prop": "value",
@@ -149,22 +105,31 @@ The component uses a custom interface for premium behavior:
     "prop": "onChange",
     "type": "(value: string) => void",
     "defaultValue": "—",
-    "description": "Callback fired when a selection is made."
+    "description": "Callback triggered when a new option is chosen."
   },
   {
-    "prop": "className",
+    "prop": "placeholder",
+    "type": "string",
+    "defaultValue": "'Select an option'",
+    "description": "Text shown when no option is selected."
+  },
+  {
+    "prop": "label",
     "type": "string",
     "defaultValue": "—",
-    "description": "Additional CSS classes for the trigger button."
+    "description": "Bold header text above the component."
+  },
+  {
+    "prop": "description",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Subtle context text below the component."
   },
   {
     "prop": "disabled",
     "type": "boolean",
     "defaultValue": "false",
-    "description": "Whether the select is interactive."
+    "description": "Prevents all interaction with the dropdown."
   }
 ]}
 />
-
-
-

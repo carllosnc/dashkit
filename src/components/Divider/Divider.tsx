@@ -2,20 +2,12 @@ import * as React from "react";
 import { cn } from "../../utils/cn";
 
 export interface DividerProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** The orientation of the divider. Defaults to 'horizontal'. */
   orientation?: "horizontal" | "vertical";
-  /** Optional text or content to display in the middle (horizontal only). */
   children?: React.ReactNode;
-  /** The dash style of the line. Defaults to 'solid'. */
   variant?: "solid" | "dashed" | "dotted";
-  /** Position of the content (horizontal only). Defaults to 'center'. */
   contentPosition?: "left" | "center" | "right";
 }
 
-/**
- * A highly versatile Divider component for separating content.
- * Supports horizontal/vertical orientation and embedded content.
- */
 export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
   (
     {
@@ -86,5 +78,3 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
 );
 
 Divider.displayName = "Divider";
-
-

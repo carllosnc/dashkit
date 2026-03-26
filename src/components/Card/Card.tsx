@@ -105,5 +105,3 @@ export function Card({
     </motion.div>
   );
 }
-
-

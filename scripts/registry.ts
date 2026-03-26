@@ -44,18 +44,27 @@ export const registry: Record<string, ComponentConfig> = {
   },
   drawer: {
     name: 'Drawer',
-    files: ['src/components/Drawer/Drawer.tsx'],
-    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'lucide-react'],
+    files: [
+      'src/components/Drawer/Drawer.tsx',
+      'src/components/Drawer/useDrawer.ts'
+    ],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   dropdown: {
     name: 'Dropdown',
-    files: ['src/components/Dropdown/Dropdown.tsx'],
-    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'lucide-react'],
+    files: [
+      'src/components/Dropdown/Dropdown.tsx',
+      'src/components/Dropdown/useDropdown.ts'
+    ],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   imageexpander: {
     name: 'ImageExpander',
-    files: ['src/components/ImageExpander/ImageExpander.tsx'],
-    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'lucide-react'],
+    files: [
+      'src/components/ImageExpander/ImageExpander.tsx',
+      'src/components/ImageExpander/useImageExpander.ts'
+    ],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   input: {
     name: 'Input',
@@ -64,27 +73,42 @@ export const registry: Record<string, ComponentConfig> = {
   },
   modal: {
     name: 'Modal',
-    files: ['src/components/Modal/Modal.tsx'],
-    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'lucide-react'],
+    files: [
+      'src/components/Modal/Modal.tsx',
+      'src/components/Modal/useModal.ts'
+    ],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   otpinput: {
     name: 'OtpInput',
-    files: ['src/components/OtpInput/OtpInput.tsx'],
+    files: [
+      'src/components/OtpInput/OtpInput.tsx',
+      'src/components/OtpInput/useOtpInput.ts'
+    ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   radio: {
     name: 'Radio',
-    files: ['src/components/Radio/Radio.tsx'],
+    files: [
+      'src/components/Radio/Radio.tsx',
+      'src/components/Radio/useRadio.ts'
+    ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   select: {
     name: 'Select',
-    files: ['src/components/Select/Select.tsx'],
-    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'lucide-react'],
+    files: [
+      'src/components/Select/Select.tsx',
+      'src/components/Select/useSelect.ts'
+    ],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   switch: {
     name: 'Switch',
-    files: ['src/components/Switch/Switch.tsx'],
+    files: [
+      'src/components/Switch/Switch.tsx',
+      'src/components/Switch/useSwitch.ts'
+    ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   tabs: {
@@ -137,12 +161,26 @@ export const registry: Record<string, ComponentConfig> = {
   },
   linechart: {
     name: 'LineChart',
-    files: ['src/components/LineChart/LineChart.tsx'],
+    files: [
+      'src/components/LineChart/LineChart.tsx',
+      'src/components/LineChart/useLineChart.ts'
+    ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   piechart: {
     name: 'PieChart',
-    files: ['src/components/PieChart/PieChart.tsx'],
+    files: [
+      'src/components/PieChart/PieChart.tsx',
+      'src/components/PieChart/usePieChart.ts'
+    ],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
+  },
+  progressbar: {
+    name: 'ProgressBar',
+    files: [
+      'src/components/ProgressBar/ProgressBar.tsx',
+      'src/components/ProgressBar/useProgressBar.ts'
+    ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   buttongroup: {
@@ -168,17 +206,37 @@ export const registry: Record<string, ComponentConfig> = {
   },
   sidebar: {
     name: 'Sidebar',
-    files: ['src/components/Sidebar/Sidebar.tsx'],
-    dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
+    files: [
+      'src/components/Sidebar/Sidebar.tsx',
+      'src/components/Sidebar/useSidebar.ts',
+      'src/components/Sidebar/SidebarContext.tsx'
+    ],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
+    registryDependencies: ['iconbutton'],
+  },
+  'float-action-menu': {
+    name: 'FloatActionMenu',
+    files: [
+      'src/components/FloatActionMenu/FloatActionMenu.tsx',
+      'src/components/FloatActionMenu/useFloatActionMenu.ts'
+    ],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
+    registryDependencies: ['iconbutton'],
   },
   textarea: {
     name: 'Textarea',
-    files: ['src/components/Textarea/Textarea.tsx'],
+    files: [
+      'src/components/Textarea/Textarea.tsx',
+      'src/components/Textarea/useTextarea.ts'
+    ],
     dependencies: ['clsx', 'tailwind-merge'],
   },
   datepicker: {
     name: 'DatePicker',
-    files: ['src/components/DatePicker/DatePicker.tsx'],
+    files: [
+      'src/components/DatePicker/DatePicker.tsx',
+      'src/components/DatePicker/useDatePicker.ts'
+    ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   table: {
