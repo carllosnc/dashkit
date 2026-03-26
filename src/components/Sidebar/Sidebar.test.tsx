@@ -23,29 +23,35 @@ describe('Sidebar', () => {
 
   it('renders an icon in SidebarItem', () => {
     render(
-      <SidebarItem icon={<FiLayout data-testid="sidebar-icon" />}>
-        Dashboard
-      </SidebarItem>
+      <Sidebar>
+        <SidebarItem icon={<FiLayout data-testid="sidebar-icon" />}>
+          Dashboard
+        </SidebarItem>
+      </Sidebar>
     );
     expect(screen.getByTestId('sidebar-icon')).toBeInTheDocument();
   });
 
   it('applies active styles to SidebarItem', () => {
     render(
-      <SidebarItem active>
-        Active Item
-      </SidebarItem>
+      <Sidebar>
+        <SidebarItem active>
+          Active Item
+        </SidebarItem>
+      </Sidebar>
     );
-    const button = screen.getByRole('button');
+    const button = screen.getByRole('button', { name: /active item/i });
     expect(button).toHaveClass('text-primary');
   });
 
   it('triggers onClick when an item is clicked', () => {
     const handleClick = vi.fn();
     render(
-      <SidebarItem onClick={handleClick}>
-        Click me
-      </SidebarItem>
+      <Sidebar>
+        <SidebarItem onClick={handleClick}>
+          Click me
+        </SidebarItem>
+      </Sidebar>
     );
     fireEvent.click(screen.getByText('Click me'));
     expect(handleClick).toHaveBeenCalledTimes(1);
