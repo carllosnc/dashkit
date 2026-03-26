@@ -6,6 +6,7 @@ import ora from 'ora';
 import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
 import { registry } from './registry';
+import { runDoctor, getPackageManager, getMissingDependencies } from './doctor';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -23,32 +24,6 @@ program
 interface CliOptions {
   output: string;
   install: boolean;
-}
-
-// Helper to get package manager
-function getPackageManager() {
-  const cwd = process.cwd();
-  if (fs.existsSync(path.resolve(cwd, 'pnpm-lock.yaml'))) return 'pnpm';
-  if (fs.existsSync(path.resolve(cwd, 'yarn.lock'))) return 'yarn';
-  if (fs.existsSync(path.resolve(cwd, 'package-lock.json'))) return 'npm';
-  return 'bun';
-}
-
-// Helper to check if dependency is installed
-async function getMissingDependencies(deps: string[]) {
-  const pkgPath = path.resolve(process.cwd(), 'package.json');
-  if (!(await fs.pathExists(pkgPath))) return deps;
-
-  try {
-    const pkg = await fs.readJson(pkgPath);
-    const installed = {
-      ...pkg.dependencies,
-      ...pkg.devDependencies
-    };
-    return deps.filter(dep => !installed[dep]);
-  } catch {
-    return deps;
-  }
 }
 
 async function addComponent(
@@ -156,68 +131,7 @@ program
   .command('doctor')
   .description('Run diagnostics on the registry and project structure')
   .action(async () => {
-    console.log(chalk.bold.cyan('\n🩺 Dashkit UI - Health Check\n'));
-
-    const components = Object.keys(registry);
-    let totalErrors = 0;
-
-    // 1. Check Source Files
-    const fileSpinner = ora(`Verifying ${chalk.bold('component files')}...`).start();
-    let fileErrors = 0;
-    for (const [, config] of Object.entries(registry)) {
-      for (const file of config.files) {
-        if (!fs.existsSync(path.resolve(projectRoot, file))) {
-          fileSpinner.fail(chalk.red(`  ${chalk.bold(config.name)}: Missing file -> ${file}`));
-          fileErrors++;
-        }
-      }
-    }
-    if (fileErrors === 0) {
-      fileSpinner.succeed(chalk.green(`Verified all files for ${chalk.bold(components.length)} components.`));
-    } else {
-      totalErrors += fileErrors;
-    }
-
-    // 2. Check Registry Dependencies
-    const depSpinner = ora(`Verifying ${chalk.bold('registry dependencies')}...`).start();
-    let depErrors = 0;
-    for (const [, config] of Object.entries(registry)) {
-      if (config.registryDependencies) {
-        for (const dep of config.registryDependencies) {
-          if (!registry[dep.toLowerCase()]) {
-            depSpinner.fail(chalk.red(`  ${chalk.bold(config.name)}: Dependency "${dep}" not found in registry.`));
-            depErrors++;
-          }
-        }
-      }
-    }
-    if (depErrors === 0) {
-      depSpinner.succeed(chalk.green('Verified all inter-component dependencies.'));
-    } else {
-      totalErrors += depErrors;
-    }
-
-    // 3. Check Design System Tokens (Example check)
-    const tokenSpinner = ora(`Verifying ${chalk.bold('design system context')}...`).start();
-    if (fs.existsSync(path.resolve(projectRoot, 'src/index.css'))) {
-      tokenSpinner.succeed(chalk.green('Basic styling and Tailwind config found.'));
-    } else {
-      tokenSpinner.fail(chalk.red('Design system base (src/index.css) not found.'));
-      totalErrors++;
-    }
-
-    // 4. Environment Info
-    const pm = getPackageManager();
-    console.log(chalk.gray('\nEnvironment Info:'));
-    console.log(`  Package Manager: ${chalk.bold(pm)}`);
-    console.log(`  Project Root: ${chalk.bold(process.cwd())}\n`);
-
-    if (totalErrors === 0) {
-      console.log(chalk.bold.green('✨ Everything looks good! Your component library is healthy.\n'));
-    } else {
-      console.log(chalk.bold.red(`⚠️ Found ${totalErrors} issues. Please address them before distributing.\n`));
-      process.exit(1);
-    }
+    await runDoctor(projectRoot);
   });
 
 program.parse();
