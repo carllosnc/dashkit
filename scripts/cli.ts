@@ -26,6 +26,47 @@ interface CliOptions {
   install: boolean;
 }
 
+async function ensureDashkitCss() {
+  const cwd = process.cwd();
+
+  // 1. Determine target directory (prefer 'src' if it exists)
+  const srcExists = await fs.pathExists(path.resolve(cwd, 'src'));
+  const targetDir = srcExists ? path.resolve(cwd, 'src') : cwd;
+  const targetPath = path.resolve(targetDir, 'dashkit.css');
+  const sourcePath = path.resolve(projectRoot, 'src', 'dashkit.css');
+
+  // 2. Install dashkit.css if missing
+  if (!(await fs.pathExists(targetPath))) {
+    try {
+      if (await fs.pathExists(sourcePath)) {
+        await fs.copy(sourcePath, targetPath);
+        console.log(chalk.green(`✔ dashkit.css installed.`));
+      } else {
+        return;
+      }
+    } catch {
+      return;
+    }
+  }
+
+  // 3. Automatically import in index.css
+  const indexPath = path.resolve(targetDir, 'index.css');
+  if (await fs.pathExists(indexPath)) {
+    try {
+      const indexContent = await fs.readFile(indexPath, 'utf-8');
+      const importStatement = '@import "./dashkit.css";';
+      
+      if (!indexContent.includes(importStatement)) {
+        const updatedContent = `${importStatement}\n${indexContent}`;
+        await fs.writeFile(indexPath, updatedContent);
+        console.log(chalk.green(`✔ dashkit.css imported in index.css.`));
+      }
+    } catch {
+      // Sliently skip on error
+    }
+  }
+}
+
 async function addComponent(
   componentName: string,
   options: CliOptions,
@@ -74,9 +115,12 @@ async function addComponent(
     }
 
     if (!isDependency) {
-      spinner.succeed(chalk.green(`\nSuccessfully added ${chalk.bold(component.name)}!`));
+      spinner.succeed(chalk.green(`Component ${chalk.bold(component.name)} added.`));
 
-      // 3. Dependency Installation
+      // 3. Ensure dashkit.css exists
+      await ensureDashkitCss();
+
+      // 4. Dependency Installation
       const missingDeps = await getMissingDependencies(Array.from(allDeps));
 
       if (missingDeps.length > 0) {
@@ -85,26 +129,20 @@ async function addComponent(
           const installCmd = pm === 'npm' ? 'install' : 'add';
           const command = `${pm} ${installCmd} ${missingDeps.join(' ')}`;
 
-          console.log(chalk.cyan(`\nInstalling missing dependencies: ${chalk.bold(missingDeps.join(', '))}`));
-          const installSpinner = ora(`Running ${chalk.bold(command)}...`).start();
-
+          const installSpinner = ora(`Installing dependencies...`).start();
           try {
             execSync(command, { stdio: 'inherit', cwd: process.cwd() });
-            installSpinner.succeed(chalk.green('Dependencies installed successfully!'));
+            installSpinner.succeed(chalk.green('Dependencies installed.'));
           } catch {
-            installSpinner.fail(chalk.red('Failed to install dependencies. Please install them manually:'));
-            console.log(chalk.bold(`  ${command}\n`));
+            installSpinner.fail(chalk.red('Failed to install dependencies. Please run:'));
+            console.log(chalk.bold(`  ${command}`));
           }
         } else {
-          console.log(chalk.cyan('\nNext steps:'));
-          console.log(`Ensure you have these dependencies installed:`);
           const pm = getPackageManager();
           const installCmd = pm === 'npm' ? 'install' : 'add';
-          console.log(chalk.bold(`  ${pm} ${installCmd} ${missingDeps.join(' ')}\n`));
+          console.log(chalk.cyan(`Note: Install missing dependencies: ${chalk.bold(`${pm} ${installCmd} ${missingDeps.join(' ')}`)}`));
         }
       }
-
-      console.log(`${chalk.gray('Location:')} ${targetDir}\n`);
     } else {
       spinner.stop(); // Just stop the dependency spinner silently if successful
     }
