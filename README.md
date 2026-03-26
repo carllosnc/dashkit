@@ -1,10 +1,14 @@
 <p align="center">
-  <img src="public/logo.svg" alt="Dashkit UI Logo" width="120" />
+  <img src="public/logo.svg" alt="Dashkit UI Logo" width="120" /><br />
+  <br />
+  <a href="https://github.com/carllosnc/dashkit/actions/workflows/ci.yml">
+    <img src="https://github.com/carllosnc/dashkit/actions/workflows/ci.yml/badge.svg" alt="CI" />
+  </a>
 </p>
 
 # Dashkit UI
 
-Dashkit is a professional-grade React component library built with **Tailwind CSS v4** for developers who value **low dependency counts** and **total code ownership**. 
+Dashkit is a professional-grade React component library built with **Tailwind CSS v4** for developers who value **low dependency counts** and **total code ownership**.
 
 ### Why Dashkit?
 - **Zero Baggage**: No runtime libraries. Just React and Tailwind.
