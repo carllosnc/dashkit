@@ -1,7 +1,7 @@
 {
   "name": "dashkit",
   "bin": {
-    "dashkit": "./dist/cli.js"
+    "dashkit": "./bin/cli.js"
   },
   "private": true,
   "version": "0.0.0",
@@ -13,7 +13,7 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "build:cli": "tsup scripts/cli.ts --format esm --clean --minify --out-dir dist --entry.cli=scripts/cli.ts"
+    "build:cli": "tsup scripts/cli.ts --format esm --clean --minify --out-dir bin --entry.cli=scripts/cli.ts"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.8",
