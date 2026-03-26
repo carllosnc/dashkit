@@ -1,7 +1,7 @@
 {
-  "name": "dashkit-ui",
+  "name": "dashkit",
   "bin": {
-    "dashkit-ui": "./dist/cli.js"
+    "dashkit": "./dist/cli.js"
   },
   "private": true,
   "version": "0.0.0",

@@ -29,7 +29,7 @@ export interface BarChartProps {
 /**
  * A lightweight, animated Bar Chart component built with native SVG that supports grouped bars.
  * 
- * @see https://dashkit-ui.com/docs/bar-chart
+ * @see https://dashkit.com/docs/bar-chart
  */
 export const BarChart = ({
   data,

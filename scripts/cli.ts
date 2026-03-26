@@ -16,7 +16,7 @@ const projectRoot = path.resolve(__dirname, '..');
 const program = new Command();
 
 program
-  .name('dashkit-ui')
+  .name('dashkit')
   .description('Dashkit CLI - Add premium components to your project')
   .version('0.0.1');
 

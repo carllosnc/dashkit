@@ -27,7 +27,7 @@ export interface AreaChartProps {
 /**
  * A lightweight, animated Area Chart component built with native SVG that supports multiple series.
  * 
- * @see https://dashkit-ui.com/docs/area-chart
+ * @see https://dashkit.com/docs/area-chart
  */
 export const AreaChart = ({
   data,
