@@ -2,9 +2,6 @@ import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from 'react';
 import clsx, { type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
-/**
- * Utility for merging tailwind classes with conflict resolution
- */
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -18,28 +15,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const LoadingSpinner = () => (
-
   <>
-    <style>{`
-      @keyframes spinner-dash {
-        0% {
-          stroke-dasharray: 1, 150;
-          stroke-dashoffset: 0;
-        }
-        50% {
-          stroke-dasharray: 90, 150;
-          stroke-dashoffset: -35;
-        }
-        100% {
-          stroke-dasharray: 90, 150;
-          stroke-dashoffset: -124;
-        }
-      }
-
-      .animate-spinner-dash {
-        animation: spinner-dash 1.5s ease-in-out infinite;
-      }
-    `}</style>
     <svg
       className="animate-spin h-4 w-4 shrink-0"
       viewBox="0 0 50 50"
@@ -68,11 +44,18 @@ const LoadingSpinner = () => (
   </>
 );
 
-/**
- * Button component with multiple variants, icons, and loading states.
- * 
- * @see https://dashkit-ui.com/docs/button
- */
+const variantClasses = {
+  filled: "bg-primary text-primary-foreground hover:brightness-120 active:scale-[0.98]",
+  outlined: "bg-linear-to-b from-ds-0 to-ds-100 dark:from-ds-900 dark:to-ds-950 text-foreground border border-border hover:from-ds-50 hover:to-ds-100 dark:hover:from-ds-800 dark:hover:to-ds-900 hover:border-ds-400 dark:hover:border-ds-700 active:scale-[0.98] backdrop-blur-md transition-all",
+  soft: "bg-secondary text-secondary-foreground hover:brightness-105 active:scale-[0.98]",
+} as const;
+
+const sizeClasses = {
+  sm: "h-7 text-xs",
+  md: "h-9 text-sm",
+  lg: "h-11 text-base",
+} as const;
+
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'filled', size = 'md', children, leftIcon, rightIcon, loading, disabled, ...props }, ref) => {
     const isIconOnly = !children && (!!leftIcon || !!rightIcon);
@@ -83,16 +66,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={disabled || loading}
         className={cn(
           "rounded-[var(--radius)] inline-flex font-medium items-center justify-center transition-all duration-200 focus:outline-none cursor-pointer whitespace-nowrap disabled:opacity-60 disabled:cursor-not-allowed",
+          variantClasses[variant],
+          sizeClasses[size],
           {
-            "bg-primary text-primary-foreground hover:brightness-110 active:scale-[0.98]": variant === 'filled',
-            "bg-transparent text-foreground border border-border hover:bg-ds-50 dark:hover:bg-ds-900 hover:border-ds-400 dark:hover:border-ds-700 active:scale-[0.98]": variant === 'outlined',
-            "bg-secondary text-secondary-foreground hover:brightness-105 active:scale-[0.98]": variant === 'soft',
             "opacity-60 cursor-not-allowed": loading,
-            // Sizes
-            "h-7 text-xs": size === 'sm',
-            "h-9 text-sm": size === 'md',
-            "h-11 text-base": size === 'lg',
-            // Layout
+            // Dynamic Layout
             "gap-2 px-4 py-[5px]": !isIconOnly,
             "px-2": size === 'sm' && !isIconOnly,
             "px-6": size === 'lg' && !isIconOnly,
