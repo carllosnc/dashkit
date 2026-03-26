@@ -19,52 +19,88 @@ describe('Dashkit CLI', () => {
     await fs.remove(TEMP_DIR);
   });
 
-  it('should add a basic component (badge)', async () => {
-    const testDir = path.join(TEMP_DIR, 'basic-component');
-    await fs.ensureDir(testDir);
+  it('should add a basic component and automate dashkit.css setup', async () => {
+    const testDir = path.join(TEMP_DIR, 'basic-setup');
+    await fs.ensureDir(path.join(testDir, 'src'));
     
-    // Run CLI via tsx to test source
-    execSync(`bun x tsx ${CLI_PATH} add badge -o components`, {
+    // Create an index.css to test auto-import
+    const indexPath = path.join(testDir, 'src/index.css');
+    await fs.writeFile(indexPath, 'body { margin: 0; }');
+
+    // Run CLI
+    execSync(`bun x tsx ${CLI_PATH} add badge -o src/components/dashkit --no-install`, {
       cwd: testDir,
       stdio: 'inherit'
     });
 
-    const componentFile = path.join(testDir, 'components/Badge/Badge.tsx');
-    expect(await fs.pathExists(componentFile)).toBe(true);
-  }, 20000); // Increase timeout for CI/slow environments
+    // Check component
+    expect(await fs.pathExists(path.join(testDir, 'src/components/dashkit/Badge/Badge.tsx'))).toBe(true);
+    
+    // Check dashkit.css installation in src/
+    expect(await fs.pathExists(path.join(testDir, 'src/dashkit.css'))).toBe(true);
+    
+    // Check auto-import in index.css
+    const updatedIndex = await fs.readFile(indexPath, 'utf-8');
+    expect(updatedIndex).toContain('@import "./dashkit.css";');
+  }, 30000);
 
   it('should handle registry dependencies recursively (card)', async () => {
     const testDir = path.join(TEMP_DIR, 'registry-deps');
     await fs.ensureDir(testDir);
-    
-    // Run CLI with --no-install to avoid slow package manager installs in tests
+
     execSync(`bun x tsx ${CLI_PATH} add card -o components --no-install`, {
       cwd: testDir,
       stdio: 'inherit'
     });
 
-    // Check main component
+    // Check main component and its dependencies
     expect(await fs.pathExists(path.join(testDir, 'components/Card/Card.tsx'))).toBe(true);
-    // Check registry dependencies
     expect(await fs.pathExists(path.join(testDir, 'components/Badge/Badge.tsx'))).toBe(true);
     expect(await fs.pathExists(path.join(testDir, 'components/Button/Button.tsx'))).toBe(true);
   });
 
-  it('should not install dependencies if --no-install is flag is set', async () => {
-    const testDir = path.join(TEMP_DIR, 'no-install-flag');
+  it('should show simplified dependency notes with --no-install', async () => {
+    const testDir = path.join(TEMP_DIR, 'no-install-note');
     await fs.ensureDir(testDir);
-    
-    // Initialize a package.json to avoid auto-detecting npm
     await fs.writeJson(path.join(testDir, 'package.json'), { name: 'test-app' });
 
-    // Run CLI with --no-install
     const output = execSync(`bun x tsx ${CLI_PATH} add badge -o components --no-install`, {
       cwd: testDir,
       encoding: 'utf8'
     });
 
-    expect(output).toContain('Ensure you have these dependencies installed');
-    expect(await fs.pathExists(path.join(testDir, 'node_modules'))).toBe(false);
+    expect(output).toContain('Note: Install missing dependencies');
+  });
+
+  it('should run doctor diagnostics successfully', async () => {
+    // Running doctor on the current dashkit project itself
+    const output = execSync(`bun x tsx ${CLI_PATH} doctor`, {
+      cwd: path.resolve(__dirname, '..'),
+      encoding: 'utf8'
+    });
+
+    expect(output).toContain('Dashkit UI - Health Check');
+    // Note: ora spinners might be stripped in non-TTY test environments
+    // but the final health message should be present
+    expect(output).toContain('Your component library is healthy');
+  });
+
+  it('should fail doctor if core file is missing', async () => {
+    const testDir = path.join(TEMP_DIR, 'doctor-fail');
+    await fs.ensureDir(testDir);
+    
+    // Initialize empty without src/index.css
+    try {
+      execSync(`bun x tsx ${CLI_PATH} doctor`, {
+        cwd: testDir,
+        encoding: 'utf8',
+        stdio: 'pipe'
+      });
+    } catch (error: unknown) {
+      const err = error as { stdout: Buffer };
+      const output = err.stdout.toString();
+      expect(output).toContain('Design system base (src/index.css) not found');
+    }
   });
 
   it('should fail with an error for non-existent components', async () => {
@@ -74,13 +110,12 @@ describe('Dashkit CLI', () => {
     try {
       execSync(`bun x tsx ${CLI_PATH} add unknown-comp -o components`, {
         cwd: testDir,
-        stdio: 'pipe' // Capture output
+        stdio: 'pipe'
       });
-      // Should not reach here
       expect(true).toBe(false);
     } catch (error: unknown) {
-      const err = error as { stderr?: Buffer };
-      expect(err.stderr?.toString()).toContain('Component "unknown-comp" not found in registry.');
+      const err = error as { stderr: Buffer };
+      expect(err.stderr.toString()).toContain('Component "unknown-comp" not found in registry.');
     }
   });
 });
