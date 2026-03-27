@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, type KeyboardEvent } from 'react';
+import { useState, useRef, useEffect, useLayoutEffect, type KeyboardEvent } from 'react';
 import { type SelectOption } from './Select';
 
 export interface UseSelectProps {
@@ -16,16 +16,15 @@ export function useSelect({ options, value, disabled }: UseSelectProps) {
 
   const selectedOption = options.find(opt => opt.value === value);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const updateRect = () => {
       if (isOpen && buttonRef.current) {
         const rect = buttonRef.current.getBoundingClientRect();
         setTriggerRect(rect);
-        
-        // Check space below (60 * 4 = 240px approx max height)
+
         const spaceBelow = window.innerHeight - rect.bottom;
         const spaceAbove = rect.top;
-        
+
         if (spaceBelow < 250 && spaceAbove > spaceBelow) {
           setSide('top');
         } else {
@@ -34,20 +33,15 @@ export function useSelect({ options, value, disabled }: UseSelectProps) {
       }
     };
 
-    updateRect();
-
-    const handleScroll = () => {
-      if (isOpen) setIsOpen(false);
-    };
-
     if (isOpen) {
-      window.addEventListener('scroll', handleScroll, true);
+      updateRect();
       window.addEventListener('resize', updateRect);
+      window.addEventListener('scroll', () => setIsOpen(false), true);
     }
 
     return () => {
-      window.removeEventListener('scroll', handleScroll, true);
       window.removeEventListener('resize', updateRect);
+      window.removeEventListener('scroll', () => setIsOpen(false), true);
     };
   }, [isOpen]);
 
