@@ -75,10 +75,10 @@ export function ToastProvider({
 }
 
 const typeIcons: Record<ToastType, React.ReactNode> = {
-  success: <FiCheckCircle className="text-emerald-500" />,
-  error: <FiAlertCircle className="text-red-500" />,
-  warning: <FiAlertTriangle className="text-amber-500" />,
-  info: <FiInfo className="text-info" />,
+  success: <FiCheckCircle className="text-ds-success-600 dark:text-ds-success-400" />,
+  error: <FiAlertCircle className="text-ds-danger-600 dark:text-ds-danger-400" />,
+  warning: <FiAlertTriangle className="text-ds-warning-500 dark:text-ds-warning-400" />,
+  info: <FiInfo className="text-ds-info-600 dark:text-ds-info-400" />,
   default: null
 };
 

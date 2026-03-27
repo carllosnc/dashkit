@@ -36,7 +36,7 @@ export function Tabs({ defaultValue, value, onValueChange, children, className }
 
   return (
     <TabsContext.Provider value={{ activeTab, setActiveTab, tabsId }}>
-      <div className={cn("w-full flex flex-col font-sans rounded-xl shadow-sm overflow-hidden bg-card", className)}>
+      <div className={cn("w-full flex flex-col font-sans rounded-[var(--radius)] shadow-sm overflow-hidden bg-card", className)}>
         {children}
       </div>
     </TabsContext.Provider>

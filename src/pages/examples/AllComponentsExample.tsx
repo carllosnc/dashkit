@@ -20,7 +20,7 @@ import { Combobox } from '../../components/Combobox/Combobox';
 import { DatePicker } from '../../components/DatePicker/DatePicker';
 import { Spinner } from '../../components/Spinner/Spinner';
 import { Skeleton } from '../../components/Skeleton/Skeleton';
-import { Modal } from '../../components/Modal/Modal';
+import { Modal, ModalHeader, ModalContent, ModalFooter } from '../../components/Modal/Modal';
 import { Drawer, DrawerHeader, DrawerContent, DrawerFooter } from '../../components/Drawer/Drawer';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../../components/Tabs/Tabs';
 import { OtpInput } from '../../components/OtpInput/OtpInput';
@@ -103,8 +103,8 @@ export const AllComponentsExample = () => {
   ];
 
   const chartSeries = [
-    { key: 'revenue', label: 'Revenue ($)', color: 'var(--color-primary)' },
-    { key: 'users', label: 'New Users', color: 'var(--color-success)' },
+    { key: 'revenue', label: 'Revenue ($)', color: 'var(--color-ds-primary-600)' },
+    { key: 'users', label: 'New Users', color: 'var(--color-ds-primary-400)' },
   ];
 
   const lineChartData = [
@@ -118,10 +118,10 @@ export const AllComponentsExample = () => {
   ];
 
   const lineChartSeries = [
-    { key: 'speed', label: 'Response Time (ms)', color: 'var(--color-blue-500)' },
-    { key: 'stability', label: 'System Stability (%)', color: 'var(--color-ds-500)' },
-    { key: 'uptime', label: 'Uptime (%)', color: 'var(--color-success)' },
-    { key: 'errors', label: 'Errors', color: 'var(--color-danger)' },
+    { key: 'speed', label: 'Response Time (ms)', color: 'var(--color-ds-primary-500)' },
+    { key: 'stability', label: 'System Stability (%)', color: 'var(--color-ds-primary-300)' },
+    { key: 'uptime', label: 'Uptime (%)', color: 'var(--color-ds-primary-700)' },
+    { key: 'errors', label: 'Errors', color: 'var(--color-ds-primary-400)' },
   ];
 
   const barChartData = [
@@ -133,15 +133,15 @@ export const AllComponentsExample = () => {
   ];
 
   const barChartSeries = [
-    { key: 'sales', label: 'Actual Sales ($)', color: 'var(--color-primary)' },
-    { key: 'target', label: 'Target ($)', color: 'var(--color-ds-300)' },
+    { key: 'sales', label: 'Actual Sales ($)', color: 'var(--color-ds-primary-600)' },
+    { key: 'target', label: 'Target ($)', color: 'var(--color-ds-primary-300)' },
   ];
 
   const pieChartData = [
-    { label: 'Desktop', value: 4500, color: 'var(--color-primary)' },
-    { label: 'Mobile', value: 3200, color: 'var(--color-success)' },
-    { label: 'Tablet', value: 1200, color: 'var(--color-blue-400)' },
-    { label: 'Other', value: 600, color: 'var(--color-ds-300)' },
+    { label: 'Desktop', value: 4500, color: 'var(--color-ds-primary-600)' },
+    { label: 'Mobile', value: 3200, color: 'var(--color-ds-primary-500)' },
+    { label: 'Tablet', value: 1200, color: 'var(--color-ds-primary-400)' },
+    { label: 'Other', value: 600, color: 'var(--color-ds-primary-300)' },
   ];
 
   const transactions = [
@@ -606,15 +606,15 @@ export const AllComponentsExample = () => {
                 <Spinner color="var(--color-primary)" />
                 <span className="text-[10px] text-muted-foreground uppercase font-bold tracking-widest">Primary</span>
               </div>
-              <div className="flex flex-col items-center gap-2 text-success">
+              <div className="flex flex-col items-center gap-2 text-ds-success-600 dark:text-ds-success-400">
                 <Spinner />
                 <span className="text-[10px] text-muted-foreground uppercase font-bold tracking-widest">Success</span>
               </div>
-              <div className="flex flex-col items-center gap-2 text-danger">
+              <div className="flex flex-col items-center gap-2 text-ds-danger-600 dark:text-ds-danger-400">
                 <Spinner />
                 <span className="text-[10px] text-muted-foreground uppercase font-bold tracking-widest">Danger</span>
               </div>
-              <div className="flex flex-col items-center gap-2 text-info">
+              <div className="flex flex-col items-center gap-2 text-ds-info-600 dark:text-ds-info-400">
                 <Spinner />
                 <span className="text-[10px] text-muted-foreground uppercase font-bold tracking-widest">Info</span>
               </div>
@@ -737,16 +737,12 @@ export const AllComponentsExample = () => {
               isOpen={isModalOpen}
               onClose={() => setIsModalOpen(false)}
               size={modalSize}
-              title={`${modalSize.toUpperCase()} Modal`}
-              description="This is a demonstration of the Dashkit Modal component."
-              footer={
-                <>
-                  <Button variant="outlined" onClick={() => setIsModalOpen(false)}>Cancel</Button>
-                  <Button onClick={() => setIsModalOpen(true)}>Save Changes</Button>
-                </>
-              }
             >
-              <div className="flex flex-col gap-4">
+              <ModalHeader onClose={() => setIsModalOpen(false)}>
+                <h3 className="text-xl font-bold tracking-tight">{modalSize.toUpperCase()} Modal</h3>
+                <p className="text-sm text-muted-foreground tracking-tight">This is a demonstration of the Dashkit Modal component.</p>
+              </ModalHeader>
+              <ModalContent className="flex flex-col gap-4">
                 <p className="text-sm text-ds-600 dark:text-ds-400">
                   Modals are great for displaying extra information without losing the current context. They feature:
                 </p>
@@ -761,7 +757,11 @@ export const AllComponentsExample = () => {
                   <Input label="First Name" placeholder="John" />
                   <Input label="Last Name" placeholder="Doe" />
                 </div>
-              </div>
+              </ModalContent>
+              <ModalFooter>
+                <Button variant="outlined" onClick={() => setIsModalOpen(false)}>Cancel</Button>
+                <Button onClick={() => setIsModalOpen(false)}>Save Changes</Button>
+              </ModalFooter>
             </Modal>
           </CardContent>
         </Card>

@@ -186,7 +186,7 @@ export function DashboardExample() {
               <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider">Total Revenue</p>
               <div className="flex items-baseline justify-between">
                 <h3 className="text-2xl font-bold tracking-tight text-foreground">$45,231.89</h3>
-                <span className="text-[11px] font-bold text-success bg-success/10 px-2 py-0.5 rounded-full">+12.5%</span>
+                <span className="text-[11px] font-bold text-ds-success-600 bg-ds-success-600/10 dark:text-ds-success-400 dark:bg-ds-success-500/15 px-2 py-0.5 rounded-full">+12.5%</span>
               </div>
               <p className="text-sm text-ds-400 mt-1">vs last month</p>
             </CardContent>
@@ -210,7 +210,7 @@ export function DashboardExample() {
               <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider">Efficiency Rate</p>
               <div className="flex items-baseline justify-between">
                 <h3 className="text-2xl font-bold tracking-tight text-foreground">94.2%</h3>
-                <span className="text-[11px] font-bold text-info bg-info/10 px-2 py-0.5 rounded-full">94%</span>
+                <span className="text-[11px] font-bold text-ds-info-600 bg-ds-info-600/10 dark:text-ds-info-400 dark:bg-ds-info-500/15 px-2 py-0.5 rounded-full">94%</span>
               </div>
               <div className="flex gap-1 mt-3">
                  {[1,2,3,4,5,6].map(i => (

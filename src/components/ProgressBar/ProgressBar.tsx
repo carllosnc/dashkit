@@ -19,10 +19,10 @@ export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const colorStyles: Record<ProgressBarColor, string> = {
   primary: "bg-primary",
-  success: "bg-success",
-  warning: "bg-warning",
-  danger: "bg-danger",
-  info: "bg-info",
+  success: "bg-ds-success-600 dark:bg-ds-success-500",
+  warning: "bg-ds-warning-500 dark:bg-ds-warning-500",
+  danger: "bg-ds-danger-600 dark:bg-ds-danger-500",
+  info: "bg-ds-info-600 dark:bg-ds-info-500",
   neutral: "bg-ds-500 dark:bg-ds-400"
 };
 

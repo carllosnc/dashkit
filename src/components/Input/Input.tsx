@@ -61,7 +61,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               {
                 "pl-11": !!leftIcon,
                 "pr-11": !!rightIcon,
-                "border-red-500/50 focus:border-red-500 focus:ring-red-50 dark:border-red-500/30 dark:focus:border-red-500/50 dark:focus:ring-red-500/10": !!error,
+                "border-ds-danger-500/50 focus:border-ds-danger-500 focus:ring-ds-danger-50 dark:border-ds-danger-500/30 dark:focus:border-ds-danger-500/50 dark:focus:ring-ds-danger-500/10": !!error,
               },
               className
             )}
@@ -78,7 +78,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {(error || helperText) && (
           <span className={cn(
             "text-[12px] ml-1 tracking-tight",
-            error ? "text-red-500 dark:text-red-300" : "text-ds-600"
+            error ? "text-ds-danger-600 dark:text-ds-danger-400" : "text-ds-600"
           )}>
             {error || helperText}
           </span>

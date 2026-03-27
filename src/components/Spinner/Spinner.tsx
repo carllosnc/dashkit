@@ -1,12 +1,23 @@
 import * as React from 'react';
 import { cn } from '../../utils/cn';
 
-export interface SpinnerProps extends React.SVGAttributes<SVGSVGElement> {
+export type SpinnerColor = 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'neutral' | string;
+
+export interface SpinnerProps extends Omit<React.SVGAttributes<SVGSVGElement>, 'color'> {
   size?: number | string;
-  color?: string;
+  color?: SpinnerColor;
   thickness?: number;
   className?: string;
 }
+
+const colorMap: Record<string, string> = {
+  primary: 'var(--color-primary)',
+  success: 'var(--color-ds-success-600)',
+  warning: 'var(--color-ds-warning-500)',
+  danger: 'var(--color-ds-danger-600)',
+  info: 'var(--color-ds-info-600)',
+  neutral: 'var(--color-ds-500)',
+};
 
 export const Spinner = ({
   size = 24,
@@ -16,6 +27,7 @@ export const Spinner = ({
   ...props
 }: SpinnerProps) => {
   const spinnerSize = typeof size === 'number' ? `${size}px` : size;
+  const strokeColor = colorMap[color as string] || color;
 
   return (
     <svg
@@ -24,7 +36,7 @@ export const Spinner = ({
       height={spinnerSize}
       viewBox="0 0 24 24"
       fill="none"
-      stroke={color}
+      stroke={strokeColor}
       strokeWidth={thickness}
       strokeLinecap="round"
       strokeLinejoin="round"

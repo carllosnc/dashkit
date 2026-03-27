@@ -7,29 +7,29 @@ export type BadgeColor = 'success' | 'warning' | 'danger' | 'error' | 'info' | '
 export type BadgePosition = 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
 
 const solidColorStyles: Record<BadgeColor, string> = {
-  success: "bg-success text-success-foreground border-transparent",
-  warning: "bg-warning text-warning-foreground border-transparent",
-  danger: "bg-danger text-danger-foreground border-transparent",
-  error: "bg-danger text-danger-foreground border-transparent",
-  info: "bg-info text-info-foreground border-transparent",
+  success: "bg-ds-success-600 dark:bg-ds-success-500 text-ds-success-50 dark:text-ds-success-950 border-transparent",
+  warning: "bg-ds-warning-500 dark:bg-ds-warning-400 text-ds-warning-950 dark:text-ds-warning-950 border-transparent",
+  danger: "bg-ds-danger-600 dark:bg-ds-danger-500 text-ds-danger-50 dark:text-ds-danger-950 border-transparent",
+  error: "bg-ds-danger-600 dark:bg-ds-danger-500 text-ds-danger-50 dark:text-ds-danger-950 border-transparent",
+  info: "bg-ds-info-600 dark:bg-ds-info-500 text-ds-info-50 dark:text-ds-info-950 border-transparent",
   base: "bg-ds-500 text-white border-transparent"
 };
 
 const softColorStyles: Record<BadgeColor, string> = {
-  success: "bg-success/15 text-success dark:bg-success/20 border-transparent",
-  warning: "bg-warning/15 text-warning dark:bg-warning/20 border-transparent",
-  danger: "bg-danger/15 text-danger dark:bg-danger/20 border-transparent",
-  error: "bg-danger/15 text-danger dark:bg-danger/20 border-transparent",
-  info: "bg-info/15 text-info dark:bg-info/20 border-transparent",
+  success: "bg-ds-success-600/15 text-ds-success-600 dark:text-ds-success-400 dark:bg-ds-success-500/20 border-transparent",
+  warning: "bg-ds-warning-500/15 text-ds-warning-600 dark:text-ds-warning-400 dark:bg-ds-warning-500/20 border-transparent",
+  danger: "bg-ds-danger-600/15 text-ds-danger-600 dark:text-ds-danger-400 dark:bg-ds-danger-500/20 border-transparent",
+  error: "bg-ds-danger-600/15 text-ds-danger-600 dark:text-ds-danger-400 dark:bg-ds-danger-500/20 border-transparent",
+  info: "bg-ds-info-600/15 text-ds-info-600 dark:text-ds-info-400 dark:bg-ds-info-500/20 border-transparent",
   base: "bg-ds-500/15 text-ds-600 dark:text-ds-400 border-transparent"
 };
 
 const pulseStyles: Record<BadgeColor, string> = {
-  success: "bg-success",
-  warning: "bg-warning",
-  danger: "bg-danger",
-  error: "bg-danger",
-  info: "bg-info",
+  success: "bg-ds-success-600 dark:bg-ds-success-500",
+  warning: "bg-ds-warning-500 dark:bg-ds-warning-500",
+  danger: "bg-ds-danger-600 dark:bg-ds-danger-500",
+  error: "bg-ds-danger-600 dark:bg-ds-danger-500",
+  info: "bg-ds-info-600 dark:bg-ds-info-500",
   base: "bg-ds-500"
 };
 

@@ -14,35 +14,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   loading?: boolean;
 }
 
-const LoadingSpinner = () => (
-  <>
-    <svg
-      className="animate-spin h-4 w-4 shrink-0"
-      viewBox="0 0 50 50"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle
-        className="opacity-25"
-        cx="25"
-        cy="25"
-        r="20"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="5"
-      />
-      <circle
-        className="animate-spinner-dash"
-        cx="25"
-        cy="25"
-        r="20"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="5"
-        strokeLinecap="round"
-      />
-    </svg>
-  </>
-);
+import { Spinner } from '../Spinner/Spinner';
 
 const variantClasses = {
   filled: "bg-primary text-primary-foreground hover:brightness-120 active:scale-[0.98]",
@@ -79,7 +51,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         )}
         {...props}
       >
-        {loading && <LoadingSpinner />}
+        {loading && <Spinner size={16} color="currentColor" thickness={3} />}
         {!loading && leftIcon && <span className="inline-flex shrink-0">{leftIcon}</span>}
         {children}
         {!loading && rightIcon && <span className="inline-flex shrink-0">{rightIcon}</span>}
