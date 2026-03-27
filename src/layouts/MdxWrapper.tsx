@@ -201,7 +201,7 @@ const components: Record<string, ElementType> = {
   BreadcrumbEllipsis,
   PropertyDoc,
   Preview: ({ children }: { children: ReactNode }) => (
-    <div className="not-prose border bg-card border-ds-200 dark:border-ds-800 rounded-lg flex flex-col gap-8 py-4 px-4 first:pt-0 items-start">
+    <div className="not-prose border bg-card border-ds-200 dark:border-ds-800 rounded-[var(--radius)] flex flex-col gap-8 py-4 px-4 first:pt-0 items-start">
       {children}
     </div>
   ),

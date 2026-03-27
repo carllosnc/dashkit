@@ -25,7 +25,7 @@ export function PropertyDoc({ title, properties, className }: PropertyDocProps) 
           {title}
         </h4>
       )}
-      <div className="overflow-x-auto custom-scrollbar border rounded-xl">
+      <div className="overflow-x-auto custom-scrollbar border rounded-[var(--radius)]">
         <table className="w-full text-left border-collapse min-w-[600px]">
           <thead>
             <tr className="border-b text-[11px] font-bold text-muted-foreground uppercase tracking-[0.1em] bg-muted/20">

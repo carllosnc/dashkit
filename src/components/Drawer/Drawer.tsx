@@ -22,7 +22,7 @@ export interface DrawerProps {
 }
 
 export const DrawerHeader = ({ children, className }: { children: ReactNode; className?: string }) => (
-  <div className={cn("p-6 pb-4 flex flex-col gap-1", className)}>
+  <div className={cn("p-6 pb-4 flex flex-col gap-1 border-b", className)}>
     {children}
   </div>
 );
@@ -34,7 +34,7 @@ export const DrawerContent = ({ children, className }: { children: ReactNode; cl
 );
 
 export const DrawerFooter = ({ children, className }: { children: ReactNode; className?: string }) => (
-  <div className={cn("p-6 pt-4 flex items-center justify-end gap-3", className)}>
+  <div className={cn("p-6 pt-4 flex items-center justify-end gap-3 border-t", className)}>
     {children}
   </div>
 );
