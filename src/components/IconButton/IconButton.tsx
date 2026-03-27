@@ -10,7 +10,7 @@ type IconButtonBaseProps = {
 
 const variantClasses = {
   filled: "bg-primary text-primary-foreground border-transparent hover:brightness-120 active:scale-95",
-  outlined: "bg-linear-to-b from-ds-0 to-ds-100 dark:from-ds-900 dark:to-ds-950 text-foreground border-border hover:from-ds-50 hover:to-ds-100 dark:hover:from-ds-800 dark:hover:to-ds-900 hover:border-ds-400 dark:hover:border-ds-700 active:scale-95 backdrop-blur-md",
+  outlined: "bg-linear-to-b from-ds-0 to-ds-100 dark:from-ds-900 dark:to-ds-950 text-foreground hover:from-ds-50 hover:to-ds-100 dark:hover:from-ds-800 dark:hover:to-ds-900 hover:border-ds-400 dark:hover:border-ds-700 active:scale-95 backdrop-blur-md",
   soft: "bg-secondary text-secondary-foreground border-transparent hover:brightness-105 active:scale-95",
   ghost: "bg-transparent text-muted-foreground border-transparent hover:bg-accent hover:text-accent-foreground active:scale-95",
 } as const;

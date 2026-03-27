@@ -830,7 +830,7 @@ export const AllComponentsExample = () => {
               </DrawerHeader>
               <DrawerContent>
                 <div className="flex flex-col gap-4 py-8">
-                  <div className="h-[500px] border-2 border-dashed border-border rounded-xl flex items-center justify-center text-muted-foreground text-xs uppercase tracking-widest">
+                  <div className="h-[500px] border-2 border-dashed rounded-xl flex items-center justify-center text-muted-foreground text-xs uppercase tracking-widest">
                     Content Area
                   </div>
                 </div>
@@ -918,7 +918,7 @@ export const AllComponentsExample = () => {
             {/* Vertical Orientation */}
             <div className="flex flex-col gap-6">
               <h4 className="text-sm font-medium text-muted-foreground">Vertical Orientation</h4>
-              <div className="flex items-center gap-6 h-10 border border-border rounded-lg px-4">
+              <div className="flex items-center gap-6 h-10 border rounded-lg px-4">
                 <span className="text-sm font-medium">Home</span>
                 <Divider orientation="vertical" />
                 <span className="text-sm font-medium">Features</span>

@@ -69,7 +69,7 @@ export function FloatActionMenu({
             key="menu"
             ref={menuRef}
             className={cn(
-              'absolute w-[calc(100vw-3rem)] sm:w-[400px] max-w-[400px] min-h-[300px] bg-white dark:bg-ds-900 rounded-lg shadow-2xl border border-border dark:border-ds-800 overflow-hidden flex flex-col z-20',
+              'absolute w-[calc(100vw-3rem)] sm:w-[400px] max-w-[400px] min-h-[300px] bg-white dark:bg-ds-900 rounded-lg shadow-2xl border dark:border-ds-800 overflow-hidden flex flex-col z-20',
               menuPositionClasses[position],
               menuClassName
             )}
@@ -84,7 +84,7 @@ export function FloatActionMenu({
           >
             <div className="flex-1">
               <div className="flex items-center justify-between px-4 py-2 border-b border-border/60 dark:border-ds-800">
-                {label && (
+                {label && ( 
                   <h3 className="font-medium text-foreground dark:text-ds-50 tracking-tight">
                     {label}
                   </h3>

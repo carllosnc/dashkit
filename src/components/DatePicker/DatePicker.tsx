@@ -98,7 +98,7 @@ export const DatePicker = ({
                 y: position === 'bottom' ? -10 : 10,
                 scale: 0.95
               }}
-              className="w-[280px] bg-popover text-popover-foreground border border-border rounded-xl shadow-2xl p-4 overflow-hidden"
+              className="w-[280px] bg-popover text-popover-foreground border rounded-xl shadow-2xl p-4 overflow-hidden"
             >
               <div className="flex items-center justify-between mb-4">
                 <button
@@ -147,7 +147,7 @@ export const DatePicker = ({
                 ))}
               </div>
 
-              <div className="mt-4 pt-4 border-t border-border flex justify-center">
+              <div className="mt-4 pt-4 border-t flex justify-center">
                 <button
                   onClick={() => {
                     const today = new Date();

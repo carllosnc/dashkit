@@ -112,7 +112,7 @@ function ToastItem({
       exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
       transition={{ type: 'spring', damping: 20, stiffness: 300 }}
       className={cn(
-        "absolute w-full pointer-events-auto bg-popover text-popover-foreground border border-border rounded-md shadow-2xl p-4 flex items-center gap-4 group transition-shadow",
+        "absolute w-full pointer-events-auto bg-popover text-popover-foreground border rounded-md shadow-2xl p-4 flex items-center gap-4 group transition-shadow",
         isTop ? "top-0 origin-top" : "bottom-0 origin-bottom"
       )}
     >

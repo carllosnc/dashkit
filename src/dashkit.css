@@ -3,10 +3,7 @@
 /* ────────────────────────────────────────────────
    1. Design System Theme
 ──────────────────────────────────────────────── */
-@theme {
-  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
-
-  /* Neutrals: Industrial Palette */
+@theme inline {
   --color-ds-0:     var(--color-white);
   --color-ds-50:    var(--color-neutral-50);
   --color-ds-100:   var(--color-neutral-100);
@@ -20,7 +17,6 @@
   --color-ds-900:   var(--color-neutral-900);
   --color-ds-950:   var(--color-neutral-950);
 
-  /* Semantic Mapping (Linked to CSS Variables for runtime theme switching) */
   --color-background: var(--ds-bg);
   --color-foreground: var(--ds-fg);
 
@@ -132,6 +128,9 @@
    3. Base Styles & Resets
 ──────────────────────────────────────────────── */
 @layer base {
+  * {
+    @apply outline-ring/50 border-border;
+  }
   body {
     @apply bg-background text-foreground;
     -webkit-font-smoothing: antialiased;

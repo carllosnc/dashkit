@@ -21,7 +21,7 @@ const colorStyles: Record<ChipColor, Record<ChipVariant, string>> = {
   base: {
     tonal: "bg-secondary text-secondary-foreground border-transparent",
     filled: "bg-primary text-primary-foreground border-transparent",
-    outlined: "bg-transparent text-foreground border-border",
+    outlined: "bg-transparent text-foreground",
   },
   success: {
     tonal: "bg-success/10 text-success border-success/20",

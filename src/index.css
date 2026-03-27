@@ -3,6 +3,10 @@
 @import "@fontsource-variable/inter";
 @import "./dashkit.css";
 
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+}
+
 @layer base {
   html {
     color-scheme: light;

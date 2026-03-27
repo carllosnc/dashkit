@@ -25,13 +25,13 @@ export function PropertyDoc({ title, properties, className }: PropertyDocProps) 
           {title}
         </h4>
       )}
-      <div className="overflow-x-auto custom-scrollbar border border-border rounded-xl">
+      <div className="overflow-x-auto custom-scrollbar border rounded-xl">
         <table className="w-full text-left border-collapse min-w-[600px]">
           <thead>
-            <tr className="border-b border-border text-[11px] font-bold text-muted-foreground uppercase tracking-[0.1em] bg-muted/20">
-              <th className="px-3 py-3 w-[20%] border-r border-border">Property</th>
-              {hasType && <th className="px-3 py-3 w-[25%] border-r border-border">Type</th>}
-              {hasDefault && <th className="px-3 py-3 w-[15%] border-r border-border">Default</th>}
+            <tr className="border-b text-[11px] font-bold text-muted-foreground uppercase tracking-[0.1em] bg-muted/20">
+              <th className="px-3 py-3 w-[20%] border-r">Property</th>
+              {hasType && <th className="px-3 py-3 w-[25%] border-r">Type</th>}
+              {hasDefault && <th className="px-3 py-3 w-[15%] border-r">Default</th>}
               <th className="px-3 py-3 flex-1">Description</th>
             </tr>
           </thead>
@@ -41,20 +41,20 @@ export function PropertyDoc({ title, properties, className }: PropertyDocProps) 
                 key={idx}
                 className="group hover:bg-ds-50 dark:hover:bg-ds-900/30 transition-colors duration-150"
               >
-                <td className="px-3 py-4 align-top whitespace-nowrap border-r border-border">
+                <td className="px-3 py-4 align-top whitespace-nowrap border-r">
                   <span className="text-[14px] font-bold text-ds-500 dark:text-ds-400">
                     {property.prop}
                   </span>
                 </td>
                 {hasType && (
-                  <td className="px-3 py-4 align-top border-r border-border">
+                  <td className="px-3 py-4 align-top border-r">
                     <span className="text-[14px] text-ds-500 dark:text-ds-400 break-all">
                       {property.type}
                     </span>
                   </td>
                 )}
                 {hasDefault && (
-                  <td className="px-3 py-4 align-top whitespace-nowrap font-mono text-[14px] border-r border-border">
+                  <td className="px-3 py-4 align-top whitespace-nowrap font-mono text-[14px] border-r">
                     <span className="text-ds-500 dark:text-ds-400">
                       {property.defaultValue || '—'}
                     </span>

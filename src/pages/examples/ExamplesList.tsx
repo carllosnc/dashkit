@@ -13,7 +13,6 @@ const examples = [
     icon: <FiLogIn size={20} />,
     color: 'text-ds-500',
     bg: 'bg-ds-50 dark:bg-ds-900',
-    border: 'border-border'
   },
   {
     title: 'Complex Settings Form',
@@ -22,7 +21,6 @@ const examples = [
     icon: <FiSettings size={20} />,
     color: 'text-ds-500',
     bg: 'bg-ds-50 dark:bg-ds-900',
-    border: 'border-border'
   },
   {
     title: 'Admin Dashboard',
@@ -31,7 +29,6 @@ const examples = [
     icon: <FiGrid size={20} />,
     color: 'text-ds-500',
     bg: 'bg-ds-50 dark:bg-ds-900',
-    border: 'border-border'
   },
   {
     title: 'Sidebar Dashboard',
@@ -40,7 +37,6 @@ const examples = [
     icon: <FiLayout size={20} />,
     color: 'text-ds-500',
     bg: 'bg-ds-50 dark:bg-ds-900',
-    border: 'border-border'
   },
   {
     title: 'All Components Showcase',
@@ -49,7 +45,6 @@ const examples = [
     icon: <FiLayers size={20} />,
     color: 'text-ds-500',
     bg: 'bg-ds-50 dark:bg-ds-900',
-    border: 'border-border'
   }
 ];
 

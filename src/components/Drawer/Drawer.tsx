@@ -83,7 +83,7 @@ export const Drawer = ({
             onDragEnd={handleDragEnd}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
             className={cn(
-              "absolute bg-card text-card-foreground shadow-sm border-border overflow-hidden flex flex-col",
+              "absolute bg-card text-card-foreground shadow-sm overflow-hidden flex flex-col",
               "touch-none",
               {
                 "border-r": position === 'left',

@@ -25,8 +25,8 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
 
     const baseStyles = cn(
       "shrink-0 bg-border",
-      variant === "dashed" && "bg-transparent border-dashed border-border",
-      variant === "dotted" && "bg-transparent border-dotted border-border",
+      variant === "dashed" && "bg-transparent border-dashed",
+      variant === "dotted" && "bg-transparent border-dotted",
       isHorizontal
         ? cn("w-full", variant === "solid" ? "h-[1px]" : "h-0 border-t")
         : cn("h-auto self-stretch", variant === "solid" ? "w-[1px]" : "w-0 border-l"),
@@ -43,7 +43,7 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
           <div
             className={cn(
               "flex-1",
-              variant === "solid" ? "h-[1px] bg-border" : "h-0 border-t border-border",
+              variant === "solid" ? "h-[1px] bg-border" : "h-0 border-t",
               variant === "dashed" && "border-dashed",
               variant === "dotted" && "border-dotted",
               contentPosition === "left" && "hidden"
@@ -55,7 +55,7 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
           <div
             className={cn(
               "flex-1",
-              variant === "solid" ? "h-[1px] bg-border" : "h-0 border-t border-border",
+              variant === "solid" ? "h-[1px] bg-border" : "h-0 border-t",
               variant === "dashed" && "border-dashed",
               variant === "dotted" && "border-dotted",
               contentPosition === "right" && "hidden"

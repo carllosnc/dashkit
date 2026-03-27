@@ -35,7 +35,7 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
             mass: 0.8
           }}
           className={cn(
-            "h-screen flex flex-col border-r border-border bg-card relative z-[40]",
+            "h-screen flex flex-col border-r bg-card relative z-[40]",
             className
           )}
           {...props}
@@ -75,7 +75,7 @@ export function SidebarHeader({ children, className }: { children: React.ReactNo
         justifyContent: isOpen ? 'flex-start' : 'center'
       }}
       className={cn(
-        "h-16 flex items-center shrink-0 border-b border-border overflow-hidden",
+        "h-16 flex items-center shrink-0 border-b overflow-hidden",
         className
       )}
     >
@@ -111,7 +111,7 @@ export function SidebarFooter({ children, className }: { children: React.ReactNo
         alignItems: isOpen ? 'stretch' : 'center'
       }}
       className={cn(
-        "mt-auto shrink-0 border-t border-border flex flex-col",
+        "mt-auto shrink-0 border-t flex flex-col",
         className
       )}
     >
