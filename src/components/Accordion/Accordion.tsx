@@ -90,7 +90,7 @@ export const AccordionItem = ({ value, children, className, disabled }: Accordio
   return (
     <AccordionItemContext.Provider value={{ value, isOpen }}>
       <div className={cn(
-        "bg-card text-card-foreground rounded-lg shadow-sm transition-all duration-200 overflow-hidden",
+        "bg-card text-card-foreground rounded-lg shadow-sm overflow-hidden",
         isOpen && "bg-card",
         context.shadowed ? "bg-card" : "shadow-none",
         disabled && "opacity-50 pointer-events-none",
@@ -111,7 +111,7 @@ export const AccordionTrigger = ({ children, className }: { children: React.Reac
     <button
       onClick={() => context.onValueChange(itemContext.value)}
       className={cn(
-        "flex w-full items-center gap-3 px-4 py-4 text-left transition-all hover:text-block-fg dark:hover:text-block-dark-fg group",
+        "flex w-full items-center gap-3 px-4 py-4 text-left hover:text-block-fg dark:hover:text-block-dark-fg group",
         itemContext.isOpen ? "text-block-fg dark:text-block-dark-fg font-medium" : "text-ds-950 dark:text-ds-300 font-medium",
         className
       )}

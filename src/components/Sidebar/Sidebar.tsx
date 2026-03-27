@@ -48,7 +48,7 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
               onClick={toggle}
               rounded
               className={cn(
-                "absolute -right-3 top-16 -translate-y-1/2 z-[60] size-6 shadow-md hover:scale-110",
+                "absolute -right-3 top-16 -translate-y-1/2 z-[60] size-6 shadow-md",
                 !isOpen && "rotate-180"
               )}
             />

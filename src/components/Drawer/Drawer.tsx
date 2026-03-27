@@ -98,7 +98,7 @@ export const Drawer = ({
           >
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 p-2 rounded-md transition-all duration-200 hover:bg-ds-100 dark:hover:bg-ds-800 text-ds-400 hover:text-ds-900 dark:hover:text-white z-[60]"
+              className="absolute top-4 right-4 p-2 rounded-md hover:bg-ds-100 dark:hover:bg-ds-800 text-ds-400 hover:text-ds-900 dark:hover:text-white z-[60]"
               aria-label="Close drawer"
             >
               <FiX size={20} />

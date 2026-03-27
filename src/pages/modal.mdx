@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Modal } from '../components/Modal/Modal';
+import { Modal, ModalHeader, ModalContent, ModalFooter } from '../components/Modal/Modal';
 import { Button } from '../components/Button/Button';
 import { FiLayers, FiDownload, FiTrash2, FiAlertTriangle, FiCheckCircle } from 'react-icons/fi';
 
@@ -8,13 +8,51 @@ export const BasicModal = () => {
   return (
     <>
       <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
-      <Modal
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        title="Project Overview"
-        description="Review your latest project stats and activity log."
-      >
-        <p className="text-sm py-4">This is a standard modal with a title and description.</p>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <ModalHeader onClose={() => setIsOpen(false)}>
+          <h2 className="text-base font-medium tracking-tight text-block-fg dark:text-block-dark-fg">Project Overview</h2>
+          <p className="text-sm text-ds-500">Review your latest project stats and activity log.</p>
+        </ModalHeader>
+        <ModalContent>
+          <p className="text-sm py-2">
+            This basic implementation demonstrates the simplified composition API.
+            Modals now require explicit structure for header, content, and footer areas.
+          </p>
+        </ModalContent>
+        <ModalFooter>
+          <Button variant="outlined" onClick={() => setIsOpen(false)}>Cancel</Button>
+          <Button onClick={() => setIsOpen(false)}>Save Changes</Button>
+        </ModalFooter>
+      </Modal>
+    </>
+  );
+};
+
+export const ComposableModal = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <>
+      <Button variant="outlined" onClick={() => setIsOpen(true)}>Manage Team</Button>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} size="lg">
+        <ModalHeader onClose={() => setIsOpen(false)}>
+          <h2 className="text-base font-medium tracking-tight text-block-fg dark:text-block-dark-fg">Team Settings</h2>
+          <p className="text-sm text-ds-500">Configure access levels and roles for your workspace.</p>
+        </ModalHeader>
+        <ModalContent>
+          <div className="flex flex-col gap-4 py-4">
+            <div className="p-4 rounded-xl bg-ds-100/50 dark:bg-ds-800 border border-ds-200 dark:border-ds-700">
+              <span className="text-xs font-bold uppercase text-ds-500">Owner</span>
+              <p className="text-sm font-semibold">carllos@example.com</p>
+            </div>
+            <div className="p-4 rounded-xl border border-dashed border-ds-300 dark:border-ds-700 hover:bg-ds-100/30 dark:hover:bg-ds-800/30 transition-colors cursor-pointer group">
+              <p className="text-sm text-ds-500 font-medium text-center group-hover:text-ds-900 dark:group-hover:text-white">+ Invite new member</p>
+            </div>
+          </div>
+        </ModalContent>
+        <ModalFooter>
+          <Button variant="outlined" onClick={() => setIsOpen(false)}>Cancel</Button>
+          <Button onClick={() => setIsOpen(false)}>Save Changes</Button>
+        </ModalFooter>
       </Modal>
     </>
   );
@@ -26,23 +64,25 @@ export const AlertModalExample = () => {
     <>
       <Button variant="outlined" color="error" leftIcon={<FiAlertTriangle />} onClick={() => setIsOpen(true)}>Delete Workspace</Button>
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} size="sm" className="text-center">
-        <div className="flex flex-col items-center gap-6 py-6">
-          <div className="size-20 rounded-full bg-red-50 dark:bg-red-500/10 flex items-center justify-center text-red-600 dark:text-red-400 border border-red-100 dark:border-red-500/20">
-            <FiTrash2 size={40} />
+        <ModalContent>
+          <div className="flex flex-col items-center gap-6 py-6">
+            <div className="size-20 rounded-full bg-red-50 dark:bg-red-500/10 flex items-center justify-center text-red-600 dark:text-red-400 border border-red-100 dark:border-red-500/20">
+              <FiTrash2 size={40} />
+            </div>
+            <div className="flex flex-col gap-2">
+              <h3 className="text-xl font-bold text-ds-900 dark:text-white tracking-tight">Delete Workspace?</h3>
+              <p className="text-sm text-ds-500 max-w-[240px]">This action is permanent and will remove all project data associated with this workspace.</p>
+            </div>
+            <div className="grid grid-cols-2 w-full gap-2 pt-4">
+              <Button variant="outlined" onClick={() => setIsOpen(false)}>
+                Cancel
+              </Button>
+              <Button variant="filled" onClick={() => setIsOpen(false)}>
+                Confirm Delete
+              </Button>
+            </div>
           </div>
-          <div className="flex flex-col gap-2">
-            <h3 className="text-2xl font-bold text-ds-900 dark:text-white tracking-tight">Delete Workspace?</h3>
-            <p className="text-sm text-ds-500 max-w-[240px]">This action is permanent and will remove all project data associated with this workspace.</p>
-          </div>
-          <div className="grid grid-cols-1 w-full gap-3 pt-4 px-4">
-            <Button variant="filled" className="bg-red-600 hover:bg-red-700 text-white h-12 rounded-xl" onClick={() => setIsOpen(false)}>
-              Yes, Delete Permanent
-            </Button>
-            <Button variant="outlined" className="h-12 border-none hover:bg-ds-50" onClick={() => setIsOpen(false)}>
-              Keep Workspace
-            </Button>
-          </div>
-        </div>
+        </ModalContent>
       </Modal>
     </>
   );
@@ -53,20 +93,31 @@ export const FullScreenExample = () => {
   return (
     <>
       <Button variant="outlined" leftIcon={<FiLayers />} onClick={() => setIsOpen(true)}>Immersive Editor</Button>
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} size="full" title="Immersive Editor" description="Maximize your creative potential in our distilled editing mode.">
-        <div className="w-full h-full flex items-center justify-center border-2 border-dashed border-ds-200 dark:border-ds-800 rounded-[2rem] p-12">
-          <div className="flex flex-col items-center gap-4 text-center">
-            <div className="size-16 rounded-2xl bg-ds-100 dark:bg-ds-900 flex items-center justify-center text-ds-400">
-              <FiCheckCircle size={32} />
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} size="full">
+        <ModalHeader onClose={() => setIsOpen(false)}>
+          <h2 className="text-base font-medium tracking-tight text-block-fg dark:text-block-dark-fg">Immersive Editor</h2>
+          <p className="text-sm text-ds-500">Maximize your creative potential in our distilled editing mode.</p>
+        </ModalHeader>
+        <ModalContent className="h-full flex items-center justify-center pt-0">
+          <div>
+            <div className="flex flex-col items-center gap-4 text-center">
+              <div className="size-12 rounded-xl bg-ds-100 dark:bg-ds-900 flex items-center justify-center text-ds-400">
+                <FiCheckCircle size={24} />
+              </div>
+              <h2 className="text-2xl font-bold text-ds-900 dark:text-white tracking-tight leading-[1.05]">Workspace Ready</h2>
+              <p className="text-ds-500 max-w-sm mx-auto">Click X to return to your dashboard or begin customizing your layout.</p>
             </div>
-            <h2 className="text-3xl font-bold text-ds-900 dark:text-white tracking-tight leading-[1.05]">Workspace Ready</h2>
-            <p className="text-ds-500 max-w-sm mx-auto">Click X to return to your dashboard or begin customizing your layout.</p>
           </div>
-        </div>
+        </ModalContent>
+        <ModalFooter>
+          <Button variant="outlined" onClick={() => setIsOpen(false)}>Exit Immersive Mode</Button>
+          <Button onClick={() => setIsOpen(false)}>Launch Editor</Button>
+        </ModalFooter>
       </Modal>
     </>
   );
 };
+
 
 # Modal
 
@@ -75,7 +126,7 @@ A centered, layered dialog component that focuses user attention on critical inf
 ## Import
 
 ```tsx
-import { Modal } from '@/components/Modal/Modal'
+import { Modal, ModalHeader, ModalContent, ModalFooter } from '@/components/Modal/Modal'
 ```
 
 ## Installation
@@ -86,9 +137,11 @@ Add the modal to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add modal
 ```
 
-## Basic Usage
+## Usage
 
-The modal is a controlled component toggled by the `isOpen` prop. It includes built-in support for titles, descriptions, and custom footers.
+The modal follows a strict **Composition-based API** for maximum flexibility and layout control.
+
+### Basic Implementation
 
 <Preview>
   <div className="flex flex-wrap gap-4">
@@ -97,51 +150,71 @@ The modal is a controlled component toggled by the `isOpen` prop. It includes bu
 </Preview>
 
 ```tsx
-import { useState } from 'react'
-import { Modal, Button } from '@/components/dashkit'
+<Modal isOpen={isOpen} onClose={close}>
+  <ModalHeader onClose={close}>
+    <h2>Project Overview</h2>
+    <p>Review your latest project stats.</p>
+  </ModalHeader>
+  <ModalContent>
+    <p>Main content area...</p>
+  </ModalContent>
+  <ModalFooter>
+    <Button variant="outlined" onClick={close}>Cancel</Button>
+    <Button onClick={save}>Save Changes</Button>
+  </ModalFooter>
+</Modal>
+```
 
-export default function App() {
-  const [isOpen, setIsOpen] = useState(false)
+### Advanced Layouts
 
-  return (
-    <>
-      <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
-      <Modal
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        title="Project Overview"
-        description="Review your latest project stats."
-      >
-        <p>Main content area...</p>
-      </Modal>
-    </>
-  )
-}
+Use the footer for standardized action alignment.
+
+<Preview>
+  <div className="flex flex-wrap gap-4">
+    <ComposableModal />
+  </div>
+</Preview>
+
+```tsx
+<Modal isOpen={isOpen} onClose={close} size="lg">
+  <ModalHeader onClose={close}>
+    <h2>Team Management</h2>
+    <p>Invite and manage roles.</p>
+  </ModalHeader>
+  <ModalContent>
+    <div className="team-list">
+      {/* Team settings content */}
+    </div>
+  </ModalContent>
+  <ModalFooter>
+    <Button variant="outlined" onClick={close}>Cancel</Button>
+    <Button onClick={save}>Save Changes</Button>
+  </ModalFooter>
+</Modal>
 ```
 
 ## Formats & Examples
 
-Modals can be customized for different scenarios using sizes, alignments, and custom children.
-
 ### Alert Modal
 
-Smaller modals are perfect for destructive actions or critical confirmations.
+Smaller modals with centered content for destructive actions.
 
 <Preview>
   <AlertModalExample />
 </Preview>
 
 ```tsx
-<Modal 
-  isOpen={isOpen} 
-  size="sm" 
-  className="text-center"
->
-  <div className="flex flex-col items-center gap-6">
-    <FiTrash2 size={40} className="text-red-500" />
-    <h3>Delete everything?</h3>
-    <Button variant="filled" className="bg-red-600">Yes, delete</Button>
-  </div>
+<Modal isOpen={isOpen} size="sm" className="text-center">
+  <ModalContent>
+    <div className="flex flex-col items-center gap-6">
+      <FiTrash2 size={40} className="text-red-500" />
+      <h3>Delete workspace?</h3>
+      <div className="grid grid-cols-2 w-full gap-2">
+        <Button variant="outlined">Cancel</Button>
+        <Button variant="filled">Confirm Delete</Button>
+      </div>
+    </div>
+  </ModalContent>
 </Modal>
 ```
 
@@ -154,12 +227,19 @@ The `full` size provides a take-over experience while maintaining focus on a sin
 </Preview>
 
 ```tsx
-<Modal 
-  isOpen={isOpen} 
-  size="full" 
-  title="Editor Mode"
->
-  <div className="content">...</div>
+<Modal isOpen={isOpen} size="full">
+  <ModalHeader onClose={close}>
+    <h2>Immersive Editor</h2>
+  </ModalHeader>
+  <ModalContent className="h-full">
+     <div className="h-full border-2 border-dashed rounded-[2.5rem]">
+       {/* Editor area content */}
+     </div>
+  </ModalContent>
+  <ModalFooter>
+    <Button variant="outlined" onClick={close}>Exit</Button>
+    <Button onClick={launch}>Launch</Button>
+  </ModalFooter>
 </Modal>
 ```
 
@@ -170,10 +250,6 @@ The `full` size provides a take-over experience while maintaining focus on a sin
 - **Body Scroll Lock**: Automatically prevents scrolling when the modal is active.
 - **Portalled Rendering**: Renders at the document root to avoid layering issues.
 - **Keyboard Accessible**: Closes instantly when the `Escape` key is pressed.
-
-## Sizes
-
-Predefined sizes to accommodate different content types: `sm`, `md` (default), `lg`, `xl`, `2xl`, and `full`.
 
 ## Props (API)
 
@@ -192,40 +268,16 @@ Predefined sizes to accommodate different content types: `sm`, `md` (default), `
     "description": "Callback fired when closing (ESC or click outside)."
   },
   {
-    "prop": "title",
-    "type": "string",
-    "defaultValue": "—",
-    "description": "Bold header title."
-  },
-  {
-    "prop": "description",
-    "type": "string",
-    "defaultValue": "—",
-    "description": "Subtitle text below the title."
-  },
-  {
     "prop": "size",
     "type": "'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full'",
     "defaultValue": "'md'",
     "description": "The max-width of the internal container."
   },
   {
-    "prop": "footer",
-    "type": "ReactNode",
-    "defaultValue": "—",
-    "description": "Actions displayed at the bottom of the modal."
-  },
-  {
     "prop": "children",
     "type": "ReactNode",
     "defaultValue": "—",
-    "description": "Main content of the dialog."
-  },
-  {
-    "prop": "showCloseButton",
-    "type": "boolean",
-    "defaultValue": "true",
-    "description": "Whether to show the close (X) icon."
+    "description": "Composition sub-components (ModalHeader, ModalContent, ModalFooter)."
   },
   {
     "prop": "className",
@@ -235,3 +287,4 @@ Predefined sizes to accommodate different content types: `sm`, `md` (default), `
   }
 ]}
 />
+

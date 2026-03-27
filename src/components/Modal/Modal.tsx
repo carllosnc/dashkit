@@ -13,13 +13,9 @@ function cn(...inputs: (string | undefined | null | boolean | Record<string, boo
 export interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  title?: string;
-  description?: string;
   children: ReactNode;
-  footer?: ReactNode;
   size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
   className?: string;
-  showCloseButton?: boolean;
 }
 
 const sizeClasses = {
@@ -31,16 +27,40 @@ const sizeClasses = {
   full: 'max-w-[95vw] h-[95vh]',
 };
 
+export const ModalHeader = ({ children, className, onClose }: { children?: ReactNode; className?: string; onClose?: () => void }) => (
+  <div className={cn("flex items-start justify-between p-4 border-b border-border/50", className)}>
+    <div className="flex flex-col gap-1.5 flex-1">
+      {children}
+    </div>
+    {onClose && (
+      <button
+        onClick={onClose}
+        className="p-2.5 rounded-md hover:bg-ds-100 dark:hover:bg-ds-800 text-ds-400 hover:text-ds-900 dark:hover:text-white shrink-0"
+      >
+        <FiX size={20} />
+      </button>
+    )}
+  </div>
+);
+
+export const ModalContent = ({ children, className }: { children: ReactNode; className?: string }) => (
+  <div className={cn("flex-1 overflow-y-auto p-4 no-scrollbar", className)}>
+    {children}
+  </div>
+);
+
+export const ModalFooter = ({ children, className }: { children: ReactNode; className?: string }) => (
+  <div className={cn("p-4 flex items-center justify-end gap-3 bg-card border-t border-border/50", className)}>
+    {children}
+  </div>
+);
+
 export const Modal = ({
   isOpen,
   onClose,
-  title,
-  description,
   children,
-  footer,
   size = 'md',
   className,
-  showCloseButton = true,
 }: ModalProps) => {
   useModal({ isOpen, onClose });
 
@@ -62,45 +82,12 @@ export const Modal = ({
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
             className={cn(
-              "w-full bg-card text-card-foreground rounded-2xl shadow-sm border border-border overflow-hidden flex flex-col",
+              "w-full bg-card text-card-foreground rounded-xl shadow-sm overflow-hidden flex flex-col",
               sizeClasses[size],
               className
             )}
           >
-            {(title || description || showCloseButton) && (
-              <div className="flex items-start justify-between p-8 pb-4">
-                <div className="flex flex-col gap-1.5">
-                  {title && (
-                    <h2 className="text-xl font-bold text-block-fg dark:text-block-dark-fg tracking-tight uppercase">
-                      {title}
-                    </h2>
-                  )}
-                  {description && (
-                    <p className="text-sm text-muted-foreground">
-                      {description}
-                    </p>
-                  )}
-                </div>
-                {showCloseButton && (
-                  <button
-                    onClick={onClose}
-                    className="p-2.5 rounded-md transition-all duration-200 hover:bg-ds-100 dark:hover:bg-ds-800 text-ds-400 hover:text-ds-900 dark:hover:text-white"
-                  >
-                    <FiX size={20} />
-                  </button>
-                )}
-              </div>
-            )}
-
-            <div className="flex-1 overflow-y-auto px-8 py-4 no-scrollbar min-h-[100px]">
-              {children}
-            </div>
-
-            {footer && (
-              <div className="p-8 pt-4 flex items-center justify-end gap-3 bg-card border-t border-border">
-                {footer}
-              </div>
-            )}
+            {children}
           </motion.div>
         </div>
       )}
