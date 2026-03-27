@@ -38,8 +38,13 @@
   --color-popover-foreground: var(--ds-popover-fg);
 
   --color-border: var(--ds-border);
-  --color-input: var(--ds-input);
-  --color-ring: var(--ds-ring);
+
+  --color-input: var(--ds-input-border);
+  --color-input-bg: var(--ds-input-bg);
+  --color-input-border: var(--ds-input-border);
+  --color-input-focus: var(--ds-input-focus);
+  --color-input-fg: var(--ds-input-fg);
+  --color-ring: var(--ds-input-ring);
 
   --color-primary: var(--ds-primary);
   --color-primary-foreground: var(--ds-primary-fg);
@@ -90,8 +95,11 @@
   --ds-accent-fg: var(--color-ds-950);
 
   --ds-border: var(--color-ds-300);
-  --ds-input: var(--color-ds-300);
-  --ds-ring: var(--color-ds-200);
+  --ds-input-bg: var(--color-ds-100);
+  --ds-input-border: var(--color-ds-300);
+  --ds-input-focus: var(--color-ds-400);
+  --ds-input-fg: var(--color-ds-900);
+  --ds-input-ring: var(--color-ds-primary-100);
 
   --ds-success: #00ae56;
   --ds-success-fg: var(--color-ds-50);
@@ -122,6 +130,13 @@
   --ds-accent: var(--color-ds-900);
   --ds-accent-fg: var(--color-ds-50);
 
+  --ds-border: var(--color-ds-800);
+  --ds-input-bg: var(--color-ds-950);
+  --ds-input-border: var(--color-ds-800);
+  --ds-input-focus: var(--color-ds-700);
+  --ds-input-fg: var(--color-ds-100);
+  --ds-input-ring: var(--color-ds-800);
+
   --ds-success: #49ff6c;
   --ds-success-fg: var(--color-ds-950);
   --ds-warning: #e58700;
@@ -130,10 +145,6 @@
   --ds-danger-fg: var(--color-ds-950);
   --ds-info: #00ccff;
   --ds-info-fg: var(--color-ds-950);
-
-  --ds-border: var(--color-ds-800);
-  --ds-input: var(--color-ds-800);
-  --ds-ring: var(--color-ds-800);
 }
 
 /* ────────────────────────────────────────────────

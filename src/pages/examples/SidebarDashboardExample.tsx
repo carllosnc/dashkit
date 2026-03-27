@@ -292,8 +292,8 @@ export const SidebarDashboardExample = () => {
                 <AreaChart
                   data={PROJECT_HEALTH_DATA}
                   series={[
-                    { key: 'health', label: 'Health', color: '#2563eb' },
-                    { key: 'velocity', label: 'Velocity', color: '#38bdf8' }
+                    { key: 'health', label: 'Health', color: 'var(--color-ds-primary-600)' },
+                    { key: 'velocity', label: 'Velocity', color: 'var(--color-ds-primary-400)' }
                   ]}
                 />
               </CardContent>
@@ -308,8 +308,8 @@ export const SidebarDashboardExample = () => {
                  <BarChart
                    data={PERFORMANCE_DATA}
                    series={[
-                     { key: 'completed', label: 'Completed', color: '#3b82f6' },
-                     { key: 'pending', label: 'Pending', color: '#93c5fd' }
+                     { key: 'completed', label: 'Completed', color: 'var(--color-ds-primary-500)' },
+                     { key: 'pending', label: 'Pending', color: 'var(--color-ds-primary-200)' }
                    ]}
                    height={300}
                  />
@@ -400,7 +400,7 @@ export const SidebarDashboardExample = () => {
             {[
               { label: 'New Project', icon: <FiPlus />, color: 'text-primary' },
               { label: 'Invite Team', icon: <FiUsers />, color: 'text-emerald-500' },
-              { label: 'Project Files', icon: <FiFileText />, color: 'text-blue-500' },
+              { label: 'Project Files', icon: <FiFileText />, color: 'text-ds-primary-500' },
               { label: 'Activity Logs', icon: <FiActivity />, color: 'text-ds-400' },
               { label: 'Support & Help', icon: <FiHelpCircle />, color: 'text-amber-500' },
             ].map((action, i) => (

@@ -204,7 +204,7 @@ export const Combobox = ({
           placeholder={multiple && selectedOptions.length > 0 ? "Add more..." : placeholder}
           autoComplete="off"
           className={cn(
-            "w-full h-9 pl-10 pr-10 text-sm bg-background text-foreground border border-input rounded-[var(--radius)] outline-none transition-all duration-200 focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-transparent placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
+            "w-full h-9 pl-10 pr-10 text-sm bg-input-bg text-input-fg border border-input rounded-[var(--radius)] outline-none transition-all duration-200 focus:border-input-focus focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-transparent placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
             isOpen && "ring-2 ring-ring ring-offset-2 ring-offset-transparent border-input"
           )}
         />

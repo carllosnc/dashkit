@@ -80,12 +80,12 @@ const BAR_CHART_DATA = [
 ];
 
 const BAR_CHART_SERIES = [
-  { key: 'revenue', label: 'Revenue', color: 'var(--color-blue-500)' },
+  { key: 'revenue', label: 'Revenue', color: 'var(--color-ds-primary-500)' },
   { key: 'profit', label: 'Profit', color: 'var(--color-indigo-500)' },
 ];
 
 const PIE_CHART_DATA = [
-  { label: 'Direct', value: 4500, color: 'var(--color-blue-500)' },
+  { label: 'Direct', value: 4500, color: 'var(--color-ds-primary-500)' },
   { label: 'Organic', value: 3800, color: 'var(--color-indigo-500)' },
   { label: 'Referral', value: 2400, color: 'var(--color-purple-500)' },
   { label: 'Social', value: 1200, color: 'var(--color-emerald-500)' },
@@ -365,7 +365,7 @@ export function DashboardExample() {
                                 content={post.category}
                                 className={cn(
                                   "border-none uppercase whitespace-nowrap px-2 pt-[5px] pb-[3px]",
-                                  post.category === 'Engineering' && "bg-blue-500/10 text-blue-600",
+                                  post.category === 'Engineering' && "bg-ds-primary-500/10 text-ds-primary-600",
                                   post.category === 'Design' && "bg-amber-500/10 text-amber-600",
                                   post.category === 'Ops' && "bg-purple-500/10 text-purple-600",
                                 )}
@@ -415,7 +415,7 @@ export function DashboardExample() {
                                   "border-none uppercase w-fit",
                                   log.status === 'Success' && "bg-emerald-500/10 text-emerald-600",
                                   log.status === 'Warning' && "bg-rose-500/10 text-rose-600",
-                                  log.status === 'Info' && "bg-blue-500/10 text-blue-600",
+                                  log.status === 'Info' && "bg-ds-primary-500/10 text-ds-primary-600",
                                 )}
                               />
                             </div>
@@ -592,8 +592,8 @@ export function DashboardExample() {
         <div className="flex flex-col gap-4 py-6 px-6 overflow-y-auto">
            {[1,2,3,4,5].map(i => (
              <div key={i} className="flex gap-4 p-4 rounded-md hover:bg-ds-50 dark:hover:bg-ds-900 transition-colors border border-transparent hover:border-ds-border dark:hover:border-ds-dark-border">
-                <div className="size-10 rounded-full bg-blue-500/10 flex items-center justify-center shrink-0">
-                   <FiBell className="text-blue-500" />
+                <div className="size-10 rounded-full bg-ds-primary-500/10 flex items-center justify-center shrink-0">
+                   <FiBell className="text-ds-primary-500" />
                 </div>
                 <div>
                    <div className="text-sm font-bold">New comment on "Auth Logic"</div>

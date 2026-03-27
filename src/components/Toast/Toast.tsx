@@ -78,7 +78,7 @@ const typeIcons: Record<ToastType, React.ReactNode> = {
   success: <FiCheckCircle className="text-emerald-500" />,
   error: <FiAlertCircle className="text-red-500" />,
   warning: <FiAlertTriangle className="text-amber-500" />,
-  info: <FiInfo className="text-blue-500" />,
+  info: <FiInfo className="text-info" />,
   default: null
 };
 

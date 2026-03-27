@@ -70,7 +70,7 @@ export const LoginExample = () => {
                 />
                 <div className="flex mt-[20px] items-center justify-between px-1">
                   <Checkbox label="Remember me" />
-                  <button type="button" className="text-sm text-ds-950 dark:text-ds-100 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
+                  <button type="button" className="text-sm text-ds-950 dark:text-ds-100 hover:text-primary transition-colors">
                     Forgot password?
                   </button>
                 </div>
@@ -95,7 +95,7 @@ export const LoginExample = () => {
 
           <p className="text-center text-sm text-muted-foreground">
             Don't have an account?{' '}
-            <button className="font-semibold text-ds-900 dark:text-ds-100 hover:text-blue-500 dark:hover:text-sky-400 transition-colors">
+            <button className="font-semibold text-ds-900 dark:text-ds-100 hover:text-primary transition-colors">
               Request access
             </button>
           </p>
