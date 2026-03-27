@@ -240,7 +240,7 @@ export const Combobox = ({
               zIndex: 9999,
             }}
             className={cn(
-              "p-1 bg-popover text-popover-foreground border rounded-lg shadow-lg overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200"
+              "p-1 bg-popover text-popover-foreground border rounded-md shadow-lg overflow-hidden animate-in fade-in zoom-in duration-200"
             )}
           >
             <div className="max-h-60 overflow-y-auto custom-scrollbar flex flex-col gap-0.5 font-sans">

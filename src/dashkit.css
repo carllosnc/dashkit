@@ -104,11 +104,11 @@
   --color-accent: var(--ds-accent);
   --color-accent-foreground: var(--ds-accent-fg);
 
-  --radius-lg: 0.4rem;
-  --radius-xl: 0.75rem;
-  --radius-2xl: 1rem;
+  --radius-base: 0.3rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
 
-  --radius: var(--radius-lg);
+  --radius: var(--radius-base);
 }
 
 /* ────────────────────────────────────────────────

@@ -159,7 +159,7 @@ export function DropdownContent({
            transition={{ duration: 0.1, ease: "easeOut" }}
            style={style}
            className={cn(
-             "min-w-[12rem] bg-popover text-popover-foreground border rounded-lg shadow-lg p-1 origin-top overflow-hidden",
+             "min-w-[12rem] bg-popover text-popover-foreground border rounded-md shadow-lg p-1 origin-top overflow-hidden",
              className
            )}
         >

@@ -5,6 +5,7 @@ import { FiX } from 'react-icons/fi';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { useModal } from './useModal';
+import { IconButton } from '../IconButton/IconButton';
 
 function cn(...inputs: (string | undefined | null | boolean | Record<string, boolean>)[]) {
   return twMerge(clsx(inputs));
@@ -28,29 +29,30 @@ const sizeClasses = {
 };
 
 export const ModalHeader = ({ children, className, onClose }: { children?: ReactNode; className?: string; onClose?: () => void }) => (
-  <div className={cn("flex items-start justify-between p-4 border-b border-border/50", className)}>
+  <div className={cn("flex items-start justify-between p-6 border-b border-border/50", className)}>
     <div className="flex flex-col gap-1.5 flex-1">
       {children}
     </div>
     {onClose && (
-      <button
+      <IconButton
+        icon={<FiX size={18} />}
+        variant="ghost"
         onClick={onClose}
-        className="p-2.5 rounded-md hover:bg-ds-100 dark:hover:bg-ds-800 text-ds-400 hover:text-ds-900 dark:hover:text-white shrink-0"
-      >
-        <FiX size={20} />
-      </button>
+        className="-mr-2 text-ds-400 hover:text-ds-900 dark:hover:text-white"
+        aria-label="Close modal"
+      />
     )}
   </div>
 );
 
 export const ModalContent = ({ children, className }: { children: ReactNode; className?: string }) => (
-  <div className={cn("flex-1 overflow-y-auto p-4 no-scrollbar", className)}>
+  <div className={cn("flex-1 overflow-y-auto p-6 no-scrollbar", className)}>
     {children}
   </div>
 );
 
 export const ModalFooter = ({ children, className }: { children: ReactNode; className?: string }) => (
-  <div className={cn("p-4 flex items-center justify-end gap-3 bg-card border-t border-border/50", className)}>
+  <div className={cn("p-6 flex items-center justify-end gap-3 bg-card border-t border-border/50", className)}>
     {children}
   </div>
 );
@@ -67,7 +69,7 @@ export const Modal = ({
   return createPortal(
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[100] isolate flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[100] isolate flex items-center justify-center p-6">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -82,7 +84,7 @@ export const Modal = ({
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
             className={cn(
-              "w-full bg-card text-card-foreground rounded-xl shadow-sm overflow-hidden flex flex-col",
+              "w-full bg-card text-card-foreground rounded-[var(--radius)] shadow-sm overflow-hidden flex flex-col",
               sizeClasses[size],
               className
             )}

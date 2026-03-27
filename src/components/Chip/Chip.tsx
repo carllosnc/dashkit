@@ -67,7 +67,7 @@ export const Chip = ({
     <div
       onClick={disabled ? undefined : onClick}
       className={cn(
-        "inline-flex items-center gap-1.5 h-8 px-3 rounded-md text-[13px] font-medium transition-all duration-200 border select-none",
+        "inline-flex items-center gap-1.5 h-8 px-3 rounded-[var(--radius)] text-[13px] font-medium transition-all duration-200 border select-none",
         colorStyles[color][variant === 'tonal' ? 'tonal' : variant],
         isInteractive ? "cursor-pointer" : "cursor-default",
         selected && variant === 'outlined' && "ring-2 ring-current border-transparent",

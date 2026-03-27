@@ -41,6 +41,7 @@ import { BarChart } from '../../components/BarChart/BarChart';
 import { PieChart } from '../../components/PieChart/PieChart';
 import { ImageExpander } from '../../components/ImageExpander/ImageExpander';
 import { ProgressBar } from '../../components/ProgressBar/ProgressBar';
+import { FloatActionMenu } from '../../components/FloatActionMenu/FloatActionMenu';
 import {
   Table,
   TableHeader,
@@ -1177,6 +1178,24 @@ export const AllComponentsExample = () => {
       </main>
 
       <Footer />
+
+      <FloatActionMenu
+        label="Quick Actions"
+        icon={<FiPlus />}
+        position="bottom-right"
+      >
+        <div className="flex flex-col gap-4">
+          <div className="p-4 rounded-[var(--radius)] bg-ds-50 dark:bg-ds-800 border border-border/60">
+            <h4 className="text-sm font-semibold mb-1">Create New Task</h4>
+            <p className="text-xs text-muted-foreground">Add a task to your current active project.</p>
+          </div>
+          <div className="flex flex-col gap-2">
+            <Button variant="soft" leftIcon={<FiEdit2 />} className="justify-start">Edit Project</Button>
+            <Button variant="soft" leftIcon={<FiShare2 />} className="justify-start">Share Dashboard</Button>
+            <Button variant="soft" leftIcon={<FiDownload />} className="justify-start">Export Data</Button>
+          </div>
+        </div>
+      </FloatActionMenu>
     </div>
   );
 };

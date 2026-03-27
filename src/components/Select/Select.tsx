@@ -93,7 +93,7 @@ export const Select = ({
               zIndex: 9999,
             }}
             className={cn(
-              "p-1 bg-popover text-popover-foreground border rounded-lg shadow-lg overflow-hidden"
+              "p-1 bg-popover text-popover-foreground border rounded-md shadow-lg overflow-hidden"
             )}
           >
             <div className="max-h-60 overflow-y-auto flex flex-col gap-0.5">

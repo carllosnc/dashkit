@@ -37,8 +37,8 @@ function App() {
         <div className="mb-8 animate-in fade-in slide-in-from-top-4 duration-1000 delay-100 fill-mode-both">
           <Badge
             color="warning"
+            variant="soft"
             content="Dashkit is currently under construction"
-            className="px-4 py-1.5 rounded-full text-[10px] uppercase font-bold tracking-[0.15em] bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20"
           />
         </div>
 

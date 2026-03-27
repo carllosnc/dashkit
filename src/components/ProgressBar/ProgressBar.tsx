@@ -50,7 +50,8 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
 
     const BarContainer = (
       <div className={cn(
-        "bg-ds-200 dark:bg-ds-800 rounded-full overflow-hidden shrink-0 w-full",
+        "bg-ds-200 dark:bg-ds-800 rounded-full overflow-hidden",
+        labelPosition === 'side' ? "flex-1" : "w-full",
         sizeStyles[size]
       )}>
         {animate ? (
@@ -78,8 +79,8 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
         >
           {BarContainer}
           {(showLabel || label) && (
-            <div className="flex items-center gap-2 shrink-0">
-               {label && <span className="text-xs font-medium text-muted-foreground">{label}</span>}
+            <div className="flex items-center gap-2 shrink-0 min-w-0">
+               {label && <span className="text-xs font-medium text-muted-foreground truncate">{label}</span>}
                {showLabel && (
                   <span className="text-xs font-bold text-foreground tracking-tight w-8 text-right">
                     {Math.round(percentage)}%
@@ -98,8 +99,8 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
         {...props}
       >
         {(showLabel || label) && (
-          <div className="flex items-center justify-between gap-4">
-            {label && <span className="text-xs font-medium text-muted-foreground">{label}</span>}
+          <div className="flex items-center justify-between gap-4 min-w-0">
+            {label && <span className="text-xs font-medium text-muted-foreground truncate">{label}</span>}
             {showLabel && (
               <span className="text-xs font-bold text-foreground ml-auto tracking-tight">
                 {Math.round(percentage)}%
