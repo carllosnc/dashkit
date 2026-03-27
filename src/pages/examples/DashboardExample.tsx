@@ -32,7 +32,7 @@ import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem } from '../../
 import { Chip } from '../../components/Chip/Chip';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../../components/Accordion/Accordion';
 import { Switch } from '../../components/Switch/Switch';
-import { Modal } from '../../components/Modal/Modal';
+import { Modal, ModalHeader, ModalContent, ModalFooter } from '../../components/Modal/Modal';
 import { Drawer, DrawerHeader } from '../../components/Drawer/Drawer';
 import { toast } from '../../components/Toast/useToast';
 import { ThemeToggle } from '../../partials/ThemeToggle';
@@ -556,9 +556,11 @@ export function DashboardExample() {
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        title="Create New Project"
       >
-        <div className="flex flex-col gap-6 pt-4">
+        <ModalHeader onClose={() => setIsModalOpen(false)}>
+          <h3 className="text-lg font-semibold">Create New Project</h3>
+        </ModalHeader>
+        <ModalContent className="flex flex-col gap-6">
           <Input label="Project Name" placeholder="E-commerce Redesign" required />
           <Select 
             label="Priority"
@@ -568,11 +570,11 @@ export function DashboardExample() {
               { label: 'High', value: 'high' }
             ]}
           />
-          <div className="flex justify-end gap-3 mt-4">
-            <Button variant="outlined" onClick={() => setIsModalOpen(false)}>Cancel</Button>
-            <Button onClick={() => { setIsModalOpen(false); toast({ type: 'success', description: 'Project created!' }); }}>Create</Button>
-          </div>
-        </div>
+        </ModalContent>
+        <ModalFooter>
+          <Button variant="outlined" onClick={() => setIsModalOpen(false)}>Cancel</Button>
+          <Button onClick={() => { setIsModalOpen(false); toast({ type: 'success', description: 'Project created!' }); }}>Create</Button>
+        </ModalFooter>
       </Modal>
 
       <Drawer
