@@ -17,6 +17,18 @@
   --color-ds-900:   var(--color-neutral-900);
   --color-ds-950:   var(--color-neutral-950);
 
+  --color-ds-primary-50:    var(--color-blue-50);
+  --color-ds-primary-100:   var(--color-blue-100);
+  --color-ds-primary-200:   var(--color-blue-200);
+  --color-ds-primary-300:   var(--color-blue-300);
+  --color-ds-primary-400:   var(--color-blue-400);
+  --color-ds-primary-500:   var(--color-blue-500);
+  --color-ds-primary-600:   var(--color-blue-600);
+  --color-ds-primary-700:   var(--color-blue-700);
+  --color-ds-primary-800:   var(--color-blue-800);
+  --color-ds-primary-900:   var(--color-blue-900);
+  --color-ds-primary-950:   var(--color-blue-950);
+
   --color-background: var(--ds-bg);
   --color-foreground: var(--ds-fg);
 
@@ -67,7 +79,7 @@
   --ds-popover: var(--color-ds-50);
   --ds-popover-fg: var(--color-ds-900);
 
-  --ds-primary: var(--color-blue-600);
+  --ds-primary: var(--color-ds-primary-600);
   --ds-primary-fg: var(--color-ds-50);
   --ds-secondary: var(--color-ds-200);
   --ds-secondary-fg: var(--color-ds-900);
@@ -100,7 +112,7 @@
   --ds-popover: var(--color-ds-950);
   --ds-popover-fg: var(--color-ds-100);
 
-  --ds-primary: var(--color-blue-500);
+  --ds-primary: var(--color-ds-primary-500);
   --ds-primary-fg: var(--color-ds-0);
   --ds-secondary: var(--color-ds-800);
   --ds-secondary-fg: var(--color-ds-100);
