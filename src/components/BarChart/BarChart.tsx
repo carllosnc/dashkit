@@ -175,7 +175,7 @@ export const BarChart = ({
       {showTooltip && hoveredIndex !== null && (
         <div
           className={cn(
-            "absolute z-50 pointer-events-none transform -translate-x-1/2 bg-ds-950 text-white rounded-lg shadow-2xl border border-ds-800 p-3 flex flex-col gap-2 min-w-[140px] transition-transform duration-200",
+            "absolute z-50 pointer-events-none transform -translate-x-1/2 bg-ds-950 text-white rounded-[var(--radius)] shadow-2xl border border-ds-800 p-3 flex flex-col gap-2 min-w-[140px] transition-transform duration-200",
             isNearTop ? "translate-y-4" : "-translate-y-full -mt-12"
           )}
           style={{
