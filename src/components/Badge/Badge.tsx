@@ -76,8 +76,8 @@ export const Badge = ({
       {show && (
         <motion.span
           className={cn(
-            "relative inline-flex items-center justify-center font-semibold select-none whitespace-nowrap",
-            dot ? "w-2.5 h-2.5 rounded-full" : "min-w-[1.125rem] pt-[5px] pb-[3px] px-1.5 rounded-[var(--radius)] text-[11px] flex items-center justify-center leading-none",
+            "relative inline-flex items-center justify-center font-semibold select-none whitespace-nowrap uppercase",
+            dot ? "w-2.5 h-2.5 rounded-full" : "min-w-[1.125rem] pt-[5px] pb-[3px] px-2 rounded-[var(--radius)] text-[11px] flex items-center justify-center leading-none",
             badgeStyles,
             className
           )}

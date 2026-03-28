@@ -363,13 +363,9 @@ export function DashboardExample() {
                           <TableCell>
                             <div className="w-fit">
                               <Badge
+                                variant='soft'
+                                color={post.category === 'Engineering' ? 'info' : post.category === 'Design' ? 'warning' : 'base'}
                                 content={post.category}
-                                className={cn(
-                                  "border-none uppercase whitespace-nowrap px-2 pt-[5px] pb-[3px]",
-                                  post.category === 'Engineering' && "bg-ds-primary-500/10 text-ds-primary-600",
-                                  post.category === 'Design' && "bg-amber-500/10 text-amber-600",
-                                  post.category === 'Ops' && "bg-purple-500/10 text-purple-600",
-                                )}
                               />
                             </div>
                           </TableCell>
@@ -412,12 +408,8 @@ export function DashboardExample() {
                             <div className="flex">
                               <Badge
                                 content={log.status}
-                                className={cn(
-                                  "border-none uppercase w-fit",
-                                  log.status === 'Success' && "bg-emerald-500/10 text-emerald-600",
-                                  log.status === 'Warning' && "bg-rose-500/10 text-rose-600",
-                                  log.status === 'Info' && "bg-ds-primary-500/10 text-ds-primary-600",
-                                )}
+                                variant='soft'
+                                color={log.status === 'Success' ? 'success' : log.status === 'Warning' ? 'warning' : 'info'}
                               />
                             </div>
                           </TableCell>
