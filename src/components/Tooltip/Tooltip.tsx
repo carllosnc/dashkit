@@ -13,11 +13,22 @@ interface TooltipContextType {
   setOpen: (open: boolean) => void;
   triggerRect: DOMRect | null;
   setTriggerRect: (rect: DOMRect | null) => void;
+  animate: boolean;
 }
 
 const TooltipContext = React.createContext<TooltipContextType | undefined>(undefined);
 
-export function Tooltip({ children, delay = 0, className }: { children: React.ReactNode; delay?: number; className?: string }) {
+export function Tooltip({ 
+  children, 
+  delay = 0, 
+  className,
+  animate = true
+}: { 
+  children: React.ReactNode; 
+  delay?: number; 
+  className?: string;
+  animate?: boolean;
+}) {
   const [open, setOpen] = React.useState(false);
   const [triggerRect, setTriggerRect] = React.useState<DOMRect | null>(null);
   const timeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -36,7 +47,7 @@ export function Tooltip({ children, delay = 0, className }: { children: React.Re
   };
 
   return (
-    <TooltipContext.Provider value={{ open, setOpen, triggerRect, setTriggerRect }}>
+    <TooltipContext.Provider value={{ open, setOpen, triggerRect, setTriggerRect, animate }}>
       <div
         className={cn("inline-block", className)}
         onMouseEnter={(e) => handleOpen(e.currentTarget.getBoundingClientRect())}
@@ -72,7 +83,7 @@ export function TooltipContent({
   const context = React.useContext(TooltipContext);
   if (!context) throw new Error('TooltipContent must be used within a Tooltip');
 
-  const { open, triggerRect } = context;
+  const { open, triggerRect, animate } = context;
   const [contentRect, setContentRect] = React.useState<DOMRect | null>(null);
   const contentRef = React.useRef<HTMLDivElement>(null);
 
@@ -119,14 +130,14 @@ export function TooltipContent({
       {open && (
         <motion.div
           ref={contentRef}
-          initial={{
+          initial={animate ? {
             opacity: 0,
             scale: 0.95,
             y: side === 'top' ? 4 : side === 'bottom' ? -4 : 0,
             x: side === 'left' ? 4 : side === 'right' ? -4 : 0
-          }}
+          } : { opacity: 1, scale: 1 }}
           animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
-          exit={{ opacity: 0, scale: 0.95 }}
+          exit={animate ? { opacity: 0, scale: 0.95 } : { opacity: 0 }}
           transition={{ duration: 0.1, ease: 'easeOut' }}
           style={{
             position: 'fixed',

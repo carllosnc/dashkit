@@ -6,10 +6,11 @@ import {
   FiZap, FiTrendingUp, FiCheckCircle,
   FiCalendar, FiMessageSquare, FiFileText, FiLayout,
   FiSearch, FiBell, FiDatabase, FiDollarSign, FiCreditCard,
-  FiActivity, FiPieChart, FiShield, FiBriefcase, FiArchive, FiCommand, FiPlus, FiHelpCircle
+  FiActivity, FiPieChart, FiShield, FiBriefcase, FiArchive, FiCommand, FiPlus, FiHelpCircle, FiHome
 } from 'react-icons/fi';
 import { Sidebar, SidebarHeader, SidebarFooter, SidebarSection, SidebarItem, SidebarHeaderOpen, SidebarHeaderClose, SidebarFooterOpen } from '../../components/Sidebar/Sidebar';
 import { FloatActionMenu } from '../../components/FloatActionMenu/FloatActionMenu';
+import { Dock, DockItem } from '../../components/Dock/Dock';
 import { cn } from '../../utils/cn';
 import { Button } from '../../components/Button/Button';
 import { IconButton } from '../../components/IconButton/IconButton';
@@ -389,6 +390,17 @@ export const SidebarDashboardExample = () => {
           </Card>
           </div>
         </main>
+
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] hidden md:block">
+          <Dock>
+             <DockItem icon={<FiHome />} label="Dashboard" />
+             <DockItem icon={<FiMessageSquare />} label="Messages" />
+             <DockItem icon={<FiArchive />} label="Project Archive" />
+             <DockItem icon={<FiBriefcase />} label="Workspaces" />
+             <DockItem icon={<FiGrid />} label="All Apps" />
+             <DockItem icon={<FiSettings />} label="Settings" />
+          </Dock>
+        </div>
 
         <FloatActionMenu
           label="Commands"

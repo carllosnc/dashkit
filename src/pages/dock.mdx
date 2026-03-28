@@ -1,0 +1,144 @@
+import { Dock, DockItem } from '../components/Dock/Dock';
+import { 
+  FiHome, FiGithub, FiTwitter, FiCommand, FiGrid, FiFolder, FiTrash 
+} from 'react-icons/fi';
+
+export const DockDemo = () => {
+  return (
+    <div className="flex flex-col gap-12 items-center py-24 w-full bg-ds-50 dark:bg-ds-950/20 rounded-3xl border border-ds-200 dark:border-ds-800">
+      <Dock>
+        <DockItem icon={<FiHome />} label="Home" />
+        <DockItem icon={<FiCommand />} label="Terminal" />
+        <DockItem icon={<FiGrid />} label="Dashboard" />
+        <DockItem icon={<FiFolder />} label="Projects" />
+        <DockItem icon={<FiTwitter />} label="X (Twitter)" href="https://twitter.com" />
+        <DockItem icon={<FiGithub />} label="GitHub" href="https://github.com" />
+        <DockItem icon={<FiTrash />} label="Trash" onClick={() => alert('Trash Emptied')} />
+      </Dock>
+
+      <div className="text-center max-w-sm">
+        <h4 className="text-sm font-bold mb-1 text-foreground">Interactive Magnification</h4>
+        <p className="text-xs text-muted-foreground font-medium uppercase tracking-widest leading-relaxed">
+          Hover over the items to see the magnetic effect
+        </p>
+      </div>
+    </div>
+  );
+}
+
+# Dock
+
+A fluid, magnified navigation bar inspired by macOS, using Framer Motion for high-fidelity interactive physics.
+
+## Import
+
+```tsx
+import { Dock, DockItem } from '@/components/Dock/Dock';
+```
+
+## Installation
+
+```bash
+bunx carllosnc/dashkit add dock
+```
+
+## Basic Usage
+
+The dock is composed of a `Dock` container and multiple `DockItem` components.
+
+<Preview>
+  <DockDemo />
+</Preview>
+
+```tsx
+<Dock>
+  <DockItem icon={<FiHome />} label="Home" />
+  <DockItem icon={<FiCommand />} label="Terminal" />
+  <DockItem icon={<FiGrid />} label="Dashboard" />
+  <DockItem icon={<FiGithub />} label="GitHub" href="https://github.com" />
+</Dock>
+```
+
+## Theme Inversion
+
+The Dock component implements an inverted contrast theme by default:
+- **Light mode**: Uses dark backgrounds and light icons/text.
+- **Dark mode**: Uses white backgrounds and dark icons/text.
+
+This makes the dock stand out visually from the rest of the UI, behaving more like a floating control utility.
+
+## Customization
+
+You can adjust the `magnification` (how much it grows) and the `distance` (how far the magnet reach is).
+
+```tsx
+<Dock magnification={80} distance={200}>
+  <DockItem icon={<FiHome />} />
+</Dock>
+```
+
+## Features
+
+- **Fluid Magnification**: Uses `framer-motion`'s `useSpring` and `useTransform` for physics-based scaling.
+- **Smart Positioning**: Items adjust their width relative to the cursor position on the `X` axis.
+- **Tooltips Included**: Built-in hover labels for quick identification of icon-only items.
+- **Theme Logic**: Specialized colors that provide high contrast in both themes.
+- **Composed API**: Clean JSX structure for easy item management.
+
+## Component API
+
+### Dock
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "magnification",
+    "type": "number",
+    "defaultValue": "60",
+    "description": "The maximum width of an item when the mouse is directly over it."
+  },
+  {
+    "prop": "distance",
+    "type": "number",
+    "defaultValue": "140",
+    "description": "The distance from the mouse where the magnification effect starts."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Additional CSS classes for the dock container."
+  }
+]}
+/>
+
+### DockItem
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "icon",
+    "type": "ReactNode",
+    "defaultValue": "—",
+    "description": "The icon component to display inside the dock item."
+  },
+  {
+    "prop": "label",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "A text label that appears on hover."
+  },
+  {
+    "prop": "href",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "If provided, the item will render as an anchor link."
+  },
+  {
+    "prop": "onClick",
+    "type": "() => void",
+    "defaultValue": "—",
+    "description": "Callback function when the item is clicked."
+  }
+]}
+/>
