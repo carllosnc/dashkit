@@ -183,13 +183,15 @@ export interface SidebarItemProps extends Omit<HTMLMotionProps<'button'>, 'child
   target?: string;
 }
 
+import { Tooltip, TooltipTrigger, TooltipContent } from '../Tooltip/Tooltip';
+
 export function SidebarItem({ icon, active, children, badgeSlot, className, href, target, ...props }: SidebarItemProps) {
   const sidebarContext = React.useContext(SidebarContext);
   if (!sidebarContext) throw new Error('SidebarItem must be used within Sidebar');
   const { isOpen } = sidebarContext;
 
   const sharedClasses = cn(
-    "relative flex w-full items-center py-[8px] text-sm font-medium outline-none group isolate",
+    "relative flex w-full items-center py-[8px] text-sm font-medium outline-none group isolate transition-all duration-200",
     active
       ? "text-primary"
       : "text-muted-foreground hover:text-foreground hover:bg-muted/30",
@@ -242,20 +244,16 @@ export function SidebarItem({ icon, active, children, badgeSlot, className, href
     </>
   );
 
-  if (href) {
-    return (
-      <motion.a
-        href={href}
-        target={target}
-        className={sharedClasses}
-        {...props as HTMLMotionProps<'a'>}
-      >
-        {content}
-      </motion.a>
-    );
-  }
-
-  return (
+  const itemElement = href ? (
+    <motion.a
+      href={href}
+      target={target}
+      className={sharedClasses}
+      {...props as HTMLMotionProps<'a'>}
+    >
+      {content}
+    </motion.a>
+  ) : (
     <motion.button
       type="button"
       className={sharedClasses}
@@ -264,4 +262,19 @@ export function SidebarItem({ icon, active, children, badgeSlot, className, href
       {content}
     </motion.button>
   );
+
+  if (!isOpen) {
+    return (
+      <Tooltip className="block w-full">
+        <TooltipTrigger asChild>
+          {itemElement}
+        </TooltipTrigger>
+        <TooltipContent side="right" sideOffset={12}>
+          {children}
+        </TooltipContent>
+      </Tooltip>
+    );
+  }
+
+  return itemElement;
 }

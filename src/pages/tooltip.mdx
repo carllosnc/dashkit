@@ -1,0 +1,203 @@
+import { useState } from 'react';
+import { 
+  Tooltip, 
+  TooltipTrigger, 
+  TooltipContent 
+} from '../components/Tooltip/Tooltip';
+import { Button } from '../components/Button/Button';
+import { FiInfo, FiPlus, FiHelpCircle } from 'react-icons/fi';
+
+export const TooltipDemo = () => {
+  return (
+    <div className="flex flex-col gap-12 items-center py-10 w-full">
+      <div className="flex flex-wrap gap-8 items-center justify-center">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="outlined" className="gap-2">
+              <FiInfo /> Hover me
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            Display helpful information
+          </TooltipContent>
+        </Tooltip>
+
+        <Tooltip delay={300}>
+          <TooltipTrigger asChild>
+            <Button variant="filled" className="gap-2">
+              Delayed Tooltip
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            Appears after 300ms
+          </TooltipContent>
+        </Tooltip>
+
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <button className="p-2 rounded-full hover:bg-ds-100 dark:hover:bg-white/10 transition-colors text-ds-500 hover:text-ds-900 border border-ds-200 dark:border-ds-800">
+              <FiHelpCircle size={20} />
+            </button>
+          </TooltipTrigger>
+          <TooltipContent side="right">
+            Right side tooltip
+          </TooltipContent>
+        </Tooltip>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-2xl px-4">
+        <div className="bg-ds-50 dark:bg-white/5 rounded-2xl p-6 border border-ds-200 dark:border-ds-800">
+          <h4 className="text-sm font-bold mb-2 text-foreground">Design System Ready</h4>
+          <p className="text-sm text-muted-foreground">
+            Uses popover tokens for background, border, and text colors. Supports global radius tokens.
+          </p>
+        </div>
+        <div className="bg-ds-50 dark:bg-white/5 rounded-2xl p-6 border border-ds-200 dark:border-ds-800">
+          <h4 className="text-sm font-bold mb-2 text-foreground">Smart Positioning</h4>
+          <p className="text-sm text-muted-foreground">
+             Ensures the content stays within the viewport and supports all four positions (top, bottom, left, right).
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export const PositioningDemo = () => {
+  return (
+    <div className="flex flex-wrap gap-4 items-center justify-center py-4">
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button variant="outlined">Top</Button>
+        </TooltipTrigger>
+        <TooltipContent side="top">Tooltip on top</TooltipContent>
+      </Tooltip>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button variant="outlined">Bottom</Button>
+        </TooltipTrigger>
+        <TooltipContent side="bottom">Tooltip on bottom</TooltipContent>
+      </Tooltip>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button variant="outlined">Left</Button>
+        </TooltipTrigger>
+        <TooltipContent side="left">Tooltip on left</TooltipContent>
+      </Tooltip>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button variant="outlined">Right</Button>
+        </TooltipTrigger>
+        <TooltipContent side="right">Tooltip on right</TooltipContent>
+      </Tooltip>
+    </div>
+  );
+}
+
+# Tooltip
+
+A small popup that displays information when a user hovers over an element.
+
+## Import
+
+```tsx
+import { 
+  Tooltip, 
+  TooltipTrigger, 
+  TooltipContent 
+} from '@/components/Tooltip/Tooltip';
+```
+
+## Installation
+
+```bash
+bunx carllosnc/dashkit add tooltip
+```
+
+## Basic Usage
+
+Tooltips are triggered by hovering over the trigger element.
+
+<Preview>
+  <TooltipDemo />
+</Preview>
+
+```tsx
+<Tooltip>
+  <TooltipTrigger asChild>
+    <Button variant="outlined">
+      <FiInfo /> Hover me
+    </Button>
+  </TooltipTrigger>
+  <TooltipContent>
+    Display helpful information
+  </TooltipContent>
+</Tooltip>
+```
+
+## Side Positioning
+
+Tooltips can be positioned on the `top`, `bottom`, `left`, or `right` of the trigger.
+
+<Preview>
+  <PositioningDemo />
+</Preview>
+
+```tsx
+<Tooltip>
+  <TooltipTrigger asChild>
+    <Button variant="outlined">Left Tooltip</Button>
+  </TooltipTrigger>
+  <TooltipContent side="left">
+    I am on the left!
+  </TooltipContent>
+</Tooltip>
+```
+
+## Features
+
+- **Animated**: Uses Framer Motion for smooth entry and exit transitions.
+- **Accessible**: Closes automatically when the mouse leaves the trigger.
+- **Smart Positioning**: Automatically calculates the best position relative to the trigger.
+- **Portalled**: Renders at the end of the document body to avoid z-index and overflow issues.
+- **Design System Consistent**: Uses theme-aware popover tokens and radius variables.
+
+## Component API
+
+### Tooltip
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "delay",
+    "type": "number",
+    "defaultValue": "0",
+    "description": "The delay in milliseconds before the tooltip appears."
+  }
+]}
+/>
+
+### TooltipContent
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "side",
+    "type": "'top' | 'bottom' | 'left' | 'right'",
+    "defaultValue": "'top'",
+    "description": "The side of the trigger to display the tooltip."
+  },
+  {
+    "prop": "sideOffset",
+    "type": "number",
+    "defaultValue": "8",
+    "description": "The distance in pixels between the trigger and the tooltip."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Additional CSS classes for the content container."
+  }
+]}
+/>

@@ -9,6 +9,7 @@ import InputDocs from './pages/input.mdx'
 import RadioDocs from './pages/radio.mdx'
 import SelectDocs from './pages/select.mdx'
 import SwitchDocs from './pages/switch.mdx'
+import TooltipDocs from './pages/tooltip.mdx'
 import TabsDocs from './pages/tabs.mdx'
 import SidebarDocs from './pages/sidebar.mdx'
 import DividerDocs from './pages/divider.mdx'
@@ -100,6 +101,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="sidebar" element={<MdxWrapper Component={SidebarDocs} />} />
                 <Route path="tabs" element={<MdxWrapper Component={TabsDocs} />} />
                 <Route path="textarea" element={<MdxWrapper Component={TextareaDocs} />} />
+                <Route path="tooltip" element={<MdxWrapper Component={TooltipDocs} />} />
                 <Route path="toast" element={<MdxWrapper Component={ToastDocs} />} />
                 <Route path="float-action-menu" element={<MdxWrapper Component={FloatActionMenuDocs} />} />
               </Route>
