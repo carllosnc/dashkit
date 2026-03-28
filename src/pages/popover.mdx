@@ -1,0 +1,195 @@
+# Popover
+
+A floating container that displays rich content anchored to a trigger element. Popovers are ideal for more complex content than tooltips, such as forms or descriptive text.
+
+## Import
+
+```tsx
+import { Popover, PopoverTrigger, PopoverContent } from 'dashkit'
+```
+
+## Installation
+
+Add the popover to your project using the Dashkit CLI:
+
+```bash
+bunx carllosnc/dashkit add popover
+```
+
+## Basic Usage
+
+The `Popover` component uses a composition-based API. Wrap your trigger and content in the `Popover` provider.
+
+<Preview>
+  <div className="not-prose flex justify-center p-8">
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="outlined">Open Popover</Button>
+      </PopoverTrigger>
+      <PopoverContent align="center" side="bottom" sideOffset={8}>
+        <div className="space-y-3">
+          <div className="space-y-1">
+            <h4 className="font-bold text-sm leading-none text-ds-950 dark:text-ds-50">Dimensions</h4>
+            <p className="text-xs text-muted-foreground">
+              Set the dimensions for the layer.
+            </p>
+          </div>
+          <div className="grid gap-2">
+            <div className="grid grid-cols-3 items-center gap-4">
+              <label htmlFor="width" className="text-xs font-medium">Width</label>
+              <div className="col-span-2 h-8 bg-ds-100 dark:bg-ds-800 rounded border border-ds-200 dark:border-ds-700 px-2 flex items-center text-xs">100%</div>
+            </div>
+            <div className="grid grid-cols-3 items-center gap-4">
+              <label htmlFor="maxWidth" className="text-xs font-medium">Max. width</label>
+              <div className="col-span-2 h-8 bg-ds-100 dark:bg-ds-800 rounded border border-ds-200 dark:border-ds-700 px-2 flex items-center text-xs">300px</div>
+            </div>
+          </div>
+        </div>
+      </PopoverContent>
+    </Popover>
+  </div>
+</Preview>
+
+```tsx
+import { Popover, PopoverTrigger, PopoverContent, Button } from 'dashkit';
+
+export default () => (
+  <Popover>
+    <PopoverTrigger asChild>
+      <Button variant="outlined">Open Popover</Button>
+    </PopoverTrigger>
+    <PopoverContent align="center" side="bottom">
+      <div className="p-4">
+        <h4 className="font-bold">Settings</h4>
+        <p className="text-sm text-muted-foreground">Manage your account preferences.</p>
+      </div>
+    </PopoverContent>
+  </Popover>
+);
+```
+
+## Placement
+
+Popovers can be placed on any side of the trigger using the `side` prop, and aligned using the `align` prop.
+
+<Preview>
+  <div className="not-prose grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center p-8">
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="soft" size="sm">Top</Button>
+      </PopoverTrigger>
+      <PopoverContent side="top" align="center">
+        <div className="text-xs">Top side, centered</div>
+      </PopoverContent>
+    </Popover>
+
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="soft" size="sm">Right</Button>
+      </PopoverTrigger>
+      <PopoverContent side="right" align="center">
+        <div className="text-xs">Right side, centered</div>
+      </PopoverContent>
+    </Popover>
+
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="soft" size="sm">Bottom</Button>
+      </PopoverTrigger>
+      <PopoverContent side="bottom" align="center">
+        <div className="text-xs">Bottom side, centered</div>
+      </PopoverContent>
+    </Popover>
+
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="soft" size="sm">Left</Button>
+      </PopoverTrigger>
+      <PopoverContent side="left" align="center">
+        <div className="text-xs">Left side, centered</div>
+      </PopoverContent>
+    </Popover>
+  </div>
+</Preview>
+
+```tsx
+<PopoverContent side="top" align="center">...</PopoverContent>
+<PopoverContent side="right" align="center">...</PopoverContent>
+<PopoverContent side="bottom" align="center">...</PopoverContent>
+<PopoverContent side="left" align="center">...</PopoverContent>
+```
+
+## Custom Content
+
+Since the `PopoverContent` is just a container, you can put any React components inside it.
+
+<Preview>
+  <div className="not-prose flex justify-center p-8">
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="outlined" leftIcon={<FiUser />}>Profile Card</Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-80 p-0 overflow-hidden" sideOffset={12}>
+        <div className="h-20 bg-gradient-to-r from-ds-primary-500 to-ds-primary-700" />
+        <div className="p-4 -mt-10">
+          <div className="size-16 rounded-full border-4 border-popover bg-ds-100 flex items-center justify-center overflow-hidden mb-3">
+             <FiUser size={32} className="text-ds-400" />
+          </div>
+          <h4 className="font-bold text-lg text-ds-950 dark:text-ds-50">Alex Rivera</h4>
+          <p className="text-sm text-muted-foreground mb-4">Product Designer & Developer</p>
+          <div className="flex gap-2">
+            <Button variant="filled" size="sm" className="flex-1">Follow</Button>
+            <Button variant="soft" size="sm" className="flex-1">Message</Button>
+          </div>
+        </div>
+      </PopoverContent>
+    </Popover>
+  </div>
+</Preview>
+
+## Features
+
+- **Automatic Collision Handling**: The popover will flip to the opposite side if it doesn't have enough space in the preferred direction.
+- **Escape to Close**: Pressing the `Escape` key closes the popover immediately.
+- **Click Outside**: Automatically closes when user clicks outside the content or trigger.
+- **Dynamic Portaling**: Renders via `createPortal` to avoid z-index and overflow issues.
+- **Framer Motion Animations**: Smooth scale and opacity transitions.
+
+## API
+
+### PopoverContent Props
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "children",
+    "type": "ReactNode",
+    "defaultValue": "—",
+    "description": "The content to be displayed within the popover."
+  },
+  {
+    "prop": "side",
+    "type": "'top' | 'right' | 'bottom' | 'left'",
+    "defaultValue": "'bottom'",
+    "description": "Preferred side for the popover content."
+  },
+  {
+    "prop": "align",
+    "type": "'start' | 'center' | 'end'",
+    "defaultValue": "'center'",
+    "description": "Alignment along the specified side."
+  },
+  {
+    "prop": "sideOffset",
+    "type": "number",
+    "defaultValue": "8",
+    "description": "The distance in pixels from the trigger."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Additional CSS classes for the content container."
+  }
+]}
+/>

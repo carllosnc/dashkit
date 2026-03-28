@@ -26,7 +26,7 @@ export function Dock({
   return (
     <div
       className={cn(
-        "mx-auto flex gap-3 rounded-full bg-ds-950/30 dark:bg-ds-0/10 backdrop-blur-lg shadow-2xl p-2",
+        "mx-auto flex gap-3 rounded-full bg-ds-950/15 dark:bg-ds-0/10 backdrop-blur-lg p-2",
         !isVertical ? "flex-row items-center" : "flex-col items-center",
         className
       )}

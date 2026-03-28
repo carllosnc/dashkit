@@ -34,6 +34,11 @@ import {
   DropdownLabel,
   DropdownSeparator
 } from '../../components/Dropdown/Dropdown';
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent
+} from '../../components/Popover/Popover';
 import { useToast } from '../../components/Toast/useToast';
 import { AreaChart } from '../../components/AreaChart/AreaChart';
 import { LineChart } from '../../components/LineChart/LineChart';
@@ -488,6 +493,58 @@ export const AllComponentsExample = () => {
                 <DropdownItem destructive leftIcon={<FiTrash2 />}>Delete Account</DropdownItem>
               </DropdownContent>
             </Dropdown>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Popover</CardTitle>
+            <CardDescription>Floating panels for displaying rich content and interactive elements.</CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-wrap gap-4">
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant="outlined" leftIcon={<FiInfo />}>Dimensions</Button>
+              </PopoverTrigger>
+              <PopoverContent side="bottom" align="center" className="w-72">
+                <div className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-1">
+                    <h4 className="text-sm font-bold text-ds-950 dark:text-ds-50">Dimensions</h4>
+                    <p className="text-xs text-muted-foreground">Adjust the layout settings for this layer.</p>
+                  </div>
+                  <div className="flex flex-col gap-3">
+                    <div className="grid grid-cols-4 items-center gap-4">
+                      <label className="text-xs font-medium">Width</label>
+                      <Input defaultValue="100%" className="col-span-3 h-7 text-xs" />
+                    </div>
+                    <div className="grid grid-cols-4 items-center gap-4">
+                      <label className="text-xs font-medium">Height</label>
+                      <Input defaultValue="auto" className="col-span-3 h-7 text-xs" />
+                    </div>
+                  </div>
+                </div>
+              </PopoverContent>
+            </Popover>
+
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant="soft" leftIcon={<FiUser />}>User Profile</Button>
+              </PopoverTrigger>
+              <PopoverContent side="top" align="start" className="w-80 p-0 overflow-hidden" sideOffset={12}>
+                <div className="h-24 bg-gradient-to-br from-ds-primary-600 to-ds-primary-400" />
+                <div className="p-4 -mt-10">
+                  <div className="size-16 rounded-full border-4 border-popover bg-ds-100 flex items-center justify-center overflow-hidden mb-3">
+                     <FiUser size={32} className="text-ds-400" />
+                  </div>
+                  <h4 className="font-bold text-lg text-ds-950 dark:text-ds-50">Alex Rivera</h4>
+                  <p className="text-sm text-muted-foreground mb-4">Senior UI Architect</p>
+                  <div className="flex gap-2">
+                    <Button variant="filled" size="sm" className="flex-1">Follow</Button>
+                    <Button variant="soft" size="sm" className="flex-1">Message</Button>
+                  </div>
+                </div>
+              </PopoverContent>
+            </Popover>
           </CardContent>
         </Card>
         <Card>

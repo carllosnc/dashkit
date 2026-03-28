@@ -44,6 +44,7 @@ import ChipDocs from './pages/chip.mdx'
 import ComboboxDocs from './pages/combobox.mdx'
 import AvatarDocs from './pages/avatar.mdx'
 import ProgressBarDocs from './pages/progressbar.mdx'
+import PopoverDocs from './pages/popover.mdx'
 import FloatActionMenuDocs from './pages/float-action-menu.mdx'
 import { LoginExample } from './pages/examples/LoginExample'
 import { ComplexFormExample } from './pages/examples/ComplexFormExample'
@@ -102,6 +103,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="sidebar" element={<MdxWrapper Component={SidebarDocs} />} />
                 <Route path="tabs" element={<MdxWrapper Component={TabsDocs} />} />
                 <Route path="textarea" element={<MdxWrapper Component={TextareaDocs} />} />
+                <Route path="popover" element={<MdxWrapper Component={PopoverDocs} />} />
                 <Route path="tooltip" element={<MdxWrapper Component={TooltipDocs} />} />
                 <Route path="dock" element={<MdxWrapper Component={DockDocs} />} />
                 <Route path="toast" element={<MdxWrapper Component={ToastDocs} />} />

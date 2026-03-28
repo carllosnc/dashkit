@@ -61,6 +61,7 @@ import { Avatar, AvatarGroup } from '../components/Avatar/Avatar';
 import { FiDownload, FiArrowRight, FiCopy, FiCheck, FiSearch, FiLock, FiUser, FiSettings, FiActivity, FiCheckCircle, FiClock, FiMail, FiShield, FiZap, FiBell, FiMessageSquare, FiShoppingCart, FiHome, FiMoreVertical } from 'react-icons/fi';
 import { PropertyDoc } from '../partials/PropertyDoc';
 import { ProgressBar } from '../components/ProgressBar/ProgressBar';
+import { Popover, PopoverTrigger, PopoverContent } from '../components/Popover/Popover';
 
 
 type MdxComponentProps = { components?: Record<string, ElementType> };
@@ -194,6 +195,9 @@ const components: Record<string, ElementType> = {
   Spinner,
   Navbar,
   IconButton,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
   Breadcrumb,
   BreadcrumbList,
   BreadcrumbItem,
