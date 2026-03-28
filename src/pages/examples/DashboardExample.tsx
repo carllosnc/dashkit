@@ -34,6 +34,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '..
 import { Switch } from '../../components/Switch/Switch';
 import { Modal, ModalHeader, ModalContent, ModalFooter } from '../../components/Modal/Modal';
 import { Drawer, DrawerHeader } from '../../components/Drawer/Drawer';
+import { Dock, DockItem } from '../../components/Dock/Dock';
 import { toast } from '../../components/Toast/useToast';
 import { ThemeToggle } from '../../partials/ThemeToggle';
 import { Footer } from '../../partials/Footer';
@@ -576,6 +577,17 @@ export function DashboardExample() {
           <Button onClick={() => { setIsModalOpen(false); toast({ type: 'success', description: 'Project created!' }); }}>Create</Button>
         </ModalFooter>
       </Modal>
+
+      <div className="fixed left-6 top-1/2 -translate-y-1/2 z-[100] hidden lg:block">
+        <Dock position="left">
+           <DockItem icon={<FiGrid />} label="Overview" />
+           <DockItem icon={<FiPieChart />} label="Analytics" />
+           <DockItem icon={<FiTrendingUp />} label="Growth" />
+           <DockItem icon={<FiUsers />} label="Team" />
+           <DockItem icon={<FiBell />} label="Alerts" />
+           <DockItem icon={<FiSettings />} label="Settings" />
+        </Dock>
+      </div>
 
       <Drawer
         isOpen={isDrawerOpen}
