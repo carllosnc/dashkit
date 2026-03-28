@@ -28,8 +28,8 @@ describe('Button', () => {
   it('applies outlined variant when passed', () => {
     render(<Button variant="outlined">Click Me</Button>);
     const button = screen.getByRole('button', { name: /click me/i });
-    expect(button).toHaveClass('bg-linear-to-b');
-    expect(button).toHaveClass('border-border');
+    expect(button).toHaveClass('bg-transparent');
+    expect(button).toHaveClass('border');
   });
 
   it('passes generic attributes to button element', () => {

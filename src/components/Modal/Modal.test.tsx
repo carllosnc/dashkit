@@ -1,11 +1,9 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { Modal } from './Modal';
+import { Modal, ModalHeader, ModalContent, ModalFooter } from './Modal';
 import type { ReactNode } from 'react';
 
 // Mock framer-motion because it uses features like requestAnimationFrame that might be tricky in tests
-// However, AnimatePresence and motion.div usually need some mocking or just run with it.
-// Many projects mock framer-motion to simplify.
 vi.mock('framer-motion', () => ({
   motion: {
     div: ({ children, onClick, className }: { children: ReactNode, onClick?: () => void, className?: string }) => (
@@ -21,7 +19,9 @@ describe('Modal', () => {
   it('renders children when isOpen is true', () => {
     render(
       <Modal isOpen={true} onClose={onClose}>
-        <div data-testid="modal-content">Context</div>
+        <ModalContent>
+          <div data-testid="modal-content">Context</div>
+        </ModalContent>
       </Modal>
     );
 
@@ -31,7 +31,9 @@ describe('Modal', () => {
   it('does not render children when isOpen is false', () => {
     render(
       <Modal isOpen={false} onClose={onClose}>
-        <div data-testid="modal-content">Context</div>
+        <ModalContent>
+          <div data-testid="modal-content">Context</div>
+        </ModalContent>
       </Modal>
     );
 
@@ -41,12 +43,11 @@ describe('Modal', () => {
   it('calls onClose when clicking the backdrop', () => {
     render(
       <Modal isOpen={true} onClose={onClose}>
-        <div>Context</div>
+        <ModalContent>Context</ModalContent>
       </Modal>
     );
 
-    // The backdrop is the first motion.div (mocked as div) with the fixed positioning classes.
-    // In our Modal.tsx, it's the element with "absolute inset-0".
+    // The backdrop is the element with "absolute inset-0"
     const backdrop = document.querySelector('.absolute.inset-0');
     if (backdrop) {
       fireEvent.click(backdrop);
@@ -56,15 +57,14 @@ describe('Modal', () => {
     }
   });
 
-  it('renders title and description', () => {
+  it('renders header with title and description', () => {
     render(
-      <Modal 
-        isOpen={true} 
-        onClose={onClose} 
-        title="Test Title" 
-        description="Test Description"
-      >
-        <div>Context</div>
+      <Modal isOpen={true} onClose={onClose}>
+        <ModalHeader>
+          <h3>Test Title</h3>
+          <p>Test Description</p>
+        </ModalHeader>
+        <ModalContent>Context</ModalContent>
       </Modal>
     );
 
@@ -74,44 +74,36 @@ describe('Modal', () => {
 
   it('renders footer', () => {
     render(
-      <Modal 
-        isOpen={true} 
-        onClose={onClose} 
-        footer={<button data-testid="footer-btn">Submit</button>}
-      >
-        <div>Context</div>
+      <Modal isOpen={true} onClose={onClose}>
+        <ModalContent>Context</ModalContent>
+        <ModalFooter>
+          <button data-testid="footer-btn">Submit</button>
+        </ModalFooter>
       </Modal>
     );
 
     expect(screen.getByTestId('footer-btn')).toBeInTheDocument();
   });
 
-  it('calls onClose when close button is clicked', () => {
+  it('calls onClose when close button in header is clicked', () => {
     render(
       <Modal isOpen={true} onClose={onClose}>
-        <div>Context</div>
+        <ModalHeader onClose={onClose}>
+          <h3>Title</h3>
+        </ModalHeader>
+        <ModalContent>Context</ModalContent>
       </Modal>
     );
 
-    const closeButton = screen.getByRole('button');
+    const closeButton = screen.getByRole('button', { name: /close modal/i });
     fireEvent.click(closeButton);
     expect(onClose).toHaveBeenCalled();
-  });
-
-  it('hides close button when showCloseButton is false', () => {
-    render(
-      <Modal isOpen={true} onClose={onClose} showCloseButton={false}>
-        <div>Context</div>
-      </Modal>
-    );
-
-    expect(screen.queryByRole('button')).not.toBeInTheDocument();
   });
 
   it('handles Escape key to close the modal', () => {
     render(
       <Modal isOpen={true} onClose={onClose}>
-        <div>Context</div>
+        <ModalContent>Context</ModalContent>
       </Modal>
     );
 
@@ -122,7 +114,7 @@ describe('Modal', () => {
   it('locks body scroll when open', () => {
     const { rerender } = render(
       <Modal isOpen={true} onClose={onClose}>
-        <div>Context</div>
+        <ModalContent>Context</ModalContent>
       </Modal>
     );
 
@@ -130,7 +122,7 @@ describe('Modal', () => {
 
     rerender(
       <Modal isOpen={false} onClose={onClose}>
-        <div>Context</div>
+        <ModalContent>Context</ModalContent>
       </Modal>
     );
 

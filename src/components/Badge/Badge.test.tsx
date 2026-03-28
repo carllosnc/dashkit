@@ -34,14 +34,14 @@ describe('Badge', () => {
   it('applies color styles correctly', () => {
     const { rerender } = render(<Badge content="Test" color="success" />);
     const badge = screen.getByTestId('badge');
-    expect(badge).toHaveClass('bg-success');
+    expect(badge).toHaveClass('bg-ds-success-600');
 
     rerender(<Badge content="Test" color="danger" />);
-    expect(screen.getByTestId('badge')).toHaveClass('bg-danger');
+    expect(screen.getByTestId('badge')).toHaveClass('bg-ds-danger-600');
 
     // Test alias
     rerender(<Badge content="Test" color="error" />);
-    expect(screen.getByTestId('badge')).toHaveClass('bg-danger');
+    expect(screen.getByTestId('badge')).toHaveClass('bg-ds-danger-600');
   });
 
   it('hides the badge when show prop is false', () => {

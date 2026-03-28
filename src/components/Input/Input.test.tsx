@@ -24,7 +24,7 @@ describe('Input', () => {
     expect(screen.getByText(/Invalid input/i)).toBeInTheDocument();
     
     const input = screen.getByRole('textbox');
-    expect(input).toHaveClass('border-red-500/50');
+    expect(input).toHaveClass('border-ds-danger-500/50');
   });
 
   it('shows helper text when provided', () => {

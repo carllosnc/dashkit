@@ -26,7 +26,7 @@ export function Dock({
   return (
     <div
       className={cn(
-        "mx-auto flex gap-3 rounded-full bg-ds-950/20 dark:bg-ds-0/10 backdrop-blur-lg shadow-2xl p-2",
+        "mx-auto flex gap-3 rounded-full bg-ds-950/30 dark:bg-ds-0/10 backdrop-blur-lg shadow-2xl p-2",
         !isVertical ? "flex-row items-center" : "flex-col items-center",
         className
       )}
@@ -45,7 +45,7 @@ export function DockItem({ icon, label, onClick, href, className, position = 'bo
   const content = (
     <div
       className={cn(
-        "group relative flex size-10 items-center justify-center rounded-full bg-ds-950 text-ds-100 transition-all hover:scale-105 shadow-sm shrink-0 cursor-pointer",
+        "group relative flex size-10 items-center justify-center rounded-full bg-white text-ds-800 dark:bg-ds-950 dark:text-ds-200 transition-all hover:scale-105 shrink-0 cursor-pointer",
         className
       )}
     >
