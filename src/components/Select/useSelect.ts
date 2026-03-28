@@ -33,10 +33,17 @@ export function useSelect({ options, value, disabled }: UseSelectProps) {
       }
     };
 
+    const handleScroll = (event: Event) => {
+      const menu = document.getElementById('dashkit-select-portal');
+      if (isOpen && menu && !menu.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
     if (isOpen) {
       updateRect();
       window.addEventListener('resize', updateRect);
-      window.addEventListener('scroll', () => setIsOpen(false), true);
+      window.addEventListener('scroll', handleScroll, true);
     }
 
     return () => {

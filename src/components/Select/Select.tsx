@@ -93,7 +93,7 @@ export const Select = ({
               zIndex: 9999,
             }}
             className={cn(
-              "p-1 bg-popover text-popover-foreground border rounded-md shadow-lg overflow-hidden"
+              "p-1 bg-popover text-popover-fg border border-popover-border rounded-[var(--radius)] shadow-lg overflow-hidden"
             )}
           >
             <div className="max-h-60 overflow-y-auto flex flex-col gap-0.5">
@@ -110,8 +110,8 @@ export const Select = ({
                       setIsOpen(false);
                     }}
                     className={cn(
-                      "w-full px-4 py-2.5 text-sm text-left flex items-center justify-between duration-200 text-foreground/80 hover:bg-accent hover:text-accent-foreground transition-colors",
-                      opt.value === value && "bg-accent text-accent-foreground font-semibold"
+                      "w-full px-4 py-2.5 text-sm text-left flex items-center justify-between duration-200 transition-colors rounded-[var(--radius)]",
+                      opt.value === value ? "bg-popover-item-selected text-popover-item-selected-fg font-semibold" : "text-popover-fg hover:bg-popover-item"
                     )}
                   >
                     <span className="truncate">{opt.label}</span>

@@ -1,8 +1,8 @@
-import { useState, useRef, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { FiChevronDown, FiCheck, FiSearch, FiX } from 'react-icons/fi';
 import { cn } from '../../utils/cn';
 import { Chip } from '../Chip/Chip';
+import { useCombobox } from './useCombobox';
 
 export interface ComboboxOption {
   value: string;
@@ -34,125 +34,31 @@ export const Combobox = ({
   clearSearchOnSelect = false,
   multiple = false
 }: ComboboxProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [query, setQuery] = useState('');
-  const [triggerRect, setTriggerRect] = useState<DOMRect | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const inputWrapperRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (isOpen && inputWrapperRef.current) {
-      setTriggerRect(inputWrapperRef.current.getBoundingClientRect());
-    }
-  }, [isOpen]);
-
-  const selectedOptions = useMemo(() => {
-    if (multiple && Array.isArray(value)) {
-      return options.filter(opt => value.includes(opt.value));
-    }
-    if (!multiple && typeof value === 'string') {
-      const found = options.find(opt => opt.value === value);
-      return found ? [found] : [];
-    }
-    return [];
-  }, [options, value, multiple]);
-
-  const selectedOption = selectedOptions[0];
-
-  const [prevIsOpen, setPrevIsOpen] = useState(isOpen);
-
-  if (isOpen !== prevIsOpen) {
-    setPrevIsOpen(isOpen);
-    if (!isOpen && !multiple) {
-      const nextQuery = selectedOption?.label || '';
-      if (query !== nextQuery) {
-        setQuery(nextQuery);
-      }
-    }
-  }
-
-  const filteredOptions = useMemo(() => {
-    const safeQuery = query.toLowerCase().trim();
-    if (!safeQuery || (!multiple && selectedOption && query === selectedOption.label)) {
-      return options;
-    }
-    return options.filter(opt =>
-      opt.label.toLowerCase().includes(safeQuery)
-    );
-  }, [options, query, selectedOption, multiple]);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const menu = document.getElementById('dashkit-combobox-portal');
-      if (
-        containerRef.current && !containerRef.current.contains(event.target as Node) &&
-        (!menu || !menu.contains(event.target as Node))
-      ) {
-        setIsOpen(false);
-      }
-    };
-
-    const handleScroll = () => {
-      if (isOpen) setIsOpen(false);
-    };
-
-    if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-      window.addEventListener('scroll', handleScroll, true);
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      window.removeEventListener('scroll', handleScroll, true);
-    };
-  }, [isOpen]);
-
-  const handleSelect = (option: ComboboxOption) => {
-    if (multiple) {
-      const currentValue = Array.isArray(value) ? value : [];
-      const isSelected = currentValue.includes(option.value);
-      const nextValue = isSelected
-        ? currentValue.filter(v => v !== option.value)
-        : [...currentValue, option.value];
-
-      onChange?.(nextValue);
-      setQuery('');
-    } else {
-      onChange?.(option.value);
-      if (clearSearchOnSelect) {
-        setQuery('');
-      } else {
-        setQuery(option.label);
-      }
-      setIsOpen(false);
-    }
-  };
-
-  const handleRemoveOption = (val: string) => {
-    if (multiple && Array.isArray(value)) {
-      onChange?.(value.filter(v => v !== val));
-    }
-  };
-
-  const handleInputClick = () => {
-    if (disabled) return;
-    setIsOpen(true);
-  };
-
-  const handleClear = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    onChange?.(multiple ? [] : '');
-    setQuery('');
-    inputRef.current?.focus();
-  };
-
-  const isOptionSelected = (opt: ComboboxOption) => {
-    if (multiple && Array.isArray(value)) {
-      return value.includes(opt.value);
-    }
-    return value === opt.value;
-  };
+  const {
+    isOpen,
+    setIsOpen,
+    query,
+    setQuery,
+    triggerRect,
+    side,
+    containerRef,
+    inputWrapperRef,
+    inputRef,
+    selectedOptions,
+    filteredOptions,
+    handleSelect,
+    handleRemoveOption,
+    handleInputClick,
+    handleClear,
+    isOptionSelected
+  } = useCombobox({
+    options,
+    value,
+    onChange,
+    disabled,
+    clearSearchOnSelect,
+    multiple
+  });
 
   return (
     <div className={cn("flex flex-col gap-2 w-full font-sans relative", className)} ref={containerRef}>
@@ -234,16 +140,18 @@ export const Combobox = ({
             role="listbox"
             style={{
               position: 'fixed',
-              top: triggerRect.bottom + 8,
               left: triggerRect.left,
               width: triggerRect.width,
               zIndex: 9999,
+              ...(side === 'bottom'
+                ? { top: triggerRect.bottom + 8 }
+                : { bottom: (window.innerHeight - triggerRect.top) + 8 }),
             }}
             className={cn(
-              "p-1 bg-popover text-popover-foreground border rounded-md shadow-lg overflow-hidden animate-in fade-in zoom-in duration-200"
+              "p-1 bg-popover text-popover-fg border border-popover-border rounded-[var(--radius)] shadow-lg overflow-hidden"
             )}
           >
-            <div className="max-h-60 overflow-y-auto custom-scrollbar flex flex-col gap-0.5 font-sans">
+            <div className="max-h-60 overflow-y-auto custom-scrollbar flex flex-col gap-0.5 font-sans pr-1">
               {filteredOptions.length === 0 ? (
                 <div className="px-4 py-6 text-sm text-muted-foreground italic text-center">
                   No matches found for "{query}"
@@ -257,8 +165,8 @@ export const Combobox = ({
                       type="button"
                       onClick={() => handleSelect(opt)}
                       className={cn(
-                        "w-full px-4 py-2.5 text-sm text-left flex items-center justify-between duration-200 text-foreground/80 hover:bg-accent hover:text-accent-foreground transition-colors",
-                        isSelected && "bg-accent text-accent-foreground font-semibold"
+                        "w-full px-4 py-2.5 text-sm text-left flex items-center justify-between duration-200 transition-colors rounded-[var(--radius)]",
+                        isSelected ? "bg-popover-item-selected text-popover-item-selected-fg font-semibold" : "text-popover-fg hover:bg-popover-item"
                       )}
                     >
                       <span className="truncate">{opt.label}</span>

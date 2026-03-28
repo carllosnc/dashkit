@@ -159,7 +159,7 @@ export function DropdownContent({
            transition={{ duration: 0.1, ease: "easeOut" }}
            style={style}
            className={cn(
-             "min-w-[12rem] bg-popover text-popover-foreground border rounded-md shadow-lg p-1 origin-top overflow-hidden",
+             "min-w-[12rem] bg-popover text-popover-fg border border-popover-border rounded-[var(--radius)] shadow-lg p-1 origin-top overflow-hidden",
              className
            )}
         >
@@ -203,9 +203,9 @@ export function DropdownItem({
         setOpen(false);
       }}
       className={cn(
-        "flex w-full items-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-colors text-left text-foreground/80 hover:bg-accent hover:text-accent-foreground duration-200",
+        "flex w-full items-center gap-2 px-3 py-2 text-sm font-medium rounded-[var(--radius)] transition-colors text-left text-popover-fg hover:bg-popover-item duration-200",
         destructive ? "text-red-500 hover:text-red-600 dark:hover:bg-red-500/10" : "",
-        selected && "bg-accent text-accent-foreground font-semibold",
+        selected && "bg-popover-item-selected text-popover-item-selected-fg font-semibold",
         disabled && "opacity-50 cursor-not-allowed",
         className
       )}

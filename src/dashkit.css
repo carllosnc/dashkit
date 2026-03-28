@@ -82,12 +82,16 @@
 
   --color-card: var(--ds-card);
   --color-card-foreground: var(--ds-card-fg);
+
   --color-popover: var(--ds-popover);
-  --color-popover-foreground: var(--ds-popover-fg);
+  --color-popover-fg: var(--ds-popover-fg);
+  --color-popover-border: var(--ds-popover-border);
+  --color-popover-item: var(--ds-popover-item);
+  --color-popover-item-selected: var(--ds-popover-item-selected);
+  --color-popover-item-selected-fg: var(--ds-popover-item-selected-fg);
 
   --color-border: var(--ds-border);
 
-  --color-input: var(--ds-input-border);
   --color-input-bg: var(--ds-input-bg);
   --color-input-border: var(--ds-input-border);
   --color-input-focus: var(--ds-input-focus);
@@ -118,10 +122,17 @@
   --ds-bg: var(--color-ds-100);
   --ds-fg: var(--color-ds-900);
 
+  --ds-border: var(--color-ds-300);
+
   --ds-card: #ffffff;
   --ds-card-fg: var(--color-ds-900);
-  --ds-popover: var(--color-ds-50);
+
+  --ds-popover: var(--color-ds-0);
   --ds-popover-fg: var(--color-ds-900);
+  --ds-popover-border: var(--color-ds-200);
+  --ds-popover-item: var(--color-ds-100);
+  --ds-popover-item-selected: var(--color-ds-primary-100);
+  --ds-popover-item-selected-fg: var(--color-ds-primary-700);
 
   --ds-primary: var(--color-ds-primary-600);
   --ds-primary-fg: var(--color-ds-50);
@@ -133,7 +144,6 @@
   --ds-accent: var(--color-ds-100);
   --ds-accent-fg: var(--color-ds-950);
 
-  --ds-border: var(--color-ds-300);
   --ds-input-bg: var(--color-ds-100);
   --ds-input-border: var(--color-ds-300);
   --ds-input-focus: var(--color-ds-400);
@@ -145,10 +155,17 @@
   --ds-bg: var(--color-ds-950);
   --ds-fg: var(--color-ds-100);
 
+  --ds-border: var(--color-ds-800);
+
   --ds-card: var(--color-ds-900);
   --ds-card-fg: var(--color-ds-100);
+
   --ds-popover: var(--color-ds-950);
   --ds-popover-fg: var(--color-ds-100);
+  --ds-popover-border: var(--color-ds-800);
+  --ds-popover-item: var(--color-ds-900);
+  --ds-popover-item-selected: var(--color-ds-primary-950);
+  --ds-popover-item-selected-fg: var(--color-ds-primary-400);
 
   --ds-primary: var(--color-ds-primary-500);
   --ds-primary-fg: var(--color-ds-0);
@@ -160,7 +177,6 @@
   --ds-accent: var(--color-ds-900);
   --ds-accent-fg: var(--color-ds-50);
 
-  --ds-border: var(--color-ds-800);
   --ds-input-bg: var(--color-ds-950);
   --ds-input-border: var(--color-ds-800);
   --ds-input-focus: var(--color-ds-700);
