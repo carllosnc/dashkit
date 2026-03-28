@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+export type PopoverTriggerMode = 'click' | 'hover';
+
 export interface PopoverContextValue {
   open: boolean;
   setOpen: (open: boolean) => void;
@@ -7,6 +9,9 @@ export interface PopoverContextValue {
   setTriggerRect: (rect: DOMRect | null) => void;
   triggerElement: HTMLElement | null;
   setTriggerElement: (el: HTMLElement | null) => void;
+  triggerMode: PopoverTriggerMode;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
 }
 
 export const PopoverContext = React.createContext<PopoverContextValue | undefined>(undefined);

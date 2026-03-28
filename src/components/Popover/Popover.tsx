@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { usePopover, usePopoverContext, PopoverContext } from './usePopover';
+import { usePopover, usePopoverContext, PopoverContext, type PopoverTriggerMode } from './usePopover';
 
 function cn(...inputs: (string | undefined | null | boolean | Record<string, boolean>)[]) {
   return twMerge(clsx(inputs));
@@ -11,9 +11,10 @@ function cn(...inputs: (string | undefined | null | boolean | Record<string, boo
 
 export interface PopoverProps {
   children: React.ReactNode;
+  trigger?: PopoverTriggerMode;
 }
 
-export function Popover({ children }: PopoverProps) {
+export function Popover({ children, trigger = 'click' }: PopoverProps) {
   const {
     open,
     setOpen,
@@ -24,8 +25,43 @@ export function Popover({ children }: PopoverProps) {
     containerRef
   } = usePopover();
 
+  const closeTimer = React.useRef<number | null>(null);
+
+  const onMouseEnter = React.useCallback(() => {
+    if (trigger !== 'hover') return;
+    if (closeTimer.current) {
+      window.clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+    setOpen(true);
+  }, [trigger, setOpen]);
+
+  const onMouseLeave = React.useCallback(() => {
+    if (trigger !== 'hover') return;
+    closeTimer.current = window.setTimeout(() => {
+      setOpen(false);
+    }, 150);
+  }, [trigger, setOpen]);
+
+  // Handle triggerRect update on open for hover
+  React.useEffect(() => {
+    if (open && trigger === 'hover' && triggerElement) {
+        setTriggerRect(triggerElement.getBoundingClientRect());
+    }
+  }, [open, trigger, triggerElement, setTriggerRect]);
+
   return (
-    <PopoverContext.Provider value={{ open, setOpen, triggerRect, setTriggerRect, triggerElement, setTriggerElement }}>
+    <PopoverContext.Provider value={{
+        open,
+        setOpen,
+        triggerRect,
+        setTriggerRect,
+        triggerElement,
+        setTriggerElement,
+        triggerMode: trigger,
+        onMouseEnter,
+        onMouseLeave
+    }}>
       <div className="relative inline-block text-left" ref={containerRef}>
         {children}
       </div>
@@ -34,9 +70,10 @@ export function Popover({ children }: PopoverProps) {
 }
 
 export function PopoverTrigger({ children, asChild }: { children: React.ReactNode; asChild?: boolean }) {
-  const { open, setOpen, setTriggerRect, setTriggerElement } = usePopoverContext();
+  const { open, setOpen, setTriggerRect, setTriggerElement, triggerMode, onMouseEnter, onMouseLeave } = usePopoverContext();
 
   const toggleOpen = (e: React.MouseEvent) => {
+    if (triggerMode === 'hover') return;
     const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
     setTriggerRect(rect);
     setOpen(!open);
@@ -46,18 +83,45 @@ export function PopoverTrigger({ children, asChild }: { children: React.ReactNod
     setTriggerElement(node);
   };
 
+  const handleMouseEnter = (e: React.MouseEvent) => {
+    if (triggerMode === 'hover') {
+      const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+      setTriggerRect(rect);
+      onMouseEnter?.();
+    }
+  };
+
   if (asChild && React.isValidElement(children)) {
-    return React.cloneElement(children as React.ReactElement<{ onClick?: React.MouseEventHandler; ref?: React.Ref<HTMLElement> }>, {
+    return React.cloneElement(children as React.ReactElement<{
+        onClick?: React.MouseEventHandler;
+        ref?: React.Ref<HTMLElement>;
+        onMouseEnter?: React.MouseEventHandler;
+        onMouseLeave?: React.MouseEventHandler;
+    }>, {
       ref: internalRef,
       onClick: (e: React.MouseEvent) => {
         (children.props as { onClick?: React.MouseEventHandler }).onClick?.(e);
         toggleOpen(e);
       },
+      onMouseEnter: (e: React.MouseEvent) => {
+        (children.props as { onMouseEnter?: React.MouseEventHandler }).onMouseEnter?.(e);
+        handleMouseEnter(e);
+      },
+      onMouseLeave: (e: React.MouseEvent) => {
+        (children.props as { onMouseLeave?: React.MouseEventHandler }).onMouseLeave?.(e);
+        onMouseLeave?.();
+      },
     });
   }
 
   return (
-    <div ref={internalRef} onClick={toggleOpen} className="cursor-pointer inline-block">
+    <div
+      ref={internalRef}
+      onClick={toggleOpen}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={onMouseLeave}
+      className="cursor-pointer inline-block"
+    >
       {children}
     </div>
   );
@@ -78,7 +142,7 @@ export function PopoverContent({
     side = 'bottom',
     sideOffset = 8
 }: PopoverContentProps) {
-  const { open, triggerElement, setTriggerRect, triggerRect } = usePopoverContext();
+  const { open, triggerElement, setTriggerRect, triggerRect, triggerMode, onMouseEnter, onMouseLeave } = usePopoverContext();
   const [contentRect, setContentRect] = React.useState<DOMRect | null>(null);
   const contentRef = React.useRef<HTMLDivElement>(null);
 
@@ -157,10 +221,12 @@ export function PopoverContent({
            initial={{ opacity: 0, scale: 0.95, y: -4 }}
            animate={{ opacity: 1, scale: 1, y: 0 }}
            exit={{ opacity: 0, scale: 0.95, y: -4 }}
+           onMouseEnter={triggerMode === 'hover' ? onMouseEnter : undefined}
+           onMouseLeave={triggerMode === 'hover' ? onMouseLeave : undefined}
            transition={{ duration: 0.15, ease: "easeOut" }}
            style={style}
            className={cn(
-             "w-72 max-w-[calc(100vw-2rem)] bg-popover text-popover-fg border border-popover-border rounded-[var(--radius)] shadow-lg p-4 origin-top overflow-hidden ring-1 ring-black/5 dark:ring-white/5",
+             "w-72 max-w-[calc(100vw-2rem)] bg-popover text-popover-fg border border-popover-border rounded-[var(--radius)] shadow-xl p-4 origin-top overflow-hidden",
              className
            )}
         >

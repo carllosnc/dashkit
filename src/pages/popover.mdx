@@ -119,6 +119,37 @@ Popovers can be placed on any side of the trigger using the `side` prop, and ali
 <PopoverContent side="left" align="center">...</PopoverContent>
 ```
 
+## Trigger Mode
+
+You can change how the popover is triggered using the `trigger` prop. It supports `click` (default) and `hover`.
+
+<Preview>
+  <div className="not-prose flex gap-8 justify-center p-8">
+    <Popover trigger="click">
+      <PopoverTrigger asChild>
+        <Button variant="outlined">Click Me</Button>
+      </PopoverTrigger>
+      <PopoverContent side="bottom" align="center">
+        <div className="text-xs">Triggered by click</div>
+      </PopoverContent>
+    </Popover>
+
+    <Popover trigger="hover">
+      <PopoverTrigger asChild>
+        <Button variant="outlined">Hover Me</Button>
+      </PopoverTrigger>
+      <PopoverContent side="bottom" align="center">
+        <div className="text-xs">Triggered by hover</div>
+      </PopoverContent>
+    </Popover>
+  </div>
+</Preview>
+
+```tsx
+<Popover trigger="click">...</Popover>
+<Popover trigger="hover">...</Popover>
+```
+
 ## Custom Content
 
 Since the `PopoverContent` is just a container, you can put any React components inside it.
