@@ -8,16 +8,22 @@ function cn(...inputs: ClassValue[]) {
 
 export interface TableProps extends HTMLAttributes<HTMLTableElement> {
   framed?: boolean;
+  responsive?: boolean;
+  containerClassName?: string;
+  minWidth?: string;
 }
 
 export const Table = forwardRef<HTMLTableElement, TableProps>(
-  ({ className, framed = true, ...props }, ref) => (
+  ({ className, framed = true, responsive = true, containerClassName, minWidth, ...props }, ref) => (
     <div className={cn(
-      "relative w-full overflow-auto",
-      framed && "rounded-[var(--radius)] bg-card shadow-sm p-4 md:p-6"
+      "relative w-full",
+      responsive && "overflow-x-auto overflow-y-hidden custom-scrollbar",
+      framed && "rounded-[var(--radius)] bg-card shadow-sm p-4 md:p-6",
+      containerClassName
     )}>
       <table
         ref={ref}
+        style={{ minWidth: minWidth ?? (responsive ? "max-content" : undefined) }}
         className={cn("w-full caption-top text-sm", className)}
         {...props}
       />
@@ -69,12 +75,17 @@ export const TableRow = forwardRef<HTMLTableRowElement, HTMLAttributes<HTMLTable
 );
 TableRow.displayName = "TableRow";
 
-export const TableHead = forwardRef<HTMLTableCellElement, ThHTMLAttributes<HTMLTableCellElement>>(
-  ({ className, ...props }, ref) => (
+export interface TableHeadProps extends ThHTMLAttributes<HTMLTableCellElement> {
+  nowrap?: boolean;
+}
+
+export const TableHead = forwardRef<HTMLTableCellElement, TableHeadProps>(
+  ({ className, nowrap = true, ...props }, ref) => (
     <th
       ref={ref}
       className={cn(
-        "h-10 px-0 text-left align-middle font-bold text-ds-500 dark:text-ds-400 [&:has([role=checkbox])]:pr-0 text-[10px] uppercase tracking-wider",
+        "h-10 px-4 text-left align-middle font-bold text-ds-500 dark:text-ds-400 [&:has([role=checkbox])]:pr-0 text-[10px] uppercase tracking-wider first:pl-0 last:pr-0",
+        nowrap && "whitespace-nowrap",
         className
       )}
       {...props}
@@ -83,11 +94,19 @@ export const TableHead = forwardRef<HTMLTableCellElement, ThHTMLAttributes<HTMLT
 );
 TableHead.displayName = "TableHead";
 
-export const TableCell = forwardRef<HTMLTableCellElement, TdHTMLAttributes<HTMLTableCellElement>>(
-  ({ className, ...props }, ref) => (
+export interface TableCellProps extends TdHTMLAttributes<HTMLTableCellElement> {
+  nowrap?: boolean;
+}
+
+export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
+  ({ className, nowrap = false, ...props }, ref) => (
     <td
       ref={ref}
-      className={cn("py-3 text-sm align-middle [&:has([role=checkbox])]:pr-0 text-foreground/80", className)}
+      className={cn(
+        "py-3 px-4 text-sm align-middle [&:has([role=checkbox])]:pr-0 text-foreground/80 first:pl-0 last:pr-0",
+        nowrap && "whitespace-nowrap",
+        className
+      )}
       {...props}
     />
   )
