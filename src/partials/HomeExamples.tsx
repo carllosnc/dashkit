@@ -322,7 +322,7 @@ export function HomeExamples() {
               <div className="p-3 rounded-[var(--radius-md)] bg-ds-50 dark:bg-ds-900 border  dark:border-ds-800 flex items-center justify-between mt-2">
                  <div className="flex flex-col">
                     <span className="text-xs text-ds-500 font-bold uppercase">Avg. Ticket</span>
-                    <span className="text-sm font-black">$242.10</span>
+                    <span className="text-base">$242.10</span>
                  </div>
                  <div className="flex items-center gap-1 text-ds-success-600 font-bold text-xs">
                     <FiArrowUpRight size={14} />
@@ -532,19 +532,20 @@ export function HomeExamples() {
               <Divider className='my-[10px]' />
               <CardDescription>Performance comparison across channels.</CardDescription>
            </CardHeader>
-           <CardContent className="h-[200px] w-full pt-0">
-               <BarChart
-                 data={CONVERSION_DATA}
-                 series={[
-                   { key: 'desktop', label: 'Desktop', color: '#3b82f6' },
-                   { key: 'mobile', label: 'Mobile', color: '#10b981' }
-                 ]} 
-                 showGrid={false}
-                 rounded
-                 barGap={2}
-               />
+           <CardContent className="w-full">
+            <BarChart
+               data={CONVERSION_DATA}
+               series={[
+                  { key: 'desktop', label: 'Desktop', color: '#3b82f6' },
+                  { key: 'mobile', label: 'Mobile', color: '#10b981' }
+               ]}
+               showGrid={false}
+               rounded
+               barGap={2}
+            />
            </CardContent>
-           <div className="px-6 pt-4 flex items-center justify-around">
+            <Divider />
+           <div className="px-6 flex items-center justify-around">
               <div className="flex flex-col items-center text-center">
                  <span className="text-xs uppercase font-bold text-ds-500">Highest</span>
                  <span className="text-sm font-bold text-ds-950 dark:text-ds-50">Organic</span>
