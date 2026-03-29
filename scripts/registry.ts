@@ -119,6 +119,11 @@ export const registry: Record<string, ComponentConfig> = {
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
+  surface: {
+    name: 'Surface',
+    files: ['src/components/Surface/Surface.tsx'],
+    dependencies: ['clsx', 'tailwind-merge'],
+  },
   tabs: {
     name: 'Tabs',
     files: ['src/components/Tabs/Tabs.tsx'],

@@ -1,0 +1,114 @@
+import { Surface } from '../components/Surface/Surface';
+
+# Surface
+
+A lightweight, foundational component for creating containers with consistent background and border variants based on design system states. It provides no internal padding or margin, serving as a pure visual block.
+
+## Import
+
+```tsx
+import { Surface } from '@/components/Surface/Surface'
+```
+
+## Installation
+
+Add the surface component to your project using the Dashkit CLI:
+
+```bash
+bunx carllosnc/dashkit add surface
+```
+
+## Basic Usage
+
+The basic surface provides a standard background and border following the theme.
+
+<Preview>
+  <Surface className="h-24 w-full flex items-center justify-center">
+    <span className="text-sm font-medium">Default Surface</span>
+  </Surface>
+</Preview>
+
+```tsx
+<Surface className="h-24">
+  Default Surface
+</Surface>
+```
+
+## State Variants
+
+Surfaces can be styled to represent different states like `info`, `success`, `warning`, and `danger`.
+
+<Preview>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+    <Surface variant="info" className="p-4 flex flex-col gap-2">
+      <span className="text-sm font-bold">Information</span>
+      <p className="text-xs">Subtle background and matching border for info states.</p>
+    </Surface>
+
+    <Surface variant="success" className="p-4 flex flex-col gap-2">
+      <span className="text-sm font-bold">Success</span>
+      <p className="text-xs">Subtle background and matching border for success states.</p>
+    </Surface>
+
+    <Surface variant="warning" className="p-4 flex flex-col gap-2">
+      <span className="text-sm font-bold">Warning</span>
+      <p className="text-xs">Subtle background and matching border for warning states.</p>
+    </Surface>
+
+    <Surface variant="danger" className="p-4 flex flex-col gap-2">
+      <span className="text-sm font-bold">Danger</span>
+      <p className="text-xs">Subtle background and matching border for error or danger states.</p>
+    </Surface>
+  </div>
+</Preview>
+
+```tsx
+<Surface variant="info">Info Content</Surface>
+<Surface variant="success">Success Content</Surface>
+<Surface variant="warning">Warning Content</Surface>
+<Surface variant="danger">Danger Content</Surface>
+```
+
+## Custom Styling
+
+Since Surface doesn't provide padding, you can easily apply your own layout classes.
+
+<Preview>
+  <Surface variant="default" className="p-8 border-dashed border-2 bg-ds-50/50 flex flex-col items-center justify-center gap-4">
+    <div className="size-12 rounded-full bg-ds-100 dark:bg-ds-800 flex items-center justify-center">
+        <span className="text-xl">✨</span>
+    </div>
+    <span className="text-sm font-semibold tracking-tight">Customized block</span>
+  </Surface>
+</Preview>
+
+```tsx
+<Surface className="p-8 border-dashed border-2 bg-ds-50/50">
+    Customized Block
+</Surface>
+```
+
+## Props
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "variant",
+    "type": "'default' | 'info' | 'success' | 'warning' | 'danger'",
+    "defaultValue": "'default'",
+    "description": "The visual variant to apply, based on design system states."
+  },
+  {
+    "prop": "children",
+    "type": "ReactNode",
+    "defaultValue": "—",
+    "description": "The content to be rendered inside the surface."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Additional CSS classes for custom styling (e.g., padding, width)."
+  }
+]}
+/>

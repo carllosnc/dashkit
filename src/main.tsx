@@ -14,6 +14,7 @@ import DockDocs from './pages/dock.mdx'
 import TabsDocs from './pages/tabs.mdx'
 import SidebarDocs from './pages/sidebar.mdx'
 import SliderDocs from './pages/slider.mdx'
+import SurfaceDocs from './pages/surface.mdx'
 import DividerDocs from './pages/divider.mdx'
 import DatePickerDocs from './pages/datepicker.mdx'
 import TableDocs from './pages/table.mdx'
@@ -104,6 +105,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="progressbar" element={<MdxWrapper Component={ProgressBarDocs} />} />
                 <Route path="switch" element={<MdxWrapper Component={SwitchDocs} />} />
                 <Route path="slider" element={<MdxWrapper Component={SliderDocs} />} />
+                <Route path="surface" element={<MdxWrapper Component={SurfaceDocs} />} />
                 <Route path="sidebar" element={<MdxWrapper Component={SidebarDocs} />} />
                 <Route path="tabs" element={<MdxWrapper Component={TabsDocs} />} />
                 <Route path="textarea" element={<MdxWrapper Component={TextareaDocs} />} />
