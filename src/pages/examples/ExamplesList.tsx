@@ -84,7 +84,7 @@ export const ExamplesList = () => {
             >
               <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-4">
-                  <div className={`size-10 rounded-md ${example.bg} ${example.color} ${example.border} flex items-center justify-center shrink-0 border transition-all duration-300`}>
+                  <div className={`size-10 rounded-md ${example.bg} ${example.color} flex items-center justify-center shrink-0 border border-ds-200 dark:border-ds-800 transition-all duration-300`}>
                     {example.icon}
                   </div>
                   <h3 className="text-xl font-bold text-foreground transition-colors hover:underline">

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FiLock, FiMail, FiZap, FiSettings, FiMoreHorizontal, FiShield, FiActivity, FiGlobe, FiTrendingUp, FiCpu, FiHardDrive, FiLayers, FiShoppingCart, FiArrowUpRight, FiBarChart2, FiCalendar, FiClock } from 'react-icons/fi';
+import { FiLock, FiMail, FiZap, FiSettings, FiMoreHorizontal, FiShield, FiActivity, FiGlobe, FiTrendingUp, FiCpu, FiHardDrive, FiLayers, FiShoppingCart, FiArrowUpRight, FiBarChart2, FiCalendar, FiClock, FiDatabase, FiShieldOff, FiServer } from 'react-icons/fi';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/Card/Card';
 import { Button } from '../components/Button/Button';
@@ -17,6 +17,7 @@ import { ProgressBar } from '../components/ProgressBar/ProgressBar';
 import { Avatar, AvatarGroup } from '../components/Avatar/Avatar';
 import { AnimateNumber } from '../components/AnimateNumber/AnimateNumber';
 import { Divider } from '../components/Divider/Divider';
+import { Chip } from '../components/Chip/Chip';
 
 const AVATAR_URLS = {
   user1: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=120&h=120&auto=format&fit=crop",
@@ -60,12 +61,9 @@ const CHART_SERIES = [
     { key: 'secondary', label: 'Retention', color: '#10b981' }
 ];
 
-/**
- * HomeExamples partial component
- * Displays a grid of small component usage examples for the landing page.
- */
 export function HomeExamples() {
   const [liveValue, setLiveValue] = React.useState(12400.50);
+  const [selectedSurveys, setSelectedSurveys] = React.useState<string[]>(['Social Media', 'Search Engine']);
 
   React.useEffect(() => {
     const interval = setInterval(() => {
@@ -159,7 +157,7 @@ export function HomeExamples() {
               </div>
            </CardHeader>
            <CardContent className="space-y-6 pt-0">
-              <div className="flex items-center justify-between p-3 rounded-[var(--radius-md)] border border-ds-200 dark:border-ds-800 bg-ds-50/50 dark:bg-ds-100/5">
+              <div className="flex items-center justify-between p-3 rounded-[var(--radius-md)] border  dark:border-ds-800 bg-ds-50/50 dark:bg-ds-100/5">
                  <div className="flex items-center gap-3">
                     <AvatarGroup max={3} spacing="md" size="sm">
                        <Avatar src={AVATAR_URLS.user1} alt="User 1" />
@@ -203,6 +201,42 @@ export function HomeExamples() {
               </div>
            </CardContent>
         </Card>
+
+        {/* 11. Security Events (New) */}
+        <Card>
+           <CardHeader>
+              <div className="flex items-center justify-between">
+                 <div className="flex flex-col gap-1">
+                    <CardTitle className="text-lg">Security Events</CardTitle>
+                    <CardDescription>Recent threat intelligence log.</CardDescription>
+                 </div>
+                 <FiShield size={18} className="text-ds-danger-600" />
+              </div>
+           </CardHeader>
+           <CardContent className="space-y-4 pt-0">
+              <div className="flex items-center justify-between p-3 rounded-[var(--radius-md)] border">
+                 <div className="flex items-center gap-3">
+                    <FiShieldOff className="text-ds-danger-600" size={16} />
+                    <div className="flex flex-col">
+                       <span className="text-sm font-bold leading-tight">Unauthorized Entry</span>
+                       <span className="text-[10px] text-ds-500 tracking-wider font-bold uppercase">Node 0x42-E</span>
+                    </div>
+                 </div>
+                 <Badge content="Critical" color="danger" variant="soft" className="text-[10px]" />
+              </div>
+              <div className="flex items-center justify-between p-3 rounded-[var(--radius-md)] border">
+                 <div className="flex items-center gap-3">
+                    <FiActivity className="text-ds-warning-600" size={16} />
+                    <div className="flex flex-col">
+                       <span className="text-sm font-bold leading-tight">API Rate Limit</span>
+                       <span className="text-[10px] text-ds-500 tracking-wider font-bold uppercase">Public Access</span>
+                    </div>
+                 </div>
+                 <Badge content="Warning" color="warning" variant="soft" className="text-[10px]" />
+              </div>
+              <Button variant="outlined" size="sm" className="w-full text-xs">View Security Logs</Button>
+           </CardContent>
+        </Card>
       </div>
 
       {/* Column 2 */}
@@ -233,7 +267,7 @@ export function HomeExamples() {
                         <span className="text-xs text-ds-500 uppercase font-bold">Today</span>
                         <span className="text-sm font-bold">12.4k</span>
                     </div>
-                    <div className="flex flex-col border-l border-ds-200 dark:border-ds-800 pl-4">
+                    <div className="flex flex-col border-l  dark:border-ds-800 pl-4">
                         <span className="text-xs text-ds-500 uppercase font-bold">Peak</span>
                         <span className="text-sm font-bold">18.2k</span>
                     </div>
@@ -253,14 +287,14 @@ export function HomeExamples() {
                   </div>
                </div>
                <div className="py-2">
-                  <LineChart 
-                    data={REVENUE_DATA} 
+                  <LineChart
+                    data={REVENUE_DATA}
                     series={[{ key: 'revenue', label: 'Revenue', color: '#10b981' }]} 
                     showGrid={false}
                     showLabels={true}
                   />
                </div>
-               <div className="p-3 rounded-[var(--radius-md)] bg-ds-50 dark:bg-ds-900 border border-ds-200 dark:border-ds-800 flex items-center justify-between">
+               <div className="p-3 rounded-[var(--radius-md)] bg-ds-50 dark:bg-ds-900 border  dark:border-ds-800 flex items-center justify-between">
                   <span className="text-xs font-bold text-ds-500">Total Generated</span>
                   <span className="text-sm font-bold text-ds-950 dark:text-ds-50">$28,400.00</span>
                </div>
@@ -285,7 +319,7 @@ export function HomeExamples() {
               </CardDescription>
            </CardHeader>
            <CardContent>
-              <div className="p-3 rounded-[var(--radius-md)] bg-ds-50 dark:bg-ds-900 border border-ds-200 dark:border-ds-800 flex items-center justify-between mt-2">
+              <div className="p-3 rounded-[var(--radius-md)] bg-ds-50 dark:bg-ds-900 border  dark:border-ds-800 flex items-center justify-between mt-2">
                  <div className="flex flex-col">
                     <span className="text-xs text-ds-500 font-bold uppercase">Avg. Ticket</span>
                     <span className="text-sm font-black">$242.10</span>
@@ -299,7 +333,7 @@ export function HomeExamples() {
         </Card>
 
         {/* 5. Interactive Control Panel (Replaces Weekly Progress) */}
-        <Card shadowed className="border-ds-200 dark:border-ds-800 overflow-visible">
+        <Card shadowed className=" dark:border-ds-800 overflow-visible">
            <CardHeader className="flex flex-row items-center justify-between space-y-0">
               <div className="flex flex-col gap-1">
                  <CardTitle className="text-lg">Security Panel</CardTitle>
@@ -311,8 +345,8 @@ export function HomeExamples() {
                        <FiMoreHorizontal className="text-ds-500" size={18} />
                     </div>
                  </PopoverTrigger>
-                 <PopoverContent align="end" className="w-64 p-4 space-y-4 border-ds-200 dark:border-ds-800">
-                    <div className="flex flex-col gap-0.5 border-b border-ds-200 dark:border-ds-800 pb-3 mb-1">
+                 <PopoverContent align="end" className="w-64 p-4 space-y-4  dark:border-ds-800">
+                    <div className="flex flex-col gap-0.5 border-b  dark:border-ds-800 pb-3 mb-1">
                         <span className="text-xs font-bold text-ds-950 dark:text-ds-50">Quick Controls</span>
                         <span className="text-xs text-ds-500">Master layout and global settings.</span>
                     </div>
@@ -325,14 +359,14 @@ export function HomeExamples() {
            </CardHeader>
            <CardContent className="pt-2">
               <div className="grid grid-cols-2 gap-3 mb-6">
-                 <div className="p-4 rounded-[var(--radius-md)] bg-white dark:bg-ds-900 border border-ds-200 dark:border-ds-800 flex flex-col gap-3">
+                 <div className="p-4 rounded-[var(--radius-md)] bg-white dark:bg-ds-900 border  dark:border-ds-800 flex flex-col gap-3">
                     <FiShield className="text-ds-success-600" size={20} />
                     <div>
                        <div className="text-lg font-bold leading-none mb-1">Active</div>
                        <div className="text-xs uppercase font-bold text-ds-500 tracking-wider">Firewall</div>
                     </div>
                  </div>
-                 <div className="p-4 rounded-[var(--radius-md)] bg-white dark:bg-ds-900 border border-ds-200 dark:border-ds-800 flex flex-col gap-3">
+                 <div className="p-4 rounded-[var(--radius-md)] bg-white dark:bg-ds-900 border  dark:border-ds-800 flex flex-col gap-3">
                     <FiActivity className="text-ds-primary-600" size={20} />
                     <div>
                        <div className="text-lg font-bold leading-none mb-1">99.9%</div>
@@ -341,7 +375,7 @@ export function HomeExamples() {
                  </div>
               </div>
 
-              <div className="p-3 rounded-[var(--radius-md)] bg-white dark:bg-ds-900 border border-ds-200 dark:border-ds-800 flex items-center justify-between">
+              <div className="p-3 rounded-[var(--radius-md)] bg-white dark:bg-ds-900 border  dark:border-ds-800 flex items-center justify-between">
                  <div className="flex items-center gap-3">
                     <div className="size-8 rounded-[var(--radius)] bg-ds-info-500/10 flex items-center justify-center">
                        <FiGlobe className="text-ds-info-600" size={16} />
@@ -358,7 +392,7 @@ export function HomeExamples() {
 
         {/* 10. Schedule Card (New - Fills the gap) */}
         <Card>
-           <CardHeader className="pb-2">
+           <CardHeader>
               <div className="flex items-center justify-between">
                  <div className="flex items-center gap-2">
                     <FiCalendar className="text-ds-primary-600" size={18} />
@@ -368,15 +402,15 @@ export function HomeExamples() {
               </div>
            </CardHeader>
            <CardContent className="space-y-3">
-              <div className="p-3 rounded-[var(--radius-md)] bg-ds-50 dark:bg-ds-100/5 border border-ds-200 dark:border-ds-800 flex items-start gap-4">
-                 <div className="flex flex-col items-center pt-1 border-r border-ds-200 dark:border-ds-800 pr-4">
+              <div className="p-3 rounded-[var(--radius-md)] border dark:border-ds-800 flex items-start gap-4">
+                 <div className="flex flex-col items-center pt-1 border-r  dark:border-ds-800 pr-4">
                     <span className="text-xs font-black leading-none">10:30</span>
                     <span className="text-[10px] text-ds-500 font-bold">AM</span>
                  </div>
                  <div className="flex-1">
                     <div className="flex items-center justify-between mb-2">
                        <span className="text-sm font-bold leading-none">Sync with Design</span>
-                       <Badge content="Meeting" color="info" className="text-[10px] scale-90 origin-right" />
+                       <Badge content="Meeting" color="info" className="text-[10px] origin-right" />
                     </div>
                     <AvatarGroup size="xs" max={3}>
                        <Avatar src={AVATAR_URLS.user1} />
@@ -386,8 +420,8 @@ export function HomeExamples() {
                  </div>
               </div>
 
-              <div className="p-3 rounded-[var(--radius-md)] border border-dashed border-ds-200 dark:border-ds-800 flex items-start gap-4">
-                 <div className="flex flex-col items-center pt-1 border-r border-ds-200 dark:border-ds-800 pr-4">
+              <div className="p-3 rounded-[var(--radius-md)] border dark:border-ds-800 flex items-start gap-4">
+                 <div className="flex flex-col items-center pt-1 border-r  dark:border-ds-800 pr-4">
                     <span className="text-xs font-black leading-none">02:15</span>
                     <span className="text-[10px] text-ds-500 font-bold">PM</span>
                  </div>
@@ -398,6 +432,42 @@ export function HomeExamples() {
                     </div>
                     <p className="text-xs text-ds-500">Refactoring the core API hooks.</p>
                  </div>
+              </div>
+           </CardContent>
+        </Card>
+
+        {/* 12. Core Services (New) */}
+        <Card>
+           <CardHeader>
+              <div className="flex items-center gap-2">
+                 <FiServer className="text-ds-primary-600" size={18} />
+                 <CardTitle className="text-lg">Core Services</CardTitle>
+              </div>
+              <CardDescription>Manage your mission-critical infrastructure.</CardDescription>
+           </CardHeader>
+           <CardContent className="space-y-3">
+              <div className="flex items-center justify-between group">
+                 <div className="flex items-center gap-3">
+                    <div className="size-8 rounded-full bg-ds-success-500/10 flex items-center justify-center">
+                       <FiGlobe className="text-ds-success-600" size={16} />
+                    </div>
+                    <div className="flex flex-col">
+                       <span className="text-sm font-bold">Main API</span>
+                    </div>
+                 </div>
+                 <Switch defaultChecked />
+              </div>
+              <Divider />
+              <div className="flex items-center justify-between group">
+                 <div className="flex items-center gap-3">
+                    <div className="size-8 rounded-full bg-ds-primary-500/10 flex items-center justify-center">
+                       <FiDatabase className="text-ds-primary-600" size={16} />
+                    </div>
+                    <div className="flex flex-col">
+                       <span className="text-sm font-bold">Vector DB</span>
+                    </div>
+                 </div>
+                 <Switch />
               </div>
            </CardContent>
         </Card>
@@ -416,37 +486,33 @@ export function HomeExamples() {
              </div>
              <CardDescription>Manage your workspace and notification settings.</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="space-y-4">
-                <span className="text-xs font-bold uppercase tracking-widest text-ds-500">Privacy & Security</span>
-                <div className="space-y-3">
-                   <Checkbox 
-                     label="Two-factor auth" 
-                     description="Secure your account with 2FA." 
+          <CardContent className="space-y-4">
+               <span className="text-xs block font-bold uppercase tracking-widest text-ds-500">Privacy & Security</span>
+               <div className="space-y-3">
+                  <Checkbox
+                     label="Two-factor auth"
+                     description="Secure your account with 2FA."
                      defaultChecked
-                   />
-                   <Checkbox 
-                     label="Public profile" 
-                     description="Allow others to see your stats." 
-                   />
-                </div>
-            </div>
+                  />
+                  <Checkbox
+                     label="Public profile"
+                     description="Allow others to see your stats."
+                  />
+               </div>
 
-            <div className="space-y-4 border-t border-ds-200 dark:border-ds-800 pt-6">
-                <span className="text-xs font-bold uppercase tracking-widest text-ds-500">Subscription Plan</span>
-                <div className="space-y-3">
-                   <Radio 
-                     name="plan" 
-                     label="Starter Plan" 
-                     description="Free forever for 1 user." 
-                   />
-                   <Radio 
-                     name="plan" 
-                     label="Pro Plan" 
-                     description="$12/mo for unlimited team." 
-                     defaultChecked
-                   />
-                </div>
+            <div className="space-y-4 border-t  dark:border-ds-800 pt-6">
+               <span className="text-xs block font-bold uppercase tracking-widest text-ds-500">Subscription Plan</span>
+               <Radio
+                  name="plan"
+                  label="Starter Plan"
+                  description="Free forever for 1 user."
+                  />
+                  <Radio
+                  name="plan"
+                  label="Pro Plan"
+                  description="$12/mo for unlimited team."
+                  defaultChecked
+                  />
             </div>
 
             <Button className="w-full" variant="outlined">Save Changes</Button>
@@ -455,9 +521,9 @@ export function HomeExamples() {
 
         {/* 9. Conversion Overview Card (New with BarChart) */}
         <Card>
-           <CardHeader className="pb-4">
-              <div className="flex items-center justify-between gap-[20px">
-                 <div className="flex items-center gap-2">
+            <CardHeader className="pb-4">
+               <div className="flex items-center justify-between gap-5">
+                  <div className="flex items-center gap-2">
                     <FiBarChart2 className="text-ds-primary-600" size={18} />
                     <CardTitle className="text-lg leading-none">Traffic Sources</CardTitle>
                  </div>
@@ -532,8 +598,36 @@ export function HomeExamples() {
               </div>
            </CardContent>
         </Card>
+        {/* 13. Referral Survey (New) */}
+        <Card>
+           <CardHeader>
+              <CardTitle>How did you hear about us?</CardTitle>
+              <CardDescription>Select the option that best describes how you discovered our platform.</CardDescription>
+           </CardHeader>
+           <CardContent>
+            <div className="flex flex-wrap gap-2">
+               {[
+                 'Social Media', 'Search Engine', 'Referral', 'Advertising',
+                 'Conference', 'Newsletters', 'Partners', 'Other'
+               ].map((option) => (
+                 <Chip 
+                   key={option}
+                   label={option} 
+                   variant="tonal"
+                   selected={selectedSurveys.includes(option)}
+                   onClick={() => {
+                     setSelectedSurveys(prev => 
+                       prev.includes(option) 
+                         ? prev.filter(s => s !== option)
+                         : [...prev, option]
+                     );
+                   }}
+                 />
+               ))}
+            </div>
+           </CardContent>
+        </Card>
       </div>
-
     </div>
   );
 }
