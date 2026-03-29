@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Header } from '../../partials/Header';
 import { Footer } from '../../partials/Footer';
@@ -8,6 +8,7 @@ import { IconButton } from '../../components/IconButton/IconButton';
 import { Chip } from '../../components/Chip/Chip';
 import { Divider } from '../../components/Divider/Divider';
 import { Badge, FloatBadge } from '../../components/Badge/Badge';
+import { AnimateNumber } from '../../components/AnimateNumber/AnimateNumber';
 import { Avatar, AvatarGroup } from '../../components/Avatar/Avatar';
 import { Input } from '../../components/Input/Input';
 import { Checkbox } from '../../components/Checkbox/Checkbox';
@@ -82,6 +83,26 @@ export const AllComponentsExample = () => {
   const [drawerPosition, setDrawerPosition] = useState<'left' | 'right' | 'top' | 'bottom'>('right');
   const [otp, setOtp] = useState('');
   const { toast } = useToast();
+  
+  // Simulation for AnimateNumber showcase
+  const [showcaseMetrics, setShowcaseMetrics] = useState({
+    revenue: 24500,
+    conversion: 68.4,
+    users: 1240,
+    sla: 99.9
+  });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setShowcaseMetrics(prev => ({
+        revenue: prev.revenue + (Math.random() > 0.5 ? 250 : -150),
+        conversion: parseFloat(Math.min(100, Math.max(0, prev.conversion + (Math.random() > 0.5 ? 0.5 : -0.3))).toFixed(1)),
+        users: prev.users + (Math.random() > 0.5 ? 8 : -4),
+        sla: parseFloat(Math.min(100, Math.max(99, prev.sla + (Math.random() > 0.5 ? 0.01 : -0.01))).toFixed(2))
+      }));
+    }, 3500);
+    return () => clearInterval(timer);
+  }, []);
 
   const options = [
     { value: 'daily', label: 'Daily Reports' },
@@ -296,6 +317,40 @@ export const AllComponentsExample = () => {
             </div>
           </CardContent>
         </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Animated Metrics</CardTitle>
+            <CardDescription>Numbers that smoothly transition to their new values.</CardDescription>
+          </CardHeader>
+          <CardContent className="grid grid-cols-2 md:grid-cols-4 gap-6 tabular-nums">
+            <div className="flex flex-col gap-1">
+              <span className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Revenue</span>
+              <div className="text-2xl font-bold tracking-tight text-ds-950 dark:text-ds-50">
+                <AnimateNumber value={showcaseMetrics.revenue} prefix="$" />
+              </div>
+            </div>
+            <div className="flex flex-col gap-1">
+              <span className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Conversion</span>
+              <div className="text-2xl font-bold tracking-tight text-ds-success-600">
+                <AnimateNumber value={showcaseMetrics.conversion} suffix="%" precision={1} />
+              </div>
+            </div>
+            <div className="flex flex-col gap-1">
+              <span className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Active Users</span>
+              <div className="text-2xl font-bold tracking-tight text-ds-950 dark:text-ds-50">
+                <AnimateNumber value={showcaseMetrics.users} />
+              </div>
+            </div>
+            <div className="flex flex-col gap-1">
+              <span className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">SLA</span>
+              <div className="text-2xl font-bold tracking-tight text-ds-info-600">
+                <AnimateNumber value={showcaseMetrics.sla} suffix="%" precision={2} />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         <Card>
           <CardHeader>
             <CardTitle>Breadcrumbs</CardTitle>

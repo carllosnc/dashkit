@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { AnimateNumber } from '../../components/AnimateNumber/AnimateNumber';
 import {
   FiGrid, FiUsers, FiSettings,
   FiMoreVertical, FiExternalLink,
@@ -60,6 +61,27 @@ const AVATARS = [
 export const SidebarDashboardExample = () => {
   const [activeTab, setActiveTab] = useState('Overview');
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
+  // Simulation state for animated numbers
+  const [metrics, setMetrics] = useState({
+    revenue: 48250,
+    users: 2420,
+    tasks: 128,
+    velocity: 64.5
+  });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setMetrics(prev => ({
+        revenue: prev.revenue + (Math.random() > 0.5 ? 120 : -80),
+        users: prev.users + (Math.random() > 0.5 ? 15 : -10),
+        tasks: Math.min(150, Math.max(0, prev.tasks + (Math.random() > 0.5 ? 1 : -1))),
+        velocity: parseFloat((prev.velocity + (Math.random() > 0.5 ? 0.8 : -0.5)).toFixed(1))
+      }));
+    }, 4000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div className="flex h-screen bg-background overflow-hidden font-sans">
@@ -230,8 +252,10 @@ export const SidebarDashboardExample = () => {
                        <FiTrendingUp className="size-4" />
                      </div>
                   </div>
-                  <div className="flex items-baseline gap-2">
-                     <span className="text-2xl font-bold tracking-tight">$48,250</span>
+                  <div className="flex items-baseline gap-2 tabular-nums">
+                     <span className="text-2xl font-bold tracking-tight">
+                        <AnimateNumber value={metrics.revenue} prefix="$" />
+                     </span>
                      <Badge color="success" className="text-[10px] py-0 px-1" content="+12%" />
                   </div>
                </CardContent>
@@ -245,8 +269,10 @@ export const SidebarDashboardExample = () => {
                        <FiUsers className="size-4" />
                      </div>
                   </div>
-                  <div className="flex items-baseline gap-2">
-                     <span className="text-2xl font-bold tracking-tight">2,420</span>
+                  <div className="flex items-baseline gap-2 tabular-nums">
+                     <span className="text-2xl font-bold tracking-tight">
+                        <AnimateNumber value={metrics.users} />
+                     </span>
                      <Badge color="info" className="text-[10px] py-0 px-1" content="+5%" />
                   </div>
                </CardContent>
@@ -260,8 +286,10 @@ export const SidebarDashboardExample = () => {
                        <FiCheckCircle className="size-4" />
                      </div>
                   </div>
-                  <div className="flex items-baseline gap-2">
-                     <span className="text-2xl font-bold tracking-tight">128</span>
+                  <div className="flex items-baseline gap-2 tabular-nums">
+                     <span className="text-2xl font-bold tracking-tight">
+                        <AnimateNumber value={metrics.tasks} />
+                     </span>
                      <span className="text-xs text-muted-foreground">/ 150</span>
                   </div>
                </CardContent>
@@ -275,8 +303,10 @@ export const SidebarDashboardExample = () => {
                        <FiZap className="size-4" />
                      </div>
                   </div>
-                  <div className="flex items-baseline gap-2">
-                     <span className="text-2xl font-bold tracking-tight">64.5</span>
+                  <div className="flex items-baseline gap-2 tabular-nums">
+                     <span className="text-2xl font-bold tracking-tight">
+                        <AnimateNumber value={metrics.velocity} precision={1} />
+                     </span>
                      <span className="text-xs text-muted-foreground">pts / week</span>
                   </div>
                </CardContent>

@@ -5,7 +5,7 @@ import {
   FiSearch, FiToggleRight, FiMinus, FiColumns, FiLock, FiMaximize2,
   FiSidebar, FiMaximize, FiLayers, FiBell, FiMoreVertical, FiAward,
   FiInbox, FiChevronRight, FiGrid, FiLayout, FiLoader, FiSliders, FiMoreHorizontal, FiCalendar, FiTable, FiUser, FiActivity, FiMenu,
-  FiMonitor, FiMessageCircle, FiAlignLeft, FiEdit3
+  FiMonitor, FiMessageCircle, FiAlignLeft, FiEdit3, FiTrendingUp
 } from 'react-icons/fi';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -27,6 +27,7 @@ const navItems = [
     title: 'Components',
     links: [
       { to: '/docs/accordion', label: 'Accordion', icon: <FiLayers size={16} /> },
+      { to: '/docs/animate-number', label: 'Animate Number', icon: <FiTrendingUp size={16} /> },
       { to: '/docs/avatar', label: 'Avatar', icon: <FiUser size={16} /> },
       { to: '/docs/badge', label: 'Badge', icon: <FiAward size={16} /> },
       { to: '/docs/breadcrumb', label: 'Breadcrumb', icon: <FiChevronRight size={16} /> },

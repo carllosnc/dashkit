@@ -62,6 +62,7 @@ import { FiDownload, FiArrowRight, FiCopy, FiCheck, FiSearch, FiLock, FiUser, Fi
 import { PropertyDoc } from '../partials/PropertyDoc';
 import { ProgressBar } from '../components/ProgressBar/ProgressBar';
 import { Popover, PopoverTrigger, PopoverContent } from '../components/Popover/Popover';
+import { AnimateNumber } from '../components/AnimateNumber/AnimateNumber';
 
 
 type MdxComponentProps = { components?: Record<string, ElementType> };
@@ -132,6 +133,7 @@ const components: Record<string, ElementType> = {
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
+  AnimateNumber,
   Checkbox,
   Radio,
   Select,

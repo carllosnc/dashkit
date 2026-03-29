@@ -1,0 +1,131 @@
+import { AnimateNumber } from '../components/AnimateNumber/AnimateNumber'
+import { AnimateNumberExample } from '../examples/AnimateNumberExample'
+
+# Animate Number
+
+A specialized component for creating sleek numeric counters with independent digit animations. It uses a "top-to-bottom" sliding effect for each character, providing a premium and dynamic feel for dashboards and metrics.
+
+## Import
+
+```tsx
+import { AnimateNumber } from '@/components/AnimateNumber/AnimateNumber'
+```
+
+## Installation
+
+Add the animate-number to your project using the Dashkit CLI:
+
+```bash
+bunx carllosnc/dashkit add animate-number
+```
+
+## Basic Usage
+
+The component will automatically animate whenever the `value` prop changes. Each digit that differs from the previous value will slide vertically to its new position.
+
+<Preview>
+  <AnimateNumberExample />
+</Preview>
+
+```tsx
+import { useState } from 'react';
+import { AnimateNumber, Button } from 'dashkit';
+
+export default () => {
+  const [val, setVal] = useState(1250);
+  return (
+    <div className="flex flex-col items-center gap-4">
+      <div className="text-5xl font-bold">
+        <AnimateNumber value={val} />
+      </div>
+      <Button onClick={() => setVal(v => v + 10)}>Increment</Button>
+    </div>
+  );
+};
+```
+
+## Advanced Examples
+
+You can customize the precision, add prefixes/suffixes, and control the duration (speed of the slide animation).
+
+<Preview>
+  <div className="not-prose grid grid-cols-1 md:grid-cols-2 gap-8 p-8 w-full">
+    <div className="p-6 rounded-2xl bg-ds-50 dark:bg-ds-900 border border-ds-200 dark:border-ds-800 flex flex-col items-center gap-2">
+      <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Currency (USD)</span>
+      <div className="text-3xl font-bold text-ds-950 dark:text-ds-50 tabular-nums">
+        <AnimateNumber value={4520.50} precision={2} prefix="$" />
+      </div>
+    </div>
+
+    <div className="p-6 rounded-2xl bg-ds-50 dark:bg-ds-900 border border-ds-200 dark:border-ds-800 flex flex-col items-center gap-2">
+      <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Performance Score</span>
+      <div className="text-3xl font-bold text-ds-success-600 tabular-nums">
+        <AnimateNumber value={98.4} precision={1} suffix="%" />
+      </div>
+    </div>
+
+    <div className="p-6 rounded-2xl bg-ds-50 dark:bg-ds-900 border border-ds-200 dark:border-ds-800 flex flex-col items-center gap-2">
+      <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Slow Animation (1.2s)</span>
+      <div className="text-3xl font-bold tabular-nums">
+        <AnimateNumber value={100} duration={1.2} />
+      </div>
+    </div>
+
+    <div className="p-6 rounded-2xl bg-ds-50 dark:bg-ds-900 border border-ds-200 dark:border-ds-800 flex flex-col items-center gap-2">
+      <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Large Count</span>
+      <div className="text-3xl font-bold tabular-nums">
+        <AnimateNumber value={1000000} />
+      </div>
+    </div>
+  </div>
+</Preview>
+
+## Features
+
+- **Character Splitting**: Each digit animates independently for a premium odometer feel.
+- **Top-to-Bottom Movement**: New values slide in from above while old ones exit below.
+- **Localization Support**: Automatically handles thousands separators and decimal markers via `Intl.NumberFormat`.
+- **Customizable Duration**: Control the speed of each character's vertical transition.
+
+## API
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "value",
+    "type": "number",
+    "defaultValue": "—",
+    "description": "The target value to animate to."
+  },
+  {
+    "prop": "precision",
+    "type": "number",
+    "defaultValue": "0",
+    "description": "Number of decimal places to show."
+  },
+  {
+    "prop": "prefix",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "String to display before the number."
+  },
+  {
+    "prop": "suffix",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "String to display after the number."
+  },
+  {
+    "prop": "duration",
+    "type": "number",
+    "defaultValue": "0.35",
+    "description": "Animation duration for each character in seconds."
+  },
+  {
+    "prop": "locale",
+    "type": "string",
+    "defaultValue": "'en-US'",
+    "description": "Locale for number formatting."
+  }
+]}
+/>

@@ -1,12 +1,12 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { Popover, PopoverTrigger, PopoverContent } from './Popover';
-import type { ReactNode } from 'react';
+import type { ReactNode, CSSProperties } from 'react';
 
 // Mock framer-motion
 vi.mock('framer-motion', () => ({
   motion: {
-    div: ({ children, onClick, className, style }: { children: ReactNode, onClick?: () => void, className?: string, style?: any }) => (
+    div: ({ children, onClick, className, style }: { children: ReactNode, onClick?: () => void, className?: string, style?: CSSProperties }) => (
       <div onClick={onClick} className={className} style={style}>{children}</div>
     ),
   },

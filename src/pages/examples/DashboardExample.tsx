@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { AnimateNumber } from '../../components/AnimateNumber/AnimateNumber';
 import { cn } from '../../utils/cn';
 import {
   FiGrid, FiUsers, FiSettings, FiSearch, FiBell,
@@ -110,6 +111,25 @@ export function DashboardExample() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Simulation state for animated numbers
+  const [metrics, setMetrics] = useState({
+    revenue: 45231.89,
+    tasks: 1240,
+    efficiency: 94.2
+  });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setMetrics(prev => ({
+        revenue: prev.revenue + (Math.random() > 0.5 ? 150.50 : -90.25),
+        tasks: prev.tasks + (Math.random() > 0.5 ? 5 : -3),
+        efficiency: parseFloat(Math.min(100, Math.max(90, prev.efficiency + (Math.random() > 0.5 ? 0.2 : -0.1))).toFixed(1))
+      }));
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   const handleRefresh = () => {
     setIsLoading(true);
     setTimeout(() => {
@@ -185,8 +205,10 @@ export function DashboardExample() {
           <Card shadowed className="border-none">
             <CardContent className="flex flex-col gap-1">
               <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider">Total Revenue</p>
-              <div className="flex items-baseline justify-between">
-                <h3 className="text-2xl font-bold tracking-tight text-foreground">$45,231.89</h3>
+              <div className="flex items-baseline justify-between tabular-nums">
+                <h3 className="text-2xl font-bold tracking-tight text-foreground">
+                  <AnimateNumber value={metrics.revenue} prefix="$" precision={2} />
+                </h3>
                 <span className="text-[11px] font-bold text-ds-success-600 bg-ds-success-600/10 dark:text-ds-success-400 dark:bg-ds-success-500/15 px-2 py-0.5 rounded-full">+12.5%</span>
               </div>
               <p className="text-sm text-ds-400 mt-1">vs last month</p>
@@ -196,8 +218,10 @@ export function DashboardExample() {
           <Card shadowed className="border-none">
             <CardContent className="flex flex-col gap-1">
               <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider">Active Tasks</p>
-              <div className="flex items-baseline justify-between">
-                <h3 className="text-2xl font-bold tracking-tight text-foreground">1,240</h3>
+              <div className="flex items-baseline justify-between tabular-nums">
+                <h3 className="text-2xl font-bold tracking-tight text-foreground">
+                  <AnimateNumber value={metrics.tasks} />
+                </h3>
                 <span className="text-[11px] font-bold text-ds-500 bg-ds-100 dark:bg-ds-800 px-2 py-0.5 rounded-full">82%</span>
               </div>
               <div className="h-1 w-full bg-ds-200 dark:bg-ds-800 rounded-full mt-3 overflow-hidden">
@@ -209,8 +233,10 @@ export function DashboardExample() {
           <Card shadowed className="border-none">
             <CardContent className="flex flex-col gap-1">
               <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider">Efficiency Rate</p>
-              <div className="flex items-baseline justify-between">
-                <h3 className="text-2xl font-bold tracking-tight text-foreground">94.2%</h3>
+              <div className="flex items-baseline justify-between tabular-nums">
+                <h3 className="text-2xl font-bold tracking-tight text-foreground">
+                   <AnimateNumber value={metrics.efficiency} precision={1} suffix="%" />
+                </h3>
                 <span className="text-[11px] font-bold text-ds-info-600 bg-ds-info-600/10 dark:text-ds-info-400 dark:bg-ds-info-500/15 px-2 py-0.5 rounded-full">94%</span>
               </div>
               <div className="flex gap-1 mt-3">

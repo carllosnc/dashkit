@@ -45,6 +45,7 @@ import ComboboxDocs from './pages/combobox.mdx'
 import AvatarDocs from './pages/avatar.mdx'
 import ProgressBarDocs from './pages/progressbar.mdx'
 import PopoverDocs from './pages/popover.mdx'
+import AnimateNumberDocs from './pages/animate-number.mdx'
 import FloatActionMenuDocs from './pages/float-action-menu.mdx'
 import { LoginExample } from './pages/examples/LoginExample'
 import { ComplexFormExample } from './pages/examples/ComplexFormExample'
@@ -74,6 +75,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="cli" element={<MdxWrapper Component={CliDocs} />} />
                 <Route path="customization" element={<MdxWrapper Component={CustomizationDocs} />} />
                 <Route path="accordion" element={<MdxWrapper Component={AccordionDocs} />} />
+                <Route path="animate-number" element={<MdxWrapper Component={AnimateNumberDocs} />} />
                 <Route path="badge" element={<MdxWrapper Component={BadgeDocs} />} />
                 <Route path="breadcrumb" element={<MdxWrapper Component={BreadcrumbDocs} />} />
                 <Route path="button" element={<MdxWrapper Component={ButtonDocs} />} />
