@@ -20,6 +20,7 @@ import { AnimateNumber } from '../components/AnimateNumber/AnimateNumber';
 import { Divider } from '../components/Divider/Divider';
 import { Chip } from '../components/Chip/Chip';
 import { OtpInput } from '../components/OtpInput/OtpInput';
+import { Slider } from '../components/Slider/Slider';
 
 const AVATAR_URLS = {
   user1: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=120&h=120&auto=format&fit=crop",
@@ -654,6 +655,15 @@ export function HomeExamples() {
                    </div>
                 </div>
               ))}
+              <Divider className="my-2" />
+              <div className="px-2">
+                <Slider 
+                  label="Alert Sensitivity" 
+                  description="Threshold for instant alerts."
+                  defaultValue={65} 
+                  showValue
+                />
+              </div>
               <Button variant="outlined" size="sm" className="w-full">Clear All Notifications</Button>
            </CardContent>
         </Card>

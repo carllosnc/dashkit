@@ -111,6 +111,14 @@ export const registry: Record<string, ComponentConfig> = {
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
+  slider: {
+    name: 'Slider',
+    files: [
+      'src/components/Slider/Slider.tsx',
+      'src/components/Slider/useSlider.ts'
+    ],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
+  },
   tabs: {
     name: 'Tabs',
     files: ['src/components/Tabs/Tabs.tsx'],

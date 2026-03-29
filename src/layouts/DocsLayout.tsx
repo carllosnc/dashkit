@@ -5,7 +5,7 @@ import {
   FiSearch, FiToggleRight, FiMinus, FiColumns, FiLock, FiMaximize2,
   FiSidebar, FiMaximize, FiLayers, FiBell, FiMoreVertical, FiAward,
   FiInbox, FiChevronRight, FiGrid, FiLayout, FiLoader, FiSliders, FiMoreHorizontal, FiCalendar, FiTable, FiUser, FiActivity, FiMenu,
-  FiMonitor, FiMessageCircle, FiAlignLeft, FiEdit3, FiTrendingUp
+  FiMonitor, FiMessageCircle, FiAlignLeft, FiEdit3, FiTrendingUp, FiSettings
 } from 'react-icons/fi';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -20,7 +20,7 @@ const navItems = [
     links: [
       { to: '/docs/introduction', label: 'Introduction', icon: <FiBookOpen size={16} /> },
       { to: '/docs/cli', label: 'Installation', icon: <FiDownload size={16} /> },
-      { to: '/docs/customization', label: 'Customization', icon: <FiSliders size={16} /> },
+      { to: '/docs/customization', label: 'Customization', icon: <FiSettings size={16} /> },
     ]
   },
   {
@@ -57,6 +57,7 @@ const navItems = [
       { to: '/docs/skeleton', label: 'Skeleton', icon: <FiGrid size={16} /> },
       { to: '/docs/spinner', label: 'Spinner', icon: <FiLoader size={16} /> },
       { to: '/docs/switch', label: 'Switch', icon: <FiToggleRight size={16} /> },
+      { to: '/docs/slider', label: 'Slider', icon: <FiSliders size={16} /> },
       { to: '/docs/table', label: 'Table', icon: <FiTable size={16} /> },
       { to: '/docs/tabs', label: 'Tabs', icon: <FiColumns size={16} /> },
       { to: '/docs/textarea', label: 'Textarea', icon: <FiEdit3 size={16} /> },

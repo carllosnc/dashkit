@@ -1,0 +1,179 @@
+import { useState } from 'react';
+import { Slider } from '../components/Slider/Slider';
+
+export const SliderDemo = () => {
+  const [value, setValue] = useState(50);
+
+  return (
+    <div className="flex flex-col gap-6 w-full max-w-sm mt-4">
+      <Slider 
+        label="Volume Level" 
+        description="Adjust the system volume output."
+        value={value}
+        onChange={setValue}
+        showValue
+      />
+      <div className="text-sm text-muted-foreground bg-ds-50 dark:bg-white/5 p-4 rounded-xl border border-ds-200 dark:border-white/10 flex justify-between">
+        <span>Current Volume:</span>
+        <span className="font-bold text-foreground tabular-nums">{value}%</span>
+      </div>
+    </div>
+  );
+}
+
+# Slider
+
+A premium, interactive slider component for selecting a value from a range, featuring smooth animations and real-time feedback.
+
+## Import
+
+```tsx
+import { Slider } from '@/components/Slider/Slider'
+```
+
+## Installation
+
+Add the slider component to your project using the Dashkit CLI:
+
+```bash
+bunx carllosnc/dashkit add slider
+```
+
+## Basic Usage
+
+A simple slider with a label and default range (0-100).
+
+<Preview>
+  <Slider label="Brightness" defaultValue={70} />
+</Preview>
+
+```tsx
+<Slider label="Brightness" defaultValue={70} />
+```
+
+## With Description & Value
+
+Provide more context with a description and show the current value bubble.
+
+<Preview>
+  <div className="flex flex-col gap-8 w-full max-w-md">
+    <Slider 
+      label="Opacity" 
+      description="Adjust the transparency of the selected layer."
+      showValue
+      defaultValue={45}
+    />
+    <Slider 
+      label="Saturation" 
+      description="Make colors more vivid or muted."
+      showValue
+      defaultValue={80}
+      min={0}
+      max={200}
+    />
+  </div>
+</Preview>
+
+```tsx
+<Slider 
+  label="Opacity" 
+  description="Adjust the transparency."
+  showValue
+  defaultValue={45}
+/>
+```
+
+## Controlled State
+
+Manage the slider value using React's `useState` for full control.
+
+<Preview>
+  <SliderDemo />
+</Preview>
+
+```tsx
+import { useState } from 'react'
+
+export function VolumeSettings() {
+  const [value, setValue] = useState(50)
+
+  return (
+    <Slider 
+      label="Volume Level" 
+      value={value} 
+      onChange={setValue} 
+      showValue
+    />
+  )
+}
+```
+
+## Custom Ranges & Steps
+
+Define custom `min`, `max`, and `step` values for precise control.
+
+<Preview>
+  <div className="flex flex-col gap-6 w-full max-w-sm">
+    <Slider label="Price Range ($)" min={10} max={500} step={5} showValue defaultValue={100} />
+    <Slider label="Rating" min={0} max={5} step={0.5} showValue defaultValue={4.5} />
+  </div>
+</Preview>
+
+```tsx
+<Slider label="Price Range ($)" min={10} max={500} step={5} showValue />
+<Slider label="Rating" min={0} max={5} step={0.5} showValue />
+```
+
+## States
+
+Supports disabled and focus states with consistent design system aesthetics.
+
+<Preview>
+  <div className="flex flex-col gap-6 w-full max-w-sm">
+    <Slider label="Disabled Slider" disabled defaultValue={30} />
+  </div>
+</Preview>
+
+```tsx
+<Slider label="Disabled Slider" disabled defaultValue={30} />
+```
+
+## Props
+
+Extends all native `InputHTMLAttributes<HTMLInputElement>` (except `type` and `onChange`), plus these specialties:
+
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "label",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Title text rendered above the slider."
+  },
+  {
+    "prop": "description",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Description text rendered below the label."
+  },
+  {
+    "prop": "showValue",
+    "type": "boolean",
+    "defaultValue": "false",
+    "description": "Whether to display the current numeric value."
+  },
+  {
+    "prop": "onChange",
+    "type": "(value: number) => void",
+    "defaultValue": "—",
+    "description": "Callback triggered when the value changes."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Additional CSS classes for the container."
+  }
+]}
+/>
