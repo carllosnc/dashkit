@@ -63,7 +63,7 @@ const CHART_SERIES = [
 
 export function HomeExamples() {
   const [liveValue, setLiveValue] = React.useState(12400.50);
-  const [selectedSurveys, setSelectedSurveys] = React.useState<string[]>(['Social Media', 'Search Engine']);
+  const [selectedSurveys, setSelectedSurveys] = React.useState<string[]>(['Development', 'Design']);
 
   React.useEffect(() => {
     const interval = setInterval(() => {
@@ -80,7 +80,7 @@ export function HomeExamples() {
         {/* 1. Login Form Example */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-lg">Welcome Back</CardTitle>
+            <CardTitle>Welcome Back</CardTitle>
             <CardDescription>Enter your credentials to access your dashboard.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -121,7 +121,7 @@ export function HomeExamples() {
         {/* 4. Action / Quick Settings Example */}
         <Card>
           <CardHeader>
-             <CardTitle className="text-lg">System Optimizer</CardTitle>
+             <CardTitle>System Optimizer</CardTitle>
              <CardDescription>Configure your node performance and scaling settings.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
@@ -150,10 +150,10 @@ export function HomeExamples() {
            <CardHeader>
               <div className="flex flex-row items-center justify-between">
                  <div className="flex flex-col gap-1">
-                    <CardTitle className="text-lg">Active Team</CardTitle>
+                    <CardTitle>Active Team</CardTitle>
                     <CardDescription>Members currently online.</CardDescription>
                  </div>
-                 <Badge content="12 Active" color="success" variant="soft" className="text-xs" />
+                 <Badge content="12 Active" color="success" variant="soft" />
               </div>
            </CardHeader>
            <CardContent className="space-y-6 pt-0">
@@ -207,7 +207,7 @@ export function HomeExamples() {
            <CardHeader>
               <div className="flex items-center justify-between">
                  <div className="flex flex-col gap-1">
-                    <CardTitle className="text-lg">Security Events</CardTitle>
+                    <CardTitle>Security Events</CardTitle>
                     <CardDescription>Recent threat intelligence log.</CardDescription>
                  </div>
                  <FiShield size={18} className="text-ds-danger-600" />
@@ -314,7 +314,7 @@ export function HomeExamples() {
                  <AnimateNumber value={liveValue} prefix="$" precision={2} />
               </CardTitle>
               <CardDescription className="flex items-center gap-1.5 mt-1">
-                 <Badge content="Live" color="success" variant="soft" pulse dot show className="size-2" />
+                 <Badge content="Live" color="success" variant="solid" pulse dot show />
                  <span className="text-xs text-ds-500">Real-time transaction stream</span>
               </CardDescription>
            </CardHeader>
@@ -336,7 +336,7 @@ export function HomeExamples() {
         <Card shadowed className=" dark:border-ds-800 overflow-visible">
            <CardHeader className="flex flex-row items-center justify-between space-y-0">
               <div className="flex flex-col gap-1">
-                 <CardTitle className="text-lg">Security Panel</CardTitle>
+                 <CardTitle>Security Panel</CardTitle>
                  <CardDescription>Advanced monitoring controls.</CardDescription>
               </div>
               <Popover>
@@ -346,8 +346,8 @@ export function HomeExamples() {
                     </div>
                  </PopoverTrigger>
                  <PopoverContent align="end" className="w-64 p-4 space-y-4  dark:border-ds-800">
-                    <div className="flex flex-col gap-0.5 border-b  dark:border-ds-800 pb-3 mb-1">
-                        <span className="text-xs font-bold text-ds-950 dark:text-ds-50">Quick Controls</span>
+                    <div className="flex flex-col gap-0.5">
+                        <span className="text-sm uppercase font-bold text-ds-950 dark:text-ds-50">Quick Controls</span>
                         <span className="text-xs text-ds-500">Master layout and global settings.</span>
                     </div>
                     <Switch label="Live Monitoring" description="Enable real-time data streaming." defaultChecked />
@@ -385,7 +385,7 @@ export function HomeExamples() {
                         <div className="text-xs text-ds-500">North America (US-East)</div>
                     </div>
                  </div>
-                 <Badge color="info" variant="soft" content="Optimized" className="text-xs" />
+                 <Badge color="info" variant="soft" content="Optimized" />
               </div>
            </CardContent>
         </Card>
@@ -396,7 +396,7 @@ export function HomeExamples() {
               <div className="flex items-center justify-between">
                  <div className="flex items-center gap-2">
                     <FiCalendar className="text-ds-primary-600" size={18} />
-                    <CardTitle className="text-lg">Upcoming</CardTitle>
+                    <CardTitle>Upcoming</CardTitle>
                  </div>
                  <span className="text-xs font-bold text-ds-500">Today</span>
               </div>
@@ -441,7 +441,7 @@ export function HomeExamples() {
            <CardHeader>
               <div className="flex items-center gap-2">
                  <FiServer className="text-ds-primary-600" size={18} />
-                 <CardTitle className="text-lg">Core Services</CardTitle>
+                 <CardTitle>Core Services</CardTitle>
               </div>
               <CardDescription>Manage your mission-critical infrastructure.</CardDescription>
            </CardHeader>
@@ -482,7 +482,7 @@ export function HomeExamples() {
                 <div className="size-6 rounded-[var(--radius)] bg-ds-primary-500/10 flex items-center justify-center">
                    <FiSettings className="text-ds-primary-600" size={14} />
                 </div>
-                <CardTitle className="text-lg">Preferences</CardTitle>
+                <CardTitle>Preferences</CardTitle>
              </div>
              <CardDescription>Manage your workspace and notification settings.</CardDescription>
           </CardHeader>
@@ -525,9 +525,9 @@ export function HomeExamples() {
                <div className="flex items-center justify-between gap-5">
                   <div className="flex items-center gap-2">
                     <FiBarChart2 className="text-ds-primary-600" size={18} />
-                    <CardTitle className="text-lg leading-none">Traffic Sources</CardTitle>
+                    <CardTitle className="leading-none">Traffic Sources</CardTitle>
                  </div>
-                 <Badge content="Monthly" color="info" variant="soft" className="text-xs" />
+                 <Badge content="Monthly" color="info" variant="soft" />
               </div>
               <Divider className='my-[10px]' />
               <CardDescription>Performance comparison across channels.</CardDescription>
@@ -561,7 +561,7 @@ export function HomeExamples() {
         {/* 6. Resource Allocation Card (New) */}
         <Card>
            <CardHeader>
-              <CardTitle className="text-lg">Resource Allocation</CardTitle>
+              <CardTitle>Resource Allocation</CardTitle>
               <CardDescription>Current infrastructure utilization.</CardDescription>
            </CardHeader>
            <CardContent className="space-y-6 pt-0">
@@ -571,7 +571,7 @@ export function HomeExamples() {
                        <FiCpu className="text-ds-danger-600" size={16} />
                        <span className="text-sm font-medium">CPU Usage</span>
                     </div>
-                    <Badge content="High" color="danger" variant="soft" className="text-xs" />
+                    <Badge content="High" color="danger" variant="soft" />
                   </div>
                  <ProgressBar value={92} color="danger" size="xs" animate />
               </div>
@@ -582,7 +582,7 @@ export function HomeExamples() {
                        <FiHardDrive className="text-ds-primary-600" size={16} />
                        <span className="text-sm font-medium">Storage Allocation</span>
                     </div>
-                    <Badge content="Normal" color="base" variant="soft" className="text-xs" />
+                    <Badge content="Normal" color="base" variant="soft" />
                  </div>
                  <ProgressBar value={45} color="primary" size="xs" animate />
               </div>
@@ -593,23 +593,23 @@ export function HomeExamples() {
                        <FiLayers className="text-ds-success-600" size={16} />
                        <span className="text-sm font-medium">Memory Buffer</span>
                     </div>
-                    <Badge content="Optimal" color="success" variant="soft" className="text-xs" />
+                    <Badge content="Optimal" color="success" variant="soft" />
                  </div>
                  <ProgressBar value={18} color="success" size="xs" animate />
               </div>
            </CardContent>
         </Card>
-        {/* 13. Referral Survey (New) */}
+        {/* 13. Personalization Survey (New) */}
         <Card>
            <CardHeader>
-              <CardTitle>How did you hear about us?</CardTitle>
-              <CardDescription>Select the option that best describes how you discovered our platform.</CardDescription>
+              <CardTitle>Personalize your experience</CardTitle>
+              <CardDescription>Select your areas of interest to tailor the dashboard to your needs.</CardDescription>
            </CardHeader>
            <CardContent>
             <div className="flex flex-wrap gap-2">
                {[
-                 'Social Media', 'Search Engine', 'Referral', 'Advertising',
-                 'Conference', 'Newsletters', 'Partners', 'Other'
+                 'Design', 'Development', 'Marketing', 'Analytics',
+                 'Operations', 'Sales', 'Management', 'Strategy'
                ].map((option) => (
                  <Chip
                    key={option}

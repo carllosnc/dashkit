@@ -19,11 +19,10 @@ export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   fallback?: React.ReactNode;
   size?: AvatarSize;
   shape?: AvatarShape;
-  bordered?: boolean;
 }
 
 export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
-  ({ src, alt, fallback, size = 'md', shape = 'circle', bordered = false, className, ...props }, ref) => {
+  ({ src, alt, fallback, size = 'md', shape = 'circle', className, ...props }, ref) => {
     const [isLoaded, setIsLoaded] = React.useState(false);
     const [hasError, setHasError] = React.useState(!src);
     const imgRef = React.useRef<HTMLImageElement>(null);
@@ -46,7 +45,6 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
           "relative flex shrink-0 items-center justify-center overflow-hidden bg-ds-100 dark:bg-ds-800",
           sizeMap[size],
           shape === 'circle' ? "rounded-full" : "rounded-lg",
-          bordered && "ring-2 ring-white dark:ring-ds-900 border border-ds-200 dark:border-ds-700",
           className
         )}
         {...props}
@@ -106,7 +104,6 @@ export const AvatarGroup = ({ children, max, size = 'md', spacing = 'md', classN
       {visibleAvatars.map((child, i) => (
         React.isValidElement(child) ? React.cloneElement(child as React.ReactElement<AvatarProps>, {
           size,
-          bordered: true,
           style: { zIndex: childrenArray.length - i }
         }) : child
       ))}
@@ -114,7 +111,6 @@ export const AvatarGroup = ({ children, max, size = 'md', spacing = 'md', classN
         <Avatar
           fallback={`+${remainingCount}`}
           size={size}
-          bordered
           className="bg-ds-900 text-white dark:bg-white dark:text-ds-900 z-0 text-[10px]"
         />
       )}
