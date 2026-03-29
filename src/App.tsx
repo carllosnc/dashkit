@@ -6,6 +6,8 @@ import { FiArrowRight, FiGithub } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { Footer } from './partials/Footer'
+import { HomeExamples } from './partials/HomeExamples'
+import { Divider } from './components/Divider/Divider'
 
 const AVAILABLE_COMPONENTS = ["badge", "button", "button-group", "popover", "animate-number", "area-chart", "divider", "datepicker", "table", "card", "input", "icon-button", "skeleton", "tabs", "sidebar", "modal", "drawer", "float-action-menu", "tooltip", "dock"];
 const TITLE = "Dashkit UI | Lean, Simpler React Component Library";
@@ -33,7 +35,7 @@ function App() {
       <Header />
 
       {/* Hero Section */}
-      <main className="flex-1 relative flex flex-col items-center justify-center text-center px-6 py-32 overflow-hidden">
+      <main className="relative flex flex-col items-center justify-center text-center px-6 py-14 overflow-hidden">
         <div className="mb-8 animate-in fade-in slide-in-from-top-4 duration-1000 delay-100 fill-mode-both">
           <Badge
             color="warning"
@@ -100,6 +102,9 @@ function App() {
           </div>
         </div>
       </main>
+
+        <Divider />
+        <HomeExamples />
 
       <Footer />
     </div>
