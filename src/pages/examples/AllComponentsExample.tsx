@@ -83,8 +83,7 @@ export const AllComponentsExample = () => {
   const [drawerPosition, setDrawerPosition] = useState<'left' | 'right' | 'top' | 'bottom'>('right');
   const [otp, setOtp] = useState('');
   const { toast } = useToast();
-  
-  // Simulation for AnimateNumber showcase
+
   const [showcaseMetrics, setShowcaseMetrics] = useState({
     revenue: 24500,
     conversion: 68.4,

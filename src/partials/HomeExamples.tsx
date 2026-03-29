@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FiLock, FiMail, FiZap, FiSettings, FiMoreHorizontal, FiShield, FiActivity, FiGlobe, FiTrendingUp, FiCpu, FiHardDrive, FiLayers, FiShoppingCart, FiArrowUpRight, FiBarChart2, FiCalendar, FiClock, FiDatabase, FiShieldOff, FiServer, FiBell, FiList, FiFolder, FiShare2, FiMessageSquare } from 'react-icons/fi';
+import { FiLock, FiMail, FiZap, FiSettings, FiMoreHorizontal, FiShield, FiActivity, FiGlobe, FiTrendingUp, FiDatabase, FiShieldOff, FiServer, FiBell, FiList, FiFolder, FiShare2, FiMessageSquare, FiBarChart2, FiCalendar, FiClock, FiShoppingCart, FiArrowUpRight } from 'react-icons/fi';
 import { FaGithub, FaGoogle, FaSlack, FaDiscord, FaAws, FaFigma } from 'react-icons/fa';
 import { SiVercel, SiNotion } from 'react-icons/si';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/Card/Card';
@@ -19,6 +19,7 @@ import { Avatar, AvatarGroup } from '../components/Avatar/Avatar';
 import { AnimateNumber } from '../components/AnimateNumber/AnimateNumber';
 import { Divider } from '../components/Divider/Divider';
 import { Chip } from '../components/Chip/Chip';
+import { OtpInput } from '../components/OtpInput/OtpInput';
 
 const AVATAR_URLS = {
   user1: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=120&h=120&auto=format&fit=crop",
@@ -65,6 +66,20 @@ const CHART_SERIES = [
 export function HomeExamples() {
   const [liveValue, setLiveValue] = React.useState(12400.50);
   const [selectedSurveys, setSelectedSurveys] = React.useState<string[]>(['Development', 'Design']);
+  const [otp, setOtp] = React.useState('');
+  const [tasks, setTasks] = React.useState([
+    { label: "Refactor API layer", checked: true },
+    { label: "Update documentation", checked: true },
+    { label: "Finalize color tokens", checked: false },
+    { label: "Performance audit", checked: false },
+  ]);
+
+  const completedCount = tasks.filter(t => t.checked).length;
+  const progressValue = (completedCount / tasks.length) * 100;
+
+  const toggleTask = (index: number) => {
+    setTasks(prev => prev.map((t, i) => i === index ? { ...t, checked: !t.checked } : t));
+  };
 
   React.useEffect(() => {
     const interval = setInterval(() => {
@@ -559,44 +574,25 @@ export function HomeExamples() {
            </CardContent>
         </Card>
 
-        {/* 6. Resource Allocation Card (New) */}
+        {/* 6. OTP Verification Card */}
         <Card>
            <CardHeader>
-              <CardTitle>Resource Allocation</CardTitle>
-              <CardDescription>Current infrastructure utilization.</CardDescription>
+              <CardTitle>Two-Factor Auth</CardTitle>
+              <CardDescription>Enter the 6-digit code sent to your device.</CardDescription>
            </CardHeader>
-           <CardContent className="space-y-6 pt-0">
-              <div className="space-y-4">
-                 <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                       <FiCpu className="text-ds-danger-600" size={16} />
-                       <span className="text-sm font-medium">CPU Usage</span>
-                    </div>
-                    <Badge content="High" color="danger" variant="soft" />
-                  </div>
-                 <ProgressBar value={92} color="danger" size="xs" animate />
-              </div>
-
-              <div className="space-y-4">
-                 <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                       <FiHardDrive className="text-ds-primary-600" size={16} />
-                       <span className="text-sm font-medium">Storage Allocation</span>
-                    </div>
-                    <Badge content="Normal" color="base" variant="soft" />
+           <CardContent className="space-y-6">
+              <OtpInput 
+                 length={6}
+                 value={otp}
+                 onChange={setOtp}
+                 containerClassName="justify-between"
+              />
+              <div className="space-y-3">
+                 <Button variant="filled" className="w-full">Verify Identity</Button>
+                 <div className="text-center">
+                    <span className="text-xs text-ds-500">Didn't receive the code? </span>
+                    <button className="text-xs font-bold text-ds-primary-600 hover:underline cursor-pointer">Resend</button>
                  </div>
-                 <ProgressBar value={45} color="primary" size="xs" animate />
-              </div>
-
-              <div className="space-y-4">
-                 <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                       <FiLayers className="text-ds-success-600" size={16} />
-                       <span className="text-sm font-medium">Memory Buffer</span>
-                    </div>
-                    <Badge content="Optimal" color="success" variant="soft" />
-                 </div>
-                 <ProgressBar value={18} color="success" size="xs" animate />
               </div>
            </CardContent>
         </Card>
@@ -670,16 +666,20 @@ export function HomeExamples() {
                     <FiList className="text-ds-primary-600" size={18} />
                     <CardTitle>Tasks</CardTitle>
                  </div>
-                 <span className="text-xs font-bold text-ds-500">60% Done</span>
+                 <span className="text-xs font-bold text-ds-500">{Math.round(progressValue)}% Done</span>
               </div>
            </CardHeader>
            <CardContent className="space-y-4">
-              <ProgressBar value={60} size="xs" color="primary" />
+              <ProgressBar value={progressValue} size="xs" color="primary" />
               <div className="space-y-5">
-                 <Checkbox label="Refactor API layer" defaultChecked />
-                 <Checkbox label="Update documentation" defaultChecked />
-                 <Checkbox label="Finalize color tokens" />
-                 <Checkbox label="Performance audit" />
+                 {tasks.map((task, i) => (
+                    <Checkbox
+                        key={task.label}
+                        label={task.label}
+                        checked={task.checked}
+                        onChange={() => toggleTask(i)}
+                    />
+                 ))}
               </div>
            </CardContent>
         </Card>
@@ -725,60 +725,64 @@ export function HomeExamples() {
            <CardContent className="space-y-5">
               <div className="flex items-center justify-between group cursor-pointer">
                  <div className="flex items-center gap-4">
-                    <FaGithub size={22} className="text-ds-700 dark:text-ds-300 group-hover:text-ds-950 dark:group-hover:text-ds-0 transition-colors" />
+                    <FaGithub size={22} className="text-ds-600 dark:text-ds-400" />
                     <span className="text-sm font-medium">GitHub</span>
                  </div>
-                 <Badge content="Connected" color="success" variant="soft" className="text-xs" />
+                 <Badge content="Connected" color="success" variant="soft" />
               </div>
               <div className="flex items-center justify-between group cursor-pointer">
                  <div className="flex items-center gap-4">
-                    <FaGoogle size={20} className="text-ds-700 dark:text-ds-300 group-hover:text-ds-950 dark:group-hover:text-ds-0 transition-colors" />
+                    <FaGoogle size={20} className="text-ds-600 dark:text-ds-400" />
                     <span className="text-sm font-medium">Google Workspace</span>
                  </div>
                  <Button variant="soft" size="sm">Connect</Button>
               </div>
               <div className="flex items-center justify-between group cursor-pointer">
                  <div className="flex items-center gap-4">
-                    <FaSlack size={22} className="text-ds-700 dark:text-ds-300 group-hover:text-[#4A154B] transition-colors" />
+                    <FaSlack size={22} className="text-ds-600 dark:text-ds-400" />
                     <span className="text-sm font-medium">Slack</span>
                  </div>
                  <Button variant="soft" size="sm">Connect</Button>
               </div>
               <div className="flex items-center justify-between group cursor-pointer">
                  <div className="flex items-center gap-4">
-                    <FaDiscord size={22} className="text-ds-700 dark:text-ds-300 group-hover:text-[#5865F2] transition-colors" />
+                    <FaDiscord size={22} className="text-ds-600 dark:text-ds-400" />
                     <span className="text-sm font-medium">Discord</span>
                  </div>
-                 <Badge content="Connected" color="success" variant="soft" className="text-xs" />
+                 <Badge content="Connected" color="success" variant="soft" />
               </div>
               <div className="flex items-center justify-between group cursor-pointer">
                  <div className="flex items-center gap-4">
-                    <FaAws size={24} className="text-ds-700 dark:text-ds-300 group-hover:text-[#FF9900] transition-colors" />
+                    <FaAws size={24} className="text-ds-600 dark:text-ds-400" />
                     <span className="text-sm font-medium">AWS Cloud</span>
                  </div>
                  <Button variant="soft" size="sm">Connect</Button>
               </div>
               <div className="flex items-center justify-between group cursor-pointer">
                  <div className="flex items-center gap-4">
-                    <SiVercel size={20} className="text-ds-700 dark:text-ds-300 group-hover:text-ds-950 dark:group-hover:text-ds-0 transition-colors" />
+                    <SiVercel size={20} className="text-ds-600 dark:text-ds-400" />
                     <span className="text-sm font-medium">Vercel</span>
                  </div>
-                 <Badge content="Connected" color="success" variant="soft" className="text-xs" />
+                 <Badge content="Connected" color="success" variant="soft" />
               </div>
               <div className="flex items-center justify-between group cursor-pointer">
                  <div className="flex items-center gap-4">
-                    <FaFigma size={22} className="text-ds-700 dark:text-ds-300 group-hover:text-[#F24E1E] transition-colors" />
+                    <FaFigma size={22} className="text-ds-600 dark:text-ds-400" />
                     <span className="text-sm font-medium">Figma</span>
                  </div>
-                 <Badge content="Connected" color="success" variant="soft" className="text-xs" />
+                 <Badge content="Connected" color="success" variant="soft" />
               </div>
               <div className="flex items-center justify-between group cursor-pointer">
                  <div className="flex items-center gap-4">
-                    <SiNotion size={22} className="text-ds-700 dark:text-ds-300 group-hover:text-ds-950 dark:group-hover:text-ds-0 transition-colors" />
+                    <SiNotion size={22} className="text-ds-600 dark:text-ds-400" />
                     <span className="text-sm font-medium">Notion</span>
                  </div>
                  <Button variant="soft" size="sm">Connect</Button>
               </div>
+              <Divider />
+              <Button variant="outlined" className="w-full">
+                 Manage 12+ Connections
+              </Button>
            </CardContent>
         </Card>
       </div>

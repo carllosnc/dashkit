@@ -3,6 +3,7 @@ import { TypingEffect } from './partials/TypingEffect'
 import { Button } from './components/Button/Button'
 import { Header } from './partials/Header'
 import { FiArrowRight, FiGithub } from 'react-icons/fi'
+import { SiReact, SiTailwindcss, SiFramer, SiTypescript } from 'react-icons/si'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { Footer } from './partials/Footer'
@@ -83,27 +84,27 @@ function App() {
         </div>
 
         {/* Tech Stack Badges */}
-        <div className="flex flex-wrap justify-center gap-6 opacity-40">
+        <div className="flex flex-wrap justify-center gap-6">
           <div className="flex items-center gap-2 text-sm font-medium text-foreground">
-            <div className="size-1.5 rounded-full bg-foreground/80" />
+            <SiReact className="w-4 h-4 text-[#61DAFB]" />
             React
           </div>
           <div className="flex items-center gap-2 text-sm font-medium text-foreground">
-            <div className="size-1.5 rounded-full bg-foreground/60" />
+            <SiTailwindcss className="w-4 h-4 text-[#06B6D4]" />
             Tailwind CSS
           </div>
           <div className="flex items-center gap-2 text-sm font-medium text-foreground">
-            <div className="size-1.5 rounded-full bg-foreground/40" />
+            <SiFramer className="w-4 h-4 text-foreground" />
             Framer Motion
           </div>
           <div className="flex items-center gap-2 text-sm font-medium text-foreground">
-            <div className="size-1.5 rounded-full bg-foreground/20" />
+            <SiTypescript className="w-4 h-4 text-[#3178C6]" />
             TypeScript
           </div>
         </div>
       </main>
 
-        <Divider />
+        <Divider variant='dashed' />
         <HomeExamples />
 
       <Footer />
