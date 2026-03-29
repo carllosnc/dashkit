@@ -19,10 +19,11 @@ export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   fallback?: React.ReactNode;
   size?: AvatarSize;
   shape?: AvatarShape;
+  bordered?: boolean;
 }
 
 export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
-  ({ src, alt, fallback, size = 'md', shape = 'circle', className, ...props }, ref) => {
+  ({ src, alt, fallback, size = 'md', shape = 'circle', bordered = false, className, ...props }, ref) => {
     const [isLoaded, setIsLoaded] = React.useState(false);
     const [hasError, setHasError] = React.useState(!src);
     const imgRef = React.useRef<HTMLImageElement>(null);
@@ -45,6 +46,7 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
           "relative flex shrink-0 items-center justify-center overflow-hidden bg-ds-100 dark:bg-ds-800",
           sizeMap[size],
           shape === 'circle' ? "rounded-full" : "rounded-lg",
+          bordered && "ring-2 ring-background border border-ds-border dark:border-ds-dark-border",
           className
         )}
         {...props}
