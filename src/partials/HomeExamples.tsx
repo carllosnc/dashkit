@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { FiLock, FiMail, FiZap, FiSettings, FiMoreHorizontal, FiShield, FiActivity, FiGlobe, FiTrendingUp, FiCpu, FiHardDrive, FiLayers, FiShoppingCart, FiArrowUpRight, FiBarChart2, FiCalendar, FiClock, FiDatabase, FiShieldOff, FiServer } from 'react-icons/fi';
-import { FaGithub, FaGoogle } from 'react-icons/fa';
+import { FiLock, FiMail, FiZap, FiSettings, FiMoreHorizontal, FiShield, FiActivity, FiGlobe, FiTrendingUp, FiCpu, FiHardDrive, FiLayers, FiShoppingCart, FiArrowUpRight, FiBarChart2, FiCalendar, FiClock, FiDatabase, FiShieldOff, FiServer, FiBell, FiList, FiFolder, FiShare2, FiMessageSquare } from 'react-icons/fi';
+import { FaGithub, FaGoogle, FaSlack, FaDiscord, FaAws, FaFigma } from 'react-icons/fa';
+import { SiVercel, SiNotion } from 'react-icons/si';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/Card/Card';
 import { Button } from '../components/Button/Button';
 import { Input } from '../components/Input/Input';
@@ -73,7 +74,7 @@ export function HomeExamples() {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-7xl mx-auto px-4 py-20 items-start">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full max-w-[1600px] mx-auto px-4 py-20 items-start">
 
       {/* Column 1 */}
       <div className="flex flex-col gap-4">
@@ -125,7 +126,7 @@ export function HomeExamples() {
              <CardDescription>Configure your node performance and scaling settings.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="flex flex-col gap-4 p-4 rounded-[var(--radius-md)] bg-ds-50 dark:bg-ds-900/50 border border-ds-300 dark:border-ds-800 text-ds-950 dark:text-ds-50">
+            <div className="space-y-4 p-4 rounded-[var(--radius)] bg-ds-50/50 dark:bg-ds-900/50 border border-ds-200 dark:border-ds-800">
                 <div className="flex items-center justify-between">
                     <span className="text-xs font-bold uppercase tracking-widest text-ds-500">Current Load</span>
                     <FiZap size={14} className="text-ds-primary-600" />
@@ -156,8 +157,8 @@ export function HomeExamples() {
                  <Badge content="12 Active" color="success" variant="soft" />
               </div>
            </CardHeader>
-           <CardContent className="space-y-6 pt-0">
-              <div className="flex items-center justify-between p-3 rounded-[var(--radius-md)] border  dark:border-ds-800 bg-ds-50/50 dark:bg-ds-100/5">
+           <CardContent className="space-y-6">
+              <div className="flex items-center justify-between p-3 rounded-[var(--radius)] border border-ds-200 dark:border-ds-800 bg-ds-50/30 dark:bg-ds-800/20">
                  <div className="flex items-center gap-3">
                     <AvatarGroup max={3} spacing="md" size="sm">
                        <Avatar src={AVATAR_URLS.user1} alt="User 1" />
@@ -171,9 +172,9 @@ export function HomeExamples() {
                        <span className="text-xs text-ds-500">Design System Project</span>
                     </div>
                  </div>
-                 <div className="size-8 rounded-full bg-ds-200/50 dark:bg-ds-800 flex items-center justify-center">
-                    <FiMoreHorizontal size={14} className="text-ds-500" />
-                 </div>
+                 <Button variant="soft" size="sm" className="p-0 size-8 aspect-square min-w-0">
+                    <FiMoreHorizontal size={14} className="mx-auto" />
+                 </Button>
               </div>
 
               <div className="space-y-4">
@@ -213,28 +214,28 @@ export function HomeExamples() {
                  <FiShield size={18} className="text-ds-danger-600" />
               </div>
            </CardHeader>
-           <CardContent className="space-y-4 pt-0">
-              <div className="flex items-center justify-between p-3 rounded-[var(--radius-md)] border">
+           <CardContent className="space-y-4">
+              <div className="flex items-center justify-between p-3 rounded-[var(--radius)] border border-ds-200 dark:border-ds-800 bg-ds-50/30 dark:bg-ds-100/5">
                  <div className="flex items-center gap-3">
                     <FiShieldOff className="text-ds-danger-600" size={16} />
                     <div className="flex flex-col">
                        <span className="text-sm font-bold leading-tight">Unauthorized Entry</span>
-                       <span className="text-[10px] text-ds-500 tracking-wider font-bold uppercase">Node 0x42-E</span>
+                       <span className="text-xs text-ds-500 tracking-wider font-bold uppercase">Node 0x42-E</span>
                     </div>
                  </div>
-                 <Badge content="Critical" color="danger" variant="soft" className="text-[10px]" />
+                 <Badge content="Critical" color="danger" variant="soft" className="text-xs" />
               </div>
-              <div className="flex items-center justify-between p-3 rounded-[var(--radius-md)] border">
+              <div className="flex items-center justify-between p-3 rounded-[var(--radius)] border border-ds-200 dark:border-ds-800 bg-ds-50/30 dark:bg-ds-100/5">
                  <div className="flex items-center gap-3">
                     <FiActivity className="text-ds-warning-600" size={16} />
                     <div className="flex flex-col">
                        <span className="text-sm font-bold leading-tight">API Rate Limit</span>
-                       <span className="text-[10px] text-ds-500 tracking-wider font-bold uppercase">Public Access</span>
+                       <span className="text-xs text-ds-500 tracking-wider font-bold uppercase">Public Access</span>
                     </div>
                  </div>
-                 <Badge content="Warning" color="warning" variant="soft" className="text-[10px]" />
+                 <Badge content="Warning" color="warning" variant="soft" className="text-xs" />
               </div>
-              <Button variant="outlined" size="sm" className="w-full text-xs">View Security Logs</Button>
+              <Button variant="outlined" size="sm" className="w-full">View Security Logs</Button>
            </CardContent>
         </Card>
       </div>
@@ -248,9 +249,9 @@ export function HomeExamples() {
               <TabsTrigger value="revenue">Revenue</TabsTrigger>
            </TabsList>
            <TabsContent value="overview" className="space-y-4">
-               <div className="flex flex-col gap-1">
-                  <h4 className="text-sm font-bold text-ds-950 dark:text-ds-50">Platform Traffic</h4>
-                  <p className="text-xs text-ds-500">Real-time engagement metrics for your apps.</p>
+               <div className="flex flex-col">
+                  <h4 className="text-sm font-bold">Platform Traffic</h4>
+                  <p className="text-xs text-ds-500">Real-time engagement metrics.</p>
                </div>
                <div className="w-full mt-2">
                   <AreaChart
@@ -264,11 +265,11 @@ export function HomeExamples() {
                <div className="flex items-center justify-between">
                   <div className="flex gap-4">
                     <div className="flex flex-col">
-                        <span className="text-xs text-ds-500 uppercase font-bold">Today</span>
+                        <span className="text-xs text-ds-500 uppercase font-bold tracking-wider">Today</span>
                         <span className="text-sm font-bold">12.4k</span>
                     </div>
-                    <div className="flex flex-col border-l  dark:border-ds-800 pl-4">
-                        <span className="text-xs text-ds-500 uppercase font-bold">Peak</span>
+                    <div className="flex flex-col border-l border-ds-200 dark:border-ds-800 pl-4">
+                        <span className="text-xs text-ds-500 uppercase font-bold tracking-wider">Peak</span>
                         <span className="text-sm font-bold">18.2k</span>
                     </div>
                   </div>
@@ -277,9 +278,9 @@ export function HomeExamples() {
            </TabsContent>
            <TabsContent value="revenue" className="space-y-4">
                <div className="flex items-center justify-between">
-                  <div className="flex flex-col gap-1">
-                     <h4 className="text-sm font-bold text-ds-950 dark:text-ds-50">Monthly Yield</h4>
-                     <p className="text-xs text-ds-500">Total revenue generated from all nodes.</p>
+                  <div className="flex flex-col">
+                     <h4 className="text-sm font-bold">Monthly Yield</h4>
+                     <p className="text-xs text-ds-500">Revenue from all nodes.</p>
                   </div>
                   <div className="flex items-center gap-1 text-ds-success-600 font-bold text-xs">
                      <FiTrendingUp size={14} />
@@ -294,9 +295,9 @@ export function HomeExamples() {
                     showLabels={true}
                   />
                </div>
-               <div className="p-3 rounded-[var(--radius-md)] bg-ds-50 dark:bg-ds-900 border  dark:border-ds-800 flex items-center justify-between">
+               <div className="p-3 rounded-[var(--radius)] bg-ds-50/50 dark:bg-ds-800/10 border border-ds-200 dark:border-ds-800 flex items-center justify-between">
                   <span className="text-xs font-bold text-ds-500">Total Generated</span>
-                  <span className="text-sm font-bold text-ds-950 dark:text-ds-50">$28,400.00</span>
+                  <span className="text-sm font-bold">$28,400.00</span>
                </div>
            </TabsContent>
         </Tabs>
@@ -310,7 +311,7 @@ export function HomeExamples() {
                  </div>
                  <span className="text-xs font-bold text-ds-500 uppercase tracking-widest">Global Sales</span>
               </div>
-              <CardTitle className="text-3xl font-medium">
+              <CardTitle className="text-3xl font-medium tracking-tight">
                  <AnimateNumber value={liveValue} prefix="$" precision={2} />
               </CardTitle>
               <CardDescription className="flex items-center gap-1.5 mt-1">
@@ -319,10 +320,10 @@ export function HomeExamples() {
               </CardDescription>
            </CardHeader>
            <CardContent>
-              <div className="p-3 rounded-[var(--radius-md)] bg-ds-50 dark:bg-ds-900 border  dark:border-ds-800 flex items-center justify-between mt-2">
+              <div className="p-3 rounded-[var(--radius)] bg-ds-50/50 dark:bg-ds-800/10 border border-ds-200 dark:border-ds-800 flex items-center justify-between mt-2">
                  <div className="flex flex-col">
-                    <span className="text-xs text-ds-500 font-bold uppercase">Avg. Ticket</span>
-                    <span className="text-base">$242.10</span>
+                    <span className="text-xs text-ds-500 font-bold uppercase tracking-wider">Avg. Ticket</span>
+                    <span className="text-base font-bold">$242.10</span>
                  </div>
                  <div className="flex items-center gap-1 text-ds-success-600 font-bold text-xs">
                     <FiArrowUpRight size={14} />
@@ -345,28 +346,28 @@ export function HomeExamples() {
                        <FiMoreHorizontal className="text-ds-500" size={18} />
                     </div>
                  </PopoverTrigger>
-                 <PopoverContent align="end" className="w-64 p-4 space-y-4  dark:border-ds-800">
-                    <div className="flex flex-col gap-0.5">
-                        <span className="text-sm uppercase font-bold text-ds-950 dark:text-ds-50">Quick Controls</span>
-                        <span className="text-xs text-ds-500">Master layout and global settings.</span>
+                 <PopoverContent align="end" className="w-64 p-4 space-y-4">
+                    <div className="flex flex-col">
+                        <span className="text-sm uppercase font-bold">Quick Controls</span>
+                        <span className="text-xs text-ds-500">Global platform settings.</span>
                     </div>
-                    <Switch label="Live Monitoring" description="Enable real-time data streaming." defaultChecked />
-                    <Switch label="Auto Lockdown" description="Secure nodes on high load." />
-                    <Switch label="Global CDN" description="Edge delivery optimization." defaultChecked />
+                    <Switch label="Live Monitoring" description="Real-time data stream." defaultChecked />
+                    <Switch label="Auto Lockdown" description="Secure on high load." />
+                    <Switch label="Global CDN" description="Edge optimization." defaultChecked />
                     <Button variant="filled" size="sm" className="w-full mt-2">Apply All</Button>
                  </PopoverContent>
               </Popover>
            </CardHeader>
            <CardContent className="pt-2">
               <div className="grid grid-cols-2 gap-3 mb-6">
-                 <div className="p-4 rounded-[var(--radius-md)] bg-white dark:bg-ds-900 border  dark:border-ds-800 flex flex-col gap-3">
+                 <div className="p-4 rounded-[var(--radius)] bg-ds-50/30 dark:bg-ds-800/20 border border-ds-200 dark:border-ds-800 flex flex-col gap-3">
                     <FiShield className="text-ds-success-600" size={20} />
                     <div>
                        <div className="text-lg font-bold leading-none mb-1">Active</div>
                        <div className="text-xs uppercase font-bold text-ds-500 tracking-wider">Firewall</div>
                     </div>
                  </div>
-                 <div className="p-4 rounded-[var(--radius-md)] bg-white dark:bg-ds-900 border  dark:border-ds-800 flex flex-col gap-3">
+                 <div className="p-4 rounded-[var(--radius)] bg-ds-50/30 dark:bg-ds-800/20 border border-ds-200 dark:border-ds-800 flex flex-col gap-3">
                     <FiActivity className="text-ds-primary-600" size={20} />
                     <div>
                        <div className="text-lg font-bold leading-none mb-1">99.9%</div>
@@ -375,7 +376,7 @@ export function HomeExamples() {
                  </div>
               </div>
 
-              <div className="p-3 rounded-[var(--radius-md)] bg-white dark:bg-ds-900 border  dark:border-ds-800 flex items-center justify-between">
+              <div className="p-3 rounded-[var(--radius)] bg-ds-50/30 dark:bg-ds-800/20 border border-ds-200 dark:border-ds-800 flex items-center justify-between">
                  <div className="flex items-center gap-3">
                     <div className="size-8 rounded-[var(--radius)] bg-ds-info-500/10 flex items-center justify-center">
                        <FiGlobe className="text-ds-info-600" size={16} />
@@ -405,12 +406,12 @@ export function HomeExamples() {
               <div className="p-3 rounded-[var(--radius-md)] border dark:border-ds-800 flex items-start gap-4">
                  <div className="flex flex-col items-center pt-1 border-r  dark:border-ds-800 pr-4">
                     <span className="text-xs font-black leading-none">10:30</span>
-                    <span className="text-[10px] text-ds-500 font-bold">AM</span>
+                    <span className="text-xs text-ds-500 font-bold">AM</span>
                  </div>
                  <div className="flex-1">
                     <div className="flex items-center justify-between mb-2">
                        <span className="text-sm font-bold leading-none">Sync with Design</span>
-                       <Badge content="Meeting" color="info" variant="soft" className="text-[10px] origin-right" />
+                       <Badge content="Meeting" color="info" variant="soft" className="text-xs origin-right" />
                     </div>
                     <AvatarGroup size="xs" max={3}>
                        <Avatar src={AVATAR_URLS.user1} />
@@ -423,7 +424,7 @@ export function HomeExamples() {
               <div className="p-3 rounded-[var(--radius-md)] border dark:border-ds-800 flex items-start gap-4">
                  <div className="flex flex-col items-center pt-1 border-r  dark:border-ds-800 pr-4">
                     <span className="text-xs font-black leading-none">02:15</span>
-                    <span className="text-[10px] text-ds-500 font-bold">PM</span>
+                    <span className="text-xs text-ds-500 font-bold">PM</span>
                  </div>
                  <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
@@ -521,41 +522,41 @@ export function HomeExamples() {
 
         {/* 9. Conversion Overview Card (New with BarChart) */}
         <Card>
-            <CardHeader className="pb-4">
-               <div className="flex items-center justify-between gap-5">
+            <CardHeader>
+               <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <FiBarChart2 className="text-ds-primary-600" size={18} />
-                    <CardTitle className="leading-none">Traffic Sources</CardTitle>
+                    <CardTitle>Traffic Sources</CardTitle>
                  </div>
                  <Badge content="Monthly" color="info" variant="soft" />
               </div>
-              <Divider className='my-[10px]' />
-              <CardDescription>Performance comparison across channels.</CardDescription>
            </CardHeader>
-           <CardContent className="w-full">
-            <BarChart
-               data={CONVERSION_DATA}
-               series={[
-                  { key: 'desktop', label: 'Desktop', color: '#3b82f6' },
-                  { key: 'mobile', label: 'Mobile', color: '#10b981' }
-               ]}
-               showGrid={false}
-               rounded
-               barGap={2}
-            />
-           </CardContent>
+           <CardContent className="space-y-6">
+            <div className="w-full">
+                <BarChart
+                   data={CONVERSION_DATA}
+                   series={[
+                      { key: 'desktop', label: 'Desktop', color: '#3b82f6' },
+                      { key: 'mobile', label: 'Mobile', color: '#10b981' }
+                   ]}
+                   showGrid={false}
+                   rounded
+                   barGap={2}
+                />
+            </div>
             <Divider />
-           <div className="px-6 flex items-center justify-around">
-              <div className="flex flex-col items-center text-center">
-                 <span className="text-xs uppercase font-bold text-ds-500">Highest</span>
-                 <span className="text-sm font-bold text-ds-950 dark:text-ds-50">Organic</span>
-              </div>
-              <Divider orientation="vertical" className="h-8" />
-              <div className="flex flex-col items-center text-center">
-                 <span className="text-xs uppercase font-bold text-ds-500">Engagement</span>
-                 <span className="text-sm font-bold text-ds-success-600">+18.4%</span>
-              </div>
-           </div>
+            <div className="flex items-center justify-around">
+               <div className="flex flex-col items-center text-center">
+                  <span className="text-xs uppercase font-bold text-ds-500 tracking-wider">Highest</span>
+                  <span className="text-sm font-bold">Organic</span>
+               </div>
+               <Divider orientation="vertical" />
+               <div className="flex flex-col items-center text-center">
+                  <span className="text-xs uppercase font-bold text-ds-500 tracking-wider">Engagement</span>
+                  <span className="text-sm font-bold text-ds-success-600">+18.4%</span>
+               </div>
+            </div>
+           </CardContent>
         </Card>
 
         {/* 6. Resource Allocation Card (New) */}
@@ -626,6 +627,158 @@ export function HomeExamples() {
                  />
                ))}
             </div>
+           </CardContent>
+        </Card>
+      </div>
+
+      {/* Column 4 */}
+      <div className="flex flex-col gap-4">
+        {/* 14. Notifications Feed */}
+        <Card>
+           <CardHeader>
+              <div className="flex items-center justify-between">
+                 <div className="flex items-center gap-2">
+                    <FiBell className="text-ds-primary-600" size={18} />
+                    <CardTitle>Notifications</CardTitle>
+                 </div>
+                 <Badge content="3 New" color="info" variant="soft" />
+              </div>
+           </CardHeader>
+           <CardContent className="space-y-4">
+              {[
+                { icon: <FiZap className="text-ds-warning-600" />, title: "Deployment successful", time: "2m ago" },
+                { icon: <FiShield className="text-ds-success-600" />, title: "Security scan passed", time: "1h ago" },
+                { icon: <FiMessageSquare className="text-ds-info-600" />, title: "New feedback received", time: "3h ago" }
+              ].map((item, i) => (
+                <div key={i} className="flex gap-3 items-start p-2 rounded-[var(--radius)] hover:bg-ds-50/50 dark:hover:bg-ds-800/30 transition-colors cursor-pointer group">
+                   <div className="mt-1 opacity-70 group-hover:opacity-100 transition-opacity">{item.icon}</div>
+                   <div className="flex flex-col">
+                      <span className="text-sm font-semibold leading-tight">{item.title}</span>
+                      <span className="text-xs text-ds-500 font-medium">{item.time}</span>
+                   </div>
+                </div>
+              ))}
+              <Button variant="outlined" size="sm" className="w-full">Clear All Notifications</Button>
+           </CardContent>
+        </Card>
+
+        {/* 15. Task Management */}
+        <Card>
+           <CardHeader>
+              <div className="flex items-center justify-between">
+                 <div className="flex items-center gap-2">
+                    <FiList className="text-ds-primary-600" size={18} />
+                    <CardTitle>Tasks</CardTitle>
+                 </div>
+                 <span className="text-xs font-bold text-ds-500">60% Done</span>
+              </div>
+           </CardHeader>
+           <CardContent className="space-y-4">
+              <ProgressBar value={60} size="xs" color="primary" />
+              <div className="space-y-5">
+                 <Checkbox label="Refactor API layer" defaultChecked />
+                 <Checkbox label="Update documentation" defaultChecked />
+                 <Checkbox label="Finalize color tokens" />
+                 <Checkbox label="Performance audit" />
+              </div>
+           </CardContent>
+        </Card>
+
+        {/* 16. Cloud Storage Usage */}
+        <Card>
+           <CardHeader>
+              <div className="flex items-center gap-2">
+                 <FiFolder className="text-ds-warning-600" size={18} />
+                 <CardTitle>Storage</CardTitle>
+              </div>
+           </CardHeader>
+           <CardContent className="space-y-4">
+              <div className="flex items-end justify-between">
+                 <div className="flex flex-col">
+                    <span className="text-2xl font-bold">42.8 GB</span>
+                    <span className="text-xs text-ds-500">of 100 GB used</span>
+                 </div>
+                 <FiTrendingUp className="text-ds-danger-600 mb-1" />
+              </div>
+              <ProgressBar value={42.8} size="sm" color="warning" />
+              <div className="grid grid-cols-2 gap-2">
+                 <div className="flex flex-col p-2 bg-ds-50/50 dark:bg-ds-800/10 rounded-[var(--radius)] border border-ds-200 dark:border-ds-800">
+                    <span className="text-xs font-bold uppercase text-ds-500 tracking-wider">Images</span>
+                    <span className="text-sm font-bold">12.4 GB</span>
+                 </div>
+                 <div className="flex flex-col p-2 bg-ds-50/50 dark:bg-ds-800/10 rounded-[var(--radius)] border border-ds-200 dark:border-ds-800">
+                    <span className="text-xs font-bold uppercase text-ds-500 tracking-wider">Backups</span>
+                    <span className="text-sm font-bold">30.4 GB</span>
+                 </div>
+              </div>
+           </CardContent>
+        </Card>
+
+        {/* 17. Quick Integrations */}
+        <Card>
+           <CardHeader>
+              <div className="flex items-center gap-2">
+                 <FiShare2 className="text-ds-info-600" size={18} />
+                 <CardTitle>Integrations</CardTitle>
+              </div>
+           </CardHeader>
+           <CardContent className="space-y-5">
+              <div className="flex items-center justify-between group cursor-pointer">
+                 <div className="flex items-center gap-4">
+                    <FaGithub size={22} className="text-ds-700 dark:text-ds-300 group-hover:text-ds-950 dark:group-hover:text-ds-0 transition-colors" />
+                    <span className="text-sm font-medium">GitHub</span>
+                 </div>
+                 <Badge content="Connected" color="success" variant="soft" className="text-xs" />
+              </div>
+              <div className="flex items-center justify-between group cursor-pointer">
+                 <div className="flex items-center gap-4">
+                    <FaGoogle size={20} className="text-ds-700 dark:text-ds-300 group-hover:text-ds-950 dark:group-hover:text-ds-0 transition-colors" />
+                    <span className="text-sm font-medium">Google Workspace</span>
+                 </div>
+                 <Button variant="soft" size="sm">Connect</Button>
+              </div>
+              <div className="flex items-center justify-between group cursor-pointer">
+                 <div className="flex items-center gap-4">
+                    <FaSlack size={22} className="text-ds-700 dark:text-ds-300 group-hover:text-[#4A154B] transition-colors" />
+                    <span className="text-sm font-medium">Slack</span>
+                 </div>
+                 <Button variant="soft" size="sm">Connect</Button>
+              </div>
+              <div className="flex items-center justify-between group cursor-pointer">
+                 <div className="flex items-center gap-4">
+                    <FaDiscord size={22} className="text-ds-700 dark:text-ds-300 group-hover:text-[#5865F2] transition-colors" />
+                    <span className="text-sm font-medium">Discord</span>
+                 </div>
+                 <Badge content="Connected" color="success" variant="soft" className="text-xs" />
+              </div>
+              <div className="flex items-center justify-between group cursor-pointer">
+                 <div className="flex items-center gap-4">
+                    <FaAws size={24} className="text-ds-700 dark:text-ds-300 group-hover:text-[#FF9900] transition-colors" />
+                    <span className="text-sm font-medium">AWS Cloud</span>
+                 </div>
+                 <Button variant="soft" size="sm">Connect</Button>
+              </div>
+              <div className="flex items-center justify-between group cursor-pointer">
+                 <div className="flex items-center gap-4">
+                    <SiVercel size={20} className="text-ds-700 dark:text-ds-300 group-hover:text-ds-950 dark:group-hover:text-ds-0 transition-colors" />
+                    <span className="text-sm font-medium">Vercel</span>
+                 </div>
+                 <Badge content="Connected" color="success" variant="soft" className="text-xs" />
+              </div>
+              <div className="flex items-center justify-between group cursor-pointer">
+                 <div className="flex items-center gap-4">
+                    <FaFigma size={22} className="text-ds-700 dark:text-ds-300 group-hover:text-[#F24E1E] transition-colors" />
+                    <span className="text-sm font-medium">Figma</span>
+                 </div>
+                 <Badge content="Connected" color="success" variant="soft" className="text-xs" />
+              </div>
+              <div className="flex items-center justify-between group cursor-pointer">
+                 <div className="flex items-center gap-4">
+                    <SiNotion size={22} className="text-ds-700 dark:text-ds-300 group-hover:text-ds-950 dark:group-hover:text-ds-0 transition-colors" />
+                    <span className="text-sm font-medium">Notion</span>
+                 </div>
+                 <Button variant="soft" size="sm">Connect</Button>
+              </div>
            </CardContent>
         </Card>
       </div>
