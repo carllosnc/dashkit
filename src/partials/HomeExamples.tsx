@@ -153,7 +153,7 @@ export function HomeExamples() {
                     <CardTitle className="text-lg">Active Team</CardTitle>
                     <CardDescription>Members currently online.</CardDescription>
                  </div>
-                 <Badge content="12 Active" color="success" className="text-xs" />
+                 <Badge content="12 Active" color="success" variant="soft" className="text-xs" />
               </div>
            </CardHeader>
            <CardContent className="space-y-6 pt-0">
@@ -272,7 +272,7 @@ export function HomeExamples() {
                         <span className="text-sm font-bold">18.2k</span>
                     </div>
                   </div>
-                  <Badge color="info" content="Live" />
+                  <Badge color="info" variant="soft" content="Live" />
                </div>
            </TabsContent>
            <TabsContent value="revenue" className="space-y-4">
@@ -314,7 +314,7 @@ export function HomeExamples() {
                  <AnimateNumber value={liveValue} prefix="$" precision={2} />
               </CardTitle>
               <CardDescription className="flex items-center gap-1.5 mt-1">
-                 <Badge content="Live" color="success" pulse dot show className="size-2" />
+                 <Badge content="Live" color="success" variant="soft" pulse dot show className="size-2" />
                  <span className="text-xs text-ds-500">Real-time transaction stream</span>
               </CardDescription>
            </CardHeader>
@@ -385,7 +385,7 @@ export function HomeExamples() {
                         <div className="text-xs text-ds-500">North America (US-East)</div>
                     </div>
                  </div>
-                 <Badge color="info" content="Optimized" className="text-xs" />
+                 <Badge color="info" variant="soft" content="Optimized" className="text-xs" />
               </div>
            </CardContent>
         </Card>
@@ -410,7 +410,7 @@ export function HomeExamples() {
                  <div className="flex-1">
                     <div className="flex items-center justify-between mb-2">
                        <span className="text-sm font-bold leading-none">Sync with Design</span>
-                       <Badge content="Meeting" color="info" className="text-[10px] origin-right" />
+                       <Badge content="Meeting" color="info" variant="soft" className="text-[10px] origin-right" />
                     </div>
                     <AvatarGroup size="xs" max={3}>
                        <Avatar src={AVATAR_URLS.user1} />
@@ -527,7 +527,7 @@ export function HomeExamples() {
                     <FiBarChart2 className="text-ds-primary-600" size={18} />
                     <CardTitle className="text-lg leading-none">Traffic Sources</CardTitle>
                  </div>
-                 <Badge content="Monthly" color="info" className="text-xs" />
+                 <Badge content="Monthly" color="info" variant="soft" className="text-xs" />
               </div>
               <Divider className='my-[10px]' />
               <CardDescription>Performance comparison across channels.</CardDescription>
@@ -570,7 +570,7 @@ export function HomeExamples() {
                        <FiCpu className="text-ds-danger-600" size={16} />
                        <span className="text-sm font-medium">CPU Usage</span>
                     </div>
-                    <Badge content="High" color="danger" className="text-xs" />
+                    <Badge content="High" color="danger" variant="soft" className="text-xs" />
                   </div>
                  <ProgressBar value={92} color="danger" size="xs" animate />
               </div>
@@ -581,7 +581,7 @@ export function HomeExamples() {
                        <FiHardDrive className="text-ds-primary-600" size={16} />
                        <span className="text-sm font-medium">Storage Allocation</span>
                     </div>
-                    <Badge content="Normal" color="base" className="text-xs" />
+                    <Badge content="Normal" color="base" variant="soft" className="text-xs" />
                  </div>
                  <ProgressBar value={45} color="primary" size="xs" animate />
               </div>
@@ -592,7 +592,7 @@ export function HomeExamples() {
                        <FiLayers className="text-ds-success-600" size={16} />
                        <span className="text-sm font-medium">Memory Buffer</span>
                     </div>
-                    <Badge content="Optimal" color="success" className="text-xs" />
+                    <Badge content="Optimal" color="success" variant="soft" className="text-xs" />
                  </div>
                  <ProgressBar value={18} color="success" size="xs" animate />
               </div>
@@ -610,14 +610,14 @@ export function HomeExamples() {
                  'Social Media', 'Search Engine', 'Referral', 'Advertising',
                  'Conference', 'Newsletters', 'Partners', 'Other'
                ].map((option) => (
-                 <Chip 
+                 <Chip
                    key={option}
-                   label={option} 
+                   label={option}
                    variant="tonal"
                    selected={selectedSurveys.includes(option)}
                    onClick={() => {
-                     setSelectedSurveys(prev => 
-                       prev.includes(option) 
+                     setSelectedSurveys(prev =>
+                       prev.includes(option)
                          ? prev.filter(s => s !== option)
                          : [...prev, option]
                      );

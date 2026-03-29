@@ -5,17 +5,17 @@
 ──────────────────────────────────────────────── */
 @theme inline {
   --color-ds-0:     var(--color-white);
-  --color-ds-50:    var(--color-slate-50);
-  --color-ds-100:   var(--color-slate-100);
-  --color-ds-200:   var(--color-slate-200);
-  --color-ds-300:   var(--color-slate-300);
-  --color-ds-400:   var(--color-slate-400);
-  --color-ds-500:   var(--color-slate-500);
-  --color-ds-600:   var(--color-slate-600);
-  --color-ds-700:   var(--color-slate-700);
-  --color-ds-800:   var(--color-slate-800);
-  --color-ds-900:   var(--color-slate-900);
-  --color-ds-950:   var(--color-slate-950);
+  --color-ds-50:    var(--color-neutral-50);
+  --color-ds-100:   var(--color-neutral-100);
+  --color-ds-200:   var(--color-neutral-200);
+  --color-ds-300:   var(--color-neutral-300);
+  --color-ds-400:   var(--color-neutral-400);
+  --color-ds-500:   var(--color-neutral-500);
+  --color-ds-600:   var(--color-neutral-600);
+  --color-ds-700:   var(--color-neutral-700);
+  --color-ds-800:   var(--color-neutral-800);
+  --color-ds-900:   var(--color-neutral-900);
+  --color-ds-950:   var(--color-neutral-950);
 
   --color-ds-primary-50:    var(--color-blue-50);
   --color-ds-primary-100:   var(--color-blue-100);
