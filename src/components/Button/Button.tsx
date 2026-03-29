@@ -18,7 +18,7 @@ import { Spinner } from '../Spinner/Spinner';
 
 const variantClasses = {
   filled: "bg-primary text-primary-foreground hover:brightness-120 active:scale-[0.98]",
-  outlined: "bg-transparent text-foreground border hover:border-ds-400 dark:border-ds-800 hover:bg-ds-100 dark:hover:bg-ds-800 active:scale-[0.98] transition-colors dark:hover:border-ds-700",
+  outlined: "bg-transparent text-foreground border hover:bg-ds-100 dark:hover:bg-ds-800 active:scale-[0.98] dark:hover:border-ds-700",
   soft: "bg-secondary text-secondary-foreground hover:brightness-105 active:scale-[0.98]",
 } as const;
 
