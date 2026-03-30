@@ -1,0 +1,150 @@
+# System Logs
+
+A terminal-style component for displaying real-time system logs, process outputs, or audit trails with auto-scrolling and status indicators.
+
+## Import
+
+```tsx
+import { SystemLogs, type LogEntry } from '@/components/SystemLogs/SystemLogs'
+```
+
+## Installation
+
+Add the system logs to your project using the Dashkit CLI:
+
+```bash
+bunx carllosnc/dashkit add systemlogs
+```
+
+## Usage
+
+The `SystemLogs` component takes an array of `logs` and renders them in a dark, monospace container that mimics a terminal environment.
+
+<Preview>
+  <SystemLogs
+    title="Cloud Deployment"
+    session="worker-nodes-01"
+    status="Running"
+    statusColor="success"
+    maxHeight={300}
+    logs={[
+      { type: 'info', message: 'Starting deployment of version 2.4.0...', timestamp: '10:00:01' },
+      { type: 'ok', message: 'Docker image pulled: alpine-node:20', timestamp: '10:00:05' },
+      { type: 'info', message: 'Allocating resources in us-west-2...', timestamp: '10:00:08' },
+      { type: 'stable', message: 'Health checks passed. Traffic routing enabled.', timestamp: '10:00:15' },
+    ]}
+  />
+</Preview>
+
+```tsx
+import { SystemLogs } from '@/components/SystemLogs/SystemLogs'
+
+const logs = [
+  { type: 'info', message: 'Starting deployment of version 2.4.0...', timestamp: '10:00:01' },
+  { type: 'ok', message: 'Docker image pulled: alpine-node:20', timestamp: '10:00:05' },
+  { type: 'info', message: 'Allocating resources in us-west-2...', timestamp: '10:00:08' },
+  { type: 'stable', message: 'Health checks passed. Traffic routing enabled.', timestamp: '10:00:15' },
+]
+
+export default () => (
+  <SystemLogs 
+    title="Cloud Deployment"
+    session="worker-nodes-01"
+    status="Running"
+    statusColor="success"
+    maxHeight={300}
+    logs={logs}
+  />
+)
+```
+
+## Log Levels
+
+The component supports five distinct log levels, each with its own visual style:
+
+- `ok`: Success messages (indicated by `[OK]`)
+- `info`: Informational messages (indicated by `[INF]`)
+- `warn`: Warning messages (indicated by `[WRN]`)
+- `error`: Error messages (indicated by `[ERR]`)
+- `stable`: Stability or state updates (indicated by `[STB]`)
+
+<Preview>
+  <SystemLogs 
+    title="Level Demonstration"
+    logs={[
+      { type: 'ok', message: 'Operation completed successfully.', timestamp: '12:00:01' },
+      { type: 'info', message: 'System heartbeat detected.', timestamp: '12:00:02' },
+      { type: 'warn', message: 'Disk space reaching 90% capacity.', timestamp: '12:00:03' },
+      { type: 'error', message: 'CRITICAL: Database connection lost.', timestamp: '12:00:04' },
+      { type: 'stable', message: 'Reconnected. System is stable.', timestamp: '12:00:05' },
+    ]}
+  />
+</Preview>
+
+## Customization
+
+### Auto-scrolling
+
+By default, the component automatically scrolls to the bottom when new logs are added. You can disable this behavior by setting `autoScroll={false}`.
+
+### Header & Footer
+
+- `title`: The label displayed in the terminal header.
+- `session`: An optional session identifier displayed in the footer.
+- `status`: A status label displayed as a badge in the footer.
+- `statusColor`: The color of the status badge.
+
+## Props
+
+<PropertyDoc
+  properties={[
+    {
+      "prop": "logs",
+      "type": "LogEntry[]",
+      "defaultValue": "—",
+      "description": "An array of log entries to display. Each entry has a type, message, and optional timestamp."
+    },
+    {
+      "prop": "title",
+      "type": "string",
+      "defaultValue": "'System Logs'",
+      "description": "The title displayed in the terminal header."
+    },
+    {
+      "prop": "session",
+      "type": "string",
+      "defaultValue": "—",
+      "description": "Optional session ID or name displayed in the footer."
+    },
+    {
+      "prop": "status",
+      "type": "string",
+      "defaultValue": "'Stable'",
+      "description": "Status text displayed in the footer badge."
+    },
+    {
+      "prop": "statusColor",
+      "type": "BadgeColor",
+      "defaultValue": "'success'",
+      "description": "Color of the status badge in the footer."
+    },
+    {
+      "prop": "maxHeight",
+      "type": "number | string",
+      "defaultValue": "—",
+      "description": "Maximum height of the log container. Enables scrolling if logs exceed this height."
+    },
+    {
+      "prop": "autoScroll",
+      "type": "boolean",
+      "defaultValue": "true",
+      "description": "Whether to automatically scroll to the bottom when new logs arrive."
+    },
+    {
+      "prop": "className",
+      "type": "string",
+      "defaultValue": "—",
+      "description": "Additional CSS classes for the root container."
+    }
+  ]}
+/>

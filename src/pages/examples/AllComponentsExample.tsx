@@ -59,6 +59,7 @@ import {
   TableCell,
   TableCaption
 } from '../../components/Table/Table';
+import { SystemLogs } from '../../components/SystemLogs/SystemLogs';
 import {
   FiPlus,
   FiTrash2,
@@ -1320,6 +1321,30 @@ export const AllComponentsExample = () => {
                 </Dock>
               </div>
             </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>System Logs</CardTitle>
+            <CardDescription>Terminal-style log viewer with auto-scroll and status monitoring.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <SystemLogs 
+              title="Global Distribution Service"
+              session="node-primary-aws-01"
+              status="Running"
+              statusColor="success"
+              maxHeight={300}
+              logs={[
+                { type: 'info', message: 'Initializing cluster bridge...', timestamp: '15:30:01' },
+                { type: 'ok', message: 'Secondary nodes at 10.0.1.4 response: PONG', timestamp: '15:30:05' },
+                { type: 'info', message: 'Syncing ledger state with primary...', timestamp: '15:30:12' },
+                { type: 'warn', message: 'Replication lag detected in Mumbai region (450ms).', timestamp: '15:30:25' },
+                { type: 'stable', message: 'Replica caught up. All systems nominal.', timestamp: '15:40:01' },
+                { type: 'info', message: 'Monitoring incoming requests at /api/v2/stream', timestamp: '15:40:05' },
+              ]}
+            />
           </CardContent>
         </Card>
 

@@ -271,5 +271,24 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Dock',
     files: ['src/components/Dock/Dock.tsx'],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
+  },
+  popover: {
+    name: 'Popover',
+    files: [
+      'src/components/Popover/Popover.tsx',
+      'src/components/Popover/usePopover.ts'
+    ],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
+  },
+  tooltip: {
+    name: 'Tooltip',
+    files: ['src/components/Tooltip/Tooltip.tsx'],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
+  },
+  systemlogs: {
+    name: 'SystemLogs',
+    files: ['src/components/SystemLogs/SystemLogs.tsx'],
+    dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
+    registryDependencies: ['badge'],
   }
 };

@@ -63,6 +63,8 @@ import { PropertyDoc } from '../partials/PropertyDoc';
 import { ProgressBar } from '../components/ProgressBar/ProgressBar';
 import { Popover, PopoverTrigger, PopoverContent } from '../components/Popover/Popover';
 import { AnimateNumber } from '../components/AnimateNumber/AnimateNumber';
+import { CircularProgress } from '../components/CircularProgress/CircularProgress';
+import { SystemLogs } from '../components/SystemLogs/SystemLogs';
 
 
 type MdxComponentProps = { components?: Record<string, ElementType> };
@@ -159,6 +161,8 @@ const components: Record<string, ElementType> = {
   SidebarSection,
   SidebarItem,
   ImageExpander,
+  SystemLogs,
+  CircularProgress,
   Avatar,
   AvatarGroup,
   Badge,

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FiLock, FiMail, FiZap, FiSettings, FiMoreHorizontal, FiShield, FiActivity, FiGlobe, FiTrendingUp, FiDatabase, FiShieldOff, FiServer, FiBell, FiList, FiFolder, FiShare2, FiMessageSquare, FiBarChart2, FiCalendar, FiClock, FiShoppingCart, FiArrowUpRight } from 'react-icons/fi';
+import { FiLock, FiMail, FiZap, FiSettings, FiMoreHorizontal, FiShield, FiActivity, FiGlobe, FiTrendingUp, FiDatabase, FiShieldOff, FiServer, FiBell, FiList, FiFolder, FiShare2, FiMessageSquare, FiBarChart2, FiCalendar, FiClock, FiShoppingCart, FiArrowUpRight, FiDollarSign, FiCpu, FiCheckCircle, FiXCircle } from 'react-icons/fi';
 import { FaGithub, FaGoogle, FaSlack, FaDiscord, FaAws, FaFigma } from 'react-icons/fa';
 import { SiVercel, SiNotion } from 'react-icons/si';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/Card/Card';
@@ -21,6 +21,8 @@ import { Divider } from '../components/Divider/Divider';
 import { Chip } from '../components/Chip/Chip';
 import { OtpInput } from '../components/OtpInput/OtpInput';
 import { Slider } from '../components/Slider/Slider';
+import { CircularProgress } from '../components/CircularProgress/CircularProgress';
+import { SystemLogs, type LogEntry } from '../components/SystemLogs/SystemLogs';
 
 const AVATAR_URLS = {
   user1: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=120&h=120&auto=format&fit=crop",
@@ -81,6 +83,13 @@ export function HomeExamples() {
   const toggleTask = (index: number) => {
     setTasks(prev => prev.map((t, i) => i === index ? { ...t, checked: !t.checked } : t));
   };
+
+  const [MOCK_LOGS] = React.useState<LogEntry[]>([
+    { type: 'ok', message: 'Initialized edge gateway...', timestamp: '14:20:01' },
+    { type: 'info', message: 'Indexing 4,208 vectors...', timestamp: '14:20:05' },
+    { type: 'warn', message: 'Rate limit approaching (US-E)', timestamp: '14:21:12' },
+    { type: 'ok', message: 'Handshake verified (0x42...F)', timestamp: '14:22:30' },
+  ]);
 
   React.useEffect(() => {
     const interval = setInterval(() => {
@@ -252,6 +261,38 @@ export function HomeExamples() {
                  <Badge content="Warning" color="warning" variant="soft" className="text-xs" />
               </div>
               <Button variant="outlined" size="sm" className="w-full">View Security Logs</Button>
+           </CardContent>
+        </Card>
+
+        {/* 18. Wallet Portfolio (New) */}
+        <Card>
+           <CardHeader>
+              <div className="flex items-center justify-between">
+                 <div className="flex items-center gap-2">
+                    <FiDollarSign className="text-ds-success-600" size={18} />
+                    <CardTitle>Portfolio</CardTitle>
+                 </div>
+                 <Badge content="Active" color="success" variant="soft" />
+              </div>
+           </CardHeader>
+           <CardContent className="space-y-4">
+              <div className="flex flex-col gap-1">
+                 <span className="text-xs text-ds-500 font-bold uppercase tracking-widest">Total Balance</span>
+                 <div className="text-3xl font-bold tracking-tighter">
+                   <AnimateNumber value={42850.25} prefix="$" precision={2} />
+                 </div>
+              </div>
+              <div className="p-3 rounded-[var(--radius)] bg-ds-success-500/5 border border-ds-success-500/10 flex items-center justify-between">
+                 <div className="flex items-center gap-2 text-ds-success-600">
+                    <FiTrendingUp size={14} />
+                    <span className="text-xs font-bold">+12.4% this month</span>
+                 </div>
+                 <span className="text-xs font-bold text-ds-900 dark:text-ds-100">+$4,210.00</span>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                 <Button variant="filled" size="sm" className="w-full">Trade</Button>
+                 <Button variant="soft" size="sm" className="w-full">History</Button>
+              </div>
            </CardContent>
         </Card>
       </div>
@@ -488,6 +529,40 @@ export function HomeExamples() {
               </div>
            </CardContent>
         </Card>
+
+        {/* 19. Performance Health (New with Circular Progress) */}
+        <Card>
+           <CardHeader>
+              <div className="flex items-center gap-2">
+                 <FiActivity className="text-ds-primary-600" size={18} />
+                 <CardTitle>System Health</CardTitle>
+              </div>
+              <CardDescription>Real-time performance diagnostics.</CardDescription>
+           </CardHeader>
+           <CardContent className="flex flex-col gap-6">
+              <div className="flex items-center justify-center py-2 gap-8">
+                 <div className="flex flex-col items-center gap-3">
+                    <CircularProgress value={94} size="lg" showValue color="success" trackColor="text-ds-100 dark:text-ds-800" />
+                    <span className="text-[10px] font-bold text-ds-500 uppercase tracking-widest">Uptime</span>
+                 </div>
+                 <div className="flex flex-col items-center gap-3">
+                    <CircularProgress value={28} size="lg" showValue color="warning" trackColor="text-ds-100 dark:text-ds-800" />
+                    <span className="text-[10px] font-bold text-ds-500 uppercase tracking-widest">Latency</span>
+                 </div>
+              </div>
+              <Divider variant="dashed" />
+              <div className="space-y-3">
+                 <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                       <FiCpu className="text-ds-500" size={14} />
+                       <span className="text-sm font-medium">CPU Usage</span>
+                    </div>
+                    <span className="text-sm font-bold text-ds-success-600">Optimal</span>
+                 </div>
+                 <ProgressBar value={12} size="xs" color="success" />
+              </div>
+           </CardContent>
+        </Card>
       </div>
 
       {/* Column 3 */}
@@ -626,6 +701,15 @@ export function HomeExamples() {
             </div>
            </CardContent>
         </Card>
+
+        {/* 20. Recent Logs / Terminal (New Refactored) */}
+        <SystemLogs 
+          logs={MOCK_LOGS}
+          title="Terminal Feed"
+          session="bash-412"
+          status="Stable"
+          statusColor="success"
+        />
       </div>
 
       {/* Column 4 */}
@@ -793,6 +877,44 @@ export function HomeExamples() {
               <Button variant="outlined" className="w-full">
                  Manage 12+ Connections
               </Button>
+           </CardContent>
+        </Card>
+
+        {/* 21. Model Training (New) */}
+        <Card>
+           <CardHeader>
+              <div className="flex items-center justify-between">
+                 <div className="flex flex-col gap-1">
+                    <CardTitle>Model Training</CardTitle>
+                    <CardDescription>GPT-Neo Large (Ver. 4.2)</CardDescription>
+                 </div>
+                 <FiZap className="text-ds-primary-600 animate-pulse" size={18} />
+              </div>
+           </CardHeader>
+           <CardContent className="space-y-5">
+              <div className="space-y-2">
+                 <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-ds-500 uppercase">Training Progress</span>
+                    <span className="text-xs font-black">68%</span>
+                 </div>
+                 <ProgressBar value={68} color="primary" />
+              </div>
+              
+              <div className="grid grid-cols-2 gap-3 tabular-nums">
+                 <div className="flex flex-col p-2 bg-ds-50/50 dark:bg-ds-800/10 rounded-[var(--radius)] border border-ds-200 dark:border-ds-800">
+                    <span className="text-[10px] font-bold uppercase text-ds-500 tracking-wider">Loss</span>
+                    <span className="text-sm font-bold">0.0421</span>
+                 </div>
+                 <div className="flex flex-col p-2 bg-ds-50/50 dark:bg-ds-800/10 rounded-[var(--radius)] border border-ds-200 dark:border-ds-800">
+                    <span className="text-[10px] font-bold uppercase text-ds-500 tracking-wider">ETA</span>
+                    <span className="text-sm font-bold">04:12:08</span>
+                 </div>
+              </div>
+
+              <div className="flex gap-2">
+                 <Button variant="soft" className="flex-1" leftIcon={<FiXCircle />}>Abort</Button>
+                 <Button variant="filled" className="flex-1" leftIcon={<FiCheckCircle />}>Val.</Button>
+              </div>
            </CardContent>
         </Card>
       </div>

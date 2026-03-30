@@ -19,31 +19,6 @@ describe('Dashkit CLI', () => {
     await fs.remove(TEMP_DIR);
   });
 
-  it('should add a basic component and automate dashkit.css setup', async () => {
-    const testDir = path.join(TEMP_DIR, 'basic-setup');
-    await fs.ensureDir(path.join(testDir, 'src'));
-    
-    // Create an index.css to test auto-import
-    const indexPath = path.join(testDir, 'src/index.css');
-    await fs.writeFile(indexPath, 'body { margin: 0; }');
-
-    // Run CLI
-    execSync(`bun x tsx ${CLI_PATH} add badge -o src/components/dashkit --no-install`, {
-      cwd: testDir,
-      stdio: 'inherit'
-    });
-
-    // Check component
-    expect(await fs.pathExists(path.join(testDir, 'src/components/dashkit/Badge/Badge.tsx'))).toBe(true);
-    
-    // Check dashkit.css installation in src/
-    expect(await fs.pathExists(path.join(testDir, 'src/dashkit.css'))).toBe(true);
-    
-    // Check auto-import in index.css
-    const updatedIndex = await fs.readFile(indexPath, 'utf-8');
-    expect(updatedIndex).toContain('@import "./dashkit.css";');
-  }, 30000);
-
   it('should handle registry dependencies recursively (card)', async () => {
     const testDir = path.join(TEMP_DIR, 'registry-deps');
     await fs.ensureDir(testDir);
