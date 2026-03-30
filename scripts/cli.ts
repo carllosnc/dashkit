@@ -11,7 +11,6 @@ import { runDoctor, getPackageManager, getMissingDependencies } from './doctor';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Find the Dashkit root dir (where the source components are)
 const projectRoot = path.resolve(__dirname, '..');
 
 const program = new Command();
@@ -26,31 +25,6 @@ interface CliOptions {
   install: boolean;
 }
 
-async function autoImportStyle(targetDir: string) {
-  const cssFiles = ['index.css', 'globals.css', 'app.css', 'App.css'];
-  const importStatement = '@import "./dashkit.css";';
-  const tailwindImportRegex = /@import\s+['"]tailwindcss['"];/;
-
-  for (const fileName of cssFiles) {
-    const indexPath = path.resolve(targetDir, fileName);
-    if (!(await fs.pathExists(indexPath))) continue;
-
-    try {
-      const content = await fs.readFile(indexPath, 'utf-8');
-      if (content.includes(importStatement)) return;
-
-      const updatedContent = tailwindImportRegex.test(content)
-        ? content.replace(tailwindImportRegex, (match) => `${match}\n${importStatement}`)
-        : `${importStatement}\n${content}`;
-
-      await fs.writeFile(indexPath, updatedContent);
-      console.log(chalk.green(`dashkit.css imported in ${fileName}.`));
-      return;
-    } catch {
-      // Sliently skip on error
-    }
-  }
-}
 
 async function installDashkitCss(targetPath: string, sourcePath: string) {
   if (await fs.pathExists(targetPath)) return true;
@@ -71,13 +45,11 @@ async function ensureDashkitCss() {
   const cwd = process.cwd();
   const srcExists = await fs.pathExists(path.resolve(cwd, 'src'));
   const targetDir = srcExists ? path.resolve(cwd, 'src') : cwd;
-  
+
   const targetPath = path.resolve(targetDir, 'dashkit.css');
   const sourcePath = path.resolve(projectRoot, 'src', 'dashkit.css');
 
-  if (await installDashkitCss(targetPath, sourcePath)) {
-    await autoImportStyle(targetDir);
-  }
+  await installDashkitCss(targetPath, sourcePath);
 }
 
 async function copyComponentFiles(component: ComponentConfig, targetDir: string) {
