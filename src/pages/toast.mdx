@@ -14,15 +14,14 @@ export const ToastExamples = () => {
       <Button variant="filled" onClick={showStacked} leftIcon={<FiDownload />}>
         Trigger Stacked Toasts
       </Button>
-      <Button 
-        variant="outlined" 
+      <Button
+        variant="outlined"
         onClick={() => toast({ title: 'Deleted', description: 'The project has been removed.', type: 'error' })}
-        className="text-red-600 border-red-100 hover:bg-ds-50"
       >
         Trigger Error
       </Button>
-      <Button 
-        variant="outlined" 
+      <Button
+        variant="filled"
         onClick={() => toast({ title: 'Manual Icon', description: 'Custom styled toast.', icon: <FiBell className="text-indigo-500" /> })}
       >
         Custom Icon

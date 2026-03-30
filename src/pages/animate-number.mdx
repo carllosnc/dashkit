@@ -1,5 +1,21 @@
 import { AnimateNumber } from '../components/AnimateNumber/AnimateNumber'
-import { AnimateNumberExample } from '../examples/AnimateNumberExample'
+import { Button } from '../components/Button/Button'
+import { useState } from 'react'
+
+export const AnimateNumberExample = () => {
+  const [val, setVal] = useState(1250);
+  return (
+    <div className="not-prose flex flex-col items-center gap-6 p-8 w-full max-w-sm mx-auto">
+      <div className="text-5xl font-bold tracking-tighter tabular-nums text-ds-950 dark:text-ds-50">
+        <AnimateNumber value={val} />
+      </div>
+      <div className="flex gap-4 mt-8">
+         <Button variant="soft" size="sm" onClick={() => setVal(v => v + Math.floor(Math.random() * 100))}>Update Value</Button>
+         <Button variant="outlined" size="sm" onClick={() => setVal(1250)}>Reset</Button>
+      </div>
+    </div>
+  );
+}
 
 # Animate Number
 
@@ -34,11 +50,14 @@ import { AnimateNumber, Button } from 'dashkit';
 export default () => {
   const [val, setVal] = useState(1250);
   return (
-    <div className="flex flex-col items-center gap-4">
-      <div className="text-5xl font-bold">
+    <div className="flex flex-col items-center gap-6">
+      <div className="text-5xl font-bold tracking-tighter tabular-nums">
         <AnimateNumber value={val} />
       </div>
-      <Button onClick={() => setVal(v => v + 10)}>Increment</Button>
+      <div className="flex gap-4">
+         <Button variant="soft" onClick={() => setVal(v => v + 50)}>Update</Button>
+         <Button variant="outlined" onClick={() => setVal(1250)}>Reset</Button>
+      </div>
     </div>
   );
 };
