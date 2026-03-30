@@ -255,6 +255,11 @@ export const registry: Record<string, ComponentConfig> = {
   table: {
     name: 'Table',
     files: ['src/components/Table/Table.tsx'],
-    dependencies: ['clsx', 'tailwind-merge'],
+    dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
+  },
+  animatenumber: {
+    name: 'AnimateNumber',
+    files: ['src/components/AnimateNumber/AnimateNumber.tsx'],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   }
 };
