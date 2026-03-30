@@ -112,7 +112,7 @@ function ToastItem({
       exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
       transition={{ type: 'spring', damping: 20, stiffness: 300 }}
       className={cn(
-        "absolute w-full pointer-events-auto bg-popover text-popover-foreground border rounded-[var(--radius)] shadow-2xl p-4 flex items-center gap-4 group transition-shadow",
+          "absolute w-full pointer-events-auto bg-card text-card-fg border rounded-[var(--radius)] shadow-2xl p-4 flex items-center gap-4 group transition-shadow",
         isTop ? "top-0 origin-top" : "bottom-0 origin-bottom"
       )}
     >
@@ -122,12 +122,12 @@ function ToastItem({
 
       <div className="flex flex-col gap-1 flex-1 overflow-hidden">
         {toast.title && (
-          <h4 className="text-sm font-bold text-block-fg dark:text-block-dark-fg leading-tight truncate">
+          <h4 className="text-sm font-bold text-card-foreground dark:text-card-dark-foreground leading-tight truncate">
             {toast.title}
           </h4>
         )}
         {toast.description && (
-          <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
+          <p className="text-xs text-card-foreground dark:text-card-dark-foreground leading-relaxed line-clamp-2">
             {toast.description}
           </p>
         )}

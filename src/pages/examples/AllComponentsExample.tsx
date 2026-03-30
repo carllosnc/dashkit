@@ -48,6 +48,7 @@ import { PieChart } from '../../components/PieChart/PieChart';
 import { ImageExpander } from '../../components/ImageExpander/ImageExpander';
 import { ProgressBar } from '../../components/ProgressBar/ProgressBar';
 import { FloatActionMenu } from '../../components/FloatActionMenu/FloatActionMenu';
+import { Dock, DockItem } from '../../components/Dock/Dock';
 import {
   Table,
   TableHeader,
@@ -69,7 +70,12 @@ import {
   FiUser,
   FiLock,
   FiSearch,
-  FiChevronRight
+  FiChevronRight,
+  FiGrid,
+  FiSettings,
+  FiPieChart,
+  FiTrendingUp,
+  FiUsers
 } from 'react-icons/fi';
 
 export const AllComponentsExample = () => {
@@ -1247,6 +1253,45 @@ export const AllComponentsExample = () => {
                     alt="Abstract 4"
                   />
                 </ImageExpander>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Dock</CardTitle>
+            <CardDescription>Floating component for quick navigation or actions.</CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-col items-center gap-12 py-12">
+            <div className="flex flex-col items-center gap-4">
+              <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest">Bottom (Default)</span>
+              <Dock position="bottom">
+                <DockItem icon={<FiGrid />} label="Dashboard" />
+                <DockItem icon={<FiPieChart />} label="Analytics" />
+                <DockItem icon={<FiTrendingUp />} label="Growth" />
+                <DockItem icon={<FiUsers />} label="Team" />
+                <DockItem icon={<FiBell />} label="Alerts" />
+                <DockItem icon={<FiSettings />} label="Settings" />
+              </Dock>
+            </div>
+
+            <div className="flex flex-col md:flex-row gap-[100px] items-center">
+              <div className="flex flex-col items-center gap-4">
+                <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest">Left</span>
+                <Dock position="left">
+                  <DockItem icon={<FiGrid />} label="Dashboard" />
+                  <DockItem icon={<FiSearch />} label="Search" />
+                  <DockItem icon={<FiBell />} label="Alerts" />
+                </Dock>
+              </div>
+              <div className="flex flex-col items-center gap-4">
+                <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest">Right</span>
+                <Dock position="right">
+                  <DockItem icon={<FiGrid />} label="Dashboard" />
+                  <DockItem icon={<FiSearch />} label="Search" />
+                  <DockItem icon={<FiBell />} label="Alerts" />
+                </Dock>
               </div>
             </div>
           </CardContent>
