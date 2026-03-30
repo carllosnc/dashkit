@@ -1,0 +1,217 @@
+import { CircularProgress } from '../components/CircularProgress/CircularProgress'
+
+# CircularProgress
+
+A high-fidelity circular progress indicator built with SVG and Framer Motion. It provides smooth, fluid animations for status monitoring, health metrics, and loading states.
+
+## Import
+
+```tsx
+import { CircularProgress } from '@/components/dashkit/CircularProgress/CircularProgress'
+```
+
+## Installation
+
+Add the component to your project using the Dashkit CLI:
+
+```bash
+bunx carllosnc/dashkit add circular-progress
+```
+
+## Basic Usage
+
+The component accepts a `value` between 0 and 100. Use `showValue` to display the percentage inside the circle.
+
+<Preview>
+  <div className="flex flex-wrap items-center gap-8">
+    <CircularProgress value={75} size="md" showValue />
+    <CircularProgress value={45} size="md" color="success" showValue />
+    <CircularProgress value={92} size="md" color="info" showValue />
+    <CircularProgress value={18} size="md" color="danger" showValue />
+  </div>
+</Preview>
+
+```tsx
+<CircularProgress value={75} showValue />
+<CircularProgress value={45} color="success" showValue />
+<CircularProgress value={92} color="info" showValue />
+<CircularProgress value={18} color="danger" showValue />
+```
+
+## Variants
+
+Dashkit provides two visual variants: `solid` (default) for a crisp high-contrast track, and `soft` for a more integrated, subtle look.
+
+<Preview>
+  <div className="flex flex-wrap items-center gap-12">
+     <div className="flex flex-col items-center gap-2">
+       <CircularProgress value={65} variant="solid" showValue />
+       <span className="text-[10px] uppercase font-bold text-muted-foreground opacity-60">Solid (Default)</span>
+     </div>
+     <div className="flex flex-col items-center gap-2">
+       <CircularProgress value={65} variant="soft" color="success" showValue />
+       <span className="text-[10px] uppercase font-bold text-muted-foreground opacity-60">Soft Success</span>
+     </div>
+     <div className="flex flex-col items-center gap-2">
+       <CircularProgress value={85} variant="soft" color="info" showValue />
+       <span className="text-[10px] uppercase font-bold text-muted-foreground opacity-60">Soft Info</span>
+     </div>
+  </div>
+</Preview>
+
+```tsx
+<CircularProgress value={65} variant="solid" showValue />
+<CircularProgress value={65} variant="soft" color="success" showValue />
+```
+
+## Sizes
+
+Choose from predefined sizes (`sm`, `md`, `lg`) or provide a custom numeric value for the diameter (in pixels).
+
+<Preview>
+  <div className="flex flex-wrap items-end gap-10">
+    <CircularProgress value={30} size="sm" showValue />
+    <CircularProgress value={60} size="md" showValue />
+    <CircularProgress value={90} size="lg" showValue />
+    <CircularProgress value={50} size={120} showValue />
+  </div>
+</Preview>
+
+```tsx
+<CircularProgress value={30} size="sm" showValue />
+<CircularProgress value={60} size="md" showValue />
+<CircularProgress value={90} size="lg" showValue />
+<CircularProgress value={50} size={120} showValue />
+```
+
+## Track Customization
+
+You can explicitly set the color of the background track using the `trackColor` prop. This is useful when you want to deviate from the theme's default track styles.
+
+<Preview>
+  <div className="flex flex-wrap items-center gap-10">
+    <div className="flex flex-col items-center gap-2">
+      <CircularProgress value={70} trackColor="text-ds-200 dark:text-ds-700" showValue />
+      <span className="text-[10px] uppercase font-bold text-muted-foreground opacity-60">Custom Gray</span>
+    </div>
+    <div className="flex flex-col items-center gap-2">
+      <CircularProgress value={45} trackColor="text-emerald-500/10" color="success" showValue />
+      <span className="text-[10px] uppercase font-bold text-muted-foreground opacity-60">Success Tint</span>
+    </div>
+  </div>
+</Preview>
+
+```tsx
+<CircularProgress value={70} trackColor="text-ds-200 dark:text-ds-700" />
+<CircularProgress value={45} trackColor="text-emerald-500/10" color="success" />
+```
+
+
+## Custom Thickness
+
+The `strokeWidth` prop allows you to override the default thickness of the track and indicator.
+
+<Preview>
+  <div className="flex flex-wrap items-center gap-10">
+    <CircularProgress value={60} strokeWidth={2} showValue />
+    <CircularProgress value={60} strokeWidth={12} showValue />
+  </div>
+</Preview>
+
+```tsx
+<CircularProgress value={60} strokeWidth={2} showValue />
+<CircularProgress value={60} strokeWidth={12} showValue />
+```
+
+## Minimalist Styles
+
+Control the visibility of the background track and the shape of the progress ends using `showTrack` and `roundCaps`.
+
+<Preview>
+  <div className="flex flex-wrap items-center gap-10">
+    <div className="flex flex-col items-center gap-2">
+      <CircularProgress value={65} showTrack={false} />
+      <span className="text-[10px] uppercase font-bold text-muted-foreground opacity-60">No Track</span>
+    </div>
+    <div className="flex flex-col items-center gap-2">
+      <CircularProgress value={65} roundCaps={false} />
+      <span className="text-[10px] uppercase font-bold text-muted-foreground opacity-60">Flat Caps</span>
+    </div>
+    <div className="flex flex-col items-center gap-2">
+      <CircularProgress size={30} strokeWidth={5} value={65} roundCaps={false} />
+      <span className="text-[10px] uppercase font-bold text-muted-foreground opacity-60">Flat Caps</span>
+    </div>
+  </div>
+</Preview>
+
+```tsx
+<CircularProgress value={65} showTrack={false} showValue />
+<CircularProgress value={65} roundCaps={false} showValue />
+```
+
+## API
+
+<PropertyDoc
+  properties={[
+    {
+      "prop": "value",
+      "type": "number",
+      "defaultValue": "0",
+      "description": "The current progress value (0-100)."
+    },
+    {
+      "prop": "size",
+      "type": "'sm' | 'md' | 'lg' | number",
+      "defaultValue": "'md'",
+      "description": "The diameter of the circular progress indicator in pixels or predefined sizes."
+    },
+    {
+      "prop": "color",
+      "type": "'primary' | 'success' | 'warning' | 'danger' | 'info'",
+      "defaultValue": "'primary'",
+      "description": "The color theme of the indicator."
+    },
+    {
+      "prop": "variant",
+      "type": "'solid' | 'soft'",
+      "defaultValue": "'solid'",
+      "description": "The visual variant of the background track."
+    },
+    {
+      "prop": "showTrack",
+      "type": "boolean",
+      "defaultValue": "true",
+      "description": "Whether to show the background circle (track)."
+    },
+    {
+      "prop": "roundCaps",
+      "type": "boolean",
+      "defaultValue": "true",
+      "description": "Whether to use rounded ends for the progress indicator."
+    },
+    {
+      "prop": "strokeWidth",
+      "type": "number",
+      "defaultValue": "Predefined",
+      "description": "Custom thickness for the progress lines."
+    },
+    {
+      "prop": "showValue",
+      "type": "boolean",
+      "defaultValue": "false",
+      "description": "Whether to display the progress percentage inside the circle."
+    },
+    {
+      "prop": "trackColor",
+      "type": "string",
+      "defaultValue": "-",
+      "description": "Explicit color class for the background track (overrides variant defaults)."
+    },
+    {
+      "prop": "className",
+      "type": "string",
+      "defaultValue": "-",
+      "description": "Additional CSS classes for custom styling."
+    }
+  ]}
+/>

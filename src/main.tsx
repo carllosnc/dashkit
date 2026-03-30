@@ -48,6 +48,7 @@ import AvatarDocs from './pages/avatar.mdx'
 import ProgressBarDocs from './pages/progressbar.mdx'
 import PopoverDocs from './pages/popover.mdx'
 import AnimateNumberDocs from './pages/animate-number.mdx'
+import CircularProgressDocs from './pages/circular-progress.mdx'
 import FloatActionMenuDocs from './pages/float-action-menu.mdx'
 import { LoginExample } from './pages/examples/LoginExample'
 import { ComplexFormExample } from './pages/examples/ComplexFormExample'
@@ -78,6 +79,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="customization" element={<MdxWrapper Component={CustomizationDocs} />} />
                 <Route path="accordion" element={<MdxWrapper Component={AccordionDocs} />} />
                 <Route path="animate-number" element={<MdxWrapper Component={AnimateNumberDocs} />} />
+                <Route path="circular-progress" element={<MdxWrapper Component={CircularProgressDocs} />} />
                 <Route path="badge" element={<MdxWrapper Component={BadgeDocs} />} />
                 <Route path="breadcrumb" element={<MdxWrapper Component={BreadcrumbDocs} />} />
                 <Route path="button" element={<MdxWrapper Component={ButtonDocs} />} />

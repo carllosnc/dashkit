@@ -107,7 +107,10 @@ export function SidebarFooter({ children, className }: { children: React.ReactNo
     <motion.div
       initial={false}
       animate={{
-        padding: 16,
+        paddingTop: 16,
+        paddingLeft: 16,
+        paddingRight: 16,
+        paddingBottom: isOpen ? 28 : 16,
         alignItems: isOpen ? 'stretch' : 'center'
       }}
       className={cn(

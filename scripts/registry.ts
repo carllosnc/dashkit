@@ -261,5 +261,15 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'AnimateNumber',
     files: ['src/components/AnimateNumber/AnimateNumber.tsx'],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
+  },
+  circularprogress: {
+    name: 'CircularProgress',
+    files: ['src/components/CircularProgress/CircularProgress.tsx'],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
+  },
+  dock: {
+    name: 'Dock',
+    files: ['src/components/Dock/Dock.tsx'],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   }
 };

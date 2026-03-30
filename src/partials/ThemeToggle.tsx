@@ -13,7 +13,7 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
     <IconButton
       onClick={toggleTheme}
       icon={theme === 'light' ? <FiMoon size={20} /> : <FiSun size={20} />}
-      variant="ghost"
+      variant="soft"
       aria-label="Toggle theme"
       className={className}
     />

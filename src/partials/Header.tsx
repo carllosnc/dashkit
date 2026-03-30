@@ -32,8 +32,8 @@ export function Header({ onMenuClick, showNavLinks = true }: HeaderProps) {
 
       {showNavLinks && (
         <NavbarLinks>
-          <Link 
-            to="/docs" 
+          <Link
+            to="/docs"
             className={clsx(
               "text-sm font-medium transition-colors",
               currentPath.startsWith('/docs') ? "text-foreground" : "text-muted-foreground hover:text-ds-950 dark:hover:text-white"
@@ -41,8 +41,8 @@ export function Header({ onMenuClick, showNavLinks = true }: HeaderProps) {
           >
             Documentation
           </Link>
-          <Link 
-            to="/charts" 
+          <Link
+            to="/charts"
             className={clsx(
               "text-sm font-medium transition-colors",
               currentPath.startsWith('/charts') ? "text-foreground" : "text-muted-foreground hover:text-ds-950 dark:hover:text-white"
@@ -50,8 +50,8 @@ export function Header({ onMenuClick, showNavLinks = true }: HeaderProps) {
           >
             Charts
           </Link>
-          <Link 
-            to="/examples" 
+          <Link
+            to="/examples"
             className={clsx(
               "text-sm font-medium transition-colors",
               currentPath.startsWith('/examples') ? "text-foreground" : "text-muted-foreground hover:text-ds-950 dark:hover:text-white"
@@ -69,8 +69,7 @@ export function Header({ onMenuClick, showNavLinks = true }: HeaderProps) {
           href="https://github.com/carllosnc/dashkit"
           target="_blank"
           rel="noopener noreferrer"
-          variant="ghost"
-          className="text-ds-400 hover:text-ds-900 dark:hover:text-white"
+          variant="soft"
         />
       </NavbarActions>
     </Navbar>

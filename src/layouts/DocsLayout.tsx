@@ -36,6 +36,7 @@ const navItems = [
       { to: '/docs/card', label: 'Card', icon: <FiInbox size={16} /> },
       { to: '/docs/checkbox', label: 'Checkbox', icon: <FiCheckSquare size={16} /> },
       { to: '/docs/chip', label: 'Chip', icon: <FiTag size={16} /> },
+      { to: '/docs/circular-progress', label: 'Circular Progress', icon: <FiDisc size={16} /> },
       { to: '/docs/combobox', label: 'Combobox', icon: <FiSearch size={16} /> },
       { to: '/docs/datepicker', label: 'Date Picker', icon: <FiCalendar size={16} /> },
       { to: '/docs/divider', label: 'Divider', icon: <FiMinus size={16} /> },

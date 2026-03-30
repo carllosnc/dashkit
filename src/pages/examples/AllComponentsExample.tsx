@@ -9,6 +9,7 @@ import { Chip } from '../../components/Chip/Chip';
 import { Divider } from '../../components/Divider/Divider';
 import { Badge, FloatBadge } from '../../components/Badge/Badge';
 import { AnimateNumber } from '../../components/AnimateNumber/AnimateNumber';
+import { CircularProgress } from '../../components/CircularProgress/CircularProgress';
 import { Avatar, AvatarGroup } from '../../components/Avatar/Avatar';
 import { Input } from '../../components/Input/Input';
 import { Checkbox } from '../../components/Checkbox/Checkbox';
@@ -352,6 +353,31 @@ export const AllComponentsExample = () => {
               <div className="text-2xl font-bold tracking-tight text-ds-info-600">
                 <AnimateNumber value={showcaseMetrics.sla} suffix="%" precision={2} />
               </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Circular Progress</CardTitle>
+            <CardDescription>Premium indicators for status and health metrics.</CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-wrap items-end gap-10">
+            <div className="flex flex-col items-center gap-3">
+              <CircularProgress value={75} size="sm" showValue />
+              <span className="text-[10px] font-bold text-muted-foreground uppercase opacity-60">Small</span>
+            </div>
+            <div className="flex flex-col items-center gap-3">
+              <CircularProgress value={showcaseMetrics.conversion} size="md" showValue color="success" />
+              <span className="text-[10px] font-bold text-muted-foreground uppercase opacity-60">Medium</span>
+            </div>
+            <div className="flex flex-col items-center gap-3">
+              <CircularProgress value={showcaseMetrics.sla} size="lg" showValue color="info" />
+              <span className="text-[10px] font-bold text-muted-foreground uppercase opacity-60">Large</span>
+            </div>
+            <div className="flex flex-col items-center gap-3">
+              <CircularProgress value={35} size="md" variant="soft" color="danger" showValue />
+              <span className="text-[10px] font-bold text-muted-foreground uppercase opacity-60">Soft Variant</span>
             </div>
           </CardContent>
         </Card>
