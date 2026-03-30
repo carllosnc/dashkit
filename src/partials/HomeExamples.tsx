@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FiLock, FiMail, FiZap, FiSettings, FiMoreHorizontal, FiShield, FiActivity, FiGlobe, FiTrendingUp, FiDatabase, FiShieldOff, FiServer, FiBell, FiList, FiFolder, FiShare2, FiMessageSquare, FiBarChart2, FiCalendar, FiClock, FiShoppingCart, FiArrowUpRight, FiDollarSign, FiCpu, FiCheckCircle, FiXCircle } from 'react-icons/fi';
+import { FiLock, FiMail, FiZap, FiSettings, FiMoreHorizontal, FiShield, FiActivity, FiGlobe, FiTrendingUp, FiDatabase, FiShieldOff, FiServer, FiBell, FiList, FiFolder, FiShare2, FiMessageSquare, FiBarChart2, FiCalendar, FiClock, FiShoppingCart, FiArrowUpRight, FiDollarSign, FiCpu, FiCheckCircle, FiXCircle, FiPlay, FiSkipBack, FiSkipForward, FiArrowDownLeft, FiMonitor, FiSmartphone, FiCopy } from 'react-icons/fi';
 import { FaGithub, FaGoogle, FaSlack, FaDiscord, FaAws, FaFigma } from 'react-icons/fa';
 import { SiVercel, SiNotion } from 'react-icons/si';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/Card/Card';
@@ -23,6 +23,7 @@ import { OtpInput } from '../components/OtpInput/OtpInput';
 import { Slider } from '../components/Slider/Slider';
 import { CircularProgress } from '../components/CircularProgress/CircularProgress';
 import { SystemLogs, type LogEntry } from '../components/SystemLogs/SystemLogs';
+import { Surface } from '../components/Surface/Surface';
 
 const AVATAR_URLS = {
   user1: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=120&h=120&auto=format&fit=crop",
@@ -282,16 +283,47 @@ export function HomeExamples() {
                    <AnimateNumber value={42850.25} prefix="$" precision={2} />
                  </div>
               </div>
-              <div className="p-3 rounded-[var(--radius)] bg-ds-success-500/5 border border-ds-success-500/10 flex items-center justify-between">
+              <Surface variant="success" className="p-3 flex items-center justify-between">
                  <div className="flex items-center gap-2 text-ds-success-600">
                     <FiTrendingUp size={14} />
                     <span className="text-xs font-bold">+12.4% this month</span>
                  </div>
                  <span className="text-xs font-bold text-ds-900 dark:text-ds-100">+$4,210.00</span>
-              </div>
+              </Surface>
               <div className="grid grid-cols-2 gap-2">
                  <Button variant="filled" size="sm" className="w-full">Trade</Button>
                  <Button variant="soft" size="sm" className="w-full">History</Button>
+              </div>
+           </CardContent>
+        </Card>
+
+        {/* New 1: Podcast / Audio Player */}
+        <Card>
+           <CardContent className="space-y-4">
+              <div className="flex items-center gap-4">
+                 <Avatar src={AVATAR_URLS.user3} size="lg" shape="square" className="rounded-xl" />
+                 <div className="flex flex-col flex-1">
+                    <span className="text-sm font-bold tracking-tight">Design Details</span>
+                    <span className="text-xs text-ds-500">Episode 42: The future of UI frameworks.</span>
+                 </div>
+              </div>
+              <div className="flex flex-col gap-1">
+                 <Slider defaultValue={35} showValue={false} />
+                 <div className="flex items-center justify-between text-xs text-ds-500 font-medium font-mono">
+                    <span>12:45</span>
+                    <span>32:10</span>
+                 </div>
+              </div>
+              <div className="flex items-center justify-between px-4">
+                 <Button variant="soft" size="sm" className="rounded-full size-10 flex items-center justify-center p-0">
+                    <FiSkipBack size={16} />
+                 </Button>
+                 <Button variant="filled" size="sm" className="rounded-full size-12 flex items-center justify-center p-0 shadow-lg shadow-primary/30 group">
+                    <FiPlay size={20} className="ml-1 group-hover:scale-110 transition-transform" />
+                 </Button>
+                 <Button variant="soft" size="sm" className="rounded-full size-10 flex items-center justify-center p-0">
+                    <FiSkipForward size={16} />
+                 </Button>
               </div>
            </CardContent>
         </Card>
@@ -543,11 +575,11 @@ export function HomeExamples() {
               <div className="flex items-center justify-center py-2 gap-8">
                  <div className="flex flex-col items-center gap-3">
                     <CircularProgress value={94} size="lg" showValue color="success" trackColor="text-ds-100 dark:text-ds-800" />
-                    <span className="text-[10px] font-bold text-ds-500 uppercase tracking-widest">Uptime</span>
+                    <span className="text-xs font-bold text-ds-500 uppercase tracking-widest">Uptime</span>
                  </div>
                  <div className="flex flex-col items-center gap-3">
                     <CircularProgress value={28} size="lg" showValue color="warning" trackColor="text-ds-100 dark:text-ds-800" />
-                    <span className="text-[10px] font-bold text-ds-500 uppercase tracking-widest">Latency</span>
+                    <span className="text-xs font-bold text-ds-500 uppercase tracking-widest">Latency</span>
                  </div>
               </div>
               <Divider variant="dashed" />
@@ -561,6 +593,36 @@ export function HomeExamples() {
                  </div>
                  <ProgressBar value={12} size="xs" color="success" />
               </div>
+           </CardContent>
+        </Card>
+
+        {/* New 2: Recent Transactions */}
+        <Card>
+           <CardHeader>
+              <div className="flex items-center justify-between">
+                 <CardTitle>Recent Activity</CardTitle>
+                 <Button variant="soft" size="sm" className="h-7 text-xs px-2">View All</Button>
+              </div>
+           </CardHeader>
+           <CardContent className="space-y-4">
+              {[
+                 { name: "Subscription", type: "out", amount: "-$12.00", date: "Today, 10:24 AM", icon: <FiShoppingCart className="text-ds-500" /> },
+                 { name: "Payout", type: "in", amount: "+$4,210.00", date: "Yesterday, 3:12 PM", icon: <FiArrowDownLeft className="text-ds-success-600" /> },
+                 { name: "AWS Services", type: "out", amount: "-$184.20", date: "Oct 24, 2:40 PM", icon: <FiServer className="text-ds-500" /> }
+              ].map((tx, i) => (
+                 <div key={i} className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                       <div className="size-10 rounded-full bg-ds-50/50 dark:bg-ds-800/20 flex items-center justify-center border border-ds-200 dark:border-ds-800">
+                          {tx.icon}
+                       </div>
+                       <div className="flex flex-col">
+                          <span className="text-sm font-bold">{tx.name}</span>
+                          <span className="text-xs text-ds-500">{tx.date}</span>
+                       </div>
+                    </div>
+                    <span className={`text-sm font-bold ${tx.type === 'in' ? 'text-ds-success-600' : ''}`}>{tx.amount}</span>
+                 </div>
+              ))}
            </CardContent>
         </Card>
       </div>
@@ -710,6 +772,51 @@ export function HomeExamples() {
           status="Stable"
           statusColor="success"
         />
+
+        {/* New 3: Active Sessions */}
+        <Card>
+           <CardHeader>
+              <div className="flex items-center justify-between">
+                 <div className="flex flex-col gap-1">
+                    <CardTitle>Active Sessions</CardTitle>
+                    <CardDescription>Devices logged into your account.</CardDescription>
+                 </div>
+              </div>
+           </CardHeader>
+           <CardContent className="space-y-4">
+              <Surface variant="info" className="flex items-center justify-between p-3">
+                 <div className="flex items-center gap-3">
+                    <FiMonitor className="text-ds-info-600" size={18} />
+                    <div className="flex flex-col">
+                       <span className="text-sm font-bold text-ds-900 dark:text-ds-100">MacBook Pro 16"</span>
+                       <span className="text-xs text-ds-500">San Francisco, US • Current session</span>
+                    </div>
+                 </div>
+                 <Badge content="Active" color="info" variant="soft" pulse />
+              </Surface>
+              <div className="flex items-center justify-between p-3">
+                 <div className="flex items-center gap-3">
+                    <FiSmartphone className="text-ds-500" size={18} />
+                    <div className="flex flex-col">
+                       <span className="text-sm font-bold text-ds-800 dark:text-ds-200">iPhone 14 Pro</span>
+                       <span className="text-xs text-ds-500">New York, US • 2 hours ago</span>
+                    </div>
+                 </div>
+                 <Button variant="soft" size="sm" className="text-ds-danger-600 hover:text-ds-danger-700 dark:hover:text-ds-danger-500 bg-transparent hover:bg-ds-danger-50 dark:hover:bg-ds-danger-900/20 shadow-none px-2 h-7 text-xs">Revoke</Button>
+              </div>
+              <Divider />
+              <div className="flex items-center justify-between p-3">
+                 <div className="flex items-center gap-3">
+                    <FiMonitor className="text-ds-500" size={18} />
+                    <div className="flex flex-col">
+                       <span className="text-sm font-bold text-ds-800 dark:text-ds-200">Chrome on Windows</span>
+                       <span className="text-xs text-ds-500">London, UK • 3 days ago</span>
+                    </div>
+                 </div>
+                 <Button variant="soft" size="sm" className="text-ds-danger-600 hover:text-ds-danger-700 dark:hover:text-ds-danger-500 bg-transparent hover:bg-ds-danger-50 dark:hover:bg-ds-danger-900/20 shadow-none px-2 h-7 text-xs">Revoke</Button>
+              </div>
+           </CardContent>
+        </Card>
       </div>
 
       {/* Column 4 */}
@@ -902,11 +1009,11 @@ export function HomeExamples() {
               
               <div className="grid grid-cols-2 gap-3 tabular-nums">
                  <div className="flex flex-col p-2 bg-ds-50/50 dark:bg-ds-800/10 rounded-[var(--radius)] border border-ds-200 dark:border-ds-800">
-                    <span className="text-[10px] font-bold uppercase text-ds-500 tracking-wider">Loss</span>
+                    <span className="text-xs font-bold uppercase text-ds-500 tracking-wider">Loss</span>
                     <span className="text-sm font-bold">0.0421</span>
                  </div>
                  <div className="flex flex-col p-2 bg-ds-50/50 dark:bg-ds-800/10 rounded-[var(--radius)] border border-ds-200 dark:border-ds-800">
-                    <span className="text-[10px] font-bold uppercase text-ds-500 tracking-wider">ETA</span>
+                    <span className="text-xs font-bold uppercase text-ds-500 tracking-wider">ETA</span>
                     <span className="text-sm font-bold">04:12:08</span>
                  </div>
               </div>
@@ -915,6 +1022,53 @@ export function HomeExamples() {
                  <Button variant="soft" className="flex-1" leftIcon={<FiXCircle />}>Abort</Button>
                  <Button variant="filled" className="flex-1" leftIcon={<FiCheckCircle />}>Val.</Button>
               </div>
+           </CardContent>
+        </Card>
+
+        {/* New 4: API Keys */}
+        <Card>
+           <CardHeader>
+              <div className="flex items-center justify-between">
+                 <div className="flex items-center gap-2">
+                    <div className="size-6 rounded-[var(--radius)] bg-ds-warning-500/10 flex items-center justify-center">
+                       <FiLock className="text-ds-warning-600" size={14} />
+                    </div>
+                    <CardTitle>API Credentials</CardTitle>
+                 </div>
+                 <Badge content="Pro" color="warning" variant="soft" />
+              </div>
+              <CardDescription>Manage your secret keys for external integrations.</CardDescription>
+           </CardHeader>
+           <CardContent className="space-y-4">
+              <div className="flex flex-col gap-1.5">
+                 <label className="text-xs font-bold text-ds-800 dark:text-ds-200 uppercase tracking-wider">Production Key</label>
+                 <div className="flex gap-2 w-full">
+                    <Input 
+                       type="password" 
+                       defaultValue="pk_live_1234567890abcdef" 
+                       disabled 
+                       className="font-mono text-xs w-full" 
+                    />
+                    <Button variant="outlined" className="px-3 shrink-0" aria-label="Copy key">
+                       <FiCopy size={14} />
+                    </Button>
+                 </div>
+              </div>
+              <div className="flex flex-col gap-1.5 mt-2">
+                 <label className="text-xs font-bold text-ds-800 dark:text-ds-200 uppercase tracking-wider">Test Key</label>
+                 <div className="flex gap-2 w-full">
+                    <Input 
+                       type="password" 
+                       defaultValue="pk_test_0987654321fedcba" 
+                       disabled 
+                       className="font-mono text-xs w-full" 
+                    />
+                    <Button variant="outlined" className="px-3 shrink-0" aria-label="Copy key">
+                       <FiCopy size={14} />
+                    </Button>
+                 </div>
+              </div>
+              <Button variant="soft" className="w-full mt-2" leftIcon={<FiZap />}>Generate New Key</Button>
            </CardContent>
         </Card>
       </div>

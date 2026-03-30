@@ -86,8 +86,8 @@ export const Badge = ({
           {pulse && (
             <span
               className={cn(
-                "absolute inset-0 animate-ping opacity-60",
-                dot ? "rounded-full" : "rounded-[var(--radius)]",
+                "absolute animate-ping opacity-60",
+                dot ? "inset-0 rounded-full" : "inset-[2px] rounded-[calc(var(--radius)-2px)]",
                 pulseStyles[color]
               )}
             />

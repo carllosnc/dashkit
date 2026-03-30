@@ -22,7 +22,7 @@ export const Surface = React.forwardRef<HTMLDivElement, SurfaceProps>(
       <div
         ref={ref}
         className={cn(
-          "rounded-[var(--radius)] border overflow-hidden",
+          "rounded-[var(--radius)] border",
           variantStyles[variant],
           className
         )}
