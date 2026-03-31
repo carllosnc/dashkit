@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ChevronRight, MoreHorizontal } from 'lucide-react';
+import { LuChevronRight, LuEllipsis } from 'react-icons/lu';
 import { cn } from '../../utils/cn';
 
 export interface BreadcrumbProps extends React.ComponentPropsWithoutRef<'nav'> {
@@ -38,7 +38,7 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
                   </BreadcrumbItem>
                   {!isLast && (
                     <BreadcrumbSeparator>
-                      {separator || <ChevronRight size={14} className="text-ds-400" />}
+                      {separator || <LuChevronRight size={14} className="text-ds-400" />}
                     </BreadcrumbSeparator>
                   )}
                 </React.Fragment>
@@ -122,7 +122,7 @@ export const BreadcrumbSeparator = ({
     className={cn('[&>svg]:size-3.5', className)}
     {...props}
   >
-    {children ?? <ChevronRight size={14} className="text-ds-400" />}
+    {children ?? <LuChevronRight size={14} className="text-ds-400" />}
   </li>
 );
 BreadcrumbSeparator.displayName = 'BreadcrumbSeparator';
@@ -137,7 +137,7 @@ export const BreadcrumbEllipsis = ({
     className={cn('flex h-9 w-9 items-center justify-center', className)}
     {...props}
   >
-    <MoreHorizontal className="size-4" />
+    <LuEllipsis className="size-4" />
     <span className="sr-only">More</span>
   </span>
 );

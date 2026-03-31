@@ -9,7 +9,7 @@ export const registry: Record<string, ComponentConfig> = {
   accordion: {
     name: 'Accordion',
     files: ['src/components/Accordion/Accordion.tsx'],
-    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'lucide-react'],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   avatar: {
     name: 'Avatar',
@@ -29,7 +29,7 @@ export const registry: Record<string, ComponentConfig> = {
   button: {
     name: 'Button',
     files: ['src/components/Button/Button.tsx'],
-    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'lucide-react', 'react-icons'],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   card: {
     name: 'Card',
@@ -40,7 +40,7 @@ export const registry: Record<string, ComponentConfig> = {
   checkbox: {
     name: 'Checkbox',
     files: ['src/components/Checkbox/Checkbox.tsx'],
-    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'lucide-react'],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   drawer: {
     name: 'Drawer',
@@ -69,7 +69,7 @@ export const registry: Record<string, ComponentConfig> = {
   input: {
     name: 'Input',
     files: ['src/components/Input/Input.tsx'],
-    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'lucide-react'],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   modal: {
     name: 'Modal',
@@ -171,7 +171,7 @@ export const registry: Record<string, ComponentConfig> = {
   breadcrumb: {
     name: 'Breadcrumb',
     files: ['src/components/Breadcrumb/Breadcrumb.tsx'],
-    dependencies: ['clsx', 'tailwind-merge', 'lucide-react'],
+    dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
   },
   iconbutton: {
     name: 'IconButton',

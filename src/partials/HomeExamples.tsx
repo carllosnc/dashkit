@@ -402,21 +402,21 @@ export function HomeExamples() {
            </CardHeader>
            <CardContent className="space-y-4">
               <div className="flex flex-col gap-2">
-                 <div className="flex items-center justify-between p-2 hover:bg-ds-50/50 dark:hover:bg-ds-800/30 ds-rounded px-3 transition-colors">
+                 <div className="flex items-center justify-between py-2 hover:bg-ds-50/50 dark:hover:bg-ds-800/30 ds-rounded transition-colors">
                     <span className="text-sm font-medium">Stripe Payout</span>
                     <span className="text-sm font-bold text-ds-success-600">+$124.50</span>
                  </div>
-                 <div className="flex items-center justify-between p-2 hover:bg-ds-50/50 dark:hover:bg-ds-800/30 ds-rounded px-3 transition-colors">
+                 <div className="flex items-center justify-between py-2 hover:bg-ds-50/50 dark:hover:bg-ds-800/30 ds-rounded transition-colors">
                     <span className="text-sm font-medium">AWS Hosting</span>
                     <span className="text-sm font-bold">-$45.00</span>
                  </div>
-                 <div className="flex items-center justify-between p-2 hover:bg-ds-50/50 dark:hover:bg-ds-800/30 ds-rounded px-3 transition-colors">
+                 <div className="flex items-center justify-between py-2 hover:bg-ds-50/50 dark:hover:bg-ds-800/30 ds-rounded transition-colors">
                     <span className="text-sm font-medium">Github Pro</span>
                     <span className="text-sm font-bold">-$4.00</span>
                  </div>
               </div>
               <div className="pt-2 border-t border-ds-200 dark:border-ds-800 flex justify-center">
-                 <Pagination currentPage={paginatedPage} totalPages={10} onChange={setPaginatedPage} siblingCount={0} className="scale-[0.85] origin-center -mx-4" />
+                 <Pagination currentPage={paginatedPage} totalPages={10} onChange={setPaginatedPage} siblingCount={0} />
               </div>
            </CardContent>
         </Card>
@@ -1088,11 +1088,12 @@ export function HomeExamples() {
               <CardDescription>Download your workspace activity logs.</CardDescription>
            </CardHeader>
            <CardContent className="space-y-4">
-              <div className="space-y-3 p-3 bg-ds-50 dark:bg-ds-800 border border-ds-200 dark:border-ds-700 ds-rounded">
+               <Surface className="p-4 space-y-3">
                  <Checkbox label="User Profiles" defaultChecked />
                  <Checkbox label="Transaction History" defaultChecked />
                  <Checkbox label="System Logs" />
-              </div>
+               </Surface>
+
               <Select
                  label="Format"
                  options={[
