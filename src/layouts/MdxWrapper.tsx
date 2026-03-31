@@ -65,6 +65,7 @@ import { Popover, PopoverTrigger, PopoverContent } from '../components/Popover/P
 import { AnimateNumber } from '../components/AnimateNumber/AnimateNumber';
 import { CircularProgress } from '../components/CircularProgress/CircularProgress';
 import { SystemLogs } from '../components/SystemLogs/SystemLogs';
+import { DateField } from '../components/DateField/DateField';
 
 
 type MdxComponentProps = { components?: Record<string, ElementType> };
@@ -210,6 +211,7 @@ const components: Record<string, ElementType> = {
   BreadcrumbSeparator,
   BreadcrumbEllipsis,
   PropertyDoc,
+  DateField,
   Preview: ({ children }: { children: ReactNode }) => (
     <div className="not-prose border bg-card border-ds-200 dark:border-ds-800 ds-rounded flex flex-col gap-8 py-4 px-4 first:pt-0 items-start">
       {children}

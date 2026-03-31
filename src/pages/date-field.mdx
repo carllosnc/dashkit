@@ -1,65 +1,200 @@
+import { useState } from 'react';
 import { DateField } from '../components/DateField/DateField';
-import { Card, CardHeader, CardTitle, CardContent } from '../components/Card/Card';
+
+export const BasicExample = () => {
+  const [value, setValue] = useState<Date | null>(null);
+  return (
+    <div className="w-full max-w-sm">
+      <DateField 
+        label="Birth Date" 
+        value={value} 
+        onChange={setValue}
+        description={value ? `Selected date: ${value.toLocaleDateString()}` : "Please enter your date of birth."}
+      />
+    </div>
+  );
+};
+
+export const InteractiveDateField = () => {
+  const [value, setValue] = useState(new Date());
+  return (
+    <div className="flex flex-col gap-4 w-full max-w-sm">
+      <DateField 
+        label="Event Date" 
+        value={value} 
+        onChange={setValue} 
+        description={value ? `Selected: ${value.toLocaleDateString()}` : 'Please enter a date'}
+      />
+      <div className="flex gap-2">
+        <button 
+          onClick={() => setValue(new Date())}
+          className="text-xs px-2 py-1 bg-ds-100 dark:bg-ds-800 rounded-md hover:bg-ds-200 dark:hover:bg-ds-700 transition-colors font-medium border dark:border-ds-700"
+        >
+          Reset to Today
+        </button>
+        <button 
+          onClick={() => setValue(null)}
+          className="text-xs px-2 py-1 bg-ds-100 dark:bg-ds-800 rounded-md hover:bg-ds-200 dark:hover:bg-ds-700 transition-colors font-medium border dark:border-ds-700"
+        >
+          Clear
+        </button>
+      </div>
+    </div>
+  );
+};
 
 # DateField
 
-A specialized input component for entering and editing date values with individual segments.
+A premium, HeroUI-inspired input component for entering and editing date values with individual segments for Day, Month, and Year.
 
-## Usage
+## Import
 
 ```tsx
-import { DateField } from './components/dashkit/DateField';
+import { DateField } from '@/components/DateField/DateField'
+```
 
-function Example() {
-  const [value, setValue] = useState<Date | null>(new Date());
+## Installation
+
+Add the DateField component to your project using the Dashkit CLI:
+
+```bash
+bunx carllosnc/dashkit add datefield
+```
+
+## Basic Usage
+
+A basic `DateField` with a label.
+
+<Preview>
+  <BasicExample />
+</Preview>
+
+```tsx
+<DateField label="Birth Date" />
+```
+
+## With Description
+
+Provide additional context using the `description` prop.
+
+<Preview>
+  <DateField 
+    label="Event Date" 
+    description="Select the date for your upcoming celebration." 
+  />
+</Preview>
+
+```tsx
+<DateField 
+  label="Event Date" 
+  description="Select the date for your upcoming celebration." 
+/>
+```
+
+## States
+
+`DateField` supports various states such as disabled and required.
+
+<Preview>
+  <div className="flex flex-col gap-6 w-full max-w-sm">
+    <DateField label="Required Field" isRequired />
+    <DateField label="Disabled Field" disabled value={new Date()} />
+  </div>
+</Preview>
+
+```tsx
+<DateField label="Required Field" isRequired />
+<DateField label="Disabled Field" disabled value={new Date()} />
+```
+
+## Validation
+
+Use the `error` prop to display validation feedback.
+
+<Preview>
+  <DateField 
+    label="Expiry Date" 
+    value={new Date('invalid')}
+    error="Please enter a valid future date." 
+  />
+</Preview>
+
+```tsx
+<DateField 
+  label="Expiry Date" 
+  error="Please enter a valid future date." 
+/>
+```
+
+## Controlled
+
+Manage the date value explicitly using the `value` and `onChange` props.
+
+<Preview>
+  <InteractiveDateField />
+</Preview>
+
+```tsx
+import { useState } from 'react'
+
+export function ControlledDateField() {
+  const [value, setValue] = useState(new Date())
 
   return (
     <DateField 
-      label="Birth Date" 
+      label="Controlled Date" 
       value={value} 
       onChange={setValue} 
     />
-  );
+  )
 }
 ```
 
-## Examples
-
-### Default
-
-<DateField label="Select date" />
-
-### With Value
-
-<DateField label="Specific date" value={new Date(2024, 0, 1)} />
-
-### Required
-
-<DateField label="Mandatory field" isRequired />
-
-### With Error
-
-<DateField 
-  label="Validation error" 
-  error="Invalid date format" 
-  value={new Date('invalid')} 
-/>
-
-### With Description
-
-<DateField 
-  label="Event Date" 
-  description="Select the date for your event." 
-/>
-
 ## Properties
 
-| Property | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `label` | `string` | - | The label for the date field. |
-| `description` | `string` | - | Assistive text displayed below the field. |
-| `error` | `string` | - | Error message displayed below the field. |
-| `value` | `Date \| null` | - | The current date value. |
-| `onChange` | `(date: Date \| null) => void` | - | Callback when the date changes. |
-| `disabled` | `boolean` | `false` | Whether the field is disabled. |
-| `isRequired` | `boolean` | `false` | Whether the field is required. |
+<PropertyDoc
+  properties={[
+  {
+    "prop": "label",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "The title text displayed above the date field."
+  },
+  {
+    "prop": "description",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Helpful information rendered below the input segments."
+  },
+  {
+    "prop": "error",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Validation error message that replaces the description."
+  },
+  {
+    "prop": "value",
+    "type": "Date | null",
+    "defaultValue": "—",
+    "description": "The current date instance managed by the component."
+  },
+  {
+    "prop": "onChange",
+    "type": "(date: Date | null) => void",
+    "defaultValue": "—",
+    "description": "Callback triggered whenever a valid date is typed or the field is cleared."
+  },
+  {
+    "prop": "disabled",
+    "type": "boolean",
+    "defaultValue": "false",
+    "description": "When true, prevents all user interaction with the segments."
+  },
+  {
+    "prop": "isRequired",
+    "type": "boolean",
+    "defaultValue": "false",
+    "description": "Displays an asterisk next to the label and marks the field as mandatory."
+  }
+]}
+/>

@@ -32,7 +32,7 @@ const DateSegment = forwardRef<HTMLInputElement, SegmentProps>(
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const val = e.target.value.replace(/\D/g, '').slice(0, max.toString().length);
       onUpdate(val);
-      
+
       if (val.length === max.toString().length && parseInt(val) > 0) {
         onNext();
       }
@@ -61,11 +61,11 @@ const DateSegment = forwardRef<HTMLInputElement, SegmentProps>(
         onKeyDown={handleKeyDown}
         disabled={disabled}
         className={cn(
-          "w-fit min-w-[2ch] bg-transparent border-none outline-none text-sm text-center tabular-nums p-0 focus:ring-0",
-          "placeholder:text-ds-400 dark:placeholder:text-ds-600 focus:text-ds-900 dark:focus:text-ds-100 text-ds-600 dark:text-ds-400",
+          "h-9 bg-input-bg text-input-fg border border-input ds-rounded text-sm font-medium text-center tabular-nums p-0 outline-none transition-all duration-200 focus:border-input-focus focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-transparent",
+          "placeholder:text-ds-400 dark:placeholder:text-ds-600",
+          placeholder === 'YYYY' ? "w-16" : "w-11",
           disabled && "opacity-50 cursor-not-allowed"
         )}
-        style={{ width: `${Math.max(placeholder.length, value.length)}ch` }}
       />
     );
   }
@@ -152,13 +152,11 @@ export const DateField = ({
           {isRequired && <span className="text-ds-danger-500 ml-0.5">*</span>}
         </label>
       )}
-      
-      <div 
+      <div
         className={cn(
-          "flex items-center gap-1 px-3 h-10 bg-input-bg text-input-fg border border-input ds-rounded transition-all duration-200 cursor-text",
-          "focus-within:border-input-focus focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-transparent",
-          error && "border-ds-danger-500/50 focus-within:ring-ds-danger-50 dark:border-ds-danger-500/30",
-          disabled && "opacity-50 cursor-not-allowed"
+          "flex items-center gap-2",
+          disabled && "opacity-50 cursor-not-allowed",
+          className
         )}
       >
         <DateSegment
@@ -171,7 +169,7 @@ export const DateField = ({
           onNext={() => dayRef.current?.focus()}
           onPrev={() => {}}
         />
-        <span className="text-ds-400 dark:text-ds-600">/</span>
+        <span className="text-ds-400 dark:text-ds-500 font-bold select-none text-lg">·</span>
         <DateSegment
           ref={dayRef}
           value={day}
@@ -182,7 +180,7 @@ export const DateField = ({
           onNext={() => yearRef.current?.focus()}
           onPrev={() => monthRef.current?.focus()}
         />
-        <span className="text-ds-400 dark:text-ds-600">/</span>
+        <span className="text-ds-400 dark:text-ds-500 font-bold select-none text-lg">·</span>
         <DateSegment
           ref={yearRef}
           value={year}
