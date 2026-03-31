@@ -160,14 +160,14 @@ export function SidebarSection({
   const [isSectionOpen, setIsSectionOpen] = React.useState(defaultOpen);
 
   return (
-    <div className={cn("py-1 text-ds-slate-900 dark:text-ds-slate-100", className)}>
+    <div className={cn("text-ds-slate-900 dark:text-ds-slate-100", className)}>
       {title && isOpen && (
-        <div className="overflow-hidden mb-1">
+        <div className="overflow-hidden">
           <button
             type="button"
             onClick={() => collapsible && setIsSectionOpen(!isSectionOpen)}
             className={cn(
-              "w-full flex items-center justify-between py-2 transition-all duration-200 outline-none",
+              "w-full flex items-center my-1 justify-between py-2 transition-all duration-200 outline-none",
               collapsible && "hover:bg-muted/50 cursor-pointer group/section",
               !collapsible && "cursor-default"
             )}
