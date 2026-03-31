@@ -18,7 +18,7 @@ export const Table = forwardRef<HTMLTableElement, TableProps>(
     <div className={cn(
       "relative w-full",
       responsive && "overflow-x-auto overflow-y-hidden custom-scrollbar",
-      framed && "rounded-[var(--radius)] bg-card shadow-sm p-4 md:p-6",
+      framed && "ds-rounded bg-card shadow-sm p-4 md:p-6",
       containerClassName
     )}>
       <table

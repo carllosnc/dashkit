@@ -63,7 +63,7 @@ export const Select = ({
           aria-haspopup="listbox"
           aria-expanded={isOpen}
           className={cn(
-            "w-full px-4 h-9 text-sm bg-input-bg text-input-fg border border-input rounded-[var(--radius)] outline-none focus:border-input-focus focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-transparent placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 text-left flex items-center justify-between gap-2",
+            "w-full px-4 h-9 text-sm bg-input-bg text-input-fg border border-input ds-rounded outline-none focus:border-input-focus focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-transparent placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 text-left flex items-center justify-between gap-2",
             className
           )}
         >
@@ -93,7 +93,7 @@ export const Select = ({
               zIndex: 9999,
             }}
             className={cn(
-              "p-1 bg-popover text-popover-fg border border-popover-border rounded-[var(--radius)] shadow-lg overflow-hidden"
+              "p-1 bg-popover text-popover-fg border border-popover-border ds-rounded shadow-lg overflow-hidden"
             )}
           >
             <div className="max-h-60 overflow-y-auto flex flex-col gap-0.5">
@@ -110,7 +110,7 @@ export const Select = ({
                       setIsOpen(false);
                     }}
                     className={cn(
-                      "w-full px-4 py-2.5 text-sm text-left flex items-center justify-between duration-200 transition-colors rounded-[var(--radius)]",
+                      "w-full px-4 py-2.5 text-sm text-left flex items-center justify-between duration-200 transition-colors ds-rounded",
                       opt.value === value ? "bg-popover-item-selected text-popover-item-selected-fg font-semibold" : "text-popover-fg hover:bg-popover-item"
                     )}
                   >

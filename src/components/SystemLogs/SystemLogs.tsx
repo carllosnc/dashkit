@@ -53,7 +53,7 @@ export const SystemLogs = React.forwardRef<HTMLDivElement, SystemLogsProps>(
       <div
         ref={ref}
         className={cn(
-          "overflow-hidden rounded-[var(--radius)] border border-ds-300 dark:border-ds-700 bg-black shadow-lg",
+          "overflow-hidden ds-rounded border border-ds-300 dark:border-ds-700 bg-black shadow-lg",
           className
         )}
       >

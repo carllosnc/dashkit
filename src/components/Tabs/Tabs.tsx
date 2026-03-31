@@ -36,7 +36,7 @@ export function Tabs({ defaultValue, value, onValueChange, children, className }
 
   return (
     <TabsContext.Provider value={{ activeTab, setActiveTab, tabsId }}>
-      <div className={cn("w-full flex flex-col font-sans rounded-[var(--radius)] shadow-sm overflow-hidden bg-card", className)}>
+      <div className={cn("w-full flex flex-col font-sans ds-rounded shadow-sm overflow-hidden bg-card", className)}>
         {children}
       </div>
     </TabsContext.Provider>
@@ -61,7 +61,7 @@ export function TabsTrigger({ value, children, className }: { value: string; chi
     <button
       onClick={() => context.setActiveTab(value)}
       className={cn(
-        "relative flex-1 text-sm px-4 py-3 font-medium transition-all duration-200 outline-none isolate whitespace-nowrap flex items-center justify-center cursor-pointer border-r border-border/70 last:border-r-0 bg-card",
+        "relative flex-1 text-sm px-4 py-3 font-medium duration-200 outline-none isolate whitespace-nowrap flex items-center justify-center cursor-pointer border-r border-border/70 last:border-r-0 bg-card",
         isActive
           ? "text-foreground"
           : "text-muted-foreground hover:text-foreground",

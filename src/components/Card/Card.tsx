@@ -95,7 +95,7 @@ export function Card({
       animate={animate ? { opacity: 1, y: 0 } : undefined}
       transition={{ duration: 0.3, ease: 'easeOut' }}
       className={cn(
-        "bg-card text-card-foreground p-6 rounded-[var(--radius)] shadow-sm overflow-hidden gap-6 flex flex-col font-sans",
+        "bg-card text-card-foreground p-6 ds-rounded shadow-sm overflow-hidden gap-6 flex flex-col font-sans",
         !bordered && "border-none",
         !shadowed && "shadow-none",
         className

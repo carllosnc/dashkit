@@ -226,7 +226,7 @@ export function PopoverContent({
            transition={{ duration: 0.15, ease: "easeOut" }}
            style={style}
            className={cn(
-             "w-72 max-w-[calc(100vw-2rem)] bg-popover text-popover-fg border border-popover-border rounded-[var(--radius)] shadow-xl p-4 origin-top overflow-hidden",
+             "w-72 max-w-[calc(100vw-2rem)] bg-popover text-popover-fg border border-popover-border ds-rounded shadow-xl p-4 origin-top overflow-hidden",
              className
            )}
         >

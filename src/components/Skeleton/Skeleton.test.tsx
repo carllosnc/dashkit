@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest';
 describe('Skeleton', () => {
   it('renders with default rectangular variant', () => {
     const { container } = render(<Skeleton />);
-    expect(container.firstChild).toHaveClass('rounded-[var(--radius)]');
+    expect(container.firstChild).toHaveClass('ds-rounded');
   });
 
   it('applies circular variant correctly', () => {
@@ -15,7 +15,7 @@ describe('Skeleton', () => {
 
   it('applies text variant correctly', () => {
     const { container } = render(<Skeleton variant="text" />);
-    expect(container.firstChild).toHaveClass('h-4', 'rounded-[var(--radius)]');
+    expect(container.firstChild).toHaveClass('h-4', 'ds-rounded');
   });
 
   it('applies custom className', () => {

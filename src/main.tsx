@@ -39,6 +39,7 @@ import CustomizationDocs from './pages/customization.mdx'
 import SkeletonDocs from './pages/skeleton.mdx'
 import BreadcrumbDocs from './pages/breadcrumb.mdx'
 import SpinnerDocs from './pages/spinner.mdx'
+import StepperDocs from './pages/stepper.mdx'
 import NavbarDocs from './pages/navbar.mdx'
 import IconButtonDocs from './pages/icon-button.mdx'
 import TextareaDocs from './pages/textarea.mdx'
@@ -104,6 +105,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="select" element={<MdxWrapper Component={SelectDocs} />} />
                 <Route path="skeleton" element={<MdxWrapper Component={SkeletonDocs} />} />
                 <Route path="spinner" element={<MdxWrapper Component={SpinnerDocs} />} />
+                <Route path="stepper" element={<MdxWrapper Component={StepperDocs} />} />
                 <Route path="table" element={<MdxWrapper Component={TableDocs} />} />
                 <Route path="progressbar" element={<MdxWrapper Component={ProgressBarDocs} />} />
                 <Route path="switch" element={<MdxWrapper Component={SwitchDocs} />} />

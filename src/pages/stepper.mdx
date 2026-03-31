@@ -1,0 +1,72 @@
+import React, { useState } from 'react';
+import { Stepper, Step } from '../components/Stepper';
+import { Button } from '../components/Button/Button';
+import { FiUser, FiCreditCard, FiCheckCircle } from 'react-icons/fi';
+
+# Stepper
+
+A progress visualization component for multi-step processes or sequence indicators.
+
+## Quick Start
+Displays a multi-step sequence with active, completed, and inactive states. Uses `framer-motion` for animated connecting lines.
+
+<div className="not-prose border bg-card border-ds-200 dark:border-ds-800 ds-rounded flex flex-col gap-8 py-4 px-4 items-start w-full">
+  <div className="w-full p-4">
+    {React.createElement(() => {
+      const [step, setStep] = useState(1);
+      return (
+        <div className="w-full space-y-8">
+           <Stepper activeStep={step} onChange={setStep}>
+              <Step title="Sign Up" description="Create your account" />
+              <Step title="Payment" description="Add funding source" />
+              <Step title="Complete" description="Explore dashboard" />
+           </Stepper>
+           
+           <div className="flex gap-2 justify-end">
+              <Button variant="outlined" disabled={step === 0} onClick={() => setStep(prev => prev - 1)}>Back</Button>
+              <Button disabled={step === 2} onClick={() => setStep(prev => prev + 1)}>Next Step</Button>
+           </div>
+        </div>
+      );
+    })}
+  </div>
+</div>
+
+## Vertical Orientation
+Set `orientation="vertical"` to stack the steps vertically, which is highly suited for sidebars or logs.
+
+<div className="not-prose border bg-card border-ds-200 dark:border-ds-800 ds-rounded flex flex-col gap-8 py-4 px-4 items-start w-full">
+  <div className="w-full p-4">
+    <Stepper activeStep={2} orientation="vertical">
+      <Step title="Order Placed" description="Order #32049 has been confirmed." />
+      <Step title="Processing" description="Your package is being prepared." />
+      <Step title="In Transit" description="Package left local facility." />
+      <Step title="Delivered" description="Package arrived." />
+    </Stepper>
+  </div>
+</div>
+
+## Custom Icons
+By default, steps are auto-numbered. You can supply an `icon` prop to customize the visual indicator for each step.
+
+<div className="not-prose border bg-card border-ds-200 dark:border-ds-800 ds-rounded flex flex-col gap-8 py-4 px-4 items-start w-full">
+  <div className="w-full p-4">
+    <Stepper activeStep={1}>
+      <Step title="Profile" icon={<FiUser size={14} />} />
+      <Step title="Billing" icon={<FiCreditCard size={14} />} />
+      <Step title="Success" icon={<FiCheckCircle size={14} />} />
+    </Stepper>
+  </div>
+</div>
+
+## Clickable Navigation
+If you provide an `onChange` handler, steps become fully interactive and users can jump between them by clicking.
+```tsx
+const [activeStep, setActiveStep] = useState(0);
+
+// Users can now click the steps to jump freely!
+<Stepper activeStep={activeStep} onChange={setActiveStep}>
+  <Step title="First" />
+  <Step title="Second" />
+</Stepper>
+```

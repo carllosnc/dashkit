@@ -26,7 +26,7 @@ export function ImageExpander({ children, full, caption, className }: ImageExpan
       <div
         onClick={() => setIsOpen(true)}
         className={cn(
-          "group relative cursor-zoom-in overflow-hidden rounded-[var(--radius)] border border-ds-200 dark:border-ds-800 transition-all duration-300 hover:shadow-xl",
+          "group relative cursor-zoom-in overflow-hidden ds-rounded border border-ds-200 dark:border-ds-800 transition-all duration-300 hover:shadow-xl",
           className
         )}
       >

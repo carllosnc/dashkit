@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FiLock, FiMail, FiZap, FiSettings, FiMoreHorizontal, FiShield, FiActivity, FiGlobe, FiTrendingUp, FiDatabase, FiShieldOff, FiServer, FiBell, FiList, FiFolder, FiShare2, FiMessageSquare, FiBarChart2, FiCalendar, FiClock, FiShoppingCart, FiArrowUpRight, FiDollarSign, FiCpu, FiCheckCircle, FiXCircle, FiPlay, FiSkipBack, FiSkipForward, FiArrowDownLeft, FiMonitor, FiSmartphone, FiCopy } from 'react-icons/fi';
+import { FiLock, FiMail, FiZap, FiSettings, FiMoreHorizontal, FiShield, FiActivity, FiGlobe, FiTrendingUp, FiDatabase, FiShieldOff, FiServer, FiBell, FiList, FiFolder, FiShare2, FiMessageSquare, FiBarChart2, FiCalendar, FiClock, FiShoppingCart, FiArrowUpRight, FiDollarSign, FiCpu, FiCheckCircle, FiXCircle, FiPlay, FiSkipBack, FiSkipForward, FiArrowDownLeft, FiMonitor, FiSmartphone, FiCopy, FiUserPlus, FiFileText, FiDownload, FiSend, FiHelpCircle } from 'react-icons/fi';
 import { FaGithub, FaGoogle, FaSlack, FaDiscord, FaAws, FaFigma } from 'react-icons/fa';
 import { SiVercel, SiNotion } from 'react-icons/si';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/Card/Card';
@@ -24,6 +24,11 @@ import { Slider } from '../components/Slider/Slider';
 import { CircularProgress } from '../components/CircularProgress/CircularProgress';
 import { SystemLogs, type LogEntry } from '../components/SystemLogs/SystemLogs';
 import { Surface } from '../components/Surface/Surface';
+import { Modal, ModalHeader, ModalContent, ModalFooter } from '../components/Modal/Modal';
+import { Drawer, DrawerHeader } from '../components/Drawer/Drawer';
+import { toast } from '../components/Toast/useToast';
+import { Select } from '../components/Select/Select';
+import { Stepper, Step } from '../components/Stepper';
 
 const AVATAR_URLS = {
   user1: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=120&h=120&auto=format&fit=crop",
@@ -71,6 +76,8 @@ export function HomeExamples() {
   const [liveValue, setLiveValue] = React.useState(12400.50);
   const [selectedSurveys, setSelectedSurveys] = React.useState<string[]>(['Development', 'Design']);
   const [otp, setOtp] = React.useState('');
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
   const [tasks, setTasks] = React.useState([
     { label: "Refactor API layer", checked: true },
     { label: "Update documentation", checked: true },
@@ -152,7 +159,7 @@ export function HomeExamples() {
              <CardDescription>Configure your node performance and scaling settings.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="space-y-4 p-4 rounded-[var(--radius)] bg-ds-50/50 dark:bg-ds-900/50 border border-ds-200 dark:border-ds-800">
+            <div className="space-y-4 p-4 ds-rounded bg-ds-50/50 dark:bg-ds-900/50 border border-ds-200 dark:border-ds-800">
                 <div className="flex items-center justify-between">
                     <span className="text-xs font-bold uppercase tracking-widest text-ds-500">Current Load</span>
                     <FiZap size={14} className="text-ds-primary-600" />
@@ -184,7 +191,7 @@ export function HomeExamples() {
               </div>
            </CardHeader>
            <CardContent className="space-y-6">
-              <div className="flex items-center justify-between p-3 rounded-[var(--radius)] border border-ds-200 dark:border-ds-800 bg-ds-50/30 dark:bg-ds-800/20">
+              <div className="flex items-center justify-between p-3 ds-rounded border border-ds-200 dark:border-ds-800 bg-ds-50/30 dark:bg-ds-800/20">
                  <div className="flex items-center gap-3">
                     <AvatarGroup max={3} spacing="md" size="sm">
                        <Avatar src={AVATAR_URLS.user1} alt="User 1" />
@@ -241,7 +248,7 @@ export function HomeExamples() {
               </div>
            </CardHeader>
            <CardContent className="space-y-4">
-              <div className="flex items-center justify-between p-3 rounded-[var(--radius)] border border-ds-200 dark:border-ds-800 bg-ds-50/30 dark:bg-ds-100/5">
+              <div className="flex items-center justify-between p-3 ds-rounded border border-ds-200 dark:border-ds-800 bg-ds-50/30 dark:bg-ds-100/5">
                  <div className="flex items-center gap-3">
                     <FiShieldOff className="text-ds-danger-600" size={16} />
                     <div className="flex flex-col">
@@ -251,7 +258,7 @@ export function HomeExamples() {
                  </div>
                  <Badge content="Critical" color="danger" variant="soft" className="text-xs" />
               </div>
-              <div className="flex items-center justify-between p-3 rounded-[var(--radius)] border border-ds-200 dark:border-ds-800 bg-ds-50/30 dark:bg-ds-100/5">
+              <div className="flex items-center justify-between p-3 ds-rounded border border-ds-200 dark:border-ds-800 bg-ds-50/30 dark:bg-ds-100/5">
                  <div className="flex items-center gap-3">
                     <FiActivity className="text-ds-warning-600" size={16} />
                     <div className="flex flex-col">
@@ -327,6 +334,58 @@ export function HomeExamples() {
               </div>
            </CardContent>
         </Card>
+
+        {/* New 5: Modal Trigger Example */}
+        <Card>
+           <CardHeader>
+              <div className="flex items-center gap-3">
+                 <div className="size-8 rounded-full bg-ds-danger-500/10 flex items-center justify-center">
+                    <FiLock className="text-ds-danger-600" size={16} />
+                 </div>
+                 <div className="flex flex-col">
+                    <CardTitle>Danger Zone</CardTitle>
+                    <CardDescription>Irreversible actions for this project.</CardDescription>
+                 </div>
+              </div>
+           </CardHeader>
+           <CardContent className="space-y-4">
+              <div className="p-3 ds-rounded border border-ds-danger-200 bg-ds-danger-50 dark:border-ds-danger-900/50 dark:bg-ds-danger-500/10 flex flex-col gap-1">
+                 <span className="text-sm font-bold text-ds-danger-800 dark:text-ds-danger-200">Delete this project</span>
+                 <span className="text-xs text-ds-danger-600 dark:text-ds-danger-400">Once you delete it, there is no going back. Please be certain.</span>
+              </div>
+              <Button variant="outlined" className="w-full text-ds-danger-600 hover:bg-ds-danger-50 hover:border-ds-danger-200 dark:hover:bg-ds-danger-500/10 dark:hover:border-ds-danger-500/30" onClick={() => setIsModalOpen(true)}>
+                 Delete Project
+              </Button>
+           </CardContent>
+        </Card>
+
+        {/* New 9: Support Ticket */}
+        <Card>
+           <CardHeader>
+              <div className="flex items-center justify-between">
+                 <div className="flex flex-col gap-1">
+                    <CardTitle>Active Ticket</CardTitle>
+                    <CardDescription>Support requested.</CardDescription>
+                 </div>
+                 <Badge content="High Priority" color="danger" variant="soft" />
+              </div>
+           </CardHeader>
+           <CardContent className="space-y-4">
+               <Stepper activeStep={1} orientation="vertical" className="mt-2 ml-1">
+                  <Step 
+                     title={<span className="text-sm font-bold leading-tight">Billing page crash on Safari</span>}
+                     description="Ticket #1042 • Opened 2 hours ago"
+                     icon={<FiHelpCircle size={14} />}
+                  />
+                  <Step 
+                     title={<span className="text-sm font-bold leading-tight">Support Team (Ana)</span>}
+                     description="We're looking into this right away. Fix deploying soon!"
+                     icon={<Avatar src={AVATAR_URLS.user2} size="xs" />}
+                  />
+               </Stepper>
+               <Button variant="outlined" size="sm" className="w-full">Reply to Ticket</Button>
+           </CardContent>
+        </Card>
       </div>
 
       {/* Column 2 */}
@@ -384,7 +443,7 @@ export function HomeExamples() {
                     showLabels={true}
                   />
                </div>
-               <div className="p-3 rounded-[var(--radius)] bg-ds-50/50 dark:bg-ds-800/10 border border-ds-200 dark:border-ds-800 flex items-center justify-between">
+               <div className="p-3 ds-rounded bg-ds-50/50 dark:bg-ds-800/10 border border-ds-200 dark:border-ds-800 flex items-center justify-between">
                   <span className="text-xs font-bold text-ds-500">Total Generated</span>
                   <span className="text-sm font-bold">$28,400.00</span>
                </div>
@@ -409,7 +468,7 @@ export function HomeExamples() {
               </CardDescription>
            </CardHeader>
            <CardContent>
-              <div className="p-3 rounded-[var(--radius)] bg-ds-50/50 dark:bg-ds-800/10 border border-ds-200 dark:border-ds-800 flex items-center justify-between mt-2">
+              <div className="p-3 ds-rounded bg-ds-50/50 dark:bg-ds-800/10 border border-ds-200 dark:border-ds-800 flex items-center justify-between mt-2">
                  <div className="flex flex-col">
                     <span className="text-xs text-ds-500 font-bold uppercase tracking-wider">Avg. Ticket</span>
                     <span className="text-base font-bold">$242.10</span>
@@ -449,14 +508,14 @@ export function HomeExamples() {
            </CardHeader>
            <CardContent className="pt-2">
               <div className="grid grid-cols-2 gap-3 mb-6">
-                 <div className="p-4 rounded-[var(--radius)] bg-ds-50/30 dark:bg-ds-800/20 border border-ds-200 dark:border-ds-800 flex flex-col gap-3">
+                 <div className="p-4 ds-rounded bg-ds-50/30 dark:bg-ds-800/20 border border-ds-200 dark:border-ds-800 flex flex-col gap-3">
                     <FiShield className="text-ds-success-600" size={20} />
                     <div>
                        <div className="text-lg font-bold leading-none mb-1">Active</div>
                        <div className="text-xs uppercase font-bold text-ds-500 tracking-wider">Firewall</div>
                     </div>
                  </div>
-                 <div className="p-4 rounded-[var(--radius)] bg-ds-50/30 dark:bg-ds-800/20 border border-ds-200 dark:border-ds-800 flex flex-col gap-3">
+                 <div className="p-4 ds-rounded bg-ds-50/30 dark:bg-ds-800/20 border border-ds-200 dark:border-ds-800 flex flex-col gap-3">
                     <FiActivity className="text-ds-primary-600" size={20} />
                     <div>
                        <div className="text-lg font-bold leading-none mb-1">99.9%</div>
@@ -465,9 +524,9 @@ export function HomeExamples() {
                  </div>
               </div>
 
-              <div className="p-3 rounded-[var(--radius)] bg-ds-50/30 dark:bg-ds-800/20 border border-ds-200 dark:border-ds-800 flex items-center justify-between">
+              <div className="p-3 ds-rounded bg-ds-50/30 dark:bg-ds-800/20 border border-ds-200 dark:border-ds-800 flex items-center justify-between">
                  <div className="flex items-center gap-3">
-                    <div className="size-8 rounded-[var(--radius)] bg-ds-info-500/10 flex items-center justify-center">
+                    <div className="size-8 ds-rounded bg-ds-info-500/10 flex items-center justify-center">
                        <FiGlobe className="text-ds-info-600" size={16} />
                     </div>
                     <div>
@@ -625,6 +684,79 @@ export function HomeExamples() {
               ))}
            </CardContent>
         </Card>
+
+        {/* New 6: Drawer Trigger Example */}
+        <Card>
+           <CardHeader>
+              <div className="flex items-center justify-between">
+                 <div className="flex flex-col gap-1">
+                    <CardTitle>Activity Log</CardTitle>
+                    <CardDescription>Track all actions across your team.</CardDescription>
+                 </div>
+                 <Badge content="12 New" color="info" variant="soft" pulse />
+              </div>
+           </CardHeader>
+           <CardContent className="space-y-4">
+              <div className="space-y-4">
+                 <div className="flex items-start gap-3">
+                    <Avatar src={AVATAR_URLS.user2} size="sm" />
+                    <div className="flex flex-col">
+                       <span className="text-sm font-bold leading-tight">Ana pushed to <span className="font-mono text-[10px] bg-ds-100 dark:bg-ds-800 px-1 py-0.5 rounded">main</span></span>
+                       <span className="text-xs text-ds-500">2 minutes ago</span>
+                    </div>
+                 </div>
+                 <div className="flex items-start gap-3">
+                    <Avatar src={AVATAR_URLS.user4} size="sm" />
+                    <div className="flex flex-col">
+                       <span className="text-sm font-bold leading-tight">Mark commented on <span className="text-ds-primary-600 cursor-pointer hover:underline">DS-142</span></span>
+                       <span className="text-xs text-ds-500">1 hour ago</span>
+                    </div>
+                 </div>
+              </div>
+              <Button variant="soft" className="w-full" onClick={() => setIsDrawerOpen(true)}>
+                 View All Activity Logs
+              </Button>
+           </CardContent>
+        </Card>
+
+        {/* New 10: Browser Stats */}
+        <Card>
+           <CardHeader>
+              <div className="flex items-center gap-3">
+                 <div className="size-8 ds-rounded bg-ds-primary-500/10 flex items-center justify-center">
+                    <FiGlobe className="text-ds-primary-600" size={16} />
+                 </div>
+                 <div className="flex flex-col gap-1">
+                    <CardTitle>Top Browsers</CardTitle>
+                    <CardDescription>Traffic breakdown by engine.</CardDescription>
+                 </div>
+              </div>
+           </CardHeader>
+           <CardContent className="space-y-4">
+              <div className="space-y-2">
+                 <div className="flex items-center justify-between">
+                    <span className="text-sm font-bold">Google Chrome</span>
+                    <span className="text-sm font-bold text-ds-500">64%</span>
+                 </div>
+                 <ProgressBar value={64} color="primary" size="xs" />
+              </div>
+              <div className="space-y-2">
+                 <div className="flex items-center justify-between">
+                    <span className="text-sm font-bold">Apple Safari</span>
+                    <span className="text-sm font-bold text-ds-500">24%</span>
+                 </div>
+                 <ProgressBar value={24} color="info" size="xs" />
+              </div>
+              <div className="space-y-2">
+                 <div className="flex items-center justify-between">
+                    <span className="text-sm font-bold">Mozilla Firefox</span>
+                    <span className="text-sm font-bold text-ds-500">12%</span>
+                 </div>
+                 <ProgressBar value={12} color="warning" size="xs" />
+              </div>
+              <Button variant="soft" size="sm" className="w-full mt-2">View Full Analytics</Button>
+           </CardContent>
+        </Card>
       </div>
 
       {/* Column 3 */}
@@ -633,7 +765,7 @@ export function HomeExamples() {
         <Card>
           <CardHeader>
              <div className="flex items-center gap-2">
-                <div className="size-6 rounded-[var(--radius)] bg-ds-primary-500/10 flex items-center justify-center">
+                <div className="size-6 ds-rounded bg-ds-primary-500/10 flex items-center justify-center">
                    <FiSettings className="text-ds-primary-600" size={14} />
                 </div>
                 <CardTitle>Preferences</CardTitle>
@@ -817,6 +949,80 @@ export function HomeExamples() {
               </div>
            </CardContent>
         </Card>
+
+        {/* New 7: Toast Example */}
+        <Card>
+           <CardHeader>
+              <div className="flex items-center gap-3">
+                 <div className="size-8 rounded-lg bg-ds-primary-500/10 flex items-center justify-center">
+                    <FiBell className="text-ds-primary-600" size={16} />
+                 </div>
+                 <div className="flex flex-col gap-1">
+                    <CardTitle>Notifications</CardTitle>
+                    <CardDescription>System toast dispatcher testing.</CardDescription>
+                 </div>
+              </div>
+           </CardHeader>
+           <CardContent className="space-y-4">
+              <div className="flex flex-col gap-2 p-3 bg-ds-50 dark:bg-ds-800/40 rounded-lg border border-ds-200 dark:border-ds-800">
+                 <div className="flex items-center justify-between">
+                    <span className="text-sm font-bold">Push Notifications</span>
+                    <Switch defaultChecked />
+                 </div>
+                 <span className="text-xs text-ds-500">Allow systemic alerts to pop up.</span>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                 <Button variant="soft" size="sm" className="bg-ds-success-50 text-ds-success-600 hover:bg-ds-success-100 dark:bg-ds-success-500/10 dark:text-ds-success-400 dark:hover:bg-ds-success-500/20" leftIcon={<FiCheckCircle size={14} />} onClick={() => toast({ title: 'Saved!', description: 'Settings updated successfully.', type: 'success' })}>Success</Button>
+                 <Button variant="soft" size="sm" className="bg-ds-danger-50 text-ds-danger-600 hover:bg-ds-danger-100 dark:bg-ds-danger-500/10 dark:text-ds-danger-400 dark:hover:bg-ds-danger-500/20" leftIcon={<FiXCircle size={14} />} onClick={() => toast({ title: 'Error', description: 'Failed to apply change.', type: 'error' })}>Error</Button>
+                 <Button variant="soft" size="sm" className="col-span-2" leftIcon={<FiMessageSquare size={14} />} onClick={() => toast({ title: 'New Message', description: 'You have 4 new notifications related to this action.', type: 'default' })}>Standard Notification</Button>
+              </div>
+           </CardContent>
+        </Card>
+
+        {/* New 11: Invite Team */}
+        <Card>
+           <CardHeader>
+              <div className="flex items-center justify-between">
+                 <div className="flex items-center gap-3">
+                    <div className="size-8 ds-rounded bg-ds-success-500/10 flex items-center justify-center">
+                       <FiUserPlus className="text-ds-success-600" size={16} />
+                    </div>
+                    <div className="flex flex-col gap-1">
+                       <CardTitle>Invite Members</CardTitle>
+                       <CardDescription>Grow your workspace team.</CardDescription>
+                    </div>
+                 </div>
+              </div>
+           </CardHeader>
+           <CardContent className="space-y-5">
+              <div className="flex flex-col gap-1.5">
+                 <label className="text-xs font-bold text-ds-800 dark:text-ds-200 uppercase tracking-wider">Invite Link</label>
+                 <div className="flex gap-2 w-full">
+                    <Input 
+                       defaultValue="https://dashkit.ui/join/t_xe9qw" 
+                       readOnly
+                       className="font-mono text-xs w-full" 
+                    />
+                    <Button variant="outlined" className="px-3 shrink-0" aria-label="Copy link" onClick={() => toast({type: 'success', description: 'Link copied to clipboard!'})}>
+                       <FiCopy size={16} />
+                    </Button>
+                 </div>
+              </div>
+              <div className="flex gap-2 w-full items-end mt-1">
+                 <div className="flex-1">
+                    <Input 
+                       label="Email Address"
+                       placeholder="teammate@example.com"
+                       type="email"
+                       className="w-full text-sm" 
+                    />
+                 </div>
+                 <Button variant="filled" className="px-4 shrink-0" rightIcon={<FiSend size={14} />}>
+                    Send
+                 </Button>
+              </div>
+           </CardContent>
+        </Card>
       </div>
 
       {/* Column 4 */}
@@ -838,7 +1044,7 @@ export function HomeExamples() {
                 { icon: <FiShield className="text-ds-success-600" />, title: "Security scan passed", time: "1h ago" },
                 { icon: <FiMessageSquare className="text-ds-info-600" />, title: "New feedback received", time: "3h ago" }
               ].map((item, i) => (
-                <div key={i} className="flex gap-3 items-start p-2 rounded-[var(--radius)] hover:bg-ds-50/50 dark:hover:bg-ds-800/30 transition-colors cursor-pointer group">
+                <div key={i} className="flex gap-3 items-start p-2 ds-rounded hover:bg-ds-50/50 dark:hover:bg-ds-800/30 transition-colors cursor-pointer group">
                    <div className="mt-1 opacity-70 group-hover:opacity-100 transition-opacity">{item.icon}</div>
                    <div className="flex flex-col">
                       <span className="text-sm font-semibold leading-tight">{item.title}</span>
@@ -903,11 +1109,11 @@ export function HomeExamples() {
               </div>
               <ProgressBar value={42.8} size="sm" color="warning" />
               <div className="grid grid-cols-2 gap-2">
-                 <div className="flex flex-col p-2 bg-ds-50/50 dark:bg-ds-800/10 rounded-[var(--radius)] border border-ds-200 dark:border-ds-800">
+                 <div className="flex flex-col p-2 bg-ds-50/50 dark:bg-ds-800/10 ds-rounded border border-ds-200 dark:border-ds-800">
                     <span className="text-xs font-bold uppercase text-ds-500 tracking-wider">Images</span>
                     <span className="text-sm font-bold">12.4 GB</span>
                  </div>
-                 <div className="flex flex-col p-2 bg-ds-50/50 dark:bg-ds-800/10 rounded-[var(--radius)] border border-ds-200 dark:border-ds-800">
+                 <div className="flex flex-col p-2 bg-ds-50/50 dark:bg-ds-800/10 ds-rounded border border-ds-200 dark:border-ds-800">
                     <span className="text-xs font-bold uppercase text-ds-500 tracking-wider">Backups</span>
                     <span className="text-sm font-bold">30.4 GB</span>
                  </div>
@@ -1008,11 +1214,11 @@ export function HomeExamples() {
               </div>
               
               <div className="grid grid-cols-2 gap-3 tabular-nums">
-                 <div className="flex flex-col p-2 bg-ds-50/50 dark:bg-ds-800/10 rounded-[var(--radius)] border border-ds-200 dark:border-ds-800">
+                 <div className="flex flex-col p-2 bg-ds-50/50 dark:bg-ds-800/10 ds-rounded border border-ds-200 dark:border-ds-800">
                     <span className="text-xs font-bold uppercase text-ds-500 tracking-wider">Loss</span>
                     <span className="text-sm font-bold">0.0421</span>
                  </div>
-                 <div className="flex flex-col p-2 bg-ds-50/50 dark:bg-ds-800/10 rounded-[var(--radius)] border border-ds-200 dark:border-ds-800">
+                 <div className="flex flex-col p-2 bg-ds-50/50 dark:bg-ds-800/10 ds-rounded border border-ds-200 dark:border-ds-800">
                     <span className="text-xs font-bold uppercase text-ds-500 tracking-wider">ETA</span>
                     <span className="text-sm font-bold">04:12:08</span>
                  </div>
@@ -1030,7 +1236,7 @@ export function HomeExamples() {
            <CardHeader>
               <div className="flex items-center justify-between">
                  <div className="flex items-center gap-2">
-                    <div className="size-6 rounded-[var(--radius)] bg-ds-warning-500/10 flex items-center justify-center">
+                    <div className="size-6 ds-rounded bg-ds-warning-500/10 flex items-center justify-center">
                        <FiLock className="text-ds-warning-600" size={14} />
                     </div>
                     <CardTitle>API Credentials</CardTitle>
@@ -1071,7 +1277,120 @@ export function HomeExamples() {
               <Button variant="soft" className="w-full mt-2" leftIcon={<FiZap />}>Generate New Key</Button>
            </CardContent>
         </Card>
+
+        {/* New 8: Select Example */}
+        <Card>
+           <CardHeader>
+              <div className="flex items-center gap-3">
+                 <div className="size-8 rounded-lg bg-ds-500/10 flex items-center justify-center">
+                    <FiServer className="text-ds-500" size={16} />
+                 </div>
+                 <div className="flex flex-col gap-1">
+                    <CardTitle>Environment Settings</CardTitle>
+                    <CardDescription>Configure deployment targets and domains.</CardDescription>
+                 </div>
+              </div>
+           </CardHeader>
+           <CardContent className="space-y-4">
+              <Select 
+                 label="Target Node"
+                 options={[
+                   { label: 'US-East (Virginia)', value: 'us-east-1' },
+                   { label: 'US-West (Oregon)', value: 'us-west-2' },
+                   { label: 'EU-Central (Frankfurt)', value: 'eu-central-1' }
+                 ]}
+                 value="us-east-1"
+              />
+              <Select 
+                 label="Environment"
+                 options={[
+                   { label: 'Production', value: 'prod' },
+                   { label: 'Staging', value: 'stage' },
+                   { label: 'Development', value: 'dev' },
+                   { label: 'Testing', value: 'test' }
+                 ]}
+                 value="prod"
+              />
+              <div className="flex flex-col gap-1.5 pt-2">
+                 <span className="text-xs font-bold uppercase tracking-wider text-ds-500">Status</span>
+                 <div className="flex items-center justify-between p-3 ds-rounded border border-ds-200 dark:border-ds-800 bg-ds-50/50 dark:bg-ds-800/10">
+                    <div className="flex items-center gap-2">
+                       <span className="relative flex h-2 w-2">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-ds-success-400 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-ds-success-500"></span>
+                       </span>
+                       <span className="text-sm font-bold text-ds-900 dark:text-ds-100">All systems operational</span>
+                    </div>
+                </div>
+              </div>
+           </CardContent>
+        </Card>
+
+        {/* New 12: Recent Invoice */}
+        <Card>
+           <CardHeader>
+              <div className="flex items-center justify-between">
+                 <div className="flex items-center gap-3">
+                    <div className="size-8 ds-rounded bg-ds-primary-500/10 flex items-center justify-center">
+                       <FiFileText className="text-ds-primary-600" size={16} />
+                    </div>
+                    <div className="flex flex-col gap-1">
+                       <CardTitle>Recent Invoice</CardTitle>
+                       <CardDescription>Generated automatically.</CardDescription>
+                    </div>
+                 </div>
+                 <Badge content="Paid" color="success" variant="soft" />
+              </div>
+           </CardHeader>
+           <CardContent className="space-y-4">
+              <div className="flex items-center justify-between p-3 ds-rounded border border-ds-200 dark:border-ds-800 bg-ds-50/50 dark:bg-ds-800/10">
+                 <div className="flex flex-col">
+                    <span className="text-sm font-bold">INV-0492-MAR</span>
+                    <span className="text-xs text-ds-500">Issued Mar 1st, 2026</span>
+                 </div>
+                 <span className="text-lg font-bold">$1,249.00</span>
+              </div>
+              <Button variant="soft" className="w-full" leftIcon={<FiDownload size={14} />}>
+                 Download PDF
+              </Button>
+           </CardContent>
+        </Card>
       </div>
+
+      {/* Modals & Drawers */}
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <ModalHeader onClose={() => setIsModalOpen(false)}>
+          <h3 className="text-lg font-semibold">Delete Project</h3>
+        </ModalHeader>
+        <ModalContent className="flex flex-col gap-4">
+          <p className="text-sm text-ds-500">Are you sure you want to delete this project? This action cannot be undone.</p>
+        </ModalContent>
+        <ModalFooter>
+          <Button variant="outlined" onClick={() => setIsModalOpen(false)}>Cancel</Button>
+          <Button className="bg-ds-danger-600 hover:bg-ds-danger-700 text-white border-transparent" onClick={() => { setIsModalOpen(false); toast({ type: 'error', description: 'Project deleted successfully!' }); }}>Delete</Button>
+        </ModalFooter>
+      </Modal>
+
+      <Drawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
+        <DrawerHeader>
+          <h2 className="text-xl font-bold tracking-tight">Activity Stream</h2>
+          <p className="text-sm text-ds-500">Recent actions on your account.</p>
+        </DrawerHeader>
+        <div className="flex flex-col gap-4 p-6">
+          <div className="p-4 rounded-lg bg-ds-50 dark:bg-ds-800 border border-ds-200 dark:border-ds-700">
+             <span className="text-sm font-bold block mb-1">New API Key</span>
+             <span className="text-xs text-ds-500">Created 2 hours ago by Carlos.</span>
+          </div>
+          <div className="p-4 rounded-lg bg-ds-50 dark:bg-ds-800 border border-ds-200 dark:border-ds-700">
+             <span className="text-sm font-bold block mb-1">Billing Updated</span>
+             <span className="text-xs text-ds-500">Payment method changed.</span>
+          </div>
+          <div className="p-4 rounded-lg bg-ds-50 dark:bg-ds-800 border border-ds-200 dark:border-ds-700">
+             <span className="text-sm font-bold block mb-1">System Reboot</span>
+             <span className="text-xs text-ds-500">Automated maintenance window.</span>
+          </div>
+        </div>
+      </Drawer>
     </div>
   );
 }

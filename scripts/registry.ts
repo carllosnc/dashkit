@@ -137,6 +137,14 @@ export const registry: Record<string, ComponentConfig> = {
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
+  stepper: {
+    name: 'Stepper',
+    files: [
+      'src/components/Stepper/Stepper.tsx',
+      'src/components/Stepper/index.ts'
+    ],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
+  },
   spinner: {
     name: 'Spinner',
     files: ['src/components/Spinner/Spinner.tsx'],

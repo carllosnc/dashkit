@@ -57,6 +57,7 @@ const navItems = [
       { to: '/docs/sidebar', label: 'Sidebar', icon: <FiAlignLeft size={16} /> },
       { to: '/docs/skeleton', label: 'Skeleton', icon: <FiGrid size={16} /> },
       { to: '/docs/spinner', label: 'Spinner', icon: <FiLoader size={16} /> },
+      { to: '/docs/stepper', label: 'Stepper', icon: <FiMoreHorizontal size={16} /> },
       { to: '/docs/switch', label: 'Switch', icon: <FiToggleRight size={16} /> },
       { to: '/docs/slider', label: 'Slider', icon: <FiSliders size={16} /> },
       { to: '/docs/surface', label: 'Surface', icon: <FiLayers size={16} /> },

@@ -147,7 +147,7 @@ export function DashboardExample() {
       <Navbar>
         <NavbarBrand>
            <div className="flex items-center gap-2">
-             <img src="/logo.svg" alt="Dashkit Logo" className="size-16 dark:invert" />
+             <img src="/logos-example/full-04.png" alt="Dashkit Logo" className="h-8 dark:invert" />
            </div>
         </NavbarBrand>
 

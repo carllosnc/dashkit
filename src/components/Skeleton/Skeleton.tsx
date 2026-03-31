@@ -20,9 +20,9 @@ export const Skeleton = ({
     <div
       className={cn(
         "relative overflow-hidden bg-muted",
-        variant === 'text' && "h-4 w-full rounded-[var(--radius)]",
+        variant === 'text' && "h-4 w-full ds-rounded",
         variant === 'circular' && "rounded-full",
-        variant === 'rectangular' && "rounded-[var(--radius)]",
+        variant === 'rectangular' && "ds-rounded",
         animation === 'shimmer' && "after:absolute after:inset-0 after:-translate-x-full after:animate-[ds-shimmer_1.5s_infinite] after:bg-gradient-to-r after:from-transparent after:via-foreground/5 after:to-transparent",
         animation === 'pulse' && "animate-[ds-pulse_1.2s_infinite]",
         className

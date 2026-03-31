@@ -60,6 +60,7 @@ import {
   TableCaption
 } from '../../components/Table/Table';
 import { SystemLogs } from '../../components/SystemLogs/SystemLogs';
+import { Stepper, Step } from '../../components/Stepper';
 import {
   FiPlus,
   FiTrash2,
@@ -77,7 +78,10 @@ import {
   FiSettings,
   FiPieChart,
   FiTrendingUp,
-  FiUsers
+  FiUsers,
+  FiCheckCircle,
+  FiPackage,
+  FiTruck
 } from 'react-icons/fi';
 
 export const AllComponentsExample = () => {
@@ -90,6 +94,7 @@ export const AllComponentsExample = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [drawerPosition, setDrawerPosition] = useState<'left' | 'right' | 'top' | 'bottom'>('right');
   const [otp, setOtp] = useState('');
+  const [activeStepper, setActiveStepper] = useState(1);
   const { toast } = useToast();
 
   const [showcaseMetrics, setShowcaseMetrics] = useState({
@@ -1326,6 +1331,38 @@ export const AllComponentsExample = () => {
 
         <Card>
           <CardHeader>
+            <CardTitle>Stepper</CardTitle>
+            <CardDescription>Visual progress indicator for multi-step processes.</CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-12 py-6">
+            <div className="flex flex-col gap-8 w-full max-w-2xl mx-auto">
+              <Stepper activeStep={activeStepper} onChange={setActiveStepper}>
+                <Step title="Account Setup" description="Create a secure account." />
+                <Step title="Payment Info" description="Add funding source." />
+                <Step title="Review & Confirm" description="Finalize the details." />
+              </Stepper>
+              <div className="flex gap-2 justify-end">
+                 <Button variant="outlined" disabled={activeStepper === 0} onClick={() => setActiveStepper(prev => prev - 1)}>Back</Button>
+                 <Button disabled={activeStepper === 2} onClick={() => setActiveStepper(prev => prev + 1)}>{activeStepper === 2 ? 'Complete' : 'Continue'}</Button>
+              </div>
+            </div>
+
+            <Divider variant="dashed" />
+
+            <div className="flex flex-col gap-6">
+               <h4 className="text-sm font-medium text-muted-foreground mb-4">Vertical Layout with Custom Icons</h4>
+               <Stepper activeStep={2} orientation="vertical">
+                 <Step title="Order Confirmed" description="Your data has been validated." icon={<FiCheckCircle size={16} />} />
+                 <Step title="Processing Payment" description="We are securing the funds." icon={<FiLock size={16} />} />
+                 <Step title="Packaging" description="Generating labels." icon={<FiPackage size={16} />} />
+                 <Step title="Shipped" description="Dispatched to local courier." icon={<FiTruck size={16} />} />
+               </Stepper>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
             <CardTitle>System Logs</CardTitle>
             <CardDescription>Terminal-style log viewer with auto-scroll and status monitoring.</CardDescription>
           </CardHeader>
@@ -1392,7 +1429,7 @@ export const AllComponentsExample = () => {
         position="bottom-right"
       >
         <div className="flex flex-col gap-4">
-          <div className="p-4 rounded-[var(--radius)] bg-ds-50 dark:bg-ds-800 border border-border/60">
+          <div className="p-4 ds-rounded bg-ds-50 dark:bg-ds-800 border border-border/60">
             <h4 className="text-sm font-semibold mb-1">Create New Task</h4>
             <p className="text-xs text-muted-foreground">Add a task to your current active project.</p>
           </div>

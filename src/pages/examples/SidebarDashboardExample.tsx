@@ -96,17 +96,13 @@ export const SidebarDashboardExample = () => {
       >
         <SidebarHeader>
           <SidebarHeaderOpen>
-            <div className="flex items-center gap-3">
-              <span className="font-bold text-lg tracking-tight">
-                Dashkit
-              </span>
+            <div className="flex items-center justify-center w-full gap-3">
+              <img src="/logos-example/full-02.png" alt="Dashkit Logo" className="h-8 dark:invert" />
             </div>
           </SidebarHeaderOpen>
           <SidebarHeaderClose>
-            <div className="flex items-center gap-3">
-              <span className="font-bold text-xl tracking-tight">
-                D
-              </span>
+            <div className="flex items-center justify-center w-full">
+              <img src="/logos-example/logo-02.png" alt="D" className="h-7 dark:invert" />
             </div>
           </SidebarHeaderClose>
         </SidebarHeader>

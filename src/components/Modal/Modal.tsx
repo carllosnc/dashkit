@@ -84,7 +84,7 @@ export const Modal = ({
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
             className={cn(
-              "w-full bg-card text-card-foreground rounded-[var(--radius)] shadow-sm overflow-hidden flex flex-col",
+              "w-full bg-card text-card-foreground ds-rounded shadow-sm overflow-hidden flex flex-col",
               sizeClasses[size],
               className
             )}

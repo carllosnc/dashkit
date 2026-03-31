@@ -49,7 +49,7 @@ export function FloatActionMenu({
         key="fab"
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          'flex items-center gap-2.5 px-4 py-3 rounded-[var(--radius)] bg-linear-to-br from-primary to-ds-primary-600 text-white shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.18)] active:scale-95 transition-all cursor-pointer border border-white/10 relative z-10',
+          'flex items-center gap-2.5 px-4 py-3 ds-rounded bg-linear-to-br from-primary to-ds-primary-600 text-white shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.18)] active:scale-95 transition-all cursor-pointer border border-white/10 relative z-10',
           buttonClassName
         )}
       >
@@ -69,7 +69,7 @@ export function FloatActionMenu({
             key="menu"
             ref={menuRef}
             className={cn(
-              'absolute w-[calc(100vw-3rem)] sm:w-[400px] max-w-[400px] min-h-[300px] bg-white dark:bg-ds-900 rounded-[var(--radius)] shadow-2xl border dark:border-ds-800 overflow-hidden flex flex-col z-20',
+              'absolute w-[calc(100vw-3rem)] sm:w-[400px] max-w-[400px] min-h-[300px] bg-white dark:bg-ds-900 ds-rounded shadow-2xl border dark:border-ds-800 overflow-hidden flex flex-col z-20',
               menuPositionClasses[position],
               menuClassName
             )}

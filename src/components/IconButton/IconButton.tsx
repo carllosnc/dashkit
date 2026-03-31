@@ -26,7 +26,7 @@ export const IconButton = forwardRef<HTMLElement, IconButtonProps>(
     const isLink = 'href' in props && props.href !== undefined;
 
     const commonClasses = cn(
-      "rounded-[var(--radius)] inline-flex font-medium items-center justify-center focus:outline-none cursor-pointer whitespace-nowrap border select-none shrink-0 size-9",
+      "ds-rounded inline-flex font-medium items-center justify-center focus:outline-none cursor-pointer whitespace-nowrap border select-none shrink-0 size-9",
       rounded ? "rounded-full" : "",
       variantClasses[variant],
       {

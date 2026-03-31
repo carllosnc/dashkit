@@ -110,7 +110,7 @@ export const Combobox = ({
           placeholder={multiple && selectedOptions.length > 0 ? "Add more..." : placeholder}
           autoComplete="off"
           className={cn(
-            "w-full h-9 pl-10 pr-10 text-sm bg-input-bg text-input-fg border border-input rounded-[var(--radius)] outline-none transition-all duration-200 focus:border-input-focus focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-transparent placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
+            "w-full h-9 pl-10 pr-10 text-sm bg-input-bg text-input-fg border border-input ds-rounded outline-none transition-all duration-200 focus:border-input-focus focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-transparent placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
             isOpen && "ring-2 ring-ring ring-offset-2 ring-offset-transparent border-input"
           )}
         />
@@ -148,7 +148,7 @@ export const Combobox = ({
                 : { bottom: (window.innerHeight - triggerRect.top) + 8 }),
             }}
             className={cn(
-              "p-1 bg-popover text-popover-fg border border-popover-border rounded-[var(--radius)] shadow-lg overflow-hidden"
+              "p-1 bg-popover text-popover-fg border border-popover-border ds-rounded shadow-lg overflow-hidden"
             )}
           >
             <div className="max-h-60 overflow-y-auto custom-scrollbar flex flex-col gap-0.5 font-sans pr-1">
@@ -165,7 +165,7 @@ export const Combobox = ({
                       type="button"
                       onClick={() => handleSelect(opt)}
                       className={cn(
-                        "w-full px-4 py-2.5 text-sm text-left flex items-center justify-between duration-200 transition-colors rounded-[var(--radius)]",
+                        "w-full px-4 py-2.5 text-sm text-left flex items-center justify-between duration-200 transition-colors ds-rounded",
                         isSelected ? "bg-popover-item-selected text-popover-item-selected-fg font-semibold" : "text-popover-fg hover:bg-popover-item"
                       )}
                     >
