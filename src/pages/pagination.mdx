@@ -1,0 +1,177 @@
+import React, { useState } from 'react';
+import { Pagination } from '../components/Pagination';
+
+# Pagination
+
+A functional and responsive component for navigating between large sets of data or views.
+
+## Quick Start
+Provide the `currentPage`, `totalPages`, and an `onChange` callback to sync state perfectly.
+
+<div className="not-prose border bg-card border-ds-200 dark:border-ds-800 ds-rounded flex flex-col gap-8 py-8 px-4 items-center justify-center w-full">
+  {React.createElement(() => {
+    const [page, setPage] = useState(1);
+    return (
+      <Pagination 
+        currentPage={page} 
+        totalPages={10} 
+        onChange={setPage} 
+      />
+    );
+  })}
+</div>
+
+```tsx
+import { useState } from 'react';
+import { Pagination } from '@/components/Pagination';
+
+export function PaginationExample() {
+  const [page, setPage] = useState(1);
+
+  return (
+    <Pagination 
+      currentPage={page} 
+      totalPages={10} 
+      onChange={setPage} 
+    />
+  );
+}
+```
+
+## Short List
+When `totalPages` is small (e.g., 5 pages), the component automatically hides the ellipsis logic and simply renders a cohesive string of pages.
+
+<div className="not-prose border bg-card border-ds-200 dark:border-ds-800 ds-rounded flex flex-col gap-8 py-8 px-4 items-center justify-center w-full">
+  {React.createElement(() => {
+    const [page, setPage] = useState(2);
+    return (
+      <Pagination 
+        currentPage={page} 
+        totalPages={5} 
+        onChange={setPage} 
+      />
+    );
+  })}
+</div>
+
+```tsx
+import { useState } from 'react';
+import { Pagination } from '@/components/Pagination';
+
+export function PaginationShortExample() {
+  const [page, setPage] = useState(2);
+
+  return (
+    <Pagination 
+      currentPage={page} 
+      totalPages={5} 
+      onChange={setPage} 
+    />
+  );
+}
+```
+
+## Large Data Ranges
+The `Pagination` component automatically calculates ellipsis (`...`) truncations for large ranges to prevent overflowing.
+
+<div className="not-prose border bg-card border-ds-200 dark:border-ds-800 ds-rounded flex flex-col gap-8 py-8 px-4 items-center justify-center w-full">
+  {React.createElement(() => {
+    const [page, setPage] = useState(50);
+    return (
+      <Pagination 
+        currentPage={page} 
+        totalPages={100} 
+        onChange={setPage} 
+      />
+    );
+  })}
+</div>
+
+```tsx
+import { useState } from 'react';
+import { Pagination } from '@/components/Pagination';
+
+export function PaginationLargeDataExample() {
+  const [page, setPage] = useState(50);
+
+  return (
+    <Pagination 
+      currentPage={page} 
+      totalPages={100} 
+      onChange={setPage} 
+    />
+  );
+}
+```
+
+## Minimal Mode
+By configuring `siblingCount={0}`, you can minimize the footprint of the pagination. The component defaults to `siblingCount={1}`.
+
+<div className="not-prose border bg-card border-ds-200 dark:border-ds-800 ds-rounded flex flex-col gap-8 py-8 px-4 items-center justify-center w-full">
+  {React.createElement(() => {
+    const [page, setPage] = useState(25);
+    return (
+      <Pagination 
+        currentPage={page} 
+        totalPages={50} 
+        siblingCount={0}
+        onChange={setPage} 
+      />
+    );
+  })}
+</div>
+
+```tsx
+import { useState } from 'react';
+import { Pagination } from '@/components/Pagination';
+
+export function PaginationMinimalExample() {
+  const [page, setPage] = useState(25);
+
+  return (
+    <Pagination 
+      currentPage={page} 
+      totalPages={50} 
+      siblingCount={0}
+      onChange={setPage} 
+    />
+  );
+}
+```
+
+## Props
+
+<PropertyDoc
+  properties={[
+    {
+      "prop": "currentPage",
+      "type": "number",
+      "defaultValue": "—",
+      "description": "The currently active page (1-indexed)."
+    },
+    {
+      "prop": "totalPages",
+      "type": "number",
+      "defaultValue": "—",
+      "description": "Total number of pages."
+    },
+    {
+      "prop": "onChange",
+      "type": "(page: number) => void",
+      "defaultValue": "—",
+      "description": "Callback fired when a page is clicked or next/prev is activated."
+    },
+    {
+      "prop": "siblingCount",
+      "type": "number",
+      "defaultValue": "1",
+      "description": "Number of sibling pages to show on each side of the active page."
+    },
+    {
+      "prop": "className",
+      "type": "string",
+      "defaultValue": "—",
+      "description": "Additional CSS classes for the navigation wrapper."
+    }
+  ]}
+/>
