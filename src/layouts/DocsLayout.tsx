@@ -50,6 +50,7 @@ const navItems = [
       { to: '/docs/modal', label: 'Modal', icon: <FiMaximize size={16} /> },
       { to: '/docs/navbar', label: 'Navbar', icon: <FiLayout size={16} /> },
       { to: '/docs/otp-input', label: 'OTP Input', icon: <FiLock size={16} /> },
+      { to: '/docs/pagination', label: 'Pagination', icon: <FiMoreHorizontal size={16} /> },
       { to: '/docs/popover', label: 'Popover', icon: <FiMessageCircle size={16} /> },
       { to: '/docs/progressbar', label: 'Progress Bar', icon: <FiActivity size={16} /> },
       { to: '/docs/radio', label: 'Radio', icon: <FiDisc size={16} /> },
