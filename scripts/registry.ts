@@ -306,5 +306,10 @@ export const registry: Record<string, ComponentConfig> = {
     files: ['src/components/SystemLogs/SystemLogs.tsx'],
     dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
     registryDependencies: ['badge'],
+  },
+  datefield: {
+    name: 'DateField',
+    files: ['src/components/DateField/DateField.tsx'],
+    dependencies: ['clsx', 'tailwind-merge'],
   }
 };

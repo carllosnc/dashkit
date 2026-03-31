@@ -1,0 +1,65 @@
+import { DateField } from '../components/DateField/DateField';
+import { Card, CardHeader, CardTitle, CardContent } from '../components/Card/Card';
+
+# DateField
+
+A specialized input component for entering and editing date values with individual segments.
+
+## Usage
+
+```tsx
+import { DateField } from './components/dashkit/DateField';
+
+function Example() {
+  const [value, setValue] = useState<Date | null>(new Date());
+
+  return (
+    <DateField 
+      label="Birth Date" 
+      value={value} 
+      onChange={setValue} 
+    />
+  );
+}
+```
+
+## Examples
+
+### Default
+
+<DateField label="Select date" />
+
+### With Value
+
+<DateField label="Specific date" value={new Date(2024, 0, 1)} />
+
+### Required
+
+<DateField label="Mandatory field" isRequired />
+
+### With Error
+
+<DateField 
+  label="Validation error" 
+  error="Invalid date format" 
+  value={new Date('invalid')} 
+/>
+
+### With Description
+
+<DateField 
+  label="Event Date" 
+  description="Select the date for your event." 
+/>
+
+## Properties
+
+| Property | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `label` | `string` | - | The label for the date field. |
+| `description` | `string` | - | Assistive text displayed below the field. |
+| `error` | `string` | - | Error message displayed below the field. |
+| `value` | `Date \| null` | - | The current date value. |
+| `onChange` | `(date: Date \| null) => void` | - | Callback when the date changes. |
+| `disabled` | `boolean` | `false` | Whether the field is disabled. |
+| `isRequired` | `boolean` | `false` | Whether the field is required. |

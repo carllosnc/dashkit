@@ -53,6 +53,7 @@ import AnimateNumberDocs from './pages/animate-number.mdx'
 import CircularProgressDocs from './pages/circular-progress.mdx'
 import FloatActionMenuDocs from './pages/float-action-menu.mdx'
 import SystemLogsDocs from './pages/system-logs.mdx'
+import DateFieldDocs from './pages/date-field.mdx'
 import { LoginExample } from './pages/examples/LoginExample'
 import { ComplexFormExample } from './pages/examples/ComplexFormExample'
 import { DashboardExample } from './pages/examples/DashboardExample'
@@ -122,6 +123,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="toast" element={<MdxWrapper Component={ToastDocs} />} />
                 <Route path="system-logs" element={<MdxWrapper Component={SystemLogsDocs} />} />
                 <Route path="float-action-menu" element={<MdxWrapper Component={FloatActionMenuDocs} />} />
+                <Route path="date-field" element={<MdxWrapper Component={DateFieldDocs} />} />
               </Route>
 
               <Route path="/charts" element={<ChartsLayout />}>

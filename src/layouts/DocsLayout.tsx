@@ -39,6 +39,7 @@ const navItems = [
       { to: '/docs/circular-progress', label: 'Circular Progress', icon: <FiDisc size={16} /> },
       { to: '/docs/combobox', label: 'Combobox', icon: <FiSearch size={16} /> },
       { to: '/docs/datepicker', label: 'Date Picker', icon: <FiCalendar size={16} /> },
+      { to: '/docs/date-field', label: 'Date Field', icon: <FiCalendar size={16} /> },
       { to: '/docs/divider', label: 'Divider', icon: <FiMinus size={16} /> },
       { to: '/docs/dock', label: 'Dock', icon: <FiMonitor size={16} /> },
       { to: '/docs/drawer', label: 'Drawer', icon: <FiSidebar size={16} /> },

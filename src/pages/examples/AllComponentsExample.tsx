@@ -20,6 +20,7 @@ import { ButtonGroup } from '../../components/ButtonGroup/ButtonGroup';
 import { Select } from '../../components/Select/Select';
 import { Combobox } from '../../components/Combobox/Combobox';
 import { DatePicker } from '../../components/DatePicker/DatePicker';
+import { DateField } from '../../components/DateField/DateField';
 import { Spinner } from '../../components/Spinner/Spinner';
 import { Skeleton } from '../../components/Skeleton/Skeleton';
 import { Modal, ModalHeader, ModalContent, ModalFooter } from '../../components/Modal/Modal';
@@ -90,6 +91,7 @@ export const AllComponentsExample = () => {
   const [comboSingle, setComboSingle] = useState('react');
   const [comboMulti, setComboMulti] = useState(['nextjs', 'tailwind']);
   const [date, setDate] = useState<Date | undefined>(new Date());
+  const [fieldDate, setFieldDate] = useState<Date | null>(new Date());
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalSize, setModalSize] = useState<'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full'>('md');
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -722,6 +724,29 @@ export const AllComponentsExample = () => {
                 disabled 
                 placeholder="Not selectable"
                 description="This date picker is currently locked."
+              />
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Date Field</CardTitle>
+            <CardDescription>HeroUI-inspired date input with individual segments for editing.</CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <DateField 
+                label="Date of Birth" 
+                value={fieldDate} 
+                onChange={setFieldDate} 
+                description="You can edit parts of the date individually."
+              />
+              <DateField 
+                label="Required Field" 
+                isRequired
+                error="Please enter a valid date"
+                description="This field is mandatory."
               />
             </div>
           </CardContent>
