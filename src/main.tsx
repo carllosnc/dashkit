@@ -40,6 +40,7 @@ import SkeletonDocs from './pages/skeleton.mdx'
 import BreadcrumbDocs from './pages/breadcrumb.mdx'
 import SpinnerDocs from './pages/spinner.mdx'
 import StepperDocs from './pages/stepper.mdx'
+import PaginationDocs from './pages/pagination.mdx'
 import NavbarDocs from './pages/navbar.mdx'
 import IconButtonDocs from './pages/icon-button.mdx'
 import TextareaDocs from './pages/textarea.mdx'
@@ -101,6 +102,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="modal" element={<MdxWrapper Component={ModalDocs} />} />
                 <Route path="navbar" element={<MdxWrapper Component={NavbarDocs} />} />
                 <Route path="otp-input" element={<MdxWrapper Component={OtpInputDocs} />} />
+                <Route path="pagination" element={<MdxWrapper Component={PaginationDocs} />} />
                 <Route path="radio" element={<MdxWrapper Component={RadioDocs} />} />
                 <Route path="select" element={<MdxWrapper Component={SelectDocs} />} />
                 <Route path="skeleton" element={<MdxWrapper Component={SkeletonDocs} />} />
