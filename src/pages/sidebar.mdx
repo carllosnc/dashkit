@@ -10,6 +10,7 @@ import {
   SidebarSection, 
   SidebarItem 
 } from '../components/Sidebar/Sidebar';
+import { Badge } from '../components/Badge/Badge';
 import { 
   FiLayout, 
   FiUsers, 
@@ -18,7 +19,14 @@ import {
   FiPieChart, 
   FiShield, 
   FiLifeBuoy,
-  FiUser
+  FiUser,
+  FiCalendar,
+  FiDatabase,
+  FiServer,
+  FiLock,
+  FiMessageSquare,
+  FiLayers,
+  FiBriefcase
 } from 'react-icons/fi';
 
 export const InteractiveSidebar = () => {
@@ -26,62 +34,94 @@ export const InteractiveSidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <div className="flex h-[500px] w-full border border-ds-200 dark:border-ds-800 rounded-2xl overflow-hidden bg-white dark:bg-ds-950 shadow-sm relative">
-      <Sidebar 
-        collapsible 
-        open={isOpen} 
+    <div className="flex h-[450px] w-full border border-ds-200 dark:border-ds-800 rounded-2xl overflow-hidden bg-white dark:bg-ds-950 shadow-sm relative">
+      <Sidebar
+        collapsible
+        open={isOpen}
         onOpenChange={setIsOpen}
-        className="border-r border-ds-100 dark:border-ds-900 shrink-0"
       >
         <SidebarHeader>
           <SidebarHeaderOpen>
-            <div className="flex items-center gap-3">
-              <div className="size-8 rounded-lg bg-indigo-500/10 flex items-center justify-center">
-                <div className="size-4 rounded-full bg-indigo-500" />
+            <div className="flex items-center gap-3 px-2">
+              <div className="size-8 rounded-lg bg-ds-900 dark:bg-white flex items-center justify-center">
+                <FiLayers className="size-4 text-white dark:text-ds-900" />
               </div>
-              <span className="font-bold text-lg tracking-tight transition-all duration-300">Dashkit</span>
+              <span className="font-bold text-base tracking-tight text-ds-950 dark:text-white">Dashkit</span>
             </div>
           </SidebarHeaderOpen>
           <SidebarHeaderClose>
-            <div className="size-8 rounded-lg bg-indigo-500/10 flex items-center justify-center mx-auto">
-              <div className="size-4 rounded-full bg-indigo-500" />
+            <div className="size-8 rounded-lg bg-ds-900 dark:bg-white flex items-center justify-center mx-auto">
+              <FiLayers className="size-4 text-white dark:text-ds-900" />
             </div>
           </SidebarHeaderClose>
         </SidebarHeader>
 
-        <div className="flex-1 overflow-y-auto pt-4">
-          <SidebarSection>
-            <SidebarItem icon={<FiLayout size={18} />} active={activeTab === 'dashboard'} onClick={() => setActiveTab('dashboard')}>
-              Overview
-            </SidebarItem>
-            <SidebarItem icon={<FiActivity size={18} />} active={activeTab === 'analytics'} onClick={() => setActiveTab('analytics')}>
-              Analytics
-            </SidebarItem>
-          </SidebarSection>
-          <SidebarSection title="Management">
-            <SidebarItem icon={<FiUsers />} active={activeTab === 'team'} onClick={() => setActiveTab('team')}>
-              Team
-            </SidebarItem>
-            <SidebarItem icon={<FiSettings />} active={activeTab === 'settings'} onClick={() => setActiveTab('settings')}>
-              Settings
-            </SidebarItem>
-          </SidebarSection>
-        </div>
+        <SidebarSection title="General" collapsible>
+          <SidebarItem icon={<FiLayout size={18} />} active={activeTab === 'dashboard'} onClick={() => setActiveTab('dashboard')}>
+            Overview
+          </SidebarItem>
+          <SidebarItem icon={<FiActivity size={18} />} active={activeTab === 'analytics'} onClick={() => setActiveTab('analytics')}>
+            Analytics
+          </SidebarItem>
+        </SidebarSection>
+
+        <SidebarSection title="Management" collapsible badge={<Badge content="2" variant="soft" color="info" />}>
+          <SidebarItem icon={<FiUsers size={18} />} active={activeTab === 'team'} onClick={() => setActiveTab('team')}>
+            Team
+          </SidebarItem>
+          <SidebarItem icon={<FiSettings size={18} />} active={activeTab === 'settings'} onClick={() => setActiveTab('settings')}>
+            Settings
+          </SidebarItem>
+        </SidebarSection>
 
         <SidebarFooter className="p-4 border-t border-ds-100 dark:border-ds-900">
-          <div className="flex items-center gap-3 px-2 py-2 rounded-xl bg-ds-50 dark:bg-white/5 border border-ds-100 dark:border-white/5">
-            <div className="size-8 rounded-full bg-ds-200 dark:bg-ds-800 flex items-center justify-center overflow-hidden">
-              <FiUser size={18} />
+          <div className="flex items-center gap-3 px-2 py-2 rounded-xl group hover:bg-ds-50 dark:hover:bg-ds-800 transition-all cursor-pointer">
+            <div className="size-8 rounded-full bg-ds-200 dark:bg-ds-700 flex items-center justify-center overflow-hidden">
+              <FiUser size={16} />
             </div>
-            <div className="flex-1 overflow-hidden">
-              <p className="text-xs font-bold truncate">Alex Rivera</p>
-              <p className="text-[10px] text-ds-500 truncate">Free Tier</p>
-            </div>
+            <SidebarHeaderOpen>
+              <div className="flex-1 overflow-hidden text-left">
+                <p className="text-xs font-bold truncate text-ds-950 dark:text-white">John Doe</p>
+                <p className="text-[10px] text-ds-500 truncate">Admin</p>
+              </div>
+            </SidebarHeaderOpen>
           </div>
         </SidebarFooter>
       </Sidebar>
       <div className="flex-1 bg-ds-50/50 dark:bg-ds-900/20 p-8 flex items-center justify-center">
         <p className="text-ds-400 text-sm font-medium italic">Active: {activeTab}</p>
+      </div>
+    </div>
+  );
+};
+
+export const CollapsibleSectionExample = () => {
+  return (
+    <div className="flex h-[400px] w-full border border-ds-200 dark:border-ds-800 rounded-2xl overflow-hidden bg-white dark:bg-ds-950 shadow-sm relative">
+      <Sidebar>
+        <SidebarHeader>
+          <SidebarHeaderOpen>
+            <div className="font-bold px-6">Sections</div>
+          </SidebarHeaderOpen>
+          <SidebarHeaderClose>
+            <div className="size-8 rounded-full bg-ds-200 dark:bg-ds-800 flex items-center justify-center overflow-hidden">
+              <FiUser size={18} />
+            </div>
+          </SidebarHeaderClose>
+        </SidebarHeader>
+        <div className="flex-1 overflow-y-auto">
+          <SidebarSection title="Account" collapsible>
+            <SidebarItem icon={<FiUser size={18} />}>Profile</SidebarItem>
+            <SidebarItem icon={<FiShield size={18} />}>Security</SidebarItem>
+          </SidebarSection>
+          <SidebarSection title="Settings" collapsible defaultOpen={false}>
+            <SidebarItem icon={<FiSettings size={18} />}>Basic Settings</SidebarItem>
+            <SidebarItem icon={<FiActivity size={18} />}>Logs</SidebarItem>
+          </SidebarSection>
+        </div>
+      </Sidebar>
+      <div className="flex-1 bg-ds-50/50 dark:bg-ds-900/20 p-8 flex items-center justify-center text-ds-400 text-sm">
+        Documentation Preview
       </div>
     </div>
   );
@@ -102,7 +142,7 @@ import {
   SidebarFooterOpen,
   SidebarFooterClose,
   SidebarSection, 
-  SidebarItem 
+  SidebarItem
 } from '@/components/Sidebar/Sidebar'
 ```
 
@@ -118,7 +158,9 @@ bunx carllosnc/dashkit add sidebar
 
 The `Sidebar` uses a semantic composition of headers, sections, and footers to create a cohesive navigation experience.
 
+<div className="not-prose">
 <InteractiveSidebar />
+</div>
 
 ```tsx
 import { Sidebar, SidebarHeader, SidebarSection, SidebarItem } from '@/components/dashkit';
@@ -135,8 +177,8 @@ export default function App() {
       </SidebarHeader>
 
       <SidebarSection title="General">
-        <SidebarItem 
-          icon={<FiLayout />} 
+        <SidebarItem
+          icon={<FiLayout />}
           active={activeTab === 'dashboard'}
           onClick={() => setActiveTab('dashboard')}
         >
@@ -178,6 +220,25 @@ Enable the `collapsible` prop to show a floating toggle button on the sidebar ed
 </Sidebar>
 ```
 
+## Collapsible Sections
+
+Sections can be individually collapsed to conserve vertical space or group related functionality. Use the `collapsible` prop on `SidebarSection` to enable this behavior. You can also control the initial expansion state with the `defaultOpen` prop.
+
+<Preview>
+  <CollapsibleSectionExample />
+</Preview>
+
+```tsx
+<SidebarSection title="Account" collapsible>
+  <SidebarItem icon={<FiUser />}>Profile</SidebarItem>
+  <SidebarItem icon={<FiShield />}>Security</SidebarItem>
+</SidebarSection>
+
+<SidebarSection title="Settings" collapsible defaultOpen={false}>
+  <SidebarItem icon={<FiSettings />}>Advanced</SidebarItem>
+</SidebarSection>
+```
+
 ## API Reference
 
 ### Sidebar
@@ -198,7 +259,10 @@ Enable the `collapsible` prop to show a floating toggle button on the sidebar ed
 <PropertyDoc
   properties={[
     { "prop": "title", "type": "string", "defaultValue": "—", "description": "Uppercase header above the section." },
-    { "prop": "children", "type": "ReactNode", "defaultValue": "—", "description": "SidebarItems to be rendered." }
+    { "prop": "badge", "type": "ReactNode", "defaultValue": "—", "description": "Status badge displayed in the section header." },
+    { "prop": "children", "type": "ReactNode", "defaultValue": "—", "description": "SidebarItems to be rendered." },
+    { "prop": "collapsible", "type": "boolean", "defaultValue": "false", "description": "Whether the section can be collapsed." },
+    { "prop": "defaultOpen", "type": "boolean", "defaultValue": "true", "description": "Initial expansion state for the section." }
   ]}
 />
 
