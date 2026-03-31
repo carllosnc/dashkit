@@ -15,11 +15,13 @@ import { Combobox } from '../../components/Combobox/Combobox';
 import { Divider } from '../../components/Divider/Divider';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../../components/Card/Card';
 import { DatePicker } from '../../components/DatePicker/DatePicker';
+import { DateField } from '../../components/DateField/DateField';
 
 export const ComplexFormExample = () => {
   const [role, setRole] = useState('developer');
   const [techStack, setTechStack] = useState<string[]>(['react', 'typescript', 'tailwind']);
-  const [birthDate, setBirthDate] = useState<Date | undefined>();
+  const [birthDate, setBirthDate] = useState<Date | null>(new Date(1995, 0, 1));
+  const [availabilityDate, setAvailabilityDate] = useState<Date | undefined>();
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -80,12 +82,18 @@ export const ComplexFormExample = () => {
                   placeholder="+1 (555) 000-0000"
                   leftIcon={<FiPhone className="size-4" />}
                 />
-                <DatePicker
+                <DateField
                   label="Date of Birth"
-                  placeholder="Select your birth date"
                   value={birthDate}
                   onChange={setBirthDate}
-                  description="Required for identity verification."
+                  description="Use MM/DD/YYYY format for birth date."
+                />
+                <DatePicker
+                  label="Availability Start"
+                  placeholder="Select a date"
+                  value={availabilityDate}
+                  onChange={setAvailabilityDate}
+                  description="When can you start the project?"
                 />
                 <div className="md:col-span-2 flex flex-col gap-4">
                   <label className="text-[13px] font-semibold text-ds-700 dark:text-ds-300 ml-1 tracking-tight">
