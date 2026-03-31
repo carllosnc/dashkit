@@ -91,8 +91,11 @@ export const DateField = ({
 
   const [prevValue, setPrevValue] = useState(value);
   const getTime = (d?: Date | null) => d instanceof Date ? d.getTime() : (d === null ? null : undefined);
-  
-  if (getTime(value) !== getTime(prevValue)) {
+
+  const vTime = getTime(value);
+  const pTime = getTime(prevValue);
+
+  if (vTime !== pTime && !(Number.isNaN(vTime) && Number.isNaN(pTime))) {
     setPrevValue(value);
     if (value) {
       setMonth((value.getMonth() + 1).toString().padStart(2, '0'));
