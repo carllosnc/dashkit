@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { DateField } from '../components/DateField/DateField';
 
 export const BasicExample = () => {
-  const [value, setValue] = useState<Date | null>(null);
+  const [value, setValue] = useState(null);
   return (
     <div className="w-full max-w-sm">
       <DateField 

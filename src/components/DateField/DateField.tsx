@@ -90,8 +90,9 @@ export const DateField = ({
   const yearRef = useRef<HTMLInputElement>(null);
 
   const [prevValue, setPrevValue] = useState(value);
-
-  if (value !== prevValue) {
+  const getTime = (d?: Date | null) => d instanceof Date ? d.getTime() : (d === null ? null : undefined);
+  
+  if (getTime(value) !== getTime(prevValue)) {
     setPrevValue(value);
     if (value) {
       setMonth((value.getMonth() + 1).toString().padStart(2, '0'));
