@@ -29,6 +29,7 @@ import { Drawer, DrawerHeader } from '../components/Drawer/Drawer';
 import { toast } from '../components/Toast/useToast';
 import { Select } from '../components/Select/Select';
 import { Stepper, Step } from '../components/Stepper';
+import { Pagination } from '../components/Pagination/Pagination';
 
 const AVATAR_URLS = {
   user1: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=120&h=120&auto=format&fit=crop",
@@ -105,6 +106,8 @@ export function HomeExamples() {
     }, 3000);
     return () => clearInterval(interval);
   }, []);
+
+  const [paginatedPage, setPaginatedPage] = React.useState(1);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full max-w-[1600px] mx-auto px-4 py-20 items-start">
@@ -384,6 +387,37 @@ export function HomeExamples() {
                   />
                </Stepper>
                <Button variant="outlined" size="sm" className="w-full">Reply to Ticket</Button>
+           </CardContent>
+        </Card>
+
+        {/* New 13: Transaction History (Pagination) */}
+        <Card>
+           <CardHeader>
+              <div className="flex items-center justify-between">
+                 <div className="flex flex-col gap-1">
+                    <CardTitle>Transactions</CardTitle>
+                    <CardDescription>View your latest transfers.</CardDescription>
+                 </div>
+              </div>
+           </CardHeader>
+           <CardContent className="space-y-4">
+              <div className="flex flex-col gap-2">
+                 <div className="flex items-center justify-between p-2 hover:bg-ds-50/50 dark:hover:bg-ds-800/30 ds-rounded px-3 transition-colors">
+                    <span className="text-sm font-medium">Stripe Payout</span>
+                    <span className="text-sm font-bold text-ds-success-600">+$124.50</span>
+                 </div>
+                 <div className="flex items-center justify-between p-2 hover:bg-ds-50/50 dark:hover:bg-ds-800/30 ds-rounded px-3 transition-colors">
+                    <span className="text-sm font-medium">AWS Hosting</span>
+                    <span className="text-sm font-bold">-$45.00</span>
+                 </div>
+                 <div className="flex items-center justify-between p-2 hover:bg-ds-50/50 dark:hover:bg-ds-800/30 ds-rounded px-3 transition-colors">
+                    <span className="text-sm font-medium">Github Pro</span>
+                    <span className="text-sm font-bold">-$4.00</span>
+                 </div>
+              </div>
+              <div className="pt-2 border-t border-ds-200 dark:border-ds-800 flex justify-center">
+                 <Pagination currentPage={paginatedPage} totalPages={10} onChange={setPaginatedPage} siblingCount={0} className="scale-[0.85] origin-center -mx-4" />
+              </div>
            </CardContent>
         </Card>
       </div>
@@ -757,6 +791,31 @@ export function HomeExamples() {
               <Button variant="soft" size="sm" className="w-full mt-2">View Full Analytics</Button>
            </CardContent>
         </Card>
+
+        {/* New 14: Resource Usage */}
+        <Card>
+           <CardHeader>
+              <CardTitle>Resource Usage</CardTitle>
+              <CardDescription>Track compute and storage constraints.</CardDescription>
+           </CardHeader>
+           <CardContent className="space-y-5">
+              <div className="space-y-2">
+                 <div className="flex items-center justify-between text-sm">
+                    <span className="font-medium text-ds-500">Compute (vCPU)</span>
+                    <span className="font-bold">4.2 / 8 Cores</span>
+                 </div>
+                 <ProgressBar value={52} color="primary" />
+              </div>
+              <div className="space-y-2">
+                 <div className="flex items-center justify-between text-sm">
+                    <span className="font-medium text-ds-500">Memory (RAM)</span>
+                    <span className="font-bold">12.4 / 16 GB</span>
+                 </div>
+                 <ProgressBar value={78} color="warning" />
+              </div>
+              <Button variant="soft" size="sm" className="w-full mt-2" leftIcon={<FiActivity size={14} />}>View Node Panel</Button>
+           </CardContent>
+        </Card>
       </div>
 
       {/* Column 3 */}
@@ -1023,6 +1082,28 @@ export function HomeExamples() {
               </div>
            </CardContent>
         </Card>
+        <Card>
+           <CardHeader>
+              <CardTitle>Data Export</CardTitle>
+              <CardDescription>Download your workspace activity logs.</CardDescription>
+           </CardHeader>
+           <CardContent className="space-y-4">
+              <div className="space-y-3 p-3 bg-ds-50 dark:bg-ds-800 border border-ds-200 dark:border-ds-700 ds-rounded">
+                 <Checkbox label="User Profiles" defaultChecked />
+                 <Checkbox label="Transaction History" defaultChecked />
+                 <Checkbox label="System Logs" />
+              </div>
+              <Select
+                 label="Format"
+                 options={[
+                   { label: 'CSV (Comma Separated)', value: 'csv' },
+                   { label: 'JSON Data array', value: 'json' }
+                 ]}
+                 value="csv"
+              />
+              <Button variant="outlined" className="w-full">Initiate Export</Button>
+           </CardContent>
+        </Card>
       </div>
 
       {/* Column 4 */}
@@ -1190,6 +1271,38 @@ export function HomeExamples() {
               <Button variant="outlined" className="w-full">
                  Manage 12+ Connections
               </Button>
+           </CardContent>
+        </Card>
+
+        {/* New 16: Security Audit */}
+        <Card>
+           <CardHeader>
+              <div className="flex items-center gap-2">
+                 <div className="size-6 ds-rounded bg-ds-success-500/10 flex items-center justify-center">
+                    <FiShield className="text-ds-success-600" size={14} />
+                 </div>
+                 <CardTitle>Security Audit</CardTitle>
+              </div>
+           </CardHeader>
+           <CardContent className="space-y-4">
+              <div className="flex items-center gap-3 p-3 bg-ds-success-50 dark:bg-ds-success-900/10 ds-rounded border border-ds-success-200 dark:border-ds-success-800">
+                 <FiCheckCircle className="text-ds-success-600 shrink-0" size={18} />
+                 <p className="text-xs text-ds-success-800 dark:text-ds-success-200 font-medium leading-tight">No vulnerabilities detected matching active CVE signatures.</p>
+              </div>
+              <div className="space-y-3">
+                 <div className="flex items-center justify-between text-sm border-b pb-2 border-ds-200 dark:border-ds-800">
+                    <span className="font-bold">MFA Required</span>
+                    <Badge content="Enforced" color="success" variant="soft" />
+                 </div>
+                 <div className="flex items-center justify-between text-sm border-b pb-2 border-ds-200 dark:border-ds-800">
+                    <span className="font-bold">Suspicious Logins</span>
+                    <span className="font-bold text-ds-500 tracking-wider">0</span>
+                 </div>
+                 <div className="flex items-center justify-between text-sm">
+                    <span className="font-bold">Password Policy</span>
+                    <span className="font-bold text-ds-500 tracking-wider text-xs uppercase">STRICT</span>
+                 </div>
+              </div>
            </CardContent>
         </Card>
 
