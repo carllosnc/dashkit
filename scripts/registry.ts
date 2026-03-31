@@ -145,6 +145,14 @@ export const registry: Record<string, ComponentConfig> = {
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
+  pagination: {
+    name: 'Pagination',
+    files: [
+      'src/components/Pagination/Pagination.tsx',
+      'src/components/Pagination/index.ts'
+    ],
+    dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
+  },
   spinner: {
     name: 'Spinner',
     files: ['src/components/Spinner/Spinner.tsx'],
