@@ -108,7 +108,7 @@ export const SidebarDashboardExample = () => {
         </SidebarHeader>
 
         <div className="flex-1 overflow-y-auto custom-scrollbar">
-          <SidebarSection title="Main">
+          <SidebarSection title="Main" collapsible>
             <SidebarItem
               icon={<FiGrid size={18} />}
               active={activeTab === 'Overview'}
@@ -135,6 +135,7 @@ export const SidebarDashboardExample = () => {
 
           <SidebarSection
             title="Management"
+            collapsible
             badge={isSidebarOpen && <Badge color="warning" content="Beta" variant="soft" />}
           >
             <SidebarItem icon={<FiUsers size={18} />} badgeSlot={<Badge color="success" dot />}>Team</SidebarItem>
@@ -143,13 +144,13 @@ export const SidebarDashboardExample = () => {
             <SidebarItem icon={<FiBriefcase size={18} />}>Clients</SidebarItem>
           </SidebarSection>
 
-          <SidebarSection title="Data & Analytics">
+          <SidebarSection title="Data & Analytics" collapsible defaultOpen={false}>
             <SidebarItem icon={<FiActivity size={18} />}>Realtime</SidebarItem>
             <SidebarItem icon={<FiPieChart size={18} />}>Analytics</SidebarItem>
             <SidebarItem icon={<FiArchive size={18} />}>Logs</SidebarItem>
           </SidebarSection>
 
-          <SidebarSection title="Infrastructure">
+          <SidebarSection title="Infrastructure" collapsible defaultOpen={false}>
             <SidebarItem icon={<FiDatabase size={18} />}>Databases</SidebarItem>
             <SidebarItem icon={<FiShield size={18} />} badgeSlot={<Badge color="success" content="Encrypted" variant="soft" />}>Security</SidebarItem>
             <SidebarItem icon={<FiCreditCard size={18} />}>Billing</SidebarItem>
