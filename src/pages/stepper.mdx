@@ -32,6 +32,31 @@ Displays a multi-step sequence with active, completed, and inactive states. Uses
   </div>
 </div>
 
+```tsx
+import { useState } from 'react';
+import { Stepper, Step } from '@/components/Stepper';
+import { Button } from '@/components/Button/Button';
+
+export function StepperExample() {
+  const [step, setStep] = useState(1);
+
+  return (
+    <div className="w-full space-y-8">
+       <Stepper activeStep={step} onChange={setStep}>
+          <Step title="Sign Up" description="Create your account" />
+          <Step title="Payment" description="Add funding source" />
+          <Step title="Complete" description="Explore dashboard" />
+       </Stepper>
+       
+       <div className="flex gap-2 justify-end">
+          <Button variant="outlined" disabled={step === 0} onClick={() => setStep(prev => prev - 1)}>Back</Button>
+          <Button disabled={step === 2} onClick={() => setStep(prev => prev + 1)}>Next Step</Button>
+       </div>
+    </div>
+  );
+}
+```
+
 ## Vertical Orientation
 Set `orientation="vertical"` to stack the steps vertically, which is highly suited for sidebars or logs.
 
@@ -46,6 +71,17 @@ Set `orientation="vertical"` to stack the steps vertically, which is highly suit
   </div>
 </div>
 
+```tsx
+import { Stepper, Step } from '@/components/Stepper';
+
+<Stepper activeStep={2} orientation="vertical">
+  <Step title="Order Placed" description="Order #32049 has been confirmed." />
+  <Step title="Processing" description="Your package is being prepared." />
+  <Step title="In Transit" description="Package left local facility." />
+  <Step title="Delivered" description="Package arrived." />
+</Stepper>
+```
+
 ## Custom Icons
 By default, steps are auto-numbered. You can supply an `icon` prop to customize the visual indicator for each step.
 
@@ -59,6 +95,17 @@ By default, steps are auto-numbered. You can supply an `icon` prop to customize 
   </div>
 </div>
 
+```tsx
+import { Stepper, Step } from '@/components/Stepper';
+import { FiUser, FiCreditCard, FiCheckCircle } from 'react-icons/fi';
+
+<Stepper activeStep={1}>
+  <Step title="Profile" icon={<FiUser size={14} />} />
+  <Step title="Billing" icon={<FiCreditCard size={14} />} />
+  <Step title="Success" icon={<FiCheckCircle size={14} />} />
+</Stepper>
+```
+
 ## Clickable Navigation
 If you provide an `onChange` handler, steps become fully interactive and users can jump between them by clicking.
 ```tsx
@@ -70,3 +117,67 @@ const [activeStep, setActiveStep] = useState(0);
   <Step title="Second" />
 </Stepper>
 ```
+
+## Props
+
+### Stepper
+
+<PropertyDoc
+  properties={[
+    {
+      "prop": "activeStep",
+      "type": "number",
+      "defaultValue": "—",
+      "description": "Index of the currently active step (0-indexed)."
+    },
+    {
+      "prop": "orientation",
+      "type": "'horizontal' | 'vertical'",
+      "defaultValue": "'horizontal'",
+      "description": "Layout orientation of the stepper."
+    },
+    {
+      "prop": "onChange",
+      "type": "(step: number) => void",
+      "defaultValue": "—",
+      "description": "Optional callback fired when a step is clicked. Adding this makes steps interactive."
+    },
+    {
+      "prop": "className",
+      "type": "string",
+      "defaultValue": "—",
+      "description": "Additional CSS classes merged via clsx."
+    }
+  ]}
+/>
+
+### Step
+
+<PropertyDoc
+  properties={[
+    {
+      "prop": "title",
+      "type": "ReactNode",
+      "defaultValue": "—",
+      "description": "Main label of the step."
+    },
+    {
+      "prop": "description",
+      "type": "ReactNode",
+      "defaultValue": "—",
+      "description": "Secondary description rendered below the title."
+    },
+    {
+      "prop": "icon",
+      "type": "ReactNode",
+      "defaultValue": "—",
+      "description": "Custom icon element (e.g., Avatar or SVG). Replaces the default numbered circle."
+    },
+    {
+      "prop": "className",
+      "type": "string",
+      "defaultValue": "—",
+      "description": "Additional CSS classes for the step wrapper."
+    }
+  ]}
+/>
