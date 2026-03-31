@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Stepper, Step } from './Stepper';
+import { describe, it, expect, vi } from 'vitest';
 
 describe('Stepper', () => {
   it('renders correctly', () => {
@@ -16,8 +17,7 @@ describe('Stepper', () => {
   });
 
   it('triggers onChange correctly when a step is clicked', () => {
-    // @ts-expect-error - bun test polyfills jest
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(
       <Stepper activeStep={0} onChange={handleChange}>
         <Step title="S1" />
