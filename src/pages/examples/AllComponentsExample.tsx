@@ -48,6 +48,7 @@ import { BarChart } from '../../components/BarChart/BarChart';
 import { PieChart } from '../../components/PieChart/PieChart';
 import { ImageExpander } from '../../components/ImageExpander/ImageExpander';
 import { ProgressBar } from '../../components/ProgressBar/ProgressBar';
+import { Pagination } from '../../components/Pagination';
 import { FloatActionMenu } from '../../components/FloatActionMenu/FloatActionMenu';
 import { Dock, DockItem } from '../../components/Dock/Dock';
 import {
@@ -95,6 +96,7 @@ export const AllComponentsExample = () => {
   const [drawerPosition, setDrawerPosition] = useState<'left' | 'right' | 'top' | 'bottom'>('right');
   const [otp, setOtp] = useState('');
   const [activeStepper, setActiveStepper] = useState(1);
+  const [paginationPage, setPaginationPage] = useState(1);
   const { toast } = useToast();
 
   const [showcaseMetrics, setShowcaseMetrics] = useState({
@@ -1418,6 +1420,16 @@ export const AllComponentsExample = () => {
               ))}
             </TableBody>
           </Table>
+          <div className="mt-4 flex items-center justify-between border-t border-ds-200 dark:border-ds-800 pt-4">
+             <span className="text-sm font-medium text-ds-500">
+               Showing data for page {paginationPage}
+             </span>
+             <Pagination 
+               currentPage={paginationPage} 
+               totalPages={10} 
+               onChange={setPaginationPage} 
+             />
+          </div>
         </section>
       </main>
 
