@@ -2,10 +2,11 @@ import * as React from 'react';
 import { cn } from '../../utils/cn';
 import { motion } from 'framer-motion';
 import type { HTMLMotionProps } from 'framer-motion';
-import { FiChevronsLeft, FiMenu } from 'react-icons/fi';
+import { FiChevronsLeft, FiMenu, FiChevronDown } from 'react-icons/fi';
 import { IconButton } from '../IconButton/IconButton';
 import { SidebarContext } from './SidebarContext';
 import { useSidebar } from './useSidebar';
+import { AnimatePresence } from 'framer-motion';
 
 export interface SidebarProps extends
   Omit<HTMLMotionProps<'aside'>, 'children' | 'defaultValue'> {
@@ -75,7 +76,7 @@ export function SidebarHeader({ children, className }: { children: React.ReactNo
         justifyContent: isOpen ? 'flex-start' : 'center'
       }}
       className={cn(
-        "h-16 flex items-center shrink-0 border-b overflow-hidden",
+        "h-16 flex items-center mb-[20px] shrink-0 border-b overflow-hidden",
         className
       )}
     >
@@ -137,42 +138,80 @@ export function SidebarFooterClose({ children }: { children: React.ReactNode }) 
   return <>{children}</>;
 }
 
-export function SidebarSection({ title, badge, children, className }: { title?: string; badge?: React.ReactNode; children: React.ReactNode; className?: string }) {
+export interface SidebarSectionProps {
+  title?: string;
+  badge?: React.ReactNode;
+  children: React.ReactNode;
+  className?: string;
+  collapsible?: boolean;
+  defaultOpen?: boolean;
+}
+
+export function SidebarSection({
+  title,
+  badge,
+  children,
+  className,
+  collapsible = false,
+  defaultOpen = true
+}: SidebarSectionProps) {
   const sidebarContext = React.useContext(SidebarContext);
   const isOpen = sidebarContext?.isOpen ?? true;
+  const [isSectionOpen, setIsSectionOpen] = React.useState(defaultOpen);
 
   return (
-    <div className={cn("py-4", className)}>
-      {title && (
-        <div className="flex items-center justify-between overflow-hidden">
-          <motion.h4
-            initial={false}
-            animate={{
-              opacity: isOpen ? 1 : 0,
-              height: isOpen ? 'auto' : 0,
-              marginBottom: isOpen ? 8 : 0
-            }}
+    <div className={cn("py-1 text-ds-slate-900 dark:text-ds-slate-100", className)}>
+      {title && isOpen && (
+        <div className="overflow-hidden mb-1">
+          <button
+            type="button"
+            onClick={() => collapsible && setIsSectionOpen(!isSectionOpen)}
             className={cn(
-              "text-[10px] font-bold text-muted-foreground uppercase tracking-[0.2em] truncate px-6",
+              "w-full flex items-center justify-between py-2 transition-all duration-200 outline-none",
+              collapsible && "hover:bg-muted/50 cursor-pointer group/section",
+              !collapsible && "cursor-default"
             )}
           >
-            {title}
-          </motion.h4>
-
-          {isOpen && badge && (
-            <motion.div
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              className="px-6 pb-2"
+            <h4
+              className={cn(
+                "text-[10px] font-bold text-muted-foreground uppercase tracking-[0.2em] truncate px-4",
+                collapsible && "group-hover/section:text-foreground transition-colors"
+              )}
             >
-              {badge}
-            </motion.div>
-          )}
+              {title}
+            </h4>
+
+            <div className="px-2 flex items-center gap-2">
+              {badge && (
+                <div className="shrink-0">
+                  {badge}
+                </div>
+              )}
+              {collapsible && (
+                <motion.div
+                  animate={{ rotate: isSectionOpen ? 0 : -90 }}
+                  className="text-muted-foreground group-hover/section:text-foreground transition-colors"
+                >
+                  <FiChevronDown size={14} />
+                </motion.div>
+              )}
+            </div>
+          </button>
         </div>
       )}
-      <div className="space-y-1">
-        {children}
-      </div>
+      <AnimatePresence initial={false}>
+        {(isSectionOpen || !isOpen) && (
+          <motion.div
+            initial={collapsible ? { height: 0, opacity: 0 } : false}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2, ease: "easeInOut" }}
+            className="space-y-1 overflow-hidden"
+          >
+            {children}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
