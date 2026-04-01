@@ -5,7 +5,7 @@ import { cn } from '../../utils/cn';
 import {
   FiGrid, FiUsers, FiSettings, FiSearch, FiBell,
   FiMoreVertical, FiExternalLink,
-  FiZap, FiPieChart, FiTrendingUp, FiCheckCircle, FiClock
+  FiZap, FiPieChart, FiTrendingUp, FiCheckCircle, FiClock, FiMenu
 } from 'react-icons/fi';
 import { Navbar, NavbarBrand, NavbarLinks, NavbarActions } from '../../components/Navbar/Navbar';
 import { Button } from '../../components/Button/Button';
@@ -599,6 +599,7 @@ export function DashboardExample() {
       <div className="fixed left-6 top-1/2 -translate-y-1/2 z-[100] hidden lg:block">
         <Dock position="left">
            <DockItem icon={<FiGrid />} label="Overview" />
+           <DockItem icon={<FiMenu />} label="Navigation Menu" href="/docs/navigation-menu" />
            <DockItem icon={<FiPieChart />} label="Analytics" />
            <DockItem icon={<FiTrendingUp />} label="Growth" />
            <DockItem icon={<FiUsers />} label="Team" />

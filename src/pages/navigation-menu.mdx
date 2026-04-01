@@ -1,0 +1,163 @@
+# Navigation Menu
+
+A premium navigation menu component inspired by modern, high-end dashboards. It features a shared viewport that smoothly moves and resizes to accommodate different content sections.
+
+## Import
+
+```tsx
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+  NavigationMenuLink,
+  NavigationMenuViewport
+} from '@/components/NavigationMenu/NavigationMenu'
+```
+
+## Installation
+
+Add the navigation menu to your project using the Dashkit CLI:
+
+```bash
+bunx carllosnc/dashkit add navigation-menu
+```
+
+## Basic Usage
+
+The Navigation Menu uses a value-based system to track the active item. Ensure the `value` on `NavigationMenuTrigger` matches the `value` on `NavigationMenuContent`.
+
+<Preview className="py-20">
+  <NavigationMenu>
+    <NavigationMenuList>
+      <NavigationMenuItem>
+        <NavigationMenuTrigger value="platform">Platform</NavigationMenuTrigger>
+        <NavigationMenuContent value="platform">
+          <div className="grid gap-4 w-[450px]">
+            <div className="grid grid-cols-2 gap-2">
+              <NavigationMenuLink className="group">
+                <div className="text-sm font-bold mb-1 transition-colors">Analytics</div>
+                <div className="text-sm text-muted-foreground leading-relaxed">Real-time data processing and visual insights for your business.</div>
+              </NavigationMenuLink>
+              <NavigationMenuLink className="group">
+                <div className="text-sm font-bold mb-1 transition-colors">Security</div>
+                <div className="text-sm text-muted-foreground leading-relaxed">Enterprise-grade protection and compliance monitoring.</div>
+              </NavigationMenuLink>
+              <NavigationMenuLink className="group">
+                <div className="text-sm font-bold mb-1 transition-colors">Infrastructure</div>
+                <div className="text-sm text-muted-foreground leading-relaxed">Scalable cloud resources and automated deployment.</div>
+              </NavigationMenuLink>
+              <NavigationMenuLink className="group">
+                <div className="text-sm font-bold mb-1 transition-colors">Developers</div>
+                <div className="text-sm text-muted-foreground leading-relaxed">Robust APIs and documentation for seamless integration.</div>
+              </NavigationMenuLink>
+            </div>
+          </div>
+        </NavigationMenuContent>
+      </NavigationMenuItem>
+
+      <NavigationMenuItem>
+        <NavigationMenuTrigger value="solutions">Solutions</NavigationMenuTrigger>
+        <NavigationMenuContent value="solutions">
+          <div className="w-[300px] flex flex-col gap-1">
+             <NavigationMenuLink className="font-medium text-sm">E-commerce</NavigationMenuLink>
+             <NavigationMenuLink className="font-medium text-sm">Fintech</NavigationMenuLink>
+             <NavigationMenuLink className="font-medium text-sm">SaaS Platforms</NavigationMenuLink>
+             <NavigationMenuLink className="font-medium text-sm">Healthcare</NavigationMenuLink>
+          </div>
+        </NavigationMenuContent>
+      </NavigationMenuItem>
+
+      <NavigationMenuItem>
+        <NavigationMenuTrigger value="pricing">Pricing</NavigationMenuTrigger>
+        <NavigationMenuContent value="pricing">
+          <div className="flex flex-col gap-2 w-[350px]">
+            <Surface className="flex items-center justify-between p-2">
+               <div>
+                 <div className="text-sm font-bold">Free Plan</div>
+                 <div className="text-sm text-muted-foreground">Up to 3 projects and basic analytics.</div>
+               </div>
+               <div className="text-lg font-bold">$0</div>
+            </Surface>
+            <Surface className="p-2 flex items-center justify-between">
+               <div>
+                 <div className="text-sm">Pro Plan</div>
+                 <div className="text-sm text-muted-foreground">Unlimited projects and advanced features.</div>
+               </div>
+               <div className="text-lg font-bold">$29</div>
+            </Surface>
+          </div>
+        </NavigationMenuContent>
+      </NavigationMenuItem>
+    </NavigationMenuList>
+
+    <NavigationMenuViewport />
+  </NavigationMenu>
+</Preview>
+
+```tsx
+<NavigationMenu>
+  <NavigationMenuList>
+    <NavigationMenuItem>
+      <NavigationMenuTrigger value="solutions">Solutions</NavigationMenuTrigger>
+      <NavigationMenuContent value="solutions">
+        <div className="w-[300px] p-4 flex flex-col gap-2">
+           <NavigationMenuLink href="/solutions/saas">SaaS</NavigationMenuLink>
+           <NavigationMenuLink href="/solutions/enterprise">Enterprise</NavigationMenuLink>
+        </div>
+      </NavigationMenuContent>
+    </NavigationMenuItem>
+    {/* ... other items */}
+  </NavigationMenuList>
+
+  <NavigationMenuViewport />
+</NavigationMenu>
+```
+
+## Props
+
+### NavigationMenu
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "delay",
+    "type": "number",
+    "defaultValue": "200",
+    "description": "Delay in milliseconds before closing the menu after the mouse leaves."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Additional CSS classes for the root container."
+  }
+]}
+/>
+
+### NavigationMenuTrigger
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "value",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "A unique value to associate the trigger with its corresponding content."
+  }
+]}
+/>
+
+### NavigationMenuContent
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "value",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "The unique value matching the NavigationMenuTrigger."
+  }
+]}
+/>

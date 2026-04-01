@@ -7,7 +7,7 @@ import {
   FiZap, FiTrendingUp, FiCheckCircle,
   FiCalendar, FiMessageSquare, FiFileText, FiLayout,
   FiSearch, FiBell, FiDatabase, FiDollarSign, FiCreditCard,
-  FiActivity, FiPieChart, FiShield, FiBriefcase, FiArchive, FiCommand, FiPlus, FiHelpCircle, FiHome
+  FiActivity, FiPieChart, FiShield, FiBriefcase, FiArchive, FiCommand, FiPlus, FiHelpCircle, FiHome, FiMenu
 } from 'react-icons/fi';
 import { Sidebar, SidebarHeader, SidebarFooter, SidebarSection, SidebarItem, SidebarHeaderOpen, SidebarHeaderClose, SidebarFooterOpen } from '../../components/Sidebar/Sidebar';
 import { FloatActionMenu } from '../../components/FloatActionMenu/FloatActionMenu';
@@ -421,6 +421,7 @@ export const SidebarDashboardExample = () => {
         <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] hidden md:block">
           <Dock>
              <DockItem icon={<FiHome />} label="Dashboard" />
+             <DockItem icon={<FiMenu />} label="Navigation Menu" href="/docs/navigation-menu" />
              <DockItem icon={<FiMessageSquare />} label="Messages" />
              <DockItem icon={<FiArchive />} label="Project Archive" />
              <DockItem icon={<FiBriefcase />} label="Workspaces" />

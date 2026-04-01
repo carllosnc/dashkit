@@ -54,6 +54,8 @@ import CircularProgressDocs from './pages/circular-progress.mdx'
 import FloatActionMenuDocs from './pages/float-action-menu.mdx'
 import SystemLogsDocs from './pages/system-logs.mdx'
 import DateFieldDocs from './pages/date-field.mdx'
+import ColorPickerDocs from './pages/color-picker.mdx'
+import NavigationMenuDocs from './pages/navigation-menu.mdx'
 import { LoginExample } from './pages/examples/LoginExample'
 import { ComplexFormExample } from './pages/examples/ComplexFormExample'
 import { DashboardExample } from './pages/examples/DashboardExample'
@@ -102,6 +104,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="input" element={<MdxWrapper Component={InputDocs} />} />
                 <Route path="modal" element={<MdxWrapper Component={ModalDocs} />} />
                 <Route path="navbar" element={<MdxWrapper Component={NavbarDocs} />} />
+                <Route path="navigation-menu" element={<MdxWrapper Component={NavigationMenuDocs} />} />
                 <Route path="otp-input" element={<MdxWrapper Component={OtpInputDocs} />} />
                 <Route path="pagination" element={<MdxWrapper Component={PaginationDocs} />} />
                 <Route path="radio" element={<MdxWrapper Component={RadioDocs} />} />
@@ -124,6 +127,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="system-logs" element={<MdxWrapper Component={SystemLogsDocs} />} />
                 <Route path="float-action-menu" element={<MdxWrapper Component={FloatActionMenuDocs} />} />
                 <Route path="date-field" element={<MdxWrapper Component={DateFieldDocs} />} />
+                <Route path="color-picker" element={<MdxWrapper Component={ColorPickerDocs} />} />
               </Route>
 
               <Route path="/charts" element={<ChartsLayout />}>

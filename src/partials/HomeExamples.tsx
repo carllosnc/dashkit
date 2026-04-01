@@ -1031,9 +1031,9 @@ export function HomeExamples() {
                  <span className="text-xs text-ds-500">Allow systemic alerts to pop up.</span>
               </div>
               <div className="grid grid-cols-2 gap-2">
-                 <Button variant="soft" size="sm" className="bg-ds-success-50 text-ds-success-600 hover:bg-ds-success-100 dark:bg-ds-success-500/10 dark:text-ds-success-400 dark:hover:bg-ds-success-500/20" leftIcon={<FiCheckCircle size={14} />} onClick={() => toast({ title: 'Saved!', description: 'Settings updated successfully.', type: 'success' })}>Success</Button>
-                 <Button variant="soft" size="sm" className="bg-ds-danger-50 text-ds-danger-600 hover:bg-ds-danger-100 dark:bg-ds-danger-500/10 dark:text-ds-danger-400 dark:hover:bg-ds-danger-500/20" leftIcon={<FiXCircle size={14} />} onClick={() => toast({ title: 'Error', description: 'Failed to apply change.', type: 'error' })}>Error</Button>
-                 <Button variant="soft" size="sm" className="col-span-2" leftIcon={<FiMessageSquare size={14} />} onClick={() => toast({ title: 'New Message', description: 'You have 4 new notifications related to this action.', type: 'default' })}>Standard Notification</Button>
+                 <Button variant="soft" size="sm" leftIcon={<FiCheckCircle size={14} />} onClick={() => toast({ title: 'Saved!', description: 'Settings updated successfully.', type: 'success' })}>Success</Button>
+                 <Button variant="soft" size="sm" leftIcon={<FiXCircle size={14} />} onClick={() => toast({ title: 'Error', description: 'Failed to apply change.', type: 'error' })}>Error</Button>
+                 <Button variant="filled" size="sm" className="col-span-2" leftIcon={<FiMessageSquare size={14} />} onClick={() => toast({ title: 'New Message', description: 'You have 4 new notifications related to this action.', type: 'default' })}>Standard Notification</Button>
               </div>
            </CardContent>
         </Card>

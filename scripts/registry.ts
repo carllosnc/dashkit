@@ -311,5 +311,10 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'DateField',
     files: ['src/components/DateField/DateField.tsx'],
     dependencies: ['clsx', 'tailwind-merge'],
+  },
+  'navigation-menu': {
+    name: 'NavigationMenu',
+    files: ['src/components/NavigationMenu/NavigationMenu.tsx'],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   }
 };

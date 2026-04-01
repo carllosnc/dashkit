@@ -22,6 +22,7 @@ import { Combobox } from '../../components/Combobox/Combobox';
 import { DatePicker } from '../../components/DatePicker/DatePicker';
 import { DateField } from '../../components/DateField/DateField';
 import { Spinner } from '../../components/Spinner/Spinner';
+import { ColorPicker } from '../../components/ColorPicker/ColorPicker';
 import { Skeleton } from '../../components/Skeleton/Skeleton';
 import { Modal, ModalHeader, ModalContent, ModalFooter } from '../../components/Modal/Modal';
 import { Drawer, DrawerHeader, DrawerContent, DrawerFooter } from '../../components/Drawer/Drawer';
@@ -64,6 +65,15 @@ import {
 import { SystemLogs } from '../../components/SystemLogs/SystemLogs';
 import { Stepper, Step } from '../../components/Stepper';
 import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport
+} from '../../components/NavigationMenu/NavigationMenu';
+import {
   FiPlus,
   FiTrash2,
   FiEdit2,
@@ -83,7 +93,8 @@ import {
   FiUsers,
   FiCheckCircle,
   FiPackage,
-  FiTruck
+  FiTruck,
+  FiMenu
 } from 'react-icons/fi';
 
 export const AllComponentsExample = () => {
@@ -99,6 +110,7 @@ export const AllComponentsExample = () => {
   const [otp, setOtp] = useState('');
   const [activeStepper, setActiveStepper] = useState(1);
   const [paginationPage, setPaginationPage] = useState(1);
+  const [accentColor, setAccentColor] = useState('#3B82F6');
   const { toast } = useToast();
 
   const [showcaseMetrics, setShowcaseMetrics] = useState({
@@ -428,6 +440,27 @@ export const AllComponentsExample = () => {
 
         <Card>
           <CardHeader>
+            <CardTitle>Color Selection</CardTitle>
+            <CardDescription>Premium color picker with curated palette support.</CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-end">
+              <ColorPicker 
+                label="Accent Color" 
+                value={accentColor} 
+                onChange={setAccentColor} 
+                helperText="This color will be used for your branding."
+              />
+              <div className="flex items-center gap-3 p-3 ds-rounded border border-dashed border-border/50 bg-ds-50/10 h-9">
+                <div className="size-4 ds-rounded border border-black/10 dark:border-white/10" style={{ backgroundColor: accentColor }} />
+                <span className="text-xs font-medium tabular-nums text-ds-600 uppercase">{accentColor}</span>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
             <CardTitle>Inputs & Forms</CardTitle>
             <CardDescription>Form elements for data entry and selection.</CardDescription>
           </CardHeader>
@@ -589,6 +622,62 @@ export const AllComponentsExample = () => {
                 <DropdownItem destructive leftIcon={<FiTrash2 />}>Delete Account</DropdownItem>
               </DropdownContent>
             </Dropdown>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardHeader>
+            <CardTitle>Navigation Menu</CardTitle>
+            <CardDescription>A premium component for complex headers with sliding transitions.</CardDescription>
+          </CardHeader>
+          <CardContent className="flex justify-center pb-24">
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger value="company">Company</NavigationMenuTrigger>
+                  <NavigationMenuContent value="company">
+                    <div className="w-[300px] p-2 flex flex-col gap-1">
+                      <NavigationMenuLink className="font-medium text-sm">About Us</NavigationMenuLink>
+                      <NavigationMenuLink className="font-medium text-sm">Customers</NavigationMenuLink>
+                      <NavigationMenuLink className="font-medium text-sm">Careers</NavigationMenuLink>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger value="resources">Resources</NavigationMenuTrigger>
+                  <NavigationMenuContent value="resources">
+                    <div className="w-[450px] p-2 grid grid-cols-2 gap-2">
+                       <NavigationMenuLink className="group">
+                          <div className="text-sm font-bold group-hover:text-primary transition-colors">Documentation</div>
+                          <div className="text-xs text-muted-foreground">Start integrating our tools.</div>
+                       </NavigationMenuLink>
+                       <NavigationMenuLink className="group">
+                          <div className="text-sm font-bold group-hover:text-primary transition-colors">Help Center</div>
+                          <div className="text-xs text-muted-foreground">Get answers and support.</div>
+                       </NavigationMenuLink>
+                       <NavigationMenuLink className="group">
+                          <div className="text-sm font-bold group-hover:text-primary transition-colors">Community</div>
+                          <div className="text-xs text-muted-foreground">Join our developer forum.</div>
+                       </NavigationMenuLink>
+                       <NavigationMenuLink className="group">
+                          <div className="text-sm font-bold group-hover:text-primary transition-colors">Blog</div>
+                          <div className="text-xs text-muted-foreground">Latest news and articles.</div>
+                       </NavigationMenuLink>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger value="more">More</NavigationMenuTrigger>
+                  <NavigationMenuContent value="more">
+                    <div className="w-[200px] p-2 flex flex-col gap-1">
+                       <NavigationMenuLink className="font-medium text-sm">Pricing</NavigationMenuLink>
+                       <NavigationMenuLink className="font-medium text-sm">Contact</NavigationMenuLink>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+              <NavigationMenuViewport />
+            </NavigationMenu>
           </CardContent>
         </Card>
 
@@ -1327,6 +1416,7 @@ export const AllComponentsExample = () => {
               <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest">Bottom (Default)</span>
               <Dock position="bottom">
                 <DockItem icon={<FiGrid />} label="Dashboard" />
+                <DockItem icon={<FiMenu />} label="Navigation Menu" href="/docs/navigation-menu" />
                 <DockItem icon={<FiPieChart />} label="Analytics" />
                 <DockItem icon={<FiTrendingUp />} label="Growth" />
                 <DockItem icon={<FiUsers />} label="Team" />

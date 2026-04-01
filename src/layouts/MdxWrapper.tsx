@@ -22,6 +22,7 @@ import { Radio } from '../components/Radio/Radio';
 import { Select } from '../components/Select/Select';
 import { Switch } from '../components/Switch/Switch';
 import { Textarea } from '../components/Textarea/Textarea';
+import { Surface } from '../components/Surface/Surface';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/Tabs/Tabs';
 import { OtpInput } from '../components/OtpInput/OtpInput';
 import { Sidebar, SidebarHeader, SidebarFooter, SidebarSection, SidebarItem } from '../components/Sidebar/Sidebar';
@@ -66,6 +67,16 @@ import { AnimateNumber } from '../components/AnimateNumber/AnimateNumber';
 import { CircularProgress } from '../components/CircularProgress/CircularProgress';
 import { SystemLogs } from '../components/SystemLogs/SystemLogs';
 import { DateField } from '../components/DateField/DateField';
+import { ColorPicker } from '../components/ColorPicker/ColorPicker';
+import { 
+  NavigationMenu, 
+  NavigationMenuList, 
+  NavigationMenuItem, 
+  NavigationMenuTrigger, 
+  NavigationMenuContent,
+  NavigationMenuLink,
+  NavigationMenuViewport
+} from '../components/NavigationMenu/NavigationMenu';
 
 
 type MdxComponentProps = { components?: Record<string, ElementType> };
@@ -198,6 +209,7 @@ const components: Record<string, ElementType> = {
   FiShoppingCart,
   FiHome,
   FiMoreVertical,
+  Surface,
   Skeleton,
   Spinner,
   Navbar,
@@ -212,6 +224,14 @@ const components: Record<string, ElementType> = {
   BreadcrumbEllipsis,
   PropertyDoc,
   DateField,
+  ColorPicker,
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+  NavigationMenuLink,
+  NavigationMenuViewport,
   Preview: ({ children }: { children: ReactNode }) => (
     <div className="not-prose border bg-card border-ds-200 dark:border-ds-800 ds-rounded flex flex-col gap-8 py-4 px-4 first:pt-0 items-start">
       {children}
