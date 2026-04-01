@@ -245,3 +245,7 @@
 @utility ds-rounded-lg { @apply rounded-[var(--radius-lg)]; }
 
 
+/* ────────────────────────────────────────────────
+   5. Colors utilities
+──────────────────────────────────────────────── */
+@utility ds-primary-gradient { @apply bg-gradient-to-b from-ds-primary-500 to-ds-primary-600 }

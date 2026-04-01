@@ -4,13 +4,9 @@ import { FiChevronLeft, FiChevronRight, FiMoreHorizontal } from 'react-icons/fi'
 import { motion } from 'framer-motion';
 
 export interface PaginationProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onChange'> {
-  /** The currently active page (1-indexed) */
   currentPage: number;
-  /** Total number of pages */
   totalPages: number;
-  /** Callback fired when a page is clicked */
   onChange: (page: number) => void;
-  /** Number of sibling pages to show on each side of the active page */
   siblingCount?: number;
 }
 
@@ -120,7 +116,7 @@ export function Pagination({
             {isCurrent && (
               <motion.div
                 layoutId={`pagination-active-${paginationId}`}
-                className="absolute inset-0 bg-primary border border-primary shadow-sm ds-rounded pointer-events-none"
+                className="absolute inset-0 ds-primary-gradient shadow-sm ds-rounded pointer-events-none"
                 transition={{ type: "spring", stiffness: 350, damping: 30 }}
               />
             )}
