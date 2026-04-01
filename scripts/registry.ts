@@ -14,6 +14,7 @@ export const registry: Record<string, ComponentConfig> = {
       'src/components/Accordion/AccordionTrigger.tsx',
       'src/components/Accordion/AccordionContent.tsx',
       'src/components/Accordion/AccordionContext.ts',
+      'src/components/Accordion/Accordion.test.tsx',
       'src/components/Accordion/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
@@ -35,7 +36,11 @@ export const registry: Record<string, ComponentConfig> = {
   },
   button: {
     name: 'Button',
-    files: ['src/components/Button/Button.tsx'],
+    files: [
+      'src/components/Button/Button.tsx',
+      'src/components/Button/Button.test.tsx',
+      'src/components/Button/index.ts'
+    ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   card: {
@@ -285,6 +290,7 @@ export const registry: Record<string, ComponentConfig> = {
     files: [
       'src/components/AnimateNumber/AnimateNumber.tsx',
       'src/components/AnimateNumber/Digit.tsx',
+      'src/components/AnimateNumber/AnimateNumber.test.tsx',
       'src/components/AnimateNumber/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
