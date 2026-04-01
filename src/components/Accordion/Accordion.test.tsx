@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from './Accordion';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from './index';
 
 describe('Accordion', () => {
   it('renders accordion items', () => {
@@ -33,7 +33,7 @@ describe('Accordion', () => {
 
     fireEvent.click(trigger1);
     expect(screen.getByText('Content 1')).toBeInTheDocument();
-    
+
     fireEvent.click(trigger2);
     await waitFor(() => {
       expect(screen.queryByText('Content 1')).not.toBeInTheDocument();

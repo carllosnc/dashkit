@@ -1,5 +1,5 @@
 import { render, act } from '@testing-library/react';
-import { AnimateNumber } from './AnimateNumber';
+import { AnimateNumber } from './index';
 import { expect, test } from 'vitest';
 
 test('renders initial value', () => {
@@ -10,7 +10,7 @@ test('renders initial value', () => {
 
 test('applies prefix and suffix', async () => {
   const { container } = render(<AnimateNumber value={50} prefix="$" suffix="%" duration={0.01} />);
-  
+
   // Wait for animation frame
   await act(async () => {
     await new Promise((resolve) => setTimeout(resolve, 50));
@@ -21,7 +21,7 @@ test('applies prefix and suffix', async () => {
 
 test('handles precision', async () => {
   const { container } = render(<AnimateNumber value={10.55} precision={1} duration={0.01} />);
-  
+
   await act(async () => {
     await new Promise((resolve) => setTimeout(resolve, 50));
   });
