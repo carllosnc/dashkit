@@ -1,6 +1,7 @@
 import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from 'react';
 import clsx, { type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { Spinner } from '../Spinner/Spinner';
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -14,22 +15,35 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   loading?: boolean;
 }
 
-import { Spinner } from '../Spinner/Spinner';
+const BUTTON_BASE = "ds-rounded inline-flex font-medium items-center justify-center focus:outline-none cursor-pointer whitespace-nowrap disabled:opacity-60 disabled:cursor-not-allowed";
 
-const variantClasses = {
+const BUTTON_VARIANTS = {
   filled: "bg-primary text-primary-foreground hover:brightness-120 active:scale-[0.98] transition-colors",
   outlined: "bg-transparent text-foreground border hover:bg-ds-100 dark:hover:bg-ds-800 active:scale-[0.98] dark:hover:border-ds-700 transition-colors",
   soft: "bg-secondary text-secondary-foreground hover:bg-ds-300 dark:hover:bg-ds-700 active:scale-[0.98] transition-colors",
 } as const;
 
-const sizeClasses = {
+const BUTTON_SIZES = {
   sm: "h-7 text-xs",
   md: "h-9 text-sm",
   lg: "h-11 text-base",
 } as const;
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = 'filled', size = 'md', children, leftIcon, rightIcon, loading, disabled, ...props }, ref) => {
+  function Button(
+    {
+      className,
+      variant = 'filled',
+      size = 'md',
+      children,
+      leftIcon,
+      rightIcon,
+      loading,
+      disabled,
+      ...props
+    },
+    ref
+  ) {
     const isIconOnly = !children && (!!leftIcon || !!rightIcon);
 
     return (
@@ -37,9 +51,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         disabled={disabled || loading}
         className={cn(
-          "ds-rounded inline-flex font-medium items-center justify-center focus:outline-none cursor-pointer whitespace-nowrap disabled:opacity-60 disabled:cursor-not-allowed",
-          variantClasses[variant],
-          sizeClasses[size],
+          BUTTON_BASE,
+          BUTTON_VARIANTS[variant],
+          BUTTON_SIZES[size],
           {
             "opacity-60 cursor-not-allowed": loading,
             "gap-2 px-4 py-[5px]": !isIconOnly,
