@@ -25,6 +25,12 @@ Every component should be located in `src/components/[ComponentName]/` and typic
 
 ### Best Practices
 
+- **Component Refactoring**:
+  - **Single File**: Create a dedicated file for each component (avoid grouping multiple components in one file).
+  - **Top-Level Styles**: Move all Tailwind class strings to the top of the file as constant variables (e.g., `const COMPONENT_BASE = "..."`).
+  - **Named Functions**: Use standard named function component syntax (`function MyComponent() { ... }`) instead of anonymous arrow functions within `forwardRef` or as standalone variables.
+  - **Clean Code**: Remove all non-essential comments and eliminate trailing spaces.
+
 - Use **Tailwind CSS v4** for all styling.
 - Use `framer-motion` for animations.
 - Use the `cn` utility from `src/utils/cn` for class merging.
