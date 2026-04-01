@@ -1,0 +1,50 @@
+# Color Picker
+
+A premium color picker component that allows users to select from a curated list of presets or provide a custom hex value.
+
+## Import
+
+```tsx
+import { ColorPicker } from '@/components/dashkit';
+```
+
+## Basic Usage
+
+The Color Picker provides a clean popover interface with high-fidelity animations and state management.
+
+<Preview>
+  <ColorPicker 
+    label="Theme Color" 
+    defaultValue="#3B82F6" 
+    helperText="Choose your brand color"
+  />
+</Preview>
+
+```tsx
+function App() {
+  const [color, setColor] = useState('#3B82F6');
+  
+  return (
+    <ColorPicker 
+      label="Brand Color" 
+      value={color} 
+      onChange={setColor} 
+    />
+  );
+}
+```
+
+## API Reference
+
+### ColorPicker
+
+<PropertyDoc
+  properties={[
+    { "prop": "value", "type": "string", "defaultValue": "#3B82F6", "description": "Current hex value." },
+    { "prop": "onChange", "type": "(color: string) => void", "defaultValue": "—", "description": "Triggered when color changes." },
+    { "prop": "label", "type": "string", "defaultValue": "—", "description": "Label text." },
+    { "prop": "helperText", "type": "string", "defaultValue": "—", "description": "Helpful hint below the input." },
+    { "prop": "error", "type": "string", "defaultValue": "—", "description": "Error message." },
+    { "prop": "presets", "type": "string[]", "defaultValue": "DEFAULT_PRESETS", "description": "Array of hex colors to show in the palette." }
+  ]}
+/>
