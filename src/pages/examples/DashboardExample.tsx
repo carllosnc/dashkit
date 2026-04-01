@@ -31,7 +31,7 @@ import { BarChart } from '../../components/BarChart/BarChart';
 import { PieChart } from '../../components/PieChart/PieChart';
 import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem } from '../../components/Dropdown/Dropdown';
 import { Chip } from '../../components/Chip/Chip';
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../../components/Accordion/Accordion';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../../components/Accordion';
 import { Switch } from '../../components/Switch/Switch';
 import { Modal, ModalHeader, ModalContent, ModalFooter } from '../../components/Modal/Modal';
 import { Drawer, DrawerHeader } from '../../components/Drawer/Drawer';

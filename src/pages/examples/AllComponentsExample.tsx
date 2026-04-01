@@ -28,7 +28,7 @@ import { Modal, ModalHeader, ModalContent, ModalFooter } from '../../components/
 import { Drawer, DrawerHeader, DrawerContent, DrawerFooter } from '../../components/Drawer/Drawer';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../../components/Tabs/Tabs';
 import { OtpInput } from '../../components/OtpInput/OtpInput';
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../../components/Accordion/Accordion';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../../components/Accordion';
 import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbSeparator } from '../../components/Breadcrumb/Breadcrumb';
 import {
   Dropdown,

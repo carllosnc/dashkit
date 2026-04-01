@@ -27,7 +27,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/Tabs/Tab
 import { OtpInput } from '../components/OtpInput/OtpInput';
 import { Sidebar, SidebarHeader, SidebarFooter, SidebarSection, SidebarItem } from '../components/Sidebar/Sidebar';
 import { ImageExpander } from '../components/ImageExpander/ImageExpander';
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../components/Accordion/Accordion';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../components/Accordion';
 import { Badge, FloatBadge } from '../components/Badge/Badge';
 import { Skeleton } from '../components/Skeleton/Skeleton';
 import { Spinner } from '../components/Spinner/Spinner';
@@ -68,11 +68,11 @@ import { CircularProgress } from '../components/CircularProgress/CircularProgres
 import { SystemLogs } from '../components/SystemLogs/SystemLogs';
 import { DateField } from '../components/DateField/DateField';
 import { ColorPicker } from '../components/ColorPicker/ColorPicker';
-import { 
-  NavigationMenu, 
-  NavigationMenuList, 
-  NavigationMenuItem, 
-  NavigationMenuTrigger, 
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
   NavigationMenuContent,
   NavigationMenuLink,
   NavigationMenuViewport
