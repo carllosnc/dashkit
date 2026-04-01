@@ -8,7 +8,14 @@ export interface ComponentConfig {
 export const registry: Record<string, ComponentConfig> = {
   accordion: {
     name: 'Accordion',
-    files: ['src/components/Accordion/Accordion.tsx'],
+    files: [
+      'src/components/Accordion/Accordion.tsx',
+      'src/components/Accordion/AccordionItem.tsx',
+      'src/components/Accordion/AccordionTrigger.tsx',
+      'src/components/Accordion/AccordionContent.tsx',
+      'src/components/Accordion/AccordionContext.ts',
+      'src/components/Accordion/index.ts'
+    ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   avatar: {
@@ -275,7 +282,11 @@ export const registry: Record<string, ComponentConfig> = {
   },
   animatenumber: {
     name: 'AnimateNumber',
-    files: ['src/components/AnimateNumber/AnimateNumber.tsx'],
+    files: [
+      'src/components/AnimateNumber/AnimateNumber.tsx',
+      'src/components/AnimateNumber/Digit.tsx',
+      'src/components/AnimateNumber/index.ts'
+    ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   circularprogress: {

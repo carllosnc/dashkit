@@ -8,7 +8,7 @@ import { IconButton } from '../../components/IconButton/IconButton';
 import { Chip } from '../../components/Chip/Chip';
 import { Divider } from '../../components/Divider/Divider';
 import { Badge, FloatBadge } from '../../components/Badge/Badge';
-import { AnimateNumber } from '../../components/AnimateNumber/AnimateNumber';
+import { AnimateNumber } from '../../components/AnimateNumber';
 import { CircularProgress } from '../../components/CircularProgress/CircularProgress';
 import { Avatar, AvatarGroup } from '../../components/Avatar/Avatar';
 import { Input } from '../../components/Input/Input';

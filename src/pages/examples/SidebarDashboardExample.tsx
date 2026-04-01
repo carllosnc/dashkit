@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { AnimateNumber } from '../../components/AnimateNumber/AnimateNumber';
+import { AnimateNumber } from '../../components/AnimateNumber';
 import {
   FiGrid, FiUsers, FiSettings,
   FiMoreVertical, FiExternalLink,

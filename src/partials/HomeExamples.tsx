@@ -16,7 +16,7 @@ import { Popover, PopoverTrigger, PopoverContent } from '../components/Popover/P
 import { Switch } from '../components/Switch/Switch';
 import { ProgressBar } from '../components/ProgressBar/ProgressBar';
 import { Avatar, AvatarGroup } from '../components/Avatar/Avatar';
-import { AnimateNumber } from '../components/AnimateNumber/AnimateNumber';
+import { AnimateNumber } from '../components/AnimateNumber';
 import { Divider } from '../components/Divider/Divider';
 import { Chip } from '../components/Chip/Chip';
 import { OtpInput } from '../components/OtpInput/OtpInput';

@@ -63,7 +63,7 @@ import { FiDownload, FiArrowRight, FiCopy, FiCheck, FiSearch, FiLock, FiUser, Fi
 import { PropertyDoc } from '../partials/PropertyDoc';
 import { ProgressBar } from '../components/ProgressBar/ProgressBar';
 import { Popover, PopoverTrigger, PopoverContent } from '../components/Popover/Popover';
-import { AnimateNumber } from '../components/AnimateNumber/AnimateNumber';
+import { AnimateNumber } from '../components/AnimateNumber';
 import { CircularProgress } from '../components/CircularProgress/CircularProgress';
 import { SystemLogs } from '../components/SystemLogs/SystemLogs';
 import { DateField } from '../components/DateField/DateField';
