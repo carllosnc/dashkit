@@ -18,7 +18,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const BUTTON_BASE = "ds-rounded inline-flex font-medium items-center justify-center focus:outline-none cursor-pointer whitespace-nowrap disabled:opacity-60 disabled:cursor-not-allowed";
 
 const BUTTON_VARIANTS = {
-  filled: "bg-primary text-primary-foreground hover:brightness-120 active:scale-[0.98] transition-colors",
+  filled: "bg-gradient-to-br from-primary via-primary to-primary-600 text-primary-foreground hover:brightness-110 active:scale-[0.98] shadow-sm hover:shadow-lg transition-all duration-300 ease-in-out",
   outlined: "bg-transparent text-foreground border border-ds-400 dark:border-ds-700 hover:bg-ds-100 dark:hover:bg-ds-800 active:scale-[0.98] dark:hover:border-ds-700",
   soft: "bg-secondary text-secondary-foreground hover:bg-ds-300 dark:hover:bg-ds-700 active:scale-[0.98] transition-colors",
 } as const;
