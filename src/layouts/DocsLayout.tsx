@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import {
   FiBookOpen, FiDownload, FiSquare, FiCircle,
-  FiType, FiMessageSquare, FiTag, FiCheckSquare, FiDisc, FiList,
+  FiType, FiTag, FiCheckSquare, FiDisc, FiList,
   FiSearch, FiToggleRight, FiMinus, FiColumns, FiLock, FiMaximize2,
   FiSidebar, FiMaximize, FiLayers, FiBell, FiMoreVertical, FiAward,
-  FiInbox, FiChevronRight, FiGrid, FiLayout, FiLoader, FiSliders, FiMoreHorizontal, FiCalendar, FiTable, FiUser, FiActivity, FiMenu,
-  FiMonitor, FiMessageCircle, FiAlignLeft, FiEdit3, FiTrendingUp, FiSettings, FiTerminal
+  FiInbox, FiChevronRight, FiGrid, FiLayout, FiLoader, FiSliders, FiMoreHorizontal, FiCalendar, FiTable, FiUser, FiActivity,
+  FiMonitor, FiMessageCircle, FiAlignLeft, FiEdit3, FiTrendingUp, FiSettings, FiTerminal,
+  FiPlusSquare, FiDroplet, FiClock, FiPlusCircle, FiCompass, FiChevronsRight, FiTarget, FiCheck, FiHelpCircle
 } from 'react-icons/fi';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -18,15 +19,15 @@ const navItems = [
   {
     title: 'Getting Started',
     links: [
-      { to: '/docs/introduction', label: 'Introduction', icon: <FiBookOpen size={16} /> },
-      { to: '/docs/cli', label: 'Installation', icon: <FiDownload size={16} /> },
       { to: '/docs/customization', label: 'Customization', icon: <FiSettings size={16} /> },
+      { to: '/docs/cli', label: 'Installation', icon: <FiDownload size={16} /> },
+      { to: '/docs/introduction', label: 'Introduction', icon: <FiBookOpen size={16} /> },
     ]
   },
   {
     title: 'Components',
     links: [
-      { to: '/docs/accordion', label: 'Accordion', icon: <FiLayers size={16} /> },
+      { to: '/docs/accordion', label: 'Accordion', icon: <FiPlusSquare size={16} /> },
       { to: '/docs/animate-number', label: 'Animate Number', icon: <FiTrendingUp size={16} /> },
       { to: '/docs/avatar', label: 'Avatar', icon: <FiUser size={16} /> },
       { to: '/docs/badge', label: 'Badge', icon: <FiAward size={16} /> },
@@ -37,40 +38,40 @@ const navItems = [
       { to: '/docs/checkbox', label: 'Checkbox', icon: <FiCheckSquare size={16} /> },
       { to: '/docs/chip', label: 'Chip', icon: <FiTag size={16} /> },
       { to: '/docs/circular-progress', label: 'Circular Progress', icon: <FiDisc size={16} /> },
+      { to: '/docs/color-picker', label: 'Color Picker', icon: <FiDroplet size={16} /> },
       { to: '/docs/combobox', label: 'Combobox', icon: <FiSearch size={16} /> },
-      { to: '/docs/color-picker', label: 'Color Picker', icon: <FiDisc size={16} /> },
+      { to: '/docs/date-field', label: 'Date Field', icon: <FiClock size={16} /> },
       { to: '/docs/datepicker', label: 'Date Picker', icon: <FiCalendar size={16} /> },
-      { to: '/docs/date-field', label: 'Date Field', icon: <FiCalendar size={16} /> },
       { to: '/docs/divider', label: 'Divider', icon: <FiMinus size={16} /> },
       { to: '/docs/dock', label: 'Dock', icon: <FiMonitor size={16} /> },
       { to: '/docs/drawer', label: 'Drawer', icon: <FiSidebar size={16} /> },
       { to: '/docs/dropdown-menu', label: 'Dropdown Menu', icon: <FiMoreVertical size={16} /> },
-      { to: '/docs/float-action-menu', label: 'Float Action Menu', icon: <FiMenu size={16} /> },
+      { to: '/docs/float-action-menu', label: 'Float Action Menu', icon: <FiPlusCircle size={16} /> },
       { to: '/docs/icon-button', label: 'Icon Button', icon: <FiCircle size={16} /> },
       { to: '/docs/image-expander', label: 'Image Expander', icon: <FiMaximize2 size={16} /> },
       { to: '/docs/input', label: 'Input', icon: <FiType size={16} /> },
       { to: '/docs/modal', label: 'Modal', icon: <FiMaximize size={16} /> },
       { to: '/docs/navbar', label: 'Navbar', icon: <FiLayout size={16} /> },
-      { to: '/docs/navigation-menu', label: 'Navigation Menu', icon: <FiMenu size={16} /> },
+      { to: '/docs/navigation-menu', label: 'Navigation Menu', icon: <FiCompass size={16} /> },
       { to: '/docs/otp-input', label: 'OTP Input', icon: <FiLock size={16} /> },
-      { to: '/docs/pagination', label: 'Pagination', icon: <FiMoreHorizontal size={16} /> },
+      { to: '/docs/pagination', label: 'Pagination', icon: <FiChevronsRight size={16} /> },
       { to: '/docs/popover', label: 'Popover', icon: <FiMessageCircle size={16} /> },
       { to: '/docs/progressbar', label: 'Progress Bar', icon: <FiActivity size={16} /> },
-      { to: '/docs/radio', label: 'Radio', icon: <FiDisc size={16} /> },
+      { to: '/docs/radio', label: 'Radio', icon: <FiTarget size={16} /> },
       { to: '/docs/select', label: 'Select', icon: <FiList size={16} /> },
       { to: '/docs/sidebar', label: 'Sidebar', icon: <FiAlignLeft size={16} /> },
       { to: '/docs/skeleton', label: 'Skeleton', icon: <FiGrid size={16} /> },
-      { to: '/docs/spinner', label: 'Spinner', icon: <FiLoader size={16} /> },
-      { to: '/docs/stepper', label: 'Stepper', icon: <FiMoreHorizontal size={16} /> },
-      { to: '/docs/switch', label: 'Switch', icon: <FiToggleRight size={16} /> },
       { to: '/docs/slider', label: 'Slider', icon: <FiSliders size={16} /> },
+      { to: '/docs/spinner', label: 'Spinner', icon: <FiLoader size={16} /> },
+      { to: '/docs/stepper', label: 'Stepper', icon: <FiCheck size={16} /> },
       { to: '/docs/surface', label: 'Surface', icon: <FiLayers size={16} /> },
+      { to: '/docs/switch', label: 'Switch', icon: <FiToggleRight size={16} /> },
       { to: '/docs/system-logs', label: 'System Logs', icon: <FiTerminal size={16} /> },
       { to: '/docs/table', label: 'Table', icon: <FiTable size={16} /> },
       { to: '/docs/tabs', label: 'Tabs', icon: <FiColumns size={16} /> },
       { to: '/docs/textarea', label: 'Textarea', icon: <FiEdit3 size={16} /> },
       { to: '/docs/toast', label: 'Toast', icon: <FiBell size={16} /> },
-      { to: '/docs/tooltip', label: 'Tooltip', icon: <FiMessageSquare size={16} /> },
+      { to: '/docs/tooltip', label: 'Tooltip', icon: <FiHelpCircle size={16} /> },
     ]
   },
 ];
