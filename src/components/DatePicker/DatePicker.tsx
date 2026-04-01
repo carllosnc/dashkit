@@ -62,7 +62,7 @@ export const DatePicker = ({
           disabled={disabled}
           onClick={toggleOpen}
           className={cn(
-            "w-full px-4 h-10 text-sm bg-input-bg text-input-fg border border-input ds-rounded outline-none transition-all duration-200 focus:border-input-focus focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-transparent placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 text-left flex items-center justify-between gap-2",
+            "w-full px-4 h-9 text-sm bg-input-bg text-input-fg border border-input ds-rounded outline-none transition-all duration-200 focus:border-input-focus focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-transparent placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 text-left flex items-center justify-between gap-2",
             className
           )}
         >
