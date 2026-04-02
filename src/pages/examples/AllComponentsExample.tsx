@@ -24,6 +24,7 @@ import { DateField } from '../../components/DateField/DateField';
 import { Spinner } from '../../components/Spinner/Spinner';
 import { ColorPicker } from '../../components/ColorPicker/ColorPicker';
 import { Skeleton } from '../../components/Skeleton/Skeleton';
+import { Backdrop } from '../../components/Backdrop/Backdrop';
 import { Modal, ModalHeader, ModalContent, ModalFooter } from '../../components/Modal/Modal';
 import { Drawer, DrawerHeader, DrawerContent, DrawerFooter } from '../../components/Drawer/Drawer';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../../components/Tabs/Tabs';
@@ -106,6 +107,7 @@ export const AllComponentsExample = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalSize, setModalSize] = useState<'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full'>('md');
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isBackdropOpen, setIsBackdropOpen] = useState(false);
   const [drawerPosition, setDrawerPosition] = useState<'left' | 'right' | 'top' | 'bottom'>('right');
   const [otp, setOtp] = useState('');
   const [activeStepper, setActiveStepper] = useState(1);
@@ -272,6 +274,28 @@ export const AllComponentsExample = () => {
             <IconButton icon={<FiEdit2 />} variant="soft" />
             <IconButton icon={<FiShare2 />} rounded />
             <IconButton icon={<FiTrash2 />} variant="ghost" className="text-danger" />
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Backdrop</CardTitle>
+            <CardDescription>A full-screen overlay for dimmed or focused states.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="flex flex-wrap gap-4">
+              <Button onClick={() => setIsBackdropOpen(true)}>Show Backdrop</Button>
+            </div>
+            <Backdrop show={isBackdropOpen} onClick={() => setIsBackdropOpen(false)}>
+              <div className="bg-card p-8 rounded-2xl shadow-2xl max-w-sm text-center border border-border/50 animate-in zoom-in-95 duration-200">
+                <div className="size-16 bg-blue-500/10 text-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <FiInfo size={32} />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Backdrop Overlay</h3>
+                <p className="text-muted-foreground mb-6">This content is perfectly centered on top of the blurred backdrop.</p>
+                <Button className="w-full" onClick={() => setIsBackdropOpen(false)}>Close Overlay</Button>
+              </div>
+            </Backdrop>
           </CardContent>
         </Card>
 

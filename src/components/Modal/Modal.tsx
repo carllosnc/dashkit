@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { useModal } from './useModal';
 import { IconButton } from '../IconButton/IconButton';
+import { Backdrop } from '../Backdrop/Backdrop';
 
 function cn(...inputs: (string | undefined | null | boolean | Record<string, boolean>)[]) {
   return twMerge(clsx(inputs));
@@ -70,13 +71,7 @@ export const Modal = ({
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-[100] isolate flex items-center justify-center p-6">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
-            className="absolute inset-0 bg-ds-950/40 backdrop-blur-sm -z-10"
-          />
+          <Backdrop show={true} fixed={false} onClick={onClose} />
 
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 10 }}

@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
 import App from './App.tsx'
 import ButtonDocs from './pages/button.mdx'
+import BackdropDocs from './pages/backdrop.mdx'
 import CheckboxDocs from './pages/checkbox.mdx'
 import InputDocs from './pages/input.mdx'
 import RadioDocs from './pages/radio.mdx'
@@ -88,6 +89,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="circular-progress" element={<MdxWrapper Component={CircularProgressDocs} />} />
                 <Route path="badge" element={<MdxWrapper Component={BadgeDocs} />} />
                 <Route path="breadcrumb" element={<MdxWrapper Component={BreadcrumbDocs} />} />
+                <Route path="backdrop" element={<MdxWrapper Component={BackdropDocs} />} />
                 <Route path="button" element={<MdxWrapper Component={ButtonDocs} />} />
                 <Route path="button-group" element={<MdxWrapper Component={ButtonGroupDocs} />} />
                 <Route path="card" element={<MdxWrapper Component={CardDocs} />} />

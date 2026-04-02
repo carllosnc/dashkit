@@ -10,7 +10,7 @@ import { Footer } from './partials/Footer'
 import { HomeExamples } from './partials/HomeExamples'
 import { Divider } from './components/Divider/Divider'
 
-const AVAILABLE_COMPONENTS = ["badge", "button", "button-group", "popover", "animate-number", "area-chart", "divider", "datepicker", "table", "card", "input", "icon-button", "skeleton", "tabs", "sidebar", "modal", "drawer", "float-action-menu", "tooltip", "dock", "slider", "surface", "system-logs"];
+const AVAILABLE_COMPONENTS = ["badge", "backdrop", "button", "button-group", "popover", "animate-number", "area-chart", "divider", "datepicker", "table", "card", "input", "icon-button", "skeleton", "tabs", "sidebar", "modal", "drawer", "float-action-menu", "tooltip", "dock", "slider", "surface", "system-logs"];
 const TITLE = "Dashkit UI | Lean, Simpler React Component Library";
 const DESCRIPTION = "A leaner, simpler React component library focused on low dependency counts and total code ownership.";
 const TAGLINE_MAIN = "Base components";

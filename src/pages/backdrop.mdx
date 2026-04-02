@@ -1,0 +1,126 @@
+import { Backdrop } from '../components/Backdrop/Backdrop'
+import { Button } from '../components/Button/Button'
+import { useState } from 'react'
+
+# Backdrop
+
+A blurred or semi-transparent full-screen overlay, often used behind modals, drawers, or to dim the background for focus.
+
+## Import
+
+```tsx
+import { Backdrop } from '@/components/Backdrop/Backdrop'
+```
+
+## Installation
+
+Add the backdrop to your project using the Dashkit CLI:
+
+```bash
+bunx carllosnc/dashkit add backdrop
+```
+
+## Basic Usage
+
+The backdrop component is usually controlled by a state.
+
+export const BasicExample = () => {
+  const [show, setShow] = useState(false);
+  return (
+    <>
+      <Button onClick={() => setShow(true)}>Show Backdrop</Button>
+      <Backdrop show={show} onClick={() => setShow(false)} />
+    </>
+  );
+};
+
+<Preview>
+  <BasicExample />
+</Preview>
+
+```tsx
+const [show, setShow] = useState(false);
+
+return (
+  <>
+    <Button onClick={() => setShow(true)}>Show Backdrop</Button>
+    <Backdrop show={show} onClick={() => setShow(false)} />
+  </>
+);
+```
+
+## With Children
+
+You can pass children to the backdrop, which will be centered on top of the overlay.
+
+export const ChildrenExample = () => {
+  const [show, setShow] = useState(false);
+  return (
+    <>
+      <Button onClick={() => setShow(true)}>Show Overlay with Content</Button>
+      <Backdrop show={show} onClick={() => setShow(false)}>
+        <div className="bg-card p-6 rounded-lg shadow-xl max-w-sm text-center">
+          <h3 className="text-lg font-bold mb-2 text-foreground">Centered Content</h3>
+          <p className="text-muted-foreground mb-4">This content is perfectly centered on top of the backdrop.</p>
+          <Button onClick={() => setShow(false)}>Close</Button>
+        </div>
+      </Backdrop>
+    </>
+  );
+};
+
+<Preview>
+  <ChildrenExample />
+</Preview>
+
+```tsx
+<Backdrop show={show} onClick={() => setShow(false)}>
+  <div className="bg-card p-6 rounded-lg shadow-xl max-w-sm text-center">
+    <h3 className="text-lg font-bold mb-2">Centered Content</h3>
+    <Button onClick={() => setShow(false)}>Close</Button>
+  </div>
+</Backdrop>
+```
+
+## Props
+
+<PropertyDoc
+  properties={[
+    {
+      "prop": "show",
+      "type": "boolean",
+      "defaultValue": "true",
+      "description": "Controls the visibility of the backdrop."
+    },
+    {
+      "prop": "blur",
+      "type": "boolean",
+      "defaultValue": "true",
+      "description": "Whether to apply a backdrop-blur-sm effect."
+    },
+    {
+      "prop": "transparent",
+      "type": "boolean",
+      "defaultValue": "false",
+      "description": "If true, the background color and blur will be hidden."
+    },
+    {
+      "prop": "fixed",
+      "type": "boolean",
+      "defaultValue": "true",
+      "description": "If true, use fixed positioning. If false, use absolute positioning relative to the parent."
+    },
+    {
+      "prop": "onClick",
+      "type": "() => void",
+      "defaultValue": "—",
+      "description": "Callback function when the backdrop is clicked."
+    },
+    {
+      "prop": "children",
+      "type": "ReactNode",
+      "defaultValue": "—",
+      "description": "Centered content to render on top of the backdrop."
+    }
+  ]}
+/>

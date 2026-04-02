@@ -8,6 +8,7 @@ import {
   DropdownItem,
   DropdownSeparator
 } from '../components/Dropdown/Dropdown';
+import { Backdrop } from '../components/Backdrop/Backdrop';
 import { Button } from '../components/Button/Button';
 import { DatePicker } from '../components/DatePicker/DatePicker';
 import { ButtonGroup } from '../components/ButtonGroup/ButtonGroup';
@@ -136,6 +137,7 @@ const CustomPre = ({ children, ...props }: CustomPreProps) => {
 
 const components: Record<string, ElementType> = {
   Button,
+  Backdrop,
   DatePicker,
   ButtonGroup,
   Input,

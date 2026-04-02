@@ -32,7 +32,7 @@ describe('IconButton', () => {
   it('applies variant styles correctly', () => {
     const { rerender } = render(<IconButton icon={<FiPlus />} variant="filled" />);
     let button = screen.getByRole('button');
-    expect(button).toHaveClass('bg-primary');
+    expect(button).toHaveClass('ds-primary-gradient');
 
     rerender(<IconButton icon={<FiPlus />} variant="soft" />);
     button = screen.getByRole('button');

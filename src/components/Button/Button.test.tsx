@@ -21,7 +21,7 @@ describe('Button', () => {
   it('applies standard variant by default', () => {
     render(<Button>Click Me</Button>);
     const button = screen.getByRole('button', { name: /click me/i });
-    expect(button).toHaveClass('bg-primary');
+    expect(button).toHaveClass('ds-primary-gradient');
     expect(button).toHaveClass('text-primary-foreground');
   });
 

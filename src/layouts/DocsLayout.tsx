@@ -30,6 +30,7 @@ const navItems = [
       { to: '/docs/accordion', label: 'Accordion', icon: <FiPlusSquare size={16} /> },
       { to: '/docs/animate-number', label: 'Animate Number', icon: <FiTrendingUp size={16} /> },
       { to: '/docs/avatar', label: 'Avatar', icon: <FiUser size={16} /> },
+      { to: '/docs/backdrop', label: 'Backdrop', icon: <FiLayers size={16} /> },
       { to: '/docs/badge', label: 'Badge', icon: <FiAward size={16} /> },
       { to: '/docs/breadcrumb', label: 'Breadcrumb', icon: <FiChevronRight size={16} /> },
       { to: '/docs/button', label: 'Button', icon: <FiSquare size={16} /> },

@@ -333,5 +333,13 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'NavigationMenu',
     files: ['src/components/NavigationMenu/NavigationMenu.tsx'],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
+  },
+  backdrop: {
+    name: 'Backdrop',
+    files: [
+      'src/components/Backdrop/Backdrop.tsx',
+      'src/components/Backdrop/Backdrop.test.tsx'
+    ],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   }
 };
