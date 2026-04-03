@@ -19,9 +19,10 @@ const navItems = [
   {
     title: 'Getting Started',
     links: [
-      { to: '/docs/customization', label: 'Customization', icon: <FiSettings size={16} /> },
-      { to: '/docs/cli', label: 'Installation', icon: <FiDownload size={16} /> },
       { to: '/docs/introduction', label: 'Introduction', icon: <FiBookOpen size={16} /> },
+      { to: '/docs/cli', label: 'Installation', icon: <FiDownload size={16} /> },
+      { to: '/docs/customization', label: 'Customization', icon: <FiSettings size={16} /> },
+      { to: '/docs/components', label: 'Components', icon: <FiGrid size={16} /> },
     ]
   },
   {
@@ -94,7 +95,7 @@ function SidebarContent({ currentPath, onItemClick }: { currentPath: string, onI
                 className={clsx(
                   "px-3 py-2 rounded-xl text-sm transition-all duration-200 flex items-center gap-3",
                   (currentPath === link.to || (link.to === '/docs/introduction' && currentPath === '/docs'))
-                    ? "bg-white shadow-[0_2px_8px_rgba(0,0,0,0.04)] border-white text-ds-950 font-semibold dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
+                    ? "bg-white border-white text-ds-950 font-semibold dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]"
                     : "text-ds-500 font-medium hover:text-ds-950 hover:bg-white/50 dark:text-ds-400 dark:hover:text-white dark:hover:bg-white/5"
                 )}
               >

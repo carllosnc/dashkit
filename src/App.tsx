@@ -10,11 +10,12 @@ import { Footer } from './partials/Footer'
 import { HomeExamples } from './partials/HomeExamples'
 import { Divider } from './components/Divider/Divider'
 
-const AVAILABLE_COMPONENTS = ["badge", "backdrop", "button", "button-group", "popover", "animate-number", "area-chart", "divider", "datepicker", "table", "card", "input", "icon-button", "skeleton", "tabs", "sidebar", "modal", "drawer", "float-action-menu", "tooltip", "dock", "slider", "surface", "system-logs"];
-const TITLE = "Dashkit UI | Lean, Simpler React Component Library";
-const DESCRIPTION = "A leaner, simpler React component library focused on low dependency counts and total code ownership.";
-const TAGLINE_MAIN = "Base components";
-const TAGLINE_SUB = "with zero baggage.";
+const AVAILABLE_COMPONENTS = ["badge", "backdrop", "button", "popover", "animate-number", "area-chart", "divider", "datepicker", "table", "card", "input", "icon-button", "skeleton", "tabs", "sidebar", "modal", "drawer", "tooltip", "dock", "slider", "surface", "system-logs"];
+
+const TITLE = "Dashkit UI | High-Performance Dashboard Kit";
+const DESCRIPTION = "A minimalist dashboard component library focused on speed, low dependency counts, and total code ownership.";
+const TAGLINE_MAIN = "Modern Dashboard UI";
+const TAGLINE_SUB = "Engineered for speed.";
 const OG_DESCRIPTION = "Build professional tools with zero baggage. No heavy abstractions, just clean code.";
 
 function App() {

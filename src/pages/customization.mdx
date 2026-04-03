@@ -1,42 +1,66 @@
 # Customization
 
-Dashkit UI components are built to be deeply customizable through **CSS Design Tokens**. Instead of complex configuration files, Dashkit leverages **Tailwind CSS v4's CSS-first theme system**.
+Dashkit UI components are built to be deeply customizable through **CSS Design Tokens**. Instead of complex configuration files, Dashkit leverages **Tailwind CSS v4's CSS-first theme system** combined with a robust CSS variable architecture.
 
 All global and component-specific styles are defined in `src/dashkit.css`.
 
-## How Tokens Work
+## The Two-Layer Token System
 
-Dashkit uses standard CSS variables defined within a `@theme` block. These variables are automatically picked up by Tailwind and made available as utility classes.
+Dashkit uses a specialized two-layer system for managing design tokens:
 
-### Global Tokens
+1.  **Tailwind Mappings (`@theme`)**: Maps semantic Tailwind names (like `bg-background` or `text-primary`) to underlying CSS variables.
+2.  **Theme Definitions (`:root` & `.dark`)**: Defines the actual values (colors, spacing, radii) for those variables in both light and dark modes.
 
-Global tokens define the core brand and layout colors used across all components.
+## 1. Core Variables
+
+The core variables control the foundation of your application. You can find these in the `:root` and `.dark` blocks of `src/dashkit.css`.
+
+### Base Colors
+| Variable | Description |
+| :--- | :--- |
+| `--ds-bg` | Main application background |
+| `--ds-fg` | Main text color (foreground) |
+| `--ds-border` | Default border color |
+
+### Surface Colors
+| Variable | Description |
+| :--- | :--- |
+| `--ds-card` | Background for cards and containers |
+| `--ds-card-fg` | Text color within cards |
+| `--ds-popover` | Background for dropdowns and menus |
+
+### Interactive Colors
+| Variable | Description |
+| :--- | :--- |
+| `--ds-primary` | Primary brand color |
+| `--ds-secondary` | Secondary action color |
+| `--ds-accent` | Subtle highlight/selection color |
+
+## 2. Form & Input Tokens
+
+Input components use a specialized set of tokens to ensure consistency across the UI:
 
 ```css
-@theme {
-  /* Base neutral scale */
-  --color-ds-50: var(--color-ds-50);
-  --color-ds-950: var(--color-ds-950);
-
-  /* Status colors */
-  --color-ds-success: var(--color-green-500);
-  --color-ds-error: var(--color-red-500);
+:root {
+  --ds-input-bg: var(--color-ds-100);
+  --ds-input-border: var(--color-ds-300);
+  --ds-input-focus: var(--color-ds-400);
+  --ds-input-fg: var(--color-ds-900);
+  --ds-input-ring: var(--color-ds-primary-100);
 }
 ```
 
-### Component-Specific Tokens
+## 3. Global Radius
 
-Most components in Dashkit have their own set of tokens for colors, radii, and shadows. For example, the `Button` tokens:
+Dashkit uses a centralized radius system for a consistent look and feel:
 
-```css
-@theme {
-  --radius-button: var(--radius-md);
-  --color-button-filled-bg: var(--color-ds-950);
-  --color-button-filled-dark-bg: var(--color-white);
-}
-```
+| Variable | Default Value |
+| :--- | :--- |
+| `--radius-base` | `0.5rem` |
+| `--radius-md` | `0.75rem` |
+| `--radius-lg` | `1rem` |
 
-By modifying these tokens, you can globally change the appearance of all Button instances in your application without touching the component files.
+Changing `--radius-base` will update almost all components in the library (Buttons, Inputs, Cards, etc.) as they rely on the `ds-rounded` utility.
 
 ## Customizing Your Theme
 
@@ -44,63 +68,68 @@ To customize Dashkit, simply edit the values in `src/dashkit.css`.
 
 ### Example: Customizing Roundness
 
-If you want a more rounded look for your entire application, you can update the radius tokens:
+If you want a more rounded, "pill" style for your application:
 
 ```css
-@theme {
-  --radius-button: var(--radius-full);
-  --radius-input: var(--radius-lg);
-  --radius-tabs: var(--radius-full);
+@theme inline {
+  --radius-base: 1rem;
+  --radius-md: 1.5rem;
+  --radius-lg: 2rem;
 }
 ```
 
 ### Example: Custom Brand Color
 
-To change the primary brand color (used by default in several components), update the `neutral-950` and `neutral-900` tokens:
+To change the primary color to a custom purple:
 
 ```css
-@theme {
-  --color-ds-950: #1a1a1a;
-  --color-ds-900: #262626;
+:root {
+  --ds-primary: #7c3aed; /* Violet 600 */
+  --ds-primary-fg: #ffffff;
+}
+
+.dark {
+  --ds-primary: #a78bfa; /* Violet 400 */
 }
 ```
 
 ## Creating Your Own Tokens
 
-When building your own components, you can add new tokens to the `@theme` block in `dashkit.css` to keep your design consistent:
+When building your own components, you can add new tokens to the `:root` block to keep your design consistent:
 
 1.  **Define the token** in `dashkit.css`:
     ```css
-    @theme {
-      --color-my-component-bg: var(--color-blue-500);
+    :root {
+      --ds-special-bg: var(--color-ds-primary-500);
     }
     ```
-2.  **Use the token** in your component's classes:
+2.  **Map it** in `@theme inline`:
+    ```css
+    @theme inline {
+      --color-special-bg: var(--ds-special-bg);
+    }
+    ```
+3.  **Use it** in your component:
     ```tsx
-    <div className="bg-my-component-bg text-white px-4 py-2">
-      My custom component
+    <div className="bg-special-bg px-4 py-2">
+      My custom themed component
     </div>
     ```
 
-Dashkit's token system ensures that your custom components stay in sync with the rest of the library's design language.
+## AI-Powered Theming
 
-## Creating Your Own Custom Theme
-
-The easiest way to create a completely new theme is to use an AI (like Antigravity) to generate a full set of tokens. 
+You can use an AI (like Antigravity) to generate a completely new theme in seconds.
 
 ### AI Prompt Example
 
-You can copy and paste this prompt to your AI assistant to quickly generate a unique theme:
+Copy and paste this prompt to quickly generate a unique theme:
 
 > **AI Prompt:**
-> "I want to create a new theme for Dashkit UI. The theme should use a professional 'Slate and Indigo' palette for the base colors and components. Please update `dashkit.css` with new variables in the `@theme` blocks for:
-> 1. Base colors (neutrals, success, error)
-> 2. Buttons (filled, outlined, and soft variants)
-> 3. Inputs (radii and colors)
-> 4. Blocks (Card, Modal, Drawer)
-> 5. Scrollbars (thumb and hover colors)
-> Make sure it looks premium and has native dark mode support using deep slate colors."
+> "I want to create a new theme for Dashkit UI. The theme should use a professional 'Emerald and Slate' palette. Please update `dashkit.css` by:
+> 1. Updating the `:root` and `.dark` variables for bg, fg, primary, and secondary.
+> 2. Setting a more rounded radius system (base at 0.75rem).
+> 3. Ensuring inputs use a clean, bordered style with subtle rings.
+> Make it look modern and high-performance."
 
-Since Dashkit's tokens are centralized in `dashkit.css`, an AI can refactor your entire application's design system in a single step.
 
 

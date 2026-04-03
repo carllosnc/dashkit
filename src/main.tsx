@@ -57,6 +57,7 @@ import SystemLogsDocs from './pages/system-logs.mdx'
 import DateFieldDocs from './pages/date-field.mdx'
 import ColorPickerDocs from './pages/color-picker.mdx'
 import NavigationMenuDocs from './pages/navigation-menu.mdx'
+import ComponentsDocs from './pages/components.mdx'
 import { LoginExample } from './pages/examples/LoginExample'
 import { ComplexFormExample } from './pages/examples/ComplexFormExample'
 import { DashboardExample } from './pages/examples/DashboardExample'
@@ -82,6 +83,7 @@ createRoot(document.getElementById('root')!).render(
               <Route path="/docs" element={<DocsLayout />}>
                 <Route index element={<MdxWrapper Component={IntroductionDocs} />} />
                 <Route path="introduction" element={<MdxWrapper Component={IntroductionDocs} />} />
+                <Route path="components" element={<MdxWrapper Component={ComponentsDocs} />} />
                 <Route path="cli" element={<MdxWrapper Component={CliDocs} />} />
                 <Route path="customization" element={<MdxWrapper Component={CustomizationDocs} />} />
                 <Route path="accordion" element={<MdxWrapper Component={AccordionDocs} />} />
