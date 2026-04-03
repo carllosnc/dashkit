@@ -8,10 +8,10 @@ import { Checkbox } from '../../components/Checkbox/Checkbox';
 import { Slider } from '../../components/Slider/Slider';
 import { Input } from '../../components/Input/Input';
 import { Select } from '../../components/Select/Select';
-import { FiBell, FiZap, FiShield, FiMessageSquare, FiList, FiFolder, FiTrendingUp, FiShare2, FiCheckCircle, FiXCircle, FiLock, FiCopy, FiServer, FiDownload, FiFileText, FiBox, FiLoader } from 'react-icons/fi';
+import { FiBell, FiZap, FiShield, FiMessageSquare, FiList, FiFolder, FiTrendingUp, FiShare2, FiCheckCircle, FiXCircle, FiLock, FiCopy, FiServer, FiDownload, FiFileText } from 'react-icons/fi';
 import { FaGithub, FaGoogle, FaSlack, FaDiscord, FaAws, FaFigma } from 'react-icons/fa';
 import { SiVercel, SiNotion } from 'react-icons/si';
-import { Stepper, Step } from '../../components/Stepper';
+import { PieChart } from '../../components/PieChart/PieChart';
 
 export function ColumnFour() {
   const [tasks, setTasks] = React.useState<{ label: string; checked: boolean }[]>([
@@ -27,6 +27,15 @@ export function ColumnFour() {
   const toggleTask = (index: number) => {
     setTasks(prev => prev.map((t, i) => i === index ? { ...t, checked: !t.checked } : t));
   };
+
+  const trafficData = [
+    { label: "Organic", value: 480, color: "#0099ff" },
+    { label: "Referral", value: 320, color: "#6666ff" },
+    { label: "Direct", value: 140, color: "#006699" },
+    { label: "Social", value: 60, color: "#00cccc" }
+  ];
+
+  const totalTraffic = trafficData.reduce((acc, curr) => acc + curr.value, 0);
   return (
     <div className="flex flex-col gap-4">
       {/* 14. Notifications Feed */}
@@ -394,43 +403,35 @@ export function ColumnFour() {
          </CardContent>
       </Card>
 
-      {/* New 15: Deployment Pipeline (New) */}
+      {/* New 15: Traffic Analytics Refactored */}
       <Card>
          <CardHeader>
             <div className="flex items-center justify-between">
                <div className="flex items-center gap-2">
-                  <FiBox className="text-ds-primary-600" size={18} />
-                  <CardTitle>Release Pipeline</CardTitle>
+                  <FiTrendingUp className="text-ds-primary-600" size={18} />
+                  <CardTitle>Traffic Analytics</CardTitle>
                </div>
-               <Badge content="v4.2.0-stable" color="success" variant="soft" />
+               <Badge content="+12.5%" color="success" variant="soft" />
             </div>
          </CardHeader>
-         <CardContent className="space-y-4">
-            <Stepper activeStep={2} orientation="vertical" className="mt-2 ml-1">
-               <Step 
-                  title={<span className="text-sm font-bold leading-tight">Code Analytics</span>}
-                  description="Passed with 98% coverage"
-                  icon={<FiCheckCircle size={14} className="text-ds-success-600" />}
-               />
-               <Step 
-                  title={<span className="text-sm font-bold leading-tight">Container Build</span>}
-                  description="Image pushed to registry (0x42...F)"
-                  icon={<FiCheckCircle size={14} className="text-ds-success-600" />}
-               />
-               <Step 
-                  title={<span className="text-sm font-bold leading-tight">Edge Deployment</span>}
-                  description="Propagating to 12 global nodes..."
-                  icon={<FiLoader size={14} className="animate-spin text-ds-primary-600" />}
-               />
-            </Stepper>
-            <div className="flex gap-2 font-mono text-sm bg-ds-50/50 dark:bg-ds-800/30 p-2 ds-rounded border border-ds-200 dark:border-ds-800">
-               <span className="text-ds-500">SHA:</span>
-               <span className="font-bold">78a2e1d</span>
-               <Divider orientation="vertical" className="h-3" />
-               <span className="text-ds-500">BRANCH:</span>
-               <span className="font-bold">production</span>
+         <CardContent className="space-y-6">
+            <div className="flex flex-col items-center">
+              <PieChart
+                data={trafficData}
+                innerRadius={0.65}
+                showLabels={true}
+                className="max-w-[200px]"
+              />
+              <Divider className="my-6" />
+              <div className="text-center">
+                 <span className="text-2xl font-black block leading-none">{totalTraffic}</span>
+                 <span className="text-[10px] uppercase font-bold text-ds-500 tracking-wider">Total Visits Today</span>
+              </div>
             </div>
-            <Button variant="outlined" size="sm" className="w-full">View Action Logs</Button>
+
+            <Button variant="outlined" size="sm" className="w-full">
+               View Full Traffic Report
+            </Button>
          </CardContent>
       </Card>
     </div>

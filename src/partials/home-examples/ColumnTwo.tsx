@@ -475,8 +475,8 @@ export function ColumnTwo() {
             </div>
             <div className="p-3 ds-rounded bg-ds-50/50 dark:bg-ds-800/20 border border-ds-200 dark:border-ds-800 flex items-center justify-between mt-2">
                <span className="text-xs font-bold text-ds-500 uppercase tracking-widest leading-none">Global Units</span>
-               <div className="flex items-center gap-1 text-ds-primary-600 font-bold">
-                  <FiActivity size={12} />
+               <div className="flex justify-center items-center gap-1 text-ds-primary-600 font-bold">
+                  <FiActivity size={20} />
                   <AnimateNumber value={42} precision={0} />
                </div>
             </div>

@@ -5,8 +5,22 @@ import chalk from 'chalk';
 import ora from 'ora';
 import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
+import enquirer from 'enquirer';
 import { registry, type ComponentConfig } from './registry';
 import { runDoctor, getPackageManager, getMissingDependencies } from './doctor';
+
+interface Enquirer {
+  Autocomplete: {
+    new (options: {
+      name: string;
+      message: string;
+      limit?: number;
+      choices: Array<{ name: string; message: string; value: string }>;
+    }): { run(): Promise<string> };
+  };
+}
+
+const { Autocomplete } = enquirer as unknown as Enquirer;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -104,7 +118,7 @@ async function addComponent(
     await copyComponentFiles(component, targetDir);
 
     if (component.dependencies) {
-      component.dependencies.forEach(dep => allDeps.add(dep));
+      component.dependencies.forEach((dep: string) => allDeps.add(dep));
     }
 
     if (component.registryDependencies) {
@@ -139,11 +153,35 @@ async function addComponent(
 program
   .command('add')
   .description('Add a component to your project')
-  .argument('<component>', 'Component to add')
+  .argument('[component]', 'Component to add')
   .option('-o, --output <dir>', 'Output directory', 'src/components/dashkit')
   .option('--no-install', 'Do not automatically install dependencies')
-  .action(async (componentName, options) => {
-    await addComponent(componentName, options);
+  .action(async (componentName: string | undefined, options: CliOptions) => {
+    if (!componentName) {
+      const choices = Object.keys(registry).map(key => ({
+        name: key,
+        message: registry[key].name,
+        value: key
+      })).sort((a, b) => a.message.localeCompare(b.message));
+
+      try {
+        const prompt = new Autocomplete({
+          name: 'component',
+          message: 'Select a component to add:',
+          limit: 10,
+          choices
+        });
+
+        componentName = await prompt.run();
+      } catch {
+        // User cancelled with Ctrl+C
+        process.exit(0);
+      }
+    }
+
+    if (componentName) {
+      await addComponent(componentName, options);
+    }
   });
 
 program

@@ -355,10 +355,26 @@ export function ColumnOne() {
                     <span className="text-sm font-medium">Hardware Key (Yubico)</span>
                     <span className="text-xs text-ds-500 italic">Connected via USB-C</span>
                  </div>
-                 <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">Node Encryption</span>
-                    <Badge content="AES-256" color="info" variant="soft" />
-                 </div>
+                  <div className="flex items-center justify-between">
+                     <span className="text-sm font-medium">Node Encryption</span>
+                     <Badge content="AES-256" color="info" variant="soft" />
+                  </div>
+                  <div className="flex items-center justify-between">
+                     <span className="text-sm font-medium">Active VPN Tunnel</span>
+                     <Badge content="Connected" color="success" variant="soft" />
+                  </div>
+                  <div className="flex items-center justify-between">
+                     <span className="text-sm font-medium">System Firewall</span>
+                     <Badge content="Enabled" color="info" variant="soft" />
+                  </div>
+                  <div className="flex items-center justify-between">
+                     <span className="text-sm font-medium">Malware Protection</span>
+                     <Badge content="Scanning" color="warning" variant="solid" dot />
+                  </div>
+                  <div className="flex items-center justify-between">
+                     <span className="text-sm font-medium">Secure Boot</span>
+                     <Badge content="Active" color="success" variant="soft" />
+                  </div>
               </div>
               <Button variant="filled" className="w-full" onClick={() => toast({ title: 'Authentication', description: 'Biometric scan initiated.', type: 'info' })}>Re-verify Identity</Button>
            </CardContent>
