@@ -35,7 +35,6 @@ export function ColumnFour() {
     { label: "Social", value: 60, color: "#00cccc" }
   ];
 
-  const totalTraffic = trafficData.reduce((acc, curr) => acc + curr.value, 0);
   return (
     <div className="flex flex-col gap-4">
       {/* 14. Notifications Feed */}
@@ -323,6 +322,29 @@ export function ColumnFour() {
          </CardContent>
       </Card>
 
+      {/* New 15: Traffic Analytics Refactored */}
+      <Card>
+         <CardHeader>
+            <div className="flex items-center justify-between">
+               <div className="flex items-center gap-2">
+                  <FiTrendingUp className="text-ds-primary-600" size={18} />
+                  <CardTitle>Traffic Analytics</CardTitle>
+               </div>
+               <Badge content="+12.5%" color="success" variant="soft" />
+            </div>
+         </CardHeader>
+         <CardContent className="space-y-6">
+            <div className="flex flex-col items-center">
+              <PieChart
+                data={trafficData}
+                innerRadius={0.65}
+                showLabels={true}
+                className="max-w-[300px]"
+              />
+            </div>
+         </CardContent>
+      </Card>
+
       {/* New 8: Select Example */}
       <Card>
          <CardHeader>
@@ -403,37 +425,6 @@ export function ColumnFour() {
          </CardContent>
       </Card>
 
-      {/* New 15: Traffic Analytics Refactored */}
-      <Card>
-         <CardHeader>
-            <div className="flex items-center justify-between">
-               <div className="flex items-center gap-2">
-                  <FiTrendingUp className="text-ds-primary-600" size={18} />
-                  <CardTitle>Traffic Analytics</CardTitle>
-               </div>
-               <Badge content="+12.5%" color="success" variant="soft" />
-            </div>
-         </CardHeader>
-         <CardContent className="space-y-6">
-            <div className="flex flex-col items-center">
-              <PieChart
-                data={trafficData}
-                innerRadius={0.65}
-                showLabels={true}
-                className="max-w-[200px]"
-              />
-              <Divider className="my-6" />
-              <div className="text-center">
-                 <span className="text-2xl font-black block leading-none">{totalTraffic}</span>
-                 <span className="text-[10px] uppercase font-bold text-ds-500 tracking-wider">Total Visits Today</span>
-              </div>
-            </div>
-
-            <Button variant="outlined" size="sm" className="w-full">
-               View Full Traffic Report
-            </Button>
-         </CardContent>
-      </Card>
     </div>
   );
 }

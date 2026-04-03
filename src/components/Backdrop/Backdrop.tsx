@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { motion, type HTMLMotionProps } from 'framer-motion';
 import { cn } from '../../utils/cn';
 
@@ -22,6 +23,19 @@ export function Backdrop({
   children,
   ...props
 }: BackdropProps) {
+  React.useEffect(() => {
+    if (!show || !onClick) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClick({} as React.MouseEvent<HTMLDivElement>);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [show, onClick]);
+
   const overlay = (
     <motion.div
       initial={{ opacity: 0 }}

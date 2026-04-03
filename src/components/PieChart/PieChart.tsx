@@ -74,10 +74,6 @@ export const PieChart = ({
                 rotate: 0,
                 transition: { type: "spring", stiffness: 400, damping: 25 }
               }}
-              whileHover={{
-                scale: 1.03,
-                transition: { type: "spring", stiffness: 400, damping: 20 }
-              }}
               onMouseMove={(e) => handleMouseMove(e, i)}
               onMouseLeave={() => setHoveredIndex(null)}
             />

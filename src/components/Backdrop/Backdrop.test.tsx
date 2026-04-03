@@ -53,4 +53,11 @@ describe('Backdrop', () => {
     expect(overlay).toHaveClass('absolute');
     expect(overlay).toHaveClass('-z-10');
   });
+
+  it('calls onClick when Escape key is pressed', () => {
+    const handleClick = vi.fn();
+    render(<Backdrop show={true} onClick={handleClick} />);
+    fireEvent.keyDown(window, { key: 'Escape' });
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });
 });

@@ -349,7 +349,7 @@ export function ColumnOne() {
               <div className="space-y-3">
                  <div className="flex items-center justify-between">
                     <span className="text-sm font-medium">TouchID / FaceID</span>
-                    <Badge content="Active" color="success" variant="soft" dot pulse show />
+                    <Badge content="Active" color="success" variant="solid" dot pulse show />
                  </div>
                  <div className="flex items-center justify-between">
                     <span className="text-sm font-medium">Hardware Key (Yubico)</span>

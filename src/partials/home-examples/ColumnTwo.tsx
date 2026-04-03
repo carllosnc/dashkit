@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/Card/Card';
 import { Button } from '../../components/Button/Button';
+import { Input } from '../../components/Input/Input';
 import { Badge } from '../../components/Badge/Badge';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../../components/Tabs/Tabs';
 import { AreaChart } from '../../components/AreaChart/AreaChart';
@@ -14,7 +15,7 @@ import { ProgressBar } from '../../components/ProgressBar/ProgressBar';
 import { Avatar } from '../../components/Avatar/Avatar';
 import { Drawer, DrawerHeader } from '../../components/Drawer/Drawer';
 import { Combobox } from '../../components/Combobox/Combobox';
-import { FiTrendingUp, FiShoppingCart, FiArrowUpRight, FiMoreHorizontal, FiShield, FiActivity, FiGlobe, FiServer, FiArrowDownLeft, FiCpu, FiDatabase, FiTruck } from 'react-icons/fi';
+import { FiTrendingUp, FiShoppingCart, FiArrowUpRight, FiMoreHorizontal, FiShield, FiActivity, FiGlobe, FiServer, FiArrowDownLeft, FiCpu, FiDatabase } from 'react-icons/fi';
 import { CHART_DATA, CHART_SERIES, REVENUE_DATA, AVATAR_URLS } from './Constants';
 
 export function ColumnTwo() {
@@ -423,63 +424,66 @@ export function ColumnTwo() {
          </CardContent>
       </Card>
 
-      {/* New 15: Fleet Operations (Refactored) */}
+      {/* New 15: Server Config (Refactored) */}
       <Card>
          <CardHeader>
             <div className="flex items-center justify-between">
                <div className="flex items-center gap-3">
-                  <div className="size-8 rounded-full bg-ds-info-500/10 flex items-center justify-center">
-                     <FiTruck className="text-ds-info-600" size={16} />
+                  <div className="size-8 rounded-full bg-ds-primary-500/10 flex items-center justify-center">
+                     <FiServer className="text-ds-primary-600" size={16} />
                   </div>
                   <div className="flex flex-col">
-                     <CardTitle>Fleet Registry</CardTitle>
-                     <CardDescription>Managing core logistic clusters.</CardDescription>
+                     <CardTitle>Environment Config</CardTitle>
+                     <CardDescription>Provisioning node resources and SLA.</CardDescription>
                   </div>
                </div>
             </div>
          </CardHeader>
          <CardContent className="space-y-4">
-            <div className="pt-1">
+            <div className="space-y-4">
+               <Input 
+                  label="Node Identifier" 
+                  placeholder="e.g. cluster-0x42-main" 
+                  defaultValue="cluster-alpha-001"
+               />
+               
                <Combobox
-                  label="Focus Cluster"
+                  label="Target Deployment Region"
                   options={[
-                    { label: "Alpha Logistics", value: "Alpha Logistics" },
-                    { label: "Beta Delivery Drones", value: "Beta Delivery Drones" },
-                    { label: "Delta Freight", value: "Delta Freight" },
-                    { label: "Urban Transit X", value: "Urban Transit X" }
+                    { label: "US East (N. Virginia)", value: "US-East" },
+                    { label: "EU West (Dublin)", value: "EU-West" },
+                    { label: "AP South (Mumbai)", value: "AP-South" },
+                    { label: "US West (Oregon)", value: "US-West" }
                   ]}
                   value={selectedFleet}
                   onChange={setSelectedFleet}
                />
-            </div>
-            <div className="space-y-4 pt-1">
-               {[
-                 { metric: "Battery Health", value: 84, color: "success" },
-                 { metric: "Avg Payload", value: 62, color: "info" },
-                 { metric: "Connectivity", value: 95, color: "primary" }
-               ].map((item, i) => (
-                 <div key={i} className="space-y-1.5">
-                    <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-ds-500">
-                       <span>{item.metric}</span>
-                       <div className="flex items-center gap-1 text-ds-900 dark:text-ds-100">
-                          {item.metric === "Connectivity" ? (
-                            <Badge content="99.9%" color="success" variant="solid"/> ) : (
-                            <AnimateNumber value={item.value} precision={0} />
-                          )}
-                          <span className="opacity-50">%</span>
-                       </div>
-                    </div>
-                    <ProgressBar value={item.value} size="xs" color={item.color as "success" | "info" | "primary"} />
-                 </div>
-               ))}
-            </div>
-            <div className="p-3 ds-rounded bg-ds-50/50 dark:bg-ds-800/20 border border-ds-200 dark:border-ds-800 flex items-center justify-between mt-2">
-               <span className="text-xs font-bold text-ds-500 uppercase tracking-widest leading-none">Global Units</span>
-               <div className="flex justify-center items-center gap-1 text-ds-primary-600 font-bold">
-                  <FiActivity size={20} />
-                  <AnimateNumber value={42} precision={0} />
+
+               <div className="grid grid-cols-2 gap-3">
+                  <Input 
+                    label="vCPU limit" 
+                    defaultValue="16" 
+                    type="number" 
+                    rightIcon={<span className="text-[10px] font-bold text-ds-500 uppercase tracking-widest pl-2 border-l border-ds-200 dark:border-ds-800">Cores</span>} 
+                  />
+                  <Input 
+                    label="RAM reservation" 
+                    defaultValue="32" 
+                    type="number" 
+                    rightIcon={<span className="text-[10px] font-bold text-ds-500 uppercase tracking-widest pl-2 border-l border-ds-200 dark:border-ds-800">GB</span>} 
+                  />
+               </div>
+
+               <div className="p-3 ds-rounded bg-ds-50/50 dark:bg-ds-800/20 border border-ds-200 dark:border-ds-800 flex items-center justify-between">
+                  <div className="flex flex-col">
+                     <span className="text-xs font-bold text-ds-500 uppercase tracking-widest">Uptime SLA</span>
+                     <span className="text-sm font-medium">Enhanced Availability</span>
+                  </div>
+                  <Badge content="99.9%" color="success" variant="soft" />
                </div>
             </div>
+
+            <Button variant="outlined" className="w-full mt-2">Provision Changes</Button>
          </CardContent>
       </Card>
 
