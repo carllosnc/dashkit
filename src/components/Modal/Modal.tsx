@@ -30,7 +30,7 @@ const sizeClasses = {
 };
 
 export const ModalHeader = ({ children, className, onClose }: { children?: ReactNode; className?: string; onClose?: () => void }) => (
-  <div className={cn("flex items-start justify-between p-6 border-b", className)}>
+  <div className={cn("flex items-start justify-between px-6 pt-6", className)}>
     <div className="flex flex-col gap-1.5 flex-1">
       {children}
     </div>
@@ -53,7 +53,7 @@ export const ModalContent = ({ children, className }: { children: ReactNode; cla
 );
 
 export const ModalFooter = ({ children, className }: { children: ReactNode; className?: string }) => (
-  <div className={cn("p-6 flex items-center justify-end gap-3 bg-card border-t", className)}>
+  <div className={cn("p-6 pb-6 flex items-center justify-end gap-3 bg-card", className)}>
     {children}
   </div>
 );
