@@ -26,7 +26,7 @@ const sizeClasses = {
   lg: 'max-w-lg',
   xl: 'max-w-xl',
   '2xl': 'max-w-2xl',
-  full: 'max-w-[95vw] h-[95vh]',
+  full: 'w-full h-full',
 };
 
 export const ModalHeader = ({ children, className, onClose }: { children?: ReactNode; className?: string; onClose?: () => void }) => (
