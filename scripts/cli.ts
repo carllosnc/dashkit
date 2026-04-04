@@ -186,7 +186,6 @@ async function promptComponentSelection(): Promise<string[]> {
 }
 
 async function handleAdd(componentName: string | undefined, options: CliOptions) {
-
   // Smart default output detection
   if (!options.output) {
     const config = await loadConfig();

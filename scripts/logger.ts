@@ -20,7 +20,7 @@ export function showMessage(message: string, state: MessageState = 'info') {
   const icon = ICONS[state];
   const color = COLORS[state];
   const logFn = state === 'error' ? console.error : console.log;
-  
+
   logFn(color(`${icon} ${message}`));
 }
 
