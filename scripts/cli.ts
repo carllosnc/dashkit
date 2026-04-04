@@ -10,17 +10,20 @@ import { registry, type ComponentConfig } from './registry';
 import { runDoctor, getPackageManager, getMissingDependencies } from './doctor';
 
 interface Enquirer {
-  Autocomplete: {
+  MultiSelect: {
     new (options: {
       name: string;
       message: string;
-      limit?: number;
       choices: Array<{ name: string; message: string; value: string }>;
-    }): { run(): Promise<string> };
+      symbols?: {
+        indicator?: string | ((state: unknown, choice: { enabled: boolean }) => string);
+        pointer?: string;
+      };
+    }): { run(): Promise<string[]> };
   };
 }
 
-const { Autocomplete } = enquirer as unknown as Enquirer;
+const { MultiSelect } = enquirer as unknown as Enquirer;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -37,6 +40,52 @@ program
 interface CliOptions {
   output: string;
   install: boolean;
+}
+
+type ProjectType = 'next' | 'vite' | 'other';
+
+interface ProjectInfo {
+  type: ProjectType;
+  hasSrc: boolean;
+  hasApp: boolean;
+}
+
+async function getProjectInfo(): Promise<ProjectInfo> {
+  const cwd = process.cwd();
+  const packageJsonPath = path.resolve(cwd, 'package.json');
+  const hasSrc = await fs.pathExists(path.resolve(cwd, 'src'));
+  const hasApp = await fs.pathExists(path.resolve(cwd, 'app')) || await fs.pathExists(path.resolve(cwd, 'src', 'app'));
+
+  let type: ProjectType = 'other';
+
+  if (await fs.pathExists(packageJsonPath)) {
+    try {
+      const pkg = await fs.readJson(packageJsonPath);
+      if (pkg.dependencies?.next || pkg.devDependencies?.next) type = 'next';
+      else if (pkg.dependencies?.vite || pkg.devDependencies?.vite) type = 'vite';
+    } catch {
+      // Ignore parse errors
+    }
+  }
+
+  return { type, hasSrc, hasApp };
+}
+
+async function isReactProject(): Promise<boolean> {
+  const packageJsonPath = path.resolve(process.cwd(), 'package.json');
+  if (!(await fs.pathExists(packageJsonPath))) {
+    return false;
+  }
+
+  try {
+    const packageJson = await fs.readJson(packageJsonPath);
+    return !!(
+      (packageJson.dependencies && packageJson.dependencies.react) ||
+      (packageJson.devDependencies && packageJson.devDependencies.react)
+    );
+  } catch {
+    return false;
+  }
 }
 
 
@@ -56,9 +105,9 @@ async function installDashkitCss(targetPath: string, sourcePath: string) {
 }
 
 async function ensureDashkitCss() {
+  const { hasSrc } = await getProjectInfo();
   const cwd = process.cwd();
-  const srcExists = await fs.pathExists(path.resolve(cwd, 'src'));
-  const targetDir = srcExists ? path.resolve(cwd, 'src') : cwd;
+  const targetDir = hasSrc ? path.resolve(cwd, 'src') : cwd;
 
   const targetPath = path.resolve(targetDir, 'dashkit.css');
   const sourcePath = path.resolve(projectRoot, 'src', 'dashkit.css');
@@ -129,7 +178,6 @@ async function addComponent(
 
     if (!isDependency) {
       spinner.succeed(chalk.green(`Component ${chalk.bold(component.name)} added.`));
-      await ensureDashkitCss();
 
       if (options.install) {
         await installDependencies(Array.from(allDeps));
@@ -154,10 +202,26 @@ program
   .command('add')
   .description('Add a component to your project')
   .argument('[component]', 'Component to add')
-  .option('-o, --output <dir>', 'Output directory', 'src/components/dashkit')
+  .option('-o, --output <dir>', 'Output directory (defaults to smart detection)')
   .option('--no-install', 'Do not automatically install dependencies')
   .action(async (componentName: string | undefined, options: CliOptions) => {
-    if (!componentName) {
+    if (!(await isReactProject())) {
+      console.error(chalk.red('\nError: Dashkit can only be added to a React project.'));
+      console.error(chalk.gray('Make sure you are in the root of your React project (package.json should exist and have "react" as a dependency).'));
+      process.exit(1);
+    }
+
+    // Smart default output detection
+    if (!options.output) {
+      const { hasSrc } = await getProjectInfo();
+      options.output = hasSrc ? 'src/components/dashkit' : 'components/dashkit';
+    }
+
+    let componentNames: string[] = [];
+
+    if (componentName) {
+      componentNames = [componentName];
+    } else {
       const choices = Object.keys(registry).map(key => ({
         name: key,
         message: registry[key].name,
@@ -165,22 +229,47 @@ program
       })).sort((a, b) => a.message.localeCompare(b.message));
 
       try {
-        const prompt = new Autocomplete({
-          name: 'component',
-          message: 'Select a component to add:',
-          limit: 10,
-          choices
+        const prompt = new MultiSelect({
+          name: 'components',
+          message: 'Select components to add (Space to select, Enter to confirm):',
+          choices,
+          symbols: {
+            indicator: (_: unknown, choice: { enabled: boolean; }) => {
+              return choice.enabled ? '[●]' : '[ ]';
+            },
+          }
         });
 
-        componentName = await prompt.run();
+        componentNames = await prompt.run();
       } catch {
-        // User cancelled with Ctrl+C
         process.exit(0);
       }
     }
 
-    if (componentName) {
-      await addComponent(componentName, options);
+    if (componentNames.length > 0) {
+      for (const name of componentNames) {
+        await addComponent(name, options);
+      }
+    }
+  });
+
+program
+  .command('init')
+  .description('Initialize Dashkit in your project (installs dashkit.css)')
+  .action(async () => {
+    if (!(await isReactProject())) {
+      console.error(chalk.red('\nError: Dashkit can only be initialized in a React project.'));
+      console.error(chalk.gray('Make sure you are in the root of your React project (package.json should exist and have "react" as a dependency).'));
+      process.exit(1);
+    }
+
+    const spinner = ora('Initializing Dashkit...').start();
+    try {
+      await ensureDashkitCss();
+      spinner.succeed(chalk.green('Dashkit initialized successfully.'));
+    } catch (error) {
+      spinner.fail(chalk.red('Failed to initialize Dashkit.'));
+      if (error instanceof Error) console.error(chalk.red(error.message));
     }
   });
 
@@ -188,7 +277,7 @@ program
   .command('doctor')
   .description('Run diagnostics on the registry and project structure')
   .action(async () => {
-    await runDoctor(projectRoot);
+    await runDoctor();
   });
 
 program.parse();

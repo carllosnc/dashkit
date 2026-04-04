@@ -10,7 +10,7 @@ import { Footer } from './partials/Footer'
 import { HomeExamples } from './partials/HomeExamples'
 import { Divider } from './components/Divider/Divider'
 
-const AVAILABLE_COMPONENTS = ["badge", "backdrop", "button", "popover", "animate-number", "area-chart", "divider", "datepicker", "table", "card", "input", "icon-button", "skeleton", "tabs", "sidebar", "modal", "drawer", "tooltip", "dock", "slider", "surface", "system-logs"];
+const AVAILABLE_COMPONENTS = ["badge", "backdrop", "button", "popover", "area-chart", "divider", "datepicker", "table", "card", "input", "icon-button", "skeleton", "tabs", "sidebar", "modal", "drawer", "tooltip", "dock", "slider", "surface", "system-logs"];
 
 const TITLE = "Dashkit UI | High-Performance Dashboard Kit";
 const DESCRIPTION = "A minimalist dashboard component library focused on speed, low dependency counts, and total code ownership.";

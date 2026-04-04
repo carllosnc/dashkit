@@ -29,7 +29,7 @@ export async function getMissingDependencies(deps: string[]) {
   }
 }
 
-export async function runDoctor(projectRoot: string) {
+export async function runDoctor() {
   console.log(chalk.bold.cyan('\nDashkit UI - Health Check\n'));
   let totalErrors = 0;
 
@@ -42,16 +42,27 @@ export async function runDoctor(projectRoot: string) {
     coreSpinner.warn(chalk.yellow(`Missing some core dependencies: ${coreMissing.join(', ')}`));
   }
 
-  // 2. Check Design System Tokens
-  const tokenSpinner = ora(`Verifying ${chalk.bold('design system context')}...`).start();
-  if (fs.existsSync(path.resolve(projectRoot, 'src/index.css'))) {
-    tokenSpinner.succeed(chalk.green('Basic styling (src/index.css) found.'));
+  // 2. Check dashkit.css
+  const dashkitSpinner = ora(`Verifying ${chalk.bold('dashkit.css')}...`).start();
+  const dashkitInSrc = fs.existsSync(path.resolve(process.cwd(), 'src/dashkit.css'));
+  const dashkitInRoot = fs.existsSync(path.resolve(process.cwd(), 'dashkit.css'));
+
+  if (dashkitInSrc || dashkitInRoot) {
+    dashkitSpinner.succeed(chalk.green(`dashkit.css found in ${dashkitInSrc ? 'src/' : 'root'}.`));
   } else {
-    tokenSpinner.fail(chalk.red('Design system base (src/index.css) not found.'));
+    dashkitSpinner.fail(chalk.red('dashkit.css not found. Please run "dashkit init".'));
     totalErrors++;
   }
 
-  // 3. Environment Info
+  // 3. Check Design System Tokens
+  const tokenSpinner = ora(`Verifying ${chalk.bold('design system context')}...`).start();
+  if (fs.existsSync(path.resolve(process.cwd(), 'src/index.css'))) {
+    tokenSpinner.succeed(chalk.green('Basic styling (src/index.css) found.'));
+  } else {
+    tokenSpinner.info(chalk.blue('Design system base (src/index.css) not found. (Optional for Vite/Next default installs)'));
+  }
+
+  // 4. Environment Info
   const pm = getPackageManager();
   console.log(chalk.gray('\nEnvironment Info:'));
   console.log(`  Package Manager: ${chalk.bold(pm)}`);
