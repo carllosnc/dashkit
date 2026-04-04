@@ -44,7 +44,7 @@ describe('Dashkit CLI', () => {
       encoding: 'utf8'
     });
 
-    expect(output).toContain('Note: Install missing dependencies');
+    expect(output).toContain('Install missing dependencies:');
   });
 
   it('should run doctor diagnostics successfully', async () => {
@@ -74,7 +74,7 @@ describe('Dashkit CLI', () => {
     } catch (error: unknown) {
       const err = error as { stdout: Buffer };
       const output = err.stdout.toString();
-      expect(output).toContain('Design system base (src/index.css) not found');
+      expect(output).toContain('Design system base (index.css) not found');
     }
   });
 
