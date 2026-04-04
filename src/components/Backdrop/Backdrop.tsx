@@ -44,8 +44,8 @@ export function Backdrop({
       onClick={onClick}
       className={cn(
         OVERLAY_BASE,
-        !transparent && "bg-ds-950/40",
-        blur && "backdrop-blur-sm",
+        !transparent && "bg-ds-950/40 dark:bg-white/15",
+        blur && "backdrop-blur-sm dark:backdrop-blur-md",
         className
       )}
       {...props}
