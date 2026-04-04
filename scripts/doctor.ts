@@ -2,6 +2,8 @@ import fs from 'fs-extra';
 import path from 'path';
 import chalk from 'chalk';
 import ora from 'ora';
+import { getProjectInfo, getFolderStructure, loadConfig } from './utils';
+import { logger } from './logger';
 
 // Helper to get package manager
 export function getPackageManager() {
@@ -30,48 +32,56 @@ export async function getMissingDependencies(deps: string[]) {
 }
 
 export async function runDoctor() {
-  console.log(chalk.bold.cyan('\nDashkit UI - Health Check\n'));
+  logger.bold('\nDashkit UI - Health Check\n');
+  const info = await getProjectInfo();
+  const config = await loadConfig();
+  const css = config?.cssDir ?? getFolderStructure(info).css;
   let totalErrors = 0;
 
   // 1. Check Core Dependencies
   const coreSpinner = ora(`Verifying ${chalk.bold('core dependencies')}...`).start();
   const coreMissing = await getMissingDependencies(['react', 'react-dom', 'typescript', 'tailwindcss']);
+  coreSpinner.stop();
+
   if (coreMissing.length === 0) {
-    coreSpinner.succeed(chalk.green('React, TypeScript, and TailwindCSS are correctly installed.'));
+    logger.success('React, TypeScript, and TailwindCSS are correctly installed.');
   } else {
-    coreSpinner.warn(chalk.yellow(`Missing some core dependencies: ${coreMissing.join(', ')}`));
+    logger.warning(`Missing some core dependencies: ${coreMissing.join(', ')}`);
   }
 
   // 2. Check dashkit.css
   const dashkitSpinner = ora(`Verifying ${chalk.bold('dashkit.css')}...`).start();
-  const dashkitInSrc = fs.existsSync(path.resolve(process.cwd(), 'src/dashkit.css'));
-  const dashkitInRoot = fs.existsSync(path.resolve(process.cwd(), 'dashkit.css'));
+  const dashkitPath = path.resolve(process.cwd(), css, 'dashkit.css');
+  dashkitSpinner.stop();
 
-  if (dashkitInSrc || dashkitInRoot) {
-    dashkitSpinner.succeed(chalk.green(`dashkit.css found in ${dashkitInSrc ? 'src/' : 'root'}.`));
+  if (fs.existsSync(dashkitPath)) {
+    logger.success(`dashkit.css found in ${css === '' ? 'root' : css + '/'}.`);
   } else {
-    dashkitSpinner.fail(chalk.red('dashkit.css not found. Please run "dashkit init".'));
+    logger.error('dashkit.css not found. Please run "dashkit init".');
     totalErrors++;
   }
 
   // 3. Check Design System Tokens
   const tokenSpinner = ora(`Verifying ${chalk.bold('design system context')}...`).start();
-  if (fs.existsSync(path.resolve(process.cwd(), 'src/index.css'))) {
-    tokenSpinner.succeed(chalk.green('Basic styling (src/index.css) found.'));
+  const baseCssPath = path.resolve(process.cwd(), css, 'index.css');
+  tokenSpinner.stop();
+
+  if (fs.existsSync(baseCssPath)) {
+    logger.success(`Basic styling (${path.join(css, 'index.css')}) found.`);
   } else {
-    tokenSpinner.info(chalk.blue('Design system base (src/index.css) not found. (Optional for Vite/Next default installs)'));
+    logger.info(`Design system base (${path.join(css, 'index.css')}) not found.`);
   }
 
   // 4. Environment Info
   const pm = getPackageManager();
-  console.log(chalk.gray('\nEnvironment Info:'));
-  console.log(`  Package Manager: ${chalk.bold(pm)}`);
-  console.log(`  Project Root: ${chalk.bold(process.cwd())}\n`);
+  logger.bold('\nEnvironment Info:');
+  logger.bold(`  Package Manager: ${pm}`);
+  logger.bold(`  Project Root: ${process.cwd()}\n`);
 
   if (totalErrors === 0) {
-    console.log(chalk.bold.green('Everything looks good! Your component library is healthy.\n'));
+    logger.success('Everything looks good! Your component library is healthy.\n');
   } else {
-    console.log(chalk.bold.red(`Found ${totalErrors} issues. Please address them before distributing.\n`));
+    logger.error(`Found ${totalErrors} issues. Please address them before distributing.\n`);
     process.exit(1);
   }
 }
