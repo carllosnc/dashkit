@@ -44,7 +44,7 @@ describe('Dashkit CLI', () => {
       encoding: 'utf8'
     });
 
-    expect(output).toContain('Install missing dependencies:');
+    expect(output).toContain('[INFO] Install missing dependencies:');
   });
 
   it('should run doctor diagnostics successfully', async () => {
@@ -57,7 +57,7 @@ describe('Dashkit CLI', () => {
     expect(output).toContain('Dashkit UI - Health Check');
     // Note: ora spinners might be stripped in non-TTY test environments
     // but the final health message should be present
-    expect(output).toContain('Your component library is healthy');
+    expect(output).toContain('[SUCCESS] Everything looks good! Your component library is healthy.');
   });
 
   it('should fail doctor if core file is missing', async () => {
@@ -74,7 +74,7 @@ describe('Dashkit CLI', () => {
     } catch (error: unknown) {
       const err = error as { stdout: Buffer };
       const output = err.stdout.toString();
-      expect(output).toContain('Design system base (index.css) not found');
+      expect(output).toContain('[INFO] Design system base (index.css) not found');
     }
   });
 
@@ -90,7 +90,37 @@ describe('Dashkit CLI', () => {
       expect(true).toBe(false);
     } catch (error: unknown) {
       const err = error as { stderr: Buffer };
-      expect(err.stderr.toString()).toContain('Component "unknown-comp" not found in registry.');
+      expect(err.stderr.toString()).toContain('[ERROR] Component "unknown-comp" not found in registry.');
     }
+  });
+
+  it('should use output directory from dashkit.json if available', async () => {
+    const testDir = path.join(TEMP_DIR, 'dashkit-json-config');
+    await fs.ensureDir(testDir);
+    await fs.writeJson(path.join(testDir, 'dashkit.json'), {
+      componentsDir: 'my-custom-components',
+      cssDir: 'styles'
+    });
+
+    execSync(`bun x tsx ${CLI_PATH} add badge --no-install`, {
+      cwd: testDir,
+      stdio: 'inherit'
+    });
+
+    expect(await fs.pathExists(path.join(testDir, 'my-custom-components/Badge/Badge.tsx'))).toBe(true);
+  });
+
+  it('should use smart detection for components dir if dashkit.json is missing', async () => {
+    const testDir = path.join(TEMP_DIR, 'smart-detection');
+    await fs.ensureDir(path.join(testDir, 'src')); // Create src to trigger smart detection
+
+    execSync(`bun x tsx ${CLI_PATH} add badge --no-install`, {
+      cwd: testDir,
+      stdio: 'inherit'
+    });
+
+    // Default for info.hasSrc is path.join('src', 'components', 'dashkit')
+    const expectedPath = path.join(testDir, 'src/components/dashkit/Badge/Badge.tsx');
+    expect(await fs.pathExists(expectedPath)).toBe(true);
   });
 });
