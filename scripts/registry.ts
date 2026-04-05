@@ -341,5 +341,13 @@ export const registry: Record<string, ComponentConfig> = {
       'src/components/Backdrop/Backdrop.test.tsx'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
+  },
+  scrollarea: {
+    name: 'ScrollArea',
+    files: [
+      'src/components/ScrollArea/ScrollArea.tsx',
+      'src/components/ScrollArea/ScrollArea.test.tsx'
+    ],
+    dependencies: ['clsx', 'tailwind-merge'],
   }
 };

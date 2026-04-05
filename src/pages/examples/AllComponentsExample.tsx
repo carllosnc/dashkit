@@ -74,6 +74,7 @@ import {
   NavigationMenuTrigger,
   NavigationMenuViewport
 } from '../../components/NavigationMenu/NavigationMenu';
+import { ScrollArea } from '../../components/ScrollArea/ScrollArea';
 import {
   FiPlus,
   FiTrash2,
@@ -296,6 +297,26 @@ export const AllComponentsExample = () => {
                 <Button className="w-full" onClick={() => setIsBackdropOpen(false)}>Close Overlay</Button>
               </div>
             </Backdrop>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Scroll Area</CardTitle>
+            <CardDescription>Custom theme-aware scrollbars with native performance.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="h-48 w-full border border-ds-200 dark:border-ds-800 ds-rounded overflow-hidden bg-ds-50/50 dark:bg-ds-900/50">
+              <ScrollArea className="h-full">
+                <div className="p-4 flex flex-col gap-3">
+                  {Array.from({ length: 10 }).map((_, i) => (
+                    <div key={i} className="p-3 bg-card border border-border ds-rounded text-sm text-ds-600">
+                      Scrollable item #{i + 1} - Demonstrating the minimalist custom scrollbar.
+                    </div>
+                  ))}
+                </div>
+              </ScrollArea>
+            </div>
           </CardContent>
         </Card>
 

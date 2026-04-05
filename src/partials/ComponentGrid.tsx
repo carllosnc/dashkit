@@ -6,7 +6,7 @@ import {
   FiSidebar, FiMaximize, FiLayers, FiBell, FiMoreVertical, FiAward,
   FiInbox, FiChevronRight, FiGrid, FiLayout, FiLoader, FiSliders, FiMoreHorizontal, FiCalendar, FiTable, FiUser, FiActivity,
   FiMonitor, FiMessageCircle, FiAlignLeft, FiEdit3, FiTrendingUp, FiTerminal, FiBarChart2, FiPieChart,
-  FiPlusSquare, FiDroplet, FiClock, FiPlusCircle, FiCompass, FiChevronsRight, FiTarget, FiCheck, FiHelpCircle
+  FiPlusSquare, FiDroplet, FiClock, FiPlusCircle, FiCompass, FiChevronsRight, FiChevronsDown, FiTarget, FiCheck, FiHelpCircle
 } from 'react-icons/fi';
 
 const components = [
@@ -47,6 +47,7 @@ const components = [
   { to: '/docs/progressbar', label: 'Progress Bar', icon: <FiActivity size={24} />, description: 'Linear task completion trackers.' },
   { to: '/docs/radio', label: 'Radio', icon: <FiTarget size={24} />, description: 'Single-select input options.' },
   { to: '/docs/select', label: 'Select', icon: <FiList size={24} />, description: 'Standard dropdown selection.' },
+  { to: '/docs/scroll-area', label: 'Scroll Area', icon: <FiChevronsDown size={24} />, description: 'Custom theme-aware scrollbars.' },
   { to: '/docs/sidebar', label: 'Sidebar', icon: <FiAlignLeft size={24} />, description: 'Vertical navigation panels.' },
   { to: '/docs/skeleton', label: 'Skeleton', icon: <FiGrid size={24} />, description: 'Content loading placeholders.' },
   { to: '/docs/slider', label: 'Slider', icon: <FiSliders size={24} />, description: 'Range selection controls.' },

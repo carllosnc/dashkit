@@ -1,0 +1,136 @@
+import { ScrollArea } from '../components/ScrollArea/ScrollArea';
+
+export const VerticalExample = () => (
+  <div className="h-64 w-full border border-ds-200 dark:border-ds-800 overflow-hidden bg-card">
+    <ScrollArea className="h-full">
+      <div className="p-6 space-y-4">
+        {Array.from({ length: 15 }).map((_, i) => (
+          <div key={i} className="p-4 bg-ds-100/50 dark:bg-ds-800 ds-rounded text-sm text-ds-500 border border-ds-200 dark:border-ds-700">
+            Scrollable Item #{i + 1} - This item demonstrates the vertical scrolling capability with the custom theme-aware scrollbar.
+          </div>
+        ))}
+      </div>
+    </ScrollArea>
+  </div>
+);
+
+export const HorizontalExample = () => (
+  <div className="w-full border border-ds-200 dark:border-ds-800 overflow-hidden bg-card">
+    <ScrollArea orientation="horizontal" className="h-20">
+      <div className="flex gap-4 p-4 w-[1000px]">
+        {Array.from({ length: 10 }).map((_, i) => (
+          <div key={i} className="shrink-0 px-6 py-2 bg-ds-100/50 dark:bg-ds-800 ds-rounded text-sm text-ds-500 whitespace-nowrap border border-ds-200 dark:border-ds-700">
+            Horizontal Item #{i + 1}
+          </div>
+        ))}
+      </div>
+    </ScrollArea>
+  </div>
+);
+
+# Scroll Area
+
+A minimalist scroll area component that provides theme-aware, custom scrollbars across all browsers and operating systems.
+
+## Import
+
+```tsx
+import { ScrollArea } from '@/components/ScrollArea/ScrollArea'
+```
+
+## Installation
+
+Add the scroll area to your project using the Dashkit CLI:
+
+```bash
+bunx carllosnc/dashkit add scrollarea
+```
+
+## Usage
+
+The `ScrollArea` component wraps any content and replaces native scrollbars with a minimalist, theme-aware design while maintaining native scroll performance and accessibility.
+
+### Vertical Scrolling (Default)
+
+The scroll area will automatically handle vertical overflow if the content height exceeds the container height.
+
+<Preview>
+  <VerticalExample />
+</Preview>
+
+```tsx
+<div className="h-64 border rounded overflow-hidden">
+  <ScrollArea>
+    <div className="p-6 space-y-4">
+      {/* Long content here */}
+    </div>
+  </ScrollArea>
+</div>
+```
+
+### Horizontal Scrolling
+
+Set the `orientation` prop to `horizontal` to enable horizontal scrolling only.
+
+<Preview>
+  <HorizontalExample />
+</Preview>
+
+```tsx
+<ScrollArea orientation="horizontal" className="h-20">
+  <div className="flex gap-4 p-4 w-[1000px]">
+    {/* Wide content here */}
+  </div>
+</ScrollArea>
+```
+
+### Both Orientations
+
+Use `orientation="both"` when you need independent scrolling in both directions.
+
+```tsx
+<ScrollArea orientation="both" className="h-64">
+  <div className="w-[1000px] h-[1000px] p-8">
+    {/* Large two-dimensional content area */}
+  </div>
+</ScrollArea>
+```
+
+## Features
+
+- **Native Performance**: Uses standard `overflow: auto` for maximum smoothness and accessibility.
+- **Theme-Aware**: Automatically switches scrollbar colors based on light/dark mode using project design tokens.
+- **Custom Scrollbar Utility**: Leverages the project's `custom-scrollbar` CSS utility for a consistent 4px thin scrollbar.
+- **Cross-Browser**: Standardizes appearance across modern browsers.
+- **Low Dependency**: Zero external libraries; depends only on core project utilities.
+
+## Props (API)
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "orientation",
+    "type": "'vertical' | 'horizontal' | 'both'",
+    "defaultValue": "'vertical'",
+    "description": "The scroll direction allowed in the area."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Custom classes for the outer container."
+  },
+  {
+    "prop": "viewportClassName",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Custom classes for the scrollable viewport."
+  },
+  {
+    "prop": "children",
+    "type": "ReactNode",
+    "defaultValue": "—",
+    "description": "The content to be scrolled."
+  }
+]}
+/>
