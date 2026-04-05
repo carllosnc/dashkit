@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { FiArrowRight, FiArrowLeft, FiLogIn, FiSettings, FiGrid, FiLayers, FiLayout } from 'react-icons/fi';
+import { FiArrowRight, FiArrowLeft, FiLogIn, FiSettings, FiGrid, FiLayers, FiLayout, FiCreditCard } from 'react-icons/fi';
 import { Divider } from '../../components/Divider/Divider';
 import { Header } from '../../partials/Header';
 import { Footer } from '../../partials/Footer';
@@ -35,6 +35,14 @@ const examples = [
     description: 'A modern SaaS-style dashboard layout featuring a fixed sidebar, collapsible navigation, and dense data visualizations.',
     href: '/examples/sidebar-dashboard',
     icon: <FiLayout size={20} />,
+    color: 'text-ds-500',
+    bg: 'bg-ds-50 dark:bg-ds-900',
+  },
+  {
+    title: 'Secure Payment Page',
+    description: 'A modern checkout interface featuring multi-method payment selection (Credit Card & Crypto), billing forms, and order summary.',
+    href: '/examples/payment',
+    icon: <FiCreditCard size={20} />,
     color: 'text-ds-500',
     bg: 'bg-ds-50 dark:bg-ds-900',
   },
