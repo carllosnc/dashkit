@@ -10,8 +10,8 @@ import { HomeExamples } from './partials/HomeExamples'
 import { Divider } from './components/Divider/Divider'
 import { CliEmulator } from './partials/CliEmulator'
 
-const TITLE = "Dashkit UI | High-Performance Dashboard Kit";
-const DESCRIPTION = "A premium dashboard component library for React, engineered for extreme performance, clean code ownership, and zero-bloat development.";
+const TITLE = "Dashkit | Dashboard components";
+const DESCRIPTION = "A minimal dashboard component library for React, engineered for extreme performance, clean code ownership, and zero-bloat development.";
 const TAGLINE_MAIN = "Modern Dashboard UI";
 const TAGLINE_SUB = "Engineered for speed.";
 const OG_DESCRIPTION = "Build professional dashboard tools with precision. High-performance React components with zero-dependency baggage and total code ownership.";
