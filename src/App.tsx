@@ -1,5 +1,4 @@
 import { Badge } from './components/Badge/Badge'
-import { TypingEffect } from './partials/TypingEffect'
 import { Button } from './components/Button/Button'
 import { Header } from './partials/Header'
 import { FiArrowRight, FiGithub } from 'react-icons/fi'
@@ -9,8 +8,7 @@ import { Helmet } from 'react-helmet-async'
 import { Footer } from './partials/Footer'
 import { HomeExamples } from './partials/HomeExamples'
 import { Divider } from './components/Divider/Divider'
-
-const AVAILABLE_COMPONENTS = ["badge", "backdrop", "button", "popover", "area-chart", "divider", "datepicker", "table", "card", "input", "icon-button", "skeleton", "tabs", "sidebar", "modal", "drawer", "tooltip", "dock", "slider", "surface", "system-logs"];
+import { CliEmulator } from './partials/CliEmulator'
 
 const TITLE = "Dashkit UI | High-Performance Dashboard Kit";
 const DESCRIPTION = "A premium dashboard component library for React, engineered for extreme performance, clean code ownership, and zero-bloat development.";
@@ -55,7 +53,7 @@ function App() {
           {DESCRIPTION}
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 items-center mb-12">
+        <div className="flex flex-col sm:flex-row gap-4 items-center">
           <Link to="/docs" tabIndex={-1}>
             <Button variant="filled" rightIcon={<FiArrowRight />}>
               Get Started
@@ -68,21 +66,8 @@ function App() {
           </a>
         </div>
 
-        {/* CLI Reference */}
-        <div className="mb-16 flex flex-col items-center animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300 fill-mode-both">
-          <code className="text-[14px] md:text-[18px] font-mono text-ds-600 dark:text-ds-300 flex items-center gap-2 md:gap-3">
-            <span className="text-ds-400 select-none">$</span>
-            <span>bunx carllosnc/dashkit add</span>
-            <TypingEffect
-              words={AVAILABLE_COMPONENTS}
-              className="text-blue-600 min-w-[80px] md:min-w-[100px]"
-              cursorClassName="bg-primary"
-            />
-          </code>
-          <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
-            Instant installation via CLI
-          </p>
-        </div>
+        {/* CLI Emulator */}
+        <CliEmulator />
 
         {/* Tech Stack Badges */}
         <div className="flex flex-wrap justify-center gap-6">
@@ -105,8 +90,8 @@ function App() {
         </div>
       </main>
 
-        <Divider variant='dashed' />
-        <HomeExamples />
+      <Divider variant='dashed' />
+      <HomeExamples />
 
       <Footer />
     </div>

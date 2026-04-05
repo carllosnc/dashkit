@@ -10,15 +10,15 @@ import { Select } from '../../components/Select/Select';
 import { Checkbox } from '../../components/Checkbox/Checkbox';
 import { Divider } from '../../components/Divider/Divider';
 import { Surface } from '../../components/Surface/Surface';
-import { 
-  FiCreditCard, 
-  FiShield, 
-  FiUser, 
-  FiCalendar, 
-  FiCpu, 
-  FiArrowRight, 
-  FiCheckCircle, 
-  FiInfo 
+import {
+  FiCreditCard,
+  FiShield,
+  FiUser,
+  FiCalendar,
+  FiCpu,
+  FiArrowRight,
+  FiCheckCircle,
+  FiInfo
 } from 'react-icons/fi';
 
 export const PaymentPageExample = () => {
