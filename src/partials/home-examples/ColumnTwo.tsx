@@ -15,7 +15,8 @@ import { ProgressBar } from '../../components/ProgressBar/ProgressBar';
 import { Avatar } from '../../components/Avatar/Avatar';
 import { Drawer, DrawerHeader } from '../../components/Drawer/Drawer';
 import { Combobox } from '../../components/Combobox/Combobox';
-import { FiTrendingUp, FiShoppingCart, FiArrowUpRight, FiMoreHorizontal, FiShield, FiActivity, FiGlobe, FiServer, FiArrowDownLeft, FiCpu, FiDatabase } from 'react-icons/fi';
+import { StatsCard } from '../../components/StatsCard/StatsCard';
+import { FiTrendingUp, FiShoppingCart, FiArrowUpRight, FiMoreHorizontal, FiShield, FiActivity, FiGlobe, FiServer, FiArrowDownLeft, FiCpu, FiDatabase, FiZap } from 'react-icons/fi';
 import { CHART_DATA, CHART_SERIES, REVENUE_DATA, AVATAR_URLS } from './Constants';
 
 export function ColumnTwo() {
@@ -179,6 +180,20 @@ export function ColumnTwo() {
             </div>
          </CardContent>
       </Card>
+
+      {/* Active Nodes Stats Card */}
+      <StatsCard
+        title="Active Nodes"
+        value={42}
+        trend={-2.4}
+        trendLabel="vs last week"
+        status="danger"
+        icon={<FiZap className="text-ds-danger-600" size={16} />}
+        chart={{
+          data: [45, 44, 43, 44, 42, 42],
+        }}
+        animate
+      />
 
       {/* 10. Schedule Card (New - Fills the gap) */}
       <Card>

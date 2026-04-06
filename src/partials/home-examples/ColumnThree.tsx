@@ -15,7 +15,8 @@ import { Switch } from '../../components/Switch/Switch';
 import { Select } from '../../components/Select/Select';
 import { toast } from '../../components/Toast/useToast';
 import { Slider } from '../../components/Slider/Slider';
-import { FiSettings, FiBarChart2, FiMonitor, FiSmartphone, FiBell, FiCheckCircle, FiXCircle, FiUserPlus, FiCopy, FiSend, FiSun, FiMoon } from 'react-icons/fi';
+import { StatsCard } from '../../components/StatsCard/StatsCard';
+import { FiSettings, FiBarChart2, FiMonitor, FiSmartphone, FiBell, FiCheckCircle, FiXCircle, FiUserPlus, FiCopy, FiSend, FiSun, FiMoon, FiUsers } from 'react-icons/fi';
 import { CONVERSION_DATA } from './Constants';
 
 export function ColumnThree() {
@@ -134,6 +135,21 @@ export function ColumnThree() {
             </div>
          </CardContent>
       </Card>
+
+      {/* Platform Traffic Stats Card */}
+      <StatsCard
+        title="Platform Traffic"
+        value={128400}
+        suffix="k"
+        trend={12.8}
+        trendLabel="vs yesterday"
+        status="success"
+        icon={<FiUsers className="text-ds-primary-600" size={16} />}
+        chart={{
+          data: [100, 110, 115, 120, 125, 128],
+        }}
+        animate
+      />
 
       {/* 13. Personalization Survey (New) */}
       <Card>

@@ -8,7 +8,8 @@ import { Checkbox } from '../../components/Checkbox/Checkbox';
 import { Slider } from '../../components/Slider/Slider';
 import { Input } from '../../components/Input/Input';
 import { Select } from '../../components/Select/Select';
-import { FiBell, FiZap, FiShield, FiMessageSquare, FiList, FiFolder, FiTrendingUp, FiShare2, FiCheckCircle, FiXCircle, FiLock, FiCopy, FiServer, FiDownload, FiFileText } from 'react-icons/fi';
+import { StatsCard } from '../../components/StatsCard/StatsCard';
+import { FiBell, FiZap, FiShield, FiMessageSquare, FiList, FiFolder, FiTrendingUp, FiShare2, FiCheckCircle, FiXCircle, FiLock, FiCopy, FiServer, FiDownload, FiFileText, FiActivity } from 'react-icons/fi';
 import { FaGithub, FaGoogle, FaSlack, FaDiscord, FaAws, FaFigma } from 'react-icons/fa';
 import { SiVercel, SiNotion } from 'react-icons/si';
 import { PieChart } from '../../components/PieChart/PieChart';
@@ -100,6 +101,21 @@ export function ColumnFour() {
             </div>
          </CardContent>
       </Card>
+
+      {/* System Uptime Stats Card */}
+      <StatsCard
+        title="System Uptime"
+        value={99.98}
+        suffix="%"
+        trend={0.01}
+        trendLabel="vs last month"
+        status="info"
+        icon={<FiActivity className="text-ds-info-600" size={16} />}
+        chart={{
+          data: [99.97, 99.98, 99.99, 99.98, 99.97, 99.98],
+        }}
+        animate
+      />
 
       {/* 16. Cloud Storage Usage */}
       <Card>

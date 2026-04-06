@@ -13,6 +13,7 @@ import { Stepper, Step } from '../../components/Stepper';
 import { Pagination } from '../../components/Pagination/Pagination';
 import { Modal, ModalHeader, ModalContent, ModalFooter } from '../../components/Modal/Modal';
 import { toast } from '../../components/Toast/useToast';
+import { StatsCard } from '../../components/StatsCard/StatsCard';
 import { FiMail, FiLock, FiZap, FiMoreHorizontal, FiTrendingUp, FiShieldOff, FiActivity, FiShield, FiDollarSign, FiPlay, FiSkipBack, FiSkipForward, FiHelpCircle, FiLock as FiFingerprint } from 'react-icons/fi';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
 import { AVATAR_URLS } from './Constants';
@@ -146,6 +147,21 @@ export function ColumnOne() {
             </div>
          </CardContent>
       </Card>
+
+      {/* Revenue Growth Stats Card */}
+      <StatsCard
+        title="Revenue Growth"
+        value={128450}
+        prefix="$"
+        trend={24.5}
+        trendLabel="vs last month"
+        status="success"
+        icon={<FiDollarSign className="text-ds-success-600" size={16} />}
+        chart={{
+          data: [110, 115, 112, 118, 122, 128],
+        }}
+        animate
+      />
 
       {/* 11. Security Events (New) */}
       <Card>
