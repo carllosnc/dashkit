@@ -58,6 +58,7 @@ import DateFieldDocs from './pages/date-field.mdx'
 import ColorPickerDocs from './pages/color-picker.mdx'
 import NavigationMenuDocs from './pages/navigation-menu.mdx'
 import ScrollAreaDocs from './pages/scroll-area.mdx'
+import StatsCardDocs from './pages/stats-card.mdx'
 import ComponentsDocs from './pages/components.mdx'
 import { LoginExample } from './pages/examples/LoginExample'
 import { ComplexFormExample } from './pages/examples/ComplexFormExample'
@@ -117,6 +118,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="select" element={<MdxWrapper Component={SelectDocs} />} />
                 <Route path="skeleton" element={<MdxWrapper Component={SkeletonDocs} />} />
                 <Route path="spinner" element={<MdxWrapper Component={SpinnerDocs} />} />
+                <Route path="stats-card" element={<MdxWrapper Component={StatsCardDocs} />} />
                 <Route path="stepper" element={<MdxWrapper Component={StepperDocs} />} />
                 <Route path="table" element={<MdxWrapper Component={TableDocs} />} />
                 <Route path="progressbar" element={<MdxWrapper Component={ProgressBarDocs} />} />

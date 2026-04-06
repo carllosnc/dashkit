@@ -1,0 +1,219 @@
+# Resizable
+
+Allows users to drag and resize layout panels, providing a flexible way to manage dashboard real estate.
+
+## Import
+
+```tsx
+import {
+  ResizableGroup,
+  ResizablePanel,
+  ResizableHandle
+} from '@/components/Resizable/Resizable'
+```
+
+## Installation
+
+Add the resizable component to your project using the Dashkit CLI:
+
+```bash
+bunx carllosnc/dashkit add resizable
+```
+
+## Basic Usage
+
+A simple horizontal split between two panels.
+
+<Preview>
+  <ResizableGroup direction="horizontal" className="min-h-[200px] rounded-lg border">
+    <ResizablePanel>Sidebar</ResizablePanel>
+    <ResizableHandle withHandle />
+    <ResizablePanel>
+      <ResizableGroup direction="vertical">
+        <ResizablePanel>Content</ResizablePanel>
+        <ResizableHandle withHandle />
+        <ResizablePanel>Logs</ResizablePanel>
+      </ResizableGroup>
+    </ResizablePanel>
+  </ResizableGroup>
+</Preview>
+
+```tsx
+<ResizableGroup className="min-h-[200px] border rounded-lg">
+  <ResizablePanel defaultSize={50} order={0}>
+    One
+  </ResizablePanel>
+  <ResizableHandle />
+  <ResizablePanel defaultSize={50} order={1}>
+    Two
+  </ResizablePanel>
+</ResizableGroup>
+```
+
+## Vertical Orientation
+
+Change the `direction` prop to `vertical`.
+
+<Preview>
+  <ResizableGroup direction="vertical" className="min-h-[300px] rounded-lg border">
+    <ResizablePanel order={0} defaultSize={40} className="flex items-center justify-center bg-ds-50/50 dark:bg-ds-800/10">
+      <span className="text-sm font-medium">Top Section</span>
+    </ResizablePanel>
+    <ResizableHandle />
+    <ResizablePanel order={1} defaultSize={60} className="flex items-center justify-center">
+      <span className="text-sm font-medium">Bottom View</span>
+    </ResizablePanel>
+  </ResizableGroup>
+</Preview>
+
+```tsx
+<ResizableGroup direction="vertical" className="min-h-[300px] border rounded-lg">
+  <ResizablePanel defaultSize={40} order={0}>Top</ResizablePanel>
+  <ResizableHandle />
+  <ResizablePanel defaultSize={60} order={1}>Bottom</ResizablePanel>
+</ResizableGroup>
+```
+
+## Handle styles
+
+Use the `withHandle` prop to add a visual grip indicator.
+
+<Preview>
+  <ResizableGroup className="min-h-[200px] rounded-lg border">
+    <ResizablePanel order={0} defaultSize={25} className="flex items-center justify-center bg-ds-50/50 dark:bg-ds-800/10">
+      <span className="text-sm font-medium tracking-tight">Sidebar</span>
+    </ResizablePanel>
+    <ResizableHandle withHandle />
+    <ResizablePanel order={1} defaultSize={75} className="flex items-center justify-center">
+      <span className="text-sm font-medium">Workspace Area</span>
+    </ResizablePanel>
+  </ResizableGroup>
+</Preview>
+
+```tsx
+<ResizableHandle withHandle />
+```
+
+## Nested Groups
+
+You can nest groups to create complex layouts.
+
+<Preview>
+  <ResizableGroup className="min-h-[400px] rounded-lg border">
+    <ResizablePanel className="flex items-center justify-center p-6 bg-ds-50/50 dark:bg-ds-800/10" order={0}>
+      <span className="text-sm font-medium">Sidebar Navigation</span>
+    </ResizablePanel>
+    <ResizableHandle withHandle />
+    <ResizablePanel order={1} defaultSize={75}>
+      <ResizableGroup direction="vertical">
+        <ResizablePanel className="flex items-center justify-center p-6" order={0} defaultSize={70}>
+          <span className="text-sm font-medium">Workspace Content</span>
+        </ResizablePanel>
+        <ResizableHandle withHandle />
+        <ResizablePanel className="flex items-center justify-center p-6 bg-ds-50 dark:bg-ds-800/50" order={1} defaultSize={30}>
+          <span className="text-sm font-medium">Console Logs</span>
+        </ResizablePanel>
+      </ResizableGroup>
+    </ResizablePanel>
+  </ResizableGroup>
+</Preview>
+
+```tsx
+<ResizableGroup direction="horizontal">
+  <ResizablePanel>Sidebar</ResizablePanel>
+  <ResizableHandle withHandle />
+  <ResizablePanel>
+    <ResizableGroup direction="vertical">
+      <ResizablePanel>Content</ResizablePanel>
+      <ResizableHandle withHandle />
+      <ResizablePanel>Logs</ResizablePanel>
+    </ResizableGroup>
+  </ResizablePanel>
+</ResizableGroup>
+```
+
+## Persistence
+
+Pass a `storageKey` to automatically save and restore the user's preferred layout in `localStorage`.
+
+<Preview>
+  <ResizableGroup storageKey="docs-resizable-persistence" className="min-h-[200px] rounded-lg border">
+    <ResizablePanel order={0} defaultSize={50} className="flex items-center justify-center bg-ds-50/50 dark:bg-ds-800/10">
+      <span className="text-sm font-medium font-mono text-ds-400">STATEFUL_01</span>
+    </ResizablePanel>
+    <ResizableHandle withHandle />
+    <ResizablePanel order={1} defaultSize={50} className="flex items-center justify-center">
+      <div className="text-center">
+        <p className="text-sm font-medium">Resize me & refresh</p>
+        <p className="text-[10px] text-ds-400 uppercase mt-1">Layout will be preserved</p>
+      </div>
+    </ResizablePanel>
+  </ResizableGroup>
+</Preview>
+
+```tsx
+<ResizableGroup storageKey="dashboard-layout">
+  <ResizablePanel defaultSize={50} order={0}>One</ResizablePanel>
+  <ResizableHandle withHandle />
+  <ResizablePanel defaultSize={50} order={1}>Two</ResizablePanel>
+</ResizableGroup>
+```
+
+## Props
+
+### ResizableGroup
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "direction",
+    "type": "'horizontal' | 'vertical'",
+    "defaultValue": "'horizontal'",
+    "description": "The layout direction of the panels."
+  },
+  {
+    "prop": "storageKey",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "The unique key used to persist the panel sizes in localStorage."
+  },
+  {
+    "prop": "onLayout",
+    "type": "(sizes: number[]) => void",
+    "defaultValue": "—",
+    "description": "Callback that fires when resizing is finished."
+  }
+]}
+/>
+
+### ResizablePanel
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "defaultSize",
+    "type": "number",
+    "defaultValue": "—",
+    "description": "The initial size of the panel as a percentage."
+  },
+  {
+    "prop": "order",
+    "type": "number",
+    "defaultValue": "—",
+    "description": "The index of the panel within the group. Required if placement is dynamic."
+  }
+]}
+/>
+
+### ResizableHandle
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "withHandle",
+    "type": "boolean",
+    "defaultValue": "false",
+    "description": "Whether to show a visual grip handle on the divider."
+  }
+]}
+/>

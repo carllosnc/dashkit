@@ -98,6 +98,13 @@ import {
   FiTruck,
   FiMenu
 } from 'react-icons/fi';
+import { 
+  HiOutlineCurrencyDollar, 
+  HiOutlineUsers, 
+  HiOutlineArrowPathRoundedSquare,
+  HiOutlineShieldCheck
+} from 'react-icons/hi2';
+import { StatsCard } from '../../components/StatsCard/StatsCard';
 
 export const AllComponentsExample = () => {
   const [selected, setSelected] = useState('daily');
@@ -421,6 +428,62 @@ export const AllComponentsExample = () => {
                 <AnimateNumber value={showcaseMetrics.sla} suffix="%" precision={2} />
               </div>
             </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Stats Cards</CardTitle>
+            <CardDescription>Comprehensive cards for highlighting key metrics and trends.</CardDescription>
+          </CardHeader>
+          <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
+             <StatsCard 
+              title="Total Revenue" 
+              value={showcaseMetrics.revenue} 
+              prefix="$" 
+              trend={12.5} 
+              trendLabel="vs last month"
+              status="success"
+              icon={<HiOutlineCurrencyDollar className="size-6" />}
+              chart={{
+                data: [40, 35, 55, 45, 60, 75, 70, 90]
+              }}
+            />
+            <StatsCard 
+              title="Active Users" 
+              value={showcaseMetrics.users} 
+              trend={-2.4} 
+              trendLabel="vs yesterday"
+              status="danger"
+              icon={<HiOutlineUsers className="size-6" />}
+              chart={{
+                data: [80, 85, 75, 70, 65, 60, 55, 58]
+              }}
+            />
+            <StatsCard 
+              title="Conversion Rate" 
+              value={showcaseMetrics.conversion} 
+              suffix="%" 
+              precision={1}
+              status="info"
+              icon={<HiOutlineArrowPathRoundedSquare className="size-6" />}
+              chart={{
+                data: [60, 62, 65, 63, 68, 70, 67, 68],
+                color: "var(--color-ds-info-500)"
+              }}
+            />
+            <StatsCard 
+              title="System Uptime" 
+              value={showcaseMetrics.sla} 
+              suffix="%" 
+              precision={2}
+              status="success"
+              icon={<HiOutlineShieldCheck className="size-6" />}
+              description="SLA target: 99.9%"
+              chart={{
+                data: [99.8, 99.9, 99.85, 99.95, 99.9, 99.99, 99.9, 99.95]
+              }}
+            />
           </CardContent>
         </Card>
 

@@ -349,5 +349,11 @@ export const registry: Record<string, ComponentConfig> = {
       'src/components/ScrollArea/ScrollArea.test.tsx'
     ],
     dependencies: ['clsx', 'tailwind-merge'],
+  },
+  statscard: {
+    name: 'StatsCard',
+    files: ['src/components/StatsCard/StatsCard.tsx'],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
+    registryDependencies: ['card', 'animatenumber'],
   }
 };

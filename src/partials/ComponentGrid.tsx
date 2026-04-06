@@ -52,6 +52,7 @@ const components = [
   { to: '/docs/skeleton', label: 'Skeleton', icon: <FiGrid size={24} />, description: 'Content loading placeholders.' },
   { to: '/docs/slider', label: 'Slider', icon: <FiSliders size={24} />, description: 'Range selection controls.' },
   { to: '/docs/spinner', label: 'Spinner', icon: <FiLoader size={24} />, description: 'Loading state indicators.' },
+  { to: '/docs/stats-card', label: 'Stats Card', icon: <FiActivity size={24} />, description: 'Key metrics and data trends.' },
   { to: '/docs/stepper', label: 'Stepper', icon: <FiCheck size={24} />, description: 'Step-by-step process guides.' },
   { to: '/docs/surface', label: 'Surface', icon: <FiLayers size={24} />, description: 'Layered background containers.' },
   { to: '/docs/switch', label: 'Switch', icon: <FiToggleRight size={24} />, description: 'Toggle switch inputs.' },

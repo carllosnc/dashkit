@@ -1,0 +1,321 @@
+# Stats Card
+
+A high-level component for displaying key performance indicators, metrics, and trends at a glance.
+
+## Import
+
+```tsx
+import { StatsCard } from '@/components/StatsCard/StatsCard'
+```
+
+## Installation
+
+Add the stats card to your project using the Dashkit CLI:
+
+```bash
+bunx carllosnc/dashkit add statscard
+```
+
+## Basic Usage
+
+The `StatsCard` is perfect for dashboards and summary sections.
+
+<div className="not-prose grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <StatsCard
+    title="Total Revenue"
+    value={48250}
+    prefix="$"
+    trend={12.5}
+    trendLabel="vs last month"
+    status="success"
+    description="Total earnings from all sources"
+  />
+  <StatsCard
+    title="Active Users"
+    value={12403}
+    trend={-2.4}
+    trendLabel="vs last week"
+    status="danger"
+    description="Users currently online"
+  />
+  <StatsCard
+    title="Conversion Rate"
+    value={3.42}
+    suffix="%"
+    precision={2}
+    trend={0.5}
+    status="info"
+    description="Average conversion per session"
+  />
+</div>
+
+```tsx
+import { StatsCard } from 'dashkit';
+
+export default () => (
+  <div className="grid grid-cols-3 gap-6">
+    <StatsCard
+      title="Total Revenue"
+      value={48250}
+      prefix="$"
+      trend={12.5}
+      trendLabel="vs last month"
+      status="success"
+    />
+    <StatsCard
+      title="Active Users"
+      value={12403}
+      trend={-2.4}
+      status="danger"
+    />
+    <StatsCard
+      title="Conversion Rate"
+      value={3.42}
+      suffix="%"
+      precision={2}
+    />
+  </div>
+);
+```
+
+## With Icons
+
+Add visual context using icons from `react-icons`.
+
+<div className="not-prose grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+  <StatsCard
+    title="Project Progress"
+    value={75}
+    suffix="%"
+    icon={<HiOutlineChartBarSquare className="size-6" />}
+    status="info"
+    description="Completion across all active sprints"
+  />
+  <StatsCard
+    title="New Tickets"
+    value={12}
+    icon={<HiOutlineTicket className="size-6" />}
+    status="warning"
+    trend={8}
+    trendLabel="today"
+    description="Unassigned support requests"
+  />
+</div>
+
+```tsx
+import { StatsCard } from 'dashkit';
+import { HiOutlineChartBarSquare, HiOutlineTicket } from 'react-icons/hi2';
+
+export default () => (
+  <div className="grid grid-cols-2 gap-6">
+    <StatsCard
+      title="Project Progress"
+      value={75}
+      suffix="%"
+      icon={<HiOutlineChartBarSquare />}
+      status="info"
+    />
+    <StatsCard
+      title="New Tickets"
+      value={12}
+      icon={<HiOutlineTicket />}
+      status="warning"
+    />
+  </div>
+);
+```
+
+## With Sparklines
+
+Visualize data trends directly within the card using the `chart` prop.
+
+<div className="not-prose grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <StatsCard
+    title="Sales Growth"
+    value={8400}
+    prefix="$"
+    trend={24}
+    status="success"
+    chart={{
+      data: [10, 25, 45, 30, 55, 70, 65, 90],
+    }}
+  />
+  <StatsCard
+    title="Bounce Rate"
+    value={42.3}
+    suffix="%"
+    precision={1}
+    trend={-5}
+    status="danger"
+    chart={{
+      data: [80, 70, 75, 60, 50, 45, 55, 40],
+    }}
+  />
+  <StatsCard
+    title="Server Load"
+    value={28}
+    suffix="%"
+    status="info"
+    chart={{
+      data: [20, 22, 25, 24, 28, 30, 25, 28],
+      color: "#6366f1"
+    }}
+  />
+</div>
+
+```tsx
+import { StatsCard } from 'dashkit';
+
+export default () => (
+  <StatsCard
+    title="Sales Growth"
+    value={8400}
+    prefix="$"
+    trend={24}
+    status="success"
+    chart={{
+      data: [10, 25, 45, 30, 55, 70, 65, 90],
+    }}
+  />
+);
+```
+
+## Chart and Description
+
+Combine sparklines and descriptive footers for maximum context.
+
+<div className="not-prose grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+  <StatsCard
+    title="User Acquisition"
+    value={1250}
+    trend={15.4}
+    status="success"
+    description="New signups via organic search"
+    chart={{
+      data: [100, 120, 150, 140, 180, 210, 250],
+    }}
+  />
+  <StatsCard
+    title="System Latency"
+    value={42}
+    suffix="ms"
+    trend={-5}
+    status="danger"
+    description="Response time for API v2"
+    chart={{
+      data: [50, 48, 45, 46, 42, 40, 42],
+      color: "#ef4444"
+    }}
+  />
+</div>
+
+```tsx
+import { StatsCard } from 'dashkit';
+
+export default () => (
+  <div className="grid grid-cols-2 gap-6">
+    <StatsCard
+      title="User Acquisition"
+      value={1250}
+      trend={15.4}
+      status="success"
+      description="New signups via organic search"
+      chart={{
+        data: [100, 120, 150, 140, 180, 210, 250],
+      }}
+    />
+    <StatsCard
+      title="System Latency"
+      value={42}
+      suffix="ms"
+      trend={-5}
+      status="danger"
+      description="Response time for API v2"
+      chart={{
+        data: [50, 48, 45, 46, 42, 40, 42],
+      }}
+    />
+  </div>
+);
+```
+
+## API
+
+### StatsCard Props
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "title",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "The label for the metric."
+  },
+  {
+    "prop": "value",
+    "type": "number",
+    "defaultValue": "—",
+    "description": "The main numeric value to display."
+  },
+  {
+    "prop": "prefix",
+    "type": "string",
+    "defaultValue": "''",
+    "description": "Text to prepend to the value (e.g., $)."
+  },
+  {
+    "prop": "suffix",
+    "type": "string",
+    "defaultValue": "''",
+    "description": "Text to append to the value (e.g., %)."
+  },
+  {
+    "prop": "precision",
+    "type": "number",
+    "defaultValue": "0",
+    "description": "Number of decimal places for the value."
+  },
+  {
+    "prop": "trend",
+    "type": "number",
+    "defaultValue": "—",
+    "description": "Percentage change to display."
+  },
+  {
+    "prop": "trendLabel",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Explanatory text for the trend."
+  },
+  {
+    "prop": "icon",
+    "type": "ReactNode",
+    "defaultValue": "—",
+    "description": "Icon element to display in the top-right."
+  },
+  {
+    "prop": "status",
+    "type": "'success' | 'danger' | 'warning' | 'info' | 'neutral'",
+    "defaultValue": "'neutral'",
+    "description": "Semantic status that controls trend colors and icons."
+  },
+  {
+    "prop": "description",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Supporting text displayed at the bottom."
+  },
+  {
+    "prop": "chart",
+    "type": "{ data: number[], color?: string }",
+    "defaultValue": "—",
+    "description": "Data for the sparkline chart."
+  },
+  {
+    "prop": "animate",
+    "type": "boolean",
+    "defaultValue": "true",
+    "description": "Enable entry and number animations."
+  }
+]}
+/>
