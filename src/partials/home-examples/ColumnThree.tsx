@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/Card/Card';
 import { Button } from '../../components/Button/Button';
+import { ButtonGroup } from '../../components/ButtonGroup/ButtonGroup';
 import { Badge } from '../../components/Badge/Badge';
 import { Input } from '../../components/Input/Input';
 import { Divider } from '../../components/Divider/Divider';
@@ -350,24 +351,30 @@ export function ColumnThree() {
           </CardHeader>
           <CardContent className="space-y-6">
              <div className="space-y-3">
-                <span className="text-xs font-bold uppercase tracking-widest text-ds-500">Interface Theme</span>
-                <div className="grid grid-cols-3 gap-2">
-                   {[
-                     { label: 'Light', icon: <FiSun size={14} />, selected: true },
-                     { label: 'Dark', icon: <FiMoon size={14} />, selected: false },
-                     { label: 'System', icon: <FiMonitor size={14} />, selected: false }
-                   ].map((theme) => (
-                     <Chip
-                       key={theme.label}
-                       label={theme.label}
-                       icon={theme.icon}
-                       variant="tonal"
-                       selected={theme.selected}
-                       onClick={() => {}}
-                       className="justify-center"
-                     />
-                   ))}
-                </div>
+                <span className="text-[11px] font-bold uppercase tracking-widest text-ds-500">Interface Theme</span>
+                <ButtonGroup className="w-full">
+                   <Button 
+                     variant="soft" 
+                     className="flex-1 text-xs gap-2 font-semibold"
+                     leftIcon={<FiCheckCircle size={14} className="text-ds-primary-600" />}
+                   >
+                     Light
+                   </Button>
+                   <Button 
+                     variant="soft" 
+                     className="flex-1 text-xs gap-2 font-semibold opacity-70"
+                     leftIcon={<FiMoon size={14} />}
+                   >
+                     Dark
+                   </Button>
+                   <Button 
+                     variant="soft" 
+                     className="flex-1 text-xs gap-2 font-semibold opacity-70"
+                     leftIcon={<FiMonitor size={14} />}
+                   >
+                     System
+                   </Button>
+                </ButtonGroup>
              </div>
              <div className="space-y-3">
                 <div className="flex items-center justify-between">

@@ -479,13 +479,13 @@ export function ColumnTwo() {
                     label="vCPU limit" 
                     defaultValue="16" 
                     type="number" 
-                    rightIcon={<span className="text-[10px] font-bold text-ds-500 uppercase tracking-widest pl-2 border-l border-ds-200 dark:border-ds-800">Cores</span>} 
+                    suffix={<span className="text-[10px] font-bold text-ds-500 uppercase tracking-widest pl-2 border-l border-ds-200 dark:border-ds-800">Cores</span>} 
                   />
                   <Input 
                     label="RAM reservation" 
                     defaultValue="32" 
                     type="number" 
-                    rightIcon={<span className="text-[10px] font-bold text-ds-500 uppercase tracking-widest pl-2 border-l border-ds-200 dark:border-ds-800">GB</span>} 
+                    suffix={<span className="text-[10px] font-bold text-ds-500 uppercase tracking-widest pl-2 border-l border-ds-200 dark:border-ds-800">GB</span>} 
                   />
                </div>
 

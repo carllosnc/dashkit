@@ -23,8 +23,8 @@ describe('Input', () => {
     render(<Input error="Invalid input" />);
     expect(screen.getByText(/Invalid input/i)).toBeInTheDocument();
     
-    const input = screen.getByRole('textbox');
-    expect(input).toHaveClass('border-ds-danger-500/50');
+    const wrapper = screen.getByRole('textbox').closest('.group');
+    expect(wrapper).toHaveClass('border-ds-danger-500/50');
   });
 
   it('shows helper text when provided', () => {
@@ -36,7 +36,9 @@ describe('Input', () => {
     render(<Input disabled defaultValue="test" />);
     const input = screen.getByDisplayValue(/test/i);
     expect(input).toBeDisabled();
-    expect(input).toHaveClass('disabled:cursor-not-allowed');
+    
+    const wrapper = input.closest('.group');
+    expect(wrapper).toHaveClass('opacity-50');
   });
 
   it('generates an ID automatically from label if not provided', () => {
@@ -45,6 +47,22 @@ describe('Input', () => {
     const input = screen.getByRole('textbox');
     expect(input.id).toBe('input-my-great-label');
     expect(label).toHaveAttribute('for', 'input-my-great-label');
+  });
+
+  it('renders prefix correctly', () => {
+    render(<Input prefix="$" />);
+    expect(screen.getByText('$')).toBeInTheDocument();
+  });
+
+  it('renders suffix correctly', () => {
+    render(<Input suffix=".00" />);
+    expect(screen.getByText('.00')).toBeInTheDocument();
+  });
+
+  it('renders complex prefix and suffix', () => {
+    render(<Input prefix={<span>Start</span>} suffix={<span>End</span>} />);
+    expect(screen.getByText('Start')).toBeInTheDocument();
+    expect(screen.getByText('End')).toBeInTheDocument();
   });
 });
 
