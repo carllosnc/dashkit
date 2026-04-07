@@ -27,22 +27,6 @@ export function useCombobox({
   const inputWrapperRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  useLayoutEffect(() => {
-    if (isOpen && inputWrapperRef.current) {
-      const rect = inputWrapperRef.current.getBoundingClientRect();
-      setTriggerRect(rect);
-
-      const spaceBelow = window.innerHeight - rect.bottom;
-      const spaceAbove = rect.top;
-
-      if (spaceBelow < 250 && spaceAbove > spaceBelow) {
-        setSide('top');
-      } else {
-        setSide('bottom');
-      }
-    }
-  }, [isOpen]);
-
   const selectedOptions = useMemo(() => {
     if (multiple && Array.isArray(value)) {
       return options.filter(opt => value.includes(opt.value));
@@ -55,6 +39,28 @@ export function useCombobox({
   }, [options, value, multiple]);
 
   const selectedOption = selectedOptions[0];
+
+  useLayoutEffect(() => {
+    const updateRect = () => {
+      if (isOpen && inputWrapperRef.current) {
+        const rect = inputWrapperRef.current.getBoundingClientRect();
+        setTriggerRect(rect);
+
+        const spaceBelow = window.innerHeight - rect.bottom;
+        const spaceAbove = rect.top;
+
+        if (spaceBelow < 250 && spaceAbove > spaceBelow) {
+          setSide('top');
+        } else {
+          setSide('bottom');
+        }
+      }
+    };
+
+    updateRect();
+    window.addEventListener('resize', updateRect);
+    return () => window.removeEventListener('resize', updateRect);
+  }, [isOpen, selectedOptions]);
 
   const [prevIsOpen, setPrevIsOpen] = useState(isOpen);
 
