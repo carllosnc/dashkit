@@ -220,7 +220,7 @@ export function ColumnThree() {
                      <span className="text-xs text-ds-500">New York, US • 2 hours ago</span>
                   </div>
                </div>
-               <Button variant="soft" size="sm" className="text-ds-danger-600 hover:text-ds-danger-700 dark:hover:text-ds-danger-500 bg-transparent hover:bg-ds-danger-50 dark:hover:bg-ds-danger-900/20 shadow-none px-2 h-7 text-xs">Revoke</Button>
+               <Button variant="soft" size="sm">Revoke</Button>
             </div>
             <Divider />
             <div className="flex items-center justify-between p-3">
@@ -231,7 +231,7 @@ export function ColumnThree() {
                      <span className="text-xs text-ds-500">London, UK • 3 days ago</span>
                   </div>
                </div>
-               <Button variant="soft" size="sm" className="text-ds-danger-600 hover:text-ds-danger-700 dark:hover:text-ds-danger-500 bg-transparent hover:bg-ds-danger-50 dark:hover:bg-ds-danger-900/20 shadow-none px-2 h-7 text-xs">Revoke</Button>
+               <Button variant="soft" size="sm">Revoke</Button>
             </div>
          </CardContent>
       </Card>

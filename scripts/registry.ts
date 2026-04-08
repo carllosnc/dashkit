@@ -23,13 +23,20 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Avatar',
     files: [
       'src/components/Avatar/Avatar.tsx',
-      'src/components/Avatar/AvatarGroup.tsx'
+      'src/components/Avatar/AvatarGroup.tsx',
+      'src/components/Avatar/Avatar.test.tsx',
+      'src/components/Avatar/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   badge: {
     name: 'Badge',
-    files: ['src/components/Badge/Badge.tsx'],
+    files: [
+      'src/components/Badge/Badge.tsx',
+      'src/components/Badge/FloatBadge.tsx',
+      'src/components/Badge/Badge.test.tsx',
+      'src/components/Badge/index.ts'
+    ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   floatbadge: {
@@ -55,6 +62,7 @@ export const registry: Record<string, ComponentConfig> = {
       'src/components/Card/CardDescription.tsx',
       'src/components/Card/CardContent.tsx',
       'src/components/Card/CardFooter.tsx',
+      'src/components/Card/Card.test.tsx',
       'src/components/Card/index.ts'
     ],
     registryDependencies: ['badge', 'button'],
@@ -62,7 +70,10 @@ export const registry: Record<string, ComponentConfig> = {
   },
   checkbox: {
     name: 'Checkbox',
-    files: ['src/components/Checkbox/Checkbox.tsx'],
+    files: [
+      'src/components/Checkbox/Checkbox.tsx',
+      'src/components/Checkbox/index.ts'
+    ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   drawer: {
@@ -199,6 +210,7 @@ export const registry: Record<string, ComponentConfig> = {
       'src/components/Breadcrumb/BreadcrumbItem.tsx',
       'src/components/Breadcrumb/BreadcrumbSeparator.tsx',
       'src/components/Breadcrumb/BreadcrumbEllipsis.tsx',
+      'src/components/Breadcrumb/Breadcrumb.test.tsx',
       'src/components/Breadcrumb/index.ts'
     ],
     dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
@@ -210,12 +222,18 @@ export const registry: Record<string, ComponentConfig> = {
   },
   areachart: {
     name: 'AreaChart',
-    files: ['src/components/AreaChart/AreaChart.tsx'],
+    files: [
+      'src/components/AreaChart/AreaChart.tsx',
+      'src/components/AreaChart/index.ts'
+    ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   barchart: {
     name: 'BarChart',
-    files: ['src/components/BarChart/BarChart.tsx'],
+    files: [
+      'src/components/BarChart/BarChart.tsx',
+      'src/components/BarChart/index.ts'
+    ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   linechart: {
@@ -249,7 +267,10 @@ export const registry: Record<string, ComponentConfig> = {
   },
   chip: {
     name: 'Chip',
-    files: ['src/components/Chip/Chip.tsx'],
+    files: [
+      'src/components/Chip/Chip.tsx',
+      'src/components/Chip/index.ts'
+    ],
     dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
   },
   combobox: {
@@ -315,7 +336,10 @@ export const registry: Record<string, ComponentConfig> = {
   },
   circularprogress: {
     name: 'CircularProgress',
-    files: ['src/components/CircularProgress/CircularProgress.tsx'],
+    files: [
+      'src/components/CircularProgress/CircularProgress.tsx',
+      'src/components/CircularProgress/index.ts'
+    ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   dock: {
@@ -356,7 +380,8 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Backdrop',
     files: [
       'src/components/Backdrop/Backdrop.tsx',
-      'src/components/Backdrop/Backdrop.test.tsx'
+      'src/components/Backdrop/Backdrop.test.tsx',
+      'src/components/Backdrop/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },

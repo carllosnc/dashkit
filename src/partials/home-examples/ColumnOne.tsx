@@ -280,7 +280,7 @@ export function ColumnOne() {
                  <span className="text-sm font-bold text-ds-danger-800 dark:text-ds-danger-200">Delete this project</span>
                  <span className="text-xs text-ds-danger-600 dark:text-ds-danger-400">Once you delete it, there is no going back. Please be certain.</span>
               </div>
-              <Button variant="outlined" className="w-full text-ds-danger-600 hover:bg-ds-danger-50 hover:border-ds-danger-200 dark:hover:bg-ds-danger-500/10 dark:hover:border-ds-danger-500/30" onClick={() => setIsModalOpen(true)}>
+              <Button variant="outlined" className="w-full" onClick={() => setIsModalOpen(true)}>
                  Delete Project
               </Button>
            </CardContent>
@@ -405,7 +405,7 @@ export function ColumnOne() {
         </ModalContent>
         <ModalFooter>
           <Button variant="outlined" onClick={() => setIsModalOpen(false)}>Cancel</Button>
-          <Button className="bg-ds-danger-600 hover:bg-ds-danger-700 text-white border-transparent" onClick={() => { setIsModalOpen(false); toast({ type: 'error', description: 'Project deleted successfully!' }); }}>Delete</Button>
+          <Button color="danger" onClick={() => { setIsModalOpen(false); toast({ type: 'error', description: 'Project deleted successfully!' }); }}>Delete</Button>
         </ModalFooter>
       </Modal>
     </div>
