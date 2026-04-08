@@ -22,7 +22,7 @@ export function useCombobox({
   const [query, setQuery] = useState('');
   const [triggerRect, setTriggerRect] = useState<DOMRect | null>(null);
   const [side, setSide] = useState<'top' | 'bottom'>('bottom');
-  
+
   const containerRef = useRef<HTMLDivElement>(null);
   const inputWrapperRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);

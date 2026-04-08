@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { Avatar, AvatarGroup } from './Avatar';
+import { Avatar } from './Avatar';
+import { AvatarGroup } from './AvatarGroup';
 
 describe('Avatar', () => {
   it('renders fallback when no src is provided', () => {

@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbSeparator } from './Breadcrumb';
+import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbSeparator } from './index';
 import { FiHome } from 'react-icons/fi';
 import { describe, it, expect } from 'vitest';
 

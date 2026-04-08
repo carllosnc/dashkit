@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { Badge, FloatBadge } from './Badge';
+import { Badge, FloatBadge } from './index';
 
 describe('Badge', () => {
   it('renders content correctly', () => {

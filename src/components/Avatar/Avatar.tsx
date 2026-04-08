@@ -5,13 +5,24 @@ import { cn } from '../../utils/cn';
 export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type AvatarShape = 'circle' | 'square';
 
+const SIZE_XS = 'size-6 text-[10px]';
+const SIZE_SM = 'size-8 text-xs';
+const SIZE_MD = 'size-10 text-sm';
+const SIZE_LG = 'size-12 text-base';
+const SIZE_XL = 'size-16 text-xl';
+
 const sizeMap: Record<AvatarSize, string> = {
-  xs: 'size-6 text-[10px]',
-  sm: 'size-8 text-xs',
-  md: 'size-10 text-sm',
-  lg: 'size-12 text-base',
-  xl: 'size-16 text-xl'
+  xs: SIZE_XS,
+  sm: SIZE_SM,
+  md: SIZE_MD,
+  lg: SIZE_LG,
+  xl: SIZE_XL
 };
+
+const AVATAR_ROOT = "relative flex shrink-0 items-center justify-center overflow-hidden bg-ds-100 dark:bg-ds-800";
+const IMAGE_STYLE = "absolute inset-0 aspect-square h-full w-full object-cover";
+const FALLBACK_STYLE = "flex h-full w-full items-center justify-center font-bold text-ds-500 uppercase select-none tracking-tighter";
+const BORDER_STYLE = "ring-2 ring-background border border-ds-border dark:border-ds-dark-border";
 
 export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   src?: string;
@@ -23,7 +34,7 @@ export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
-  ({ src, alt, fallback, size = 'md', shape = 'circle', bordered = false, className, ...props }, ref) => {
+  function Avatar({ src, alt, fallback, size = 'md', shape = 'circle', bordered = false, className, ...props }, ref) {
     const [isLoaded, setIsLoaded] = React.useState(false);
     const [hasError, setHasError] = React.useState(!src);
     const imgRef = React.useRef<HTMLImageElement>(null);
@@ -43,10 +54,10 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
       <div
         ref={ref}
         className={cn(
-          "relative flex shrink-0 items-center justify-center overflow-hidden bg-ds-100 dark:bg-ds-800",
+          AVATAR_ROOT,
           sizeMap[size],
           shape === 'circle' ? "rounded-full" : "rounded-lg",
-          bordered && "ring-2 ring-background border border-ds-border dark:border-ds-dark-border",
+          bordered && BORDER_STYLE,
           className
         )}
         {...props}
@@ -61,18 +72,18 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
             onError={() => setHasError(true)}
             initial={{ opacity: 0 }}
             animate={{ opacity: isLoaded ? 1 : 0 }}
-            className="absolute inset-0 aspect-square h-full w-full object-cover"
+            className={IMAGE_STYLE}
           />
         )}
 
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
           {(!isLoaded || hasError || !src) && (
             <motion.div
               key="fallback"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="flex h-full w-full items-center justify-center font-bold text-ds-500 uppercase select-none tracking-tighter"
+              className={FALLBACK_STYLE}
             >
               {fallback || (alt ? alt.split(' ').map(n => n[0]).join('').slice(0, 2) : '?')}
             </motion.div>
@@ -82,41 +93,4 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
     );
   }
 );
-Avatar.displayName = 'Avatar';
 
-export interface AvatarGroupProps extends React.HTMLAttributes<HTMLDivElement> {
-  max?: number;
-  size?: AvatarSize;
-  spacing?: 'sm' | 'md' | 'lg';
-}
-
-const spacingMap = {
-  sm: '-space-x-1.5',
-  md: '-space-x-3',
-  lg: '-space-x-4'
-};
-
-export const AvatarGroup = ({ children, max, size = 'md', spacing = 'md', className, ...props }: AvatarGroupProps) => {
-  const childrenArray = React.Children.toArray(children);
-  const visibleAvatars = max ? childrenArray.slice(0, max) : childrenArray;
-  const remainingCount = max ? childrenArray.length - max : 0;
-
-  return (
-    <div className={cn("flex items-center", spacingMap[spacing], className)} {...props}>
-      {visibleAvatars.map((child, i) => (
-        React.isValidElement(child) ? React.cloneElement(child as React.ReactElement<AvatarProps>, {
-          size,
-          style: { zIndex: childrenArray.length - i }
-        }) : child
-      ))}
-      {remainingCount > 0 && (
-        <Avatar
-          fallback={`+${remainingCount}`}
-          size={size}
-          className="bg-ds-900 text-white dark:bg-white dark:text-ds-900 z-0 text-[10px]"
-        />
-      )}
-    </div>
-  );
-};
-AvatarGroup.displayName = 'AvatarGroup';

@@ -21,7 +21,10 @@ export const registry: Record<string, ComponentConfig> = {
   },
   avatar: {
     name: 'Avatar',
-    files: ['src/components/Avatar/Avatar.tsx'],
+    files: [
+      'src/components/Avatar/Avatar.tsx',
+      'src/components/Avatar/AvatarGroup.tsx'
+    ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   badge: {
@@ -31,7 +34,7 @@ export const registry: Record<string, ComponentConfig> = {
   },
   floatbadge: {
     name: 'FloatBadge',
-    files: ['src/components/Badge/Badge.tsx'],
+    files: ['src/components/Badge/FloatBadge.tsx'],
     registryDependencies: ['badge'],
   },
   button: {
@@ -45,7 +48,15 @@ export const registry: Record<string, ComponentConfig> = {
   },
   card: {
     name: 'Card',
-    files: ['src/components/Card/Card.tsx'],
+    files: [
+      'src/components/Card/Card.tsx',
+      'src/components/Card/CardHeader.tsx',
+      'src/components/Card/CardTitle.tsx',
+      'src/components/Card/CardDescription.tsx',
+      'src/components/Card/CardContent.tsx',
+      'src/components/Card/CardFooter.tsx',
+      'src/components/Card/index.ts'
+    ],
     registryDependencies: ['badge', 'button'],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
@@ -182,7 +193,14 @@ export const registry: Record<string, ComponentConfig> = {
   },
   breadcrumb: {
     name: 'Breadcrumb',
-    files: ['src/components/Breadcrumb/Breadcrumb.tsx'],
+    files: [
+      'src/components/Breadcrumb/Breadcrumb.tsx',
+      'src/components/Breadcrumb/BreadcrumbList.tsx',
+      'src/components/Breadcrumb/BreadcrumbItem.tsx',
+      'src/components/Breadcrumb/BreadcrumbSeparator.tsx',
+      'src/components/Breadcrumb/BreadcrumbEllipsis.tsx',
+      'src/components/Breadcrumb/index.ts'
+    ],
     dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
   },
   iconbutton: {
