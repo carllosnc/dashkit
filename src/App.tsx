@@ -1,4 +1,4 @@
-import { Badge } from './components/Badge/Badge'
+import { Badge } from './components/Badge'
 import { Button } from './components/Button/Button'
 import { Header } from './partials/Header'
 import { FiArrowRight, FiGithub } from 'react-icons/fi'

@@ -29,7 +29,7 @@ import { OtpInput } from '../components/OtpInput/OtpInput';
 import { Sidebar, SidebarHeader, SidebarFooter, SidebarSection, SidebarItem } from '../components/Sidebar/Sidebar';
 import { ImageExpander } from '../components/ImageExpander/ImageExpander';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../components/Accordion';
-import { Badge, FloatBadge } from '../components/Badge/Badge';
+import { Badge, FloatBadge } from '../components/Badge';
 import { Skeleton } from '../components/Skeleton/Skeleton';
 import { Spinner } from '../components/Spinner/Spinner';
 import { Navbar } from '../components/Navbar/Navbar';
@@ -40,7 +40,7 @@ import {
   BreadcrumbItem,
   BreadcrumbSeparator,
   BreadcrumbEllipsis
-} from '../components/Breadcrumb/Breadcrumb';
+} from '../components/Breadcrumb';
 import {
   Card,
   CardHeader,
@@ -48,7 +48,7 @@ import {
   CardDescription,
   CardContent,
   CardFooter
-} from '../components/Card/Card';
+} from '../components/Card';
 import {
   Table,
   TableHeader,
@@ -59,7 +59,7 @@ import {
   TableCell,
   TableCaption
 } from '../components/Table/Table';
-import { Avatar, AvatarGroup } from '../components/Avatar/Avatar';
+import { Avatar, AvatarGroup } from '../components/Avatar';
 import { FiDownload, FiArrowRight, FiCopy, FiCheck, FiSearch, FiLock, FiUser, FiSettings, FiActivity, FiCheckCircle, FiClock, FiMail, FiShield, FiZap, FiBell, FiMessageSquare, FiShoppingCart, FiHome, FiMoreVertical } from 'react-icons/fi';
 import { PropertyDoc } from '../partials/PropertyDoc';
 import { ProgressBar } from '../components/ProgressBar/ProgressBar';

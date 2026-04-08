@@ -3,14 +3,14 @@ import { Helmet } from 'react-helmet-async';
 import { Header } from '../../partials/Header';
 import { Footer } from '../../partials/Footer';
 import { Button } from '../../components/Button/Button';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/Card/Card';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/Card';
 import { IconButton } from '../../components/IconButton/IconButton';
 import { Chip } from '../../components/Chip/Chip';
 import { Divider } from '../../components/Divider/Divider';
-import { Badge, FloatBadge } from '../../components/Badge/Badge';
+import { Badge, FloatBadge } from '../../components/Badge';
 import { AnimateNumber } from '../../components/AnimateNumber';
 import { CircularProgress } from '../../components/CircularProgress/CircularProgress';
-import { Avatar, AvatarGroup } from '../../components/Avatar/Avatar';
+import { Avatar, AvatarGroup } from '../../components/Avatar';
 import { Input } from '../../components/Input/Input';
 import { Checkbox } from '../../components/Checkbox/Checkbox';
 import { Radio } from '../../components/Radio/Radio';
@@ -30,7 +30,7 @@ import { Drawer, DrawerHeader, DrawerContent, DrawerFooter } from '../../compone
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../../components/Tabs/Tabs';
 import { OtpInput } from '../../components/OtpInput/OtpInput';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../../components/Accordion';
-import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbSeparator } from '../../components/Breadcrumb/Breadcrumb';
+import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbSeparator } from '../../components/Breadcrumb';
 import {
   Dropdown,
   DropdownTrigger,

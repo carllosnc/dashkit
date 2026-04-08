@@ -16,8 +16,8 @@ import { cn } from '../../utils/cn';
 import { Button } from '../../components/Button/Button';
 import { IconButton } from '../../components/IconButton/IconButton';
 import { Input } from '../../components/Input/Input';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/Card/Card';
-import { Badge, FloatBadge } from '../../components/Badge/Badge';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/Card';
+import { Badge, FloatBadge } from '../../components/Badge';
 import {
   Table,
   TableHeader,
@@ -26,7 +26,7 @@ import {
   TableHead,
   TableCell,
 } from '../../components/Table/Table';
-import { Avatar, AvatarGroup } from '../../components/Avatar/Avatar';
+import { Avatar, AvatarGroup } from '../../components/Avatar';
 import { AreaChart } from '../../components/AreaChart/AreaChart';
 import { BarChart } from '../../components/BarChart/BarChart';
 import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem, DropdownSeparator } from '../../components/Dropdown/Dropdown';

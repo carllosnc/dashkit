@@ -10,9 +10,9 @@ import {
 import { Navbar, NavbarBrand, NavbarLinks, NavbarActions } from '../../components/Navbar/Navbar';
 import { Button } from '../../components/Button/Button';
 import { IconButton } from '../../components/IconButton/IconButton';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/Card/Card';
-import { Badge, FloatBadge } from '../../components/Badge/Badge';
-import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbSeparator } from '../../components/Breadcrumb/Breadcrumb';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/Card';
+import { Badge, FloatBadge } from '../../components/Badge';
+import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbSeparator } from '../../components/Breadcrumb';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../../components/Tabs/Tabs';
 import {
   Table,
@@ -23,7 +23,7 @@ import {
   TableCell,
   TableCaption
 } from '../../components/Table/Table';
-import { Avatar, AvatarGroup } from '../../components/Avatar/Avatar';
+import { Avatar, AvatarGroup } from '../../components/Avatar';
 import { Select } from '../../components/Select/Select';
 import { Input } from '../../components/Input/Input';
 import { AreaChart } from '../../components/AreaChart/AreaChart';

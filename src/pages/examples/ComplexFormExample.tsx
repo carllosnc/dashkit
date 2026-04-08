@@ -13,7 +13,7 @@ import { Radio } from '../../components/Radio/Radio';
 import { Textarea } from '../../components/Textarea/Textarea';
 import { Combobox } from '../../components/Combobox/Combobox';
 import { Divider } from '../../components/Divider/Divider';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../../components/Card/Card';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../../components/Card';
 import { DatePicker } from '../../components/DatePicker/DatePicker';
 import { DateField } from '../../components/DateField/DateField';
 

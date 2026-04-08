@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Header } from '../../partials/Header';
 import { Footer } from '../../partials/Footer';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/Card/Card';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/Card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../../components/Tabs/Tabs';
 import { Input } from '../../components/Input/Input';
 import { Button } from '../../components/Button/Button';

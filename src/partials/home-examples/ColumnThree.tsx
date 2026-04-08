@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/Card/Card';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/Card';
 import { Button } from '../../components/Button/Button';
 import { ButtonGroup } from '../../components/ButtonGroup/ButtonGroup';
-import { Badge } from '../../components/Badge/Badge';
+import { Badge } from '../../components/Badge';
 import { Input } from '../../components/Input/Input';
 import { Divider } from '../../components/Divider/Divider';
 import { Checkbox } from '../../components/Checkbox/Checkbox';

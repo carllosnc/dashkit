@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/Card/Card';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/Card';
 import { Button } from '../../components/Button/Button';
 import { Input } from '../../components/Input/Input';
-import { Badge } from '../../components/Badge/Badge';
+import { Badge } from '../../components/Badge';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../../components/Tabs/Tabs';
 import { AreaChart } from '../../components/AreaChart/AreaChart';
 import { LineChart } from '../../components/LineChart/LineChart';
@@ -12,7 +12,7 @@ import { Popover, PopoverTrigger, PopoverContent } from '../../components/Popove
 import { Switch } from '../../components/Switch/Switch';
 import { CircularProgress } from '../../components/CircularProgress/CircularProgress';
 import { ProgressBar } from '../../components/ProgressBar/ProgressBar';
-import { Avatar } from '../../components/Avatar/Avatar';
+import { Avatar } from '../../components/Avatar';
 import { Drawer, DrawerHeader } from '../../components/Drawer/Drawer';
 import { Combobox } from '../../components/Combobox/Combobox';
 import { StatsCard } from '../../components/StatsCard/StatsCard';

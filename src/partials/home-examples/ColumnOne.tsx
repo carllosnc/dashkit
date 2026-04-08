@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/Card/Card';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/Card';
 import { Button } from '../../components/Button/Button';
 import { Input } from '../../components/Input/Input';
-import { Badge } from '../../components/Badge/Badge';
+import { Badge } from '../../components/Badge';
 import { Divider } from '../../components/Divider/Divider';
-import { Avatar, AvatarGroup } from '../../components/Avatar/Avatar';
+import { Avatar, AvatarGroup } from '../../components/Avatar';
 import { AnimateNumber } from '../../components/AnimateNumber';
 import { ProgressBar } from '../../components/ProgressBar/ProgressBar';
 import { Surface } from '../../components/Surface/Surface';
