@@ -9,6 +9,7 @@ function cn(...inputs: ClassValue[]) {
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'filled' | 'outlined' | 'soft';
+  color?: 'primary' | 'danger';
   size?: 'sm' | 'md' | 'lg';
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
@@ -18,9 +19,18 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const BUTTON_BASE = "ds-rounded inline-flex font-medium items-center justify-center focus:outline-none cursor-pointer whitespace-nowrap disabled:opacity-60 disabled:cursor-not-allowed";
 
 const BUTTON_VARIANTS = {
-  filled: "ds-primary-gradient text-primary-foreground hover:brightness-120 active:scale-[0.98] transition-colors",
-  outlined: "bg-transparent hover:brightness-80 text-foreground border border-ds-300 dark:border-ds-700 active:scale-[0.98]",
-  soft: "bg-secondary text-secondary-foreground hover:brightness-90 dark:hover:brightness-110 active:scale-[0.98]",
+  filled: {
+    primary: "ds-primary-gradient text-primary-foreground hover:brightness-120 active:scale-[0.98] transition-colors",
+    danger: "ds-danger-gradient text-red-50 hover:brightness-120 active:scale-[0.98] transition-colors",
+  },
+  outlined: {
+    primary: "bg-transparent hover:brightness-80 text-foreground border border-ds-300 dark:border-ds-700 active:scale-[0.98]",
+    danger: "bg-transparent hover:bg-ds-danger-50 text-ds-danger-600 border border-ds-danger-200 dark:border-ds-danger-900/50 active:scale-[0.98]",
+  },
+  soft: {
+    primary: "bg-secondary text-secondary-foreground hover:brightness-90 dark:hover:brightness-110 active:scale-[0.98]",
+    danger: "bg-ds-danger-600/10 text-ds-danger-600 hover:bg-ds-danger-600/20 active:scale-[0.98]",
+  },
 } as const;
 
 const BUTTON_SIZES = {
@@ -34,6 +44,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     {
       className,
       variant = 'filled',
+      color = 'primary',
       size = 'md',
       children,
       leftIcon,
@@ -52,7 +63,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={disabled || loading}
         className={cn(
           BUTTON_BASE,
-          BUTTON_VARIANTS[variant],
+          BUTTON_VARIANTS[variant][color] as string,
           BUTTON_SIZES[size],
           {
             "opacity-60 cursor-not-allowed": loading,

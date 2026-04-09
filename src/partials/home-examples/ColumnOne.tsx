@@ -14,7 +14,7 @@ import { Pagination } from '../../components/Pagination/Pagination';
 import { Modal, ModalHeader, ModalContent, ModalFooter } from '../../components/Modal/Modal';
 import { toast } from '../../components/Toast/useToast';
 import { StatsCard } from '../../components/StatsCard/StatsCard';
-import { FiMail, FiLock, FiZap, FiMoreHorizontal, FiTrendingUp, FiShieldOff, FiActivity, FiShield, FiDollarSign, FiPlay, FiSkipBack, FiSkipForward, FiHelpCircle, FiLock as FiFingerprint } from 'react-icons/fi';
+import { FiMail, FiLock, FiZap, FiMoreHorizontal, FiTrendingUp, FiShieldOff, FiActivity, FiShield, FiDollarSign, FiPlay, FiSkipBack, FiSkipForward, FiHelpCircle, FiLock as FiFingerprint, FiAlertTriangle } from 'react-icons/fi';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
 import { AVATAR_URLS } from './Constants';
 
@@ -398,14 +398,27 @@ export function ColumnOne() {
       {/* Modals */}
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <ModalHeader onClose={() => setIsModalOpen(false)}>
-          <h3 className="text-lg font-semibold">Delete Project</h3>
+           <h3 className="text-lg font-semibold">Delete Project</h3>
         </ModalHeader>
         <ModalContent className="flex flex-col gap-4">
-          <p className="text-sm text-ds-500">Are you sure you want to delete this project? This action cannot be undone.</p>
+           <div className="flex items-start gap-4">
+              <div className="size-11 rounded-full bg-ds-danger-600/10 flex items-center justify-center shrink-0">
+                 <FiAlertTriangle className="text-ds-danger-600" size={22} />
+              </div>
+              <div className="space-y-1">
+                 <p className="text-sm text-ds-900 dark:text-ds-100 font-medium">Are you sure you want to delete this project?</p>
+                 <p className="text-sm text-ds-500 leading-relaxed"> This action cannot be undone. All resources and data associated with this project will be permanently removed.</p>
+              </div>
+           </div>
         </ModalContent>
         <ModalFooter>
           <Button variant="outlined" onClick={() => setIsModalOpen(false)}>Cancel</Button>
-          <Button color="danger" onClick={() => { setIsModalOpen(false); toast({ type: 'error', description: 'Project deleted successfully!' }); }}>Delete</Button>
+          <Button 
+            color="danger"
+            onClick={() => { setIsModalOpen(false); toast({ type: 'error', description: 'Project deleted successfully!' }); }}
+          >
+            Delete Project
+          </Button>
         </ModalFooter>
       </Modal>
     </div>

@@ -258,3 +258,4 @@
    5. Colors utilities
 ──────────────────────────────────────────────── */
 @utility ds-primary-gradient { @apply bg-gradient-to-b from-ds-primary-500 to-ds-primary-600 }
+@utility ds-danger-gradient { @apply bg-gradient-to-b from-ds-danger-500 to-ds-danger-600 }

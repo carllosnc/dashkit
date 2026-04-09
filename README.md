@@ -49,4 +49,3 @@ MIT [LICENSE](LICENSE).
 
 ---
 Created and maintained by [CarllosNC](https://github.com/carllosnc).
-
