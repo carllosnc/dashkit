@@ -12,9 +12,10 @@ import { Slider } from '../../components/Slider/Slider';
 import { Stepper, Step } from '../../components/Stepper';
 import { Pagination } from '../../components/Pagination/Pagination';
 import { Modal, ModalHeader, ModalContent, ModalFooter } from '../../components/Modal/Modal';
+import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem, DropdownLabel, DropdownSeparator } from '../../components/Dropdown/Dropdown';
 import { toast } from '../../components/Toast/useToast';
 import { StatsCard } from '../../components/StatsCard/StatsCard';
-import { FiMail, FiLock, FiZap, FiMoreHorizontal, FiTrendingUp, FiShieldOff, FiActivity, FiShield, FiDollarSign, FiPlay, FiSkipBack, FiSkipForward, FiHelpCircle, FiLock as FiFingerprint, FiAlertTriangle } from 'react-icons/fi';
+import { FiMail, FiLock, FiZap, FiMoreHorizontal, FiTrendingUp, FiShieldOff, FiActivity, FiShield, FiDollarSign, FiPlay, FiSkipBack, FiSkipForward, FiHelpCircle, FiLock as FiFingerprint, FiAlertTriangle, FiUsers, FiSettings, FiLogOut } from 'react-icons/fi';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
 import { AVATAR_URLS } from './Constants';
 
@@ -117,9 +118,21 @@ export function ColumnOne() {
                      <span className="text-xs text-ds-500">Design System Project</span>
                   </div>
                </div>
-               <Button variant="soft" size="sm" className="p-0 size-8 aspect-square min-w-0">
-                  <FiMoreHorizontal size={14} className="mx-auto" />
-               </Button>
+               <Dropdown>
+                  <DropdownTrigger asChild>
+                     <Button variant="soft" size="sm" className="p-0 size-8 aspect-square min-w-0">
+                        <FiMoreHorizontal size={14} className="mx-auto" />
+                     </Button>
+                  </DropdownTrigger>
+                  <DropdownContent className="w-56" align="end">
+                     <DropdownLabel>Project Actions</DropdownLabel>
+                     <DropdownSeparator />
+                     <DropdownItem leftIcon={<FiUsers size={14} />}>Manage Team</DropdownItem>
+                     <DropdownItem leftIcon={<FiSettings size={14} />}>Project Settings</DropdownItem>
+                     <DropdownSeparator />
+                     <DropdownItem leftIcon={<FiLogOut size={14} />} destructive>Leave Project</DropdownItem>
+                  </DropdownContent>
+               </Dropdown>
             </div>
 
             <div className="space-y-4">
