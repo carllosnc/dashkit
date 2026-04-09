@@ -1148,7 +1148,7 @@ export const AllComponentsExample = () => {
           <CardContent className="flex flex-wrap gap-4">
             <Button 
               variant="outlined" 
-              color="success" 
+              color="primary" 
               onClick={() => toast({ 
                 title: "Action Successful", 
                 description: "Your changes have been saved to the cloud.",
