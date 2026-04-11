@@ -398,5 +398,14 @@ export const registry: Record<string, ComponentConfig> = {
     files: ['src/components/StatsCard/StatsCard.tsx'],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
     registryDependencies: ['card', 'animatenumber'],
+  },
+  colorpicker: {
+    name: 'ColorPicker',
+    files: [
+      'src/components/ColorPicker/ColorPicker.tsx',
+      'src/components/ColorPicker/ColorPicker.test.tsx'
+    ],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
+    registryDependencies: ['popover', 'input'],
   }
 };
