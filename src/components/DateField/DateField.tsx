@@ -1,10 +1,5 @@
 import { useState, useRef, forwardRef, type KeyboardEvent } from 'react';
-import clsx, { type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-
-function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
+import { cn } from '../../utils/cn';
 
 export interface DateFieldProps {
   label?: string;
@@ -27,8 +22,19 @@ interface SegmentProps {
   disabled?: boolean;
 }
 
+const CONTAINER_CLASSES = "flex flex-col gap-1.5 w-full font-sans";
+const LABEL_CLASSES = "text-[13px] font-semibold text-ds-700 dark:text-ds-300 ml-1 tracking-tight";
+const REQUIRED_CLASSES = "text-ds-danger-500 ml-0.5";
+const SEGMENTS_CONTAINER_CLASSES = "flex items-center gap-2";
+const SEGMENT_INPUT_BASE_CLASSES = "h-9 bg-input-bg text-input-fg border border-input ds-rounded text-sm font-medium text-center tabular-nums p-0 outline-none transition-all duration-200 focus:border-input-focus focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-transparent placeholder:text-ds-400 dark:placeholder:text-ds-600";
+const SEGMENT_DISABLED_CLASSES = "opacity-50 cursor-not-allowed";
+const SEPARATOR_CLASSES = "text-ds-400 dark:text-ds-500 font-bold select-none text-lg";
+const MESSAGE_BASE_CLASSES = "text-[12px] ml-1 tracking-tight";
+const DESCRIPTION_CLASSES = "text-ds-600 dark:text-ds-400";
+const ERROR_CLASSES = "text-ds-danger-600 dark:text-ds-danger-400";
+
 const DateSegment = forwardRef<HTMLInputElement, SegmentProps>(
-  ({ value, placeholder, max, onUpdate, onNext, onPrev, disabled }, ref) => {
+  function DateSegment({ value, placeholder, max, onUpdate, onNext, onPrev, disabled }, ref) {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const val = e.target.value.replace(/\D/g, '').slice(0, max.toString().length);
       onUpdate(val);
@@ -61,17 +67,16 @@ const DateSegment = forwardRef<HTMLInputElement, SegmentProps>(
         onKeyDown={handleKeyDown}
         disabled={disabled}
         className={cn(
-          "h-9 bg-input-bg text-input-fg border border-input ds-rounded text-sm font-medium text-center tabular-nums p-0 outline-none transition-all duration-200 focus:border-input-focus focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-transparent",
-          "placeholder:text-ds-400 dark:placeholder:text-ds-600",
+          SEGMENT_INPUT_BASE_CLASSES,
           placeholder === 'YYYY' ? "w-16" : "w-11",
-          disabled && "opacity-50 cursor-not-allowed"
+          disabled && SEGMENT_DISABLED_CLASSES
         )}
       />
     );
   }
 );
 
-export const DateField = ({
+export function DateField({
   label,
   description,
   error,
@@ -80,7 +85,7 @@ export const DateField = ({
   className,
   disabled,
   isRequired
-}: DateFieldProps) => {
+}: DateFieldProps) {
   const [month, setMonth] = useState(value ? (value.getMonth() + 1).toString().padStart(2, '0') : '');
   const [day, setDay] = useState(value ? value.getDate().toString().padStart(2, '0') : '');
   const [year, setYear] = useState(value ? value.getFullYear().toString() : '');
@@ -149,18 +154,17 @@ export const DateField = ({
   };
 
   return (
-    <div className={cn("flex flex-col gap-1.5 w-full font-sans", className)}>
+    <div className={cn(CONTAINER_CLASSES, className)}>
       {label && (
-        <label className="text-[13px] font-semibold text-ds-700 dark:text-ds-300 ml-1 tracking-tight">
+        <label className={LABEL_CLASSES}>
           {label}
-          {isRequired && <span className="text-ds-danger-500 ml-0.5">*</span>}
+          {isRequired && <span className={REQUIRED_CLASSES}>*</span>}
         </label>
       )}
       <div
         className={cn(
-          "flex items-center gap-2",
-          disabled && "opacity-50 cursor-not-allowed",
-          className
+          SEGMENTS_CONTAINER_CLASSES,
+          disabled && SEGMENT_DISABLED_CLASSES
         )}
       >
         <DateSegment
@@ -173,7 +177,7 @@ export const DateField = ({
           onNext={() => dayRef.current?.focus()}
           onPrev={() => {}}
         />
-        <span className="text-ds-400 dark:text-ds-500 font-bold select-none text-lg">·</span>
+        <span className={SEPARATOR_CLASSES}>·</span>
         <DateSegment
           ref={dayRef}
           value={day}
@@ -184,7 +188,7 @@ export const DateField = ({
           onNext={() => yearRef.current?.focus()}
           onPrev={() => monthRef.current?.focus()}
         />
-        <span className="text-ds-400 dark:text-ds-500 font-bold select-none text-lg">·</span>
+        <span className={SEPARATOR_CLASSES}>·</span>
         <DateSegment
           ref={yearRef}
           value={year}
@@ -199,14 +203,15 @@ export const DateField = ({
 
       {(error || description) && (
         <span className={cn(
-          "text-[12px] ml-1 tracking-tight",
-          error ? "text-ds-danger-600 dark:text-ds-danger-400" : "text-ds-600 dark:text-ds-400"
+          MESSAGE_BASE_CLASSES,
+          error ? ERROR_CLASSES : DESCRIPTION_CLASSES
         )}>
           {error || description}
         </span>
       )}
     </div>
   );
-};
+}
 
 DateField.displayName = 'DateField';
+

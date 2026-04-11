@@ -8,8 +8,24 @@ export interface DividerProps extends React.HTMLAttributes<HTMLDivElement> {
   contentPosition?: "left" | "center" | "right";
 }
 
+const LINE_BASE = "shrink-0 bg-border";
+const LINE_VARIANT_DASHED = "bg-transparent border-dashed";
+const LINE_VARIANT_DOTTED = "bg-transparent border-dotted";
+
+const HORIZONTAL_LINE = "w-full";
+const HORIZONTAL_SOLID = "h-[1px]";
+const HORIZONTAL_NON_SOLID = "h-0 border-t";
+
+const VERTICAL_LINE = "h-auto self-stretch";
+const VERTICAL_SOLID = "w-[1px]";
+const VERTICAL_NON_SOLID = "w-0 border-l";
+
+const CONTENT_CONTAINER = "flex items-center w-full gap-4";
+const CONTENT_TEXT = "text-[11px] font-bold uppercase tracking-widest text-ds-400 select-none whitespace-nowrap";
+const FLEX_LINE = "flex-1";
+
 export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
-  (
+  function Divider(
     {
       orientation = "horizontal",
       children,
@@ -19,51 +35,46 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
       ...props
     },
     ref
-  ) => {
+  ) {
     const isHorizontal = orientation === "horizontal";
     const hasContent = isHorizontal && !!children;
 
-    const baseStyles = cn(
-      "shrink-0 bg-border",
-      variant === "dashed" && "bg-transparent border-dashed",
-      variant === "dotted" && "bg-transparent border-dotted",
-      isHorizontal
-        ? cn("w-full", variant === "solid" ? "h-[1px]" : "h-0 border-t")
-        : cn("h-auto self-stretch", variant === "solid" ? "w-[1px]" : "w-0 border-l"),
-      className
-    );
-
     if (hasContent) {
+      const lineStyles = cn(
+        FLEX_LINE,
+        variant === "solid" ? "h-[1px] bg-border" : "h-0 border-t",
+        variant === "dashed" && "border-dashed",
+        variant === "dotted" && "border-dotted"
+      );
+
       return (
         <div
           ref={ref}
-          className={cn("flex items-center w-full gap-4", className)}
+          className={cn(CONTENT_CONTAINER, className)}
           {...props}
         >
-          <div
-            className={cn(
-              "flex-1",
-              variant === "solid" ? "h-[1px] bg-border" : "h-0 border-t",
-              variant === "dashed" && "border-dashed",
-              variant === "dotted" && "border-dotted",
-              contentPosition === "left" && "hidden"
-            )}
-          />
-          <span className="text-[11px] font-bold uppercase tracking-widest text-ds-400 select-none whitespace-nowrap">
+          {contentPosition !== "left" && (
+            <div className={lineStyles} />
+          )}
+          <span className={CONTENT_TEXT}>
             {children}
           </span>
-          <div
-            className={cn(
-              "flex-1",
-              variant === "solid" ? "h-[1px] bg-border" : "h-0 border-t",
-              variant === "dashed" && "border-dashed",
-              variant === "dotted" && "border-dotted",
-              contentPosition === "right" && "hidden"
-            )}
-          />
+          {contentPosition !== "right" && (
+            <div className={lineStyles} />
+          )}
         </div>
       );
     }
+
+    const baseStyles = cn(
+      LINE_BASE,
+      variant === "dashed" && LINE_VARIANT_DASHED,
+      variant === "dotted" && LINE_VARIANT_DOTTED,
+      isHorizontal
+        ? cn(HORIZONTAL_LINE, variant === "solid" ? HORIZONTAL_SOLID : HORIZONTAL_NON_SOLID)
+        : cn(VERTICAL_LINE, variant === "solid" ? VERTICAL_SOLID : VERTICAL_NON_SOLID),
+      className
+    );
 
     return (
       <div
@@ -78,3 +89,4 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
 );
 
 Divider.displayName = "Divider";
+

@@ -275,13 +275,22 @@ export const registry: Record<string, ComponentConfig> = {
   },
   combobox: {
     name: 'Combobox',
-    files: ['src/components/Combobox/Combobox.tsx'],
-    dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
+    files: [
+      'src/components/Combobox/Combobox.tsx',
+      'src/components/Combobox/useCombobox.ts',
+      'src/components/Combobox/Combobox.test.tsx',
+      'src/components/Combobox/index.ts'
+    ],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
     registryDependencies: ['chip'],
   },
   divider: {
     name: 'Divider',
-    files: ['src/components/Divider/Divider.tsx'],
+    files: [
+      'src/components/Divider/Divider.tsx',
+      'src/components/Divider/Divider.test.tsx',
+      'src/components/Divider/index.ts'
+    ],
     dependencies: ['clsx', 'tailwind-merge'],
   },
   sidebar: {
@@ -315,7 +324,9 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'DatePicker',
     files: [
       'src/components/DatePicker/DatePicker.tsx',
-      'src/components/DatePicker/useDatePicker.ts'
+      'src/components/DatePicker/useDatePicker.ts',
+      'src/components/DatePicker/DatePicker.test.tsx',
+      'src/components/DatePicker/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
@@ -368,7 +379,11 @@ export const registry: Record<string, ComponentConfig> = {
   },
   datefield: {
     name: 'DateField',
-    files: ['src/components/DateField/DateField.tsx'],
+    files: [
+      'src/components/DateField/DateField.tsx',
+      'src/components/DateField/DateField.test.tsx',
+      'src/components/DateField/index.ts'
+    ],
     dependencies: ['clsx', 'tailwind-merge'],
   },
   'navigation-menu': {

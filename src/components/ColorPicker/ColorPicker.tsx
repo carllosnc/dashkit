@@ -5,9 +5,6 @@ import { Input } from '../Input/Input';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiCheck } from 'react-icons/fi';
 
-/**
- * Styles
- */
 const CONTAINER = "flex flex-col gap-1.5 w-full font-sans";
 const LABEL = "text-[13px] font-semibold text-ds-700 dark:text-ds-300 ml-1 tracking-tight";
 const TRIGGER = "flex items-center gap-3 w-full h-9 px-3 ds-rounded bg-input-bg border border-input-border text-sm text-input-fg outline-none transition-all duration-200 hover:ring-2 hover:ring-ring hover:ring-offset-2 hover:ring-offset-transparent";
@@ -146,9 +143,6 @@ export function ColorPicker({
   );
 }
 
-/**
- * Sub-components
- */
 function ColorSwatch({ color, size = 'default' }: { color: string; size?: 'sm' | 'default' }) {
   const isWhite = color.toLowerCase() === '#ffffff';
   const isBlack = color.toLowerCase() === '#000000';
