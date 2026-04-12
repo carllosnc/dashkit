@@ -53,15 +53,11 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
           className={cn(CONTENT_CONTAINER, className)}
           {...props}
         >
-          {contentPosition !== "left" && (
-            <div className={lineStyles} />
-          )}
+          <div className={cn(lineStyles, contentPosition === "left" && "hidden")} />
           <span className={CONTENT_TEXT}>
             {children}
           </span>
-          {contentPosition !== "right" && (
-            <div className={lineStyles} />
-          )}
+          <div className={cn(lineStyles, contentPosition === "right" && "hidden")} />
         </div>
       );
     }

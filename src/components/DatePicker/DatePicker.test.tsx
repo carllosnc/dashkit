@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitForElementToBeRemoved } from '@testing-library/react';
 import { DatePicker } from './DatePicker';
 import { describe, it, expect, vi } from 'vitest';
 
@@ -21,10 +21,10 @@ describe('DatePicker', () => {
     // Check if calendar header appeared
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     const currentMonth = months[new Date().getMonth()];
-    expect(screen.getByText(new RegExp(currentMonth, 'i'))).toBeInTheDocument();
+    expect(await screen.findByText(new RegExp(currentMonth, 'i'))).toBeInTheDocument();
   });
 
-  it('calls onChange and closes when a date is selected', () => {
+  it('calls onChange and closes when a date is selected', async () => {
     const onChange = vi.fn();
     render(<DatePicker onChange={onChange} />);
     
@@ -32,7 +32,7 @@ describe('DatePicker', () => {
     fireEvent.click(trigger);
     
     // Select day 15 (assuming it's in the current month)
-    const day15 = screen.getByText('15');
+    const day15 = await screen.findByText('15');
     fireEvent.click(day15);
     
     expect(onChange).toHaveBeenCalled();
@@ -40,22 +40,22 @@ describe('DatePicker', () => {
     expect(onChange.mock.calls[0][0].getDate()).toBe(15);
     
     // Calendar should be closed
-    expect(screen.queryByText('Jump to today')).not.toBeInTheDocument();
+    await waitForElementToBeRemoved(() => screen.queryByText('Jump to today'));
   });
 
-  it('closes when window scrolls', () => {
+  it('closes when window scrolls', async () => {
     render(<DatePicker placeholder="Select date" />);
     const trigger = screen.getByRole('button');
     fireEvent.click(trigger);
     
-    expect(screen.getByText('Jump to today')).toBeInTheDocument();
+    expect(await screen.findByText('Jump to today')).toBeInTheDocument();
     
     fireEvent.scroll(window);
     
-    expect(screen.queryByText('Jump to today')).not.toBeInTheDocument();
+    await waitForElementToBeRemoved(() => screen.queryByText('Jump to today'));
   });
 
-  it('closes when clicking outside', () => {
+  it('closes when clicking outside', async () => {
     render(
       <div>
         <DatePicker placeholder="Select date" />
@@ -65,10 +65,10 @@ describe('DatePicker', () => {
     const trigger = screen.getByRole('button');
     fireEvent.click(trigger);
     
-    expect(screen.getByText('Jump to today')).toBeInTheDocument();
+    expect(await screen.findByText('Jump to today')).toBeInTheDocument();
     
     fireEvent.mouseDown(screen.getByTestId('outside'));
     
-    expect(screen.queryByText('Jump to today')).not.toBeInTheDocument();
+    await waitForElementToBeRemoved(() => screen.queryByText('Jump to today'));
   });
 });
