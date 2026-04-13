@@ -60,4 +60,15 @@ describe('Combobox', () => {
     
     expect(handleChange).toHaveBeenCalledWith('');
   });
+
+  it('closes dropdown when Escape key is pressed', () => {
+    render(<Combobox options={options} />);
+    const input = screen.getByRole('textbox');
+    
+    fireEvent.focus(input);
+    expect(screen.getByRole('listbox')).toBeInTheDocument();
+    
+    fireEvent.keyDown(document, { key: 'Escape' });
+    expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+  });
 });
