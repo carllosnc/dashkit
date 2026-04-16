@@ -110,11 +110,12 @@ export function DropdownContent({
 
   let top = 0;
   let left = 0;
+  let actualSide = side;
 
   if (side === 'bottom' || side === 'top') {
     const spaceBelow = window.innerHeight - triggerRect.bottom;
     const spaceAbove = triggerRect.top;
-    const actualSide = (side === 'bottom' && spaceBelow < dropdownHeight && spaceAbove > spaceBelow) || (side === 'top' && spaceAbove < dropdownHeight && spaceBelow > spaceAbove)
+    actualSide = (side === 'bottom' && spaceBelow < dropdownHeight && spaceAbove > spaceBelow) || (side === 'top' && spaceAbove < dropdownHeight && spaceBelow > spaceAbove)
       ? (side === 'bottom' ? 'top' : 'bottom')
       : side;
 
@@ -126,7 +127,7 @@ export function DropdownContent({
   } else {
     const spaceRight = window.innerWidth - triggerRect.right;
     const spaceLeft = triggerRect.left;
-    const actualSide = (side === 'right' && spaceRight < dropdownWidth && spaceLeft > spaceRight) || (side === 'left' && spaceLeft < dropdownWidth && spaceRight > spaceLeft)
+    actualSide = (side === 'right' && spaceRight < dropdownWidth && spaceLeft > spaceRight) || (side === 'left' && spaceLeft < dropdownWidth && spaceRight > spaceLeft)
       ? (side === 'right' ? 'left' : 'right')
       : side;
 
@@ -147,19 +148,32 @@ export function DropdownContent({
     zIndex: 9999,
   };
 
+  const getAnimationProps = () => {
+    switch (actualSide) {
+      case 'top': return { y: 4, x: 0, originClass: 'origin-bottom' };
+      case 'bottom': return { y: -4, x: 0, originClass: 'origin-top' };
+      case 'left': return { y: 0, x: 4, originClass: 'origin-right' };
+      case 'right': return { y: 0, x: -4, originClass: 'origin-left' };
+      default: return { y: -4, x: 0, originClass: 'origin-top' };
+    }
+  };
+
+  const animProps = getAnimationProps();
+
   return createPortal(
     <AnimatePresence>
       {open && (
         <motion.div
            ref={contentRef}
            id="dashkit-dropdown-portal"
-           initial={{ opacity: 0, scale: 0.95, y: -4 }}
-           animate={{ opacity: 1, scale: 1, y: 0 }}
-           exit={{ opacity: 0, scale: 0.95, y: -4 }}
-           transition={{ duration: 0.1, ease: "easeOut" }}
+           initial={{ opacity: 0, scale: 0.95, y: animProps.y, x: animProps.x }}
+           animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
+           exit={{ opacity: 0, scale: 0.95, y: animProps.y, x: animProps.x }}
+           transition={{ duration: 0.15, ease: "easeOut" }}
            style={style}
            className={cn(
-             "min-w-[12rem] bg-popover text-popover-fg border border-popover-border ds-rounded shadow-lg p-1 origin-top overflow-hidden",
+             "min-w-[12rem] bg-popover text-popover-fg border border-popover-border ds-rounded shadow-lg p-1 overflow-hidden",
+             animProps.originClass,
              className
            )}
         >

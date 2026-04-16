@@ -100,21 +100,13 @@ export function DatePicker({
                 }}
               >
                 <motion.div
-                  initial={{
-                    opacity: 0,
-                    y: position === 'bottom' ? -10 : 10,
-                    scale: 0.95
-                  }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{
-                    opacity: 0,
-                    y: position === 'bottom' ? -10 : 10,
-                    scale: 0.95
-                  }}
+                  initial={{ opacity: 0, scale: 0.95, y: position === 'top' ? 4 : -4 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, y: position === 'top' ? 4 : -4 }}
                   transition={{ duration: 0.15, ease: "easeOut" }}
                   role="dialog"
                   aria-label="Calendar"
-                  className={POPOVER_WRAPPER_CLASSES}
+                  className={cn(POPOVER_WRAPPER_CLASSES, position === 'top' ? 'origin-bottom' : 'origin-top')}
                 >
                   <div className={HEADER_CLASSES}>
                     <button

@@ -165,51 +165,57 @@ export function Combobox({
           </div>
         </div>
 
-        {isOpen && triggerRect && createPortal(
-          <motion.div
-            id="dashkit-combobox-portal"
-            role="listbox"
-            initial={{ opacity: 0, y: side === 'bottom' ? -10 : 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            style={{
-              position: 'fixed',
-              left: triggerRect.left,
-              width: triggerRect.width,
-              zIndex: 9999,
-              ...(side === 'bottom'
-                ? { top: triggerRect.bottom + 8 }
-                : { bottom: (window.innerHeight - triggerRect.top) + 8 }),
-            }}
-            className={POPOVER_CLASSES}
-          >
-            <div className={SCROLL_AREA_CLASSES}>
-              {filteredOptions.length === 0 ? (
-                <div className={EMPTY_STATE_CLASSES}>
-                  No matches found for "{query}"
+        {triggerRect && createPortal(
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div
+                id="dashkit-combobox-portal"
+                role="listbox"
+                initial={{ opacity: 0, scale: 0.95, y: side === 'top' ? 4 : -4 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: side === 'top' ? 4 : -4 }}
+                transition={{ duration: 0.15, ease: "easeOut" }}
+                style={{
+                  position: 'fixed',
+                  left: triggerRect.left,
+                  width: triggerRect.width,
+                  zIndex: 9999,
+                  ...(side === 'bottom'
+                    ? { top: triggerRect.bottom + 8 }
+                    : { bottom: (window.innerHeight - triggerRect.top) + 8 }),
+                }}
+                className={cn(POPOVER_CLASSES, side === 'top' ? 'origin-bottom' : 'origin-top')}
+              >
+                <div className={SCROLL_AREA_CLASSES}>
+                  {filteredOptions.length === 0 ? (
+                    <div className={EMPTY_STATE_CLASSES}>
+                      No matches found for "{query}"
+                    </div>
+                  ) : (
+                    filteredOptions.map((opt) => {
+                      const isSelected = isOptionSelected(opt);
+                      return (
+                        <button
+                          key={opt.value}
+                          type="button"
+                          onClick={() => handleSelect(opt)}
+                          className={cn(
+                            ITEM_CLASSES,
+                            isSelected ? ITEM_ACTIVE_CLASSES : ITEM_HOVER_CLASSES
+                          )}
+                        >
+                          <span className="truncate">{opt.label}</span>
+                          {isSelected && (
+                            <FiCheck className={CHECK_ICON_CLASSES} />
+                          )}
+                        </button>
+                      );
+                    })
+                  )}
                 </div>
-              ) : (
-                filteredOptions.map((opt) => {
-                  const isSelected = isOptionSelected(opt);
-                  return (
-                    <button
-                      key={opt.value}
-                      type="button"
-                      onClick={() => handleSelect(opt)}
-                      className={cn(
-                        ITEM_CLASSES,
-                        isSelected ? ITEM_ACTIVE_CLASSES : ITEM_HOVER_CLASSES
-                      )}
-                    >
-                      <span className="truncate">{opt.label}</span>
-                      {isSelected && (
-                        <FiCheck className={CHECK_ICON_CLASSES} />
-                      )}
-                    </button>
-                  );
-                })
-              )}
-            </div>
-          </motion.div>,
+              </motion.div>
+            )}
+          </AnimatePresence>,
           document.body
         )}
       </div>

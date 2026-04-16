@@ -175,11 +175,12 @@ export function PopoverContent({
 
   let top = 0;
   let left = 0;
+  let actualSide = side;
 
   if (side === 'bottom' || side === 'top') {
     const spaceBelow = window.innerHeight - triggerRect.bottom;
     const spaceAbove = triggerRect.top;
-    const actualSide = (side === 'bottom' && spaceBelow < popoverHeight && spaceAbove > spaceBelow) || (side === 'top' && spaceAbove < popoverHeight && spaceBelow > spaceAbove)
+    actualSide = (side === 'bottom' && spaceBelow < popoverHeight && spaceAbove > spaceBelow) || (side === 'top' && spaceAbove < popoverHeight && spaceBelow > spaceAbove)
       ? (side === 'bottom' ? 'top' : 'bottom')
       : side;
 
@@ -191,7 +192,7 @@ export function PopoverContent({
   } else {
     const spaceRight = window.innerWidth - triggerRect.right;
     const spaceLeft = triggerRect.left;
-    const actualSide = (side === 'right' && spaceRight < popoverWidth && spaceLeft > spaceRight) || (side === 'left' && spaceLeft < popoverWidth && spaceRight > spaceLeft)
+    actualSide = (side === 'right' && spaceRight < popoverWidth && spaceLeft > spaceRight) || (side === 'left' && spaceLeft < popoverWidth && spaceRight > spaceLeft)
       ? (side === 'right' ? 'left' : 'right')
       : side;
 
@@ -212,21 +213,34 @@ export function PopoverContent({
     zIndex: 9999,
   };
 
+  const getAnimationProps = () => {
+    switch (actualSide) {
+      case 'top': return { y: 4, x: 0, originClass: 'origin-bottom' };
+      case 'bottom': return { y: -4, x: 0, originClass: 'origin-top' };
+      case 'left': return { y: 0, x: 4, originClass: 'origin-right' };
+      case 'right': return { y: 0, x: -4, originClass: 'origin-left' };
+      default: return { y: -4, x: 0, originClass: 'origin-top' };
+    }
+  };
+
+  const animProps = getAnimationProps();
+
   return createPortal(
     <AnimatePresence>
       {open && (
         <motion.div
            ref={contentRef}
            id="dashkit-popover-portal"
-           initial={{ opacity: 0, scale: 0.95, y: -4 }}
-           animate={{ opacity: 1, scale: 1, y: 0 }}
-           exit={{ opacity: 0, scale: 0.95, y: -4 }}
+           initial={{ opacity: 0, scale: 0.95, y: animProps.y, x: animProps.x }}
+           animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
+           exit={{ opacity: 0, scale: 0.95, y: animProps.y, x: animProps.x }}
            onMouseEnter={triggerMode === 'hover' ? onMouseEnter : undefined}
            onMouseLeave={triggerMode === 'hover' ? onMouseLeave : undefined}
            transition={{ duration: 0.15, ease: "easeOut" }}
            style={style}
            className={cn(
-             "w-72 max-w-[calc(100vw-2rem)] bg-popover text-popover-fg border border-popover-border ds-rounded shadow-xl p-4 origin-top overflow-hidden",
+             "w-72 max-w-[calc(100vw-2rem)] bg-popover text-popover-fg border border-popover-border ds-rounded shadow-xl p-4 overflow-hidden",
+             animProps.originClass,
              className
            )}
         >

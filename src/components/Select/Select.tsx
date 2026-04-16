@@ -4,6 +4,7 @@ import { FiChevronDown, FiCheck } from 'react-icons/fi';
 import clsx, { type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { useSelect } from './useSelect';
+import { motion, AnimatePresence } from 'framer-motion';
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -79,50 +80,59 @@ export const Select = ({
           )} />
         </button>
 
-        {isOpen && triggerRect && createPortal(
-          <div
-            id="dashkit-select-portal"
-            role="listbox"
-            style={{
-              position: 'fixed',
-              ...(side === 'bottom'
-                ? { top: triggerRect.bottom + 8 }
-                : { bottom: (window.innerHeight - triggerRect.top) + 8 }),
-              left: triggerRect.left,
-              width: triggerRect.width,
-              zIndex: 9999,
-            }}
-            className={cn(
-              "p-1 bg-popover text-popover-fg border border-popover-border ds-rounded shadow-lg overflow-hidden"
+        {triggerRect && createPortal(
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div
+                id="dashkit-select-portal"
+                role="listbox"
+                initial={{ opacity: 0, scale: 0.95, y: side === 'top' ? 4 : -4 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: side === 'top' ? 4 : -4 }}
+                transition={{ duration: 0.15, ease: "easeOut" }}
+                style={{
+                  position: 'fixed',
+                  ...(side === 'bottom'
+                    ? { top: triggerRect.bottom + 8 }
+                    : { bottom: (window.innerHeight - triggerRect.top) + 8 }),
+                  left: triggerRect.left,
+                  width: triggerRect.width,
+                  zIndex: 9999,
+                }}
+                className={cn(
+                  "p-1 bg-popover text-popover-fg border border-popover-border ds-rounded shadow-lg overflow-hidden",
+                  side === 'top' ? 'origin-bottom' : 'origin-top'
+                )}
+              >
+                <div className="max-h-60 overflow-y-auto flex flex-col gap-0.5">
+                  {options.length === 0 ? (
+                    <div className="px-4 py-2 text-sm text-ds-400 text-center">No options available</div>
+                  ) : (
+                    options.map((opt) => (
+                      <button
+                        key={opt.value}
+                        role="option"
+                        aria-selected={opt.value === value}
+                        onClick={() => {
+                          onChange?.(opt.value);
+                          setIsOpen(false);
+                        }}
+                        className={cn(
+                          "w-full px-4 py-2.5 text-sm text-left flex items-center justify-between duration-200 transition-colors ds-rounded",
+                          opt.value === value ? "bg-popover-item-selected text-popover-item-selected-fg font-semibold" : "text-popover-fg hover:bg-popover-item"
+                        )}
+                      >
+                        <span className="truncate">{opt.label}</span>
+                        {opt.value === value && (
+                          <FiCheck className="size-4 text-floating-item-selected-fg dark:text-floating-item-dark-selected-fg shrink-0" />
+                        )}
+                      </button>
+                    ))
+                  )}
+                </div>
+              </motion.div>
             )}
-          >
-            <div className="max-h-60 overflow-y-auto flex flex-col gap-0.5">
-              {options.length === 0 ? (
-                <div className="px-4 py-2 text-sm text-ds-400 text-center">No options available</div>
-              ) : (
-                options.map((opt) => (
-                  <button
-                    key={opt.value}
-                    role="option"
-                    aria-selected={opt.value === value}
-                    onClick={() => {
-                      onChange?.(opt.value);
-                      setIsOpen(false);
-                    }}
-                    className={cn(
-                      "w-full px-4 py-2.5 text-sm text-left flex items-center justify-between duration-200 transition-colors ds-rounded",
-                      opt.value === value ? "bg-popover-item-selected text-popover-item-selected-fg font-semibold" : "text-popover-fg hover:bg-popover-item"
-                    )}
-                  >
-                    <span className="truncate">{opt.label}</span>
-                    {opt.value === value && (
-                      <FiCheck className="size-4 text-floating-item-selected-fg dark:text-floating-item-dark-selected-fg shrink-0" />
-                    )}
-                  </button>
-                ))
-              )}
-            </div>
-          </div>,
+          </AnimatePresence>,
           document.body
         )}
       </div>
