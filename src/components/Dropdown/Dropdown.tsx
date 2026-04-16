@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createPortal } from 'react-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+// framer-motion removed
 import { FiCheck } from 'react-icons/fi';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -160,29 +160,21 @@ export function DropdownContent({
 
   const animProps = getAnimationProps();
 
-  return createPortal(
-    <AnimatePresence>
-      {open && (
-        <motion.div
-           ref={contentRef}
-           id="dashkit-dropdown-portal"
-           initial={{ opacity: 0, scale: 0.95, y: animProps.y, x: animProps.x }}
-           animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
-           exit={{ opacity: 0, scale: 0.95, y: animProps.y, x: animProps.x }}
-           transition={{ duration: 0.15, ease: "easeOut" }}
-           style={style}
-           className={cn(
-             "min-w-[12rem] bg-popover text-popover-fg border border-popover-border ds-rounded shadow-lg p-1 overflow-hidden",
-             animProps.originClass,
-             className
-           )}
-        >
-          {children}
-        </motion.div>
+  return open && triggerRect ? createPortal(
+    <div
+      ref={contentRef}
+      id="dashkit-dropdown-portal"
+      style={style}
+      className={cn(
+        "min-w-[12rem] bg-popover text-popover-fg border border-popover-border ds-rounded shadow-lg p-1 overflow-hidden",
+        animProps.originClass,
+        className
       )}
-    </AnimatePresence>,
+    >
+      {children}
+    </div>,
     document.body
-  );
+  ) : null;
 }
 
 interface DropdownItemProps {
