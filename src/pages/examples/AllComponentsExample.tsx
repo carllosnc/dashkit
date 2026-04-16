@@ -431,17 +431,14 @@ export const AllComponentsExample = () => {
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Stats Cards</CardTitle>
-            <CardDescription>Comprehensive cards for highlighting key metrics and trends.</CardDescription>
-          </CardHeader>
-          <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
-             <StatsCard 
-              title="Total Revenue" 
-              value={showcaseMetrics.revenue} 
-              prefix="$" 
-              trend={12.5} 
+        <div>
+          <span className="text-lg mt-[20px] mb-[10px] block"> Stats card </span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <StatsCard
+              title="Total Revenue"
+              value={showcaseMetrics.revenue}
+              prefix="$"
+              trend={12.5}
               trendLabel="vs last month"
               status="success"
               icon={<HiOutlineCurrencyDollar className="size-6" />}
@@ -449,10 +446,10 @@ export const AllComponentsExample = () => {
                 data: [40, 35, 55, 45, 60, 75, 70, 90]
               }}
             />
-            <StatsCard 
-              title="Active Users" 
-              value={showcaseMetrics.users} 
-              trend={-2.4} 
+            <StatsCard
+              title="Active Users"
+              value={showcaseMetrics.users}
+              trend={-2.4}
               trendLabel="vs yesterday"
               status="danger"
               icon={<HiOutlineUsers className="size-6" />}
@@ -460,10 +457,10 @@ export const AllComponentsExample = () => {
                 data: [80, 85, 75, 70, 65, 60, 55, 58]
               }}
             />
-            <StatsCard 
-              title="Conversion Rate" 
-              value={showcaseMetrics.conversion} 
-              suffix="%" 
+            <StatsCard
+              title="Conversion Rate"
+              value={showcaseMetrics.conversion}
+              suffix="%"
               precision={1}
               status="info"
               icon={<HiOutlineArrowPathRoundedSquare className="size-6" />}
@@ -472,10 +469,10 @@ export const AllComponentsExample = () => {
                 color: "var(--color-ds-info-500)"
               }}
             />
-            <StatsCard 
-              title="System Uptime" 
-              value={showcaseMetrics.sla} 
-              suffix="%" 
+            <StatsCard
+              title="System Uptime"
+              value={showcaseMetrics.sla}
+              suffix="%"
               precision={2}
               status="success"
               icon={<HiOutlineShieldCheck className="size-6" />}
@@ -484,8 +481,8 @@ export const AllComponentsExample = () => {
                 data: [99.8, 99.9, 99.85, 99.95, 99.9, 99.99, 99.9, 99.95]
               }}
             />
-          </CardContent>
-        </Card>
+          </div>
+        </div>
 
         <Card>
           <CardHeader>
