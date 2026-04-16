@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitForElementToBeRemoved } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { DatePicker } from './DatePicker';
 import { describe, it, expect, vi } from 'vitest';
 
@@ -40,7 +40,9 @@ describe('DatePicker', () => {
     expect(onChange.mock.calls[0][0].getDate()).toBe(15);
     
     // Calendar should be closed
-    await waitForElementToBeRemoved(() => screen.queryByText('Jump to today'));
+    await waitFor(() => {
+      expect(screen.queryByText('Jump to today')).not.toBeInTheDocument();
+    });
   });
 
   it('closes when window scrolls', async () => {
@@ -50,9 +52,12 @@ describe('DatePicker', () => {
     
     expect(await screen.findByText('Jump to today')).toBeInTheDocument();
     
+    
     fireEvent.scroll(window);
     
-    await waitForElementToBeRemoved(() => screen.queryByText('Jump to today'));
+    await waitFor(() => {
+      expect(screen.queryByText('Jump to today')).not.toBeInTheDocument();
+    });
   });
 
   it('closes when clicking outside', async () => {
@@ -67,8 +72,11 @@ describe('DatePicker', () => {
     
     expect(await screen.findByText('Jump to today')).toBeInTheDocument();
     
+    
     fireEvent.mouseDown(screen.getByTestId('outside'));
     
-    await waitForElementToBeRemoved(() => screen.queryByText('Jump to today'));
+    await waitFor(() => {
+      expect(screen.queryByText('Jump to today')).not.toBeInTheDocument();
+    });
   });
 });
