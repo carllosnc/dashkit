@@ -15,7 +15,7 @@ export interface DockItemProps {
 const ITEM_BASE = "group relative flex size-10 items-center justify-center rounded-full bg-white text-ds-800 dark:bg-ds-950 dark:text-ds-200 shadow-sm shrink-0 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-ds-400";
 const ITEM_ICON = "flex size-full items-center justify-center [&>svg]:size-5 text-current leading-none";
 
-const TOOLTIP_BASE = "absolute pointer-events-none bg-ds-950 px-2 py-1 text-[10px] font-bold text-ds-0 dark:bg-ds-0 dark:text-ds-950 border border-ds-800 dark:border-ds-200 rounded-md whitespace-nowrap z-[100]";
+const TOOLTIP_BASE = "absolute pointer-events-none bg-ds-950 px-2 py-1 text-[10px] font-bold text-ds-0 dark:bg-ds-0 dark:text-ds-950 border border-ds-800 dark:border-ds-200 whitespace-nowrap z-[100]";
 const TOOLTIP_ARROW = "absolute size-1.5 rotate-45 bg-ds-950 dark:bg-ds-0 border-ds-800 dark:border-ds-200";
 
 const getTooltipVariants = (position: string) => {
