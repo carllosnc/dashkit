@@ -1,19 +1,19 @@
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { AnimateNumber } from '../../components/AnimateNumber';
-import { cn } from '../../utils/cn';
+import { AnimateNumber } from '../../components/dashkit/AnimateNumber';
+import { cn } from '../../components/dashkit/utils/cn';
 import {
   FiGrid, FiUsers, FiSettings, FiSearch, FiBell,
   FiMoreVertical, FiExternalLink,
   FiZap, FiPieChart, FiTrendingUp, FiCheckCircle, FiClock, FiMenu
 } from 'react-icons/fi';
-import { Navbar, NavbarBrand, NavbarLinks, NavbarActions } from '../../components/Navbar/Navbar';
-import { Button } from '../../components/Button/Button';
-import { IconButton } from '../../components/IconButton/IconButton';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/Card';
-import { Badge, FloatBadge } from '../../components/Badge';
-import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbSeparator } from '../../components/Breadcrumb';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '../../components/Tabs/Tabs';
+import { Navbar, NavbarBrand, NavbarLinks, NavbarActions } from '../../components/dashkit/Navbar/Navbar';
+import { Button } from '../../components/dashkit/Button/Button';
+import { IconButton } from '../../components/dashkit/IconButton/IconButton';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/dashkit/Card';
+import { Badge, FloatBadge } from '../../components/dashkit/Badge';
+import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbSeparator } from '../../components/dashkit/Breadcrumb';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '../../components/dashkit/Tabs/Tabs';
 import {
   Table,
   TableHeader,
@@ -22,24 +22,24 @@ import {
   TableHead,
   TableCell,
   TableCaption
-} from '../../components/Table/Table';
-import { Avatar, AvatarGroup } from '../../components/Avatar';
-import { Select } from '../../components/Select/Select';
-import { Input } from '../../components/Input/Input';
-import { AreaChart } from '../../components/AreaChart/AreaChart';
-import { BarChart } from '../../components/BarChart/BarChart';
-import { PieChart } from '../../components/PieChart/PieChart';
-import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem } from '../../components/Dropdown/Dropdown';
-import { Chip } from '../../components/Chip/Chip';
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../../components/Accordion';
-import { Switch } from '../../components/Switch/Switch';
-import { Modal, ModalHeader, ModalContent, ModalFooter } from '../../components/Modal/Modal';
-import { Drawer, DrawerHeader } from '../../components/Drawer/Drawer';
-import { Dock, DockItem } from '../../components/Dock/Dock';
-import { toast } from '../../components/Toast/useToast';
+} from '../../components/dashkit/Table/Table';
+import { Avatar, AvatarGroup } from '../../components/dashkit/Avatar';
+import { Select } from '../../components/dashkit/Select/Select';
+import { Input } from '../../components/dashkit/Input/Input';
+import { AreaChart } from '../../components/dashkit/AreaChart/AreaChart';
+import { BarChart } from '../../components/dashkit/BarChart/BarChart';
+import { PieChart } from '../../components/dashkit/PieChart/PieChart';
+import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem } from '../../components/dashkit/Dropdown/Dropdown';
+import { Chip } from '../../components/dashkit/Chip/Chip';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../../components/dashkit/Accordion';
+import { Switch } from '../../components/dashkit/Switch/Switch';
+import { Modal, ModalHeader, ModalContent, ModalFooter } from '../../components/dashkit/Modal/Modal';
+import { Drawer, DrawerHeader } from '../../components/dashkit/Drawer/Drawer';
+import { Dock, DockItem } from '../../components/dashkit/Dock/Dock';
+import { toast } from '../../components/dashkit/Toast/useToast';
 import { ThemeToggle } from '../../partials/ThemeToggle';
 import { Footer } from '../../partials/Footer';
-import { Divider } from '../../components/Divider/Divider';
+import { Divider } from '../../components/dashkit/Divider/Divider';
 
 const PERFORMANCE_DATA = [
   { label: 'Mon', mobile: 45, desktop: 30 },

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { AnimateNumber } from '../../components/AnimateNumber';
+import { AnimateNumber } from '../../components/dashkit/AnimateNumber';
 import {
   FiGrid, FiUsers, FiSettings,
   FiMoreVertical, FiExternalLink,
@@ -9,15 +9,15 @@ import {
   FiSearch, FiBell, FiDatabase, FiDollarSign, FiCreditCard,
   FiActivity, FiPieChart, FiShield, FiBriefcase, FiArchive, FiCommand, FiPlus, FiHelpCircle, FiHome, FiMenu
 } from 'react-icons/fi';
-import { Sidebar, SidebarHeader, SidebarFooter, SidebarSection, SidebarItem, SidebarHeaderOpen, SidebarHeaderClose, SidebarFooterOpen } from '../../components/Sidebar/Sidebar';
-import { FloatActionMenu } from '../../components/FloatActionMenu/FloatActionMenu';
-import { Dock, DockItem } from '../../components/Dock/Dock';
-import { cn } from '../../utils/cn';
-import { Button } from '../../components/Button/Button';
-import { IconButton } from '../../components/IconButton/IconButton';
-import { Input } from '../../components/Input/Input';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/Card';
-import { Badge, FloatBadge } from '../../components/Badge';
+import { Sidebar, SidebarHeader, SidebarFooter, SidebarSection, SidebarItem, SidebarHeaderOpen, SidebarHeaderClose, SidebarFooterOpen } from '../../components/dashkit/Sidebar/Sidebar';
+import { FloatActionMenu } from '../../components/dashkit/FloatActionMenu/FloatActionMenu';
+import { Dock, DockItem } from '../../components/dashkit/Dock/Dock';
+import { cn } from '../../components/dashkit/utils/cn';
+import { Button } from '../../components/dashkit/Button/Button';
+import { IconButton } from '../../components/dashkit/IconButton/IconButton';
+import { Input } from '../../components/dashkit/Input/Input';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/dashkit/Card';
+import { Badge, FloatBadge } from '../../components/dashkit/Badge';
 import {
   Table,
   TableHeader,
@@ -25,13 +25,13 @@ import {
   TableRow,
   TableHead,
   TableCell,
-} from '../../components/Table/Table';
-import { Avatar, AvatarGroup } from '../../components/Avatar';
-import { AreaChart } from '../../components/AreaChart/AreaChart';
-import { BarChart } from '../../components/BarChart/BarChart';
-import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem, DropdownSeparator } from '../../components/Dropdown/Dropdown';
-import { Navbar, NavbarBrand, NavbarActions } from '../../components/Navbar/Navbar';
-import { ProgressBar } from '../../components/ProgressBar/ProgressBar';
+} from '../../components/dashkit/Table/Table';
+import { Avatar, AvatarGroup } from '../../components/dashkit/Avatar';
+import { AreaChart } from '../../components/dashkit/AreaChart/AreaChart';
+import { BarChart } from '../../components/dashkit/BarChart/BarChart';
+import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem, DropdownSeparator } from '../../components/dashkit/Dropdown/Dropdown';
+import { Navbar, NavbarBrand, NavbarActions } from '../../components/dashkit/Navbar/Navbar';
+import { ProgressBar } from '../../components/dashkit/ProgressBar/ProgressBar';
 import { ThemeToggle } from '../../partials/ThemeToggle';
 
 const PROJECT_HEALTH_DATA = [

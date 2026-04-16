@@ -1,5 +1,5 @@
-import { Badge } from './components/Badge'
-import { Button } from './components/Button/Button'
+import { Badge } from './components/dashkit/Badge/Badge'
+import { Button } from './components/dashkit/Button/Button'
 import { Header } from './partials/Header'
 import { FiArrowRight, FiGithub } from 'react-icons/fi'
 import { SiReact, SiTailwindcss, SiFramer, SiTypescript } from 'react-icons/si'
@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { Footer } from './partials/Footer'
 import { HomeExamples } from './partials/HomeExamples'
-import { Divider } from './components/Divider/Divider'
+import { Divider } from './components/dashkit/Divider/Divider'
 import { CliEmulator } from './partials/CliEmulator'
 
 const TITLE = "Dashkit | Dashboard components";

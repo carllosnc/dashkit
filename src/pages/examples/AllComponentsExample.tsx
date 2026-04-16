@@ -2,35 +2,35 @@ import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Header } from '../../partials/Header';
 import { Footer } from '../../partials/Footer';
-import { Button } from '../../components/Button/Button';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/Card';
-import { IconButton } from '../../components/IconButton/IconButton';
-import { Chip } from '../../components/Chip/Chip';
-import { Divider } from '../../components/Divider/Divider';
-import { Badge, FloatBadge } from '../../components/Badge';
-import { AnimateNumber } from '../../components/AnimateNumber';
-import { CircularProgress } from '../../components/CircularProgress/CircularProgress';
-import { Avatar, AvatarGroup } from '../../components/Avatar';
-import { Input } from '../../components/Input/Input';
-import { Checkbox } from '../../components/Checkbox/Checkbox';
-import { Radio } from '../../components/Radio/Radio';
-import { Switch } from '../../components/Switch/Switch';
-import { Textarea } from '../../components/Textarea/Textarea';
-import { ButtonGroup } from '../../components/ButtonGroup/ButtonGroup';
-import { Select } from '../../components/Select/Select';
-import { Combobox } from '../../components/Combobox/Combobox';
-import { DatePicker } from '../../components/DatePicker/DatePicker';
-import { DateField } from '../../components/DateField/DateField';
-import { Spinner } from '../../components/Spinner/Spinner';
-import { ColorPicker } from '../../components/ColorPicker/ColorPicker';
-import { Skeleton } from '../../components/Skeleton/Skeleton';
-import { Backdrop } from '../../components/Backdrop/Backdrop';
-import { Modal, ModalHeader, ModalContent, ModalFooter } from '../../components/Modal/Modal';
-import { Drawer, DrawerHeader, DrawerContent, DrawerFooter } from '../../components/Drawer/Drawer';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '../../components/Tabs/Tabs';
-import { OtpInput } from '../../components/OtpInput/OtpInput';
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../../components/Accordion';
-import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbSeparator } from '../../components/Breadcrumb';
+import { Button } from '../../components/dashkit/Button/Button';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/dashkit/Card';
+import { IconButton } from '../../components/dashkit/IconButton/IconButton';
+import { Chip } from '../../components/dashkit/Chip/Chip';
+import { Divider } from '../../components/dashkit/Divider/Divider';
+import { Badge, FloatBadge } from '../../components/dashkit/Badge';
+import { AnimateNumber } from '../../components/dashkit/AnimateNumber';
+import { CircularProgress } from '../../components/dashkit/CircularProgress/CircularProgress';
+import { Avatar, AvatarGroup } from '../../components/dashkit/Avatar';
+import { Input } from '../../components/dashkit/Input/Input';
+import { Checkbox } from '../../components/dashkit/Checkbox/Checkbox';
+import { Radio } from '../../components/dashkit/Radio/Radio';
+import { Switch } from '../../components/dashkit/Switch/Switch';
+import { Textarea } from '../../components/dashkit/Textarea/Textarea';
+import { ButtonGroup } from '../../components/dashkit/ButtonGroup/ButtonGroup';
+import { Select } from '../../components/dashkit/Select/Select';
+import { Combobox } from '../../components/dashkit/Combobox/Combobox';
+import { DatePicker } from '../../components/dashkit/DatePicker/DatePicker';
+import { DateField } from '../../components/dashkit/DateField/DateField';
+import { Spinner } from '../../components/dashkit/Spinner/Spinner';
+import { ColorPicker } from '../../components/dashkit/ColorPicker/ColorPicker';
+import { Skeleton } from '../../components/dashkit/Skeleton/Skeleton';
+import { Backdrop } from '../../components/dashkit/Backdrop/Backdrop';
+import { Modal, ModalHeader, ModalContent, ModalFooter } from '../../components/dashkit/Modal/Modal';
+import { Drawer, DrawerHeader, DrawerContent, DrawerFooter } from '../../components/dashkit/Drawer/Drawer';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '../../components/dashkit/Tabs/Tabs';
+import { OtpInput } from '../../components/dashkit/OtpInput/OtpInput';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../../components/dashkit/Accordion';
+import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbSeparator } from '../../components/dashkit/Breadcrumb';
 import {
   Dropdown,
   DropdownTrigger,
@@ -38,22 +38,22 @@ import {
   DropdownItem,
   DropdownLabel,
   DropdownSeparator
-} from '../../components/Dropdown/Dropdown';
+} from '../../components/dashkit/Dropdown/Dropdown';
 import {
   Popover,
   PopoverTrigger,
   PopoverContent
-} from '../../components/Popover/Popover';
-import { useToast } from '../../components/Toast/useToast';
-import { AreaChart } from '../../components/AreaChart/AreaChart';
-import { LineChart } from '../../components/LineChart/LineChart';
-import { BarChart } from '../../components/BarChart/BarChart';
-import { PieChart } from '../../components/PieChart/PieChart';
-import { ImageExpander } from '../../components/ImageExpander/ImageExpander';
-import { ProgressBar } from '../../components/ProgressBar/ProgressBar';
-import { Pagination } from '../../components/Pagination';
-import { FloatActionMenu } from '../../components/FloatActionMenu/FloatActionMenu';
-import { Dock, DockItem } from '../../components/Dock/Dock';
+} from '../../components/dashkit/Popover/Popover';
+import { useToast } from '../../components/dashkit/Toast/useToast';
+import { AreaChart } from '../../components/dashkit/AreaChart/AreaChart';
+import { LineChart } from '../../components/dashkit/LineChart/LineChart';
+import { BarChart } from '../../components/dashkit/BarChart/BarChart';
+import { PieChart } from '../../components/dashkit/PieChart/PieChart';
+import { ImageExpander } from '../../components/dashkit/ImageExpander/ImageExpander';
+import { ProgressBar } from '../../components/dashkit/ProgressBar/ProgressBar';
+import { Pagination } from '../../components/dashkit/Pagination';
+import { FloatActionMenu } from '../../components/dashkit/FloatActionMenu/FloatActionMenu';
+import { Dock, DockItem } from '../../components/dashkit/Dock/Dock';
 import {
   Table,
   TableHeader,
@@ -62,9 +62,9 @@ import {
   TableHead,
   TableCell,
   TableCaption
-} from '../../components/Table/Table';
-import { SystemLogs } from '../../components/SystemLogs/SystemLogs';
-import { Stepper, Step } from '../../components/Stepper';
+} from '../../components/dashkit/Table/Table';
+import { SystemLogs } from '../../components/dashkit/SystemLogs/SystemLogs';
+import { Stepper, Step } from '../../components/dashkit/Stepper';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -73,8 +73,8 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   NavigationMenuViewport
-} from '../../components/NavigationMenu/NavigationMenu';
-import { ScrollArea } from '../../components/ScrollArea/ScrollArea';
+} from '../../components/dashkit/NavigationMenu/NavigationMenu';
+import { ScrollArea } from '../../components/dashkit/ScrollArea/ScrollArea';
 import {
   FiPlus,
   FiTrash2,
@@ -104,7 +104,7 @@ import {
   HiOutlineArrowPathRoundedSquare,
   HiOutlineShieldCheck
 } from 'react-icons/hi2';
-import { StatsCard } from '../../components/StatsCard/StatsCard';
+import { StatsCard } from '../../components/dashkit/StatsCard/StatsCard';
 
 export const AllComponentsExample = () => {
   const [selected, setSelected] = useState('daily');

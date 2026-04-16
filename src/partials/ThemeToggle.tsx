@@ -1,5 +1,5 @@
 import { useTheme } from './ThemeContext';
-import { IconButton } from '../components/IconButton/IconButton';
+import { IconButton } from '../components/dashkit/IconButton/IconButton';
 import { FiSun, FiMoon } from 'react-icons/fi';
 
 interface ThemeToggleProps {

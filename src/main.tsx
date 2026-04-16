@@ -72,7 +72,7 @@ import { DocsLayout } from './layouts/DocsLayout.tsx'
 import { ChartsLayout } from './layouts/ChartsLayout.tsx'
 import { MdxWrapper } from './layouts/MdxWrapper.tsx'
 import { ThemeProvider } from './partials/ThemeProvider'
-import { ToastProvider } from './components/Toast/Toast.tsx'
+import { ToastProvider } from './components/dashkit/Toast/Toast.tsx'
 import { HelmetProvider } from 'react-helmet-async'
 
 createRoot(document.getElementById('root')!).render(

@@ -7,7 +7,7 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Header } from '../partials/Header';
 import { Footer } from '../partials/Footer';
-import { Drawer, DrawerHeader } from '../components/Drawer/Drawer';
+import { Drawer, DrawerHeader } from '../components/dashkit/Drawer/Drawer';
 import clsx from 'clsx';
 
 interface ChartNavLink {

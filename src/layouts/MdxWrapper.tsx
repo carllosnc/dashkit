@@ -7,40 +7,40 @@ import {
   DropdownLabel,
   DropdownItem,
   DropdownSeparator
-} from '../components/Dropdown/Dropdown';
-import { Backdrop } from '../components/Backdrop/Backdrop';
-import { Button } from '../components/Button/Button';
-import { DatePicker } from '../components/DatePicker/DatePicker';
-import { ButtonGroup } from '../components/ButtonGroup/ButtonGroup';
-import { Checkbox } from '../components/Checkbox/Checkbox';
-import { Input } from '../components/Input/Input';
-import { Chip } from '../components/Chip/Chip';
-import { Combobox } from '../components/Combobox/Combobox';
-import { Divider } from '../components/Divider/Divider';
-import { Drawer } from '../components/Drawer/Drawer';
-import { Modal } from '../components/Modal/Modal';
-import { Radio } from '../components/Radio/Radio';
-import { Select } from '../components/Select/Select';
-import { Switch } from '../components/Switch/Switch';
-import { Textarea } from '../components/Textarea/Textarea';
-import { Surface } from '../components/Surface/Surface';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/Tabs/Tabs';
-import { OtpInput } from '../components/OtpInput/OtpInput';
-import { Sidebar, SidebarHeader, SidebarFooter, SidebarSection, SidebarItem } from '../components/Sidebar/Sidebar';
-import { ImageExpander } from '../components/ImageExpander/ImageExpander';
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../components/Accordion';
-import { Badge, FloatBadge } from '../components/Badge';
-import { Skeleton } from '../components/Skeleton/Skeleton';
-import { Spinner } from '../components/Spinner/Spinner';
-import { Navbar } from '../components/Navbar/Navbar';
-import { IconButton } from '../components/IconButton/IconButton';
+} from '../components/dashkit/Dropdown/Dropdown';
+import { Backdrop } from '../components/dashkit/Backdrop/Backdrop';
+import { Button } from '../components/dashkit/Button/Button';
+import { DatePicker } from '../components/dashkit/DatePicker/DatePicker';
+import { ButtonGroup } from '../components/dashkit/ButtonGroup/ButtonGroup';
+import { Checkbox } from '../components/dashkit/Checkbox/Checkbox';
+import { Input } from '../components/dashkit/Input/Input';
+import { Chip } from '../components/dashkit/Chip/Chip';
+import { Combobox } from '../components/dashkit/Combobox/Combobox';
+import { Divider } from '../components/dashkit/Divider/Divider';
+import { Drawer } from '../components/dashkit/Drawer/Drawer';
+import { Modal } from '../components/dashkit/Modal/Modal';
+import { Radio } from '../components/dashkit/Radio/Radio';
+import { Select } from '../components/dashkit/Select/Select';
+import { Switch } from '../components/dashkit/Switch/Switch';
+import { Textarea } from '../components/dashkit/Textarea/Textarea';
+import { Surface } from '../components/dashkit/Surface/Surface';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/dashkit/Tabs/Tabs';
+import { OtpInput } from '../components/dashkit/OtpInput/OtpInput';
+import { Sidebar, SidebarHeader, SidebarFooter, SidebarSection, SidebarItem } from '../components/dashkit/Sidebar/Sidebar';
+import { ImageExpander } from '../components/dashkit/ImageExpander/ImageExpander';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../components/dashkit/Accordion';
+import { Badge, FloatBadge } from '../components/dashkit/Badge';
+import { Skeleton } from '../components/dashkit/Skeleton/Skeleton';
+import { Spinner } from '../components/dashkit/Spinner/Spinner';
+import { Navbar } from '../components/dashkit/Navbar/Navbar';
+import { IconButton } from '../components/dashkit/IconButton/IconButton';
 import {
   Breadcrumb,
   BreadcrumbList,
   BreadcrumbItem,
   BreadcrumbSeparator,
   BreadcrumbEllipsis
-} from '../components/Breadcrumb';
+} from '../components/dashkit/Breadcrumb';
 import {
   Card,
   CardHeader,
@@ -48,7 +48,7 @@ import {
   CardDescription,
   CardContent,
   CardFooter
-} from '../components/Card';
+} from '../components/dashkit/Card';
 import {
   Table,
   TableHeader,
@@ -58,17 +58,17 @@ import {
   TableHead,
   TableCell,
   TableCaption
-} from '../components/Table/Table';
-import { Avatar, AvatarGroup } from '../components/Avatar';
+} from '../components/dashkit/Table/Table';
+import { Avatar, AvatarGroup } from '../components/dashkit/Avatar';
 import { FiDownload, FiArrowRight, FiCopy, FiCheck, FiSearch, FiLock, FiUser, FiSettings, FiActivity, FiCheckCircle, FiClock, FiMail, FiShield, FiZap, FiBell, FiMessageSquare, FiShoppingCart, FiHome, FiMoreVertical } from 'react-icons/fi';
 import { PropertyDoc } from '../partials/PropertyDoc';
-import { ProgressBar } from '../components/ProgressBar/ProgressBar';
-import { Popover, PopoverTrigger, PopoverContent } from '../components/Popover/Popover';
-import { AnimateNumber } from '../components/AnimateNumber';
-import { CircularProgress } from '../components/CircularProgress/CircularProgress';
-import { SystemLogs } from '../components/SystemLogs/SystemLogs';
-import { DateField } from '../components/DateField/DateField';
-import { ColorPicker } from '../components/ColorPicker/ColorPicker';
+import { ProgressBar } from '../components/dashkit/ProgressBar/ProgressBar';
+import { Popover, PopoverTrigger, PopoverContent } from '../components/dashkit/Popover/Popover';
+import { AnimateNumber } from '../components/dashkit/AnimateNumber';
+import { CircularProgress } from '../components/dashkit/CircularProgress/CircularProgress';
+import { SystemLogs } from '../components/dashkit/SystemLogs/SystemLogs';
+import { DateField } from '../components/dashkit/DateField/DateField';
+import { ColorPicker } from '../components/dashkit/ColorPicker/ColorPicker';
 import {
   NavigationMenu,
   NavigationMenuList,
@@ -77,8 +77,8 @@ import {
   NavigationMenuContent,
   NavigationMenuLink,
   NavigationMenuViewport
-} from '../components/NavigationMenu/NavigationMenu';
-import { StatsCard } from '../components/StatsCard/StatsCard';
+} from '../components/dashkit/NavigationMenu/NavigationMenu';
+import { StatsCard } from '../components/dashkit/StatsCard/StatsCard';
 import { HiOutlineChartBarSquare, HiOutlineTicket } from 'react-icons/hi2';
 
 
