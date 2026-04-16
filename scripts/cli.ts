@@ -217,7 +217,11 @@ async function handleInit() {
       message: 'Where would you like to store your components?',
       initial: defaults.components
     });
-    const componentsDir = await componentsDirPrompt.run();
+    let componentsDir = await componentsDirPrompt.run();
+
+    if (!componentsDir.replace(/\\/g, '/').split('/').pop()?.includes('dashkit')) {
+      componentsDir = path.join(componentsDir, 'dashkit').replace(/\\/g, '/');
+    }
 
     const cssDirPrompt = new Input({
       name: 'cssDir',
@@ -240,6 +244,18 @@ async function handleInit() {
     const targetPath = path.resolve(process.cwd(), cssDir, 'dashkit.css');
     const sourcePath = path.resolve(projectRoot, 'src', 'dashkit.css');
     await installDashkitCss(targetPath, sourcePath);
+
+    // Create dashkit and utils folders
+    const fullComponentsDir = path.resolve(process.cwd(), componentsDir);
+    const utilsDir = path.join(fullComponentsDir, 'utils');
+    await fs.ensureDir(utilsDir);
+
+    // Default to copying cn.ts utility
+    const targetCnPath = path.join(utilsDir, 'cn.ts');
+    const sourceCnPath = path.resolve(projectRoot, 'src', 'components', 'dashkit', 'utils', 'cn.ts');
+    if (!(await fs.pathExists(targetCnPath)) && (await fs.pathExists(sourceCnPath))) {
+      await fs.copy(sourceCnPath, targetCnPath);
+    }
 
     if (shouldSave) {
       await saveConfig({ componentsDir, cssDir });

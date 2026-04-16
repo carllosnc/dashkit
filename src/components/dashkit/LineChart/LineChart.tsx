@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { motion } from 'framer-motion';
 import { twMerge } from 'tailwind-merge';
 import clsx from 'clsx';
@@ -10,8 +11,16 @@ function cn(...inputs: (string | undefined | null | boolean | Record<string, boo
 export interface LineChartSeries {
   key: string;
   label: string;
-  color: string;
+  color?: string;
 }
+
+const DEFAULT_COLORS = [
+  'var(--color-primary)',
+  'var(--color-primary-400)',
+  'var(--color-primary-200)',
+  'var(--color-primary-800)',
+  'var(--color-primary-300)',
+];
 
 export interface LineChartProps {
   data: Record<string, string | number>[];
@@ -32,6 +41,11 @@ export const LineChart = ({
   showTooltip = true,
   animate = true,
 }: LineChartProps) => {
+  const validSeries = React.useMemo(() => series.map((s, i) => ({
+    ...s,
+    color: s.color || DEFAULT_COLORS[i % DEFAULT_COLORS.length]
+  })), [series]);
+
   const {
     chartRef,
     hoveredIndex,
@@ -42,7 +56,7 @@ export const LineChart = ({
     isNearTop,
     width,
     svgHeight
-  } = useLineChart({ data, series });
+  } = useLineChart({ data, series: validSeries });
 
   if (!data || data.length === 0 || !series || series.length === 0) return null;
 
@@ -148,7 +162,7 @@ export const LineChart = ({
                {data[hoveredIndex].label}
              </span>
           </div>
-          {series.map(s => (
+          {validSeries.map(s => (
             <div key={s.key} className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-2">
                  <div className="size-2 rounded-full" style={{ backgroundColor: s.color }} />

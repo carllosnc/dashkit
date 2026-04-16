@@ -24,8 +24,16 @@ const X_AXIS_LABEL_ACTIVE = "text-foreground";
 export interface AreaChartSeries {
   key: string;
   label: string;
-  color: string;
+  color?: string;
 }
+
+const DEFAULT_COLORS = [
+  'var(--color-primary)',
+  'var(--color-primary-400)',
+  'var(--color-primary-200)',
+  'var(--color-primary-800)',
+  'var(--color-primary-300)',
+];
 
 export interface AreaChartProps {
   data: Record<string, string | number>[];
@@ -75,8 +83,9 @@ export function AreaChart({
     });
   };
 
-  const allSeriesPoints = series.map(s => ({
+  const allSeriesPoints = series.map((s, i) => ({
     ...s,
+    color: s.color || DEFAULT_COLORS[i % DEFAULT_COLORS.length],
     points: getSeriesPoints(s.key)
   }));
 

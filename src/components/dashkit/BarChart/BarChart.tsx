@@ -5,8 +5,16 @@ import { cn } from '../utils/cn';
 export interface BarChartSeries {
   key: string;
   label: string;
-  color: string;
+  color?: string;
 }
+
+const DEFAULT_COLORS = [
+  'var(--color-primary)',
+  'var(--color-primary-400)',
+  'var(--color-primary-200)',
+  'var(--color-primary-800)',
+  'var(--color-primary-300)',
+];
 
 export interface BarChartProps {
   data: Record<string, string | number>[];
@@ -57,8 +65,13 @@ export function BarChart({
 
   if (!data || data.length === 0 || !series || series.length === 0) return null;
 
+  const validSeries = series.map((s, i) => ({
+    ...s,
+    color: s.color || DEFAULT_COLORS[i % DEFAULT_COLORS.length]
+  }));
+
   const maxVal = Math.max(
-    ...data.flatMap(d => series.map(s => Number(d[s.key]) || 0)),
+    ...data.flatMap(d => validSeries.map(s => Number(d[s.key]) || 0)),
     0
   ) * 1.1;
 
@@ -70,7 +83,7 @@ export function BarChart({
   const groupWidth = width / data.length;
   const barsContainerWidth = groupWidth * 0.8;
   const groupPadding = (groupWidth - barsContainerWidth) / 2;
-  const barWidth = (barsContainerWidth - (series.length - 1) * barGap) / series.length;
+  const barWidth = (barsContainerWidth - (validSeries.length - 1) * barGap) / validSeries.length;
 
   const handleMouseMove = (e: React.MouseEvent<SVGSVGElement>) => {
     const svg = chartRef.current;
@@ -90,7 +103,7 @@ export function BarChart({
     const tooltipX = (centerX / width) * rect.width;
     const clampedX = Math.max(tooltipWidth / 2 + 8, Math.min(rect.width - tooltipWidth / 2 - 8, tooltipX));
 
-    const groupMaxVal = Math.max(...series.map(s => Number(data[clampedIndex][s.key]) || 0), 0);
+    const groupMaxVal = Math.max(...validSeries.map(s => Number(data[clampedIndex][s.key]) || 0), 0);
     const highestY = svgHeight - ((groupMaxVal - minVal) / range) * svgHeight;
 
     setTooltipPos({
@@ -130,7 +143,7 @@ export function BarChart({
 
         {data.map((d, dataIdx) => (
           <g key={dataIdx}>
-            {series.map((s, seriesIdx) => {
+            {validSeries.map((s, seriesIdx) => {
               const value = Number(d[s.key]) || 0;
               const barHeight = ((value - minVal) / range) * svgHeight;
               const x = dataIdx * groupWidth + groupPadding + seriesIdx * (barWidth + barGap);
@@ -184,7 +197,7 @@ export function BarChart({
                {data[hoveredIndex].label}
              </span>
           </div>
-          {series.map(s => (
+          {validSeries.map(s => (
             <div key={s.key} className={TOOLTIP_ENTRY}>
               <div className={TOOLTIP_ENTRY_LABEL}>
                  <div className={TOOLTIP_ENTRY_DOT} style={{ backgroundColor: s.color }} />

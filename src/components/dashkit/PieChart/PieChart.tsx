@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { motion } from 'framer-motion';
 import { twMerge } from 'tailwind-merge';
 import clsx from 'clsx';
@@ -10,8 +11,16 @@ function cn(...inputs: (string | undefined | null | boolean | Record<string, boo
 export interface PieChartDataItem {
   label: string;
   value: number;
-  color: string;
+  color?: string;
 }
+
+const DEFAULT_COLORS = [
+  'var(--color-primary)',
+  'var(--color-primary-400)',
+  'var(--color-primary-200)',
+  'var(--color-primary-800)',
+  'var(--color-primary-300)',
+];
 
 export interface PieChartProps {
   data: PieChartDataItem[];
@@ -30,6 +39,11 @@ export const PieChart = ({
   showTooltip = true,
   animate = true,
 }: PieChartProps) => {
+  const validData = React.useMemo(() => data.map((d, i) => ({
+    ...d,
+    color: d.color || DEFAULT_COLORS[i % DEFAULT_COLORS.length]
+  })), [data]);
+
   const {
     hoveredIndex,
     setHoveredIndex,
@@ -41,7 +55,7 @@ export const PieChart = ({
     total,
     size,
     center
-  } = usePieChart({ data, innerRadius, showTooltip });
+  } = usePieChart({ data: validData, innerRadius, showTooltip });
 
   if (!data || data.length === 0) return null;
 
@@ -92,14 +106,14 @@ export const PieChart = ({
             }}
           >
             <div className="flex items-center gap-2">
-               <div className="size-2 rounded-full" style={{ backgroundColor: data[hoveredIndex].color }} />
-               <span className="text-xs font-medium text-ds-200 whitespace-nowrap">{data[hoveredIndex].label}</span>
+               <div className="size-2 rounded-full" style={{ backgroundColor: validData[hoveredIndex].color }} />
+               <span className="text-xs font-medium text-ds-200 whitespace-nowrap">{validData[hoveredIndex].label}</span>
             </div>
             <div className="flex border-b border-ds-800 pb-1 mt-1 mb-1">
                <span className="text-xs font-bold text-white">
-                 {data[hoveredIndex].value.toLocaleString()}
+                 {validData[hoveredIndex].value.toLocaleString()}
                  <span className="ml-1 opacity-50 font-normal">
-                   ({((data[hoveredIndex].value / total) * 100).toFixed(1)}%)
+                   ({((validData[hoveredIndex].value / total) * 100).toFixed(1)}%)
                  </span>
                </span>
             </div>
@@ -108,7 +122,7 @@ export const PieChart = ({
       </div>
       {showLabels && (
         <div className="flex w-full flex-wrap justify-center gap-x-6 gap-y-2">
-          {data.map((item, i) => (
+          {validData.map((item, i) => (
             <div
               key={i}
               className={cn(
