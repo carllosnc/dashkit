@@ -1,6 +1,5 @@
 import { createPortal } from 'react-dom';
 import { FiCalendar, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '../../utils/cn';
 import { useDatePicker, months, daysOfWeek } from './useDatePicker';
 
@@ -16,7 +15,7 @@ export interface DatePickerProps {
 
 const CONTAINER_CLASSES = "flex flex-col gap-1.5 w-full font-sans";
 const LABEL_CLASSES = "text-[13px] font-semibold text-ds-700 dark:text-ds-300 ml-1 tracking-tight";
-const TRIGGER_BUTTON_CLASSES = "w-full px-4 h-9 text-sm bg-input-bg text-input-fg border border-input ds-rounded outline-none transition-all duration-200 focus:border-input-focus focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-transparent placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 text-left flex items-center justify-between gap-2";
+const TRIGGER_BUTTON_CLASSES = "w-full px-4 h-9 text-sm bg-input-bg text-input-fg border border-input-border ds-rounded outline-none transition-all duration-200 focus:border-input-focus focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-transparent placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 text-left flex items-center justify-between gap-2";
 const PLACEHOLDER_CLASSES = "text-ds-500";
 const CALENDAR_ICON_CLASSES = "size-4 text-ds-400";
 const POPOVER_WRAPPER_CLASSES = "w-[280px] bg-popover text-popover-fg border border-popover-border ds-rounded shadow-2xl p-4 overflow-hidden";
@@ -86,98 +85,90 @@ export function DatePicker({
           <FiCalendar className={CALENDAR_ICON_CLASSES} />
         </button>
 
-        {createPortal(
-          <AnimatePresence>
-            {isOpen && triggerRect && (
-              <div
-                id="dashkit-datepicker-portal"
-                style={{
-                  position: 'fixed',
-                  top: position === 'bottom' ? triggerRect.bottom + 8 : triggerRect.top - 8,
-                  left: triggerRect.left,
-                  zIndex: 9999,
-                  transform: position === 'top' ? 'translateY(-100%)' : 'none'
-                }}
-              >
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95, y: position === 'top' ? 4 : -4 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.95, y: position === 'top' ? 4 : -4 }}
-                  transition={{ duration: 0.15, ease: "easeOut" }}
-                  role="dialog"
-                  aria-label="Calendar"
-                  className={cn(POPOVER_WRAPPER_CLASSES, position === 'top' ? 'origin-bottom' : 'origin-top')}
+        {isOpen && triggerRect && createPortal(
+          <div
+            id="dashkit-datepicker-portal"
+            style={{
+              position: 'fixed',
+              top: position === 'bottom' ? triggerRect.bottom + 8 : triggerRect.top - 8,
+              left: triggerRect.left,
+              zIndex: 9999,
+              transform: position === 'top' ? 'translateY(-100%)' : 'none'
+            }}
+          >
+            <div
+              role="dialog"
+              aria-label="Calendar"
+              className={cn(POPOVER_WRAPPER_CLASSES, position === 'top' ? 'origin-bottom' : 'origin-top')}
+            >
+              <div className={HEADER_CLASSES}>
+                <button
+                  type="button"
+                  onClick={prevMonth}
+                  className={NAV_BUTTON_CLASSES}
+                  aria-label="Previous month"
                 >
-                  <div className={HEADER_CLASSES}>
-                    <button
-                      type="button"
-                      onClick={prevMonth}
-                      className={NAV_BUTTON_CLASSES}
-                      aria-label="Previous month"
-                    >
-                      <FiChevronLeft className="size-4" />
-                    </button>
-                    <div className={MONTH_YEAR_CLASSES}>
-                      {months[currentMonth]} {currentYear}
-                    </div>
-                    <button
-                      type="button"
-                      onClick={nextMonth}
-                      className={NAV_BUTTON_CLASSES}
-                      aria-label="Next month"
-                    >
-                      <FiChevronRight className="size-4" />
-                    </button>
-                  </div>
-
-                  <div className={WEEKDAYS_GRID_CLASSES}>
-                    {daysOfWeek.map(day => (
-                      <div key={day} className={WEEKDAY_LABEL_CLASSES}>
-                        {day}
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className={DAYS_GRID_CLASSES}>
-                    {emptyDays.map(i => (
-                      <div key={`empty-${i}`} />
-                    ))}
-                    {days.map(day => {
-                      const selected = isSelected(day);
-                      const today = isToday(day);
-                      return (
-                        <button
-                          key={day}
-                          type="button"
-                          onClick={() => handleDateSelect(day)}
-                          className={cn(
-                            DAY_BUTTON_BASE_CLASSES,
-                            selected ? DAY_BUTTON_SELECTED_CLASSES : DAY_BUTTON_HOVER_CLASSES,
-                            today && !selected && DAY_BUTTON_TODAY_CLASSES
-                          )}
-                        >
-                          {day}
-                        </button>
-                      );
-                    })}
-                  </div>
-
-                  <div className={FOOTER_CLASSES}>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        const today = new Date();
-                        setViewDate(today);
-                      }}
-                      className={TODAY_BUTTON_CLASSES}
-                    >
-                      Jump to today
-                    </button>
-                  </div>
-                </motion.div>
+                  <FiChevronLeft className="size-4" />
+                </button>
+                <div className={MONTH_YEAR_CLASSES}>
+                  {months[currentMonth]} {currentYear}
+                </div>
+                <button
+                  type="button"
+                  onClick={nextMonth}
+                  className={NAV_BUTTON_CLASSES}
+                  aria-label="Next month"
+                >
+                  <FiChevronRight className="size-4" />
+                </button>
               </div>
-            )}
-          </AnimatePresence>,
+
+              <div className={WEEKDAYS_GRID_CLASSES}>
+                {daysOfWeek.map(day => (
+                  <div key={day} className={WEEKDAY_LABEL_CLASSES}>
+                    {day}
+                  </div>
+                ))}
+              </div>
+
+              <div className={DAYS_GRID_CLASSES}>
+                {emptyDays.map(i => (
+                  <div key={`empty-${i}`} />
+                ))}
+                {days.map(day => {
+                  const selected = isSelected(day);
+                  const today = isToday(day);
+                  return (
+                    <button
+                      key={day}
+                      type="button"
+                      onClick={() => handleDateSelect(day)}
+                      className={cn(
+                        DAY_BUTTON_BASE_CLASSES,
+                        selected ? DAY_BUTTON_SELECTED_CLASSES : DAY_BUTTON_HOVER_CLASSES,
+                        today && !selected && DAY_BUTTON_TODAY_CLASSES
+                      )}
+                    >
+                      {day}
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className={FOOTER_CLASSES}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const today = new Date();
+                    setViewDate(today);
+                  }}
+                  className={TODAY_BUTTON_CLASSES}
+                >
+                  Jump to today
+                </button>
+              </div>
+            </div>
+          </div>,
           document.body
         )}
       </div>

@@ -167,7 +167,7 @@
   --ds-popover-item-selected: var(--color-ds-primary-950);
   --ds-popover-item-selected-fg: var(--color-ds-primary-400);
 
-  --ds-primary: var(--color-ds-primary-600);
+  --ds-primary: var(--color-ds-primary-500);
   --ds-primary-fg: var(--color-ds-0);
   --ds-secondary: var(--color-ds-800);
   --ds-secondary-fg: var(--color-ds-100);
@@ -177,9 +177,9 @@
   --ds-accent: var(--color-ds-900);
   --ds-accent-fg: var(--color-ds-50);
 
-  --ds-input-bg: var(--color-ds-950);
-  --ds-input-border: var(--color-ds-800);
-  --ds-input-focus: var(--color-ds-700);
+  --ds-input-bg: var(--color-ds-800);
+  --ds-input-border: var(--color-ds-700);
+  --ds-input-focus: var(--color-ds-600);
   --ds-input-fg: var(--color-ds-100);
   --ds-input-ring: var(--color-ds-800);
 }

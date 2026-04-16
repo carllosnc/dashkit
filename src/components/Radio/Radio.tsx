@@ -29,7 +29,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
             />
             <div
               className={cn(
-                "w-6 h-6 border-2 transition-all duration-200 flex items-center justify-center shrink-0 bg-background border-input peer-checked:border-primary peer-checked:bg-background peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-transparent group-hover:border-primary/50 peer-disabled:opacity-60 peer-disabled:cursor-not-allowed rounded-full",
+                "w-6 h-6 border-2 transition-all duration-200 flex items-center justify-center shrink-0 bg-background border-input-border peer-checked:border-primary peer-checked:bg-background peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-transparent group-hover:border-primary/50 peer-disabled:opacity-60 peer-disabled:cursor-not-allowed rounded-full",
                 className
               )}
             />

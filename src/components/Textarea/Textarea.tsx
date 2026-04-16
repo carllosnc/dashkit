@@ -47,7 +47,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           }}
           onChange={handleChange}
           className={cn(
-            "w-full px-4 py-3 text-sm bg-input-bg text-input-fg border border-input ds-rounded outline-none transition-all duration-200 focus:border-input-focus focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-transparent placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 resize-none min-h-[100px]",
+            "w-full px-4 py-3 text-sm bg-input-bg text-input-fg border border-input-border ds-rounded outline-none transition-all duration-200 focus:border-input-focus focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-transparent placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 resize-none min-h-[100px]",
             autoGrow && "overflow-hidden",
             {
               "border-ds-danger-500/50 focus:border-ds-danger-500 focus:ring-ds-danger-50 dark:border-ds-danger-500/30 dark:focus:border-ds-danger-500/50 dark:focus:ring-ds-danger-500/10": !!error,

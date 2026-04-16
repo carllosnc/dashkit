@@ -30,7 +30,7 @@ const SELECTED_COUNT_CLASSES = "text-[11px] font-bold text-ds-400 uppercase trac
 const CHIPS_WRAPPER_CLASSES = "flex flex-wrap gap-2 mb-1";
 const INPUT_CONTAINER_CLASSES = "relative group";
 const SEARCH_ICON_WRAPPER_CLASSES = "absolute left-3.5 top-1/2 -translate-y-1/2 text-ds-500 group-focus-within:text-black dark:group-focus-within:text-white transition-colors duration-200 pointer-events-none";
-const INPUT_CLASSES = "w-full h-9 pl-10 pr-10 text-sm bg-input-bg text-input-fg border border-input ds-rounded outline-none transition-all duration-200 focus:border-input-focus focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-transparent placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50";
+const INPUT_CLASSES = "w-full h-9 pl-10 pr-10 text-sm bg-input-bg text-input-fg border border-input-border ds-rounded outline-none transition-all duration-200 focus:border-input-focus focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-transparent placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50";
 const INPUT_OPEN_CLASSES = "ring-2 ring-ring ring-offset-2 ring-offset-transparent border-input";
 const ACTION_BUTTONS_CLASSES = "absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1";
 const CLEAR_BUTTON_CLASSES = "p-1 rounded-full text-ds-500 hover:text-black dark:hover:text-white hover:bg-ds-100 dark:hover:bg-ds-800 transition-all";
@@ -165,57 +165,49 @@ export function Combobox({
           </div>
         </div>
 
-        {triggerRect && createPortal(
-          <AnimatePresence>
-            {isOpen && (
-              <motion.div
-                id="dashkit-combobox-portal"
-                role="listbox"
-                initial={{ opacity: 0, scale: 0.95, y: side === 'top' ? 4 : -4 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95, y: side === 'top' ? 4 : -4 }}
-                transition={{ duration: 0.15, ease: "easeOut" }}
-                style={{
-                  position: 'fixed',
-                  left: triggerRect.left,
-                  width: triggerRect.width,
-                  zIndex: 9999,
-                  ...(side === 'bottom'
-                    ? { top: triggerRect.bottom + 8 }
-                    : { bottom: (window.innerHeight - triggerRect.top) + 8 }),
-                }}
-                className={cn(POPOVER_CLASSES, side === 'top' ? 'origin-bottom' : 'origin-top')}
-              >
-                <div className={SCROLL_AREA_CLASSES}>
-                  {filteredOptions.length === 0 ? (
-                    <div className={EMPTY_STATE_CLASSES}>
-                      No matches found for "{query}"
-                    </div>
-                  ) : (
-                    filteredOptions.map((opt) => {
-                      const isSelected = isOptionSelected(opt);
-                      return (
-                        <button
-                          key={opt.value}
-                          type="button"
-                          onClick={() => handleSelect(opt)}
-                          className={cn(
-                            ITEM_CLASSES,
-                            isSelected ? ITEM_ACTIVE_CLASSES : ITEM_HOVER_CLASSES
-                          )}
-                        >
-                          <span className="truncate">{opt.label}</span>
-                          {isSelected && (
-                            <FiCheck className={CHECK_ICON_CLASSES} />
-                          )}
-                        </button>
-                      );
-                    })
-                  )}
+        {isOpen && triggerRect && createPortal(
+          <div
+            id="dashkit-combobox-portal"
+            role="listbox"
+            style={{
+              position: 'fixed',
+              left: triggerRect.left,
+              width: triggerRect.width,
+              zIndex: 9999,
+              ...(side === 'bottom'
+                ? { top: triggerRect.bottom + 8 }
+                : { bottom: (window.innerHeight - triggerRect.top) + 8 }),
+            }}
+            className={POPOVER_CLASSES}
+          >
+            <div className={SCROLL_AREA_CLASSES}>
+              {filteredOptions.length === 0 ? (
+                <div className={EMPTY_STATE_CLASSES}>
+                  No matches found for "{query}"
                 </div>
-              </motion.div>
-            )}
-          </AnimatePresence>,
+              ) : (
+                filteredOptions.map((opt) => {
+                  const isSelected = isOptionSelected(opt);
+                  return (
+                    <button
+                      key={opt.value}
+                      type="button"
+                      onClick={() => handleSelect(opt)}
+                      className={cn(
+                        ITEM_CLASSES,
+                        isSelected ? ITEM_ACTIVE_CLASSES : ITEM_HOVER_CLASSES
+                      )}
+                    >
+                      <span className="truncate">{opt.label}</span>
+                      {isSelected && (
+                        <FiCheck className={CHECK_ICON_CLASSES} />
+                      )}
+                    </button>
+                  );
+                })
+              )}
+            </div>
+          </div>,
           document.body
         )}
       </div>
