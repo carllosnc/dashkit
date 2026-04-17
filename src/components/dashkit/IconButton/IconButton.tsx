@@ -51,7 +51,7 @@ export const IconButton = forwardRef<HTMLElement, IconButtonProps>(function Icon
         target={target}
         rel={rel}
         className={classes}
-        {...(rest as any)}
+        {...rest}
       >
         {content}
       </a>
@@ -65,7 +65,7 @@ export const IconButton = forwardRef<HTMLElement, IconButtonProps>(function Icon
       type={type}
       disabled={disabled}
       className={classes}
-      {...(rest as any)}
+      {...rest}
     >
       {content}
     </button>
