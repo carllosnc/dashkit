@@ -9,7 +9,7 @@ describe('Spinner', () => {
     expect(svg).toBeInTheDocument();
     expect(svg).toHaveAttribute('width', '24px');
     expect(svg).toHaveAttribute('height', '24px');
-    expect(svg).toHaveAttribute('stroke-width', '2');
+    expect(svg).toHaveAttribute('stroke-width', '2.5');
   });
 
   it('applies custom size and thickness', () => {
@@ -26,8 +26,8 @@ describe('Spinner', () => {
     expect(svg).toHaveAttribute('stroke', 'red');
   });
 
-  it('has animate-spin class', () => {
+  it('has drop-shadow-sm class', () => {
     const { container } = render(<Spinner />);
-    expect(container.firstChild).toHaveClass('animate-spin');
+    expect(container.firstChild).toHaveClass('drop-shadow-sm');
   });
 });

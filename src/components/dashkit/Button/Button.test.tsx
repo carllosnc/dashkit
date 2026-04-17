@@ -42,7 +42,7 @@ describe('Button', () => {
     const { container } = render(<Button loading>Submit</Button>);
     const button = screen.getByRole('button');
     expect(button).toBeDisabled();
-    expect(container.querySelector('svg.animate-spin')).toBeInTheDocument();
+    expect(container.querySelector('svg.drop-shadow-sm')).toBeInTheDocument();
   });
 });
 
