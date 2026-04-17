@@ -3,7 +3,7 @@ import { type Variants, type PanInfo } from 'framer-motion';
 
 export type DrawerPosition = 'left' | 'right' | 'top' | 'bottom';
 
-export const positionVariants: Record<DrawerPosition, Variants> = {
+export const POSITION_VARIANTS: Record<DrawerPosition, Variants> = {
   right: {
     initial: { x: '100%' },
     animate: { x: 0 },
@@ -26,14 +26,14 @@ export const positionVariants: Record<DrawerPosition, Variants> = {
   },
 };
 
-export const getPositionClasses = (position: DrawerPosition) => {
+export function getPositionClasses(position: DrawerPosition) {
   switch (position) {
     case 'left': return 'left-0 top-0 h-full';
     case 'right': return 'right-0 top-0 h-full';
     case 'top': return 'top-0 left-0 w-full';
     case 'bottom': return 'bottom-0 left-0 w-full';
   }
-};
+}
 
 export interface UseDrawerProps {
   isOpen: boolean;
@@ -77,7 +77,7 @@ export function useDrawer({ isOpen, onClose, position }: UseDrawerProps) {
   return {
     defaultSize,
     handleDragEnd,
-    positionVariants,
+    positionVariants: POSITION_VARIANTS,
     getPositionClasses
   };
 }
