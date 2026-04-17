@@ -8,71 +8,68 @@ type IconButtonBaseProps = {
   rounded?: boolean;
 };
 
-const variantClasses = {
-  filled: "ds-primary-gradient text-primary-foreground border-transparent hover:brightness-120 active:scale-95",
-  outlined: "bg-transparent text-foreground border border-ds-300 dark:border-ds-800 hover:bg-ds-100/50 dark:hover:bg-ds-800/50 active:scale-95",
-  soft: "bg-secondary text-secondary-foreground border-transparent hover:bg-ds-300 dark:hover:bg-ds-700 active:scale-95",
-  ghost: "bg-transparent text-muted-foreground border-transparent hover:bg-accent hover:text-accent-foreground active:scale-95",
-} as const;
-
 export type IconButtonProps = IconButtonBaseProps &
   (
     | (React.ButtonHTMLAttributes<HTMLButtonElement> & { href?: never })
     | (React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string })
   );
 
-export const IconButton = forwardRef<HTMLElement, IconButtonProps>(
-  ({ className, variant = 'soft', icon, rounded = false, ...props }, ref) => {
-    const isLink = 'href' in props && props.href !== undefined;
+const VARIANT_CLASSES = {
+  filled: "ds-primary-gradient text-primary-foreground border-transparent hover:brightness-110 active:scale-95",
+  outlined: "bg-transparent text-foreground border border-ds-200 dark:border-ds-800 hover:bg-ds-100/50 dark:hover:bg-ds-800/50 active:scale-95",
+  soft: "bg-secondary text-secondary-foreground border-transparent hover:bg-ds-200 dark:hover:bg-ds-800 active:scale-95",
+  ghost: "bg-transparent text-muted-foreground border-transparent hover:bg-accent hover:text-accent-foreground active:scale-95",
+} as const;
 
-    const commonClasses = cn(
-      "ds-rounded inline-flex font-medium items-center justify-center focus:outline-none cursor-pointer whitespace-nowrap border select-none shrink-0 size-9",
-      rounded ? "rounded-full" : "",
-      variantClasses[variant],
-      {
-        "opacity-50 cursor-not-allowed": 'disabled' in props && props.disabled,
-      },
-      className
-    );
+const BASE_CLASSES = "ds-rounded inline-flex font-medium items-center justify-center focus:outline-none cursor-pointer whitespace-nowrap border select-none shrink-0 size-9 transition-all duration-200";
+const ICON_WRAPPER_CLASSES = "flex items-center justify-center size-[18px]";
 
-    const iconSizeClasses = cn(
-      "flex items-center justify-center",
-      {
-        "size-[18px]": true,
-      }
-    );
+export const IconButton = forwardRef<HTMLElement, IconButtonProps>(function IconButton(
+  { className, variant = 'soft', icon, rounded = false, ...props },
+  ref
+) {
+  const isLink = 'href' in props && props.href !== undefined;
 
-    if (isLink) {
-      const { href, target, rel, ...rest } = props as React.AnchorHTMLAttributes<HTMLAnchorElement>;
-      return (
-        <a
-          ref={ref as React.Ref<HTMLAnchorElement>}
-          href={href}
-          target={target}
-          rel={rel}
-          className={commonClasses}
-          {...(rest as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
-        >
-          <div className={iconSizeClasses}>{icon}</div>
-        </a>
-      );
-    }
+  const classes = cn(
+    BASE_CLASSES,
+    rounded ? "rounded-full" : "",
+    VARIANT_CLASSES[variant],
+    {
+      "opacity-50 cursor-not-allowed pointer-events-none": 'disabled' in props && props.disabled,
+    },
+    className
+  );
 
-    const { type = 'button', disabled, ...rest } = props as React.ButtonHTMLAttributes<HTMLButtonElement>;
+  const content = <div className={ICON_WRAPPER_CLASSES}>{icon}</div>;
+
+  if (isLink) {
+    const { href, target, rel, ...rest } = props as React.AnchorHTMLAttributes<HTMLAnchorElement>;
     return (
-      <button
-        ref={ref as React.Ref<HTMLButtonElement>}
-        type={type}
-        disabled={disabled}
-        className={commonClasses}
-        {...(rest as React.ButtonHTMLAttributes<HTMLButtonElement>)}
+      <a
+        ref={ref as React.Ref<HTMLAnchorElement>}
+        href={href}
+        target={target}
+        rel={rel}
+        className={classes}
+        {...(rest as any)}
       >
-        <div className={iconSizeClasses}>{icon}</div>
-      </button>
+        {content}
+      </a>
     );
   }
-);
+
+  const { type = 'button', disabled, ...rest } = props as React.ButtonHTMLAttributes<HTMLButtonElement>;
+  return (
+    <button
+      ref={ref as React.Ref<HTMLButtonElement>}
+      type={type}
+      disabled={disabled}
+      className={classes}
+      {...(rest as any)}
+    >
+      {content}
+    </button>
+  );
+});
 
 IconButton.displayName = 'IconButton';
-
-
