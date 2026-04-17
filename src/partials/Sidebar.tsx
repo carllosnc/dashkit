@@ -66,7 +66,7 @@ export function Sidebar({
                     <motion.div
                       layoutId={layoutId}
                       onLayoutAnimationComplete={() => setCompletedPath(link.to)}
-                      className="absolute inset-0 bg-ds-900 dark:bg-ds-0 dark:shadow-[0_0_20px_rgba(255,255,255,0.05)] rounded-full"
+                      className="absolute inset-0 bg-ds-900 dark:bg-ds-200 rounded-full"
                       transition={{ type: "spring", bounce: 0, duration: 0.4 }}
                     />
                   )}
