@@ -46,6 +46,16 @@ export const PositionExamples = () => {
   );
 };
 
+export const InvertedExamples = () => {
+  return (
+    <div className="flex flex-wrap gap-4 w-full">
+      <Button variant="filled" onClick={() => toast({ title: 'System Updated', description: 'All changes saved to the cloud.', type: 'success', invert: true })}>
+        Trigger Inverted Toast
+      </Button>
+    </div>
+  );
+};
+
 # Toast
 
 A succinct message that provides feedback about an operation in a small, non-intrusive card.
@@ -113,6 +123,22 @@ toast({ title: "Alert", position: "top-center" })
 toast({ title: "Feedback", position: "top-right" })
 ```
 
+## Inverted Theme
+
+Enable the `invert` property on a specific toast (or globally at the `ToastProvider`) to render it with high-contrast, inverted colors. This is especially useful for making critical messages pop out.
+
+<Preview>
+  <InvertedExamples />
+</Preview>
+
+```tsx
+toast({ 
+  title: "Archived", 
+  description: "The conversation was moved to archives.", 
+  invert: true 
+})
+```
+
 ## Features
 
 - **Stacked Visualization**: Toasts stack vertically, revealing themselves as the top ones are dismissed.
@@ -131,6 +157,12 @@ toast({ title: "Feedback", position: "top-right" })
     "type": "ToastPosition",
     "defaultValue": "'bottom-right'",
     "description": "Global default position for all toasts."
+  },
+  {
+    "prop": "invert",
+    "type": "boolean",
+    "defaultValue": "false",
+    "description": "If true, all toasts will render with inverted high-contrast colors by default."
   }
 ]}
 />
@@ -144,6 +176,7 @@ toast({ title: "Feedback", position: "top-right" })
     { "prop": "type", "type": "'default' | 'success' | 'info' | 'warning' | 'error'", "defaultValue": "'default'", "description": "Semantic style preset." },
     { "prop": "icon", "type": "ReactNode", "defaultValue": "—", "description": "Explicit icon override." },
     { "prop": "duration", "type": "number", "defaultValue": "5000", "description": "MS before hiding (0 for persistent)." },
-    { "prop": "position", "type": "ToastPosition", "defaultValue": "provider default", "description": "Specific override for this toast." }
+    { "prop": "position", "type": "ToastPosition", "defaultValue": "provider default", "description": "Specific override for this toast." },
+    { "prop": "invert", "type": "boolean", "defaultValue": "provider default", "description": "Override the global provider's invert setting for this specific toast." }
   ]}
 />

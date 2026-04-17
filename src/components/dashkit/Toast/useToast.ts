@@ -19,6 +19,7 @@ export interface ToastOptions {
   type?: ToastType;
   duration?: number;
   position?: ToastPosition;
+  invert?: boolean;
 }
 
 export type ToastData = ToastOptions & { 
