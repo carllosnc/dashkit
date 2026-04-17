@@ -7,7 +7,7 @@ import {
   DropdownItem, 
   DropdownLabel, 
   DropdownSeparator 
-} from './Dropdown';
+} from './index';
 import type { ReactNode } from 'react';
 
 // Mock framer-motion

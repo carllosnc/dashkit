@@ -38,7 +38,7 @@ import {
   DropdownItem,
   DropdownLabel,
   DropdownSeparator
-} from '../../components/dashkit/Dropdown/Dropdown';
+} from '../../components/dashkit/Dropdown';
 import {
   Popover,
   PopoverTrigger,

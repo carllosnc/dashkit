@@ -12,7 +12,7 @@ import { Slider } from '../../components/dashkit/Slider/Slider';
 import { Stepper, Step } from '../../components/dashkit/Stepper';
 import { Pagination } from '../../components/dashkit/Pagination/Pagination';
 import { Modal, ModalHeader, ModalContent, ModalFooter } from '../../components/dashkit/Modal/Modal';
-import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem, DropdownLabel, DropdownSeparator } from '../../components/dashkit/Dropdown/Dropdown';
+import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem, DropdownLabel, DropdownSeparator } from '../../components/dashkit/Dropdown';
 import { toast } from '../../components/dashkit/Toast/useToast';
 import { StatsCard } from '../../components/dashkit/StatsCard/StatsCard';
 import { FiMail, FiLock, FiZap, FiMoreHorizontal, FiTrendingUp, FiShieldOff, FiActivity, FiShield, FiDollarSign, FiPlay, FiSkipBack, FiSkipForward, FiHelpCircle, FiLock as FiFingerprint, FiAlertTriangle, FiUsers, FiSettings, FiLogOut } from 'react-icons/fi';

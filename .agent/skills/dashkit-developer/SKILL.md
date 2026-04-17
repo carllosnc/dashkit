@@ -38,6 +38,11 @@ Every component should be located in `src/components/[ComponentName]/` and typic
 - Ensure proper accessibility (ARIA roles, keyboard navigation).
 - Support both **Light** and **Dark** modes.
 
+- **Token Efficiency**: To optimize context usage and save tokens:
+  - Use `replace_file_content` or `multi_replace_file_content` for targeted edits instead of overwriting entire files with `write_to_file`.
+  - Provide concise explanations for code changes, avoiding redundant summaries of the work done.
+  - When viewing or searching files, limit the range or results to what is strictly necessary for the task.
+
 ## Registry Management
 
 New components **MUST** be added to the registry in `scripts/registry.ts` to be discoverable by the CLI.

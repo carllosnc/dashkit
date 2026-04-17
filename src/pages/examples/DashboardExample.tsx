@@ -29,7 +29,7 @@ import { Input } from '../../components/dashkit/Input/Input';
 import { AreaChart } from '../../components/dashkit/AreaChart/AreaChart';
 import { BarChart } from '../../components/dashkit/BarChart/BarChart';
 import { PieChart } from '../../components/dashkit/PieChart/PieChart';
-import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem } from '../../components/dashkit/Dropdown/Dropdown';
+import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem } from '../../components/dashkit/Dropdown';
 import { Chip } from '../../components/dashkit/Chip/Chip';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../../components/dashkit/Accordion';
 import { Switch } from '../../components/dashkit/Switch/Switch';

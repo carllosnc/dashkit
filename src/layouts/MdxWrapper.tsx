@@ -7,7 +7,7 @@ import {
   DropdownLabel,
   DropdownItem,
   DropdownSeparator
-} from '../components/dashkit/Dropdown/Dropdown';
+} from '../components/dashkit/Dropdown';
 import { Backdrop } from '../components/dashkit/Backdrop/Backdrop';
 import { Button } from '../components/dashkit/Button/Button';
 import { DatePicker } from '../components/dashkit/DatePicker/DatePicker';

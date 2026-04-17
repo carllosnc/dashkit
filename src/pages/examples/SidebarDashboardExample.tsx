@@ -29,7 +29,7 @@ import {
 import { Avatar, AvatarGroup } from '../../components/dashkit/Avatar';
 import { AreaChart } from '../../components/dashkit/AreaChart/AreaChart';
 import { BarChart } from '../../components/dashkit/BarChart/BarChart';
-import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem, DropdownSeparator } from '../../components/dashkit/Dropdown/Dropdown';
+import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem, DropdownSeparator } from '../../components/dashkit/Dropdown';
 import { Navbar, NavbarBrand, NavbarActions } from '../../components/dashkit/Navbar/Navbar';
 import { ProgressBar } from '../../components/dashkit/ProgressBar/ProgressBar';
 import { ThemeToggle } from '../../partials/ThemeToggle';
