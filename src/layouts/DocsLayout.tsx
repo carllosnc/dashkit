@@ -8,15 +8,14 @@ import {
   FiMonitor, FiMessageCircle, FiAlignLeft, FiEdit3, FiTrendingUp, FiSettings, FiTerminal,
   FiPlusSquare, FiDroplet, FiClock, FiPlusCircle, FiCompass, FiChevronsRight, FiChevronsDown, FiTarget, FiCheck, FiHelpCircle
 } from 'react-icons/fi';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { motion } from 'framer-motion';
 import { Header } from '../partials/Header';
 import { Footer } from '../partials/Footer';
 import { Drawer, DrawerHeader } from '../components/dashkit/Drawer/Drawer';
-import clsx from 'clsx';
+import { Sidebar, type SidebarSection } from '../partials/Sidebar';
 
-const navItems = [
+const navItems: SidebarSection[] = [
   {
     title: 'Getting Started',
     links: [
@@ -81,56 +80,6 @@ const navItems = [
   },
 ];
 
-function SidebarContent({ currentPath, onItemClick }: { currentPath: string, onItemClick?: () => void }) {
-  return (
-    <>
-      {navItems.map((section, idx) => (
-        <div key={idx} className="mb-10 last:mb-0">
-          <h4 className="text-[11px] font-bold text-muted-foreground uppercase tracking-[0.2em] mb-4">
-            {section.title}
-          </h4>
-          <nav className="flex flex-col gap-1">
-            {section.links.map((link) => {
-              const isActive = currentPath === link.to || (link.to === '/docs/introduction' && currentPath === '/docs');
-
-              return (
-              <Link
-                key={link.to}
-                to={link.to}
-                onClick={onItemClick}
-                className={clsx(
-                  "relative px-3 py-2 rounded-full text-sm transition-all duration-200 flex items-center gap-3",
-                  isActive
-                    ? "text-ds-50 font-semibold dark:text-ds-950"
-                    : "text-ds-500 font-medium hover:text-ds-950 hover:bg-white dark:text-ds-400 dark:hover:text-white dark:hover:bg-white/5"
-                )}
-              >
-                {isActive && (
-                  <motion.div
-                    layoutId="sidebar-active-item"
-                    className="absolute inset-0 bg-ds-800 dark:bg-ds-0 dark:shadow-[0_0_20px_rgba(255,255,255,0.05)] rounded-full"
-                    transition={{ type: "spring", bounce: 0.0, duration: 0.6 }}
-                  />
-                )}
-                <div className={clsx(
-                  "shrink-0 transition-colors duration-200 relative z-10",
-                  isActive
-                    ? "text-ds-50 dark:text-ds-950"
-                    : "text-ds-400 group-hover:text-ds-900 dark:text-ds-500 dark:group-hover:text-white"
-                )}>
-                  {link.icon}
-                </div>
-                <span className="relative z-10">{link.label}</span>
-              </Link>
-              );
-            })}
-          </nav>
-        </div>
-      ))}
-    </>
-  );
-}
-
 export function DocsLayout() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -157,9 +106,11 @@ export function DocsLayout() {
           </h2>
         </DrawerHeader>
         <div className="py-4 px-6 overflow-y-auto">
-          <SidebarContent
+          <Sidebar
+            sections={navItems}
             currentPath={currentPath}
             onItemClick={() => setIsMobileMenuOpen(false)}
+            isActive={(linkTo, path) => path === linkTo || (linkTo === '/docs/introduction' && path === '/docs')}
           />
         </div>
       </Drawer>
@@ -169,7 +120,11 @@ export function DocsLayout() {
         {/* Sidebar */}
         <aside className="py-12 border-r hidden md:block shrink-0">
           <div className="sticky top-28 h-[calc(100vh-140px)] overflow-y-auto pr-8 custom-scrollbar">
-            <SidebarContent currentPath={currentPath} />
+            <Sidebar
+              sections={navItems}
+              currentPath={currentPath}
+              isActive={(linkTo, path) => path === linkTo || (linkTo === '/docs/introduction' && path === '/docs')}
+            />
           </div>
         </aside>
 

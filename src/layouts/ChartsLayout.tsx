@@ -3,26 +3,14 @@ import {
   FiActivity, FiPieChart, FiBarChart2, FiTrendingUp,
   FiGrid as FiGridIcon
 } from 'react-icons/fi';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Header } from '../partials/Header';
 import { Footer } from '../partials/Footer';
 import { Drawer, DrawerHeader } from '../components/dashkit/Drawer/Drawer';
-import clsx from 'clsx';
+import { Sidebar, type SidebarSection } from '../partials/Sidebar';
 
-interface ChartNavLink {
-  to: string;
-  label: string;
-  icon: React.ReactNode;
-  disabled?: boolean;
-}
-
-interface ChartNavSection {
-  title: string;
-  links: ChartNavLink[];
-}
-
-const chartNavItems: ChartNavSection[] = [
+const chartNavItems: SidebarSection[] = [
   {
     title: 'Charts Overview',
     links: [
@@ -40,45 +28,7 @@ const chartNavItems: ChartNavSection[] = [
   }
 ];
 
-function SidebarContent({ currentPath, onItemClick }: { currentPath: string, onItemClick?: () => void }) {
-  return (
-    <>
-      {chartNavItems.map((section, idx) => (
-        <div key={idx} className="mb-10 last:mb-0">
-          <h4 className="text-[11px] font-bold text-muted-foreground uppercase tracking-[0.2em] mb-4">
-            {section.title}
-          </h4>
-          <nav className="flex flex-col gap-1">
-            {section.links.map((link) => (
-              <Link
-                key={link.label}
-                to={link.to}
-                onClick={link.disabled ? (e) => e.preventDefault() : onItemClick}
-                className={clsx(
-                  "px-3 py-2 rounded-xl text-sm transition-all duration-200 flex items-center gap-3",
-                  currentPath === link.to
-                    ? "bg-white shadow-[0_2px_8px_rgba(0,0,0,0.04)] border-white text-ds-950 font-semibold dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]" 
-                    : "text-ds-500 font-medium hover:text-ds-950 hover:bg-white/50 dark:text-ds-400 dark:hover:text-white dark:hover:bg-white/5",
-                  link.disabled && "opacity-50 cursor-not-allowed hover:bg-transparent hover:text-ds-500"
-                )}
-              >
-                <div className={clsx(
-                  "shrink-0 transition-colors duration-200",
-                  currentPath === link.to
-                    ? "text-ds-900 dark:text-white"
-                    : "text-ds-400 group-hover:text-ds-900 dark:text-ds-500 dark:group-hover:text-white"
-                )}>
-                  {link.icon}
-                </div>
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      ))}
-    </>
-  );
-}
+
 
 export function ChartsLayout() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -106,9 +56,11 @@ export function ChartsLayout() {
           </h2>
         </DrawerHeader>
         <div className="py-4 px-6 overflow-y-auto">
-          <SidebarContent
+          <Sidebar 
+            sections={chartNavItems} 
             currentPath={currentPath}
             onItemClick={() => setIsMobileMenuOpen(false)}
+            layoutId="charts-sidebar-active"
           />
         </div>
       </Drawer>
@@ -118,7 +70,11 @@ export function ChartsLayout() {
         {/* Sidebar */}
         <aside className="py-12 border-r hidden md:block shrink-0">
           <div className="sticky top-28 h-[calc(100vh-140px)] overflow-y-auto pr-8 custom-scrollbar">
-            <SidebarContent currentPath={currentPath} />
+            <Sidebar 
+              sections={chartNavItems} 
+              currentPath={currentPath}
+              layoutId="charts-sidebar-active"
+            />
           </div>
         </aside>
 
