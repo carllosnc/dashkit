@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { Popover, PopoverTrigger, PopoverContent } from './Popover';
+import { Popover, PopoverTrigger, PopoverContent } from './index';
 import type { ReactNode, CSSProperties } from 'react';
 
 // Mock framer-motion
