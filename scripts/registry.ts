@@ -9,61 +9,61 @@ export const registry: Record<string, ComponentConfig> = {
   accordion: {
     name: 'Accordion',
     files: [
-      'src/components/Accordion/Accordion.tsx',
-      'src/components/Accordion/AccordionItem.tsx',
-      'src/components/Accordion/AccordionTrigger.tsx',
-      'src/components/Accordion/AccordionContent.tsx',
-      'src/components/Accordion/AccordionContext.ts',
-      'src/components/Accordion/Accordion.test.tsx',
-      'src/components/Accordion/index.ts'
+      'src/components/dashkit/Accordion/Accordion.tsx',
+      'src/components/dashkit/Accordion/AccordionItem.tsx',
+      'src/components/dashkit/Accordion/AccordionTrigger.tsx',
+      'src/components/dashkit/Accordion/AccordionContent.tsx',
+      'src/components/dashkit/Accordion/AccordionContext.ts',
+      'src/components/dashkit/Accordion/Accordion.test.tsx',
+      'src/components/dashkit/Accordion/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   avatar: {
     name: 'Avatar',
     files: [
-      'src/components/Avatar/Avatar.tsx',
-      'src/components/Avatar/AvatarGroup.tsx',
-      'src/components/Avatar/Avatar.test.tsx',
-      'src/components/Avatar/index.ts'
+      'src/components/dashkit/Avatar/Avatar.tsx',
+      'src/components/dashkit/Avatar/AvatarGroup.tsx',
+      'src/components/dashkit/Avatar/Avatar.test.tsx',
+      'src/components/dashkit/Avatar/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   badge: {
     name: 'Badge',
     files: [
-      'src/components/Badge/Badge.tsx',
-      'src/components/Badge/FloatBadge.tsx',
-      'src/components/Badge/Badge.test.tsx',
-      'src/components/Badge/index.ts'
+      'src/components/dashkit/Badge/Badge.tsx',
+      'src/components/dashkit/Badge/FloatBadge.tsx',
+      'src/components/dashkit/Badge/Badge.test.tsx',
+      'src/components/dashkit/Badge/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   floatbadge: {
     name: 'FloatBadge',
-    files: ['src/components/Badge/FloatBadge.tsx'],
+    files: ['src/components/dashkit/Badge/FloatBadge.tsx'],
     registryDependencies: ['badge'],
   },
   button: {
     name: 'Button',
     files: [
-      'src/components/Button/Button.tsx',
-      'src/components/Button/Button.test.tsx',
-      'src/components/Button/index.ts'
+      'src/components/dashkit/Button/Button.tsx',
+      'src/components/dashkit/Button/Button.test.tsx',
+      'src/components/dashkit/Button/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   card: {
     name: 'Card',
     files: [
-      'src/components/Card/Card.tsx',
-      'src/components/Card/CardHeader.tsx',
-      'src/components/Card/CardTitle.tsx',
-      'src/components/Card/CardDescription.tsx',
-      'src/components/Card/CardContent.tsx',
-      'src/components/Card/CardFooter.tsx',
-      'src/components/Card/Card.test.tsx',
-      'src/components/Card/index.ts'
+      'src/components/dashkit/Card/Card.tsx',
+      'src/components/dashkit/Card/CardHeader.tsx',
+      'src/components/dashkit/Card/CardTitle.tsx',
+      'src/components/dashkit/Card/CardDescription.tsx',
+      'src/components/dashkit/Card/CardContent.tsx',
+      'src/components/dashkit/Card/CardFooter.tsx',
+      'src/components/dashkit/Card/Card.test.tsx',
+      'src/components/dashkit/Card/index.ts'
     ],
     registryDependencies: ['badge', 'button'],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
@@ -71,215 +71,215 @@ export const registry: Record<string, ComponentConfig> = {
   checkbox: {
     name: 'Checkbox',
     files: [
-      'src/components/Checkbox/Checkbox.tsx',
-      'src/components/Checkbox/index.ts'
+      'src/components/dashkit/Checkbox/Checkbox.tsx',
+      'src/components/dashkit/Checkbox/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   drawer: {
     name: 'Drawer',
     files: [
-      'src/components/Drawer/Drawer.tsx',
-      'src/components/Drawer/useDrawer.ts'
+      'src/components/dashkit/Drawer/Drawer.tsx',
+      'src/components/dashkit/Drawer/useDrawer.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   dropdown: {
     name: 'Dropdown',
     files: [
-      'src/components/Dropdown/Dropdown.tsx',
-      'src/components/Dropdown/useDropdown.ts'
+      'src/components/dashkit/Dropdown/Dropdown.tsx',
+      'src/components/dashkit/Dropdown/useDropdown.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   imageexpander: {
     name: 'ImageExpander',
     files: [
-      'src/components/ImageExpander/ImageExpander.tsx',
-      'src/components/ImageExpander/useImageExpander.ts'
+      'src/components/dashkit/ImageExpander/ImageExpander.tsx',
+      'src/components/dashkit/ImageExpander/useImageExpander.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   input: {
     name: 'Input',
-    files: ['src/components/Input/Input.tsx'],
+    files: ['src/components/dashkit/Input/Input.tsx'],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   modal: {
     name: 'Modal',
     files: [
-      'src/components/Modal/Modal.tsx',
-      'src/components/Modal/useModal.ts'
+      'src/components/dashkit/Modal/Modal.tsx',
+      'src/components/dashkit/Modal/useModal.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   otpinput: {
     name: 'OtpInput',
     files: [
-      'src/components/OtpInput/OtpInput.tsx',
-      'src/components/OtpInput/useOtpInput.ts'
+      'src/components/dashkit/OtpInput/OtpInput.tsx',
+      'src/components/dashkit/OtpInput/useOtpInput.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   radio: {
     name: 'Radio',
     files: [
-      'src/components/Radio/Radio.tsx',
-      'src/components/Radio/useRadio.ts'
+      'src/components/dashkit/Radio/Radio.tsx',
+      'src/components/dashkit/Radio/useRadio.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   select: {
     name: 'Select',
     files: [
-      'src/components/Select/Select.tsx',
-      'src/components/Select/useSelect.ts'
+      'src/components/dashkit/Select/Select.tsx',
+      'src/components/dashkit/Select/useSelect.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   switch: {
     name: 'Switch',
     files: [
-      'src/components/Switch/Switch.tsx',
-      'src/components/Switch/useSwitch.ts'
+      'src/components/dashkit/Switch/Switch.tsx',
+      'src/components/dashkit/Switch/useSwitch.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   slider: {
     name: 'Slider',
     files: [
-      'src/components/Slider/Slider.tsx',
-      'src/components/Slider/useSlider.ts'
+      'src/components/dashkit/Slider/Slider.tsx',
+      'src/components/dashkit/Slider/useSlider.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   surface: {
     name: 'Surface',
-    files: ['src/components/Surface/Surface.tsx'],
+    files: ['src/components/dashkit/Surface/Surface.tsx'],
     dependencies: ['clsx', 'tailwind-merge'],
   },
   tabs: {
     name: 'Tabs',
-    files: ['src/components/Tabs/Tabs.tsx'],
+    files: ['src/components/dashkit/Tabs/Tabs.tsx'],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   toast: {
     name: 'Toast',
     files: [
-      'src/components/Toast/Toast.tsx',
-      'src/components/Toast/useToast.ts'
+      'src/components/dashkit/Toast/Toast.tsx',
+      'src/components/dashkit/Toast/useToast.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   stepper: {
     name: 'Stepper',
     files: [
-      'src/components/Stepper/Stepper.tsx',
-      'src/components/Stepper/index.ts'
+      'src/components/dashkit/Stepper/Stepper.tsx',
+      'src/components/dashkit/Stepper/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   pagination: {
     name: 'Pagination',
     files: [
-      'src/components/Pagination/Pagination.tsx',
-      'src/components/Pagination/index.ts'
+      'src/components/dashkit/Pagination/Pagination.tsx',
+      'src/components/dashkit/Pagination/index.ts'
     ],
     dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
   },
   spinner: {
     name: 'Spinner',
-    files: ['src/components/Spinner/Spinner.tsx'],
+    files: ['src/components/dashkit/Spinner/Spinner.tsx'],
     dependencies: ['clsx', 'tailwind-merge'],
   },
   navbar: {
     name: 'Navbar',
-    files: ['src/components/Navbar/Navbar.tsx'],
+    files: ['src/components/dashkit/Navbar/Navbar.tsx'],
     dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
   },
   skeleton: {
     name: 'Skeleton',
-    files: ['src/components/Skeleton/Skeleton.tsx'],
+    files: ['src/components/dashkit/Skeleton/Skeleton.tsx'],
     dependencies: ['clsx', 'tailwind-merge'],
   },
   breadcrumb: {
     name: 'Breadcrumb',
     files: [
-      'src/components/Breadcrumb/Breadcrumb.tsx',
-      'src/components/Breadcrumb/BreadcrumbList.tsx',
-      'src/components/Breadcrumb/BreadcrumbItem.tsx',
-      'src/components/Breadcrumb/BreadcrumbSeparator.tsx',
-      'src/components/Breadcrumb/BreadcrumbEllipsis.tsx',
-      'src/components/Breadcrumb/Breadcrumb.test.tsx',
-      'src/components/Breadcrumb/index.ts'
+      'src/components/dashkit/Breadcrumb/Breadcrumb.tsx',
+      'src/components/dashkit/Breadcrumb/BreadcrumbList.tsx',
+      'src/components/dashkit/Breadcrumb/BreadcrumbItem.tsx',
+      'src/components/dashkit/Breadcrumb/BreadcrumbSeparator.tsx',
+      'src/components/dashkit/Breadcrumb/BreadcrumbEllipsis.tsx',
+      'src/components/dashkit/Breadcrumb/Breadcrumb.test.tsx',
+      'src/components/dashkit/Breadcrumb/index.ts'
     ],
     dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
   },
   iconbutton: {
     name: 'IconButton',
-    files: ['src/components/IconButton/IconButton.tsx'],
+    files: ['src/components/dashkit/IconButton/IconButton.tsx'],
     dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
   },
   areachart: {
     name: 'AreaChart',
     files: [
-      'src/components/AreaChart/AreaChart.tsx',
-      'src/components/AreaChart/index.ts'
+      'src/components/dashkit/AreaChart/AreaChart.tsx',
+      'src/components/dashkit/AreaChart/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   barchart: {
     name: 'BarChart',
     files: [
-      'src/components/BarChart/BarChart.tsx',
-      'src/components/BarChart/index.ts'
+      'src/components/dashkit/BarChart/BarChart.tsx',
+      'src/components/dashkit/BarChart/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   linechart: {
     name: 'LineChart',
     files: [
-      'src/components/LineChart/LineChart.tsx',
-      'src/components/LineChart/useLineChart.ts'
+      'src/components/dashkit/LineChart/LineChart.tsx',
+      'src/components/dashkit/LineChart/useLineChart.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   piechart: {
     name: 'PieChart',
     files: [
-      'src/components/PieChart/PieChart.tsx',
-      'src/components/PieChart/usePieChart.ts'
+      'src/components/dashkit/PieChart/PieChart.tsx',
+      'src/components/dashkit/PieChart/usePieChart.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   progressbar: {
     name: 'ProgressBar',
     files: [
-      'src/components/ProgressBar/ProgressBar.tsx',
-      'src/components/ProgressBar/useProgressBar.ts'
+      'src/components/dashkit/ProgressBar/ProgressBar.tsx',
+      'src/components/dashkit/ProgressBar/useProgressBar.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   buttongroup: {
     name: 'ButtonGroup',
-    files: ['src/components/ButtonGroup/ButtonGroup.tsx'],
+    files: ['src/components/dashkit/ButtonGroup/ButtonGroup.tsx'],
     dependencies: ['clsx', 'tailwind-merge'],
   },
   chip: {
     name: 'Chip',
     files: [
-      'src/components/Chip/Chip.tsx',
-      'src/components/Chip/index.ts'
+      'src/components/dashkit/Chip/Chip.tsx',
+      'src/components/dashkit/Chip/index.ts'
     ],
     dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
   },
   combobox: {
     name: 'Combobox',
     files: [
-      'src/components/Combobox/Combobox.tsx',
-      'src/components/Combobox/useCombobox.ts',
-      'src/components/Combobox/Combobox.test.tsx',
-      'src/components/Combobox/index.ts'
+      'src/components/dashkit/Combobox/Combobox.tsx',
+      'src/components/dashkit/Combobox/useCombobox.ts',
+      'src/components/dashkit/Combobox/Combobox.test.tsx',
+      'src/components/dashkit/Combobox/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
     registryDependencies: ['chip'],
@@ -287,18 +287,18 @@ export const registry: Record<string, ComponentConfig> = {
   divider: {
     name: 'Divider',
     files: [
-      'src/components/Divider/Divider.tsx',
-      'src/components/Divider/Divider.test.tsx',
-      'src/components/Divider/index.ts'
+      'src/components/dashkit/Divider/Divider.tsx',
+      'src/components/dashkit/Divider/Divider.test.tsx',
+      'src/components/dashkit/Divider/index.ts'
     ],
     dependencies: ['clsx', 'tailwind-merge'],
   },
   sidebar: {
     name: 'Sidebar',
     files: [
-      'src/components/Sidebar/Sidebar.tsx',
-      'src/components/Sidebar/useSidebar.ts',
-      'src/components/Sidebar/SidebarContext.tsx'
+      'src/components/dashkit/Sidebar/Sidebar.tsx',
+      'src/components/dashkit/Sidebar/useSidebar.ts',
+      'src/components/dashkit/Sidebar/SidebarContext.tsx'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
     registryDependencies: ['iconbutton'],
@@ -306,8 +306,8 @@ export const registry: Record<string, ComponentConfig> = {
   'float-action-menu': {
     name: 'FloatActionMenu',
     files: [
-      'src/components/FloatActionMenu/FloatActionMenu.tsx',
-      'src/components/FloatActionMenu/useFloatActionMenu.ts'
+      'src/components/dashkit/FloatActionMenu/FloatActionMenu.tsx',
+      'src/components/dashkit/FloatActionMenu/useFloatActionMenu.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
     registryDependencies: ['iconbutton'],
@@ -315,110 +315,110 @@ export const registry: Record<string, ComponentConfig> = {
   textarea: {
     name: 'Textarea',
     files: [
-      'src/components/Textarea/Textarea.tsx',
-      'src/components/Textarea/useTextarea.ts'
+      'src/components/dashkit/Textarea/Textarea.tsx',
+      'src/components/dashkit/Textarea/useTextarea.ts'
     ],
     dependencies: ['clsx', 'tailwind-merge'],
   },
   datepicker: {
     name: 'DatePicker',
     files: [
-      'src/components/DatePicker/DatePicker.tsx',
-      'src/components/DatePicker/useDatePicker.ts',
-      'src/components/DatePicker/DatePicker.test.tsx',
-      'src/components/DatePicker/index.ts'
+      'src/components/dashkit/DatePicker/DatePicker.tsx',
+      'src/components/dashkit/DatePicker/useDatePicker.ts',
+      'src/components/dashkit/DatePicker/DatePicker.test.tsx',
+      'src/components/dashkit/DatePicker/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   table: {
     name: 'Table',
-    files: ['src/components/Table/Table.tsx'],
+    files: ['src/components/dashkit/Table/Table.tsx'],
     dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
   },
   animatenumber: {
     name: 'AnimateNumber',
     files: [
-      'src/components/AnimateNumber/AnimateNumber.tsx',
-      'src/components/AnimateNumber/Digit.tsx',
-      'src/components/AnimateNumber/AnimateNumber.test.tsx',
-      'src/components/AnimateNumber/index.ts'
+      'src/components/dashkit/AnimateNumber/AnimateNumber.tsx',
+      'src/components/dashkit/AnimateNumber/Digit.tsx',
+      'src/components/dashkit/AnimateNumber/AnimateNumber.test.tsx',
+      'src/components/dashkit/AnimateNumber/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   circularprogress: {
     name: 'CircularProgress',
     files: [
-      'src/components/CircularProgress/CircularProgress.tsx',
-      'src/components/CircularProgress/index.ts'
+      'src/components/dashkit/CircularProgress/CircularProgress.tsx',
+      'src/components/dashkit/CircularProgress/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   dock: {
     name: 'Dock',
-    files: ['src/components/Dock/Dock.tsx'],
+    files: ['src/components/dashkit/Dock/Dock.tsx'],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   popover: {
     name: 'Popover',
     files: [
-      'src/components/Popover/Popover.tsx',
-      'src/components/Popover/usePopover.ts'
+      'src/components/dashkit/Popover/Popover.tsx',
+      'src/components/dashkit/Popover/usePopover.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   tooltip: {
     name: 'Tooltip',
-    files: ['src/components/Tooltip/Tooltip.tsx'],
+    files: ['src/components/dashkit/Tooltip/Tooltip.tsx'],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   systemlogs: {
     name: 'SystemLogs',
-    files: ['src/components/SystemLogs/SystemLogs.tsx'],
+    files: ['src/components/dashkit/SystemLogs/SystemLogs.tsx'],
     dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
     registryDependencies: ['badge'],
   },
   datefield: {
     name: 'DateField',
     files: [
-      'src/components/DateField/DateField.tsx',
-      'src/components/DateField/DateField.test.tsx',
-      'src/components/DateField/index.ts'
+      'src/components/dashkit/DateField/DateField.tsx',
+      'src/components/dashkit/DateField/DateField.test.tsx',
+      'src/components/dashkit/DateField/index.ts'
     ],
     dependencies: ['clsx', 'tailwind-merge'],
   },
   'navigation-menu': {
     name: 'NavigationMenu',
-    files: ['src/components/NavigationMenu/NavigationMenu.tsx'],
+    files: ['src/components/dashkit/NavigationMenu/NavigationMenu.tsx'],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   backdrop: {
     name: 'Backdrop',
     files: [
-      'src/components/Backdrop/Backdrop.tsx',
-      'src/components/Backdrop/Backdrop.test.tsx',
-      'src/components/Backdrop/index.ts'
+      'src/components/dashkit/Backdrop/Backdrop.tsx',
+      'src/components/dashkit/Backdrop/Backdrop.test.tsx',
+      'src/components/dashkit/Backdrop/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   scrollarea: {
     name: 'ScrollArea',
     files: [
-      'src/components/ScrollArea/ScrollArea.tsx',
-      'src/components/ScrollArea/ScrollArea.test.tsx'
+      'src/components/dashkit/ScrollArea/ScrollArea.tsx',
+      'src/components/dashkit/ScrollArea/ScrollArea.test.tsx'
     ],
     dependencies: ['clsx', 'tailwind-merge'],
   },
   statscard: {
     name: 'StatsCard',
-    files: ['src/components/StatsCard/StatsCard.tsx'],
+    files: ['src/components/dashkit/StatsCard/StatsCard.tsx'],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
     registryDependencies: ['card', 'animatenumber'],
   },
   colorpicker: {
     name: 'ColorPicker',
     files: [
-      'src/components/ColorPicker/ColorPicker.tsx',
-      'src/components/ColorPicker/ColorPicker.test.tsx'
+      'src/components/dashkit/ColorPicker/ColorPicker.tsx',
+      'src/components/dashkit/ColorPicker/ColorPicker.test.tsx'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
     registryDependencies: ['popover', 'input'],
