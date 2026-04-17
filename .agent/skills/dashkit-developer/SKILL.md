@@ -42,6 +42,7 @@ Every component should be located in `src/components/[ComponentName]/` and typic
   - Use `replace_file_content` or `multi_replace_file_content` for targeted edits instead of overwriting entire files with `write_to_file`.
   - Provide concise explanations for code changes, avoiding redundant summaries of the work done.
   - When viewing or searching files, limit the range or results to what is strictly necessary for the task.
+  - **Minimal Output**: Use extremely concise, "caveman-style" communication for updates and summaries when appropriate to keep the conversation focused and brief.
 
 ## Registry Management
 
