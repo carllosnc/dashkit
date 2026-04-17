@@ -20,13 +20,13 @@ bunx carllosnc/dashkit add systemlogs
 
 The `SystemLogs` component takes an array of `logs` and renders them in a dark, monospace container that mimics a terminal environment.
 
-<Preview>
+<div className='not-prose'>
   <SystemLogs
+    className="w-full"
     title="Cloud Deployment"
     session="worker-nodes-01"
     status="Running"
     statusColor="success"
-    maxHeight={300}
     logs={[
       { type: 'info', message: 'Starting deployment of version 2.4.0...', timestamp: '10:00:01' },
       { type: 'ok', message: 'Docker image pulled: alpine-node:20', timestamp: '10:00:05' },
@@ -34,7 +34,7 @@ The `SystemLogs` component takes an array of `logs` and renders them in a dark, 
       { type: 'stable', message: 'Health checks passed. Traffic routing enabled.', timestamp: '10:00:15' },
     ]}
   />
-</Preview>
+</div>
 
 ```tsx
 import { SystemLogs } from '@/components/SystemLogs/SystemLogs'
@@ -47,7 +47,7 @@ const logs = [
 ]
 
 export default () => (
-  <SystemLogs 
+  <SystemLogs
     title="Cloud Deployment"
     session="worker-nodes-01"
     status="Running"
@@ -68,8 +68,8 @@ The component supports five distinct log levels, each with its own visual style:
 - `error`: Error messages (indicated by `[ERR]`)
 - `stable`: Stability or state updates (indicated by `[STB]`)
 
-<Preview>
-  <SystemLogs 
+<div className="not-prose">
+  <SystemLogs
     title="Level Demonstration"
     logs={[
       { type: 'ok', message: 'Operation completed successfully.', timestamp: '12:00:01' },
@@ -79,7 +79,7 @@ The component supports five distinct log levels, each with its own visual style:
       { type: 'stable', message: 'Reconnected. System is stable.', timestamp: '12:00:05' },
     ]}
   />
-</Preview>
+</div>
 
 ## Customization
 
