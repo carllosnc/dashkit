@@ -43,7 +43,7 @@ import {
   Popover,
   PopoverTrigger,
   PopoverContent
-} from '../../components/dashkit/Popover/Popover';
+} from '../../components/dashkit/Popover';
 import { useToast } from '../../components/dashkit/Toast/useToast';
 import { AreaChart } from '../../components/dashkit/AreaChart/AreaChart';
 import { LineChart } from '../../components/dashkit/LineChart/LineChart';

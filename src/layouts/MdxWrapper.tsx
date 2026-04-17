@@ -63,7 +63,7 @@ import { Avatar, AvatarGroup } from '../components/dashkit/Avatar';
 import { FiDownload, FiArrowRight, FiCopy, FiCheck, FiSearch, FiLock, FiUser, FiSettings, FiActivity, FiCheckCircle, FiClock, FiMail, FiShield, FiZap, FiBell, FiMessageSquare, FiShoppingCart, FiHome, FiMoreVertical } from 'react-icons/fi';
 import { PropertyDoc } from '../partials/PropertyDoc';
 import { ProgressBar } from '../components/dashkit/ProgressBar/ProgressBar';
-import { Popover, PopoverTrigger, PopoverContent } from '../components/dashkit/Popover/Popover';
+import { Popover, PopoverTrigger, PopoverContent } from '../components/dashkit/Popover';
 import { AnimateNumber } from '../components/dashkit/AnimateNumber';
 import { CircularProgress } from '../components/dashkit/CircularProgress/CircularProgress';
 import { SystemLogs } from '../components/dashkit/SystemLogs/SystemLogs';

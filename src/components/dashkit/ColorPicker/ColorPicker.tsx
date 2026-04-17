@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { cn } from '../utils/cn';
-import { Popover, PopoverTrigger, PopoverContent } from '../Popover/Popover';
+import { Popover, PopoverTrigger, PopoverContent } from '../Popover';
 import { Input } from '../Input/Input';
 import { FiCheck } from 'react-icons/fi';
 

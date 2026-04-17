@@ -8,7 +8,7 @@ import { AreaChart } from '../../components/dashkit/AreaChart/AreaChart';
 import { LineChart } from '../../components/dashkit/LineChart/LineChart';
 import { Divider } from '../../components/dashkit/Divider/Divider';
 import { AnimateNumber } from '../../components/dashkit/AnimateNumber';
-import { Popover, PopoverTrigger, PopoverContent } from '../../components/dashkit/Popover/Popover';
+import { Popover, PopoverTrigger, PopoverContent } from '../../components/dashkit/Popover';
 import { Switch } from '../../components/dashkit/Switch/Switch';
 import { CircularProgress } from '../../components/dashkit/CircularProgress/CircularProgress';
 import { ProgressBar } from '../../components/dashkit/ProgressBar/ProgressBar';
