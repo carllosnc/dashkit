@@ -2,13 +2,12 @@ import * as React from 'react';
 import { cn } from '../utils/cn';
 import { Popover, PopoverTrigger, PopoverContent } from '../Popover/Popover';
 import { Input } from '../Input/Input';
-import { motion, AnimatePresence } from 'framer-motion';
 import { FiCheck } from 'react-icons/fi';
 
 const CONTAINER = "flex flex-col gap-1.5 w-full font-sans";
 const LABEL = "text-[13px] font-semibold text-ds-700 dark:text-ds-300 ml-1 tracking-tight";
 const TRIGGER = "flex items-center gap-3 w-full h-9 px-3 ds-rounded bg-input-bg border border-input-border text-sm text-input-fg outline-none transition-all duration-200 hover:ring-2 hover:ring-ring hover:ring-offset-2 hover:ring-offset-transparent";
-const CONTENT = "w-64 p-3 space-y-4 shadow-2xl border-ds-popover-border bg-ds-popover";
+const CONTENT = "w-64 p-3 space-y-4 shadow-2xl bg-popover border-popover-border";
 const PRESET_GRID = "grid grid-cols-6 gap-2";
 const PRESET_ITEM = "size-8 rounded-lg border relative flex items-center justify-center group overflow-hidden transition-all duration-200 hover:scale-110 active:scale-95";
 const FOOTER = "pt-3 border-t border-ds-border/50";
@@ -99,22 +98,16 @@ export function ColorPicker({
                 )}
                 style={{ backgroundColor: color }}
               >
-                <AnimatePresence>
-                  {hex.toLowerCase() === color.toLowerCase() && (
-                    <motion.div
-                      layoutId="color-check-mark"
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0 }}
-                      className={cn(
-                        "text-ds-50 drop-shadow-md flex items-center justify-center",
-                        (color.toLowerCase() === '#ffffff' || color.toLowerCase() === '#fbbf24') && "text-ds-900 drop-shadow-none"
-                      )}
-                    >
-                      <FiCheck size={14} strokeWidth={4} />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {hex.toLowerCase() === color.toLowerCase() && (
+                  <div
+                    className={cn(
+                      "text-ds-50 drop-shadow-md flex items-center justify-center",
+                      (color.toLowerCase() === '#ffffff' || color.toLowerCase() === '#fbbf24') && "text-ds-900 drop-shadow-none"
+                    )}
+                  >
+                    <FiCheck size={14} strokeWidth={4} />
+                  </div>
+                )}
               </button>
             ))}
           </div>
