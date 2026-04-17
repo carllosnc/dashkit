@@ -10,6 +10,7 @@ import {
 } from 'react-icons/fi';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { motion } from 'framer-motion';
 import { Header } from '../partials/Header';
 import { Footer } from '../partials/Footer';
 import { Drawer, DrawerHeader } from '../components/dashkit/Drawer/Drawer';
@@ -89,29 +90,40 @@ function SidebarContent({ currentPath, onItemClick }: { currentPath: string, onI
             {section.title}
           </h4>
           <nav className="flex flex-col gap-1">
-            {section.links.map((link) => (
+            {section.links.map((link) => {
+              const isActive = currentPath === link.to || (link.to === '/docs/introduction' && currentPath === '/docs');
+
+              return (
               <Link
                 key={link.to}
                 to={link.to}
                 onClick={onItemClick}
                 className={clsx(
-                  "px-3 py-2 rounded-xl text-sm transition-all duration-200 flex items-center gap-3",
-                  (currentPath === link.to || (link.to === '/docs/introduction' && currentPath === '/docs'))
-                    ? "bg-white border-white text-ds-950 font-semibold dark:bg-white/10 dark:text-white dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]"
-                    : "text-ds-500 font-medium hover:text-ds-950 hover:bg-white/50 dark:text-ds-400 dark:hover:text-white dark:hover:bg-white/5"
+                  "relative px-3 py-2 rounded-full text-sm transition-all duration-200 flex items-center gap-3",
+                  isActive
+                    ? "text-ds-50 font-semibold dark:text-ds-950"
+                    : "text-ds-500 font-medium hover:text-ds-950 hover:bg-white dark:text-ds-400 dark:hover:text-white dark:hover:bg-white/5"
                 )}
               >
+                {isActive && (
+                  <motion.div
+                    layoutId="sidebar-active-item"
+                    className="absolute inset-0 bg-ds-800 dark:bg-ds-0 dark:shadow-[0_0_20px_rgba(255,255,255,0.05)] rounded-full"
+                    transition={{ type: "spring", bounce: 0.0, duration: 0.6 }}
+                  />
+                )}
                 <div className={clsx(
-                  "shrink-0 transition-colors duration-200",
-                  (currentPath === link.to || (link.to === '/docs/introduction' && currentPath === '/docs'))
-                    ? "text-ds-900 dark:text-white"
+                  "shrink-0 transition-colors duration-200 relative z-10",
+                  isActive
+                    ? "text-ds-50 dark:text-ds-950"
                     : "text-ds-400 group-hover:text-ds-900 dark:text-ds-500 dark:group-hover:text-white"
                 )}>
                   {link.icon}
                 </div>
-                {link.label}
+                <span className="relative z-10">{link.label}</span>
               </Link>
-            ))}
+              );
+            })}
           </nav>
         </div>
       ))}
