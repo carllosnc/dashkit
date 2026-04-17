@@ -13,7 +13,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "build:cli": "tsup scripts/cli.ts --format esm --clean --minify --out-dir exec --entry.cli=scripts/cli.ts"
+    "build:cli": "tsup scripts/cli.ts --format esm --clean --minify --out-dir exec --entry.cli=scripts/cli.ts",
+    "check:all": "bun run test && bun run lint && bun run build"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.8",
