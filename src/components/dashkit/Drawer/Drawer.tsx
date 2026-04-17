@@ -86,7 +86,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(function Drawer({
               position === 'bottom' ? { top: 0 } :
               { bottom: 0 }
             }
-            dragElastic={0.1}
+            dragElastic={0.5}
             onDragEnd={handleDragEnd}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
             className={cn(

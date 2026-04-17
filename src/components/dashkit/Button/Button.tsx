@@ -20,16 +20,16 @@ const BUTTON_BASE = "ds-rounded inline-flex font-medium items-center justify-cen
 
 const BUTTON_VARIANTS = {
   filled: {
-    primary: "ds-primary-gradient text-primary-foreground hover:brightness-120 active:scale-[0.98] transition-colors",
-    danger: "ds-danger-gradient text-red-50 hover:brightness-120 active:scale-[0.98] transition-colors",
+    primary: "ds-primary-gradient text-primary-foreground hover:brightness-120 transition-colors",
+    danger: "ds-danger-gradient text-red-50 hover:brightness-120 transition-colors",
   },
   outlined: {
-    primary: "bg-transparent hover:brightness-80 text-foreground border border-ds-300 dark:border-ds-700 active:scale-[0.98]",
-    danger: "bg-transparent hover:bg-ds-danger-50 text-ds-danger-600 border border-ds-danger-200 dark:border-ds-danger-900/50 active:scale-[0.98]",
+    primary: "bg-transparent hover:brightness-80 text-foreground border border-ds-300 dark:border-ds-700",
+    danger: "bg-transparent hover:bg-ds-danger-50 text-ds-danger-600 border border-ds-danger-200 dark:border-ds-danger-900/50",
   },
   soft: {
-    primary: "bg-secondary text-secondary-foreground hover:brightness-90 dark:hover:brightness-110 active:scale-[0.98]",
-    danger: "bg-ds-danger-600/10 text-ds-danger-600 hover:bg-ds-danger-600/20 active:scale-[0.98]",
+    primary: "bg-secondary text-secondary-foreground hover:brightness-90 dark:hover:brightness-110",
+    danger: "bg-ds-danger-600/10 text-ds-danger-600 hover:bg-ds-danger-600/20",
   },
 } as const;
 

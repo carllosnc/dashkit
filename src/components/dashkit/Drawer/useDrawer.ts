@@ -64,12 +64,14 @@ export function useDrawer({ isOpen, onClose, position }: UseDrawerProps) {
   const defaultSize = (position === 'left' || position === 'right') ? 'max-w-md w-full' : 'max-h-[80vh] h-auto';
 
   const handleDragEnd = (_: unknown, info: PanInfo) => {
-    const threshold = 100;
+    const offsetThreshold = 30;
+    const velocityThreshold = 100;
+
     const isClosing =
-      (position === 'right' && info.offset.x > threshold) ||
-      (position === 'left' && info.offset.x < -threshold) ||
-      (position === 'bottom' && info.offset.y > threshold) ||
-      (position === 'top' && info.offset.y < -threshold);
+      (position === 'right' && (info.offset.x > offsetThreshold || info.velocity.x > velocityThreshold)) ||
+      (position === 'left' && (info.offset.x < -offsetThreshold || info.velocity.x < -velocityThreshold)) ||
+      (position === 'bottom' && (info.offset.y > offsetThreshold || info.velocity.y > velocityThreshold)) ||
+      (position === 'top' && (info.offset.y < -offsetThreshold || info.velocity.y < -velocityThreshold));
 
     if (isClosing) onClose();
   };
