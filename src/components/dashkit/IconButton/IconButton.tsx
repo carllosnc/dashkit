@@ -17,7 +17,7 @@ export type IconButtonProps = IconButtonBaseProps &
 const VARIANT_CLASSES = {
   filled: "ds-primary-gradient text-primary-foreground border-transparent hover:brightness-125",
   outlined: "bg-transparent text-foreground border border-ds-200 dark:border-ds-800 hover:bg-ds-100/50 dark:hover:bg-ds-800/50 hover:brightness-95 dark:hover:brightness-110",
-  soft: "bg-secondary text-secondary-foreground border-transparent hover:bg-ds-100 dark:hover:bg-ds-800/50 hover:brightness-95 dark:hover:brightness-110",
+  soft: "bg-secondary text-secondary-foreground border-transparent hover:brightness-85 dark:hover:brightness-150",
   ghost: "bg-transparent text-muted-foreground border-transparent hover:bg-accent hover:text-accent-foreground hover:brightness-95 dark:hover:brightness-110",
 } as const;
 
