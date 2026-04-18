@@ -422,5 +422,14 @@ export const registry: Record<string, ComponentConfig> = {
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
     registryDependencies: ['popover', 'input'],
+  },
+  copyfield: {
+    name: 'CopyField',
+    files: [
+      'src/components/dashkit/CopyField/CopyField.tsx',
+      'src/components/dashkit/CopyField/index.ts'
+    ],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
+    registryDependencies: ['input', 'iconbutton', 'toast'],
   }
 };

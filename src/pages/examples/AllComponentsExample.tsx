@@ -12,6 +12,7 @@ import { AnimateNumber } from '../../components/dashkit/AnimateNumber';
 import { CircularProgress } from '../../components/dashkit/CircularProgress/CircularProgress';
 import { Avatar, AvatarGroup } from '../../components/dashkit/Avatar';
 import { Input } from '../../components/dashkit/Input/Input';
+import { CopyField } from '../../components/dashkit/CopyField/CopyField';
 import { Checkbox } from '../../components/dashkit/Checkbox/Checkbox';
 import { Radio } from '../../components/dashkit/Radio/Radio';
 import { Switch } from '../../components/dashkit/Switch/Switch';
@@ -602,6 +603,26 @@ export const AllComponentsExample = () => {
               <Input label="Search" placeholder="Search..." leftIcon={<FiSearch />} />
               <Input label="Error State" placeholder="Invalid input" error="This field is required." />
             </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Copy Field</CardTitle>
+            <CardDescription>Read-only fields with integrated copy to clipboard functionality.</CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-8">
+            <CopyField 
+              label="Invite Link" 
+              value="https://dashkit.ui/join/t_xe9qw" 
+              description="Share this link to invite team members."
+            />
+            
+            <CopyField 
+              label="API Key" 
+              value="sk_test_51Mz..." 
+              description="Keep this key secure."
+            />
           </CardContent>
         </Card>
 

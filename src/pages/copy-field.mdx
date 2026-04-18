@@ -1,0 +1,89 @@
+import { CopyField } from '../components/dashkit/CopyField/CopyField';
+
+# Copy Field
+
+A specialized input component designed for displaying read-only text that needs to be copied to the clipboard, such as invite links, API keys, or referral codes.
+
+## Import
+
+```tsx
+import { CopyField } from '@/components/dashkit/CopyField'
+```
+
+## Installation
+
+Add the copy field component to your project using the Dashkit CLI:
+
+```bash
+bunx carllosnc/dashkit add copyfield
+```
+
+## Basic Usage
+
+The copy field displays text in a mono font with an integrated copy button.
+
+<Preview>
+  <CopyField value="https://dashkit.ui/join/t_xe9qw" className="max-w-md" />
+</Preview>
+
+```tsx
+<CopyField value="https://dashkit.ui/join/t_xe9qw" />
+```
+
+## With Label
+
+Add a `label` and `description` to provide context for the value.
+
+<Preview>
+  <CopyField 
+    label="Invite Link" 
+    description="Share this link to invite team members."
+    value="https://dashkit.ui/join/t_xe9qw" 
+    className="max-w-md" 
+  />
+</Preview>
+
+```tsx
+<CopyField 
+  label="Invite Link" 
+  description="Share this link to invite team members."
+  value="https://dashkit.ui/join/t_xe9qw" 
+/>
+```
+
+## Props (API)
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "label",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Label rendered above the field group."
+  },
+  {
+    "prop": "value",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "The text to be displayed and copied to the clipboard."
+  },
+  {
+    "prop": "description",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Helper text displayed below the field."
+  },
+  {
+    "prop": "showToast",
+    "type": "boolean",
+    "defaultValue": "true",
+    "description": "Whether to show a success toast notification after copying."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Additional CSS classes for the container element."
+  }
+]}
+/>

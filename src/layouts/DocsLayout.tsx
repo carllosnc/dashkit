@@ -6,7 +6,8 @@ import {
   FiSidebar, FiMaximize, FiLayers, FiBell, FiMoreVertical, FiAward,
   FiInbox, FiChevronRight, FiGrid, FiLayout, FiLoader, FiSliders, FiMoreHorizontal, FiCalendar, FiTable, FiUser, FiActivity,
   FiMonitor, FiMessageCircle, FiAlignLeft, FiEdit3, FiTrendingUp, FiSettings, FiTerminal,
-  FiPlusSquare, FiDroplet, FiClock, FiPlusCircle, FiCompass, FiChevronsRight, FiChevronsDown, FiTarget, FiCheck, FiHelpCircle
+  FiPlusSquare, FiDroplet, FiClock, FiPlusCircle, FiCompass, FiChevronsRight, FiChevronsDown, FiTarget, FiCheck, FiHelpCircle,
+  FiCopy
 } from 'react-icons/fi';
 import { Outlet, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -42,6 +43,7 @@ const navItems: SidebarSection[] = [
       { to: '/docs/circular-progress', label: 'Circular Progress', icon: <FiDisc size={16} /> },
       { to: '/docs/color-picker', label: 'Color Picker', icon: <FiDroplet size={16} /> },
       { to: '/docs/combobox', label: 'Combobox', icon: <FiSearch size={16} /> },
+      { to: '/docs/copy-field', label: 'Copy Field', icon: <FiCopy size={16} /> },
       { to: '/docs/date-field', label: 'Date Field', icon: <FiClock size={16} /> },
       { to: '/docs/datepicker', label: 'Date Picker', icon: <FiCalendar size={16} /> },
       { to: '/docs/divider', label: 'Divider', icon: <FiMinus size={16} /> },

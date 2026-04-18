@@ -6,7 +6,8 @@ import {
   FiSidebar, FiMaximize, FiLayers, FiBell, FiMoreVertical, FiAward,
   FiInbox, FiChevronRight, FiGrid, FiLayout, FiLoader, FiSliders, FiMoreHorizontal, FiCalendar, FiTable, FiUser, FiActivity,
   FiMonitor, FiMessageCircle, FiAlignLeft, FiEdit3, FiTrendingUp, FiTerminal, FiBarChart2, FiPieChart,
-  FiPlusSquare, FiDroplet, FiClock, FiPlusCircle, FiCompass, FiChevronsRight, FiChevronsDown, FiTarget, FiCheck, FiHelpCircle
+  FiPlusSquare, FiDroplet, FiClock, FiPlusCircle, FiCompass, FiChevronsRight, FiChevronsDown, FiTarget, FiCheck, FiHelpCircle,
+  FiCopy
 } from 'react-icons/fi';
 
 const components = [
@@ -26,6 +27,7 @@ const components = [
   { to: '/docs/circular-progress', label: 'Circular Progress', icon: <FiDisc size={24} />, description: 'Round progress indicators.' },
   { to: '/docs/color-picker', label: 'Color Picker', icon: <FiDroplet size={24} />, description: 'Standardized color selection.' },
   { to: '/docs/combobox', label: 'Combobox', icon: <FiSearch size={24} />, description: 'Select with search capability.' },
+  { to: '/docs/copy-field', label: 'Copy Field', icon: <FiCopy size={24} />, description: 'Read-only field with copy action.' },
   { to: '/docs/date-field', label: 'Date Field', icon: <FiClock size={24} />, description: 'Structured date input.' },
   { to: '/docs/datepicker', label: 'Date Picker', icon: <FiCalendar size={24} />, description: 'Calendar-based date selection.' },
   { to: '/docs/divider', label: 'Divider', icon: <FiMinus size={24} />, description: 'Visual separator for content.' },

@@ -56,6 +56,7 @@ import FloatActionMenuDocs from './pages/float-action-menu.mdx'
 import SystemLogsDocs from './pages/system-logs.mdx'
 import DateFieldDocs from './pages/date-field.mdx'
 import ColorPickerDocs from './pages/color-picker.mdx'
+import CopyFieldDocs from './pages/copy-field.mdx'
 import NavigationMenuDocs from './pages/navigation-menu.mdx'
 import ScrollAreaDocs from './pages/scroll-area.mdx'
 import StatsCardDocs from './pages/stats-card.mdx'
@@ -99,6 +100,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="checkbox" element={<MdxWrapper Component={CheckboxDocs} />} />
                 <Route path="chip" element={<MdxWrapper Component={ChipDocs} />} />
                 <Route path="combobox" element={<MdxWrapper Component={ComboboxDocs} />} />
+                <Route path="copy-field" element={<MdxWrapper Component={CopyFieldDocs} />} />
                 <Route path="divider" element={<MdxWrapper Component={DividerDocs} />} />
                 <Route path="datepicker" element={<MdxWrapper Component={DatePickerDocs} />} />
                 <Route path="drawer" element={<MdxWrapper Component={DrawerDocs} />} />
