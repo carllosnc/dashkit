@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { FiArrowRight, FiArrowLeft, FiLogIn, FiSettings, FiGrid, FiLayers, FiLayout, FiCreditCard } from 'react-icons/fi';
+import { FiArrowRight, FiArrowLeft, FiLogIn, FiSettings, FiLayers, FiCreditCard } from 'react-icons/fi';
 import { Divider } from '../../components/dashkit/Divider/Divider';
 import { Header } from '../../partials/Header';
 import { Footer } from '../../partials/Footer';
@@ -19,22 +19,6 @@ const examples = [
     description: 'A comprehensive user profile and settings form featuring multi-column layouts, various input types, and section-based organization.',
     href: '/examples/complex-form',
     icon: <FiSettings size={20} />,
-    color: 'text-ds-500',
-    bg: 'bg-ds-50 dark:bg-ds-900',
-  },
-  {
-    title: 'Admin Dashboard',
-    description: 'A full-featured project management interface demonstrating cards, statistics, data filtering, and complex interactive overlays.',
-    href: '/examples/dashboard',
-    icon: <FiGrid size={20} />,
-    color: 'text-ds-500',
-    bg: 'bg-ds-50 dark:bg-ds-900',
-  },
-  {
-    title: 'Sidebar Dashboard',
-    description: 'A modern SaaS-style dashboard layout featuring a fixed sidebar, collapsible navigation, and dense data visualizations.',
-    href: '/examples/sidebar-dashboard',
-    icon: <FiLayout size={20} />,
     color: 'text-ds-500',
     bg: 'bg-ds-50 dark:bg-ds-900',
   },

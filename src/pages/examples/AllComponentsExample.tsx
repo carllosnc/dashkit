@@ -21,9 +21,11 @@ import { Select } from '../../components/dashkit/Select/Select';
 import { Combobox } from '../../components/dashkit/Combobox/Combobox';
 import { DatePicker } from '../../components/dashkit/DatePicker/DatePicker';
 import { DateField } from '../../components/dashkit/DateField/DateField';
+import { Slider } from '../../components/dashkit/Slider/Slider';
 import { Spinner } from '../../components/dashkit/Spinner/Spinner';
 import { ColorPicker } from '../../components/dashkit/ColorPicker/ColorPicker';
 import { Skeleton } from '../../components/dashkit/Skeleton/Skeleton';
+import { Surface } from '../../components/dashkit/Surface/Surface';
 import { Backdrop } from '../../components/dashkit/Backdrop/Backdrop';
 import { Modal, ModalHeader, ModalContent, ModalFooter } from '../../components/dashkit/Modal/Modal';
 import { Drawer, DrawerHeader, DrawerContent, DrawerFooter } from '../../components/dashkit/Drawer/Drawer';
@@ -44,6 +46,7 @@ import {
   PopoverTrigger,
   PopoverContent
 } from '../../components/dashkit/Popover';
+import { Tooltip, TooltipTrigger, TooltipContent } from '../../components/dashkit/Tooltip/Tooltip';
 import { useToast } from '../../components/dashkit/Toast/useToast';
 import { AreaChart } from '../../components/dashkit/AreaChart/AreaChart';
 import { LineChart } from '../../components/dashkit/LineChart/LineChart';
@@ -121,6 +124,7 @@ export const AllComponentsExample = () => {
   const [activeStepper, setActiveStepper] = useState(1);
   const [paginationPage, setPaginationPage] = useState(1);
   const [accentColor, setAccentColor] = useState('#3B82F6');
+  const [sliderValue, setSliderValue] = useState(50);
   const { toast } = useToast();
 
   const [showcaseMetrics, setShowcaseMetrics] = useState({
@@ -233,6 +237,7 @@ export const AllComponentsExample = () => {
           </p>
         </header>
 
+
         <Card>
           <CardHeader>
             <CardTitle>Buttons</CardTitle>
@@ -281,7 +286,36 @@ export const AllComponentsExample = () => {
             <IconButton icon={<FiDownload />} variant="filled" rounded />
             <IconButton icon={<FiEdit2 />} variant="soft" />
             <IconButton icon={<FiShare2 />} rounded />
-            <IconButton icon={<FiTrash2 />} variant="ghost" className="text-danger" />
+            <IconButton icon={<FiTrash2 />} variant="ghost" />
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Surface</CardTitle>
+            <CardDescription>Versatile containers for grouping related UI elements with semantic variants.</CardDescription>
+          </CardHeader>
+          <CardContent className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Surface className="p-4 flex flex-col gap-2">
+              <span className="font-bold text-sm">Default Surface</span>
+              <p className="text-xs text-muted-foreground">Clean, neutral container for general purposes.</p>
+            </Surface>
+            <Surface variant="info" className="p-4 flex flex-col gap-2">
+              <span className="font-bold text-sm text-ds-info-700 dark:text-ds-info-400">Info Surface</span>
+              <p className="text-xs text-ds-info-600/80 dark:text-ds-info-400/60">Notice or helpful context container.</p>
+            </Surface>
+            <Surface variant="success" className="p-4 flex flex-col gap-2">
+              <span className="font-bold text-sm text-ds-success-700 dark:text-ds-success-400">Success Surface</span>
+              <p className="text-xs text-ds-success-600/80 dark:text-ds-success-400/60">Positive feedback or completed state.</p>
+            </Surface>
+            <Surface variant="warning" className="p-4 flex flex-col gap-2">
+              <span className="font-bold text-sm text-ds-warning-700 dark:text-ds-warning-400">Warning Surface</span>
+              <p className="text-xs text-ds-warning-600/80 dark:text-ds-warning-400/60">Caution or pending action notice.</p>
+            </Surface>
+            <Surface variant="danger" className="p-4 flex flex-col gap-2">
+              <span className="font-bold text-sm text-ds-danger-700 dark:text-ds-danger-400">Danger Surface</span>
+              <p className="text-xs text-ds-danger-600/80 dark:text-ds-danger-400/60">Critical error or destructive state.</p>
+            </Surface>
           </CardContent>
         </Card>
 
@@ -295,14 +329,11 @@ export const AllComponentsExample = () => {
               <Button onClick={() => setIsBackdropOpen(true)}>Show Backdrop</Button>
             </div>
             <Backdrop show={isBackdropOpen} onClick={() => setIsBackdropOpen(false)}>
-              <div className="bg-card p-8 rounded-2xl shadow-2xl max-w-sm text-center border border-border/50 animate-in zoom-in-95 duration-200">
-                <div className="size-16 bg-blue-500/10 text-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <FiInfo size={32} />
-                </div>
+              <Surface className="p-8 max-w-sm text-center">
                 <h3 className="text-xl font-bold mb-2">Backdrop Overlay</h3>
-                <p className="text-muted-foreground mb-6">This content is perfectly centered on top of the blurred backdrop.</p>
-                <Button className="w-full" onClick={() => setIsBackdropOpen(false)}>Close Overlay</Button>
-              </div>
+                <p className="text-muted-foreground mb-6">This content is displayed on top of the backdrop.</p>
+                <Button className="w-full" onClick={() => setIsBackdropOpen(false)}>Close</Button>
+              </Surface>
             </Backdrop>
           </CardContent>
         </Card>
@@ -313,12 +344,12 @@ export const AllComponentsExample = () => {
             <CardDescription>Custom theme-aware scrollbars with native performance.</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="h-48 w-full border border-ds-200 dark:border-ds-800 ds-rounded overflow-hidden bg-ds-50/50 dark:bg-ds-900/50">
+            <div className="h-48 w-full border border-ds-200 dark:border-ds-800 ds-rounded overflow-hidden">
               <ScrollArea className="h-full">
-                <div className="p-4 flex flex-col gap-3">
+                <div className="p-4 flex flex-col gap-2">
                   {Array.from({ length: 10 }).map((_, i) => (
-                    <div key={i} className="p-3 bg-card border border-border ds-rounded text-sm text-ds-600">
-                      Scrollable item #{i + 1} - Demonstrating the minimalist custom scrollbar.
+                    <div key={i} className="p-4 border border-ds-100 dark:border-ds-800 ds-rounded">
+                      Scrollable item #{i + 1}
                     </div>
                   ))}
                 </div>
@@ -465,8 +496,7 @@ export const AllComponentsExample = () => {
               status="info"
               icon={<HiOutlineArrowPathRoundedSquare className="size-6" />}
               chart={{
-                data: [60, 62, 65, 63, 68, 70, 67, 68],
-                color: "var(--color-ds-info-500)"
+                data: [60, 62, 65, 63, 68, 70, 67, 68]
               }}
             />
             <StatsCard
@@ -530,13 +560,9 @@ export const AllComponentsExample = () => {
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem href="/">Dashboard</BreadcrumbItem>
-                <BreadcrumbSeparator>
-                  <FiChevronRight className="size-4 text-ds-400" />
-                </BreadcrumbSeparator>
+                <BreadcrumbSeparator />
                 <BreadcrumbItem href="/projects">Projects</BreadcrumbItem>
-                <BreadcrumbSeparator>
-                  <FiChevronRight className="size-4 text-ds-400" />
-                </BreadcrumbSeparator>
+                <BreadcrumbSeparator />
                 <BreadcrumbItem active>Dashkit UI</BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
@@ -706,6 +732,44 @@ export const AllComponentsExample = () => {
 
         <Card>
           <CardHeader>
+            <CardTitle>Sliders</CardTitle>
+            <CardDescription>Trackbar inputs for selecting a numeric value from a range.</CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-10">
+             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <Slider 
+                  label="Volume Control" 
+                  value={sliderValue} 
+                  onChange={setSliderValue} 
+                  showValue 
+                />
+                <Slider 
+                  label="Brightness" 
+                  defaultValue={85} 
+                  description="Adjust the display luminosity."
+                  showValue
+                />
+             </div>
+             <Divider variant="dashed" />
+             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <Slider 
+                  label="Disabled Range" 
+                  defaultValue={30} 
+                  disabled 
+                  showValue 
+                />
+                <Slider 
+                  label="Step Intervals" 
+                  step={10} 
+                  defaultValue={20} 
+                  showValue 
+                />
+             </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
             <CardTitle>Dropdown Menu</CardTitle>
             <CardDescription>Overlays for lists of actions or selection options.</CardDescription>
           </CardHeader>
@@ -820,14 +884,12 @@ export const AllComponentsExample = () => {
               <PopoverTrigger asChild>
                 <Button variant="soft" leftIcon={<FiUser />}>User Profile</Button>
               </PopoverTrigger>
-              <PopoverContent side="top" align="start" className="w-80 p-0 overflow-hidden" sideOffset={12}>
-                <div className="h-24 bg-gradient-to-br from-ds-primary-600 to-ds-primary-400" />
-                <div className="p-4 -mt-10">
-                  <div className="size-16 rounded-full border-4 border-popover bg-ds-100 flex items-center justify-center overflow-hidden mb-3">
-                     <FiUser size={32} className="text-ds-400" />
+              <PopoverContent side="top" align="start" className="w-80">
+                <div className="flex flex-col gap-4">
+                  <div>
+                    <h4 className="font-bold">Alex Rivera</h4>
+                    <p className="text-sm text-muted-foreground">Senior UI Architect</p>
                   </div>
-                  <h4 className="font-bold text-lg text-ds-950 dark:text-ds-50">Alex Rivera</h4>
-                  <p className="text-sm text-muted-foreground mb-4">Senior UI Architect</p>
                   <div className="flex gap-2">
                     <Button variant="filled" size="sm" className="flex-1">Follow</Button>
                     <Button variant="soft" size="sm" className="flex-1">Message</Button>
@@ -835,6 +897,42 @@ export const AllComponentsExample = () => {
                 </div>
               </PopoverContent>
             </Popover>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Tooltip</CardTitle>
+            <CardDescription>Small contextual overlays that appear on hover.</CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-wrap gap-12 py-8 justify-center">
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant="outlined">Tooltip Top</Button>
+              </TooltipTrigger>
+              <TooltipContent side="top">I am on top</TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <IconButton icon={<FiInfo />} variant="soft" />
+              </TooltipTrigger>
+              <TooltipContent side="bottom">Bottom tooltip description</TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Badge content="Hover me" color="info" />
+              </TooltipTrigger>
+              <TooltipContent side="right">Right aligned context</TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Avatar src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop" size="sm" />
+              </TooltipTrigger>
+              <TooltipContent side="left">Left tooltip</TooltipContent>
+            </Tooltip>
           </CardContent>
         </Card>
         <Card>
@@ -1110,28 +1208,21 @@ export const AllComponentsExample = () => {
               size={modalSize}
             >
               <ModalHeader onClose={() => setIsModalOpen(false)}>
-                <h3 className="text-xl font-bold tracking-tight">{modalSize.toUpperCase()} Modal</h3>
-                <p className="text-sm text-muted-foreground tracking-tight">This is a demonstration of the Dashkit Modal component.</p>
+                <h3>{modalSize.toUpperCase()} Modal</h3>
+                <p>This is a demonstration of the Dashkit Modal component.</p>
               </ModalHeader>
               <ModalContent className="flex flex-col gap-4">
-                <p className="text-sm text-ds-600 dark:text-ds-400">
-                  Modals are great for displaying extra information without losing the current context. They feature:
+                <p>
+                  Modals are used for displaying extra information without losing context.
                 </p>
-                <ul className="list-disc list-inside text-sm space-y-2 text-ds-700 dark:text-ds-300">
-                  <li>Focus trapping for accessibility</li>
-                  <li>Backdrop blur and dimming</li>
-                  <li>Smooth scale and fade animations</li>
-                  <li>Responsive sizing (sm to full)</li>
-                  <li>Scroll locking on the body</li>
-                </ul>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                  <Input label="First Name" placeholder="John" />
-                  <Input label="Last Name" placeholder="Doe" />
+                  <Input label="First Name" />
+                  <Input label="Last Name" />
                 </div>
               </ModalContent>
               <ModalFooter>
                 <Button variant="outlined" onClick={() => setIsModalOpen(false)}>Cancel</Button>
-                <Button onClick={() => setIsModalOpen(false)}>Save Changes</Button>
+                <Button onClick={() => setIsModalOpen(false)}>Save</Button>
               </ModalFooter>
             </Modal>
           </CardContent>
@@ -1196,19 +1287,16 @@ export const AllComponentsExample = () => {
               position={drawerPosition}
             >
               <DrawerHeader>
-                <h2 className="text-lg font-bold uppercase tracking-tight">Drawer {drawerPosition.toUpperCase()}</h2>
-                <p className="text-sm text-muted-foreground">A clean side panel for secondary content.</p>
+                <h2>Drawer {drawerPosition.toUpperCase()}</h2>
+                <p>Side panel for secondary content.</p>
               </DrawerHeader>
               <DrawerContent>
-                <div className="flex flex-col gap-4 py-8">
-                  <div className="h-[500px] border-2 border-dashed rounded-xl flex items-center justify-center text-muted-foreground text-xs uppercase tracking-widest">
-                    Content Area
-                  </div>
+                <div className="p-4">
+                  Drawer content goes here.
                 </div>
               </DrawerContent>
               <DrawerFooter>
-                <Button variant="outlined" onClick={() => setIsDrawerOpen(false)}>Cancel</Button>
-                <Button onClick={() => setIsDrawerOpen(false)}>Action</Button>
+                <Button variant="outlined" onClick={() => setIsDrawerOpen(false)}>Close</Button>
               </DrawerFooter>
             </Drawer>
           </CardContent>
@@ -1241,7 +1329,7 @@ export const AllComponentsExample = () => {
             </TabsContent>
           </Tabs>
 
-          <Accordion shadowed type="single" defaultValue="item-1">
+          <Accordion type="single" defaultValue="item-1">
             <AccordionItem value="item-1">
               <AccordionTrigger>Is it accessible?</AccordionTrigger>
               <AccordionContent>
@@ -1608,8 +1696,8 @@ export const AllComponentsExample = () => {
         </Card>
 
         <section className="flex flex-col gap-4">
-          <Table framed>
-            <TableCaption>A list of your recent invoices and their current payment status.</TableCaption>
+          <Table>
+            <TableCaption>A list of your recent invoices.</TableCaption>
             <TableHeader>
               <TableRow>
                 <TableHead className="w-[100px]">Invoice</TableHead>
@@ -1656,20 +1744,13 @@ export const AllComponentsExample = () => {
       <Footer />
 
       <FloatActionMenu
-        label="Quick Actions"
+        label="Actions"
         icon={<FiPlus />}
         position="bottom-right"
       >
-        <div className="flex flex-col gap-4">
-          <div className="p-4 ds-rounded bg-ds-50 dark:bg-ds-800 border border-border/60">
-            <h4 className="text-sm font-semibold mb-1">Create New Task</h4>
-            <p className="text-xs text-muted-foreground">Add a task to your current active project.</p>
-          </div>
-          <div className="flex flex-col gap-2">
-            <Button variant="soft" leftIcon={<FiEdit2 />} className="justify-start">Edit Project</Button>
-            <Button variant="soft" leftIcon={<FiShare2 />} className="justify-start">Share Dashboard</Button>
-            <Button variant="soft" leftIcon={<FiDownload />} className="justify-start">Export Data</Button>
-          </div>
+        <div className="flex flex-col gap-2">
+          <Button variant="soft" className="justify-start">Action One</Button>
+          <Button variant="soft" className="justify-start">Action Two</Button>
         </div>
       </FloatActionMenu>
     </div>

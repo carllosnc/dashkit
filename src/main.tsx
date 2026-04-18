@@ -62,8 +62,6 @@ import StatsCardDocs from './pages/stats-card.mdx'
 import ComponentsDocs from './pages/components.mdx'
 import { LoginExample } from './pages/examples/LoginExample'
 import { ComplexFormExample } from './pages/examples/ComplexFormExample'
-import { DashboardExample } from './pages/examples/DashboardExample'
-import { SidebarDashboardExample } from './pages/examples/SidebarDashboardExample'
 import { AllComponentsExample } from './pages/examples/AllComponentsExample'
 import { PaymentPageExample } from './pages/examples/PaymentPageExample'
 import { ExamplesList } from './pages/examples/ExamplesList'
@@ -151,8 +149,6 @@ createRoot(document.getElementById('root')!).render(
                 <Route index element={<ExamplesList />} />
                 <Route path="login" element={<LoginExample />} />
                 <Route path="complex-form" element={<ComplexFormExample />} />
-                <Route path="dashboard" element={<DashboardExample />} />
-                <Route path="sidebar-dashboard" element={<SidebarDashboardExample />} />
                 <Route path="payment" element={<PaymentPageExample />} />
                 <Route path="all-components" element={<AllComponentsExample />} />
               </Route>
