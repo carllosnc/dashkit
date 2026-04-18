@@ -15,9 +15,10 @@ import { Surface } from '../../components/dashkit/Surface/Surface';
 import { Switch } from '../../components/dashkit/Switch/Switch';
 import { Select } from '../../components/dashkit/Select/Select';
 import { toast } from '../../components/dashkit/Toast/useToast';
+import { CopyField } from '../../components/dashkit/CopyField/CopyField';
 import { Slider } from '../../components/dashkit/Slider/Slider';
 import { StatsCard } from '../../components/dashkit/StatsCard/StatsCard';
-import { FiSettings, FiBarChart2, FiMonitor, FiSmartphone, FiBell, FiCheckCircle, FiXCircle, FiUserPlus, FiCopy, FiSend, FiSun, FiMoon, FiUsers } from 'react-icons/fi';
+import { FiSettings, FiBarChart2, FiMonitor, FiSmartphone, FiBell, FiCheckCircle, FiXCircle, FiUserPlus, FiSend, FiSun, FiMoon, FiUsers } from 'react-icons/fi';
 import { CONVERSION_DATA } from './Constants';
 
 export function ColumnThree() {
@@ -258,8 +259,8 @@ export function ColumnThree() {
                <span className="text-xs text-ds-500">Allow systemic alerts to pop up.</span>
             </div>
             <div className="grid grid-cols-2 gap-2">
-               <Button variant="soft" size="sm" leftIcon={<FiCheckCircle size={14} />} onClick={() => toast({ title: 'Saved!', description: 'Settings updated successfully.', type: 'success' })}>Success</Button>
-               <Button variant="soft" size="sm" leftIcon={<FiXCircle size={14} />} onClick={() => toast({ title: 'Error', description: 'Failed to apply change.', type: 'error' })}>Error</Button>
+               <Button variant="soft" size="sm" leftIcon={<FiCheckCircle size={14} />} onClick={() => toast({ title: 'Saved!', description: 'Settings updated successfully.', type: 'success', invert: true })}>Success</Button>
+               <Button variant="soft" size="sm" leftIcon={<FiXCircle size={14} />} onClick={() => toast({ title: 'Error', description: 'Failed to apply change.', type: 'error', invert: true })}>Error</Button>
             </div>
          </CardContent>
       </Card>
@@ -280,19 +281,11 @@ export function ColumnThree() {
             </div>
          </CardHeader>
          <CardContent className="space-y-5">
-            <div className="flex flex-col gap-1.5">
-               <label className="text-xs font-bold text-ds-800 dark:text-ds-200 uppercase tracking-wider">Invite Link</label>
-               <div className="flex gap-2 w-full">
-                  <Input 
-                     defaultValue="https://dashkit.ui/join/t_xe9qw" 
-                     readOnly
-                     className="font-mono text-xs w-full" 
-                  />
-                  <Button variant="outlined" className="px-3 shrink-0" aria-label="Copy link" onClick={() => toast({type: 'success', description: 'Link copied to clipboard!'})}>
-                     <FiCopy size={16} />
-                  </Button>
-               </div>
-            </div>
+            <CopyField 
+               label="Invite Link" 
+               value="https://dashkit.ui/join/t_xe9qw" 
+               description="Share this link to invite team members."
+            />
             <div className="flex gap-2 w-full items-end mt-1">
                <div className="flex-1">
                   <Input 

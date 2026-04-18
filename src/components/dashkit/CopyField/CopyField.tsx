@@ -27,7 +27,8 @@ export const CopyField = forwardRef<HTMLDivElement, CopyFieldProps>(
             title: 'Copied to clipboard',
             description: value,
             type: 'success',
-            duration: 2000
+            duration: 2000,
+            invert: true
           });
         }
         setTimeout(() => setCopied(false), 2000);

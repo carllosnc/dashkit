@@ -6,10 +6,10 @@ import { Divider } from '../../components/dashkit/Divider/Divider';
 import { ProgressBar } from '../../components/dashkit/ProgressBar/ProgressBar';
 import { Checkbox } from '../../components/dashkit/Checkbox/Checkbox';
 import { Slider } from '../../components/dashkit/Slider/Slider';
-import { Input } from '../../components/dashkit/Input/Input';
 import { Select } from '../../components/dashkit/Select/Select';
+import { CopyField } from '../../components/dashkit/CopyField/CopyField';
 import { StatsCard } from '../../components/dashkit/StatsCard/StatsCard';
-import { FiBell, FiZap, FiShield, FiMessageSquare, FiList, FiFolder, FiTrendingUp, FiShare2, FiCheckCircle, FiXCircle, FiLock, FiCopy, FiServer, FiDownload, FiFileText, FiActivity } from 'react-icons/fi';
+import { FiBell, FiZap, FiShield, FiMessageSquare, FiList, FiFolder, FiTrendingUp, FiShare2, FiCheckCircle, FiXCircle, FiLock, FiServer, FiDownload, FiFileText, FiActivity } from 'react-icons/fi';
 import { FaGithub, FaGoogle, FaSlack, FaDiscord, FaAws, FaFigma } from 'react-icons/fa';
 import { SiVercel, SiNotion } from 'react-icons/si';
 import { PieChart } from '../../components/dashkit/PieChart/PieChart';
@@ -304,36 +304,15 @@ export function ColumnFour() {
             <CardDescription>Manage your secret keys for external integrations.</CardDescription>
          </CardHeader>
          <CardContent className="space-y-4">
-            <div className="flex flex-col gap-1.5">
-               <label className="text-xs font-bold text-ds-800 dark:text-ds-200 uppercase tracking-wider">Production Key</label>
-               <div className="flex gap-2 w-full">
-                  <Input 
-                     type="password" 
-                     defaultValue="pk_live_1234567890abcdef" 
-                     readOnly
-                     disabled 
-                     className="font-mono text-xs w-full" 
-                  />
-                  <Button variant="outlined" className="px-3 shrink-0" aria-label="Copy key">
-                     <FiCopy size={14} />
-                  </Button>
-               </div>
-            </div>
-            <div className="flex flex-col gap-1.5 mt-2">
-               <label className="text-xs font-bold text-ds-800 dark:text-ds-200 uppercase tracking-wider">Test Key</label>
-               <div className="flex gap-2 w-full">
-                  <Input 
-                     type="password" 
-                     defaultValue="pk_test_0987654321fedcba" 
-                     readOnly
-                     disabled 
-                     className="font-mono text-xs w-full" 
-                  />
-                  <Button variant="outlined" className="px-3 shrink-0" aria-label="Copy key">
-                     <FiCopy size={14} />
-                  </Button>
-               </div>
-            </div>
+            <CopyField 
+               label="Production Key" 
+               value="pk_live_1234567890abcdef" 
+               className="mb-2"
+            />
+            <CopyField 
+               label="Test Key" 
+               value="pk_test_0987654321fedcba" 
+            />
             <Button variant="soft" className="w-full mt-2" leftIcon={<FiZap />}>Generate New Key</Button>
          </CardContent>
       </Card>

@@ -405,7 +405,7 @@ export function ColumnOne() {
                      <Badge content="Active" color="success" variant="soft" />
                   </div>
               </div>
-              <Button variant="filled" className="w-full" onClick={() => toast({ title: 'Authentication', description: 'Biometric scan initiated.', type: 'info' })}>Re-verify Identity</Button>
+              <Button variant="filled" className="w-full" onClick={() => toast({ title: 'Authentication', description: 'Biometric scan initiated.', type: 'info', invert: true })}>Re-verify Identity</Button>
            </CardContent>
         </Card>
       {/* Modals */}
@@ -428,7 +428,7 @@ export function ColumnOne() {
           <Button variant="outlined" onClick={() => setIsModalOpen(false)}>Cancel</Button>
           <Button 
             color="danger"
-            onClick={() => { setIsModalOpen(false); toast({ type: 'error', description: 'Project deleted successfully!' }); }}
+            onClick={() => { setIsModalOpen(false); toast({ type: 'error', description: 'Project deleted successfully!', invert: true }); }}
           >
             Delete Project
           </Button>

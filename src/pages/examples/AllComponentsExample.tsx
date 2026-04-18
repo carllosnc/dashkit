@@ -1261,7 +1261,8 @@ export const AllComponentsExample = () => {
               onClick={() => toast({ 
                 title: "Action Successful", 
                 description: "Your changes have been saved to the cloud.",
-                type: "success"
+                type: "success",
+                invert: true
               })}
             >
               Success Toast
@@ -1272,7 +1273,8 @@ export const AllComponentsExample = () => {
               onClick={() => toast({ 
                 title: "Sync Failed", 
                 description: "Could not connect to the server. Please try again.",
-                type: "error"
+                type: "error",
+                invert: true
               })}
             >
               Error Toast
@@ -1282,7 +1284,8 @@ export const AllComponentsExample = () => {
               onClick={() => toast({ 
                 title: "New Update", 
                 description: "A new version of Dashkit is available.",
-                type: "info"
+                type: "info",
+                invert: true
               })}
             >
               Info Toast

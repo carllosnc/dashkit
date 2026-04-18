@@ -78,7 +78,7 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ThemeProvider>
       <HelmetProvider>
-        <ToastProvider>
+        <ToastProvider invert>
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<App />} />
