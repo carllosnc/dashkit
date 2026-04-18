@@ -144,7 +144,7 @@
   --ds-accent: var(--color-ds-100);
   --ds-accent-fg: var(--color-ds-950);
 
-  --ds-input-bg: var(--color-ds-0);
+  --ds-input-bg: var(--color-ds-100);
   --ds-input-border: var(--color-ds-300);
   --ds-input-focus: var(--color-ds-400);
   --ds-input-fg: var(--color-ds-900);
