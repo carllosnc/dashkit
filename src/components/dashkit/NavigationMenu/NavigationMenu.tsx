@@ -96,7 +96,7 @@ export function NavigationMenu({ children, className }: NavigationMenuProps) {
     >
       <nav
         ref={menuRef}
-        className={cn("relative z-10 flex w-full items-center justify-center", className)}
+        className={cn("relative z-50 flex w-full items-center justify-center", className)}
       >
         {children}
       </nav>
@@ -193,7 +193,7 @@ export function NavigationMenuViewport({ className }: { className?: string }) {
     <AnimatePresence>
       {activeValue && activeTrigger && (
         <div
-          className="absolute left-0 top-full flex justify-center w-full pointer-events-none"
+          className="absolute left-0 top-full flex justify-center w-full pointer-events-none z-50"
           style={{ perspective: '2000px' }}
         >
           <motion.div
