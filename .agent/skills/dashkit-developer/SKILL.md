@@ -16,6 +16,12 @@ This skill provides instructions and patterns for extending the Dashkit UI libra
 - **ALWAYS USE BUN**: This project is optimized for Bun. Always use `bun` and `bunx` instead of `npm`, `npx`, `pnpm`, or `yarn` for package management, script execution, and documentation examples.
 - Only create a new component if the functionality is unique and not covered by existing building blocks.
 
+## Design
+
+- When creating examples, avoid customization. Use components as purely as possible, relying on their built-in props and variants to achieve the desired result.
+- Always design screens using a block-based approach, utilizing the `Card` component to define sections.
+- Avoid customizing colors, padding, or margins in Dashkit components. Use the default styles provided by the library.
+
 ## Component Structure
 
 Every component should be located in `src/components/[ComponentName]/` and typically consists of:
