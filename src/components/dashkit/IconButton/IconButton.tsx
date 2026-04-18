@@ -15,10 +15,10 @@ export type IconButtonProps = IconButtonBaseProps &
   );
 
 const VARIANT_CLASSES = {
-  filled: "ds-primary-gradient text-primary-foreground border-transparent hover:brightness-110 active:scale-95",
-  outlined: "bg-transparent text-foreground border border-ds-200 dark:border-ds-800 hover:bg-ds-100/50 dark:hover:bg-ds-800/50 active:scale-95",
-  soft: "bg-secondary text-secondary-foreground border-transparent hover:bg-ds-200 dark:hover:bg-ds-800 active:scale-95",
-  ghost: "bg-transparent text-muted-foreground border-transparent hover:bg-accent hover:text-accent-foreground active:scale-95",
+  filled: "ds-primary-gradient text-primary-foreground border-transparent hover:brightness-125",
+  outlined: "bg-transparent text-foreground border border-ds-200 dark:border-ds-800 hover:bg-ds-100/50 dark:hover:bg-ds-800/50 hover:brightness-95 dark:hover:brightness-110",
+  soft: "bg-secondary text-secondary-foreground border-transparent hover:bg-ds-100 dark:hover:bg-ds-800/50 hover:brightness-95 dark:hover:brightness-110",
+  ghost: "bg-transparent text-muted-foreground border-transparent hover:bg-accent hover:text-accent-foreground hover:brightness-95 dark:hover:brightness-110",
 } as const;
 
 const BASE_CLASSES = "ds-rounded inline-flex font-medium items-center justify-center focus:outline-none cursor-pointer whitespace-nowrap border select-none shrink-0 size-9 transition-all duration-200";
