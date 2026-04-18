@@ -96,7 +96,7 @@ export function NavigationMenu({ children, className }: NavigationMenuProps) {
     >
       <nav
         ref={menuRef}
-        className={cn("relative z-50 flex w-full items-center justify-center", className)}
+        className={cn("relative z-[100] flex w-full items-center justify-center", className)}
       >
         {children}
       </nav>
@@ -193,7 +193,7 @@ export function NavigationMenuViewport({ className }: { className?: string }) {
     <AnimatePresence>
       {activeValue && activeTrigger && (
         <div
-          className="absolute left-0 top-full flex justify-center w-full pointer-events-none z-50"
+          className="absolute left-0 top-full flex justify-center w-full pointer-events-none z-[100]"
           style={{ perspective: '2000px' }}
         >
           <motion.div
@@ -214,7 +214,7 @@ export function NavigationMenuViewport({ className }: { className?: string }) {
               opacity: { duration: 0.2 }
             }}
             className={cn(
-              "relative mt-1 overflow-hidden ds-rounded border border-ds-200 dark:border-ds-900 bg-popover text-popover-foreground shadow-2xl pointer-events-auto",
+              "relative mt-1 ds-rounded border border-ds-200 dark:border-ds-900 bg-popover text-popover-foreground shadow-2xl pointer-events-auto",
               className
             )}
           >

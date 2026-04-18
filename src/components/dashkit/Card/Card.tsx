@@ -2,7 +2,7 @@ import * as React from 'react';
 import { motion, type HTMLMotionProps } from 'framer-motion';
 import { cn } from '../utils/cn';
 
-const CARD_ROOT = "bg-card text-card-foreground p-6 ds-rounded shadow-sm overflow-hidden gap-6 flex flex-col font-sans";
+const CARD_ROOT = "bg-card text-card-foreground p-6 ds-rounded shadow-sm gap-6 flex flex-col font-sans";
 const BORDER_NONE = "border-none";
 const SHADOW_NONE = "shadow-none";
 

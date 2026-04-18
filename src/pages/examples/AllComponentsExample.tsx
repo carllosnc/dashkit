@@ -793,8 +793,8 @@ export const AllComponentsExample = () => {
             </Dropdown>
           </CardContent>
         </Card>
-        
-        <Card>
+
+        <Card className="overflow-visible">
           <CardHeader>
             <CardTitle>Navigation Menu</CardTitle>
             <CardDescription>A premium component for complex headers with sliding transitions.</CardDescription>
