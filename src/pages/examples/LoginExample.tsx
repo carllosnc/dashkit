@@ -1,11 +1,11 @@
 import { FiMail, FiLock, FiArrowRight, FiGithub } from 'react-icons/fi';
 import { Helmet } from 'react-helmet-async';
 import { FcGoogle } from 'react-icons/fc';
-import { Input } from '../../components/dashkit/Input/Input';
-import { Button } from '../../components/dashkit/Button/Button';
-import { Checkbox } from '../../components/dashkit/Checkbox/Checkbox';
+import { Input } from '../../dashkit/Input/Input';
+import { Button } from '../../dashkit/Button/Button';
+import { Checkbox } from '../../dashkit/Checkbox/Checkbox';
 
-import { Divider } from '../../components/dashkit/Divider/Divider';
+import { Divider } from '../../dashkit/Divider/Divider';
 
 export const LoginExample = () => {
   return (

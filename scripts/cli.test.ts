@@ -120,7 +120,7 @@ describe('Dashkit CLI', () => {
     });
 
     // Default for info.hasSrc is path.join('src', 'components', 'dashkit')
-    const expectedPath = path.join(testDir, 'src/components/dashkit/Badge/Badge.tsx');
+    const expectedPath = path.join(testDir, 'src/dashkit/Badge/Badge.tsx');
     expect(await fs.pathExists(expectedPath)).toBe(true);
   });
 });

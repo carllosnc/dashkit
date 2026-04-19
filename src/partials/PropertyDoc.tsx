@@ -1,4 +1,4 @@
-import { cn } from '../components/dashkit/utils/cn';
+import { cn } from '../dashkit/utils/cn';
 
 export interface Property {
   prop: string;

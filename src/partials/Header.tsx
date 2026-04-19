@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Navbar, NavbarBrand, NavbarLinks, NavbarActions } from '../components/dashkit/Navbar/Navbar';
-import { IconButton } from '../components/dashkit/IconButton/IconButton';
+import { Navbar, NavbarBrand, NavbarLinks, NavbarActions } from '../dashkit/Navbar/Navbar';
+import { IconButton } from '../dashkit/IconButton/IconButton';
 import { ThemeToggle } from './ThemeToggle';
 import { FiGithub, FiMenu } from 'react-icons/fi';
 import clsx from 'clsx';

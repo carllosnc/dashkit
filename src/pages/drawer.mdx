@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { FiLayout, FiSidebar, FiAlignLeft, FiUser, FiSettings, FiActivity } from 'react-icons/fi'
-import { Button } from '../components/dashkit/Button/Button'
-import { Drawer, DrawerHeader, DrawerContent, DrawerFooter } from '../components/dashkit/Drawer/Drawer'
+import { Button } from '../dashkit/Button/Button'
+import { Drawer, DrawerHeader, DrawerContent, DrawerFooter } from '../dashkit/Drawer/Drawer'
 
 export const DrawerDemo = () => {
   const [activeDrawer, setActiveDrawer] = useState(null);
@@ -72,7 +72,7 @@ import {
   DrawerContent,
   DrawerFooter,
   Button
-} from '@/components/dashkit'
+} from '@/dashkit'
 
 export default function MyPage() {
   const [isOpen, setIsOpen] = useState(false)

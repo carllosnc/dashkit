@@ -4,18 +4,18 @@ import {
   FiUser, FiMail, FiPhone, FiGlobe, FiMapPin,
   FiSave, FiX, FiBriefcase, FiLinkedin, FiGithub, FiTwitter, FiLayers,
 } from 'react-icons/fi';
-import { Input } from '../../components/dashkit/Input/Input';
-import { Button } from '../../components/dashkit/Button/Button';
-import { Checkbox } from '../../components/dashkit/Checkbox/Checkbox';
-import { Select } from '../../components/dashkit/Select/Select';
-import { Switch } from '../../components/dashkit/Switch/Switch';
-import { Radio } from '../../components/dashkit/Radio/Radio';
-import { Textarea } from '../../components/dashkit/Textarea/Textarea';
-import { Combobox } from '../../components/dashkit/Combobox/Combobox';
-import { Divider } from '../../components/dashkit/Divider/Divider';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../../components/dashkit/Card';
-import { DatePicker } from '../../components/dashkit/DatePicker/DatePicker';
-import { DateField } from '../../components/dashkit/DateField/DateField';
+import { Input } from '../../dashkit/Input/Input';
+import { Button } from '../../dashkit/Button/Button';
+import { Checkbox } from '../../dashkit/Checkbox/Checkbox';
+import { Select } from '../../dashkit/Select/Select';
+import { Switch } from '../../dashkit/Switch/Switch';
+import { Radio } from '../../dashkit/Radio/Radio';
+import { Textarea } from '../../dashkit/Textarea/Textarea';
+import { Combobox } from '../../dashkit/Combobox/Combobox';
+import { Divider } from '../../dashkit/Divider/Divider';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../../dashkit/Card';
+import { DatePicker } from '../../dashkit/DatePicker/DatePicker';
+import { DateField } from '../../dashkit/DateField/DateField';
 
 export const ComplexFormExample = () => {
   const [role, setRole] = useState('developer');

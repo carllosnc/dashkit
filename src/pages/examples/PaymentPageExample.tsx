@@ -2,14 +2,14 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Header } from '../../partials/Header';
 import { Footer } from '../../partials/Footer';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/dashkit/Card';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '../../components/dashkit/Tabs/Tabs';
-import { Input } from '../../components/dashkit/Input/Input';
-import { Button } from '../../components/dashkit/Button/Button';
-import { Select } from '../../components/dashkit/Select/Select';
-import { Checkbox } from '../../components/dashkit/Checkbox/Checkbox';
-import { Divider } from '../../components/dashkit/Divider/Divider';
-import { Surface } from '../../components/dashkit/Surface/Surface';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../dashkit/Card';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '../../dashkit/Tabs/Tabs';
+import { Input } from '../../dashkit/Input/Input';
+import { Button } from '../../dashkit/Button/Button';
+import { Select } from '../../dashkit/Select/Select';
+import { Checkbox } from '../../dashkit/Checkbox/Checkbox';
+import { Divider } from '../../dashkit/Divider/Divider';
+import { Surface } from '../../dashkit/Surface/Surface';
 import {
   FiCreditCard,
   FiShield,

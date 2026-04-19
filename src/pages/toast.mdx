@@ -1,5 +1,5 @@
-import { toast } from '../components/dashkit/Toast/useToast';
-import { Button } from '../components/dashkit/Button/Button';
+import { toast } from '../dashkit/Toast/useToast';
+import { Button } from '../dashkit/Button/Button';
 import { FiCheck, FiInfo, FiAlertTriangle, FiTrash2, FiDownload, FiBell } from 'react-icons/fi';
 
 export const ToastExamples = () => {
@@ -99,7 +99,7 @@ Trigger a toast from anywhere by calling the `toast` function. Toasts automatica
 </Preview>
 
 ```tsx
-import { toast } from '@/components/dashkit'
+import { toast } from '@/dashkit'
 
 const notify = () => {
   toast({

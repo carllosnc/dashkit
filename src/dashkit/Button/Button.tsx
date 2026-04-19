@@ -2,6 +2,7 @@ import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from 'react';
 import clsx, { type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { Spinner } from '../Spinner/Spinner';
+import './button.css';
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -15,29 +16,6 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   rightIcon?: ReactNode;
   loading?: boolean;
 }
-
-const BUTTON_BASE = "ds-rounded inline-flex font-medium items-center justify-center focus:outline-none cursor-pointer whitespace-nowrap disabled:opacity-60 disabled:cursor-not-allowed";
-
-const BUTTON_VARIANTS = {
-  filled: {
-    primary: "ds-primary-gradient text-primary-foreground hover:brightness-120 transition-colors",
-    danger: "ds-danger-gradient text-red-50 hover:brightness-120 transition-colors",
-  },
-  outlined: {
-    primary: "bg-transparent hover:brightness-80 text-foreground border border-ds-300 dark:border-ds-700",
-    danger: "bg-transparent hover:bg-ds-danger-50 text-ds-danger-600 border border-ds-danger-200 dark:border-ds-danger-900/50",
-  },
-  soft: {
-    primary: "bg-secondary text-secondary-foreground hover:brightness-90 dark:hover:brightness-110",
-    danger: "bg-ds-danger-600/10 text-ds-danger-600 hover:bg-ds-danger-600/20",
-  },
-} as const;
-
-const BUTTON_SIZES = {
-  sm: "h-7 text-xs",
-  md: "h-9 text-sm",
-  lg: "h-11 text-base",
-} as const;
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   function Button(
@@ -62,15 +40,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         disabled={disabled || loading}
         className={cn(
-          BUTTON_BASE,
-          BUTTON_VARIANTS[variant][color] as string,
-          BUTTON_SIZES[size],
+          'btn-base',
+          `btn-${variant}-${color}`,
+          `btn-${size}`,
           {
-            "opacity-60 cursor-not-allowed": loading,
-            "gap-2 px-4 py-[5px]": !isIconOnly,
-            "px-2": size === 'sm' && !isIconOnly,
-            "px-6": size === 'lg' && !isIconOnly,
-            "p-[8px] aspect-square": isIconOnly,
+            "btn-loading": loading,
+            "btn-with-text": !isIconOnly,
+            "btn-with-text-sm": size === 'sm' && !isIconOnly,
+            "btn-with-text-lg": size === 'lg' && !isIconOnly,
+            "btn-icon-only": isIconOnly,
           },
           className
         )}
@@ -86,5 +64,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 );
 
 Button.displayName = 'Button';
+
 
 

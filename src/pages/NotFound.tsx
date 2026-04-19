@@ -1,4 +1,4 @@
-import { Button } from '../components/dashkit/Button/Button';
+import { Button } from '../dashkit/Button/Button';
 import { FiArrowLeft } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';

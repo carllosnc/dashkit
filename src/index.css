@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @import "@fontsource-variable/inter";
-@import "./dashkit.css";
+@import "./dashkit/dashkit.css";
 
 @theme {
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;

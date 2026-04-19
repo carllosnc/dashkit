@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { FiArrowRight, FiArrowLeft, FiLogIn, FiSettings, FiLayers, FiCreditCard } from 'react-icons/fi';
-import { Divider } from '../../components/dashkit/Divider/Divider';
+import { Divider } from '../../dashkit/Divider/Divider';
 import { Header } from '../../partials/Header';
 import { Footer } from '../../partials/Footer';
 

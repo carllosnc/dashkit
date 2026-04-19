@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { cn } from '../utils/cn';
 import { AccordionContext, AccordionItemContext } from './AccordionContext';
+import './accordion.css';
 
 interface AccordionItemProps {
   value: string;
@@ -8,8 +9,6 @@ interface AccordionItemProps {
   className?: string;
   disabled?: boolean;
 }
-
-const ACCORDION_ITEM_BASE = "bg-card text-card-foreground ds-rounded shadow-sm overflow-hidden";
 
 export function AccordionItem({ value, children, className, disabled }: AccordionItemProps) {
   const context = React.useContext(AccordionContext);
@@ -22,10 +21,10 @@ export function AccordionItem({ value, children, className, disabled }: Accordio
   return (
     <AccordionItemContext.Provider value={{ value, isOpen }}>
       <div className={cn(
-        ACCORDION_ITEM_BASE,
-        isOpen && "bg-card",
-        context.shadowed ? "bg-card" : "shadow-none",
-        disabled && "opacity-50 pointer-events-none",
+        'accordion-item',
+        isOpen && "accordion-item-open",
+        !context.shadowed && "accordion-item-shadow-none",
+        disabled && "accordion-item-disabled",
         className
       )}>
         {children}
@@ -35,3 +34,4 @@ export function AccordionItem({ value, children, className, disabled }: Accordio
 }
 
 AccordionItem.displayName = 'AccordionItem';
+

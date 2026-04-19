@@ -3,11 +3,7 @@ import { motion } from 'framer-motion';
 import { FiChevronRight } from 'react-icons/fi';
 import { cn } from '../utils/cn';
 import { AccordionContext, AccordionItemContext } from './AccordionContext';
-
-const TRIGGER_BASE = "flex w-full items-center gap-3 px-4 py-4 text-left hover:text-block-fg dark:hover:text-block-dark-fg group";
-const TRIGGER_ACTIVE = "text-block-fg dark:text-block-dark-fg font-medium";
-const TRIGGER_INACTIVE = "text-ds-950 dark:text-ds-300 font-medium";
-const TRIGGER_CONTENT = "text-base text-foreground font-medium tracking-tight";
+import './accordion.css';
 
 export function AccordionTrigger({ children, className }: { children: React.ReactNode; className?: string }) {
   const itemContext = React.useContext(AccordionItemContext);
@@ -18,8 +14,8 @@ export function AccordionTrigger({ children, className }: { children: React.Reac
     <button
       onClick={() => context.onValueChange(itemContext.value)}
       className={cn(
-        TRIGGER_BASE,
-        itemContext.isOpen ? TRIGGER_ACTIVE : TRIGGER_INACTIVE,
+        'accordion-trigger',
+        itemContext.isOpen ? 'accordion-trigger-active' : 'accordion-trigger-inactive',
         className
       )}
     >
@@ -30,9 +26,10 @@ export function AccordionTrigger({ children, className }: { children: React.Reac
       >
         <FiChevronRight size={18} />
       </motion.div>
-      <span className={TRIGGER_CONTENT}>{children}</span>
+      <span className="accordion-trigger-content">{children}</span>
     </button>
   );
 }
 
 AccordionTrigger.displayName = 'AccordionTrigger';
+

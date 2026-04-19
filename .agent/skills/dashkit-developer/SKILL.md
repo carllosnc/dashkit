@@ -34,11 +34,13 @@ Every component should be located in `src/components/[ComponentName]/` and typic
 - **Component Refactoring**:
   - **Preserve Behavior & Styling**: When refactoring, NEVER change an existing feature or styling outcome. Focus purely on code organization and structural improvements.
   - **Single File**: Create a dedicated file for each component (avoid grouping multiple components in one file).
-  - **Top-Level Styles**: Move all Tailwind class strings to the top of the file as constant variables (e.g., `const COMPONENT_BASE = "..."`).
+  - **Styling Strategy**: Prefer moving Tailwind class strings to a dedicated `[ComponentName].css` file using standard CSS classes. If kept in the `.tsx` file, move them to the top as constant variables (e.g., `const COMPONENT_BASE = "..."`).
   - **Named Functions**: Use standard named function component syntax (`function MyComponent() { ... }`) instead of anonymous arrow functions within `forwardRef` or as standalone variables.
   - **Clean Code**: Remove all non-essential comments and eliminate trailing spaces.
 
 - Use **Tailwind CSS v4** for all styling.
+  - When creating a component style file (`.css`), never use `@utility`. Always use standard CSS classes.
+  - Always include `@reference` to the project's central CSS file (e.g., `../dashkit.css`) at the top of component style files to enable IntelliSense and proper token inheritance.
 - Use `framer-motion` for animations.
 - Use the `cn` utility from `src/utils/cn` for class merging.
 - Ensure proper accessibility (ARIA roles, keyboard navigation).

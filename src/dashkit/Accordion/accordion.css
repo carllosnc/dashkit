@@ -1,0 +1,41 @@
+@reference "../dashkit.css";
+
+.accordion {
+  @apply flex flex-col gap-3 w-full;
+}
+
+.accordion-item {
+  @apply bg-card text-card-foreground ds-rounded shadow-sm overflow-hidden;
+}
+
+.accordion-item-shadow-none {
+  @apply shadow-none;
+}
+
+.accordion-item-disabled {
+  @apply opacity-50 pointer-events-none;
+}
+
+.accordion-trigger {
+  @apply flex w-full items-center gap-3 px-4 py-4 text-left transition-colors;
+}
+
+.accordion-trigger-active {
+  @apply font-medium;
+}
+
+.accordion-trigger-inactive {
+  @apply text-ds-950 dark:text-ds-300 font-medium;
+}
+
+.accordion-trigger-content {
+  @apply text-base text-foreground font-medium tracking-tight;
+}
+
+.accordion-content {
+  @apply overflow-hidden;
+}
+
+.accordion-content-inner {
+  @apply px-4 pb-4 pl-[44px] text-sm text-muted-foreground leading-relaxed font-medium;
+}

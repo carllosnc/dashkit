@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { cn } from '../components/dashkit/utils/cn';
+import { cn } from '../dashkit/utils/cn';
 
 interface TypingEffectProps {
   words: string[];

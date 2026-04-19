@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { cn } from '../utils/cn';
 import { AccordionContext, type AccordionType } from './AccordionContext';
+import './accordion.css';
 
 export interface AccordionProps {
   type?: AccordionType;
@@ -11,8 +12,6 @@ export interface AccordionProps {
   className?: string;
   shadowed?: boolean;
 }
-
-const ACCORDION_BASE = "flex flex-col gap-3 w-full";
 
 export function Accordion({
   type = 'single',
@@ -48,7 +47,7 @@ export function Accordion({
 
   return (
     <AccordionContext.Provider value={{ type, value, onValueChange: handleValueChange, shadowed }}>
-      <div className={cn(ACCORDION_BASE, className)}>
+      <div className={cn('accordion', className)}>
         {children}
       </div>
     </AccordionContext.Provider>
@@ -56,3 +55,4 @@ export function Accordion({
 }
 
 Accordion.displayName = 'Accordion';
+

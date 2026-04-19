@@ -1,19 +1,19 @@
 import * as React from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/dashkit/Card';
-import { Button } from '../../components/dashkit/Button/Button';
-import { Badge } from '../../components/dashkit/Badge';
-import { Divider } from '../../components/dashkit/Divider/Divider';
-import { ProgressBar } from '../../components/dashkit/ProgressBar/ProgressBar';
-import { Checkbox } from '../../components/dashkit/Checkbox/Checkbox';
-import { Slider } from '../../components/dashkit/Slider/Slider';
-import { Select } from '../../components/dashkit/Select/Select';
-import { CopyField } from '../../components/dashkit/CopyField/CopyField';
-import { StatsCard } from '../../components/dashkit/StatsCard/StatsCard';
-import { ListTile } from '../../components/dashkit/ListTile/ListTile';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../dashkit/Card';
+import { Button } from '../../dashkit/Button/Button';
+import { Badge } from '../../dashkit/Badge';
+import { Divider } from '../../dashkit/Divider/Divider';
+import { ProgressBar } from '../../dashkit/ProgressBar/ProgressBar';
+import { Checkbox } from '../../dashkit/Checkbox/Checkbox';
+import { Slider } from '../../dashkit/Slider/Slider';
+import { Select } from '../../dashkit/Select/Select';
+import { CopyField } from '../../dashkit/CopyField/CopyField';
+import { StatsCard } from '../../dashkit/StatsCard/StatsCard';
+import { ListTile } from '../../dashkit/ListTile/ListTile';
 import { FiBell, FiZap, FiShield, FiMessageSquare, FiList, FiFolder, FiTrendingUp, FiShare2, FiCheckCircle, FiXCircle, FiLock, FiServer, FiDownload, FiFileText, FiActivity } from 'react-icons/fi';
 import { FaGithub, FaGoogle, FaSlack, FaDiscord, FaAws, FaFigma } from 'react-icons/fa';
 import { SiVercel, SiNotion } from 'react-icons/si';
-import { PieChart } from '../../components/dashkit/PieChart/PieChart';
+import { PieChart } from '../../dashkit/PieChart/PieChart';
 
 export function ColumnFour() {
   const [tasks, setTasks] = React.useState<{ label: string; checked: boolean }[]>([

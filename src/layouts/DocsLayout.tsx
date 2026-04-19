@@ -13,7 +13,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Header } from '../partials/Header';
 import { Footer } from '../partials/Footer';
-import { Drawer, DrawerHeader } from '../components/dashkit/Drawer/Drawer';
+import { Drawer, DrawerHeader } from '../dashkit/Drawer/Drawer';
 import { Sidebar, type SidebarSection } from '../partials/Sidebar';
 
 const navItems: SidebarSection[] = [
