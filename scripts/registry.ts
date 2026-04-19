@@ -264,7 +264,10 @@ export const registry: Record<string, ComponentConfig> = {
   },
   buttongroup: {
     name: 'ButtonGroup',
-    files: ['src/dashkit/ButtonGroup/ButtonGroup.tsx'],
+    files: [
+      'src/dashkit/ButtonGroup/ButtonGroup.tsx',
+      'src/dashkit/ButtonGroup/button-group.css'
+    ],
     dependencies: ['clsx', 'tailwind-merge'],
   },
   chip: {

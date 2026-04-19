@@ -1,46 +1,51 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
-import { ButtonGroup } from './ButtonGroup';
-import { Button } from '../Button/Button';
+import { ButtonGroup, ButtonGroupItem } from './ButtonGroup';
 
 describe('ButtonGroup', () => {
   it('renders children correctly', () => {
     render(
       <ButtonGroup>
-        <Button>First</Button>
-        <Button>Second</Button>
+        <ButtonGroupItem>First</ButtonGroupItem>
+        <ButtonGroupItem>Second</ButtonGroupItem>
       </ButtonGroup>
     );
     expect(screen.getByText('First')).toBeInTheDocument();
     expect(screen.getByText('Second')).toBeInTheDocument();
   });
 
-  it('applies correct rounded classes for horizontal layout', () => {
+  it('applies correct classes for horizontal layout', () => {
     const { container } = render(
       <ButtonGroup>
-        <Button>First</Button>
-        <Button>Last</Button>
+        <ButtonGroupItem>First</ButtonGroupItem>
+        <ButtonGroupItem>Last</ButtonGroupItem>
       </ButtonGroup>
     );
-    
+
     const group = container.firstChild as HTMLElement;
-    expect(group).toHaveClass('inline-flex', 'flex-row', '-space-x-px');
-    expect(group).toHaveClass('[&>*:first-child]:rounded-r-none');
-    expect(group).toHaveClass('[&>*:last-child]:rounded-l-none');
+    expect(group).toHaveClass('btn-group', 'btn-group-horizontal');
   });
 
-  it('applies correct rounded classes for vertical layout', () => {
+  it('applies correct classes for vertical layout', () => {
     const { container } = render(
       <ButtonGroup vertical>
-        <Button>First</Button>
-        <Button>Last</Button>
+        <ButtonGroupItem>First</ButtonGroupItem>
+        <ButtonGroupItem>Last</ButtonGroupItem>
       </ButtonGroup>
     );
-    
+
     const group = container.firstChild as HTMLElement;
-    expect(group).toHaveClass('inline-flex', 'flex-col', '-space-y-px');
-    expect(group).toHaveClass('[&>*:first-child]:rounded-b-none');
-    expect(group).toHaveClass('[&>*:last-child]:rounded-t-none');
+    expect(group).toHaveClass('btn-group', 'btn-group-vertical');
+  });
+
+  it('applies selected class when selected prop is true', () => {
+    render(
+      <ButtonGroup>
+        <ButtonGroupItem selected>Selected</ButtonGroupItem>
+      </ButtonGroup>
+    );
+    const button = screen.getByText('Selected');
+    expect(button).toHaveClass('btn-group-item-selected');
   });
 });
 

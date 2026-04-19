@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../dashkit/Card';
 import { Button } from '../../dashkit/Button/Button';
-import { ButtonGroup } from '../../dashkit/ButtonGroup/ButtonGroup';
+import { ButtonGroup, ButtonGroupItem } from '../../dashkit/ButtonGroup/ButtonGroup';
 import { Badge } from '../../dashkit/Badge';
 import { Input } from '../../dashkit/Input/Input';
 import { Divider } from '../../dashkit/Divider/Divider';
@@ -346,27 +346,25 @@ export function ColumnThree() {
              <div className="space-y-3">
                 <span className="text-[11px] font-bold uppercase tracking-widest text-ds-500">Interface Theme</span>
                 <ButtonGroup className="w-full">
-                   <Button 
-                     variant="soft" 
+                   <ButtonGroupItem 
                      className="flex-1 text-xs gap-2 font-semibold"
-                     leftIcon={<FiCheckCircle size={14} className="text-ds-primary-600" />}
+                     selected
                    >
+                     <FiCheckCircle size={14} className="text-ds-primary-600" />
                      Light
-                   </Button>
-                   <Button 
-                     variant="soft" 
-                     className="flex-1 text-xs gap-2 font-semibold opacity-70"
-                     leftIcon={<FiMoon size={14} />}
+                   </ButtonGroupItem>
+                   <ButtonGroupItem 
+                     className="flex-1 text-xs gap-2 font-semibold"
                    >
+                     <FiMoon size={14} />
                      Dark
-                   </Button>
-                   <Button 
-                     variant="soft" 
-                     className="flex-1 text-xs gap-2 font-semibold opacity-70"
-                     leftIcon={<FiMonitor size={14} />}
+                   </ButtonGroupItem>
+                   <ButtonGroupItem 
+                     className="flex-1 text-xs gap-2 font-semibold"
                    >
+                     <FiMonitor size={14} />
                      System
-                   </Button>
+                   </ButtonGroupItem>
                 </ButtonGroup>
              </div>
              <div className="space-y-3">

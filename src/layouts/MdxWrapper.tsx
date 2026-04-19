@@ -11,7 +11,7 @@ import {
 import { Backdrop } from '../dashkit/Backdrop/Backdrop';
 import { Button } from '../dashkit/Button/Button';
 import { DatePicker } from '../dashkit/DatePicker/DatePicker';
-import { ButtonGroup } from '../dashkit/ButtonGroup/ButtonGroup';
+import { ButtonGroup, ButtonGroupItem } from '../dashkit/ButtonGroup/ButtonGroup';
 import { Checkbox } from '../dashkit/Checkbox/Checkbox';
 import { Input } from '../dashkit/Input/Input';
 import { Chip } from '../dashkit/Chip/Chip';
@@ -142,6 +142,7 @@ const components: Record<string, ElementType> = {
   Backdrop,
   DatePicker,
   ButtonGroup,
+  ButtonGroupItem,
   Input,
   Chip,
   Combobox,

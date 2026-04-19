@@ -18,7 +18,7 @@ import { Checkbox } from '../../dashkit/Checkbox/Checkbox';
 import { Radio } from '../../dashkit/Radio/Radio';
 import { Switch } from '../../dashkit/Switch/Switch';
 import { Textarea } from '../../dashkit/Textarea/Textarea';
-import { ButtonGroup } from '../../dashkit/ButtonGroup/ButtonGroup';
+import { ButtonGroup, ButtonGroupItem } from '../../dashkit/ButtonGroup/ButtonGroup';
 import { Select } from '../../dashkit/Select/Select';
 import { Combobox } from '../../dashkit/Combobox/Combobox';
 import { DatePicker } from '../../dashkit/DatePicker/DatePicker';
@@ -692,15 +692,15 @@ export const AllComponentsExample = () => {
         <Card>
           <CardHeader>
             <CardTitle>Button Groups</CardTitle>
-            <CardDescription>Button groups allow you to group multiple buttons together.</CardDescription>
+            <CardDescription>Group multiple buttons together with support for selection states.</CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-8">
             <div className="flex flex-col gap-4">
               <h4 className="text-sm font-medium text-muted-foreground">Horizontal</h4>
               <ButtonGroup>
-                <Button variant="outlined">Daily</Button>
-                <Button variant="outlined">Weekly</Button>
-                <Button variant="outlined">Monthly</Button>
+                <ButtonGroupItem onClick={() => setSelected('daily')} selected={selected === 'daily'}>Daily</ButtonGroupItem>
+                <ButtonGroupItem onClick={() => setSelected('weekly')} selected={selected === 'weekly'}>Weekly</ButtonGroupItem>
+                <ButtonGroupItem onClick={() => setSelected('monthly')} selected={selected === 'monthly'}>Monthly</ButtonGroupItem>
               </ButtonGroup>
             </div>
 
@@ -709,9 +709,9 @@ export const AllComponentsExample = () => {
             <div className="flex flex-col gap-4">
               <h4 className="text-sm font-medium text-muted-foreground">Icon Groups</h4>
               <ButtonGroup>
-                <IconButton icon={<FiEdit2 />} variant="ghost" />
-                <IconButton icon={<FiShare2 />} variant="ghost" />
-                <IconButton icon={<FiTrash2 />} variant="ghost" />
+                <ButtonGroupItem><FiEdit2 size={16} /></ButtonGroupItem>
+                <ButtonGroupItem selected><FiShare2 size={16} /></ButtonGroupItem>
+                <ButtonGroupItem><FiTrash2 size={16} /></ButtonGroupItem>
               </ButtonGroup>
             </div>
 
@@ -720,9 +720,9 @@ export const AllComponentsExample = () => {
             <div className="flex flex-col gap-4">
               <h4 className="text-sm font-medium text-muted-foreground">Vertical</h4>
               <ButtonGroup vertical className="w-fit">
-                <Button variant="outlined" className="justify-start">Top Action</Button>
-                <Button variant="outlined" className="justify-start">Middle Action</Button>
-                <Button variant="outlined" className="justify-start">Bottom Action</Button>
+                <ButtonGroupItem className="justify-start">Top Action</ButtonGroupItem>
+                <ButtonGroupItem className="justify-start" selected>Middle Action</ButtonGroupItem>
+                <ButtonGroupItem className="justify-start">Bottom Action</ButtonGroupItem>
               </ButtonGroup>
             </div>
           </CardContent>

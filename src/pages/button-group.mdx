@@ -1,87 +1,110 @@
-import { ButtonGroup } from '../dashkit/ButtonGroup/ButtonGroup';
-import { Button } from '../dashkit/Button/Button';
-import { FiBold, FiItalic, FiUnderline, FiAlignLeft, FiAlignCenter, FiAlignRight } from 'react-icons/fi';
+import { ButtonGroup, ButtonGroupItem } from '../dashkit/ButtonGroup/ButtonGroup';
+import { FiBold, FiItalic, FiUnderline, FiAlignLeft, FiAlignCenter, FiAlignRight, FiGrid, FiList, FiLayout } from 'react-icons/fi';
 
 # Button Group
 
-The **ButtonGroup** component is used to cluster multiple buttons together in a single, cohesive unit. This is often used for toolbar actions, toggle switches, or pagination.
+The **ButtonGroup** component is used to cluster multiple buttons together in a single, cohesive unit. This is often used for toolbar actions, toggle switches, or navigation. It features a modern, border-aware outlined design with dedicated selection states.
 
 ## Examples
 
-### Horizontal Group
+### Segmented Control
 
-The default layout for a button group.
+One of the most common uses for a button group is to switch between different views or filters. Use `flex-1` on the items to create equal-width segments.
 
 <Preview>
-  <div className="flex flex-col gap-4 w-full">
-    <span className="text-xs font-bold uppercase tracking-widest text-ds-400">Standard Buttons</span>
-    <ButtonGroup>
-      <Button variant="outlined">Daily</Button>
-      <Button variant="outlined">Weekly</Button>
-      <Button variant="outlined">Monthly</Button>
-    </ButtonGroup>
-  </div>
+  <ButtonGroup className="w-full">
+    <ButtonGroupItem className="flex-1" selected>Activity</ButtonGroupItem>
+    <ButtonGroupItem className="flex-1">Analytics</ButtonGroupItem>
+    <ButtonGroupItem className="flex-1">History</ButtonGroupItem>
+  </ButtonGroup>
+</Preview>
 
-  <div className="flex flex-col gap-4 w-full">
-    <span className="text-xs font-bold uppercase tracking-widest text-ds-400">Icon Buttons</span>
+```tsx
+<ButtonGroup className="w-full">
+  <ButtonGroupItem className="flex-1" selected>Activity</ButtonGroupItem>
+  <ButtonGroupItem className="flex-1">Analytics</ButtonGroupItem>
+  <ButtonGroupItem className="flex-1">History</ButtonGroupItem>
+</ButtonGroup>
+```
+
+### View Switcher
+
+Combine icons and text for a more descriptive interface. The selection state uses a subtle primary background to indicate the active choice.
+
+<Preview>
+  <ButtonGroup>
+    <ButtonGroupItem className="gap-2" selected>
+      <FiGrid size={16} />
+      Grid
+    </ButtonGroupItem>
+    <ButtonGroupItem className="gap-2">
+      <FiList size={16} />
+      List
+    </ButtonGroupItem>
+    <ButtonGroupItem className="gap-2">
+      <FiLayout size={16} />
+      Compact
+    </ButtonGroupItem>
+  </ButtonGroup>
+</Preview>
+
+```tsx
+<ButtonGroup>
+  <ButtonGroupItem className="gap-2" selected>
+    <FiGrid size={16} /> Grid
+  </ButtonGroupItem>
+  <ButtonGroupItem className="gap-2">
+    <FiList size={16} /> List
+  </ButtonGroupItem>
+  <ButtonGroupItem className="gap-2">
+    <FiLayout size={16} /> Compact
+  </ButtonGroupItem>
+</ButtonGroup>
+```
+
+### Formatting Toolbar
+
+Button groups are essential for toolbars. The `-space-x-px` logic ensures borders never double up, maintaining a crisp appearance.
+
+<Preview>
+  <div className="flex gap-4">
     <ButtonGroup>
-      <Button variant="outlined" leftIcon={<FiAlignLeft size={16} />} />
-      <Button variant="outlined" leftIcon={<FiAlignCenter size={16} />} />
-      <Button variant="outlined" leftIcon={<FiAlignRight size={16} />} />
+      <ButtonGroupItem selected><FiBold size={16} /></ButtonGroupItem>
+      <ButtonGroupItem><FiItalic size={16} /></ButtonGroupItem>
+      <ButtonGroupItem><FiUnderline size={16} /></ButtonGroupItem>
+    </ButtonGroup>
+
+    <ButtonGroup>
+      <ButtonGroupItem selected><FiAlignLeft size={16} /></ButtonGroupItem>
+      <ButtonGroupItem><FiAlignCenter size={16} /></ButtonGroupItem>
+      <ButtonGroupItem><FiAlignRight size={16} /></ButtonGroupItem>
     </ButtonGroup>
   </div>
 </Preview>
 
-```tsx
-import { Button, ButtonGroup } from 'dashkit';
+### Vertical Stack
 
-function Example() {
-  return (
-    <ButtonGroup>
-      <Button variant="outlined">Daily</Button>
-      <Button variant="outlined">Weekly</Button>
-      <Button variant="outlined">Monthly</Button>
-    </ButtonGroup>
-  );
-}
-```
-
-### Vertical Group
-
-Set the `vertical` prop to `true` to stack buttons vertically.
+Vertical groups are useful for sidebars or property menus.
 
 <Preview>
   <ButtonGroup vertical>
-    <Button variant="outlined" leftIcon={<FiBold size={16} />}>Bold</Button>
-    <Button variant="outlined" leftIcon={<FiItalic size={16} />}>Italic</Button>
-    <Button variant="outlined" leftIcon={<FiUnderline size={16} />}>Underline</Button>
+    <ButtonGroupItem className="justify-start px-6 h-10">Top Action</ButtonGroupItem>
+    <ButtonGroupItem className="justify-start px-6 h-10" selected>Active State</ButtonGroupItem>
+    <ButtonGroupItem className="justify-start px-6 h-10">Bottom Action</ButtonGroupItem>
   </ButtonGroup>
 </Preview>
 
 ```tsx
 <ButtonGroup vertical>
-  <Button variant="outlined">Bold</Button>
-  <Button variant="outlined">Italic</Button>
-  <Button variant="outlined">Underline</Button>
+  <ButtonGroupItem className="justify-start">Top Action</ButtonGroupItem>
+  <ButtonGroupItem className="justify-start" selected>Active State</ButtonGroupItem>
+  <ButtonGroupItem className="justify-start">Bottom Action</ButtonGroupItem>
 </ButtonGroup>
 ```
-
-### Button Variants
-
-ButtonGroup works with all button variants (`filled`, `outlined`, `soft`).
-
-<Preview>
-  <ButtonGroup>
-    <Button variant="soft">Option A</Button>
-    <Button variant="soft">Option B</Button>
-    <Button variant="soft">Option C</Button>
-  </ButtonGroup>
-</Preview>
 
 ## Props
 
 ### ButtonGroup
-
 
 <PropertyDoc
   properties={[
@@ -102,6 +125,31 @@ ButtonGroup works with all button variants (`filled`, `outlined`, `soft`).
     "type": "string",
     "defaultValue": "—",
     "description": "Additional CSS classes for the container."
+  }
+]}
+/>
+
+### ButtonGroupItem
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "children",
+    "type": "ReactNode",
+    "defaultValue": "—",
+    "description": "Content of the button."
+  },
+  {
+    "prop": "selected",
+    "type": "boolean",
+    "defaultValue": "false",
+    "description": "Whether the button is in a selected state."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Additional CSS classes for the button."
   }
 ]}
 />

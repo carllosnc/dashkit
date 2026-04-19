@@ -1,10 +1,6 @@
-import { type ReactNode } from 'react';
-import clsx, { type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-
-function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
+import { type ReactNode, type ButtonHTMLAttributes } from 'react';
+import './button-group.css';
+import { cn } from '../utils/cn';
 
 export interface ButtonGroupProps {
   children: ReactNode;
@@ -16,19 +12,8 @@ export function ButtonGroup({ children, className, vertical = false }: ButtonGro
   return (
     <div
       className={cn(
-        "inline-flex isolate",
-        !vertical && [
-          "flex-row -space-x-px",
-          "[&>*:first-child]:rounded-r-none",
-          "[&>*:last-child]:rounded-l-none",
-          "[&>*:not(:first-child):not(:last-child)]:rounded-none",
-        ],
-        vertical && [
-          "flex-col -space-y-px",
-          "[&>*:first-child]:rounded-b-none",
-          "[&>*:last-child]:rounded-t-none",
-          "[&>*:not(:first-child):not(:last-child)]:rounded-none",
-        ],
+        'btn-group',
+        vertical ? 'btn-group-vertical' : 'btn-group-horizontal',
         className
       )}
     >
@@ -37,4 +22,30 @@ export function ButtonGroup({ children, className, vertical = false }: ButtonGro
   );
 }
 
+export interface ButtonGroupItemProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  selected?: boolean;
+}
+
+export function ButtonGroupItem({
+  children,
+  className,
+  selected = false,
+  ...props
+}: ButtonGroupItemProps) {
+  return (
+    <button
+      className={cn(
+        'btn-group-item',
+        selected && 'btn-group-item-selected',
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+}
+
 ButtonGroup.displayName = 'ButtonGroup';
+ButtonGroupItem.displayName = 'ButtonGroupItem';
+
