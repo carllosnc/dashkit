@@ -9,6 +9,7 @@ import { Slider } from '../../components/dashkit/Slider/Slider';
 import { Select } from '../../components/dashkit/Select/Select';
 import { CopyField } from '../../components/dashkit/CopyField/CopyField';
 import { StatsCard } from '../../components/dashkit/StatsCard/StatsCard';
+import { ListTile } from '../../components/dashkit/ListTile/ListTile';
 import { FiBell, FiZap, FiShield, FiMessageSquare, FiList, FiFolder, FiTrendingUp, FiShare2, FiCheckCircle, FiXCircle, FiLock, FiServer, FiDownload, FiFileText, FiActivity } from 'react-icons/fi';
 import { FaGithub, FaGoogle, FaSlack, FaDiscord, FaAws, FaFigma } from 'react-icons/fa';
 import { SiVercel, SiNotion } from 'react-icons/si';
@@ -50,20 +51,21 @@ export function ColumnFour() {
             </div>
          </CardHeader>
          <CardContent className="space-y-4">
+            <div className="divide-y">
             {[
-              { icon: <FiZap className="text-ds-warning-600" />, title: "Deployment successful", time: "2m ago" },
-              { icon: <FiShield className="text-ds-success-600" />, title: "Security scan passed", time: "1h ago" },
-              { icon: <FiMessageSquare className="text-ds-info-600" />, title: "New feedback received", time: "3h ago" }
+              { icon: <FiZap size={22} />, title: "Deployment successful", time: "2m ago" },
+              { icon: <FiShield size={22} />, title: "Security scan passed", time: "1h ago" },
+              { icon: <FiMessageSquare size={22} />, title: "New feedback received", time: "3h ago" }
             ].map((item, i) => (
-              <div key={i} className="flex gap-3 items-start p-2 ds-rounded hover:bg-ds-50/50 dark:hover:bg-ds-800/30 transition-colors cursor-pointer group">
-                 <div className="mt-1 opacity-70 group-hover:opacity-100 transition-opacity">{item.icon}</div>
-                 <div className="flex flex-col">
-                    <span className="text-sm font-semibold leading-tight">{item.title}</span>
-                    <span className="text-xs text-ds-500 font-medium">{item.time}</span>
-                 </div>
-              </div>
+              <ListTile
+                key={i}
+                title={item.title}
+                subtitle={item.time}
+                leading={item.icon}
+              />
             ))}
-            <Divider className="my-2" />
+          </div>
+          <Divider className="my-2" />
             <div className="px-2">
               <Slider 
                 label="Alert Sensitivity" 
@@ -155,62 +157,29 @@ export function ColumnFour() {
                <CardTitle>Integrations</CardTitle>
             </div>
          </CardHeader>
-         <CardContent className="space-y-5">
-            <div className="flex items-center justify-between group cursor-pointer">
-               <div className="flex items-center gap-4">
-                  <FaGithub size={22} className="text-ds-600 dark:text-ds-400" />
-                  <span className="text-sm font-medium">GitHub</span>
-               </div>
-               <Badge content="Connected" color="success" variant="soft" />
-            </div>
-            <div className="flex items-center justify-between group cursor-pointer">
-               <div className="flex items-center gap-4">
-                  <FaGoogle size={20} className="text-ds-600 dark:text-ds-400" />
-                  <span className="text-sm font-medium">Google Workspace</span>
-               </div>
-               <Button variant="soft" size="sm">Connect</Button>
-            </div>
-            <div className="flex items-center justify-between group cursor-pointer">
-               <div className="flex items-center gap-4">
-                  <FaSlack size={22} className="text-ds-600 dark:text-ds-400" />
-                  <span className="text-sm font-medium">Slack</span>
-               </div>
-               <Button variant="soft" size="sm">Connect</Button>
-            </div>
-            <div className="flex items-center justify-between group cursor-pointer">
-               <div className="flex items-center gap-4">
-                  <FaDiscord size={22} className="text-ds-600 dark:text-ds-400" />
-                  <span className="text-sm font-medium">Discord</span>
-               </div>
-               <Badge content="Connected" color="success" variant="soft" />
-            </div>
-            <div className="flex items-center justify-between group cursor-pointer">
-               <div className="flex items-center gap-4">
-                  <FaAws size={24} className="text-ds-600 dark:text-ds-400" />
-                  <span className="text-sm font-medium">AWS Cloud</span>
-               </div>
-               <Button variant="soft" size="sm">Connect</Button>
-            </div>
-            <div className="flex items-center justify-between group cursor-pointer">
-               <div className="flex items-center gap-4">
-                  <SiVercel size={20} className="text-ds-600 dark:text-ds-400" />
-                  <span className="text-sm font-medium">Vercel</span>
-               </div>
-               <Badge content="Connected" color="success" variant="soft" />
-            </div>
-            <div className="flex items-center justify-between group cursor-pointer">
-               <div className="flex items-center gap-4">
-                  <FaFigma size={22} className="text-ds-600 dark:text-ds-400" />
-                  <span className="text-sm font-medium">Figma</span>
-               </div>
-               <Badge content="Connected" color="success" variant="soft" />
-            </div>
-            <div className="flex items-center justify-between group cursor-pointer">
-               <div className="flex items-center gap-4">
-                  <SiNotion size={22} className="text-ds-600 dark:text-ds-400" />
-                  <span className="text-sm font-medium">Notion</span>
-               </div>
-               <Button variant="soft" size="sm">Connect</Button>
+         <CardContent className="space-y-4">
+            <div>
+              {[
+                { icon: <FaGithub size={20} className="text-ds-600 dark:text-ds-400" />, label: "GitHub", connected: true },
+                { icon: <FaGoogle size={18} className="text-ds-600 dark:text-ds-400" />, label: "Google Workspace", connected: false },
+                { icon: <FaSlack size={20} className="text-ds-600 dark:text-ds-400" />, label: "Slack", connected: false },
+                { icon: <FaDiscord size={20} className="text-ds-600 dark:text-ds-400" />, label: "Discord", connected: true },
+                { icon: <FaAws size={22} className="text-ds-600 dark:text-ds-400" />, label: "AWS Cloud", connected: false },
+                { icon: <SiVercel size={18} className="text-ds-600 dark:text-ds-400" />, label: "Vercel", connected: true },
+                { icon: <FaFigma size={20} className="text-ds-600 dark:text-ds-400" />, label: "Figma", connected: true },
+                { icon: <SiNotion size={20} className="text-ds-600 dark:text-ds-400" />, label: "Notion", connected: false },
+              ].map((item) => (
+                <ListTile
+                  key={item.label}
+                  title={item.label}
+                  leading={item.icon}
+                  trailing={
+                    item.connected
+                      ? <Badge content="Connected" color="success" variant="soft" />
+                      : <Button variant="soft" size="sm">Connect</Button>
+                  }
+                />
+              ))}
             </div>
             <Divider />
             <Button variant="outlined" className="w-full">

@@ -13,6 +13,7 @@ import { CircularProgress } from '../../components/dashkit/CircularProgress/Circ
 import { Avatar, AvatarGroup } from '../../components/dashkit/Avatar';
 import { Input } from '../../components/dashkit/Input/Input';
 import { CopyField } from '../../components/dashkit/CopyField/CopyField';
+import { ListTile } from '../../components/dashkit/ListTile/ListTile';
 import { Checkbox } from '../../components/dashkit/Checkbox/Checkbox';
 import { Radio } from '../../components/dashkit/Radio/Radio';
 import { Switch } from '../../components/dashkit/Switch/Switch';
@@ -1715,6 +1716,43 @@ export const AllComponentsExample = () => {
                 { type: 'stable', message: 'Replica caught up. All systems nominal.', timestamp: '15:40:01' },
                 { type: 'info', message: 'Monitoring incoming requests at /api/v2/stream', timestamp: '15:40:05' },
               ]}
+            />
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>List Tile</CardTitle>
+            <CardDescription>Flexible row component for building lists, menus, and settings panels.</CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-0 -mx-6 -my-0 overflow-hidden">
+            <ListTile
+              title="Profile"
+              subtitle="Manage your personal information"
+              leading={<FiUser size={18} />}
+              trailing={<FiChevronRight size={16} />}
+              interactive
+            />
+            <ListTile
+              title="Notifications"
+              subtitle="Configure how you receive alerts"
+              leading={<FiBell size={18} />}
+              trailing={<FiChevronRight size={16} />}
+              interactive
+            />
+            <ListTile
+              title="Security"
+              subtitle="Two-factor auth and credentials"
+              leading={<FiLock size={18} />}
+              trailing={<FiChevronRight size={16} />}
+              interactive
+            />
+            <ListTile
+              title="Delete Account"
+              subtitle="This action cannot be undone"
+              leading={<FiTrash2 size={18} />}
+              disabled
+              interactive
             />
           </CardContent>
         </Card>

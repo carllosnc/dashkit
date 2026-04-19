@@ -1,0 +1,195 @@
+import { ListTile } from '../components/dashkit/ListTile/ListTile';
+import { FiUser, FiBell, FiChevronRight, FiTrash2, FiMail, FiSettings, FiLock, FiCheck } from 'react-icons/fi';
+import { Avatar } from '../components/dashkit/Avatar/Avatar';
+import { Badge } from '../components/dashkit/Badge/Badge';
+import { Switch } from '../components/dashkit/Switch/Switch';
+
+# List Tile
+
+A flexible row component for building lists, menus, and settings panels. Supports leading icons or avatars, a title and subtitle text block, and a trailing slot for actions or indicators.
+
+## Import
+
+```tsx
+import { ListTile } from '@/components/dashkit/ListTile'
+```
+
+## Installation
+
+```bash
+bunx carllosnc/dashkit add listtile
+```
+
+## Basic Usage
+
+<Preview>
+  <div className="w-full divide-y divide-border">
+    <ListTile title="Account" leading={<FiUser size={18} />} trailing={<FiChevronRight size={16} />} interactive />
+    <ListTile title="Notifications" leading={<FiBell size={18} />} trailing={<FiChevronRight size={16} />} interactive />
+    <ListTile title="Privacy" leading={<FiLock size={18} />} trailing={<FiChevronRight size={16} />} interactive />
+  </div>
+</Preview>
+
+```tsx
+<ListTile title="Account" leading={<FiUser size={18} />} trailing={<FiChevronRight size={16} />} interactive />
+```
+
+## With Subtitle
+
+<Preview>
+  <div className="w-full divide-y divide-border">
+    <ListTile
+      title="Ana Lima"
+      subtitle="ana@example.com"
+      leading={<Avatar fallback="AL" size="sm" />}
+      trailing={<Badge content="Admin" color="info" />}
+    />
+    <ListTile
+      title="Carlos Neto"
+      subtitle="carlos@example.com"
+      leading={<Avatar fallback="CN" size="sm" />}
+      trailing={<Badge content="Member" color="base" />}
+    />
+  </div>
+</Preview>
+
+```tsx
+<ListTile
+  title="Ana Lima"
+  subtitle="ana@example.com"
+  leading={<Avatar fallback="AL" size="sm" />}
+  trailing={<Badge content="Admin" color="info" />}
+/>
+```
+
+## With Trailing Control
+
+<Preview>
+  <div className="w-full divide-y divide-border">
+    <ListTile
+      title="Email Notifications"
+      subtitle="Receive updates via email"
+      leading={<FiMail size={18} />}
+      trailing={<Switch defaultChecked />}
+    />
+    <ListTile
+      title="Two-Factor Auth"
+      subtitle="Add an extra layer of security"
+      leading={<FiLock size={18} />}
+      trailing={<Switch />}
+    />
+  </div>
+</Preview>
+
+```tsx
+<ListTile
+  title="Email Notifications"
+  subtitle="Receive updates via email"
+  leading={<FiMail size={18} />}
+  trailing={<Switch defaultChecked />}
+/>
+```
+
+## Disabled State
+
+<Preview>
+  <div className="w-full divide-y divide-border">
+    <ListTile title="Active Item" leading={<FiSettings size={18} />} trailing={<FiChevronRight size={16} />} interactive />
+    <ListTile title="Disabled Item" subtitle="This action is unavailable" leading={<FiTrash2 size={18} />} disabled interactive />
+  </div>
+</Preview>
+
+```tsx
+<ListTile title="Disabled Item" disabled interactive />
+```
+
+## Dividers
+
+Use the `divider` prop to render a bottom border directly on each tile. This lets you manage separators per-tile without a wrapper, which is useful when bleed-edge layouts remove the container.
+
+<Preview>
+  <div className="w-full">
+    <ListTile title="Profile" leading={<FiUser size={18} />} trailing={<FiChevronRight size={16} />} interactive divider />
+    <ListTile title="Notifications" leading={<FiBell size={18} />} trailing={<FiChevronRight size={16} />} interactive divider />
+    <ListTile title="Privacy" leading={<FiLock size={18} />} trailing={<FiChevronRight size={16} />} interactive />
+  </div>
+</Preview>
+
+```tsx
+<ListTile title="Profile" divider interactive />
+<ListTile title="Notifications" divider interactive />
+<ListTile title="Privacy" interactive />
+```
+
+You can also use `divider` on all but the last item via array index:
+
+```tsx
+{items.map((item, i, arr) => (
+  <ListTile
+    key={item.label}
+    title={item.label}
+    divider={i < arr.length - 1}
+  />
+))}
+```
+
+## Props (API)
+
+<PropertyDoc
+  properties={[
+  {
+    "prop": "title",
+    "type": "React.ReactNode",
+    "defaultValue": "—",
+    "description": "Primary text content of the tile."
+  },
+  {
+    "prop": "subtitle",
+    "type": "React.ReactNode",
+    "defaultValue": "—",
+    "description": "Secondary descriptive text rendered below the title."
+  },
+  {
+    "prop": "leading",
+    "type": "React.ReactNode",
+    "defaultValue": "—",
+    "description": "Content rendered on the left side (icon, avatar, etc.)."
+  },
+  {
+    "prop": "trailing",
+    "type": "React.ReactNode",
+    "defaultValue": "—",
+    "description": "Content rendered on the right side (chevron, badge, switch, etc.)."
+  },
+  {
+    "prop": "interactive",
+    "type": "boolean",
+    "defaultValue": "auto",
+    "description": "Enables hover/active styles and keyboard interaction. Auto-detected when onClick is provided."
+  },
+  {
+    "prop": "divider",
+    "type": "boolean",
+    "defaultValue": "false",
+    "description": "Renders a bottom border on the tile, acting as a separator between items."
+  },
+  {
+    "prop": "disabled",
+    "type": "boolean",
+    "defaultValue": "false",
+    "description": "Dims the tile and disables all interactions."
+  },
+  {
+    "prop": "onClick",
+    "type": "MouseEventHandler",
+    "defaultValue": "—",
+    "description": "Click handler. Setting this automatically enables interactive mode."
+  },
+  {
+    "prop": "className",
+    "type": "string",
+    "defaultValue": "—",
+    "description": "Additional CSS classes for the root element."
+  }
+]}
+/>

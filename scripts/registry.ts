@@ -431,5 +431,13 @@ export const registry: Record<string, ComponentConfig> = {
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
     registryDependencies: ['input', 'iconbutton', 'toast'],
+  },
+  listtile: {
+    name: 'ListTile',
+    files: [
+      'src/components/dashkit/ListTile/ListTile.tsx',
+      'src/components/dashkit/ListTile/index.ts'
+    ],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   }
 };
