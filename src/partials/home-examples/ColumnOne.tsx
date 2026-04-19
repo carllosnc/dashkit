@@ -235,7 +235,7 @@ export function ColumnOne() {
                     <FiTrendingUp size={14} />
                     <span className="text-xs font-bold">+12.4% this month</span>
                  </div>
-                 <span className="text-xs font-bold text-ds-900 dark:text-ds-100">+$4,210.00</span>
+                 <span className="text-xs font-bold">+$4,210.00</span>
               </Surface>
               <div className="grid grid-cols-2 gap-2">
                  <Button variant="filled" size="sm" className="w-full">Trade</Button>
@@ -419,7 +419,7 @@ export function ColumnOne() {
                  <FiAlertTriangle className="text-ds-danger-600" size={22} />
               </div>
               <div className="space-y-1">
-                 <p className="text-sm text-ds-900 dark:text-ds-100 font-medium">Are you sure you want to delete this project?</p>
+                 <p className="text-sm font-medium">Are you sure you want to delete this project?</p>
                  <p className="text-sm text-ds-500 leading-relaxed"> This action cannot be undone. All resources and data associated with this project will be permanently removed.</p>
               </div>
            </div>

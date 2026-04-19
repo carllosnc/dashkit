@@ -65,16 +65,15 @@ export function ColumnFour() {
               />
             ))}
           </div>
-          <Divider className="my-2" />
-            <div className="px-2">
-              <Slider 
-                label="Alert Sensitivity" 
-                description="Threshold for instant alerts."
-                defaultValue={65} 
-                showValue
-              />
-            </div>
-            <Button variant="outlined" size="sm" className="w-full">Clear All Notifications</Button>
+         <div className="px-2">
+            <Slider
+               label="Alert Sensitivity"
+               description="Threshold for instant alerts."
+               defaultValue={65}
+               showValue
+            />
+         </div>
+         <Button variant="outlined" size="sm" className="w-full">Clear All Notifications</Button>
          </CardContent>
       </Card>
 
@@ -352,7 +351,7 @@ export function ColumnFour() {
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-ds-success-400 opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-ds-success-500"></span>
                      </span>
-                     <span className="text-sm font-bold text-ds-900 dark:text-ds-100">All systems operational</span>
+                     <span className="text-sm font-bold">All systems operational</span>
                   </div>
               </div>
             </div>

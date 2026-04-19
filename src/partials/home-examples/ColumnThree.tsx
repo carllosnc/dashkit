@@ -207,7 +207,7 @@ export function ColumnThree() {
                <div className="flex items-center gap-3">
                   <FiMonitor className="text-ds-info-600" size={18} />
                   <div className="flex flex-col">
-                     <span className="text-sm font-bold text-ds-900 dark:text-ds-100">MacBook Pro 16"</span>
+                     <span className="text-sm font-bold">MacBook Pro 16"</span>
                      <span className="text-xs text-ds-500">San Francisco, US • Current session</span>
                   </div>
                </div>
@@ -217,7 +217,7 @@ export function ColumnThree() {
                <div className="flex items-center gap-3">
                   <FiSmartphone className="text-ds-500" size={18} />
                   <div className="flex flex-col">
-                     <span className="text-sm font-bold text-ds-800 dark:text-ds-200">iPhone 14 Pro</span>
+                     <span className="text-sm font-bold">iPhone 14 Pro</span>
                      <span className="text-xs text-ds-500">New York, US • 2 hours ago</span>
                   </div>
                </div>
@@ -228,7 +228,7 @@ export function ColumnThree() {
                <div className="flex items-center gap-3">
                   <FiMonitor className="text-ds-500" size={18} />
                   <div className="flex flex-col">
-                     <span className="text-sm font-bold text-ds-800 dark:text-ds-200">Chrome on Windows</span>
+                     <span className="text-sm font-bold">Chrome on Windows</span>
                      <span className="text-xs text-ds-500">London, UK • 3 days ago</span>
                   </div>
                </div>
