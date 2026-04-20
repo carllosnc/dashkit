@@ -47,8 +47,8 @@ describe('Modal', () => {
       </Modal>
     );
 
-    // The backdrop is the element with "absolute inset-0"
-    const backdrop = document.querySelector('.absolute.inset-0');
+    // The backdrop is the element with "backdrop__overlay"
+    const backdrop = document.querySelector('.backdrop__overlay');
     if (backdrop) {
       fireEvent.click(backdrop);
       expect(onClose).toHaveBeenCalled();

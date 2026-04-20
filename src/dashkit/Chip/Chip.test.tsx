@@ -48,8 +48,7 @@ describe('Chip', () => {
     );
     
     const chip = screen.getByText('Disabled').closest('div');
-    expect(chip).toHaveClass('opacity-50');
-    expect(chip).toHaveClass('pointer-events-none');
+    expect(chip).toHaveClass('chip--disabled');
     
     // Clicking shouldn't fire because pointer-events-none, 
     // but we can also check the logic

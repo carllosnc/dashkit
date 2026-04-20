@@ -20,28 +20,27 @@ describe('Badge', () => {
   it('renders a dot instead of content when dot prop is true', () => {
     render(<Badge content="99" dot />);
     expect(screen.queryByText('99')).not.toBeInTheDocument();
-    // Dot badges have specific dimensions
     const badge = screen.getByTestId('badge');
-    expect(badge).toHaveClass('w-2.5', 'h-2.5', 'rounded-full');
+    expect(badge).toHaveClass('badge__dot');
   });
 
   it('shows pulse animation when pulse prop is true', () => {
     const { container } = render(<Badge content="Live" pulse />);
-    const ping = container.querySelector('.animate-ping');
+    const ping = container.querySelector('.badge__pulse');
     expect(ping).toBeInTheDocument();
   });
 
   it('applies color styles correctly', () => {
     const { rerender } = render(<Badge content="Test" color="success" />);
     const badge = screen.getByTestId('badge');
-    expect(badge).toHaveClass('bg-ds-success-600');
+    expect(badge).toHaveClass('badge--solid-success');
 
     rerender(<Badge content="Test" color="danger" />);
-    expect(screen.getByTestId('badge')).toHaveClass('bg-ds-danger-600');
+    expect(screen.getByTestId('badge')).toHaveClass('badge--solid-danger');
 
     // Test alias
     rerender(<Badge content="Test" color="error" />);
-    expect(screen.getByTestId('badge')).toHaveClass('bg-ds-danger-600');
+    expect(screen.getByTestId('badge')).toHaveClass('badge--solid-danger');
   });
 
   it('hides the badge when show prop is false', () => {

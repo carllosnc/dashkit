@@ -1,7 +1,15 @@
 @reference "../dashkit.css";
 
 .card {
-  @apply bg-card text-card-foreground p-6 ds-rounded shadow-sm gap-6 flex flex-col font-sans;
+  @apply bg-card text-card-foreground p-6 ds-rounded shadow-sm gap-6 flex flex-col font-sans border border-border;
+}
+
+.card--no-border {
+  @apply border-none;
+}
+
+.card--no-shadow {
+  @apply shadow-none;
 }
 
 .card__header {

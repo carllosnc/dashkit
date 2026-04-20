@@ -2,14 +2,6 @@ import * as React from 'react';
 import { motion, type HTMLMotionProps } from 'framer-motion';
 import { cn } from '../utils/cn';
 
-export interface BackdropProps extends HTMLMotionProps<'div'> {
-  show?: boolean;
-  blur?: boolean;
-  transparent?: boolean;
-  fixed?: boolean;
-  children?: React.ReactNode;
-}
-
 import './backdrop.css';
 
 export interface BackdropProps extends HTMLMotionProps<'div'> {

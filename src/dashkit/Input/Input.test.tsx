@@ -23,8 +23,8 @@ describe('Input', () => {
     render(<Input error="Invalid input" />);
     expect(screen.getByText(/Invalid input/i)).toBeInTheDocument();
     
-    const wrapper = screen.getByRole('textbox').closest('.group');
-    expect(wrapper).toHaveClass('border-ds-danger-500/50');
+    const wrapper = screen.getByRole('textbox').closest('.input__wrapper');
+    expect(wrapper).toHaveClass('input__wrapper--error');
   });
 
   it('shows helper text when provided', () => {
@@ -37,8 +37,8 @@ describe('Input', () => {
     const input = screen.getByDisplayValue(/test/i);
     expect(input).toBeDisabled();
     
-    const wrapper = input.closest('.group');
-    expect(wrapper).toHaveClass('opacity-50');
+    const wrapper = input.closest('.input__wrapper');
+    expect(wrapper).toHaveClass('input__wrapper--disabled');
   });
 
   it('generates an ID automatically from label if not provided', () => {

@@ -24,7 +24,7 @@ describe('Card', () => {
   it('applies border and shadow management correctly', () => {
     render(<Card bordered={false} shadowed={false}>Content</Card>);
     const card = screen.getByText('Content');
-    expect(card).toHaveClass('border-none');
-    expect(card).toHaveClass('shadow-none');
+    expect(card).toHaveClass('card--no-border');
+    expect(card).toHaveClass('card--no-shadow');
   });
 });

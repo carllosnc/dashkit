@@ -6,12 +6,16 @@ import './card.css';
 
 export type CardProps = Omit<HTMLMotionProps<'div'>, 'title'> & {
   animate?: boolean;
+  bordered?: boolean;
+  shadowed?: boolean;
   ref?: React.Ref<HTMLDivElement>;
 };
 
 export function Card({
   children,
   animate = false,
+  bordered = true,
+  shadowed = true,
   className,
   ref,
   ...props
@@ -25,6 +29,8 @@ export function Card({
       transition={{ duration: 0.3, ease: 'easeOut' }}
       className={cn(
         'card',
+        !bordered && 'card--no-border',
+        !shadowed && 'card--no-shadow',
         className
       )}
     >

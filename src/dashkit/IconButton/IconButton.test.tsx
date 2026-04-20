@@ -22,25 +22,25 @@ describe('IconButton', () => {
   it('applies rounded classes when rounded prop is true', () => {
     const { rerender } = render(<IconButton icon={<FiPlus />} rounded={false} />);
     let button = screen.getByRole('button');
-    expect(button).not.toHaveClass('rounded-full');
+    expect(button).not.toHaveClass('icon-button--rounded');
 
     rerender(<IconButton icon={<FiPlus />} rounded={true} />);
     button = screen.getByRole('button');
-    expect(button).toHaveClass('rounded-full');
+    expect(button).toHaveClass('icon-button--rounded');
   });
 
   it('applies variant styles correctly', () => {
     const { rerender } = render(<IconButton icon={<FiPlus />} variant="filled" />);
     let button = screen.getByRole('button');
-    expect(button).toHaveClass('ds-primary-gradient');
+    expect(button).toHaveClass('icon-button--filled');
 
     rerender(<IconButton icon={<FiPlus />} variant="soft" />);
     button = screen.getByRole('button');
-    expect(button).toHaveClass('bg-secondary');
+    expect(button).toHaveClass('icon-button--soft');
 
     rerender(<IconButton icon={<FiPlus />} variant="outlined" />);
     button = screen.getByRole('button');
-    expect(button).toHaveClass('bg-transparent');
+    expect(button).toHaveClass('icon-button--outlined');
   });
 
   it('is disabled when disabled prop is true', () => {

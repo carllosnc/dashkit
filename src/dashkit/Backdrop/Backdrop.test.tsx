@@ -10,19 +10,18 @@ describe('Backdrop', () => {
 
   it('renders a fixed container and an absolute overlay by default', () => {
     const { container } = render(<Backdrop show={true} />);
-    const wrapper = container.querySelector('.fixed.inset-0');
-    const overlay = container.querySelector('.absolute.inset-0');
+    const wrapper = container.querySelector('.backdrop');
+    const overlay = container.querySelector('.backdrop__overlay');
     expect(wrapper).toBeInTheDocument();
     expect(overlay).toBeInTheDocument();
-    expect(overlay).toHaveClass('bg-ds-950/40');
-    expect(overlay).toHaveClass('backdrop-blur-sm');
-    expect(overlay).toHaveClass('-z-10');
+    expect(overlay).toHaveClass('backdrop__overlay--color');
+    expect(overlay).toHaveClass('backdrop__overlay--blur');
   });
 
   it('calls onClick when clicked', () => {
     const handleClick = vi.fn();
     const { container } = render(<Backdrop show={true} onClick={handleClick} />);
-    const overlay = container.querySelector('.absolute.inset-0');
+    const overlay = container.querySelector('.backdrop__overlay');
     if (overlay) fireEvent.click(overlay);
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
@@ -33,7 +32,7 @@ describe('Backdrop', () => {
         <div data-testid="child">Centered Content</div>
       </Backdrop>
     );
-    const overlay = document.querySelector('.absolute.inset-0');
+    const overlay = document.querySelector('.backdrop__overlay');
     const child = screen.getByTestId('child');
     expect(overlay).toBeInTheDocument();
     expect(child).toBeInTheDocument();
@@ -42,16 +41,14 @@ describe('Backdrop', () => {
 
   it('supports non-fixed positioning by using absolute container', () => {
     const { container } = render(<Backdrop show={true} fixed={false}>Content</Backdrop>);
-    const wrapper = container.querySelector('.absolute.inset-0');
+    const wrapper = container.querySelector('.backdrop--absolute');
     expect(wrapper).toBeInTheDocument();
-    expect(wrapper).not.toHaveClass('fixed');
   });
 
   it('just returns overlay if not fixed and no children', () => {
     const { container } = render(<Backdrop show={true} fixed={false} />);
     const overlay = container.firstChild as HTMLElement;
-    expect(overlay).toHaveClass('absolute');
-    expect(overlay).toHaveClass('-z-10');
+    expect(overlay).toHaveClass('backdrop__overlay');
   });
 
   it('calls onClick when Escape key is pressed', () => {
