@@ -94,8 +94,7 @@ export function ImageExpander({ children, full, caption, className }: ImageExpan
                     transition={{
                       type: 'spring',
                       damping: 30,
-                      stiffness: 350,
-                      delay: 0.1
+                      stiffness: 350
                     }}
                     className="fixed bottom-12 left-1/2 -translate-x-1/2 text-white/90 text-sm font-semibold z-[120] flex items-center gap-2.5 tracking-tight"
                   >

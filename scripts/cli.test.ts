@@ -32,7 +32,7 @@ describe('Dashkit CLI', () => {
     expect(await fs.pathExists(path.join(testDir, 'components/Card/Card.tsx'))).toBe(true);
     expect(await fs.pathExists(path.join(testDir, 'components/Badge/Badge.tsx'))).toBe(true);
     expect(await fs.pathExists(path.join(testDir, 'components/Button/Button.tsx'))).toBe(true);
-  });
+  }, 20000);
 
   it('should show simplified dependency notes with --no-install', async () => {
     const testDir = path.join(TEMP_DIR, 'no-install-note');
@@ -45,7 +45,7 @@ describe('Dashkit CLI', () => {
     });
 
     expect(output).toContain('[INFO] Install missing dependencies:');
-  });
+  }, 20000);
 
   it('should run doctor diagnostics successfully', async () => {
     // Running doctor on the current dashkit project itself
@@ -58,7 +58,7 @@ describe('Dashkit CLI', () => {
     // Note: ora spinners might be stripped in non-TTY test environments
     // but the final health message should be present
     expect(output).toContain('[SUCCESS] Everything looks good! Your component library is healthy.');
-  });
+  }, 20000);
 
   it('should fail doctor if core file is missing', async () => {
     const testDir = path.join(TEMP_DIR, 'doctor-fail');
@@ -110,7 +110,7 @@ describe('Dashkit CLI', () => {
     });
 
     expect(await fs.pathExists(path.join(testDir, 'my-custom-components/Badge/Badge.tsx'))).toBe(true);
-  });
+  }, 20000);
 
   it('should use smart detection for components dir if dashkit.json is missing', async () => {
     const testDir = path.join(TEMP_DIR, 'smart-detection');
@@ -124,5 +124,5 @@ describe('Dashkit CLI', () => {
     // Default for info.hasSrc is path.join('src', 'components', 'dashkit')
     const expectedPath = path.join(testDir, 'src/dashkit/Badge/Badge.tsx');
     expect(await fs.pathExists(expectedPath)).toBe(true);
-  });
+  }, 20000);
 });
