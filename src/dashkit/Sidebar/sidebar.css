@@ -1,0 +1,123 @@
+@reference "../dashkit.css";
+
+.sidebar {
+  @apply h-screen flex flex-col border-r bg-card relative z-[40];
+}
+
+.sidebar__toggle {
+  @apply absolute -right-3 top-16 -translate-y-1/2 z-[60] size-6 shadow-md;
+}
+
+.sidebar__toggle--closed {
+  @apply rotate-180;
+}
+
+.sidebar__header {
+  @apply h-16 flex items-center mb-[20px] shrink-0 border-b overflow-hidden;
+}
+
+.sidebar__footer {
+  @apply mt-auto shrink-0 border-t flex flex-col;
+}
+
+.sidebar__section {
+  @apply text-slate-900;
+}
+
+@variant dark {
+  .sidebar__section {
+    @apply text-slate-100;
+  }
+}
+
+.sidebar__section-button {
+  @apply w-full flex items-center my-1 justify-between py-2 transition-all duration-200 outline-none;
+}
+
+.sidebar__section-button--collapsible {
+  @apply hover:bg-muted/50 cursor-pointer;
+}
+
+.sidebar__section-button--static {
+  @apply cursor-default;
+}
+
+.sidebar__section-title {
+  @apply text-[10px] font-bold text-muted-foreground uppercase tracking-[0.2em] truncate px-4;
+}
+
+.sidebar__section-button--collapsible:hover .sidebar__section-title {
+  @apply text-foreground;
+}
+
+.sidebar__section-badge-container {
+  @apply px-2 flex items-center gap-2;
+}
+
+.sidebar__section-chevron {
+  @apply text-muted-foreground transition-colors;
+}
+
+.sidebar__section-button--collapsible:hover .sidebar__section-chevron {
+  @apply text-foreground;
+}
+
+.sidebar__section-content {
+  @apply space-y-1 overflow-hidden;
+}
+
+.sidebar__item {
+  @apply relative flex w-full items-center py-[8px] text-sm font-medium outline-none isolate transition-all duration-200;
+}
+
+.sidebar__item--active {
+  @apply text-primary;
+}
+
+.sidebar__item--inactive {
+  @apply text-muted-foreground hover:text-foreground hover:bg-muted/30;
+}
+
+.sidebar__item--open {
+  @apply px-6 gap-3 text-left;
+}
+
+.sidebar__item--closed {
+  @apply px-0 justify-center text-center;
+}
+
+.sidebar__item-indicator {
+  @apply absolute left-0 top-2 bottom-2 w-1 rounded-r-full bg-primary z-10;
+}
+
+.sidebar__item-icon {
+  @apply shrink-0 relative flex items-center justify-center;
+}
+
+.sidebar__item--active .sidebar__item-icon {
+  @apply text-primary;
+}
+
+.sidebar__item--inactive .sidebar__item-icon {
+  @apply text-muted-foreground;
+}
+
+.sidebar__item--inactive:hover .sidebar__item-icon {
+  @apply text-foreground;
+}
+
+.sidebar__item-text {
+  @apply text-left truncate whitespace-nowrap;
+}
+
+.sidebar__item-text--open {
+  @apply flex-1;
+}
+
+.sidebar__item-text--closed {
+  @apply invisible w-0;
+}
+
+.sidebar__item-badge {
+  @apply ml-auto pointer-events-none origin-right;
+}

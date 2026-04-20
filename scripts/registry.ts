@@ -315,6 +315,7 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Sidebar',
     files: [
       'src/dashkit/Sidebar/Sidebar.tsx',
+      'src/dashkit/Sidebar/sidebar.css',
       'src/dashkit/Sidebar/useSidebar.ts',
       'src/dashkit/Sidebar/SidebarContext.tsx'
     ],

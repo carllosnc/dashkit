@@ -53,13 +53,7 @@ export function useDrawer({ isOpen, onClose, position }: UseDrawerProps) {
     };
   }, [isOpen]);
 
-  useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-    };
-    window.addEventListener('keydown', handleEsc);
-    return () => window.removeEventListener('keydown', handleEsc);
-  }, [onClose]);
+
 
   const defaultSize = (position === 'left' || position === 'right') ? 'max-w-md w-full' : 'max-h-[80vh] h-auto';
 

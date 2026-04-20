@@ -7,6 +7,8 @@ import { IconButton } from '../IconButton/IconButton';
 import { SidebarContext } from './SidebarContext';
 import { useSidebar } from './useSidebar';
 import { AnimatePresence } from 'framer-motion';
+import { Tooltip, TooltipTrigger, TooltipContent } from '../Tooltip/Tooltip';
+import './sidebar.css';
 
 export interface SidebarProps extends
   Omit<HTMLMotionProps<'aside'>, 'children' | 'defaultValue'> {
@@ -35,10 +37,7 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
             damping: 30,
             mass: 0.8
           }}
-          className={cn(
-            "h-screen flex flex-col border-r bg-card relative z-[40]",
-            className
-          )}
+          className={cn("sidebar", className)}
           {...props}
         >
           {children}
@@ -49,8 +48,8 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
               onClick={toggle}
               rounded
               className={cn(
-                "absolute -right-3 top-16 -translate-y-1/2 z-[60] size-6 shadow-md",
-                !isOpen && "rotate-180"
+                "sidebar__toggle",
+                !isOpen && "sidebar__toggle--closed"
               )}
             />
           )}
@@ -75,10 +74,7 @@ export function SidebarHeader({ children, className }: { children: React.ReactNo
         paddingRight: isOpen ? 24 : 0,
         justifyContent: isOpen ? 'flex-start' : 'center'
       }}
-      className={cn(
-        "h-16 flex items-center mb-[20px] shrink-0 border-b overflow-hidden",
-        className
-      )}
+      className={cn("sidebar__header", className)}
     >
       {children}
     </motion.div>
@@ -114,10 +110,7 @@ export function SidebarFooter({ children, className }: { children: React.ReactNo
         paddingBottom: isOpen ? 28 : 16,
         alignItems: isOpen ? 'stretch' : 'center'
       }}
-      className={cn(
-        "mt-auto shrink-0 border-t flex flex-col",
-        className
-      )}
+      className={cn("sidebar__footer", className)}
     >
       {children}
     </motion.div>
@@ -160,28 +153,22 @@ export function SidebarSection({
   const [isSectionOpen, setIsSectionOpen] = React.useState(defaultOpen);
 
   return (
-    <div className={cn("text-ds-slate-900 dark:text-ds-slate-100", className)}>
+    <div className={cn("sidebar__section", className)}>
       {title && isOpen && (
         <div className="overflow-hidden">
           <button
             type="button"
             onClick={() => collapsible && setIsSectionOpen(!isSectionOpen)}
             className={cn(
-              "w-full flex items-center my-1 justify-between py-2 transition-all duration-200 outline-none",
-              collapsible && "hover:bg-muted/50 cursor-pointer group/section",
-              !collapsible && "cursor-default"
+              "sidebar__section-button",
+              collapsible ? "sidebar__section-button--collapsible" : "sidebar__section-button--static"
             )}
           >
-            <h4
-              className={cn(
-                "text-[10px] font-bold text-muted-foreground uppercase tracking-[0.2em] truncate px-4",
-                collapsible && "group-hover/section:text-foreground transition-colors"
-              )}
-            >
+            <h4 className="sidebar__section-title">
               {title}
             </h4>
 
-            <div className="px-2 flex items-center gap-2">
+            <div className="sidebar__section-badge-container">
               {badge && (
                 <div className="shrink-0">
                   {badge}
@@ -190,7 +177,7 @@ export function SidebarSection({
               {collapsible && (
                 <motion.div
                   animate={{ rotate: isSectionOpen ? 0 : -90 }}
-                  className="text-muted-foreground group-hover/section:text-foreground transition-colors"
+                  className="sidebar__section-chevron"
                 >
                   <FiChevronDown size={14} />
                 </motion.div>
@@ -206,7 +193,7 @@ export function SidebarSection({
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.2, ease: "easeInOut" }}
-            className="space-y-1 overflow-hidden"
+            className="sidebar__section-content"
           >
             {children}
           </motion.div>
@@ -225,19 +212,15 @@ export interface SidebarItemProps extends Omit<HTMLMotionProps<'button'>, 'child
   target?: string;
 }
 
-import { Tooltip, TooltipTrigger, TooltipContent } from '../Tooltip/Tooltip';
-
 export function SidebarItem({ icon, active, children, badgeSlot, className, href, target, ...props }: SidebarItemProps) {
   const sidebarContext = React.useContext(SidebarContext);
   if (!sidebarContext) throw new Error('SidebarItem must be used within Sidebar');
   const { isOpen } = sidebarContext;
 
   const sharedClasses = cn(
-    "relative flex w-full items-center py-[8px] text-sm font-medium outline-none group isolate transition-all duration-200",
-    active
-      ? "text-primary"
-      : "text-muted-foreground hover:text-foreground hover:bg-muted/30",
-    isOpen ? "px-6 gap-3 text-left" : "px-0 justify-center text-center",
+    "sidebar__item",
+    active ? "sidebar__item--active" : "sidebar__item--inactive",
+    isOpen ? "sidebar__item--open" : "sidebar__item--closed",
     className
   );
 
@@ -246,7 +229,7 @@ export function SidebarItem({ icon, active, children, badgeSlot, className, href
       {active && (
         <motion.div
           layoutId="sidebar-active"
-          className="absolute left-0 top-2 bottom-2 w-1 rounded-r-full bg-primary z-10"
+          className="sidebar__item-indicator"
           transition={{
             type: 'spring',
             stiffness: 400,
@@ -255,10 +238,7 @@ export function SidebarItem({ icon, active, children, badgeSlot, className, href
         />
       )}
       {icon && (
-        <span className={cn(
-          "shrink-0 relative flex items-center justify-center",
-          active ? "text-primary" : "text-muted-foreground group-hover:text-foreground"
-        )}>
+        <span className="sidebar__item-icon">
           {icon}
         </span>
       )}
@@ -271,15 +251,15 @@ export function SidebarItem({ icon, active, children, badgeSlot, className, href
         }}
         transition={{ duration: 0.2 }}
         className={cn(
-          "text-left truncate whitespace-nowrap",
-          isOpen ? "flex-1" : "invisible w-0"
+          "sidebar__item-text",
+          isOpen ? "sidebar__item-text--open" : "sidebar__item-text--closed"
         )}
       >
         {children}
       </motion.span>
 
       {isOpen && badgeSlot && (
-        <div className="ml-auto pointer-events-none origin-right">
+        <div className="sidebar__item-badge">
           {badgeSlot}
         </div>
       )}
