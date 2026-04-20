@@ -6,7 +6,7 @@ import {
   FiSidebar, FiMaximize, FiLayers, FiBell, FiMoreVertical, FiAward,
   FiInbox, FiChevronRight, FiGrid, FiLayout, FiLoader, FiSliders, FiMoreHorizontal, FiCalendar, FiTable, FiUser, FiActivity,
   FiMonitor, FiMessageCircle, FiAlignLeft, FiEdit3, FiTrendingUp, FiSettings, FiTerminal,
-  FiPlusSquare, FiDroplet, FiClock, FiPlusCircle, FiCompass, FiChevronsRight, FiChevronsDown, FiTarget, FiCheck, FiHelpCircle,
+  FiPlusSquare, FiDroplet, FiClock, FiPlusCircle, FiCompass, FiChevronsRight, FiChevronsDown, FiChevronDown, FiTarget, FiCheck, FiHelpCircle,
   FiCopy
 } from 'react-icons/fi';
 import { Outlet, useLocation } from 'react-router-dom';
@@ -63,7 +63,7 @@ const navItems: SidebarSection[] = [
       { to: '/docs/progressbar', label: 'Progress Bar', icon: <FiActivity size={16} /> },
       { to: '/docs/radio', label: 'Radio', icon: <FiTarget size={16} /> },
       { to: '/docs/list-tile', label: 'List Tile', icon: <FiList size={16} /> },
-      { to: '/docs/select', label: 'Select', icon: <FiList size={16} /> },
+      { to: '/docs/select', label: 'Select', icon: <FiChevronDown size={16} /> },
       { to: '/docs/scroll-area', label: 'Scroll Area', icon: <FiChevronsDown size={16} /> },
       { to: '/docs/sidebar', label: 'Sidebar', icon: <FiAlignLeft size={16} /> },
       { to: '/docs/skeleton', label: 'Skeleton', icon: <FiGrid size={16} /> },

@@ -271,7 +271,7 @@ export function MdxWrapper({ Component }: { Component: MdxComponent }) {
   }, [Component]);
 
   return (
-    <div className="prose prose-sm md:prose-base md:prose-pre:text-base prose-neutral dark:prose-invert max-w-full" ref={containerRef}>
+    <div className="prose prose-sm md:prose-base md:prose-pre:text-base prose-neutral dark:prose-invert max-w-full  prose-h1:font-normal" ref={containerRef}>
       <Helmet>
         <title>{title}</title>
         <meta name="description" content={description} />

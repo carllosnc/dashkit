@@ -6,7 +6,7 @@ import {
   FiSidebar, FiMaximize, FiLayers, FiBell, FiMoreVertical, FiAward,
   FiInbox, FiChevronRight, FiGrid, FiLayout, FiLoader, FiSliders, FiMoreHorizontal, FiCalendar, FiTable, FiUser, FiActivity,
   FiMonitor, FiMessageCircle, FiAlignLeft, FiEdit3, FiTrendingUp, FiTerminal, FiBarChart2, FiPieChart,
-  FiPlusSquare, FiDroplet, FiClock, FiPlusCircle, FiCompass, FiChevronsRight, FiChevronsDown, FiTarget, FiCheck, FiHelpCircle,
+  FiPlusSquare, FiDroplet, FiClock, FiPlusCircle, FiCompass, FiChevronsRight, FiChevronsDown, FiChevronDown, FiTarget, FiCheck, FiHelpCircle,
   FiCopy
 } from 'react-icons/fi';
 
@@ -38,7 +38,8 @@ const components = [
   { to: '/docs/icon-button', label: 'Icon Button', icon: <FiCircle size={24} />, description: 'Compact button with icons.' },
   { to: '/docs/image-expander', label: 'Image Expander', icon: <FiMaximize2 size={24} />, description: 'Expandable image thumbnails.' },
   { to: '/docs/input', label: 'Input', icon: <FiType size={24} />, description: 'Standard text data entry.' },
-  { to: '/charts/line-chart', label: 'Line Chart', icon: <FiActivity size={24} />, description: 'Linear data progression tracking.' },
+  { to: '/docs/line-chart', label: 'Line Chart', icon: <FiActivity size={24} />, description: 'Linear data progression tracking.' },
+  { to: '/docs/list-tile', label: 'List Tile', icon: <FiList size={24} />, description: 'Flexible list item patterns.' },
   { to: '/docs/modal', label: 'Modal', icon: <FiMaximize size={24} />, description: 'Overlay dialog windows.' },
   { to: '/docs/navbar', label: 'Navbar', icon: <FiLayout size={24} />, description: 'Top-level navigation bar.' },
   { to: '/docs/navigation-menu', label: 'Navigation Menu', icon: <FiCompass size={24} />, description: 'Advanced site navigation.' },
@@ -48,7 +49,7 @@ const components = [
   { to: '/docs/popover', label: 'Popover', icon: <FiMessageCircle size={24} />, description: 'Floating contextual content.' },
   { to: '/docs/progressbar', label: 'Progress Bar', icon: <FiActivity size={24} />, description: 'Linear task completion trackers.' },
   { to: '/docs/radio', label: 'Radio', icon: <FiTarget size={24} />, description: 'Single-select input options.' },
-  { to: '/docs/select', label: 'Select', icon: <FiList size={24} />, description: 'Standard dropdown selection.' },
+  { to: '/docs/select', label: 'Select', icon: <FiChevronDown size={24} />, description: 'Standard dropdown selection.' },
   { to: '/docs/scroll-area', label: 'Scroll Area', icon: <FiChevronsDown size={24} />, description: 'Custom theme-aware scrollbars.' },
   { to: '/docs/sidebar', label: 'Sidebar', icon: <FiAlignLeft size={24} />, description: 'Vertical navigation panels.' },
   { to: '/docs/skeleton', label: 'Skeleton', icon: <FiGrid size={24} />, description: 'Content loading placeholders.' },
