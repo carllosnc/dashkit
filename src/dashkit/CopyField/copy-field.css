@@ -1,0 +1,37 @@
+@reference "../dashkit.css";
+
+.copy-field {
+  @apply flex flex-col gap-1.5 w-full font-sans;
+}
+
+.copy-field__label {
+  @apply text-[13px] font-bold uppercase text-ds-800 ml-1 tracking-wider;
+
+  @variant dark {
+    @apply text-ds-200;
+  }
+}
+
+.copy-field__input {
+  @apply font-mono;
+}
+
+.copy-field__button {
+  @apply pointer-events-auto size-8 h-8 -mr-2.5 transition-all;
+}
+
+.copy-field__button:active {
+  @apply scale-95;
+}
+
+.copy-field__copy-icon {
+  @apply opacity-70 transition-opacity;
+}
+
+.copy-field__button:hover .copy-field__copy-icon {
+  @apply opacity-100;
+}
+
+.copy-field__check-icon {
+  @apply text-ds-success-600 duration-300;
+}

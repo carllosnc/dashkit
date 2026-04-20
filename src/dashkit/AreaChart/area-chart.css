@@ -1,0 +1,73 @@
+@reference "../dashkit.css";
+
+.area-chart {
+  @apply w-full flex-1 flex flex-col overflow-visible;
+}
+
+.area-chart__wrapper {
+  @apply relative flex-1 w-full overflow-visible;
+}
+
+.area-chart__svg {
+  @apply w-full h-full overflow-visible;
+}
+
+.area-chart__grid-line {
+  @apply stroke-border;
+}
+
+.area-chart__hover-line {
+  @apply stroke-border;
+}
+
+.area-chart__dot-overlay {
+  @apply absolute inset-0 pointer-events-none touch-none;
+}
+
+.area-chart__dot {
+  @apply absolute rounded-full border-2 transition-all duration-200;
+}
+
+.area-chart__tooltip {
+  @apply absolute z-50 pointer-events-none transform -translate-x-1/2 bg-ds-950 text-white ds-rounded border border-ds-800 p-3 shadow-2xl flex flex-col gap-2 min-w-[140px] transition-transform duration-200;
+}
+
+.area-chart__tooltip-header {
+  @apply flex border-b border-ds-800 pb-1 mb-1;
+}
+
+.area-chart__tooltip-label {
+  @apply text-[10px] font-bold uppercase tracking-widest text-ds-400;
+}
+
+.area-chart__tooltip-row {
+  @apply flex items-center justify-between gap-4;
+}
+
+.area-chart__tooltip-series {
+  @apply flex items-center gap-2;
+}
+
+.area-chart__tooltip-dot {
+  @apply size-2 rounded-full;
+}
+
+.area-chart__tooltip-value-name {
+  @apply text-xs font-medium text-ds-200 whitespace-nowrap;
+}
+
+.area-chart__tooltip-value {
+  @apply text-xs font-bold text-white;
+}
+
+.area-chart__x-axis {
+  @apply flex justify-between mt-4;
+}
+
+.area-chart__x-axis-label {
+  @apply text-[10px] font-bold uppercase tracking-widest text-muted-foreground transition-colors;
+}
+
+.area-chart__x-axis-label--active {
+  @apply text-foreground;
+}

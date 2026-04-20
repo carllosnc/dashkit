@@ -1,0 +1,69 @@
+@reference "../dashkit.css";
+
+.breadcrumb {
+  @apply flex;
+}
+
+.breadcrumb__list {
+  @apply flex items-center gap-1.5 text-sm text-ds-500 sm:gap-2.5;
+
+  @variant dark {
+    @apply text-ds-400;
+  }
+}
+
+.breadcrumb__item {
+  @apply flex items-center gap-1.5 whitespace-nowrap;
+}
+
+.breadcrumb__item--inactive {
+  @apply text-ds-500 transition-colors;
+
+  &:hover {
+    @apply text-ds-900;
+  }
+
+  @variant dark {
+    @apply text-ds-400;
+
+    &:hover {
+      @apply text-white;
+    }
+  }
+}
+
+.breadcrumb__item--medium {
+  @apply text-ds-500 font-medium;
+}
+
+.breadcrumb__item--active {
+  @apply font-semibold text-ds-900;
+
+  @variant dark {
+    @apply text-white;
+  }
+}
+
+.breadcrumb__link {
+  @apply flex items-center gap-1.5 text-sm transition-colors;
+}
+
+.breadcrumb__separator {
+  @apply [&>svg]:size-3.5;
+}
+
+.breadcrumb__separator-icon {
+  @apply text-ds-400;
+}
+
+.breadcrumb__ellipsis {
+  @apply flex h-9 w-9 items-center justify-center;
+}
+
+.breadcrumb__ellipsis-icon {
+  @apply size-4;
+}
+
+.breadcrumb__icon-wrapper {
+  @apply shrink-0;
+}

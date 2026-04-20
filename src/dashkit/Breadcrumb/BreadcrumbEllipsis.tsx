@@ -2,9 +2,6 @@ import * as React from 'react';
 import { LuEllipsis } from 'react-icons/lu';
 import { cn } from '../utils/cn';
 
-const ELLIPSIS_ROOT = 'flex h-9 w-9 items-center justify-center';
-const ELLIPSIS_ICON = "size-4";
-
 export function BreadcrumbEllipsis({
   className,
   ...props
@@ -13,10 +10,10 @@ export function BreadcrumbEllipsis({
     <span
       role="presentation"
       aria-hidden="true"
-      className={cn(ELLIPSIS_ROOT, className)}
+      className={cn('breadcrumb__ellipsis', className)}
       {...props}
     >
-      <LuEllipsis className={ELLIPSIS_ICON} />
+      <LuEllipsis className="breadcrumb__ellipsis-icon" />
       <span className="sr-only">More</span>
     </span>
   );

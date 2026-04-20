@@ -1,0 +1,5 @@
+@reference "../dashkit.css";
+
+.popover__content {
+  @apply w-72 max-w-[calc(100vw-2rem)] bg-popover text-popover-fg border border-popover-border ds-rounded shadow-xl p-4 overflow-hidden;
+}

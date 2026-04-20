@@ -25,6 +25,7 @@ export const registry: Record<string, ComponentConfig> = {
     files: [
       'src/dashkit/Avatar/Avatar.tsx',
       'src/dashkit/Avatar/AvatarGroup.tsx',
+      'src/dashkit/Avatar/avatar.css',
       'src/dashkit/Avatar/Avatar.test.tsx',
       'src/dashkit/Avatar/index.ts'
     ],
@@ -34,6 +35,7 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Badge',
     files: [
       'src/dashkit/Badge/Badge.tsx',
+      'src/dashkit/Badge/badge.css',
       'src/dashkit/Badge/FloatBadge.tsx',
       'src/dashkit/Badge/Badge.test.tsx',
       'src/dashkit/Badge/index.ts'
@@ -60,20 +62,30 @@ export const registry: Record<string, ComponentConfig> = {
     files: [
       'src/dashkit/Card/Card.tsx',
       'src/dashkit/Card/CardHeader.tsx',
-      'src/dashkit/Card/CardTitle.tsx',
-      'src/dashkit/Card/CardDescription.tsx',
       'src/dashkit/Card/CardContent.tsx',
       'src/dashkit/Card/CardFooter.tsx',
+      'src/dashkit/Card/card.css',
       'src/dashkit/Card/Card.test.tsx',
       'src/dashkit/Card/index.ts'
     ],
     registryDependencies: ['badge', 'button'],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
+  chip: {
+    name: 'Chip',
+    files: [
+      'src/dashkit/Chip/Chip.tsx',
+      'src/dashkit/Chip/chip.css',
+      'src/dashkit/Chip/Chip.test.tsx',
+      'src/dashkit/Chip/index.ts'
+    ],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
+  },
   checkbox: {
     name: 'Checkbox',
     files: [
       'src/dashkit/Checkbox/Checkbox.tsx',
+      'src/dashkit/Checkbox/checkbox.css',
       'src/dashkit/Checkbox/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
@@ -212,6 +224,7 @@ export const registry: Record<string, ComponentConfig> = {
       'src/dashkit/Breadcrumb/BreadcrumbItem.tsx',
       'src/dashkit/Breadcrumb/BreadcrumbSeparator.tsx',
       'src/dashkit/Breadcrumb/BreadcrumbEllipsis.tsx',
+      'src/dashkit/Breadcrumb/breadcrumb.css',
       'src/dashkit/Breadcrumb/Breadcrumb.test.tsx',
       'src/dashkit/Breadcrumb/index.ts'
     ],
@@ -219,13 +232,18 @@ export const registry: Record<string, ComponentConfig> = {
   },
   iconbutton: {
     name: 'IconButton',
-    files: ['src/dashkit/IconButton/IconButton.tsx'],
+    files: [
+      'src/dashkit/IconButton/IconButton.tsx',
+      'src/dashkit/IconButton/icon-button.css'
+    ],
     dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
   },
   areachart: {
     name: 'AreaChart',
     files: [
       'src/dashkit/AreaChart/AreaChart.tsx',
+      'src/dashkit/AreaChart/useAreaChart.ts',
+      'src/dashkit/AreaChart/area-chart.css',
       'src/dashkit/AreaChart/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
@@ -234,6 +252,8 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'BarChart',
     files: [
       'src/dashkit/BarChart/BarChart.tsx',
+      'src/dashkit/BarChart/useBarChart.ts',
+      'src/dashkit/BarChart/bar-chart.css',
       'src/dashkit/BarChart/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
@@ -270,18 +290,11 @@ export const registry: Record<string, ComponentConfig> = {
     ],
     dependencies: ['clsx', 'tailwind-merge'],
   },
-  chip: {
-    name: 'Chip',
-    files: [
-      'src/dashkit/Chip/Chip.tsx',
-      'src/dashkit/Chip/index.ts'
-    ],
-    dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
-  },
   combobox: {
     name: 'Combobox',
     files: [
       'src/dashkit/Combobox/Combobox.tsx',
+      'src/dashkit/Combobox/combobox.css',
       'src/dashkit/Combobox/useCombobox.ts',
       'src/dashkit/Combobox/Combobox.test.tsx',
       'src/dashkit/Combobox/index.ts'
@@ -329,6 +342,7 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'DatePicker',
     files: [
       'src/dashkit/DatePicker/DatePicker.tsx',
+      'src/dashkit/DatePicker/date-picker.css',
       'src/dashkit/DatePicker/useDatePicker.ts',
       'src/dashkit/DatePicker/DatePicker.test.tsx',
       'src/dashkit/DatePicker/index.ts'
@@ -354,6 +368,7 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'CircularProgress',
     files: [
       'src/dashkit/CircularProgress/CircularProgress.tsx',
+      'src/dashkit/CircularProgress/circular-progress.css',
       'src/dashkit/CircularProgress/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
@@ -386,6 +401,8 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'DateField',
     files: [
       'src/dashkit/DateField/DateField.tsx',
+      'src/dashkit/DateField/useDateField.ts',
+      'src/dashkit/DateField/date-field.css',
       'src/dashkit/DateField/DateField.test.tsx',
       'src/dashkit/DateField/index.ts'
     ],
@@ -400,6 +417,7 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Backdrop',
     files: [
       'src/dashkit/Backdrop/Backdrop.tsx',
+      'src/dashkit/Backdrop/backdrop.css',
       'src/dashkit/Backdrop/Backdrop.test.tsx',
       'src/dashkit/Backdrop/index.ts'
     ],
@@ -423,6 +441,7 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'ColorPicker',
     files: [
       'src/dashkit/ColorPicker/ColorPicker.tsx',
+      'src/dashkit/ColorPicker/color-picker.css',
       'src/dashkit/ColorPicker/ColorPicker.test.tsx'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
@@ -432,6 +451,7 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'CopyField',
     files: [
       'src/dashkit/CopyField/CopyField.tsx',
+      'src/dashkit/CopyField/copy-field.css',
       'src/dashkit/CopyField/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],

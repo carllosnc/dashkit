@@ -21,10 +21,10 @@ export function AccordionItem({ value, children, className, disabled }: Accordio
   return (
     <AccordionItemContext.Provider value={{ value, isOpen }}>
       <div className={cn(
-        'accordion-item',
-        isOpen && "accordion-item-open",
-        !context.shadowed && "accordion-item-shadow-none",
-        disabled && "accordion-item-disabled",
+        'accordion__item',
+        isOpen && "accordion__item--open",
+        !context.shadowed && "accordion__item--shadow-none",
+        disabled && "accordion__item--disabled",
         className
       )}>
         {children}

@@ -1,0 +1,65 @@
+@reference "../dashkit.css";
+
+.checkbox {
+  @apply flex gap-3 relative transition-all duration-200 items-center;
+}
+
+.checkbox:hover .checkbox__box {
+  @apply border-primary/50;
+}
+
+.checkbox__input-container {
+  @apply flex items-center h-6;
+}
+
+.checkbox__label-inner {
+  @apply relative flex items-center justify-center cursor-pointer;
+}
+
+.checkbox__input {
+  @apply sr-only;
+}
+
+.checkbox__input:checked ~ .checkbox__box {
+  @apply border-primary bg-background;
+}
+
+.checkbox__input:checked ~ .checkbox__indicator {
+  @apply opacity-100 scale-100;
+}
+
+.checkbox__input:checked:disabled ~ .checkbox__indicator {
+  @apply opacity-60;
+}
+
+.checkbox__input:focus-visible ~ .checkbox__box {
+  @apply ring-2 ring-ring ring-offset-2 ring-offset-transparent;
+}
+
+.checkbox__input:disabled ~ .checkbox__box {
+  @apply opacity-60 cursor-not-allowed;
+}
+
+.checkbox__box {
+  @apply w-6 h-6 border-2 transition-all duration-200 flex items-center justify-center shrink-0 bg-background rounded-sm;
+}
+
+.checkbox__indicator {
+  @apply absolute w-[13px] h-[13px] rounded-[2px] bg-primary transition-all duration-200 pointer-events-none opacity-0 scale-50;
+}
+
+.checkbox__text-container {
+  @apply flex flex-col cursor-pointer select-none;
+}
+
+.checkbox__text-label {
+  @apply text-sm font-medium text-ds-800 tracking-tight leading-5;
+
+  @variant dark {
+    @apply text-ds-200;
+  }
+}
+
+.checkbox__text-description {
+  @apply text-sm text-muted-foreground tracking-tight mt-0.5;
+}

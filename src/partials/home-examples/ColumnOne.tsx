@@ -17,6 +17,7 @@ import { toast } from '../../dashkit/Toast/useToast';
 import { StatsCard } from '../../dashkit/StatsCard/StatsCard';
 import { FiMail, FiLock, FiZap, FiMoreHorizontal, FiTrendingUp, FiShieldOff, FiActivity, FiShield, FiDollarSign, FiPlay, FiSkipBack, FiSkipForward, FiHelpCircle, FiLock as FiFingerprint, FiAlertTriangle, FiUsers, FiSettings, FiLogOut } from 'react-icons/fi';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
+import { IconButton } from '../../dashkit/IconButton/IconButton';
 import { AVATAR_URLS } from './Constants';
 
 export function ColumnOne() {
@@ -261,17 +262,26 @@ export function ColumnOne() {
                     <span>32:10</span>
                  </div>
               </div>
-              <div className="flex items-center justify-between px-4">
-                 <Button variant="soft" size="sm" className="rounded-full size-10 flex items-center justify-center p-0">
-                    <FiSkipBack size={16} />
-                 </Button>
-                 <Button variant="filled" size="sm" className="rounded-full size-12 flex items-center justify-center p-0 shadow-lg shadow-primary/30 group">
-                    <FiPlay size={20} className="ml-1 group-hover:scale-110 transition-transform" />
-                 </Button>
-                 <Button variant="soft" size="sm" className="rounded-full size-10 flex items-center justify-center p-0">
-                    <FiSkipForward size={16} />
-                 </Button>
-              </div>
+               <div className="flex items-center justify-between px-4">
+                  <IconButton
+                    variant="soft"
+                    rounded
+                    icon={<FiSkipBack size={16} />}
+                    className="size-10"
+                  />
+                  <IconButton
+                    variant="filled"
+                    rounded
+                    icon={<FiPlay size={23} className="ml-1 group-hover:scale-110 transition-transform" />}
+                    className="size-14 shadow-lg shadow-primary/30 group"
+                  />
+                  <IconButton
+                    variant="soft"
+                    rounded
+                    icon={<FiSkipForward size={16} />}
+                    className="size-10"
+                  />
+               </div>
            </CardContent>
         </Card>
 

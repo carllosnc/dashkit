@@ -40,7 +40,12 @@ Every component should be located in `src/components/[ComponentName]/` and typic
 
 - Use **Tailwind CSS v4** for all styling.
   - When creating a component style file (`.css`), never use `@utility`. Always use standard CSS classes.
-  - Separate state-related Tailwind modifiers (e.g., `hover:`, `focus:`, `disabled:`) into a dedicated `@apply` block, distinct from the base styles.
+  - **STYLING**: Avoid CSS nesting for BEM elements and modifiers. Use flat, full class names. Nested patterns are allowed ONLY for pseudo-classes (e.g., `:hover`, `:focus`) and pseudo-elements.
+  - **THEMING**: Always use the `@variant dark { ... }` directive for dark mode styles instead of inline `dark:` modifiers.
+  - **BEM METHODOLOGY**: Use BEM (Block Element Modifier) for all CSS class names.
+    - **Block**: The component name (e.g., `.card`)
+    - **Element**: Parts of the block, prefixed with double underscores (e.g., `.card__header`, `.card__title`)
+    - **Modifier**: State or style variations, prefixed with double hyphens (e.g., `.card--outlined`, `.card__title--large`)
   - Always include `@reference` to the project's central CSS file (e.g., `../dashkit.css`) at the top of component style files to enable IntelliSense and proper token inheritance.
 - Use `framer-motion` for animations.
 - Use the `cn` utility from `src/utils/cn` for class merging.

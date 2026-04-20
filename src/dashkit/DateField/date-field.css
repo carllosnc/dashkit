@@ -1,0 +1,69 @@
+@reference "../dashkit.css";
+
+.date-field {
+  @apply flex flex-col gap-1.5 w-full font-sans;
+}
+
+.date-field__label {
+  @apply text-[13px] font-semibold text-ds-700 ml-1 tracking-tight;
+
+  @variant dark {
+    @apply text-ds-300;
+  }
+}
+
+.date-field__required {
+  @apply text-ds-danger-500 ml-0.5;
+}
+
+.date-field__segments {
+  @apply flex items-center gap-2;
+}
+
+.date-field__segment {
+  @apply h-9 bg-input-bg text-input-fg border border-input-border ds-rounded text-sm font-medium text-center tabular-nums p-0 outline-none transition-all duration-200;
+}
+
+.date-field__segment::placeholder {
+  @apply text-ds-400;
+
+  @variant dark {
+    @apply text-ds-600;
+  }
+}
+
+.date-field__segment:focus {
+  @apply border-input-focus ring-2 ring-ring ring-offset-2 ring-offset-transparent;
+}
+
+.date-field__segment:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+.date-field__separator {
+  @apply text-ds-400 font-bold select-none text-lg;
+
+  @variant dark {
+    @apply text-ds-500;
+  }
+}
+
+.date-field__message {
+  @apply text-[12px] ml-1 tracking-tight;
+}
+
+.date-field__message--description {
+  @apply text-ds-600;
+
+  @variant dark {
+    @apply text-ds-400;
+  }
+}
+
+.date-field__message--error {
+  @apply text-ds-danger-600;
+
+  @variant dark {
+    @apply text-ds-danger-400;
+  }
+}

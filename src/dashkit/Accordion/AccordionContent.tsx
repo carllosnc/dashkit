@@ -16,9 +16,9 @@ export function AccordionContent({ children, className }: { children: React.Reac
           animate={{ height: 'auto', opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
           transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-          className="accordion-content"
+          className="accordion__content"
         >
-          <div className={cn('accordion-content-inner', className)}>
+          <div className={cn('accordion__content-inner', className)}>
             {children}
           </div>
         </motion.div>

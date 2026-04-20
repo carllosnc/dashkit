@@ -1,0 +1,25 @@
+@reference "../dashkit.css";
+
+.card {
+  @apply bg-card text-card-foreground p-6 ds-rounded shadow-sm gap-6 flex flex-col font-sans;
+}
+
+.card__header {
+  /* Layout handled in component to allow overrides */
+}
+
+.card__title {
+  @apply text-base font-medium text-foreground tracking-tight leading-tight;
+}
+
+.card__description {
+  @apply text-sm text-muted-foreground;
+}
+
+.card__content {
+  @apply flex-1;
+}
+
+.card__footer {
+  @apply flex gap-3;
+}

@@ -1,0 +1,69 @@
+@reference "../dashkit.css";
+
+.color-picker {
+  @apply flex flex-col gap-1.5 w-full font-sans;
+}
+
+.color-picker__label {
+  @apply text-[13px] font-semibold text-ds-700 ml-1 tracking-tight;
+
+  @variant dark {
+    @apply text-ds-300;
+  }
+}
+
+.color-picker__trigger {
+  @apply flex items-center gap-3 w-full h-9 px-3 ds-rounded bg-input-bg border border-input-border text-sm text-input-fg outline-none transition-all duration-200;
+}
+
+.color-picker__trigger:hover {
+  @apply ring-2 ring-ring ring-offset-2 ring-offset-transparent;
+}
+
+.color-picker__content {
+  @apply w-64 p-3 space-y-4 shadow-2xl bg-popover border-popover-border;
+}
+
+.color-picker__preset-grid {
+  @apply grid grid-cols-6 gap-2;
+}
+
+.color-picker__preset-item {
+  @apply size-8 rounded-lg border relative flex items-center justify-center overflow-hidden transition-all duration-200;
+}
+
+.color-picker__preset-item:hover {
+  @apply scale-110;
+}
+
+.color-picker__preset-item:active {
+  @apply scale-95;
+}
+
+.color-picker__preset-item--selected {
+  @apply text-ds-50 drop-shadow-md flex items-center justify-center;
+}
+
+.color-picker__preset-item--selected-light {
+  @apply text-ds-900 drop-shadow-none;
+}
+
+.color-picker__footer {
+  @apply pt-3 border-t;
+}
+
+.color-picker__swatch {
+  @apply rounded-md border shrink-0 transition-all duration-200;
+}
+
+.color-picker__helper-text {
+  @apply text-[12px] ml-1 tracking-tight text-ds-600;
+}
+
+.color-picker__error-text {
+  @apply text-[12px] ml-1 tracking-tight text-ds-danger-600;
+
+  @variant dark {
+    @apply text-ds-danger-400;
+  }
+}

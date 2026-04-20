@@ -12,42 +12,39 @@ export interface SwitchProps extends Omit<InputHTMLAttributes<HTMLInputElement>,
   description?: string;
 }
 
+import './switch.css';
+
 export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
   ({ label, description, className, id, ...props }, ref) => {
     const { switchId } = useSwitch({ id, label });
 
     return (
-      <div className="flex gap-4 group relative items-center">
-        <div className="flex items-center h-6">
-          <label htmlFor={switchId} className="relative inline-flex items-center cursor-pointer">
+      <div className="switch">
+        <div className="switch__input-container">
+          <label htmlFor={switchId} className="switch__label-inner">
             <input
               {...props}
               type="checkbox"
               id={switchId}
               ref={ref}
-              className="peer sr-only"
+              className="switch__input"
             />
-            <div
-              className={cn(
-                "w-11 h-6 rounded-full border-2 transition-all duration-300 shrink-0 bg-ds-200 dark:bg-ds-800 border-transparent peer-checked:bg-primary peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-transparent peer-disabled:opacity-60 peer-disabled:cursor-not-allowed",
-                className
-              )}
-            />
-            <div className="absolute left-1 top-1 w-4 h-4 rounded-full transition-all duration-300 shadow-sm bg-ds-0 peer-checked:translate-x-5 peer-disabled:opacity-60 peer-disabled:cursor-not-allowed" />
+            <div className={cn("switch__track", className)} />
+            <div className="switch__thumb" />
           </label>
         </div>
         {(label || description) && (
           <label
             htmlFor={switchId}
-            className="flex flex-col cursor-pointer select-none"
+            className="switch__content"
           >
             {label && (
-              <span className="text-sm font-medium text-ds-800 dark:text-ds-200 tracking-tight leading-6">
+              <span className="switch__label">
                 {label}
               </span>
             )}
             {description && (
-              <span className="text-sm text-muted-foreground tracking-tight">
+              <span className="switch__description">
                 {description}
               </span>
             )}

@@ -10,11 +10,15 @@ export interface BackdropProps extends HTMLMotionProps<'div'> {
   children?: React.ReactNode;
 }
 
-const BACKDROP_ROOT = "fixed inset-0 z-50 flex items-center justify-center p-6 isolate";
-const ROOT_ABSOLUTE = "absolute";
-const OVERLAY_BASE = "absolute inset-0 -z-10";
-const OVERLAY_COLOR = "bg-ds-950/40 dark:bg-white/15";
-const OVERLAY_BLUR = "backdrop-blur-sm dark:backdrop-blur-md";
+import './backdrop.css';
+
+export interface BackdropProps extends HTMLMotionProps<'div'> {
+  show?: boolean;
+  blur?: boolean;
+  transparent?: boolean;
+  fixed?: boolean;
+  children?: React.ReactNode;
+}
 
 export function Backdrop({
   show = true,
@@ -46,9 +50,9 @@ export function Backdrop({
       exit={{ opacity: 0 }}
       onClick={onClick}
       className={cn(
-        OVERLAY_BASE,
-        !transparent && OVERLAY_COLOR,
-        blur && OVERLAY_BLUR,
+        'backdrop__overlay',
+        !transparent && 'backdrop__overlay--color',
+        blur && 'backdrop__overlay--blur',
         className
       )}
       {...props}
@@ -59,7 +63,12 @@ export function Backdrop({
 
   if (children || fixed) {
     return (
-      <div className={cn(BACKDROP_ROOT, !fixed && ROOT_ABSOLUTE)}>
+      <div 
+        className={cn(
+          'backdrop', 
+          !fixed && 'backdrop--absolute'
+        )}
+      >
         {overlay}
         {children}
       </div>

@@ -12,8 +12,8 @@ export function ButtonGroup({ children, className, vertical = false }: ButtonGro
   return (
     <div
       className={cn(
-        'btn-group',
-        vertical ? 'btn-group-vertical' : 'btn-group-horizontal',
+        'button-group',
+        vertical ? 'button-group--vertical' : 'button-group--horizontal',
         className
       )}
     >
@@ -35,8 +35,8 @@ export function ButtonGroupItem({
   return (
     <button
       className={cn(
-        'btn-group-item',
-        selected && 'btn-group-item-selected',
+        'button-group__item',
+        selected && 'button-group__item--selected',
         className
       )}
       {...props}

@@ -242,7 +242,7 @@ async function handleInit() {
 
     // Ensure CSS installation
     const targetPath = path.resolve(process.cwd(), cssDir, 'dashkit.css');
-    const sourcePath = path.resolve(projectRoot, 'src', 'dashkit.css');
+    const sourcePath = path.resolve(projectRoot, 'src', 'dashkit', 'dashkit.css');
     await installDashkitCss(targetPath, sourcePath);
 
     // Create dashkit and utils folders
@@ -252,7 +252,7 @@ async function handleInit() {
 
     // Default to copying cn.ts utility
     const targetCnPath = path.join(utilsDir, 'cn.ts');
-    const sourceCnPath = path.resolve(projectRoot, 'src', 'components', 'dashkit', 'utils', 'cn.ts');
+    const sourceCnPath = path.resolve(projectRoot, 'src', 'dashkit', 'utils', 'cn.ts');
     if (!(await fs.pathExists(targetCnPath)) && (await fs.pathExists(sourceCnPath))) {
       await fs.copy(sourceCnPath, targetCnPath);
     }

@@ -1,0 +1,100 @@
+@reference "../dashkit.css";
+
+.badge {
+  @apply relative inline-flex items-center justify-center font-semibold select-none whitespace-nowrap uppercase;
+}
+
+.badge__dot {
+  @apply w-2.5 h-2.5 rounded-full;
+}
+
+.badge__content {
+  @apply min-w-[1.125rem] pt-[5px] pb-[3px] px-2 ds-rounded text-[11px] flex items-center justify-center leading-none;
+}
+
+.badge__inner-content {
+  @apply relative z-20;
+}
+
+/* Base colors */
+.badge--solid-base { @apply bg-ds-500 text-white border-transparent; }
+.badge--soft-base { 
+  @apply bg-ds-500/15 text-ds-600 border-transparent;
+  @variant dark { @apply text-ds-400; }
+}
+.badge--pulse-base { @apply bg-ds-500; }
+
+/* Success colors */
+.badge--solid-success { 
+  @apply bg-ds-success-600 text-ds-success-50 border-transparent;
+  @variant dark { @apply bg-ds-success-500 text-ds-success-950; }
+}
+.badge--soft-success { 
+  @apply bg-ds-success-600/15 text-ds-success-600 border-transparent;
+  @variant dark { @apply text-ds-success-400 bg-ds-success-500/20; }
+}
+.badge--pulse-success { 
+  @apply bg-ds-success-600;
+  @variant dark { @apply bg-ds-success-500; }
+}
+
+/* Warning colors */
+.badge--solid-warning { 
+  @apply bg-ds-warning-500 text-ds-warning-950 border-transparent;
+  @variant dark { @apply bg-ds-warning-400 text-ds-warning-950; }
+}
+.badge--soft-warning { 
+  @apply bg-ds-warning-500/15 text-ds-warning-600 border-transparent;
+  @variant dark { @apply text-ds-warning-400 bg-ds-warning-500/20; }
+}
+.badge--pulse-warning { 
+  @apply bg-ds-warning-500;
+  @variant dark { @apply bg-ds-warning-500; }
+}
+
+/* Danger/Error colors */
+.badge--solid-danger { 
+  @apply bg-ds-danger-600 text-ds-danger-50 border-transparent;
+  @variant dark { @apply bg-ds-danger-500 text-ds-danger-950; }
+}
+.badge--soft-danger { 
+  @apply bg-ds-danger-600/15 text-ds-danger-600 border-transparent;
+  @variant dark { @apply text-ds-danger-400 bg-ds-danger-500/20; }
+}
+.badge--pulse-danger { 
+  @apply bg-ds-danger-600;
+  @variant dark { @apply bg-ds-danger-500; }
+}
+
+/* Info colors */
+.badge--solid-info { 
+  @apply bg-ds-info-600 text-ds-info-50 border-transparent;
+  @variant dark { @apply bg-ds-info-500 text-ds-info-950; }
+}
+.badge--soft-info { 
+  @apply bg-ds-info-600/15 text-ds-info-600 border-transparent;
+  @variant dark { @apply text-ds-info-400 bg-ds-info-500/20; }
+}
+.badge--pulse-info { 
+  @apply bg-ds-info-600;
+  @variant dark { @apply bg-ds-info-500; }
+}
+
+/* Pulse animations */
+.badge__pulse {
+  @apply absolute animate-ping opacity-60;
+}
+
+.badge__pulse--dot {
+  @apply inset-0 rounded-full;
+}
+
+.badge__pulse--rect {
+  @apply inset-[2px] rounded-[calc(var(--radius)-2px)];
+}
+
+.badge__pulse--base { @apply bg-ds-500; }
+.badge__pulse--success { @apply bg-ds-success-600; @variant dark { @apply bg-ds-success-500; } }
+.badge__pulse--warning { @apply bg-ds-warning-500; @variant dark { @apply bg-ds-warning-500; } }
+.badge__pulse--danger { @apply bg-ds-danger-600; @variant dark { @apply bg-ds-danger-500; } }
+.badge__pulse--info { @apply bg-ds-info-600; @variant dark { @apply bg-ds-info-500; } }

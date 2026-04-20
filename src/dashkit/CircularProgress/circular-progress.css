@@ -1,0 +1,42 @@
+@reference "../dashkit.css";
+
+.circular-progress {
+  @apply relative inline-flex items-center justify-center;
+}
+
+.circular-progress__svg {
+  @apply rotate-[-90deg];
+}
+
+.circular-progress__track {
+  @apply text-ds-100;
+
+  @variant dark {
+    @apply text-ds-800;
+  }
+}
+
+.circular-progress__track--soft-primary { @apply text-primary/20; }
+.circular-progress__track--soft-success { @apply text-emerald-500/20; }
+.circular-progress__track--soft-warning { @apply text-amber-500/20; }
+.circular-progress__track--soft-danger { @apply text-rose-500/20; }
+.circular-progress__track--soft-info { @apply text-sky-500/20; }
+
+.circular-progress__indicator--primary { @apply text-primary; }
+.circular-progress__indicator--success { @apply text-emerald-500; }
+.circular-progress__indicator--warning { @apply text-amber-500; }
+.circular-progress__indicator--danger { @apply text-rose-500; }
+.circular-progress__indicator--info { @apply text-sky-500; }
+
+.circular-progress__value-wrapper {
+  @apply absolute inset-0 flex flex-col items-center justify-center text-center px-1;
+}
+
+.circular-progress__value {
+  @apply font-bold text-foreground leading-none;
+}
+
+/* Sizing */
+.circular-progress--sm .circular-progress__value { @apply text-[10px]; }
+.circular-progress--md .circular-progress__value { @apply text-base; }
+.circular-progress--lg .circular-progress__value { @apply text-xl; }

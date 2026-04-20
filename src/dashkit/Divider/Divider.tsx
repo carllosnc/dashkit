@@ -8,21 +8,7 @@ export interface DividerProps extends React.HTMLAttributes<HTMLDivElement> {
   contentPosition?: "left" | "center" | "right";
 }
 
-const LINE_BASE = "shrink-0 bg-border";
-const LINE_VARIANT_DASHED = "bg-transparent border-dashed";
-const LINE_VARIANT_DOTTED = "bg-transparent border-dotted";
-
-const HORIZONTAL_LINE = "w-full";
-const HORIZONTAL_SOLID = "h-[1px]";
-const HORIZONTAL_NON_SOLID = "h-0 border-t";
-
-const VERTICAL_LINE = "h-auto self-stretch";
-const VERTICAL_SOLID = "w-[1px]";
-const VERTICAL_NON_SOLID = "w-0 border-l";
-
-const CONTENT_CONTAINER = "flex items-center w-full gap-4";
-const CONTENT_TEXT = "text-[11px] font-bold uppercase tracking-widest text-ds-400 select-none whitespace-nowrap";
-const FLEX_LINE = "flex-1";
+import './divider.css';
 
 export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
   function Divider(
@@ -40,42 +26,35 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
     const hasContent = isHorizontal && !!children;
 
     if (hasContent) {
-      const lineStyles = cn(
-        FLEX_LINE,
-        variant === "solid" ? "h-[1px] bg-border" : "h-0 border-t",
-        variant === "dashed" && "border-dashed",
-        variant === "dotted" && "border-dotted"
-      );
-
       return (
         <div
           ref={ref}
-          className={cn(CONTENT_CONTAINER, className)}
+          className={cn(
+            "divider",
+            "divider--with-content",
+            variant !== "solid" && `divider--${variant}`,
+            className
+          )}
           {...props}
         >
-          <div className={cn(lineStyles, contentPosition === "left" && "hidden")} />
-          <span className={CONTENT_TEXT}>
+          <div className={cn("divider__line", contentPosition === "left" && "hidden")} />
+          <span className="divider__content">
             {children}
           </span>
-          <div className={cn(lineStyles, contentPosition === "right" && "hidden")} />
+          <div className={cn("divider__line", contentPosition === "right" && "hidden")} />
         </div>
       );
     }
 
-    const baseStyles = cn(
-      LINE_BASE,
-      variant === "dashed" && LINE_VARIANT_DASHED,
-      variant === "dotted" && LINE_VARIANT_DOTTED,
-      isHorizontal
-        ? cn(HORIZONTAL_LINE, variant === "solid" ? HORIZONTAL_SOLID : HORIZONTAL_NON_SOLID)
-        : cn(VERTICAL_LINE, variant === "solid" ? VERTICAL_SOLID : VERTICAL_NON_SOLID),
-      className
-    );
-
     return (
       <div
         ref={ref}
-        className={baseStyles}
+        className={cn(
+          "divider",
+          `divider--${orientation}`,
+          variant !== "solid" && `divider--${variant}`,
+          className
+        )}
         role="separator"
         aria-orientation={orientation}
         {...props}

@@ -14,8 +14,8 @@ export function AccordionTrigger({ children, className }: { children: React.Reac
     <button
       onClick={() => context.onValueChange(itemContext.value)}
       className={cn(
-        'accordion-trigger',
-        itemContext.isOpen ? 'accordion-trigger-active' : 'accordion-trigger-inactive',
+        'accordion__trigger',
+        itemContext.isOpen && 'accordion__trigger--active',
         className
       )}
     >
@@ -26,7 +26,7 @@ export function AccordionTrigger({ children, className }: { children: React.Reac
       >
         <FiChevronRight size={18} />
       </motion.div>
-      <span className="accordion-trigger-content">{children}</span>
+      <span className="accordion__trigger-content">{children}</span>
     </button>
   );
 }

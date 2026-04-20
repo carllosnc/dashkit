@@ -1,3 +1,4 @@
+import './circular-progress.css';
 import * as React from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '../utils/cn';
@@ -15,13 +16,6 @@ export interface CircularProgressProps {
   className?: string;
 }
 
-const ROOT_WRAPPER = "relative inline-flex items-center justify-center";
-const SVG_ROOT = "rotate-[-90deg]";
-const VALUE_WRAPPER = "absolute inset-0 flex flex-col items-center justify-center text-center px-1";
-const VALUE_BASE = "font-bold text-foreground leading-none";
-
-const LIGHT_TRACK = "text-ds-100 dark:text-ds-800";
-
 const sizeMap = {
   sm: 40,
   md: 64,
@@ -32,28 +26,6 @@ const strokeWidthMap = {
   sm: 4,
   md: 6,
   lg: 8,
-};
-
-const textSizes = {
-  sm: "text-[10px]",
-  md: "text-base",
-  lg: "text-xl",
-};
-
-const indicatorColorClasses = {
-  primary: 'text-primary',
-  success: 'text-emerald-500',
-  warning: 'text-amber-500',
-  danger: 'text-rose-500',
-  info: 'text-sky-500',
-};
-
-const softTrackColors = {
-  primary: 'text-primary/20',
-  success: 'text-emerald-500/20',
-  warning: 'text-amber-500/20',
-  danger: 'text-rose-500/20',
-  info: 'text-sky-500/20',
 };
 
 export const CircularProgress = React.forwardRef<HTMLDivElement, CircularProgressProps>(
@@ -76,19 +48,23 @@ export const CircularProgress = React.forwardRef<HTMLDivElement, CircularProgres
     const circumference = 2 * Math.PI * radius;
     const offset = circumference - (value / 100) * circumference;
 
-    const trackClasses = trackColor || (variant === 'solid' ? LIGHT_TRACK : softTrackColors[color]);
+    const trackClasses = trackColor || (variant === 'solid' ? 'circular-progress__track' : `circular-progress__track--soft-${color}`);
 
     return (
       <div
         ref={ref}
-        className={cn(ROOT_WRAPPER, className)}
+        className={cn(
+          'circular-progress',
+          typeof size === 'string' && `circular-progress--${size}`,
+          className
+        )}
         style={{ width: dimension, height: dimension }}
       >
         <svg
           width={dimension}
           height={dimension}
           viewBox={`0 0 ${dimension} ${dimension}`}
-          className={SVG_ROOT}
+          className="circular-progress__svg"
         >
           {showTrack && (
             <circle
@@ -113,15 +89,15 @@ export const CircularProgress = React.forwardRef<HTMLDivElement, CircularProgres
             animate={{ strokeDashoffset: offset }}
             transition={{ duration: 1, ease: "easeOut" }}
             strokeLinecap={roundCaps ? "round" : "butt"}
-            className={indicatorColorClasses[color]}
+            className={`circular-progress__indicator--${color}`}
           />
         </svg>
 
         {showValue && (
-          <div className={VALUE_WRAPPER}>
+          <div className="circular-progress__value-wrapper">
             <span className={cn(
-              VALUE_BASE,
-              typeof size === 'number' ? "text-[1em]" : textSizes[size]
+              'circular-progress__value',
+              typeof size === 'number' && "text-[1em]"
             )}>
               {Math.round(value)}%
             </span>

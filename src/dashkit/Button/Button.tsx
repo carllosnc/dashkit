@@ -40,15 +40,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         disabled={disabled || loading}
         className={cn(
-          'btn-base',
-          `btn-${variant}-${color}`,
-          `btn-${size}`,
+          'button',
+          `button--${variant}-${color}`,
+          `button--${size}`,
           {
-            "btn-loading": loading,
-            "btn-with-text": !isIconOnly,
-            "btn-with-text-sm": size === 'sm' && !isIconOnly,
-            "btn-with-text-lg": size === 'lg' && !isIconOnly,
-            "btn-icon-only": isIconOnly,
+            "button--loading": loading,
+            "button--with-text": !isIconOnly,
+            "button--with-text-sm": size === 'sm' && !isIconOnly,
+            "button--with-text-lg": size === 'lg' && !isIconOnly,
+            "button--icon-only": isIconOnly,
           },
           className
         )}

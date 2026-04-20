@@ -1,0 +1,55 @@
+@reference "../dashkit.css";
+
+.divider {
+  @apply shrink-0 bg-ds-200;
+
+  @variant dark {
+    @apply bg-ds-800;
+  }
+}
+
+.divider--horizontal {
+  @apply w-full h-[1px];
+}
+
+.divider--vertical {
+  @apply h-auto self-stretch w-[1px];
+}
+
+.divider--dashed {
+  @apply bg-transparent border-dashed;
+}
+
+.divider--dashed.divider--horizontal { @apply h-0 border-t; }
+.divider--dashed.divider--vertical { @apply w-0 border-l; }
+
+.divider--dotted {
+  @apply bg-transparent border-dotted;
+}
+
+.divider--dotted.divider--horizontal { @apply h-0 border-t; }
+.divider--dotted.divider--vertical { @apply w-0 border-l; }
+
+.divider--with-content {
+  @apply flex items-center w-full gap-4 bg-transparent h-auto border-none;
+}
+
+.divider__line {
+  @apply flex-1 h-[1px] bg-ds-200;
+
+  @variant dark {
+    @apply bg-ds-800;
+  }
+}
+
+.divider--dashed .divider__line {
+  @apply bg-transparent border-t border-dashed;
+}
+
+.divider--dotted .divider__line {
+  @apply bg-transparent border-t border-dotted;
+}
+
+.divider__content {
+  @apply text-[11px] font-bold uppercase tracking-widest text-ds-400 select-none whitespace-nowrap;
+}

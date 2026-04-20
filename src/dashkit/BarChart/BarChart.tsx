@@ -1,20 +1,14 @@
 import * as React from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '../utils/cn';
+import { useBarChart } from './useBarChart';
+import './bar-chart.css';
 
 export interface BarChartSeries {
   key: string;
   label: string;
   color?: string;
 }
-
-const DEFAULT_COLORS = [
-  'var(--color-primary)',
-  'var(--color-primary-400)',
-  'var(--color-primary-200)',
-  'var(--color-primary-800)',
-  'var(--color-primary-300)',
-];
 
 export interface BarChartProps {
   data: Record<string, string | number>[];
@@ -29,24 +23,6 @@ export interface BarChartProps {
   rounded?: boolean;
 }
 
-const CONTAINER_ROOT = "w-full flex-1 flex flex-col relative overflow-visible";
-const SVG_ROOT = "flex-1 w-full overflow-visible";
-const GRID_LINE = "stroke-border";
-const BAR_BASE = "transition-opacity duration-200 cursor-pointer";
-const BAR_INACTIVE = "opacity-40";
-const TOOLTIP_ROOT = "absolute z-50 pointer-events-none transform -translate-x-1/2 bg-ds-950 text-white ds-rounded shadow-2xl border border-ds-800 p-3 flex flex-col gap-2 min-w-[140px] transition-transform duration-200";
-const TOOLTIP_HEADER = "flex border-b border-ds-800 pb-1 mb-1";
-const TOOLTIP_HEADER_TEXT = "text-[10px] font-bold uppercase tracking-widest text-ds-400";
-const TOOLTIP_ENTRY = "flex items-center justify-between gap-4";
-const TOOLTIP_ENTRY_LABEL = "flex items-center gap-2";
-const TOOLTIP_ENTRY_DOT = "size-2 rounded-full";
-const TOOLTIP_ENTRY_TEXT = "text-xs font-medium text-ds-200 whitespace-nowrap";
-const TOOLTIP_ENTRY_VALUE = "text-xs font-bold text-white";
-const X_AXIS_ROOT = "flex w-full mt-4";
-const X_AXIS_COLUMN = "flex-1 text-center";
-const X_AXIS_LABEL = "text-[10px] font-bold uppercase tracking-widest text-muted-foreground transition-colors inline-block";
-const X_AXIS_LABEL_ACTIVE = "text-foreground";
-
 export function BarChart({
   data,
   series,
@@ -59,71 +35,35 @@ export function BarChart({
   barGap = 4,
   rounded = true,
 }: BarChartProps) {
-  const chartRef = React.useRef<SVGSVGElement>(null);
-  const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
-  const [tooltipPos, setTooltipPos] = React.useState<{ x: number, y: number }>({ x: 0, y: 0 });
+  const {
+    chartRef,
+    hoveredIndex,
+    tooltipPos,
+    setHoveredIndex,
+    validSeries,
+    minVal,
+    range,
+    width,
+    svgHeight,
+    groupWidth,
+    groupPadding,
+    barWidth,
+    handleMouseMove,
+    isNearTop
+  } = useBarChart({ data, series, barGap });
 
   if (!data || data.length === 0 || !series || series.length === 0) return null;
 
-  const validSeries = series.map((s, i) => ({
-    ...s,
-    color: s.color || DEFAULT_COLORS[i % DEFAULT_COLORS.length]
-  }));
-
-  const maxVal = Math.max(
-    ...data.flatMap(d => validSeries.map(s => Number(d[s.key]) || 0)),
-    0
-  ) * 1.1;
-
-  const minVal = 0;
-  const range = maxVal - minVal;
-  const width = 1000;
-  const svgHeight = 400;
-
-  const groupWidth = width / data.length;
-  const barsContainerWidth = groupWidth * 0.8;
-  const groupPadding = (groupWidth - barsContainerWidth) / 2;
-  const barWidth = (barsContainerWidth - (validSeries.length - 1) * barGap) / validSeries.length;
-
-  const handleMouseMove = (e: React.MouseEvent<SVGSVGElement>) => {
-    const svg = chartRef.current;
-    if (!svg) return;
-
-    const rect = svg.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const normalizedX = (x / rect.width) * width;
-
-    const index = Math.floor(normalizedX / groupWidth);
-    const clampedIndex = Math.max(0, Math.min(data.length - 1, index));
-
-    setHoveredIndex(clampedIndex);
-
-    const tooltipWidth = 140;
-    const centerX = clampedIndex * groupWidth + groupWidth / 2;
-    const tooltipX = (centerX / width) * rect.width;
-    const clampedX = Math.max(tooltipWidth / 2 + 8, Math.min(rect.width - tooltipWidth / 2 - 8, tooltipX));
-
-    const groupMaxVal = Math.max(...validSeries.map(s => Number(data[clampedIndex][s.key]) || 0), 0);
-    const highestY = svgHeight - ((groupMaxVal - minVal) / range) * svgHeight;
-
-    setTooltipPos({
-      x: clampedX,
-      y: (highestY / svgHeight) * rect.height
-    });
-  };
-
-  const isNearTop = tooltipPos.y < 100;
-
   return (
     <div
-      className={cn(CONTAINER_ROOT, className)}
+      className={cn('bar-chart', className)}
       style={{ height: typeof height === 'number' ? `${height}px` : height }}
     >
       <svg
         ref={chartRef}
         viewBox={`0 0 ${width} ${svgHeight}`}
         preserveAspectRatio="none"
-        className={SVG_ROOT}
+        className="bar-chart__svg"
         onMouseMove={handleMouseMove}
         onMouseLeave={() => setHoveredIndex(null)}
       >
@@ -134,7 +74,7 @@ export function BarChart({
             y1={svgHeight * (1 - line)}
             x2={width}
             y2={svgHeight * (1 - line)}
-            className={GRID_LINE}
+            className="bar-chart__grid-line"
             strokeWidth="1"
             strokeDasharray="4 4"
             vectorEffect="non-scaling-stroke"
@@ -159,8 +99,8 @@ export function BarChart({
                   fill={s.color}
                   rx={rounded ? Math.min(barWidth / 2, 4) : 0}
                   className={cn(
-                    BAR_BASE,
-                    hoveredIndex !== null && hoveredIndex !== dataIdx && BAR_INACTIVE
+                    'bar-chart__bar',
+                    hoveredIndex !== null && hoveredIndex !== dataIdx && 'bar-chart__bar--inactive'
                   )}
                   style={{ transformOrigin: 'bottom' }}
                   whileHover={{
@@ -184,7 +124,7 @@ export function BarChart({
       {showTooltip && hoveredIndex !== null && (
         <div
           className={cn(
-            TOOLTIP_ROOT,
+            'bar-chart__tooltip',
             isNearTop ? "translate-y-4" : "-translate-y-full -mt-12"
           )}
           style={{
@@ -192,18 +132,18 @@ export function BarChart({
             top: tooltipPos.y
           }}
         >
-          <div className={TOOLTIP_HEADER}>
-             <span className={TOOLTIP_HEADER_TEXT}>
+          <div className="bar-chart__tooltip-header">
+             <span className="bar-chart__tooltip-header-text">
                {data[hoveredIndex].label}
              </span>
           </div>
           {validSeries.map(s => (
-            <div key={s.key} className={TOOLTIP_ENTRY}>
-              <div className={TOOLTIP_ENTRY_LABEL}>
-                 <div className={TOOLTIP_ENTRY_DOT} style={{ backgroundColor: s.color }} />
-                 <span className={TOOLTIP_ENTRY_TEXT}>{s.label}</span>
+            <div key={s.key} className="bar-chart__tooltip-entry">
+              <div className="bar-chart__tooltip-entry-label">
+                 <div className="bar-chart__tooltip-entry-dot" style={{ backgroundColor: s.color }} />
+                 <span className="bar-chart__tooltip-entry-text">{s.label}</span>
               </div>
-              <span className={TOOLTIP_ENTRY_VALUE}>
+              <span className="bar-chart__tooltip-entry-value">
                 {Number(data[hoveredIndex][s.key]).toLocaleString()}
               </span>
             </div>
@@ -212,13 +152,13 @@ export function BarChart({
       )}
 
       {showLabels && (
-        <div className={X_AXIS_ROOT}>
+        <div className="bar-chart__x-axis">
           {data.map((d, i) => (
-            <div key={i} className={X_AXIS_COLUMN}>
+            <div key={i} className="bar-chart__x-axis-column">
               <span
                 className={cn(
-                  X_AXIS_LABEL,
-                  hoveredIndex === i && X_AXIS_LABEL_ACTIVE
+                  'bar-chart__x-axis-label',
+                  hoveredIndex === i && 'bar-chart__x-axis-label--active'
                 )}
               >
                 {d.label}

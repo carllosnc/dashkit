@@ -1,0 +1,29 @@
+@reference "../dashkit.css";
+
+.backdrop {
+  @apply fixed inset-0 z-50 flex items-center justify-center p-6 isolate;
+}
+
+.backdrop--absolute {
+  @apply absolute;
+}
+
+.backdrop__overlay {
+  @apply absolute inset-0 -z-10;
+}
+
+.backdrop__overlay--color {
+  @apply bg-ds-950/40;
+
+  @variant dark {
+    @apply bg-white/15;
+  }
+}
+
+.backdrop__overlay--blur {
+  @apply backdrop-blur-sm;
+
+  @variant dark {
+    @apply backdrop-blur-md;
+  }
+}

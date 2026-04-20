@@ -41,7 +41,7 @@ export function getFolderStructure(info: ProjectInfo) {
   const base = info.hasSrc ? 'src' : '';
 
   return {
-    components: path.join(base, 'components', 'dashkit'),
-    css: info.hasSrc ? 'src' : ''
+    components: path.join(base, 'dashkit'),
+    css: path.join(base, 'dashkit')
   };
 }

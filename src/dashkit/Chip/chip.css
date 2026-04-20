@@ -1,0 +1,155 @@
+@reference "../dashkit.css";
+
+.chip {
+  @apply inline-flex items-center gap-1.5 h-8 px-3 ds-rounded text-[13px] font-medium transition-all duration-200 border select-none;
+}
+
+.chip--interactive {
+  @apply cursor-pointer;
+}
+
+.chip--static {
+  @apply cursor-default;
+}
+
+.chip--disabled {
+  @apply opacity-50 cursor-not-allowed pointer-events-none;
+}
+
+.chip--selected {
+  @apply ring-2 ring-current border-transparent;
+}
+
+/* Elements */
+.chip__check-icon {
+  @apply size-3.5 -ml-0.5 duration-200;
+}
+
+.chip__icon-wrapper {
+  @apply size-4 -ml-0.5 flex items-center justify-center;
+}
+
+.chip__label {
+  @apply leading-none;
+}
+
+.chip__delete-button {
+  @apply size-4 -mr-1 rounded-full flex items-center justify-center transition-colors;
+}
+
+.chip__delete-button:hover:not(:disabled) {
+  @apply bg-black/10;
+
+  @variant dark {
+    @apply bg-white/10;
+  }
+}
+
+.chip__delete-button:disabled {
+  @apply cursor-not-allowed;
+}
+
+.chip__delete-icon {
+  @apply size-3;
+}
+
+/* Variants and Colors */
+.chip--tonal-base { @apply bg-secondary text-secondary-foreground border-transparent; }
+.chip--filled-base { @apply bg-primary text-primary-foreground border-transparent; }
+.chip--outlined-base { @apply bg-transparent text-foreground; }
+
+.chip--tonal-success { 
+  @apply bg-ds-success-600/10 text-ds-success-700 border-ds-success-600/20; 
+
+  @variant dark {
+    @apply text-ds-success-400 bg-ds-success-500/15 border-ds-success-500/20;
+  }
+}
+
+.chip--filled-success { 
+  @apply bg-ds-success-600 text-ds-success-50 border-transparent; 
+
+  @variant dark {
+    @apply bg-ds-success-500 text-ds-success-950;
+  }
+}
+
+.chip--outlined-success { 
+  @apply bg-transparent text-ds-success-700 border-ds-success-600/30; 
+
+  @variant dark {
+    @apply text-ds-success-400 border-ds-success-500/30;
+  }
+}
+
+.chip--tonal-warning { 
+  @apply bg-ds-warning-500/10 text-ds-warning-700 border-ds-warning-500/20; 
+
+  @variant dark {
+    @apply text-ds-warning-400 bg-ds-warning-500/15 border-ds-warning-500/20;
+  }
+}
+
+.chip--filled-warning { 
+  @apply bg-ds-warning-500 text-ds-warning-950 border-transparent; 
+
+  @variant dark {
+    @apply bg-ds-warning-400 text-ds-warning-950;
+  }
+}
+
+.chip--outlined-warning { 
+  @apply bg-transparent text-ds-warning-700 border-ds-warning-500/30; 
+
+  @variant dark {
+    @apply text-ds-warning-400 border-ds-warning-500/30;
+  }
+}
+
+.chip--tonal-danger { 
+  @apply bg-ds-danger-600/10 text-ds-danger-700 border-ds-danger-600/20; 
+
+  @variant dark {
+    @apply text-ds-danger-400 bg-ds-danger-500/15 border-ds-danger-500/20;
+  }
+}
+
+.chip--filled-danger { 
+  @apply bg-ds-danger-600 text-ds-danger-50 border-transparent; 
+
+  @variant dark {
+    @apply bg-ds-danger-500 text-ds-danger-950;
+  }
+}
+
+.chip--outlined-danger { 
+  @apply bg-transparent text-ds-danger-700 border-ds-danger-600/30; 
+
+  @variant dark {
+    @apply text-ds-danger-400 border-ds-danger-500/30;
+  }
+}
+
+.chip--tonal-info { 
+  @apply bg-ds-info-600/10 text-ds-info-700 border-ds-info-600/20; 
+
+  @variant dark {
+    @apply text-ds-info-400 bg-ds-info-500/15 border-ds-info-500/20;
+  }
+}
+
+.chip--filled-info { 
+  @apply bg-ds-info-600 text-ds-info-50 border-transparent; 
+
+  @variant dark {
+    @apply bg-ds-info-500 text-ds-info-950;
+  }
+}
+
+.chip--outlined-info { 
+  @apply bg-transparent text-ds-info-700 border-ds-info-600/30; 
+
+  @variant dark {
+    @apply text-ds-info-400 border-ds-info-500/30;
+  }
+}

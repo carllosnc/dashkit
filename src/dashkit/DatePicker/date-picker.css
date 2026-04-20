@@ -1,0 +1,121 @@
+@reference "../dashkit.css";
+
+.date-picker {
+  @apply flex flex-col gap-1.5 w-full font-sans;
+}
+
+.date-picker__label {
+  @apply text-[13px] font-semibold text-ds-700 ml-1 tracking-tight;
+
+  @variant dark {
+    @apply text-ds-300;
+  }
+}
+
+.date-picker__trigger {
+  @apply w-full px-4 h-9 text-sm bg-input-bg text-input-fg border border-input-border ds-rounded outline-none transition-all duration-200 text-left flex items-center justify-between gap-2;
+}
+
+.date-picker__trigger:focus {
+  @apply border-input-focus ring-2 ring-ring ring-offset-2 ring-offset-transparent;
+}
+
+.date-picker__trigger:disabled {
+  @apply cursor-not-allowed opacity-50;
+}
+
+.date-picker__placeholder {
+  @apply text-ds-500;
+}
+
+.date-picker__calendar-icon {
+  @apply size-4 text-ds-400;
+}
+
+.date-picker__popover {
+  @apply w-[280px] bg-popover text-popover-fg border border-popover-border ds-rounded shadow-2xl p-4 overflow-hidden;
+}
+
+.date-picker__header {
+  @apply flex items-center justify-between mb-4;
+}
+
+.date-picker__header-text {
+  @apply text-sm font-bold tracking-tight text-popover-fg;
+}
+
+.date-picker__nav-button {
+  @apply p-1.5 rounded-md transition-colors text-ds-500;
+}
+
+.date-picker__nav-button:hover {
+  @apply bg-popover-item text-popover-fg;
+}
+
+.date-picker__weekdays {
+  @apply grid grid-cols-7 mb-2;
+}
+
+.date-picker__weekday-label {
+  @apply text-[10px] uppercase font-bold text-ds-400 text-center;
+
+  @variant dark {
+    @apply text-ds-500;
+  }
+}
+
+.date-picker__days-grid {
+  @apply grid grid-cols-7 gap-1;
+}
+
+.date-picker__day {
+  @apply size-8 text-xs rounded-lg flex items-center justify-center transition-all duration-200 font-medium text-popover-fg;
+}
+
+.date-picker__day:hover {
+  @apply bg-popover-item;
+}
+
+.date-picker__day--selected {
+  @apply ds-primary-gradient text-white font-bold shadow-sm transform scale-110;
+}
+
+.date-picker__day--selected:hover {
+  @apply bg-transparent brightness-110;
+}
+
+.date-picker__day--today {
+  @apply text-ds-800 border border-ds-200 bg-ds-50;
+
+  @variant dark {
+    @apply text-ds-200 border-ds-800 bg-ds-800;
+  }
+}
+
+.date-picker__footer {
+  @apply mt-4 pt-4 border-t border-popover-border flex justify-center;
+}
+
+.date-picker__today-button {
+  @apply text-xs font-bold text-ds-600 transition-colors;
+
+  @variant dark {
+    @apply text-ds-400;
+  }
+}
+
+.date-picker__today-button:hover {
+  @apply text-ds-900;
+
+  @variant dark {
+    @apply text-ds-200;
+  }
+}
+
+.date-picker__description {
+  @apply text-[12px] text-ds-600 ml-1 tracking-tight;
+
+  @variant dark {
+    @apply text-ds-400;
+  }
+}

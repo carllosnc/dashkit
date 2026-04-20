@@ -12,6 +12,8 @@ export interface PopoverContentProps {
   sideOffset?: number;
 }
 
+import './popover.css';
+
 export function PopoverContent({
     children,
     className,
@@ -116,7 +118,7 @@ export function PopoverContent({
            transition={{ duration: 0.15, ease: "easeOut" }}
            style={style}
            className={cn(
-             "w-72 max-w-[calc(100vw-2rem)] bg-popover text-popover-fg border border-popover-border ds-rounded shadow-xl p-4 overflow-hidden",
+             "popover__content",
              animProps.originClass,
              className
            )}

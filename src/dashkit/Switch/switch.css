@@ -1,0 +1,65 @@
+@reference "../dashkit.css";
+
+.switch {
+  @apply flex gap-4 relative items-center;
+}
+
+.switch__input-container {
+  @apply flex items-center h-6;
+}
+
+.switch__label-inner {
+  @apply relative inline-flex items-center cursor-pointer;
+}
+
+.switch__input {
+  @apply sr-only;
+}
+
+.switch__track {
+  @apply w-11 h-6 rounded-full border-2 transition-all duration-300 shrink-0 bg-ds-200 border-transparent;
+
+  @variant dark {
+    @apply bg-ds-800;
+  }
+}
+
+.switch__input:checked ~ .switch__track {
+  @apply bg-primary;
+}
+
+.switch__input:focus-visible ~ .switch__track {
+  @apply ring-2 ring-ring ring-offset-2 ring-offset-transparent;
+}
+
+.switch__input:disabled ~ .switch__track {
+  @apply opacity-60 cursor-not-allowed;
+}
+
+.switch__thumb {
+  @apply absolute left-1 top-1 w-4 h-4 rounded-full transition-all duration-300 shadow-sm bg-ds-0;
+}
+
+.switch__input:checked ~ .switch__thumb {
+  @apply translate-x-5;
+}
+
+.switch__input:disabled ~ .switch__thumb {
+  @apply opacity-60 cursor-not-allowed;
+}
+
+.switch__content {
+  @apply flex flex-col cursor-pointer select-none;
+}
+
+.switch__label {
+  @apply text-sm font-medium text-ds-800 tracking-tight leading-6;
+
+  @variant dark {
+    @apply text-ds-200;
+  }
+}
+
+.switch__description {
+  @apply text-sm text-muted-foreground tracking-tight;
+}

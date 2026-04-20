@@ -1,0 +1,113 @@
+@reference "../dashkit.css";
+
+.combobox {
+  @apply flex flex-col gap-2 w-full font-sans relative;
+}
+
+.combobox__label-area {
+  @apply flex items-center justify-between px-1;
+}
+
+.combobox__label {
+  @apply text-[13px] font-semibold text-ds-700 tracking-tight;
+
+  @variant dark {
+    @apply text-ds-300;
+  }
+}
+
+.combobox__selected-count {
+  @apply text-[11px] font-bold text-ds-400 uppercase tracking-wider;
+}
+
+.combobox__chips-wrapper {
+  @apply flex flex-wrap gap-2 mb-1;
+}
+
+.combobox__input-container {
+  @apply relative;
+}
+
+.combobox__input-container:focus-within .combobox__search-icon-wrapper {
+  @apply text-black;
+
+  @variant dark {
+    @apply text-white;
+  }
+}
+
+.combobox__search-icon-wrapper {
+  @apply absolute left-3.5 top-1/2 -translate-y-1/2 text-ds-500 transition-colors duration-200 pointer-events-none;
+}
+
+.combobox__input {
+  @apply w-full h-9 pl-10 pr-10 text-sm bg-input-bg text-input-fg border border-input-border ds-rounded outline-none transition-all duration-200;
+}
+
+.combobox__input::placeholder {
+  @apply text-muted-foreground;
+}
+
+.combobox__input:focus, .combobox__input--open {
+  @apply border-input-focus ring-2 ring-ring ring-offset-2 ring-offset-transparent;
+}
+
+.combobox__input:disabled {
+  @apply cursor-not-allowed opacity-50;
+}
+
+.combobox__action-buttons {
+  @apply absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1;
+}
+
+.combobox__clear-button {
+  @apply p-1 rounded-full text-ds-500 transition-all;
+}
+
+.combobox__clear-button:hover {
+  @apply text-black bg-ds-100;
+
+  @variant dark {
+    @apply text-white bg-ds-800;
+  }
+}
+
+.combobox__chevron {
+  @apply text-ds-500 transition-transform duration-300 pointer-events-none;
+}
+
+.combobox__popover {
+  @apply p-1 bg-popover text-popover-fg border border-popover-border ds-rounded shadow-lg overflow-hidden;
+}
+
+.combobox__scroll-area {
+  @apply max-h-60 overflow-y-auto custom-scrollbar flex flex-col gap-0.5 font-sans pr-1;
+}
+
+.combobox__empty-state {
+  @apply px-4 py-6 text-sm text-muted-foreground italic text-center;
+}
+
+.combobox__item {
+  @apply w-full px-4 py-2.5 text-sm text-left flex items-center justify-between duration-200 transition-colors ds-rounded;
+}
+
+.combobox__item:hover {
+  @apply text-popover-fg bg-popover-item;
+}
+
+.combobox__item--active {
+  @apply bg-popover-item-selected text-popover-item-selected-fg font-semibold;
+}
+
+.combobox__check-icon {
+  @apply size-4 shrink-0;
+}
+
+.combobox__description {
+  @apply text-[12px] text-ds-500 ml-1 tracking-tight;
+
+  @variant dark {
+    @apply text-ds-500;
+  }
+}

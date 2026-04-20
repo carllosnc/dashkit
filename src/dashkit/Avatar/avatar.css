@@ -1,0 +1,68 @@
+@reference "../dashkit.css";
+
+/* Avatar Root styles */
+.avatar {
+  @apply relative flex shrink-0 items-center justify-center overflow-hidden bg-ds-100;
+
+  @variant dark {
+    @apply bg-ds-800;
+  }
+}
+
+/* Shapes */
+.avatar--circle {
+  @apply rounded-full;
+}
+
+.avatar--square {
+  @apply rounded-sm;
+}
+
+/* Sizes */
+.avatar--xs { @apply size-6 text-[10px]; }
+.avatar--sm { @apply size-8 text-xs; }
+.avatar--md { @apply size-10 text-sm; }
+.avatar--lg { @apply size-12 text-base; }
+.avatar--xl { @apply size-16 text-xl; }
+
+/* Features */
+.avatar--bordered {
+  @apply ring-2 ring-background border;
+
+  @variant dark {
+    @apply border-ds-800;
+  }
+}
+
+/* Elements */
+.avatar__image {
+  @apply absolute inset-0 aspect-square h-full w-full object-cover;
+}
+
+.avatar__fallback {
+  @apply flex h-full w-full items-center justify-center font-bold text-ds-500 uppercase select-none tracking-tighter;
+}
+
+.avatar-group {
+  @apply flex items-center;
+}
+
+.avatar-group .avatar {
+  @apply ring-2 ring-background border;
+
+  @variant dark {
+    @apply border-ds-800;
+  }
+}
+
+.avatar-group--sm { @apply -space-x-1.5; }
+.avatar-group--md { @apply -space-x-3; }
+.avatar-group--lg { @apply -space-x-4; }
+
+.avatar-group__remaining {
+  @apply bg-ds-900 text-white z-0 text-[10px];
+
+  @variant dark {
+    @apply bg-white text-ds-900;
+  }
+}

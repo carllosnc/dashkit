@@ -1,74 +1,103 @@
 @reference "../dashkit.css";
 
-.btn-base {
-  @apply ds-rounded inline-flex font-medium items-center justify-center cursor-pointer whitespace-nowrap;
-  @apply focus:outline-none disabled:opacity-60 disabled:cursor-not-allowed;
+.button {
+  @apply ds-rounded inline-flex font-medium items-center justify-center cursor-pointer whitespace-nowrap transition-all duration-200 outline-none;
+}
+
+.button:disabled {
+  @apply opacity-60 cursor-not-allowed;
 }
 
 /* Variants: Filled */
-.btn-filled-primary {
-  @apply ds-primary-gradient text-primary-foreground transition-colors;
-  @apply hover:brightness-120;
+.button--filled-primary {
+  @apply ds-primary-gradient text-primary-foreground;
 }
 
-.btn-filled-danger {
-  @apply ds-danger-gradient text-red-50 transition-colors;
-  @apply hover:brightness-120;
+.button--filled-primary:hover {
+  @apply brightness-120;
+}
+
+.button--filled-danger {
+  @apply ds-danger-gradient text-red-50;
+}
+
+.button--filled-danger:hover {
+  @apply brightness-120;
 }
 
 /* Variants: Outlined */
-.btn-outlined-primary {
-  @apply bg-transparent text-foreground border border-ds-300 dark:border-ds-700;
-  @apply hover:brightness-80;
+.button--outlined-primary {
+  @apply bg-transparent text-foreground border border-ds-300;
+
+  @variant dark {
+    @apply border-ds-700;
+  }
 }
 
-.btn-outlined-danger {
-  @apply bg-transparent text-ds-danger-600 border border-ds-danger-200 dark:border-ds-danger-900/50;
-  @apply hover:bg-ds-danger-50;
+.button--outlined-primary:hover {
+  @apply brightness-80;
+}
+
+
+.button--outlined-danger {
+  @apply bg-transparent text-ds-danger-600 border border-ds-danger-200;
+
+  @variant dark {
+    @apply border-ds-danger-900/50;
+  }
+}
+
+.button--outlined-danger:hover {
+  @apply bg-ds-danger-50;
 }
 
 /* Variants: Soft */
-.btn-soft-primary {
+.button--soft-primary {
   @apply bg-secondary text-secondary-foreground;
-  @apply hover:brightness-90 dark:hover:brightness-110;
 }
 
-.btn-soft-danger {
+.button--soft-primary:hover {
+  @apply brightness-90;
+}
+
+.button--soft-danger {
   @apply bg-ds-danger-600/10 text-ds-danger-600;
-  @apply hover:bg-ds-danger-600/20;
+}
+
+.button--soft-danger:hover {
+  @apply bg-ds-danger-600/20;
 }
 
 /* Sizes */
-.btn-sm {
+.button--sm {
   @apply h-7 text-xs;
 }
 
-.btn-md {
+.button--md {
   @apply h-9 text-sm;
 }
 
-.btn-lg {
+.button--lg {
   @apply h-11 text-base;
 }
 
 /* States & Layouts */
-.btn-loading {
+.button--loading {
   @apply opacity-60 cursor-not-allowed;
 }
 
-.btn-with-text {
+.button--with-text {
   @apply gap-2 px-4 py-[5px];
 }
 
-.btn-with-text-sm {
+.button--with-text-sm {
   @apply px-2;
 }
 
-.btn-with-text-lg {
+.button--with-text-lg {
   @apply px-6;
 }
 
-.btn-icon-only {
+.button--icon-only {
   @apply p-[8px] aspect-square;
 }
-

@@ -1,0 +1,53 @@
+@reference "../dashkit.css";
+
+.list-tile {
+  @apply flex w-full items-center gap-3 py-3 font-sans text-left transition-colors duration-150;
+}
+
+.list-tile--interactive {
+  @apply cursor-pointer;
+}
+
+.list-tile--interactive:hover {
+  @apply bg-ds-100/60;
+
+  @variant dark {
+    @apply bg-ds-800/60;
+  }
+}
+
+.list-tile--interactive:active {
+  @apply bg-ds-100;
+
+  @variant dark {
+    @apply bg-ds-800;
+  }
+}
+
+.list-tile--disabled {
+  @apply opacity-50 pointer-events-none;
+}
+
+.list-tile--divider {
+  @apply border-b border-border;
+}
+
+.list-tile__leading {
+  @apply shrink-0 flex items-center justify-center text-muted-foreground;
+}
+
+.list-tile__content {
+  @apply flex flex-col gap-0.5 min-w-0 flex-1;
+}
+
+.list-tile__title {
+  @apply text-sm font-medium text-foreground leading-snug truncate;
+}
+
+.list-tile__subtitle {
+  @apply text-xs text-muted-foreground leading-snug truncate;
+}
+
+.list-tile__trailing {
+  @apply shrink-0 flex items-center justify-center text-muted-foreground ml-auto;
+}

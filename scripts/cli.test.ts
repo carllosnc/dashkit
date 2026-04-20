@@ -74,7 +74,9 @@ describe('Dashkit CLI', () => {
     } catch (error: unknown) {
       const err = error as { stdout: Buffer };
       const output = err.stdout.toString();
-      expect(output).toContain('[INFO] Design system base (index.css) not found');
+      expect(output).toContain('Design system base');
+      expect(output).toContain('index.css');
+      expect(output).toContain('not found');
     }
   });
 

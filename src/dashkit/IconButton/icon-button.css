@@ -1,0 +1,73 @@
+@reference "../dashkit.css";
+
+.icon-button {
+  @apply ds-rounded inline-flex font-medium items-center justify-center focus:outline-none cursor-pointer whitespace-nowrap border select-none shrink-0 transition-all duration-200;
+}
+
+.icon-button:disabled,
+.icon-button--disabled {
+  @apply opacity-50 cursor-not-allowed pointer-events-none;
+}
+
+/* Modifiers */
+.icon-button--rounded {
+  @apply rounded-full;
+}
+
+/* Variants */
+.icon-button--filled {
+  @apply ds-primary-gradient text-primary-foreground border-transparent;
+}
+
+.icon-button--filled:hover {
+  @apply brightness-125;
+}
+
+.icon-button--outlined {
+  @apply bg-transparent text-foreground border border-ds-200;
+
+  &:hover {
+    @apply bg-ds-100/50 brightness-95;
+  }
+
+  @variant dark {
+    @apply border-ds-800;
+
+    &:hover {
+      @apply bg-ds-800/50 brightness-110;
+    }
+  }
+}
+
+.icon-button--soft {
+  @apply bg-secondary text-secondary-foreground border-transparent;
+
+  &:hover {
+    @apply brightness-85;
+  }
+
+  @variant dark {
+    &:hover {
+      @apply brightness-150;
+    }
+  }
+}
+
+.icon-button--ghost {
+  @apply bg-transparent text-muted-foreground border-transparent;
+
+  &:hover {
+    @apply bg-accent text-accent-foreground brightness-95;
+  }
+
+  @variant dark {
+    &:hover {
+      @apply brightness-110;
+    }
+  }
+}
+
+/* Elements */
+.icon-button__wrapper {
+  @apply flex items-center justify-center;
+}

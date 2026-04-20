@@ -2,19 +2,6 @@ import * as React from 'react';
 import { cn } from '../utils/cn';
 import { Avatar, type AvatarProps, type AvatarSize } from './Avatar';
 
-const SPACING_SM = '-space-x-1.5';
-const SPACING_MD = '-space-x-3';
-const SPACING_LG = '-space-x-4';
-
-const spacingMap = {
-  sm: SPACING_SM,
-  md: SPACING_MD,
-  lg: SPACING_LG
-};
-
-const GROUP_ROOT = "flex items-center";
-const REMAINING_STYLE = "bg-ds-900 text-white dark:bg-white dark:text-ds-900 z-0 text-[10px]";
-
 export interface AvatarGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   max?: number;
   size?: AvatarSize;
@@ -27,7 +14,7 @@ export function AvatarGroup({ children, max, size = 'md', spacing = 'md', classN
   const remainingCount = max ? childrenArray.length - max : 0;
 
   return (
-    <div className={cn(GROUP_ROOT, spacingMap[spacing], className)} {...props}>
+    <div className={cn('avatar-group', `avatar-group--${spacing}`, className)} {...props}>
       {visibleAvatars.map((child, i) => (
         React.isValidElement(child) ? React.cloneElement(child as React.ReactElement<AvatarProps>, {
           size,
@@ -38,7 +25,7 @@ export function AvatarGroup({ children, max, size = 'md', spacing = 'md', classN
         <Avatar
           fallback={`+${remainingCount}`}
           size={size}
-          className={REMAINING_STYLE}
+          className="avatar-group__remaining"
         />
       )}
     </div>
