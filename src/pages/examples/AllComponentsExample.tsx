@@ -350,7 +350,7 @@ export const AllComponentsExample = () => {
               <ScrollArea className="h-full">
                 <div className="p-4 flex flex-col gap-2">
                   {Array.from({ length: 10 }).map((_, i) => (
-                    <div key={i} className="p-4 border border-ds-100 dark:border-ds-800 ds-rounded">
+                    <div key={i} className="p-4 bg-ds-200 dark:bg-ds-800 border-ds-300 dark:border-ds-800 ds-rounded">
                       Scrollable item #{i + 1}
                     </div>
                   ))}
@@ -1725,34 +1725,30 @@ export const AllComponentsExample = () => {
             <CardTitle>List Tile</CardTitle>
             <CardDescription>Flexible row component for building lists, menus, and settings panels.</CardDescription>
           </CardHeader>
-          <CardContent className="flex flex-col gap-0 -mx-6 -my-0 overflow-hidden">
+          <CardContent className="flex flex-col gap-0 -my-0 overflow-hidden">
             <ListTile
               title="Profile"
               subtitle="Manage your personal information"
               leading={<FiUser size={18} />}
               trailing={<FiChevronRight size={16} />}
-              interactive
             />
             <ListTile
               title="Notifications"
               subtitle="Configure how you receive alerts"
               leading={<FiBell size={18} />}
               trailing={<FiChevronRight size={16} />}
-              interactive
             />
             <ListTile
               title="Security"
               subtitle="Two-factor auth and credentials"
               leading={<FiLock size={18} />}
               trailing={<FiChevronRight size={16} />}
-              interactive
             />
             <ListTile
               title="Delete Account"
               subtitle="This action cannot be undone"
               leading={<FiTrash2 size={18} />}
               disabled
-              interactive
             />
           </CardContent>
         </Card>

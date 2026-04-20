@@ -10,7 +10,6 @@ export interface AccordionProps {
   onValueChange?: (value: string | string[]) => void;
   children: React.ReactNode;
   className?: string;
-  shadowed?: boolean;
 }
 
 export function Accordion({
@@ -20,7 +19,6 @@ export function Accordion({
   onValueChange,
   children,
   className,
-  shadowed = false,
 }: AccordionProps) {
   const [uncontrolledValue, setUncontrolledValue] = React.useState<string | string[]>(
     defaultValue || (type === 'multiple' ? [] : '')
@@ -46,7 +44,7 @@ export function Accordion({
   };
 
   return (
-    <AccordionContext.Provider value={{ type, value, onValueChange: handleValueChange, shadowed }}>
+    <AccordionContext.Provider value={{ type, value, onValueChange: handleValueChange }}>
       <div className={cn('accordion', className)}>
         {children}
       </div>

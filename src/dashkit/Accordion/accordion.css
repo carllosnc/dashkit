@@ -8,10 +8,6 @@
   @apply bg-card text-card-foreground ds-rounded shadow-sm overflow-hidden;
 }
 
-.accordion__item--shadow-none {
-  @apply shadow-none;
-}
-
 .accordion__item--disabled {
   @apply opacity-50 pointer-events-none;
 }
