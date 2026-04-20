@@ -18,7 +18,7 @@ import { toast } from '../../dashkit/Toast/useToast';
 import { CopyField } from '../../dashkit/CopyField/CopyField';
 import { Slider } from '../../dashkit/Slider/Slider';
 import { StatsCard } from '../../dashkit/StatsCard/StatsCard';
-import { FiSettings, FiBarChart2, FiMonitor, FiSmartphone, FiBell, FiCheckCircle, FiXCircle, FiUserPlus, FiSend, FiSun, FiMoon, FiUsers } from 'react-icons/fi';
+import { FiSettings, FiBarChart2, FiMonitor, FiSmartphone, FiBell, FiCheckCircle, FiXCircle, FiUserPlus, FiSend, FiSun, FiMoon, FiUsers, FiLock, FiDownload } from 'react-icons/fi';
 import { CONVERSION_DATA } from './Constants';
 
 export function ColumnThree() {
@@ -34,13 +34,8 @@ export function ColumnThree() {
     <div className="flex flex-col gap-4">
       {/* 3. Settings & Preferences Example */}
       <Card>
-        <CardHeader>
-           <div className="flex items-center gap-2">
-              <div className="size-6 ds-rounded bg-ds-primary-500/10 flex items-center justify-center">
-                 <FiSettings className="text-ds-primary-600" size={14} />
-              </div>
-              <CardTitle>Preferences</CardTitle>
-           </div>
+        <CardHeader leftIcon={<FiSettings className="text-ds-primary-600" size={18} />}>
+           <CardTitle>Preferences</CardTitle>
            <CardDescription>Manage your workspace and notification settings.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -78,15 +73,12 @@ export function ColumnThree() {
 
       {/* 9. Conversion Overview Card (New with BarChart) */}
       <Card>
-          <CardHeader>
-             <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <FiBarChart2 className="text-ds-primary-600" size={18} />
-                  <CardTitle>Traffic Sources</CardTitle>
-               </div>
-               <Badge content="Monthly" color="info" variant="soft" />
-            </div>
-         </CardHeader>
+          <CardHeader
+             leftIcon={<FiBarChart2 className="text-ds-primary-600" size={18} />}
+             action={<Badge content="Monthly" color="info" variant="soft" />}
+          >
+             <CardTitle>Traffic Sources</CardTitle>
+          </CardHeader>
          <CardContent className="space-y-6">
           <div className="w-full">
               <BarChart
@@ -117,7 +109,7 @@ export function ColumnThree() {
 
       {/* 6. OTP Verification Card */}
       <Card>
-         <CardHeader>
+         <CardHeader leftIcon={<FiLock className="text-ds-primary-600" size={18} />}>
             <CardTitle>Two-Factor Auth</CardTitle>
             <CardDescription>Enter the 6-digit code sent to your device.</CardDescription>
          </CardHeader>
@@ -155,7 +147,7 @@ export function ColumnThree() {
 
       {/* 13. Personalization Survey (New) */}
       <Card>
-         <CardHeader>
+         <CardHeader leftIcon={<FiUsers className="text-ds-primary-600" size={18} />}>
             <CardTitle>Personalize your experience</CardTitle>
             <CardDescription>Select your areas of interest to tailor the dashboard to your needs.</CardDescription>
          </CardHeader>
@@ -194,13 +186,9 @@ export function ColumnThree() {
 
       {/* New 3: Active Sessions */}
       <Card>
-         <CardHeader>
-            <div className="flex items-center justify-between">
-               <div className="flex flex-col gap-1">
-                  <CardTitle>Active Sessions</CardTitle>
-                  <CardDescription>Devices logged into your account.</CardDescription>
-               </div>
-            </div>
+         <CardHeader leftIcon={<FiMonitor className="text-ds-primary-600" size={18} />}>
+            <CardTitle>Active Sessions</CardTitle>
+            <CardDescription>Devices logged into your account.</CardDescription>
          </CardHeader>
          <CardContent className="space-y-4">
             <Surface variant="info" className="flex items-center justify-between p-3">
@@ -239,16 +227,9 @@ export function ColumnThree() {
 
       {/* New 7: Toast Example */}
       <Card>
-         <CardHeader>
-            <div className="flex items-center gap-3">
-               <div className="size-8 rounded-lg bg-ds-primary-500/10 flex items-center justify-center">
-                  <FiBell className="text-ds-primary-600" size={16} />
-               </div>
-               <div className="flex flex-col gap-1">
-                  <CardTitle>Notifications</CardTitle>
-                  <CardDescription>System toast dispatcher testing.</CardDescription>
-               </div>
-            </div>
+         <CardHeader leftIcon={<FiBell className="text-ds-primary-600" size={18} />}>
+            <CardTitle>Notifications</CardTitle>
+            <CardDescription>System toast dispatcher testing.</CardDescription>
          </CardHeader>
          <CardContent className="space-y-4">
             <div className="flex flex-col gap-2 p-3 bg-ds-50 dark:bg-ds-800/40 rounded-lg border border-ds-200 dark:border-ds-800">
@@ -267,18 +248,9 @@ export function ColumnThree() {
 
       {/* New 11: Invite Team */}
       <Card>
-         <CardHeader>
-            <div className="flex items-center justify-between">
-               <div className="flex items-center gap-3">
-                  <div className="size-8 ds-rounded bg-ds-success-500/10 flex items-center justify-center">
-                     <FiUserPlus className="text-ds-success-600" size={16} />
-                  </div>
-                  <div className="flex flex-col gap-1">
-                     <CardTitle>Invite Members</CardTitle>
-                     <CardDescription>Grow your workspace team.</CardDescription>
-                  </div>
-               </div>
-            </div>
+         <CardHeader leftIcon={<FiUserPlus className="text-ds-success-600" size={18} />}>
+            <CardTitle>Invite Members</CardTitle>
+            <CardDescription>Grow your workspace team.</CardDescription>
          </CardHeader>
          <CardContent className="space-y-5">
             <CopyField 
@@ -302,7 +274,7 @@ export function ColumnThree() {
          </CardContent>
       </Card>
       <Card>
-         <CardHeader>
+         <CardHeader leftIcon={<FiDownload className="text-ds-primary-600" size={18} />}>
             <CardTitle>Data Export</CardTitle>
             <CardDescription>Download your workspace activity logs.</CardDescription>
          </CardHeader>
@@ -328,19 +300,12 @@ export function ColumnThree() {
 
        {/* New 15: Appearance Engine (New) */}
        <Card>
-          <CardHeader>
-             <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                   <div className="size-8 rounded-full bg-ds-warning-500/10 flex items-center justify-center">
-                      <FiSun className="text-ds-warning-600" size={16} />
-                   </div>
-                   <div className="flex flex-col">
-                      <CardTitle>Appearance Engine</CardTitle>
-                      <CardDescription>Customize your workspace theme.</CardDescription>
-                   </div>
-                </div>
-                <Badge content="Pro" color="warning" variant="soft" />
-             </div>
+          <CardHeader
+             leftIcon={<FiSun className="text-ds-warning-600" size={18} />}
+             action={<Badge content="Pro" color="warning" variant="soft" />}
+          >
+             <CardTitle>Appearance Engine</CardTitle>
+             <CardDescription>Customize your workspace theme.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
              <div className="space-y-3">

@@ -61,20 +61,54 @@ The card can be used as a simple container or with its sub-components for more s
 </Card>
 ```
 
+## With Icon & Actions
+
+The `CardHeader` supports a `leftIcon` prop to easily add visual context and an `action` prop for right-aligned elements like badges, buttons, or menus.
+
+<div className='not-prose'>
+  <Card>
+    <CardHeader 
+      leftIcon={<FiShield />}
+      action={<Badge content="Enforced" color="success" variant="soft" />}
+    >
+      <CardTitle>Security Overview</CardTitle>
+      <CardDescription>Manage your system security settings and firewall rules.</CardDescription>
+    </CardHeader>
+    <CardContent>
+      <p className="text-sm text-ds-500">Enable advanced threat protection and automated security scanning for all connected infrastructure nodes.</p>
+    </CardContent>
+  </Card>
+</div>
+
+```tsx
+import { FiShield } from 'react-icons/fi';
+import { Badge, Card, CardHeader, CardTitle, CardDescription } from '@dashkit/ui';
+
+<Card>
+  <CardHeader 
+    leftIcon={<FiShield />}
+    action={<Badge content="Enforced" color="success" variant="soft" />}
+  >
+    <CardTitle>Security Overview</CardTitle>
+    <CardDescription>
+      Manage your system security settings and firewall rules.
+    </CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p>Security details and settings go here.</p>
+  </CardContent>
+</Card>
+```
+
 ## Composable Components
 
-Cards are built using sub-components to provide maximum flexibility for different use cases. You can compose the header content as needed.
+Cards are built using sub-components to provide maximum flexibility for different use cases. While `leftIcon` and `action` handle common patterns, you can still compose the header manually for more complex layouts.
 
 <div className="not-prose">
   <Card className="w-full">
-    <CardHeader>
-      <div className="flex items-center justify-between gap-[30px]">
-        <div className="flex flex-col gap-1">
-          <CardTitle>System Analytics</CardTitle>
-          <CardDescription>Real-time monitoring of global infrastructure and system health.</CardDescription>
-        </div>
-        <Badge content="Live" color="info" pulse />
-      </div>
+    <CardHeader action={<Badge content="Live" color="info" pulse />}>
+      <CardTitle>System Analytics</CardTitle>
+      <CardDescription>Real-time monitoring of global infrastructure and system health.</CardDescription>
     </CardHeader>
     <CardContent>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -96,14 +130,9 @@ Cards are built using sub-components to provide maximum flexibility for differen
 
 ```tsx
 <Card>
-  <CardHeader>
-    <div className="flex items-start justify-between w-full">
-      <div className="flex flex-col gap-1">
-        <CardTitle>System Analytics</CardTitle>
-        <CardDescription>Real-time infrastructure performance</CardDescription>
-      </div>
-      <Badge content="Live" color="info" pulse />
-    </div>
+  <CardHeader action={<Badge content="Live" color="info" pulse />}>
+    <CardTitle>System Analytics</CardTitle>
+    <CardDescription>Real-time infrastructure performance</CardDescription>
   </CardHeader>
   <CardContent>
     {/* Custom grid or data visualization */}
@@ -135,6 +164,8 @@ The top section container.
 
 <PropertyDoc
   properties={[
+    { "prop": "leftIcon", "type": "ReactNode", "defaultValue": "—", "description": "Optional icon to display on the left of the header content." },
+    { "prop": "action", "type": "ReactNode", "defaultValue": "—", "description": "Optional content (badge, menu, button) to display on the right of the header." },
     { "prop": "className", "type": "string", "defaultValue": "—", "description": "Custom classes for the header container." }
   ]}
 />

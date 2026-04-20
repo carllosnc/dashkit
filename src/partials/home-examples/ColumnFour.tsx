@@ -41,14 +41,11 @@ export function ColumnFour() {
     <div className="flex flex-col gap-4">
       {/* 14. Notifications Feed */}
       <Card>
-         <CardHeader>
-            <div className="flex items-center justify-between">
-               <div className="flex items-center gap-2">
-                  <FiBell className="text-ds-primary-600" size={18} />
-                  <CardTitle>Notifications</CardTitle>
-               </div>
-               <Badge content="3 New" color="info" variant="soft" />
-            </div>
+         <CardHeader
+            leftIcon={<FiBell className="text-ds-primary-600" size={18} />}
+            action={<Badge content="3 New" color="info" variant="soft" />}
+         >
+            <CardTitle>Notifications</CardTitle>
          </CardHeader>
          <CardContent className="space-y-4">
             <div className="divide-y">
@@ -79,14 +76,11 @@ export function ColumnFour() {
 
       {/* 15. Task Management */}
       <Card>
-         <CardHeader>
-            <div className="flex items-center justify-between">
-               <div className="flex items-center gap-2">
-                  <FiList className="text-ds-primary-600" size={18} />
-                  <CardTitle>Tasks</CardTitle>
-               </div>
-               <span className="text-xs font-bold text-ds-500">{Math.round(progressValue)}% Done</span>
-            </div>
+         <CardHeader
+            leftIcon={<FiList className="text-ds-primary-600" size={18} />}
+            action={<span className="text-xs font-bold text-ds-500">{Math.round(progressValue)}% Done</span>}
+         >
+            <CardTitle>Tasks</CardTitle>
          </CardHeader>
          <CardContent className="space-y-4">
             <ProgressBar value={progressValue} size="xs" color="primary" />
@@ -120,11 +114,8 @@ export function ColumnFour() {
 
       {/* 16. Cloud Storage Usage */}
       <Card>
-         <CardHeader>
-            <div className="flex items-center gap-2">
-               <FiFolder className="text-ds-warning-600" size={18} />
-               <CardTitle>Storage</CardTitle>
-            </div>
+         <CardHeader leftIcon={<FiFolder className="text-ds-warning-600" size={18} />}>
+            <CardTitle>Storage</CardTitle>
          </CardHeader>
          <CardContent className="space-y-4">
             <div className="flex items-end justify-between">
@@ -150,11 +141,8 @@ export function ColumnFour() {
 
       {/* 17. Quick Integrations */}
       <Card>
-         <CardHeader>
-            <div className="flex items-center gap-2">
-               <FiShare2 className="text-ds-info-600" size={18} />
-               <CardTitle>Integrations</CardTitle>
-            </div>
+         <CardHeader leftIcon={<FiShare2 className="text-ds-info-600" size={18} />}>
+            <CardTitle>Integrations</CardTitle>
          </CardHeader>
          <CardContent className="space-y-4">
             <div>
@@ -189,13 +177,8 @@ export function ColumnFour() {
 
       {/* New 16: Security Audit */}
       <Card>
-         <CardHeader>
-            <div className="flex items-center gap-2">
-               <div className="size-6 ds-rounded bg-ds-success-500/10 flex items-center justify-center">
-                  <FiShield className="text-ds-success-600" size={14} />
-               </div>
-               <CardTitle>Security Audit</CardTitle>
-            </div>
+         <CardHeader leftIcon={<FiShield className="text-ds-success-600" size={18} />}>
+            <CardTitle>Security Audit</CardTitle>
          </CardHeader>
          <CardContent className="space-y-4">
             <div className="flex items-center gap-3 p-3 bg-ds-success-50 dark:bg-ds-success-900/10 ds-rounded border border-ds-success-200 dark:border-ds-success-800">
@@ -221,14 +204,11 @@ export function ColumnFour() {
 
       {/* 21. Model Training (New) */}
       <Card>
-         <CardHeader>
-            <div className="flex items-center justify-between">
-               <div className="flex flex-col gap-1">
-                  <CardTitle>Model Training</CardTitle>
-                  <CardDescription>GPT-Neo Large (Ver. 4.2)</CardDescription>
-               </div>
-               <FiZap className="text-ds-primary-600 animate-pulse" size={18} />
-            </div>
+         <CardHeader
+            leftIcon={<FiZap className="text-ds-primary-600 animate-pulse" size={18} />}
+         >
+            <CardTitle>Model Training</CardTitle>
+            <CardDescription>GPT-Neo Large (Ver. 4.2)</CardDescription>
          </CardHeader>
          <CardContent className="space-y-5">
             <div className="space-y-2">
@@ -259,16 +239,11 @@ export function ColumnFour() {
 
       {/* New 4: API Keys */}
       <Card>
-         <CardHeader>
-            <div className="flex items-center justify-between">
-               <div className="flex items-center gap-2">
-                  <div className="size-6 ds-rounded bg-ds-warning-500/10 flex items-center justify-center">
-                     <FiLock className="text-ds-warning-600" size={14} />
-                  </div>
-                  <CardTitle>API Credentials</CardTitle>
-               </div>
-               <Badge content="Pro" color="warning" variant="soft" />
-            </div>
+         <CardHeader
+            leftIcon={<FiLock className="text-ds-warning-600" size={18} />}
+            action={<Badge content="Pro" color="warning" variant="soft" />}
+         >
+            <CardTitle>API Credentials</CardTitle>
             <CardDescription>Manage your secret keys for external integrations.</CardDescription>
          </CardHeader>
          <CardContent className="space-y-4">
@@ -287,14 +262,11 @@ export function ColumnFour() {
 
       {/* New 15: Traffic Analytics Refactored */}
       <Card>
-         <CardHeader>
-            <div className="flex items-center justify-between">
-               <div className="flex items-center gap-2">
-                  <FiTrendingUp className="text-ds-primary-600" size={18} />
-                  <CardTitle>Traffic Analytics</CardTitle>
-               </div>
-               <Badge content="+12.5%" color="success" variant="soft" />
-            </div>
+         <CardHeader
+            leftIcon={<FiTrendingUp className="text-ds-primary-600" size={18} />}
+            action={<Badge content="+12.5%" color="success" variant="soft" />}
+         >
+            <CardTitle>Traffic Analytics</CardTitle>
          </CardHeader>
          <CardContent className="space-y-6">
             <div className="flex flex-col items-center">
@@ -310,16 +282,9 @@ export function ColumnFour() {
 
       {/* New 8: Select Example */}
       <Card>
-         <CardHeader>
-            <div className="flex items-center gap-3">
-               <div className="size-8 rounded-lg bg-ds-500/10 flex items-center justify-center">
-                  <FiServer className="text-ds-500" size={16} />
-               </div>
-               <div className="flex flex-col gap-1">
-                  <CardTitle>Environment Settings</CardTitle>
-                  <CardDescription>Configure deployment targets and domains.</CardDescription>
-               </div>
-            </div>
+         <CardHeader leftIcon={<FiServer className="text-ds-primary-600" size={18} />}>
+            <CardTitle>Environment Settings</CardTitle>
+            <CardDescription>Configure deployment targets and domains.</CardDescription>
          </CardHeader>
          <CardContent className="space-y-4">
             <Select 
@@ -360,19 +325,12 @@ export function ColumnFour() {
 
       {/* New 12: Recent Invoice */}
       <Card>
-         <CardHeader>
-            <div className="flex items-center justify-between">
-               <div className="flex items-center gap-3">
-                  <div className="size-8 ds-rounded bg-ds-primary-500/10 flex items-center justify-center">
-                     <FiFileText className="text-ds-primary-600" size={16} />
-                  </div>
-                  <div className="flex flex-col gap-1">
-                     <CardTitle>Recent Invoice</CardTitle>
-                     <CardDescription>Generated automatically.</CardDescription>
-                  </div>
-               </div>
-               <Badge content="Paid" color="success" variant="soft" />
-            </div>
+         <CardHeader
+            leftIcon={<FiFileText className="text-ds-primary-600" size={18} />}
+            action={<Badge content="Paid" color="success" variant="soft" />}
+         >
+            <CardTitle>Recent Invoice</CardTitle>
+            <CardDescription>Generated automatically.</CardDescription>
          </CardHeader>
          <CardContent className="space-y-4">
             <div className="flex items-center justify-between p-3 ds-rounded border border-ds-200 dark:border-ds-800 bg-ds-50/50 dark:bg-ds-800/10">

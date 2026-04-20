@@ -27,4 +27,14 @@ describe('Card', () => {
     expect(card).toHaveClass('card--no-border');
     expect(card).toHaveClass('card--no-shadow');
   });
+
+  it('renders left icon in header', () => {
+    const TestIcon = () => <span data-testid="test-icon">Icon</span>;
+    render(
+      <CardHeader leftIcon={<TestIcon />}>
+        <CardTitle>Title</CardTitle>
+      </CardHeader>
+    );
+    expect(screen.getByTestId('test-icon')).toBeInTheDocument();
+  });
 });

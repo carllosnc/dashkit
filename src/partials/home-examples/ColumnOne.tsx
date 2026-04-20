@@ -27,7 +27,7 @@ export function ColumnOne() {
     <div className="flex flex-col gap-4">
       {/* 1. Login Form Example */}
       <Card>
-        <CardHeader>
+        <CardHeader leftIcon={<FiLock className="text-ds-primary-600" size={18} />}>
           <CardTitle>Welcome Back</CardTitle>
           <CardDescription>Enter your credentials to access your dashboard.</CardDescription>
         </CardHeader>
@@ -68,7 +68,7 @@ export function ColumnOne() {
 
       {/* 4. Action / Quick Settings Example */}
       <Card>
-        <CardHeader>
+        <CardHeader leftIcon={<FiZap className="text-ds-primary-600" size={18} />}>
            <CardTitle>System Optimizer</CardTitle>
            <CardDescription>Configure your node performance and scaling settings.</CardDescription>
         </CardHeader>
@@ -95,14 +95,12 @@ export function ColumnOne() {
 
       {/* 7. Team Activity Card (New with Avatars) */}
       <Card>
-         <CardHeader>
-            <div className="flex flex-row items-center justify-between">
-               <div className="flex flex-col gap-1">
-                  <CardTitle>Active Team</CardTitle>
-                  <CardDescription>Members currently online.</CardDescription>
-               </div>
-               <Badge content="12 Active" color="success" variant="soft" />
-            </div>
+         <CardHeader 
+            leftIcon={<FiUsers className="text-ds-primary-600" size={18} />}
+            action={<Badge content="12 Active" color="success" variant="soft" />}
+         >
+            <CardTitle>Active Team</CardTitle>
+            <CardDescription>Members currently online.</CardDescription>
          </CardHeader>
          <CardContent className="space-y-6">
             <div className="flex items-center justify-between p-3 ds-rounded border border-ds-200 dark:border-ds-800 bg-ds-50/30 dark:bg-ds-800/20">
@@ -179,14 +177,11 @@ export function ColumnOne() {
 
       {/* 11. Security Events (New) */}
       <Card>
-         <CardHeader>
-            <div className="flex items-center justify-between">
-               <div className="flex flex-col gap-1">
-                  <CardTitle>Security Events</CardTitle>
-                  <CardDescription>Recent threat intelligence log.</CardDescription>
-               </div>
-               <FiShield size={18} className="text-ds-danger-600" />
-            </div>
+         <CardHeader 
+            leftIcon={<FiShield size={18} className="text-ds-danger-600" />}
+         >
+            <CardTitle>Security Events</CardTitle>
+            <CardDescription>Recent threat intelligence log.</CardDescription>
          </CardHeader>
          <CardContent className="space-y-4">
             <div className="flex items-center justify-between p-3 ds-rounded border border-ds-200 dark:border-ds-800 bg-ds-50/30 dark:bg-ds-100/5">
@@ -215,14 +210,11 @@ export function ColumnOne() {
 
         {/* 18. Wallet Portfolio (New) */}
         <Card>
-           <CardHeader>
-              <div className="flex items-center justify-between">
-                 <div className="flex items-center gap-2">
-                    <FiDollarSign className="text-ds-success-600" size={18} />
-                    <CardTitle>Portfolio</CardTitle>
-                 </div>
-                 <Badge content="Active" color="success" variant="soft" />
-              </div>
+           <CardHeader
+              leftIcon={<FiDollarSign className="text-ds-success-600" size={18} />}
+              action={<Badge content="Active" color="success" variant="soft" />}
+           >
+              <CardTitle>Portfolio</CardTitle>
            </CardHeader>
            <CardContent className="space-y-4">
               <div className="flex flex-col gap-1">
@@ -287,16 +279,9 @@ export function ColumnOne() {
 
         {/* New 5: Modal Trigger Example */}
         <Card>
-           <CardHeader>
-              <div className="flex items-center gap-3">
-                 <div className="size-8 rounded-full bg-ds-danger-500/10 flex items-center justify-center">
-                    <FiLock className="text-ds-danger-600" size={16} />
-                 </div>
-                 <div className="flex flex-col">
-                    <CardTitle>Danger Zone</CardTitle>
-                    <CardDescription>Irreversible actions for this project.</CardDescription>
-                 </div>
-              </div>
+           <CardHeader leftIcon={<FiLock className="text-ds-danger-600" size={18} />}>
+              <CardTitle>Danger Zone</CardTitle>
+              <CardDescription>Irreversible actions for this project.</CardDescription>
            </CardHeader>
            <CardContent className="space-y-4">
               <div className="p-3 ds-rounded border border-ds-danger-200 bg-ds-danger-50 dark:border-ds-danger-900/50 dark:bg-ds-danger-500/10 flex flex-col gap-1">
@@ -311,14 +296,12 @@ export function ColumnOne() {
 
         {/* New 9: Support Ticket */}
         <Card>
-           <CardHeader>
-              <div className="flex items-center justify-between">
-                 <div className="flex flex-col gap-1">
-                    <CardTitle>Active Ticket</CardTitle>
-                    <CardDescription>Support requested.</CardDescription>
-                 </div>
-                 <Badge content="High Priority" color="danger" variant="soft" />
-              </div>
+           <CardHeader
+              leftIcon={<FiHelpCircle className="text-ds-danger-600" size={18} />}
+              action={<Badge content="High Priority" color="danger" variant="soft" />}
+           >
+              <CardTitle>Active Ticket</CardTitle>
+              <CardDescription>Support requested.</CardDescription>
            </CardHeader>
            <CardContent className="space-y-4">
                <Stepper activeStep={1} orientation="vertical" className="mt-2 ml-1">
@@ -339,13 +322,11 @@ export function ColumnOne() {
 
         {/* New 13: Transaction History (Pagination) */}
         <Card>
-           <CardHeader>
-              <div className="flex items-center justify-between">
-                 <div className="flex flex-col gap-1">
-                    <CardTitle>Transactions</CardTitle>
-                    <CardDescription>View your latest transfers.</CardDescription>
-                 </div>
-              </div>
+           <CardHeader
+              leftIcon={<FiZap className="text-ds-primary-600" size={18} />}
+           >
+              <CardTitle>Transactions</CardTitle>
+              <CardDescription>View your latest transfers.</CardDescription>
            </CardHeader>
            <CardContent className="space-y-4">
               <div className="flex flex-col gap-2">
@@ -370,19 +351,12 @@ export function ColumnOne() {
 
         {/* New 15: Security Perimeter (New) */}
         <Card>
-           <CardHeader>
-              <div className="flex items-center justify-between">
-                 <div className="flex items-center gap-3">
-                    <div className="size-8 rounded-full bg-ds-primary-500/10 flex items-center justify-center">
-                       <FiFingerprint className="text-ds-primary-600" size={16} />
-                    </div>
-                    <div className="flex flex-col">
-                       <CardTitle>Security Perimeter</CardTitle>
-                       <CardDescription>Biometric and hardware key status.</CardDescription>
-                    </div>
-                 </div>
-                 <Badge content="Enforced" color="info" variant="soft" />
-              </div>
+           <CardHeader
+              leftIcon={<FiFingerprint className="text-ds-primary-600" size={18} />}
+              action={<Badge content="Enforced" color="info" variant="soft" />}
+           >
+              <CardTitle>Security Perimeter</CardTitle>
+              <CardDescription>Biometric and hardware key status.</CardDescription>
            </CardHeader>
            <CardContent className="space-y-4">
               <div className="space-y-3">
@@ -436,7 +410,7 @@ export function ColumnOne() {
         </ModalContent>
         <ModalFooter>
           <Button variant="outlined" onClick={() => setIsModalOpen(false)}>Cancel</Button>
-          <Button 
+          <Button
             color="danger"
             onClick={() => { setIsModalOpen(false); toast({ type: 'error', description: 'Project deleted successfully!', invert: true }); }}
           >

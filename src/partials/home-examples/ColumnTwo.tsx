@@ -94,13 +94,10 @@ export function ColumnTwo() {
 
       {/* 8. Live Stats Card (New with Animated Numbers) */}
       <Card>
-         <CardHeader className="pb-2">
-            <div className="flex items-center gap-2 mb-1">
-               <div className="size-5 rounded-full bg-ds-success-500/10 flex items-center justify-center">
-                  <FiShoppingCart className="text-ds-success-600" size={12} />
-               </div>
-               <span className="text-xs font-bold text-ds-500 uppercase tracking-widest">Global Sales</span>
-            </div>
+         <CardHeader 
+            className="pb-2"
+            leftIcon={<FiShoppingCart className="text-ds-success-600" size={18} />}
+         >
             <CardTitle className="text-3xl font-medium tracking-tight">
                <AnimateNumber value={liveValue} prefix="$" precision={2} />
             </CardTitle>
@@ -125,28 +122,30 @@ export function ColumnTwo() {
 
       {/* 5. Interactive Control Panel (Replaces Weekly Progress) */}
       <Card className=" dark:border-ds-800 overflow-visible">
-         <CardHeader className="flex flex-row items-center justify-between space-y-0">
-            <div className="flex flex-col gap-1">
-               <CardTitle>Security Panel</CardTitle>
-               <CardDescription>Advanced monitoring controls.</CardDescription>
-            </div>
-            <Popover>
-               <PopoverTrigger>
-                  <div className="size-8 rounded-full hover:bg-ds-100 dark:hover:bg-ds-800 flex items-center justify-center transition-colors cursor-pointer">
-                     <FiMoreHorizontal className="text-ds-500" size={18} />
-                  </div>
-               </PopoverTrigger>
-               <PopoverContent align="end" className="w-64 p-4 space-y-4">
-                  <div className="flex flex-col">
-                      <span className="text-sm uppercase font-bold">Quick Controls</span>
-                      <span className="text-xs text-ds-500">Global platform settings.</span>
-                  </div>
-                  <Switch label="Live Monitoring" description="Real-time data stream." defaultChecked />
-                  <Switch label="Auto Lockdown" description="Secure on high load." />
-                  <Switch label="Global CDN" description="Edge optimization." defaultChecked />
-                  <Button variant="filled" size="sm" className="w-full mt-2">Apply All</Button>
-               </PopoverContent>
-            </Popover>
+         <CardHeader 
+            leftIcon={<FiShield className="text-ds-success-600" size={18} />}
+            action={
+               <Popover>
+                  <PopoverTrigger>
+                     <div className="size-8 rounded-full hover:bg-ds-100 dark:hover:bg-ds-800 flex items-center justify-center transition-colors cursor-pointer">
+                        <FiMoreHorizontal className="text-ds-500" size={18} />
+                     </div>
+                  </PopoverTrigger>
+                  <PopoverContent align="end" className="w-64 p-4 space-y-4">
+                     <div className="flex flex-col">
+                        <span className="text-sm uppercase font-bold">Quick Controls</span>
+                        <span className="text-xs text-ds-500">Global platform settings.</span>
+                     </div>
+                     <Switch label="Live Monitoring" description="Real-time data stream." defaultChecked />
+                     <Switch label="Auto Lockdown" description="Secure on high load." />
+                     <Switch label="Global CDN" description="Edge optimization." defaultChecked />
+                     <Button variant="filled" size="sm" className="w-full mt-2">Apply All</Button>
+                  </PopoverContent>
+               </Popover>
+            }
+         >
+            <CardTitle>Security Panel</CardTitle>
+            <CardDescription>Advanced monitoring controls.</CardDescription>
          </CardHeader>
          <CardContent className="pt-2">
             <div className="grid grid-cols-2 gap-3 mb-6">
@@ -197,14 +196,11 @@ export function ColumnTwo() {
 
       {/* 10. Schedule Card (New - Fills the gap) */}
       <Card>
-         <CardHeader>
-            <div className="flex items-center justify-between">
-               <div className="flex items-center gap-2">
-                  <FiActivity className="text-ds-primary-600" size={18} />
-                  <CardTitle>Upcoming</CardTitle>
-               </div>
-               <span className="text-xs font-bold text-ds-500">Today</span>
-            </div>
+         <CardHeader
+            leftIcon={<FiActivity className="text-ds-primary-600" size={18} />}
+            action={<span className="text-xs font-bold text-ds-500">Today</span>}
+         >
+            <CardTitle>Upcoming</CardTitle>
          </CardHeader>
          <CardContent className="space-y-3">
             <div className="p-3 rounded-[var(--radius-md)] border dark:border-ds-800 flex items-start gap-4">
@@ -313,11 +309,11 @@ export function ColumnTwo() {
 
       {/* New 2: Recent Transactions */}
       <Card>
-         <CardHeader>
-            <div className="flex items-center justify-between">
-               <CardTitle>Recent Activity</CardTitle>
-               <Button variant="soft" size="sm" className="h-7 text-xs px-2">View All</Button>
-            </div>
+         <CardHeader
+            leftIcon={<FiZap className="text-ds-primary-600" size={18} />}
+            action={<Button variant="soft" size="sm" className="h-7 text-xs px-2">View All</Button>}
+         >
+            <CardTitle>Recent Activity</CardTitle>
          </CardHeader>
          <CardContent className="space-y-4">
             {[
@@ -343,14 +339,12 @@ export function ColumnTwo() {
 
       {/* New 6: Drawer Trigger Example */}
       <Card>
-         <CardHeader>
-            <div className="flex items-center justify-between">
-               <div className="flex flex-col gap-1">
-                  <CardTitle>Activity Log</CardTitle>
-                  <CardDescription>Track all actions across your team.</CardDescription>
-               </div>
-               <Badge content="12 New" color="info" variant="soft" pulse />
-            </div>
+         <CardHeader
+            leftIcon={<FiActivity className="text-ds-primary-600" size={18} />}
+            action={<Badge content="12 New" color="info" variant="soft" pulse />}
+         >
+            <CardTitle>Activity Log</CardTitle>
+            <CardDescription>Track all actions across your team.</CardDescription>
          </CardHeader>
          <CardContent className="space-y-4">
             <div className="space-y-4">
@@ -377,16 +371,9 @@ export function ColumnTwo() {
 
       {/* New 10: Browser Stats */}
       <Card>
-         <CardHeader>
-            <div className="flex items-center gap-3">
-               <div className="size-8 ds-rounded bg-ds-primary-500/10 flex items-center justify-center">
-                  <FiGlobe className="text-ds-primary-600" size={16} />
-               </div>
-               <div className="flex flex-col gap-1">
-                  <CardTitle>Top Browsers</CardTitle>
-                  <CardDescription>Traffic breakdown by engine.</CardDescription>
-               </div>
-            </div>
+         <CardHeader leftIcon={<FiGlobe className="text-ds-primary-600" size={18} />}>
+            <CardTitle>Top Browsers</CardTitle>
+            <CardDescription>Traffic breakdown by engine.</CardDescription>
          </CardHeader>
          <CardContent className="space-y-4">
             <div className="space-y-2">
@@ -416,7 +403,7 @@ export function ColumnTwo() {
 
       {/* New 14: Resource Usage */}
       <Card>
-         <CardHeader>
+         <CardHeader leftIcon={<FiDatabase className="text-ds-primary-600" size={18} />}>
             <CardTitle>Resource Usage</CardTitle>
             <CardDescription>Track compute and storage constraints.</CardDescription>
          </CardHeader>
@@ -441,18 +428,9 @@ export function ColumnTwo() {
 
       {/* New 15: Server Config (Refactored) */}
       <Card>
-         <CardHeader>
-            <div className="flex items-center justify-between">
-               <div className="flex items-center gap-3">
-                  <div className="size-8 rounded-full bg-ds-primary-500/10 flex items-center justify-center">
-                     <FiServer className="text-ds-primary-600" size={16} />
-                  </div>
-                  <div className="flex flex-col">
-                     <CardTitle>Environment Config</CardTitle>
-                     <CardDescription>Provisioning node resources and SLA.</CardDescription>
-                  </div>
-               </div>
-            </div>
+         <CardHeader leftIcon={<FiServer className="text-ds-primary-600" size={18} />}>
+            <CardTitle>Environment Config</CardTitle>
+            <CardDescription>Provisioning node resources and SLA.</CardDescription>
          </CardHeader>
          <CardContent className="space-y-4">
             <div className="space-y-4">
