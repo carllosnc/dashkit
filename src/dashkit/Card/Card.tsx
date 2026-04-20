@@ -29,8 +29,9 @@ export function Card({
       transition={{ duration: 0.3, ease: 'easeOut' }}
       className={cn(
         'card',
-        !bordered && 'card--no-border',
-        !shadowed && 'card--no-shadow',
+        'bg-card text-card-foreground p-6 ds-rounded shadow-sm gap-6 flex flex-col font-sans',
+        !bordered && 'card--no-border border-none',
+        !shadowed && 'card--no-shadow shadow-none',
         className
       )}
     >

@@ -1,7 +1,7 @@
 @reference "../dashkit.css";
 
 .icon-button {
-  @apply ds-rounded inline-flex font-medium items-center justify-center focus:outline-none cursor-pointer whitespace-nowrap border select-none shrink-0 transition-all duration-200;
+  @apply ds-rounded;
 }
 
 .icon-button:disabled,

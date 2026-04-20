@@ -24,9 +24,14 @@ export const IconButton = forwardRef<HTMLElement, IconButtonProps>(function Icon
 
   const classes = cn(
     'icon-button',
-    'size-9', // Default size as utility so it can be overridden
+    'inline-flex items-center justify-center',
+    'rounded-lg', // Default rounding as utility
+    'border border-border', // Default border as utility
+    'size-9', // Default size as utility
+    'transition-all duration-200',
+    'focus:outline-none cursor-pointer whitespace-nowrap select-none shrink-0 font-medium',
     `icon-button--${variant}`,
-    rounded && 'icon-button--rounded',
+    rounded && 'icon-button--rounded !rounded-full', // Force full round if requested
     {
       'icon-button--disabled': 'disabled' in props && props.disabled,
     },
