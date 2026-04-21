@@ -26,14 +26,7 @@ export const POSITION_VARIANTS: Record<DrawerPosition, Variants> = {
   },
 };
 
-export function getPositionClasses(position: DrawerPosition) {
-  switch (position) {
-    case 'left': return 'left-0 top-0 h-full';
-    case 'right': return 'right-0 top-0 h-full';
-    case 'top': return 'top-0 left-0 w-full';
-    case 'bottom': return 'bottom-0 left-0 w-full';
-  }
-}
+
 
 export interface UseDrawerProps {
   isOpen: boolean;
@@ -73,7 +66,6 @@ export function useDrawer({ isOpen, onClose, position }: UseDrawerProps) {
   return {
     defaultSize,
     handleDragEnd,
-    positionVariants: POSITION_VARIANTS,
-    getPositionClasses
+    positionVariants: POSITION_VARIANTS
   };
 }

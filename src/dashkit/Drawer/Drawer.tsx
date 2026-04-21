@@ -1,9 +1,11 @@
 import { type ReactNode, forwardRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { FiX } from 'react-icons/fi';
 import { cn } from '../utils/cn';
 import { useDrawer, type DrawerPosition } from './useDrawer';
 import { Backdrop } from '../Backdrop/Backdrop';
+import './drawer.css';
 
 export { type DrawerPosition };
 
@@ -16,16 +18,9 @@ export interface DrawerProps {
   className?: string;
 }
 
-const HEADER_CLASSES = "p-6 pb-4 flex flex-col gap-1 border-b";
-const CONTENT_CLASSES = "flex-1 overflow-y-auto px-6 py-2 custom-scrollbar";
-const FOOTER_CLASSES = "p-6 pt-4 flex items-center justify-end gap-3 border-t";
-const WRAPPER_CLASSES = "fixed inset-0 z-[100] isolate overflow-hidden flex items-center justify-center";
-const DRAWER_BASE_CLASSES = "absolute bg-card text-card-foreground shadow-sm overflow-hidden flex flex-col touch-none";
-const GRADIENT_OVERLAY_CLASSES = "absolute bottom-0 h-6 w-full shrink-0 bg-gradient-to-t from-white dark:from-ds-900 to-transparent pointer-events-none z-10";
-
 export function DrawerHeader({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <div className={cn(HEADER_CLASSES, className)}>
+    <div className={cn("drawer__header", className)}>
       {children}
     </div>
   );
@@ -33,7 +28,7 @@ export function DrawerHeader({ children, className }: { children: ReactNode; cla
 
 export function DrawerContent({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <div className={cn(CONTENT_CLASSES, className)}>
+    <div className={cn("drawer__body", className)}>
       {children}
     </div>
   );
@@ -41,7 +36,7 @@ export function DrawerContent({ children, className }: { children: ReactNode; cl
 
 export function DrawerFooter({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <div className={cn(FOOTER_CLASSES, className)}>
+    <div className={cn("drawer__footer", className)}>
       {children}
     </div>
   );
@@ -58,8 +53,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(function Drawer({
   const {
     defaultSize,
     handleDragEnd,
-    positionVariants,
-    getPositionClasses
+    positionVariants
   } = useDrawer({ isOpen, onClose, position });
 
   if (typeof document === 'undefined') return null;
@@ -67,8 +61,19 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(function Drawer({
   return createPortal(
     <AnimatePresence>
       {isOpen && (
-        <div className={WRAPPER_CLASSES}>
-          <Backdrop show={true} fixed={false} />
+        <div className="drawer">
+          <Backdrop show={true} fixed={false} onClick={onClose}>
+            <motion.button
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              onClick={onClose}
+              className={cn("drawer__close", `drawer__close--${position}`)}
+              aria-label="Close drawer"
+            >
+              <FiX size={20} />
+            </motion.button>
+          </Backdrop>
 
           <motion.div
             ref={ref}
@@ -88,20 +93,14 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(function Drawer({
             onDragEnd={handleDragEnd}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
             className={cn(
-              DRAWER_BASE_CLASSES,
-              {
-                "border-r": position === 'left',
-                "border-l": position === 'right',
-                "border-b": position === 'top',
-                "border-t": position === 'bottom',
-              },
-              getPositionClasses(position),
+              "drawer__panel",
+              `drawer__panel--${position}`,
               size || defaultSize,
               className
             )}
           >
             {children}
-            <div className={GRADIENT_OVERLAY_CLASSES} />
+            <div className="drawer__gradient" />
           </motion.div>
         </div>
       )}

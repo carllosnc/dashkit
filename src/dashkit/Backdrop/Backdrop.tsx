@@ -47,6 +47,7 @@ export function Backdrop({
         blur && 'backdrop__overlay--blur',
         className
       )}
+      data-testid="backdrop-overlay"
       {...props}
     />
   );

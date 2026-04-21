@@ -28,10 +28,8 @@ describe('Drawer', () => {
       </Drawer>
     );
     
-    // The backdrop is the first motion.div child of the portal
-    // Since we don't have a role, we'll find it by the close behavior
-    const backdrop = screen.getByTestId('drawer-content').previousElementSibling;
-    if (backdrop) fireEvent.click(backdrop);
+    const backdrop = screen.getByTestId('backdrop-overlay');
+    fireEvent.click(backdrop);
     
     expect(handleClose).toHaveBeenCalledTimes(1);
   });

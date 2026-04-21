@@ -41,7 +41,7 @@ describe('Sidebar', () => {
       </Sidebar>
     );
     const button = screen.getByRole('button', { name: /active item/i });
-    expect(button).toHaveClass('text-primary');
+    expect(button).toHaveClass('sidebar__item--active');
   });
 
   it('triggers onClick when an item is clicked', () => {

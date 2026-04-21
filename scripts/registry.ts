@@ -94,6 +94,7 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Drawer',
     files: [
       'src/dashkit/Drawer/Drawer.tsx',
+      'src/dashkit/Drawer/drawer.css',
       'src/dashkit/Drawer/useDrawer.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
