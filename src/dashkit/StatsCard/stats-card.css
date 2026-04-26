@@ -1,0 +1,48 @@
+@reference "../dashkit.css";
+
+.stats-card {
+  @apply relative overflow-hidden;
+}
+
+.stats-card__title {
+  @apply text-xs font-medium text-muted-foreground tracking-tight uppercase;
+}
+
+.stats-card__value-container {
+  @apply flex items-center gap-3 flex-wrap;
+}
+
+.stats-card__value {
+  @apply text-3xl font-medium text-foreground tabular-nums tracking-tight whitespace-nowrap truncate leading-none pt-1;
+}
+
+.stats-card__trend {
+  @apply flex items-center gap-1.5 pt-1;
+}
+
+.stats-card__trend-badge {
+  @apply flex items-center gap-1 text-[13px] font-bold;
+}
+
+.stats-card__trend-label {
+  @apply text-xs uppercase font-medium text-muted-foreground whitespace-nowrap hidden sm:block;
+}
+
+.stats-card__description {
+  @apply text-xs text-muted-foreground mt-1;
+}
+
+.stats-card__chart-container {
+  @apply h-12 -mx-6 mt-auto;
+}
+
+.stats-card__chart-svg {
+  @apply w-full h-full overflow-visible;
+}
+
+/* Status variants */
+.stats-card--success { @apply text-ds-success-600 dark:text-ds-success-400; }
+.stats-card--danger { @apply text-ds-danger-600 dark:text-ds-danger-400; }
+.stats-card--warning { @apply text-ds-warning-600 dark:text-ds-warning-400; }
+.stats-card--info { @apply text-ds-info-600 dark:text-ds-info-400; }
+.stats-card--neutral { @apply text-muted-foreground; }

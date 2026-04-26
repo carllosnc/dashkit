@@ -1,0 +1,73 @@
+@reference "../dashkit.css";
+
+.pie-chart {
+  @apply w-full flex flex-col items-center justify-center relative overflow-visible;
+}
+
+.pie-chart__container {
+  @apply relative w-full aspect-square max-w-[280px] overflow-visible;
+}
+
+.pie-chart__svg {
+  @apply w-full h-full overflow-visible;
+}
+
+.pie-chart__slice {
+  @apply text-white dark:text-ds-950 transition-colors duration-200 cursor-pointer;
+}
+
+.pie-chart__tooltip {
+  @apply absolute z-50 pointer-events-none transform -translate-x-1/2 bg-ds-950 text-white ds-rounded shadow-2xl border border-ds-800 p-3 flex flex-col gap-1 min-w-[120px] transition-transform duration-200;
+}
+
+.pie-chart__tooltip--near-top {
+  @apply translate-y-4;
+}
+
+.pie-chart__tooltip--default {
+  @apply -translate-y-full -mt-8;
+}
+
+.pie-chart__tooltip-header {
+  @apply flex items-center gap-2;
+}
+
+.pie-chart__tooltip-color {
+  @apply size-2 rounded-full;
+}
+
+.pie-chart__tooltip-label {
+  @apply text-xs font-medium text-ds-200 whitespace-nowrap;
+}
+
+.pie-chart__tooltip-value-container {
+  @apply flex border-b border-ds-800 pb-1 mt-1 mb-1;
+}
+
+.pie-chart__tooltip-value {
+  @apply text-xs font-bold text-white;
+}
+
+.pie-chart__tooltip-percentage {
+  @apply ml-1 opacity-50 font-normal;
+}
+
+.pie-chart__legend {
+  @apply flex w-full flex-wrap justify-center gap-x-6 gap-y-2;
+}
+
+.pie-chart__legend-item {
+  @apply flex items-center gap-2 transition-opacity duration-200;
+}
+
+.pie-chart__legend-item--dimmed {
+  @apply opacity-40;
+}
+
+.pie-chart__legend-color {
+  @apply size-2.5 rounded-sm;
+}
+
+.pie-chart__legend-label {
+  @apply text-[10px] font-bold uppercase text-muted-foreground first-letter:uppercase !tracking-normal;
+}

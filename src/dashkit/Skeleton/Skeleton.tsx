@@ -1,33 +1,29 @@
-import clsx from 'clsx';
-import { twMerge } from 'tailwind-merge';
-
-function cn(...inputs: (string | undefined | null | boolean | Record<string, boolean>)[]) {
-  return twMerge(clsx(inputs));
-}
+import * as React from 'react';
+import { cn } from '../utils/cn';
+import './skeleton.css';
 
 export interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: 'text' | 'circular' | 'rectangular';
   animation?: 'shimmer' | 'pulse' | 'none';
 }
 
-export const Skeleton = ({
+export function Skeleton({
   variant = 'rectangular',
   animation = 'shimmer',
   className,
   ...props
-}: SkeletonProps) => {
+}: SkeletonProps) {
   return (
     <div
       className={cn(
-        "relative overflow-hidden bg-muted",
-        variant === 'text' && "h-4 w-full ds-rounded",
-        variant === 'circular' && "rounded-full",
-        variant === 'rectangular' && "ds-rounded",
-        animation === 'shimmer' && "after:absolute after:inset-0 after:-translate-x-full after:animate-[ds-shimmer_1.5s_infinite] after:bg-gradient-to-r after:from-transparent after:via-foreground/5 after:to-transparent",
-        animation === 'pulse' && "animate-[ds-pulse_1.2s_infinite]",
+        'skeleton',
+        `skeleton--${variant}`,
+        animation !== 'none' && `skeleton--${animation}`,
         className
       )}
       {...props}
     />
   );
-};
+}
+
+Skeleton.displayName = 'Skeleton';

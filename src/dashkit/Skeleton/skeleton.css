@@ -1,0 +1,28 @@
+@reference "../dashkit.css";
+
+.skeleton {
+  @apply relative overflow-hidden bg-muted;
+}
+
+.skeleton--text {
+  @apply h-4 w-full ds-rounded;
+}
+
+.skeleton--circular {
+  @apply rounded-full;
+}
+
+.skeleton--rectangular {
+  @apply ds-rounded;
+}
+
+.skeleton--shimmer {
+  &::after {
+    @apply absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-foreground/5 to-transparent;
+    animation: ds-shimmer 1.5s infinite;
+  }
+}
+
+.skeleton--pulse {
+  animation: ds-pulse 1.2s infinite;
+}

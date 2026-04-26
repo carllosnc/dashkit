@@ -1,12 +1,8 @@
 import * as React from 'react';
 import { motion } from 'framer-motion';
-import { twMerge } from 'tailwind-merge';
-import clsx from 'clsx';
+import { cn } from '../utils/cn';
 import { useLineChart } from './useLineChart';
-
-function cn(...inputs: (string | undefined | null | boolean | Record<string, boolean>)[]) {
-  return twMerge(clsx(inputs));
-}
+import './line-chart.css';
 
 export interface LineChartSeries {
   key: string;
@@ -15,11 +11,11 @@ export interface LineChartSeries {
 }
 
 const DEFAULT_COLORS = [
-  'var(--color-primary)',
-  'var(--color-primary-400)',
-  'var(--color-primary-200)',
-  'var(--color-primary-800)',
-  'var(--color-primary-300)',
+  'var(--color-ds-primary-600)',
+  'var(--color-ds-primary-400)',
+  'var(--color-ds-primary-200)',
+  'var(--color-ds-primary-800)',
+  'var(--color-ds-primary-300)',
 ];
 
 export interface LineChartProps {
@@ -61,13 +57,13 @@ export const LineChart = ({
   if (!data || data.length === 0 || !series || series.length === 0) return null;
 
   return (
-    <div className={cn("w-full flex flex-col relative overflow-visible", className)}>
-      <div className="relative w-full aspect-[2.5/1] overflow-visible">
+    <div className={cn('line-chart', className)}>
+      <div className="line-chart__container">
         <svg
           ref={chartRef}
           viewBox={`0 0 ${width} ${svgHeight}`}
           preserveAspectRatio="none"
-          className="w-full h-full overflow-visible"
+          className="line-chart__svg"
           onMouseMove={handleMouseMove}
           onMouseLeave={() => setHoveredIndex(null)}
         >
@@ -78,7 +74,7 @@ export const LineChart = ({
               y1={svgHeight * (1 - line)}
               x2={width}
               y2={svgHeight * (1 - line)}
-              className="stroke-border"
+              className="line-chart__grid-line"
               strokeWidth="1"
               strokeDasharray="4 4"
               vectorEffect="non-scaling-stroke"
@@ -91,7 +87,7 @@ export const LineChart = ({
               y1="0"
               x2={(hoveredIndex / (data.length - 1)) * width}
               y2={svgHeight}
-              className="stroke-border"
+              className="line-chart__tooltip-line"
               strokeWidth="1"
               vectorEffect="non-scaling-stroke"
             />
@@ -123,7 +119,7 @@ export const LineChart = ({
             s.points.map((p, i) => (
               <motion.div
                 key={`${s.key}-${i}`}
-                className={cn("absolute rounded-full border-2 transition-all duration-200")}
+                className="line-chart__point"
                 style={{
                   left: `${(p.x / width) * 100}%`,
                   top: `${(p.y / svgHeight) * 100}%`,
@@ -149,26 +145,26 @@ export const LineChart = ({
       {showTooltip && hoveredIndex !== null && (
         <div
           className={cn(
-            "absolute z-50 pointer-events-none transform -translate-x-1/2 bg-ds-950 text-white ds-rounded border border-ds-800 p-3 shadow-2xl flex flex-col gap-2 min-w-[140px] transition-transform duration-200",
-            isNearTop ? "translate-y-4" : "-translate-y-full -mt-12"
+            'line-chart__tooltip',
+            isNearTop ? 'line-chart__tooltip--top' : 'line-chart__tooltip--bottom'
           )}
           style={{
             left: tooltipPos.x,
             top: tooltipPos.y
           }}
         >
-          <div className="flex border-b border-ds-800 pb-1 mb-1">
-             <span className="text-[10px] font-bold uppercase tracking-widest text-ds-400">
+          <div className="line-chart__tooltip-header">
+             <span className="line-chart__tooltip-title">
                {data[hoveredIndex].label}
              </span>
           </div>
           {validSeries.map(s => (
-            <div key={s.key} className="flex items-center justify-between gap-4">
-              <div className="flex items-center gap-2">
-                 <div className="size-2 rounded-full" style={{ backgroundColor: s.color }} />
-                  <span className="text-xs font-medium text-ds-200 whitespace-nowrap">{s.label}</span>
+            <div key={s.key} className="line-chart__tooltip-item">
+              <div className="line-chart__tooltip-item-label-container">
+                 <div className="line-chart__tooltip-item-color" style={{ backgroundColor: s.color }} />
+                  <span className="line-chart__tooltip-item-label">{s.label}</span>
               </div>
-              <span className="text-xs font-bold text-white">
+              <span className="line-chart__tooltip-item-value">
                 {Number(data[hoveredIndex][s.key]).toLocaleString()}
               </span>
             </div>
@@ -177,13 +173,13 @@ export const LineChart = ({
       )}
 
       {showLabels && (
-        <div className="flex justify-between mt-4">
+        <div className="line-chart__labels">
           {data.map((d, i) => (
             <span
               key={i}
               className={cn(
-                "text-[10px] font-bold uppercase tracking-widest text-muted-foreground transition-colors",
-                hoveredIndex === i && "text-foreground"
+                'line-chart__label',
+                hoveredIndex === i && 'line-chart__label--active'
               )}
             >
               {d.label}

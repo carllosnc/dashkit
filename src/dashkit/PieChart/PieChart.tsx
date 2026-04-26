@@ -1,12 +1,8 @@
 import * as React from 'react';
 import { motion } from 'framer-motion';
-import { twMerge } from 'tailwind-merge';
-import clsx from 'clsx';
+import { cn } from '../utils/cn';
 import { usePieChart } from './usePieChart';
-
-function cn(...inputs: (string | undefined | null | boolean | Record<string, boolean>)[]) {
-  return twMerge(clsx(inputs));
-}
+import './pie-chart.css';
 
 export interface PieChartDataItem {
   label: string;
@@ -31,14 +27,14 @@ export interface PieChartProps {
   animate?: boolean;
 }
 
-export const PieChart = ({
+export function PieChart({
   data,
   className,
   innerRadius = 0,
   showLabels = true,
   showTooltip = true,
   animate = true,
-}: PieChartProps) => {
+}: PieChartProps) {
   const validData = React.useMemo(() => data.map((d, i) => ({
     ...d,
     color: d.color || DEFAULT_COLORS[i % DEFAULT_COLORS.length]
@@ -62,12 +58,12 @@ export const PieChart = ({
   return (
     <div
       ref={containerRef}
-      className={cn("w-full flex flex-col items-center justify-center relative overflow-visible", className)}
+      className={cn('pie-chart', className)}
     >
-      <div className="relative w-full aspect-square max-w-[280px] overflow-visible">
+      <div className="pie-chart__container">
         <svg
           viewBox={`0 0 ${size} ${size}`}
-          className="w-full h-full overflow-visible"
+          className="pie-chart__svg"
         >
           {slices.map((slice, i) => (
             <motion.path
@@ -76,7 +72,7 @@ export const PieChart = ({
               fill={slice.color}
               stroke="currentColor"
               strokeWidth="3"
-              className="text-white dark:text-ds-950 transition-colors duration-200 cursor-pointer"
+              className="pie-chart__slice"
               style={{
                 zIndex: hoveredIndex === i ? 10 : 1,
                 transformOrigin: `${center}px ${center}px`
@@ -86,7 +82,7 @@ export const PieChart = ({
                 opacity: 1,
                 scale: 1,
                 rotate: 0,
-                transition: { type: "spring", stiffness: 400, damping: 25 }
+                transition: { type: 'spring', stiffness: 400, damping: 25 }
               }}
               onMouseMove={(e) => handleMouseMove(e, i)}
               onMouseLeave={() => setHoveredIndex(null)}
@@ -97,22 +93,22 @@ export const PieChart = ({
         {showTooltip && hoveredIndex !== null && (
           <div
             className={cn(
-              "absolute z-50 pointer-events-none transform -translate-x-1/2 bg-ds-950 text-white ds-rounded shadow-2xl border border-ds-800 p-3 flex flex-col gap-1 min-w-[120px] transition-transform duration-200",
-              isNearTop ? "translate-y-4" : "-translate-y-full -mt-8"
+              'pie-chart__tooltip',
+              isNearTop ? 'pie-chart__tooltip--near-top' : 'pie-chart__tooltip--default'
             )}
             style={{
               left: tooltipPos.x,
               top: tooltipPos.y
             }}
           >
-            <div className="flex items-center gap-2">
-               <div className="size-2 rounded-full" style={{ backgroundColor: validData[hoveredIndex].color }} />
-               <span className="text-xs font-medium text-ds-200 whitespace-nowrap">{validData[hoveredIndex].label}</span>
+            <div className="pie-chart__tooltip-header">
+               <div className="pie-chart__tooltip-color" style={{ backgroundColor: validData[hoveredIndex].color }} />
+               <span className="pie-chart__tooltip-label">{validData[hoveredIndex].label}</span>
             </div>
-            <div className="flex border-b border-ds-800 pb-1 mt-1 mb-1">
-               <span className="text-xs font-bold text-white">
+            <div className="pie-chart__tooltip-value-container">
+               <span className="pie-chart__tooltip-value">
                  {validData[hoveredIndex].value.toLocaleString()}
-                 <span className="ml-1 opacity-50 font-normal">
+                 <span className="pie-chart__tooltip-percentage">
                    ({((validData[hoveredIndex].value / total) * 100).toFixed(1)}%)
                  </span>
                </span>
@@ -121,17 +117,17 @@ export const PieChart = ({
         )}
       </div>
       {showLabels && (
-        <div className="flex w-full flex-wrap justify-center gap-x-6 gap-y-2">
+        <div className="pie-chart__legend">
           {validData.map((item, i) => (
             <div
               key={i}
               className={cn(
-                "flex items-center gap-2 transition-opacity duration-200",
-                hoveredIndex !== null && hoveredIndex !== i && "opacity-40"
+                'pie-chart__legend-item',
+                hoveredIndex !== null && hoveredIndex !== i && 'pie-chart__legend-item--dimmed'
               )}
             >
-              <div className="size-2.5 rounded-sm" style={{ backgroundColor: item.color }} />
-              <span className="text-[10px] font-bold uppercase text-muted-foreground first-letter:uppercase !tracking-normal">
+              <div className="pie-chart__legend-color" style={{ backgroundColor: item.color }} />
+              <span className="pie-chart__legend-label">
                 {item.label}
               </span>
             </div>
@@ -140,6 +136,6 @@ export const PieChart = ({
       )}
     </div>
   );
-};
+}
 
 PieChart.displayName = 'PieChart';

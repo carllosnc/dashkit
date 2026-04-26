@@ -5,6 +5,7 @@ import { Card } from '../Card/Card';
 import { AnimateNumber } from '../AnimateNumber/AnimateNumber';
 import { HiOutlineArrowTrendingUp, HiOutlineArrowTrendingDown } from 'react-icons/hi2';
 import { Divider } from '../Divider/Divider';
+import './stats-card.css';
 
 export interface StatsCardProps {
   title: string;
@@ -25,37 +26,12 @@ export interface StatsCardProps {
   };
 }
 
-const STATS_CARD_BASE = "relative overflow-hidden group";
-const TITLE_STYLE = "text-xs font-medium text-muted-foreground tracking-tight uppercase";
-const VALUE_STYLE = "text-3xl font-medium text-foreground tabular-nums tracking-tight";
-const DESCRIPTION_STYLE = "text-xs text-muted-foreground mt-1";
-
-const STATUS_MAP: Record<string, { text: string; bg: string; icon: React.ElementType }> = {
-  success: {
-    text: "text-ds-success-600 dark:text-ds-success-400",
-    bg: "bg-ds-success-50 dark:bg-ds-success-400/10",
-    icon: HiOutlineArrowTrendingUp,
-  },
-  danger: {
-    text: "text-ds-danger-600 dark:text-ds-danger-400",
-    bg: "bg-ds-danger-50 dark:bg-ds-danger-400/10",
-    icon: HiOutlineArrowTrendingDown,
-  },
-  warning: {
-    text: "text-ds-warning-600 dark:text-ds-warning-400",
-    bg: "bg-ds-warning-50 dark:bg-ds-warning-400/10",
-    icon: HiOutlineArrowTrendingUp,
-  },
-  info: {
-    text: "text-ds-info-600 dark:text-ds-info-400",
-    bg: "bg-ds-info-50 dark:bg-ds-info-400/10",
-    icon: HiOutlineArrowTrendingUp,
-  },
-  neutral: {
-    text: "text-muted-foreground",
-    bg: "bg-muted/50",
-    icon: HiOutlineArrowTrendingUp,
-  }
+const STATUS_ICONS: Record<string, React.ElementType> = {
+  success: HiOutlineArrowTrendingUp,
+  danger: HiOutlineArrowTrendingDown,
+  warning: HiOutlineArrowTrendingUp,
+  info: HiOutlineArrowTrendingUp,
+  neutral: HiOutlineArrowTrendingUp,
 };
 
 export function StatsCard({
@@ -73,8 +49,7 @@ export function StatsCard({
   className,
   chart
 }: StatsCardProps) {
-  const statusStyles = STATUS_MAP[status];
-  const TrendIcon = statusStyles.icon;
+  const TrendIcon = STATUS_ICONS[status];
 
   const sparklinePoints = React.useMemo(() => {
     if (!chart || !chart.data.length) return "";
@@ -93,14 +68,14 @@ export function StatsCard({
 
   return (
     <Card
-      className={cn(STATS_CARD_BASE, "pb-0", className)}
+      className={cn('stats-card', 'pb-0', className)}
       animate={animate}
     >
       <div className="flex items-start justify-between">
         <div className="space-y-1 overflow-hidden">
-          <p className={TITLE_STYLE}>{title}</p>
-          <div className="flex items-center gap-3 flex-wrap">
-            <span className={cn(VALUE_STYLE, "whitespace-nowrap truncate leading-none pt-1")}>
+          <p className="stats-card__title">{title}</p>
+          <div className="stats-card__value-container">
+            <span className="stats-card__value">
               <AnimateNumber
                 value={value}
                 prefix={prefix}
@@ -109,13 +84,13 @@ export function StatsCard({
               />
             </span>
             {typeof trend === 'number' && (
-              <div className="flex items-center gap-1.5 pt-1">
-                <span className={cn("flex items-center gap-1 text-[13px] font-bold", statusStyles.text)}>
+              <div className="stats-card__trend">
+                <span className={cn('stats-card__trend-badge', `stats-card--${status}`)}>
                   <TrendIcon className="size-3.5" />
                   {trend > 0 ? '+' : ''}{trend}%
                 </span>
                 {trendLabel && (
-                  <span className="text-xs uppercase font-medium text-muted-foreground whitespace-nowrap hidden sm:block">
+                  <span className="stats-card__trend-label">
                     {trendLabel}
                   </span>
                 )}
@@ -129,47 +104,47 @@ export function StatsCard({
       {description && (
         <div>
           <Divider variant="dashed" className="w-auto mb-[16px]" />
-          <p className={DESCRIPTION_STYLE}>{description}</p>
+          <p className="stats-card__description">{description}</p>
         </div>
       )}
 
-      <div className="mt-auto">
+      <div className="stats-card__chart-container">
         {chart && (
-          <div className="h-12 -mx-6">
-            <svg
-              viewBox="0 0 100 40"
-              className={cn("w-full h-full overflow-visible", !chart.color && statusStyles.text)}
-              style={chart.color ? { color: chart.color } : undefined}
-              preserveAspectRatio="none"
-            >
-              <defs>
-                <linearGradient id={`spark-grad-${title.replace(/\s+/g, '-')}`} x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="currentColor" stopOpacity={0.2} />
-                  <stop offset="100%" stopColor="currentColor" stopOpacity={0} />
-                </linearGradient>
-              </defs>
-              <motion.path
-                d={`${sparklinePoints} L 100 40 L 0 40 Z`}
-                fill={`url(#spark-grad-${title.replace(/\s+/g, '-')})`}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
-              />
-              <motion.path
-                d={sparklinePoints}
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="0.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 1.5, ease: "easeInOut" }}
-              />
-            </svg>
-          </div>
+          <svg
+            viewBox="0 0 100 40"
+            className={cn('stats-card__chart-svg', !chart.color && `stats-card--${status}`)}
+            style={chart.color ? { color: chart.color } : undefined}
+            preserveAspectRatio="none"
+          >
+            <defs>
+              <linearGradient id={`spark-grad-${title.replace(/\s+/g, '-')}`} x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="currentColor" stopOpacity={0.2} />
+                <stop offset="100%" stopColor="currentColor" stopOpacity={0} />
+              </linearGradient>
+            </defs>
+            <motion.path
+              d={`${sparklinePoints} L 100 40 L 0 40 Z`}
+              fill={`url(#spark-grad-${title.replace(/\s+/g, '-')})`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+            />
+            <motion.path
+              d={sparklinePoints}
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="0.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ duration: 1.5, ease: "easeInOut" }}
+            />
+          </svg>
         )}
       </div>
     </Card>
   );
 }
+
+StatsCard.displayName = 'StatsCard';

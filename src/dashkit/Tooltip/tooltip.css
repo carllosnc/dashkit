@@ -1,0 +1,32 @@
+@reference "../dashkit.css";
+
+.tooltip {
+  @apply inline-block;
+}
+
+.tooltip__content {
+  @apply px-3 py-1.5 text-xs font-medium shadow-lg pointer-events-none relative;
+  @apply bg-ds-950 text-ds-0 border border-ds-800;
+  @apply dark:bg-ds-0 dark:text-ds-950 dark:border-ds-200;
+}
+
+.tooltip__arrow {
+  @apply absolute w-2 h-2 rotate-45;
+  @apply bg-ds-950 dark:bg-ds-0 border-ds-800 dark:border-ds-200;
+}
+
+.tooltip__arrow--top {
+  @apply bottom-[-5px] left-1/2 -translate-x-1/2 border-r border-b;
+}
+
+.tooltip__arrow--bottom {
+  @apply top-[-5px] left-1/2 -translate-x-1/2 border-l border-t;
+}
+
+.tooltip__arrow--left {
+  @apply right-[-5px] top-1/2 -translate-y-1/2 border-r border-t;
+}
+
+.tooltip__arrow--right {
+  @apply left-[-5px] top-1/2 -translate-y-1/2 border-l border-b;
+}

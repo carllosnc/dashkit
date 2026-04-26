@@ -1,0 +1,67 @@
+@reference "../dashkit.css";
+
+.system-logs {
+  @apply overflow-hidden ds-rounded border border-ds-300 dark:border-ds-700 bg-black shadow-lg;
+}
+
+.system-logs__header {
+  @apply bg-zinc-950/50 dark:bg-white/[0.03] py-2.5 px-4 border-b border-white/10;
+}
+
+.system-logs__header-content {
+  @apply flex items-center gap-2;
+}
+
+.system-logs__header-icon {
+  @apply text-ds-primary-400;
+}
+
+.system-logs__header-title {
+  @apply text-xs text-ds-50 font-medium tracking-tight;
+}
+
+.system-logs__viewport {
+  @apply p-4 space-y-2 font-mono text-xs leading-relaxed overflow-y-auto custom-scrollbar;
+}
+
+.system-logs__entry {
+  @apply flex gap-2;
+}
+
+.system-logs__entry-timestamp {
+  @apply text-ds-500 select-none whitespace-nowrap;
+}
+
+.system-logs__entry-level {
+  @apply font-bold min-w-[36px];
+}
+
+.system-logs__entry-level--ok { @apply text-ds-success-500; }
+.system-logs__entry-level--info { @apply text-ds-info-500; }
+.system-logs__entry-level--warn { @apply text-ds-warning-500; }
+.system-logs__entry-level--error { @apply text-ds-danger-500; }
+.system-logs__entry-level--stable { @apply text-ds-primary-500; }
+
+.system-logs__entry-message {
+  @apply text-ds-300 break-all;
+}
+
+.system-logs__cursor-line {
+  @apply flex gap-2 opacity-50 pt-1;
+}
+
+.system-logs__cursor-prompt {
+  @apply text-ds-400;
+}
+
+.system-logs__cursor-caret {
+  @apply text-ds-100 animate-pulse;
+}
+
+.system-logs__footer {
+  @apply px-4 py-2 bg-white/[0.02] border-t border-white/10 flex items-center justify-between;
+}
+
+.system-logs__footer-session {
+  @apply text-[10px] text-ds-500 uppercase font-bold tracking-wider;
+}

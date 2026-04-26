@@ -1,0 +1,74 @@
+@reference "../dashkit.css";
+
+.table-container {
+  @apply relative w-full;
+}
+
+.table-container--responsive {
+  @apply overflow-x-auto overflow-y-hidden custom-scrollbar;
+}
+
+.table-container--framed {
+  @apply ds-rounded bg-card shadow-sm p-4 md:p-6;
+}
+
+.table {
+  @apply w-full caption-top text-sm;
+}
+
+.table__header {
+  & tr {
+    @apply border-b;
+  }
+}
+
+.table__body {
+  & tr:last-child {
+    @apply border-0;
+  }
+}
+
+.table__footer {
+  @apply border-t border-border/60 font-medium;
+
+  & > tr:last-child {
+    @apply border-b-0;
+  }
+}
+
+.table__row {
+  @apply border-b border-border/60 transition-colors;
+
+  &[data-state="selected"] {
+    @apply bg-muted;
+  }
+}
+
+.table__head {
+  @apply h-10 px-4 text-left align-middle font-bold text-ds-500 dark:text-ds-400;
+  @apply text-[10px] uppercase tracking-wider first:pl-0 last:pr-0;
+
+  &:has([role="checkbox"]) {
+    @apply pr-0;
+  }
+}
+
+.table__head--nowrap {
+  @apply whitespace-nowrap;
+}
+
+.table__cell {
+  @apply py-3 px-4 text-sm align-middle text-foreground/80 first:pl-0 last:pr-0;
+
+  &:has([role="checkbox"]) {
+    @apply pr-0;
+  }
+}
+
+.table__cell--nowrap {
+  @apply whitespace-nowrap;
+}
+
+.table__caption {
+  @apply mb-4 font-medium text-sm text-muted-foreground text-left;
+}

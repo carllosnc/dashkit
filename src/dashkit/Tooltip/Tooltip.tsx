@@ -1,12 +1,8 @@
 import * as React from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import clsx from 'clsx';
-import { twMerge } from 'tailwind-merge';
-
-function cn(...inputs: (string | undefined | null | boolean | Record<string, boolean>)[]) {
-  return twMerge(clsx(inputs));
-}
+import { cn } from '../utils/cn';
+import './tooltip.css';
 
 interface TooltipContextType {
   open: boolean;
@@ -18,14 +14,14 @@ interface TooltipContextType {
 
 const TooltipContext = React.createContext<TooltipContextType | undefined>(undefined);
 
-export function Tooltip({ 
-  children, 
-  delay = 0, 
+export function Tooltip({
+  children,
+  delay = 0,
   className,
   animate = true
-}: { 
-  children: React.ReactNode; 
-  delay?: number; 
+}: {
+  children: React.ReactNode;
+  delay?: number;
   className?: string;
   animate?: boolean;
 }) {
@@ -49,7 +45,7 @@ export function Tooltip({
   return (
     <TooltipContext.Provider value={{ open, setOpen, triggerRect, setTriggerRect, animate }}>
       <div
-        className={cn("inline-block", className)}
+        className={cn('tooltip', className)}
         onMouseEnter={(e) => handleOpen(e.currentTarget.getBoundingClientRect())}
         onMouseLeave={handleClose}
       >
@@ -145,20 +141,11 @@ export function TooltipContent({
             left,
             zIndex: 9999,
           }}
-          className={cn(
-            "px-3 py-1.5 text-xs font-medium bg-ds-950 text-ds-0 dark:bg-ds-0 dark:text-ds-950 border border-ds-800 dark:border-ds-200 shadow-lg pointer-events-none relative",
-            className
-          )}
+          className={cn('tooltip__content', className)}
         >
           {children}
           <div
-            className={cn(
-              "absolute w-2 h-2 bg-ds-950 dark:bg-ds-0 border-ds-800 dark:border-ds-200 rotate-45",
-              side === 'top' && "bottom-[-5px] left-1/2 -translate-x-1/2 border-r border-b",
-              side === 'bottom' && "top-[-5px] left-1/2 -translate-x-1/2 border-l border-t",
-              side === 'left' && "right-[-5px] top-1/2 -translate-y-1/2 border-r border-t",
-              side === 'right' && "left-[-5px] top-1/2 -translate-y-1/2 border-l border-b"
-            )}
+            className={cn('tooltip__arrow', `tooltip__arrow--${side}`)}
           />
         </motion.div>
       )}
@@ -166,3 +153,7 @@ export function TooltipContent({
     document.body
   );
 }
+
+Tooltip.displayName = 'Tooltip';
+TooltipTrigger.displayName = 'TooltipTrigger';
+TooltipContent.displayName = 'TooltipContent';

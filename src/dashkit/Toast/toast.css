@@ -1,0 +1,71 @@
+@reference "../dashkit.css";
+
+.toast-viewport {
+  @apply fixed z-[100] flex flex-col pointer-events-none w-[380px] max-w-[calc(100vw-4rem)] gap-3;
+}
+
+.toast-viewport--top-left { @apply top-8 left-8 items-start; }
+.toast-viewport--top-right { @apply top-8 right-8 items-end; }
+.toast-viewport--top-center { @apply top-8 left-1/2 -translate-x-1/2 items-center; }
+.toast-viewport--bottom-left { @apply bottom-8 left-8 items-start; }
+.toast-viewport--bottom-right { @apply bottom-8 right-8 items-end; }
+.toast-viewport--bottom-center { @apply bottom-8 left-1/2 -translate-x-1/2 items-center; }
+
+.toast-item {
+  @apply absolute w-full pointer-events-auto border ds-rounded shadow-2xl p-4 flex items-center gap-4 transition-shadow;
+}
+
+.toast-item--default {
+  @apply bg-card border-border;
+}
+
+.toast-item--invert {
+  @apply bg-ds-950 text-ds-50 border-ds-800 dark:bg-ds-0 dark:text-ds-950 dark:border-ds-200;
+}
+
+.toast-item--top { @apply top-0 origin-top; }
+.toast-item--bottom { @apply bottom-0 origin-bottom; }
+
+.toast-item__icon {
+  @apply shrink-0 text-xl;
+}
+
+.toast-item__content {
+  @apply flex flex-col gap-1 flex-1 overflow-hidden;
+}
+
+.toast-item__title {
+  @apply text-sm font-bold leading-tight truncate;
+}
+
+.toast-item__title--default {
+  @apply text-foreground;
+}
+
+.toast-item__title--invert {
+  @apply text-ds-50 dark:text-ds-950;
+}
+
+.toast-item__description {
+  @apply text-xs leading-relaxed line-clamp-2;
+}
+
+.toast-item__description--default {
+  @apply text-muted-foreground;
+}
+
+.toast-item__description--invert {
+  @apply text-ds-300 dark:text-ds-600;
+}
+
+.toast-item__close {
+  @apply shrink-0 h-fit p-1 rounded-md transition-all opacity-0 group-hover:opacity-100;
+}
+
+.toast-item__close--default {
+  @apply text-ds-400 hover:text-foreground hover:bg-muted;
+}
+
+.toast-item__close--invert {
+  @apply text-ds-400 hover:text-ds-50 hover:bg-ds-800 dark:text-ds-500 dark:hover:text-ds-950 dark:hover:bg-ds-200;
+}

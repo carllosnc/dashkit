@@ -143,8 +143,8 @@ describe('Toast Component', () => {
       toast({ title: 'Top Left' });
     });
 
-    const container = screen.getByText('Top Left').closest('.fixed');
-    expect(container).toHaveClass('top-8 left-8');
+    const container = screen.getByText('Top Left').closest('.toast-viewport');
+    expect(container).toHaveClass('toast-viewport--top-left');
 
     // Default was bottom-right in previous tests
   });

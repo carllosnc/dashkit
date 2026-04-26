@@ -1,0 +1,57 @@
+@reference "../dashkit.css";
+
+.progress-bar--side {
+  @apply w-full flex items-center gap-3;
+}
+
+.progress-bar--top {
+  @apply w-full flex flex-col gap-2;
+}
+
+.progress-bar__track {
+  @apply bg-ds-200 dark:bg-ds-800 rounded-full overflow-hidden;
+}
+
+.progress-bar__track--side {
+  @apply flex-1;
+}
+
+.progress-bar__track--top {
+  @apply w-full;
+}
+
+.progress-bar__track--xs { @apply h-1; }
+.progress-bar__track--sm { @apply h-1.5; }
+.progress-bar__track--md { @apply h-2.5; }
+.progress-bar__track--lg { @apply h-4; }
+
+.progress-bar__fill {
+  @apply h-full rounded-full transition-all;
+}
+
+.progress-bar__fill--primary { @apply bg-primary; }
+.progress-bar__fill--success { @apply bg-ds-success-600 dark:bg-ds-success-500; }
+.progress-bar__fill--warning { @apply bg-ds-warning-500 dark:bg-ds-warning-500; }
+.progress-bar__fill--danger { @apply bg-ds-danger-600 dark:bg-ds-danger-500; }
+.progress-bar__fill--info { @apply bg-ds-info-600 dark:bg-ds-info-500; }
+.progress-bar__fill--neutral { @apply bg-ds-500 dark:bg-ds-400; }
+
+.progress-bar__header {
+  @apply flex items-center justify-between gap-4 min-w-0;
+}
+
+.progress-bar__label-container {
+  @apply flex items-center gap-2 shrink-0 min-w-0;
+}
+
+.progress-bar__label-text {
+  @apply text-xs font-medium text-muted-foreground truncate;
+}
+
+.progress-bar__percentage-side {
+  @apply text-xs font-bold text-foreground tracking-tight w-8 text-right;
+}
+
+.progress-bar__percentage-top {
+  @apply text-xs font-bold text-foreground ml-auto tracking-tight;
+}

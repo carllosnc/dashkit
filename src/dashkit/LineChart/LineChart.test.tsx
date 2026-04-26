@@ -25,7 +25,7 @@ describe('LineChart', () => {
 
   it('renders data points as HTML dots', () => {
     const { container } = render(<LineChart data={data} series={series} />);
-    const dots = container.querySelectorAll('.absolute.rounded-full');
+    const dots = container.querySelectorAll('.line-chart__point');
     expect(dots).toHaveLength(2);
   });
 

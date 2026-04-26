@@ -4,7 +4,7 @@ import { ProgressBar } from './ProgressBar';
 describe('ProgressBar', () => {
   it('renders correctly', () => {
     const { container } = render(<ProgressBar value={50} />);
-    const progressBarContainer = container.querySelector('.bg-ds-200');
+    const progressBarContainer = container.querySelector('.progress-bar__track');
     expect(progressBarContainer).toBeInTheDocument();
   });
 
