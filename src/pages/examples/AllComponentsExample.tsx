@@ -29,7 +29,7 @@ import { ColorPicker } from '../../dashkit/ColorPicker/ColorPicker';
 import { Skeleton } from '../../dashkit/Skeleton/Skeleton';
 import { Surface } from '../../dashkit/Surface/Surface';
 import { Backdrop } from '../../dashkit/Backdrop/Backdrop';
-import { Modal, ModalHeader, ModalContent, ModalFooter } from '../../dashkit/Modal/Modal';
+import { Modal, ModalHeader, ModalContent, ModalFooter } from '../../dashkit/Modal';
 import { Drawer, DrawerHeader, DrawerContent, DrawerFooter } from '../../dashkit/Drawer/Drawer';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../../dashkit/Tabs/Tabs';
 import { OtpInput } from '../../dashkit/OtpInput/OtpInput';
@@ -70,15 +70,7 @@ import {
 } from '../../dashkit/Table/Table';
 import { SystemLogs } from '../../dashkit/SystemLogs/SystemLogs';
 import { Stepper, Step } from '../../dashkit/Stepper';
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport
-} from '../../dashkit/NavigationMenu/NavigationMenu';
+import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent, NavigationMenuLink, NavigationMenuViewport } from '../../dashkit/NavigationMenu';
 import { ScrollArea } from '../../dashkit/ScrollArea/ScrollArea';
 import {
   FiPlus,

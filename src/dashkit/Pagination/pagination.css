@@ -1,0 +1,33 @@
+@reference "../dashkit.css";
+
+.pagination {
+  @apply flex flex-wrap items-center gap-1;
+}
+
+.pagination__arrow {
+  @apply size-9 ds-rounded flex items-center justify-center text-sm font-medium transition-colors;
+  @apply bg-ds-200 dark:bg-ds-800 hover:bg-ds-300 dark:hover:bg-ds-700 text-ds-500;
+  @apply focus:outline-none focus-visible:ring-2;
+  @apply disabled:opacity-50 disabled:pointer-events-none;
+}
+
+.pagination__dots {
+  @apply size-9 flex items-center justify-center text-ds-400;
+}
+
+.pagination__item {
+  @apply relative size-9 ds-rounded flex items-center justify-center text-sm font-medium transition-colors;
+  @apply focus:outline-none focus-visible:ring-2;
+}
+
+.pagination__item--current {
+  @apply z-10 text-primary-foreground pointer-events-none;
+}
+
+.pagination__item--default {
+  @apply bg-ds-200 dark:bg-ds-800 hover:bg-ds-300 dark:hover:bg-ds-700 text-foreground;
+}
+
+.pagination__active-indicator {
+  @apply absolute inset-0 ds-primary-gradient shadow-sm ds-rounded pointer-events-none;
+}

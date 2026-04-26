@@ -123,7 +123,7 @@ export function ColumnFour() {
                   <span className="text-2xl font-bold">42.8 GB</span>
                   <span className="text-xs text-ds-500">of 100 GB used</span>
                </div>
-               <FiTrendingUp className="text-ds-danger-600 mb-1" />
+               <FiTrendingUp className="text-ds-primary-600 mb-1" />
             </div>
             <ProgressBar value={42.8} size="sm" color="primary" />
             <div className="grid grid-cols-2 gap-2">
@@ -250,7 +250,7 @@ export function ColumnFour() {
             <CopyField 
                label="Production Key" 
                value="pk_live_1234567890abcdef" 
-               className="mb-2"
+               className="mb-6"
             />
             <CopyField 
                label="Test Key" 

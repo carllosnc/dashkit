@@ -18,7 +18,7 @@ import { Chip } from '../dashkit/Chip/Chip';
 import { Combobox } from '../dashkit/Combobox/Combobox';
 import { Divider } from '../dashkit/Divider/Divider';
 import { Drawer } from '../dashkit/Drawer/Drawer';
-import { Modal } from '../dashkit/Modal/Modal';
+import { Modal } from '../dashkit/Modal';
 import { Radio } from '../dashkit/Radio/Radio';
 import { Select } from '../dashkit/Select/Select';
 import { Switch } from '../dashkit/Switch/Switch';
@@ -32,7 +32,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '..
 import { Badge, FloatBadge } from '../dashkit/Badge';
 import { Skeleton } from '../dashkit/Skeleton/Skeleton';
 import { Spinner } from '../dashkit/Spinner/Spinner';
-import { Navbar } from '../dashkit/Navbar/Navbar';
+import { Navbar } from '../dashkit/Navbar';
 import { IconButton } from '../dashkit/IconButton/IconButton';
 import {
   Breadcrumb,
@@ -77,7 +77,7 @@ import {
   NavigationMenuContent,
   NavigationMenuLink,
   NavigationMenuViewport
-} from '../dashkit/NavigationMenu/NavigationMenu';
+} from '../dashkit/NavigationMenu';
 import { StatsCard } from '../dashkit/StatsCard/StatsCard';
 import { HiOutlineChartBarSquare, HiOutlineTicket } from 'react-icons/hi2';
 

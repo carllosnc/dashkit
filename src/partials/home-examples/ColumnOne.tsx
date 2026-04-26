@@ -11,7 +11,7 @@ import { Surface } from '../../dashkit/Surface/Surface';
 import { Slider } from '../../dashkit/Slider/Slider';
 import { Stepper, Step } from '../../dashkit/Stepper';
 import { Pagination } from '../../dashkit/Pagination/Pagination';
-import { Modal, ModalHeader, ModalContent, ModalFooter } from '../../dashkit/Modal/Modal';
+import { Modal, ModalHeader, ModalContent, ModalFooter } from '../../dashkit/Modal';
 import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem, DropdownLabel, DropdownSeparator } from '../../dashkit/Dropdown';
 import { toast } from '../../dashkit/Toast/useToast';
 import { StatsCard } from '../../dashkit/StatsCard/StatsCard';
@@ -178,7 +178,7 @@ export function ColumnOne() {
       {/* 11. Security Events (New) */}
       <Card>
          <CardHeader 
-            leftIcon={<FiShield size={18} className="text-ds-danger-600" />}
+            leftIcon={<FiShield size={18} className="text-ds-primary-600" />}
          >
             <CardTitle>Security Events</CardTitle>
             <CardDescription>Recent threat intelligence log.</CardDescription>
@@ -186,7 +186,7 @@ export function ColumnOne() {
          <CardContent className="space-y-4">
             <div className="flex items-center justify-between p-3 ds-rounded border border-ds-200 dark:border-ds-800 bg-ds-50/30 dark:bg-ds-100/5">
                <div className="flex items-center gap-3">
-                  <FiShieldOff className="text-ds-danger-600" size={16} />
+                  <FiShieldOff className="text-ds-primary-600" size={16} />
                   <div className="flex flex-col">
                      <span className="text-sm font-bold leading-tight">Unauthorized Entry</span>
                      <span className="text-xs text-ds-500 tracking-wider font-bold uppercase">Node 0x42-E</span>

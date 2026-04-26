@@ -2,6 +2,7 @@ import * as React from 'react';
 import { cn } from '../utils/cn';
 import { FiChevronLeft, FiChevronRight, FiMoreHorizontal } from 'react-icons/fi';
 import { motion } from 'framer-motion';
+import './pagination.css';
 
 export interface PaginationProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onChange'> {
   currentPage: number;
@@ -68,18 +69,14 @@ export function Pagination({
     <nav
       role="navigation"
       aria-label="Pagination"
-      className={cn("flex flex-wrap items-center gap-1", className)}
+      className={cn('pagination', className)}
       {...props}
     >
       <button
         type="button"
         disabled={currentPage <= 1}
         onClick={() => onChange(currentPage - 1)}
-        className={cn(
-          "size-9 ds-rounded flex items-center justify-center text-sm font-medium transition-colors",
-          "bg-ds-200 dark:bg-ds-800 hover:bg-ds-300 dark:hover:bg-ds-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-ds-ring",
-          "disabled:opacity-50 disabled:pointer-events-none text-ds-500"
-        )}
+        className="pagination__arrow"
         aria-label="Previous page"
       >
         <FiChevronLeft className="size-4" />
@@ -90,7 +87,7 @@ export function Pagination({
           return (
             <div
               key={`dots-${index}`}
-              className="size-9 flex items-center justify-center text-ds-400"
+              className="pagination__dots"
               aria-hidden="true"
             >
               <FiMoreHorizontal className="size-4" />
@@ -105,19 +102,17 @@ export function Pagination({
             key={`page-${pageNumber}`}
             type="button"
             onClick={() => onChange(pageNumber as number)}
-            aria-current={isCurrent ? "page" : undefined}
+            aria-current={isCurrent ? 'page' : undefined}
             className={cn(
-              "relative size-9 ds-rounded flex items-center justify-center text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ds-ring",
-              isCurrent
-                ? "z-10 text-primary-foreground pointer-events-none"
-                : "bg-ds-200 dark:bg-ds-800 hover:bg-ds-300 dark:hover:bg-ds-700 text-foreground"
+              'pagination__item',
+              isCurrent ? 'pagination__item--current' : 'pagination__item--default'
             )}
           >
             {isCurrent && (
               <motion.div
                 layoutId={`pagination-active-${paginationId}`}
-                className="absolute inset-0 ds-primary-gradient shadow-sm ds-rounded pointer-events-none"
-                transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                className="pagination__active-indicator"
+                transition={{ type: 'spring', stiffness: 350, damping: 30 }}
               />
             )}
             <span className="relative z-10">{pageNumber}</span>
@@ -129,11 +124,7 @@ export function Pagination({
         type="button"
         disabled={currentPage >= totalPages}
         onClick={() => onChange(currentPage + 1)}
-        className={cn(
-          "size-9 ds-rounded flex items-center justify-center text-sm font-medium transition-colors",
-          "bg-ds-200 dark:bg-ds-800 hover:bg-ds-300 dark:hover:bg-ds-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-ds-ring",
-          "disabled:opacity-50 disabled:pointer-events-none text-ds-500"
-        )}
+        className="pagination__arrow"
         aria-label="Next page"
       >
         <FiChevronRight className="size-4" />
@@ -141,3 +132,5 @@ export function Pagination({
     </nav>
   );
 }
+
+Pagination.displayName = 'Pagination';

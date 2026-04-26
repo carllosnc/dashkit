@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Navbar, NavbarBrand, NavbarLinks, NavbarActions } from '../dashkit/Navbar/Navbar';
+import { Navbar, NavbarBrand, NavbarLinks, NavbarActions } from '../dashkit/Navbar';
 import { IconButton } from '../dashkit/IconButton/IconButton';
 import { ThemeToggle } from './ThemeToggle';
 import { FiGithub, FiMenu } from 'react-icons/fi';

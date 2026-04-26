@@ -232,7 +232,7 @@ export function ColumnThree() {
             <CardDescription>System toast dispatcher testing.</CardDescription>
          </CardHeader>
          <CardContent className="space-y-4">
-            <div className="flex flex-col gap-2 p-3 bg-ds-50 dark:bg-ds-800/40 rounded-lg border border-ds-200 dark:border-ds-800">
+            <div className="flex flex-col gap-2 p-3 bg-ds-50 dark:bg-ds-800/40 ds-rounded border border-ds-200 dark:border-ds-800">
                <div className="flex items-center justify-between">
                   <span className="text-sm font-bold">Push Notifications</span>
                   <Switch defaultChecked />
