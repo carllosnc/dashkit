@@ -86,6 +86,7 @@ export const registry: Record<string, ComponentConfig> = {
     files: [
       'src/dashkit/Checkbox/Checkbox.tsx',
       'src/dashkit/Checkbox/checkbox.css',
+      'src/dashkit/Checkbox/Checkbox.test.tsx',
       'src/dashkit/Checkbox/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
@@ -95,7 +96,9 @@ export const registry: Record<string, ComponentConfig> = {
     files: [
       'src/dashkit/Drawer/Drawer.tsx',
       'src/dashkit/Drawer/drawer.css',
-      'src/dashkit/Drawer/useDrawer.ts'
+      'src/dashkit/Drawer/useDrawer.ts',
+      'src/dashkit/Drawer/Drawer.test.tsx',
+      'src/dashkit/Drawer/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
@@ -103,7 +106,10 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Dropdown',
     files: [
       'src/dashkit/Dropdown/Dropdown.tsx',
-      'src/dashkit/Dropdown/useDropdown.ts'
+      'src/dashkit/Dropdown/dropdown.css',
+      'src/dashkit/Dropdown/useDropdown.ts',
+      'src/dashkit/Dropdown/Dropdown.test.tsx',
+      'src/dashkit/Dropdown/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
@@ -111,20 +117,31 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'ImageExpander',
     files: [
       'src/dashkit/ImageExpander/ImageExpander.tsx',
-      'src/dashkit/ImageExpander/useImageExpander.ts'
+      'src/dashkit/ImageExpander/image-expander.css',
+      'src/dashkit/ImageExpander/useImageExpander.ts',
+      'src/dashkit/ImageExpander/ImageExpander.test.tsx',
+      'src/dashkit/ImageExpander/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   input: {
     name: 'Input',
-    files: ['src/dashkit/Input/Input.tsx'],
+    files: [
+      'src/dashkit/Input/Input.tsx',
+      'src/dashkit/Input/input.css',
+      'src/dashkit/Input/Input.test.tsx',
+      'src/dashkit/Input/index.ts'
+    ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   modal: {
     name: 'Modal',
     files: [
       'src/dashkit/Modal/Modal.tsx',
-      'src/dashkit/Modal/useModal.ts'
+      'src/dashkit/Modal/modal.css',
+      'src/dashkit/Modal/useModal.ts',
+      'src/dashkit/Modal/Modal.test.tsx',
+      'src/dashkit/Modal/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
@@ -132,7 +149,10 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'OtpInput',
     files: [
       'src/dashkit/OtpInput/OtpInput.tsx',
-      'src/dashkit/OtpInput/useOtpInput.ts'
+      'src/dashkit/OtpInput/otp-input.css',
+      'src/dashkit/OtpInput/useOtpInput.ts',
+      'src/dashkit/OtpInput/OtpInput.test.tsx',
+      'src/dashkit/OtpInput/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
@@ -140,7 +160,10 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Radio',
     files: [
       'src/dashkit/Radio/Radio.tsx',
-      'src/dashkit/Radio/useRadio.ts'
+      'src/dashkit/Radio/radio.css',
+      'src/dashkit/Radio/useRadio.ts',
+      'src/dashkit/Radio/Radio.test.tsx',
+      'src/dashkit/Radio/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
@@ -148,7 +171,10 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Select',
     files: [
       'src/dashkit/Select/Select.tsx',
-      'src/dashkit/Select/useSelect.ts'
+      'src/dashkit/Select/select.css',
+      'src/dashkit/Select/useSelect.ts',
+      'src/dashkit/Select/Select.test.tsx',
+      'src/dashkit/Select/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
@@ -156,7 +182,10 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Switch',
     files: [
       'src/dashkit/Switch/Switch.tsx',
-      'src/dashkit/Switch/useSwitch.ts'
+      'src/dashkit/Switch/switch.css',
+      'src/dashkit/Switch/useSwitch.ts',
+      'src/dashkit/Switch/Switch.test.tsx',
+      'src/dashkit/Switch/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
@@ -164,25 +193,41 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Slider',
     files: [
       'src/dashkit/Slider/Slider.tsx',
-      'src/dashkit/Slider/useSlider.ts'
+      'src/dashkit/Slider/slider.css',
+      'src/dashkit/Slider/useSlider.ts',
+      'src/dashkit/Slider/Slider.test.tsx',
+      'src/dashkit/Slider/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   surface: {
     name: 'Surface',
-    files: ['src/dashkit/Surface/Surface.tsx'],
+    files: [
+      'src/dashkit/Surface/Surface.tsx',
+      'src/dashkit/Surface/surface.css',
+      'src/dashkit/Surface/Surface.test.tsx',
+      'src/dashkit/Surface/index.ts'
+    ],
     dependencies: ['clsx', 'tailwind-merge'],
   },
   tabs: {
     name: 'Tabs',
-    files: ['src/dashkit/Tabs/Tabs.tsx'],
+    files: [
+      'src/dashkit/Tabs/Tabs.tsx',
+      'src/dashkit/Tabs/tabs.css',
+      'src/dashkit/Tabs/Tabs.test.tsx',
+      'src/dashkit/Tabs/index.ts'
+    ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   toast: {
     name: 'Toast',
     files: [
       'src/dashkit/Toast/Toast.tsx',
-      'src/dashkit/Toast/useToast.ts'
+      'src/dashkit/Toast/toast.css',
+      'src/dashkit/Toast/useToast.ts',
+      'src/dashkit/Toast/Toast.test.tsx',
+      'src/dashkit/Toast/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
@@ -190,6 +235,8 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Stepper',
     files: [
       'src/dashkit/Stepper/Stepper.tsx',
+      'src/dashkit/Stepper/stepper.css',
+      'src/dashkit/Stepper/Stepper.test.tsx',
       'src/dashkit/Stepper/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
@@ -198,23 +245,40 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Pagination',
     files: [
       'src/dashkit/Pagination/Pagination.tsx',
+      'src/dashkit/Pagination/pagination.css',
+      'src/dashkit/Pagination/Pagination.test.tsx',
       'src/dashkit/Pagination/index.ts'
     ],
     dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
   },
   spinner: {
     name: 'Spinner',
-    files: ['src/dashkit/Spinner/Spinner.tsx'],
+    files: [
+      'src/dashkit/Spinner/Spinner.tsx',
+      'src/dashkit/Spinner/spinner.css',
+      'src/dashkit/Spinner/Spinner.test.tsx',
+      'src/dashkit/Spinner/index.ts'
+    ],
     dependencies: ['clsx', 'tailwind-merge'],
   },
   navbar: {
     name: 'Navbar',
-    files: ['src/dashkit/Navbar/Navbar.tsx'],
+    files: [
+      'src/dashkit/Navbar/Navbar.tsx',
+      'src/dashkit/Navbar/navbar.css',
+      'src/dashkit/Navbar/Navbar.test.tsx',
+      'src/dashkit/Navbar/index.ts'
+    ],
     dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
   },
   skeleton: {
     name: 'Skeleton',
-    files: ['src/dashkit/Skeleton/Skeleton.tsx'],
+    files: [
+      'src/dashkit/Skeleton/Skeleton.tsx',
+      'src/dashkit/Skeleton/skeleton.css',
+      'src/dashkit/Skeleton/Skeleton.test.tsx',
+      'src/dashkit/Skeleton/index.ts'
+    ],
     dependencies: ['clsx', 'tailwind-merge'],
   },
   breadcrumb: {
@@ -235,7 +299,9 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'IconButton',
     files: [
       'src/dashkit/IconButton/IconButton.tsx',
-      'src/dashkit/IconButton/icon-button.css'
+      'src/dashkit/IconButton/icon-button.css',
+      'src/dashkit/IconButton/IconButton.test.tsx',
+      'src/dashkit/IconButton/index.ts'
     ],
     dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
   },
@@ -245,6 +311,7 @@ export const registry: Record<string, ComponentConfig> = {
       'src/dashkit/AreaChart/AreaChart.tsx',
       'src/dashkit/AreaChart/useAreaChart.ts',
       'src/dashkit/AreaChart/area-chart.css',
+      'src/dashkit/AreaChart/AreaChart.test.tsx',
       'src/dashkit/AreaChart/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
@@ -255,6 +322,7 @@ export const registry: Record<string, ComponentConfig> = {
       'src/dashkit/BarChart/BarChart.tsx',
       'src/dashkit/BarChart/useBarChart.ts',
       'src/dashkit/BarChart/bar-chart.css',
+      'src/dashkit/BarChart/BarChart.test.tsx',
       'src/dashkit/BarChart/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
@@ -263,7 +331,10 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'LineChart',
     files: [
       'src/dashkit/LineChart/LineChart.tsx',
-      'src/dashkit/LineChart/useLineChart.ts'
+      'src/dashkit/LineChart/line-chart.css',
+      'src/dashkit/LineChart/useLineChart.ts',
+      'src/dashkit/LineChart/LineChart.test.tsx',
+      'src/dashkit/LineChart/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
@@ -271,7 +342,10 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'PieChart',
     files: [
       'src/dashkit/PieChart/PieChart.tsx',
-      'src/dashkit/PieChart/usePieChart.ts'
+      'src/dashkit/PieChart/pie-chart.css',
+      'src/dashkit/PieChart/usePieChart.ts',
+      'src/dashkit/PieChart/PieChart.test.tsx',
+      'src/dashkit/PieChart/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
@@ -279,7 +353,10 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'ProgressBar',
     files: [
       'src/dashkit/ProgressBar/ProgressBar.tsx',
-      'src/dashkit/ProgressBar/useProgressBar.ts'
+      'src/dashkit/ProgressBar/progress-bar.css',
+      'src/dashkit/ProgressBar/useProgressBar.ts',
+      'src/dashkit/ProgressBar/ProgressBar.test.tsx',
+      'src/dashkit/ProgressBar/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
@@ -287,7 +364,9 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'ButtonGroup',
     files: [
       'src/dashkit/ButtonGroup/ButtonGroup.tsx',
-      'src/dashkit/ButtonGroup/button-group.css'
+      'src/dashkit/ButtonGroup/button-group.css',
+      'src/dashkit/ButtonGroup/ButtonGroup.test.tsx',
+      'src/dashkit/ButtonGroup/index.ts'
     ],
     dependencies: ['clsx', 'tailwind-merge'],
   },
@@ -318,7 +397,9 @@ export const registry: Record<string, ComponentConfig> = {
       'src/dashkit/Sidebar/Sidebar.tsx',
       'src/dashkit/Sidebar/sidebar.css',
       'src/dashkit/Sidebar/useSidebar.ts',
-      'src/dashkit/Sidebar/SidebarContext.tsx'
+      'src/dashkit/Sidebar/SidebarContext.tsx',
+      'src/dashkit/Sidebar/Sidebar.test.tsx',
+      'src/dashkit/Sidebar/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
     registryDependencies: ['iconbutton'],
@@ -328,7 +409,9 @@ export const registry: Record<string, ComponentConfig> = {
     files: [
       'src/dashkit/FloatActionMenu/FloatActionMenu.tsx',
       'src/dashkit/FloatActionMenu/useFloatActionMenu.ts',
-      'src/dashkit/FloatActionMenu/float-action-menu.css'
+      'src/dashkit/FloatActionMenu/float-action-menu.css',
+      'src/dashkit/FloatActionMenu/FloatActionMenu.test.tsx',
+      'src/dashkit/FloatActionMenu/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
     registryDependencies: ['iconbutton'],
@@ -337,7 +420,10 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Textarea',
     files: [
       'src/dashkit/Textarea/Textarea.tsx',
-      'src/dashkit/Textarea/useTextarea.ts'
+      'src/dashkit/Textarea/textarea.css',
+      'src/dashkit/Textarea/useTextarea.ts',
+      'src/dashkit/Textarea/Textarea.test.tsx',
+      'src/dashkit/Textarea/index.ts'
     ],
     dependencies: ['clsx', 'tailwind-merge'],
   },
@@ -354,7 +440,12 @@ export const registry: Record<string, ComponentConfig> = {
   },
   table: {
     name: 'Table',
-    files: ['src/dashkit/Table/Table.tsx'],
+    files: [
+      'src/dashkit/Table/Table.tsx',
+      'src/dashkit/Table/table.css',
+      'src/dashkit/Table/Table.test.tsx',
+      'src/dashkit/Table/index.ts'
+    ],
     dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
   },
   animatenumber: {
@@ -372,31 +463,50 @@ export const registry: Record<string, ComponentConfig> = {
     files: [
       'src/dashkit/CircularProgress/CircularProgress.tsx',
       'src/dashkit/CircularProgress/circular-progress.css',
+      'src/dashkit/CircularProgress/CircularProgress.test.tsx',
       'src/dashkit/CircularProgress/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   dock: {
     name: 'Dock',
-    files: ['src/dashkit/Dock/Dock.tsx'],
+    files: [
+      'src/dashkit/Dock/Dock.tsx',
+      'src/dashkit/Dock/dock.css',
+      'src/dashkit/Dock/Dock.test.tsx',
+      'src/dashkit/Dock/index.ts'
+    ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   popover: {
     name: 'Popover',
     files: [
       'src/dashkit/Popover/Popover.tsx',
-      'src/dashkit/Popover/usePopover.ts'
+      'src/dashkit/Popover/popover.css',
+      'src/dashkit/Popover/usePopover.ts',
+      'src/dashkit/Popover/Popover.test.tsx',
+      'src/dashkit/Popover/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   tooltip: {
     name: 'Tooltip',
-    files: ['src/dashkit/Tooltip/Tooltip.tsx'],
+    files: [
+      'src/dashkit/Tooltip/Tooltip.tsx',
+      'src/dashkit/Tooltip/tooltip.css',
+      'src/dashkit/Tooltip/Tooltip.test.tsx',
+      'src/dashkit/Tooltip/index.ts'
+    ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
   },
   systemlogs: {
     name: 'SystemLogs',
-    files: ['src/dashkit/SystemLogs/SystemLogs.tsx'],
+    files: [
+      'src/dashkit/SystemLogs/SystemLogs.tsx',
+      'src/dashkit/SystemLogs/system-logs.css',
+      'src/dashkit/SystemLogs/SystemLogs.test.tsx',
+      'src/dashkit/SystemLogs/index.ts'
+    ],
     dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
     registryDependencies: ['badge'],
   },
@@ -413,7 +523,21 @@ export const registry: Record<string, ComponentConfig> = {
   },
   'navigation-menu': {
     name: 'NavigationMenu',
-    files: ['src/dashkit/NavigationMenu/NavigationMenu.tsx'],
+    files: [
+      'src/dashkit/NavigationMenu/NavigationMenu.tsx',
+      'src/dashkit/NavigationMenu/NavigationMenuContent.tsx',
+      'src/dashkit/NavigationMenu/NavigationMenuContext.tsx',
+      'src/dashkit/NavigationMenu/NavigationMenuItem.tsx',
+      'src/dashkit/NavigationMenu/NavigationMenuLink.tsx',
+      'src/dashkit/NavigationMenu/NavigationMenuList.tsx',
+      'src/dashkit/NavigationMenu/NavigationMenuTrigger.tsx',
+      'src/dashkit/NavigationMenu/NavigationMenuViewport.tsx',
+      'src/dashkit/NavigationMenu/navigation-menu.css',
+      'src/dashkit/NavigationMenu/useNavigationMenu.ts',
+      'src/dashkit/NavigationMenu/useNavigationMenuViewport.ts',
+      'src/dashkit/NavigationMenu/NavigationMenu.test.tsx',
+      'src/dashkit/NavigationMenu/index.ts'
+    ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   backdrop: {
@@ -430,13 +554,20 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'ScrollArea',
     files: [
       'src/dashkit/ScrollArea/ScrollArea.tsx',
-      'src/dashkit/ScrollArea/ScrollArea.test.tsx'
+      'src/dashkit/ScrollArea/scroll-area.css',
+      'src/dashkit/ScrollArea/ScrollArea.test.tsx',
+      'src/dashkit/ScrollArea/index.ts'
     ],
     dependencies: ['clsx', 'tailwind-merge'],
   },
   statscard: {
     name: 'StatsCard',
-    files: ['src/dashkit/StatsCard/StatsCard.tsx'],
+    files: [
+      'src/dashkit/StatsCard/StatsCard.tsx',
+      'src/dashkit/StatsCard/stats-card.css',
+      'src/dashkit/StatsCard/StatsCard.test.tsx',
+      'src/dashkit/StatsCard/index.ts'
+    ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
     registryDependencies: ['card', 'animatenumber'],
   },
@@ -445,7 +576,8 @@ export const registry: Record<string, ComponentConfig> = {
     files: [
       'src/dashkit/ColorPicker/ColorPicker.tsx',
       'src/dashkit/ColorPicker/color-picker.css',
-      'src/dashkit/ColorPicker/ColorPicker.test.tsx'
+      'src/dashkit/ColorPicker/ColorPicker.test.tsx',
+      'src/dashkit/ColorPicker/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
     registryDependencies: ['popover', 'input'],
@@ -464,6 +596,7 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'ListTile',
     files: [
       'src/dashkit/ListTile/ListTile.tsx',
+      'src/dashkit/ListTile/list-tile.css',
       'src/dashkit/ListTile/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
