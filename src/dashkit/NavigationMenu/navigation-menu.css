@@ -1,7 +1,7 @@
 @reference "../dashkit.css";
 
 .navigation-menu {
-  @apply relative z-[100] flex w-full items-center justify-center;
+  @apply relative z-[999] flex w-full items-center justify-center;
 }
 
 .navigation-menu__list {
@@ -37,7 +37,7 @@
 }
 
 .navigation-menu__viewport-wrapper {
-  @apply absolute left-0 top-full flex justify-center w-full pointer-events-none z-[100];
+  @apply absolute left-0 top-full flex justify-center w-full pointer-events-none z-[1000];
 }
 
 .navigation-menu__viewport {
