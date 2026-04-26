@@ -41,6 +41,9 @@ describe('Badge', () => {
     // Test alias
     rerender(<Badge content="Test" color="error" />);
     expect(screen.getByTestId('badge')).toHaveClass('badge--solid-danger');
+
+    rerender(<Badge content="Test" color="primary" />);
+    expect(screen.getByTestId('badge')).toHaveClass('badge--solid-primary');
   });
 
   it('hides the badge when show prop is false', () => {

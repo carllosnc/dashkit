@@ -82,13 +82,13 @@
 
 /* Primary colors */
 .badge--solid-primary { 
-  @apply bg-ds-primary text-ds-primary-fg border-transparent;
+  @apply bg-primary text-primary-foreground border-transparent;
 }
 .badge--soft-primary { 
-  @apply bg-ds-primary/15 text-ds-primary border-transparent;
+  @apply bg-primary/15 text-primary border-transparent;
 }
 .badge--pulse-primary { 
-  @apply bg-ds-primary;
+  @apply bg-primary;
 }
 
 /* Pulse animations */
@@ -109,4 +109,4 @@
 .badge__pulse--warning { @apply bg-ds-warning-500; @variant dark { @apply bg-ds-warning-500; } }
 .badge__pulse--danger { @apply bg-ds-danger-600; @variant dark { @apply bg-ds-danger-500; } }
 .badge__pulse--info { @apply bg-ds-info-600; @variant dark { @apply bg-ds-info-500; } }
-.badge__pulse--primary { @apply bg-ds-primary; }
+.badge__pulse--primary { @apply bg-primary; }
