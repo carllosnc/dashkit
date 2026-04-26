@@ -1,0 +1,73 @@
+@reference "../dashkit.css";
+
+.dock {
+  @apply mx-auto flex gap-3 rounded-full bg-ds-950/15 backdrop-blur-lg p-2 border border-ds-950/5;
+
+  @variant dark {
+    @apply bg-ds-0/10 border-ds-0/10;
+  }
+}
+
+.dock--horizontal {
+  @apply flex-row items-center;
+}
+
+.dock--vertical {
+  @apply flex-col items-center;
+}
+
+.dock-item {
+  @apply relative flex size-10 items-center justify-center rounded-full bg-white text-ds-800 shadow-sm shrink-0 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-ds-400;
+
+  @variant dark {
+    @apply bg-ds-950 text-ds-200;
+  }
+}
+
+.dock-item__icon {
+  @apply flex size-full items-center justify-center text-current leading-none;
+
+  & > svg {
+    @apply size-5;
+  }
+}
+
+.dock-item__tooltip {
+  @apply absolute pointer-events-none bg-ds-950 px-2 py-1 text-[10px] font-medium text-ds-0 border border-ds-800 whitespace-nowrap z-[100];
+
+  @variant dark {
+    @apply bg-ds-0 text-ds-950 border-ds-200;
+  }
+}
+
+.dock-item__tooltip--top {
+  @apply -top-12 left-1/2;
+}
+
+.dock-item__tooltip--left {
+  @apply left-14 top-1/2;
+}
+
+.dock-item__tooltip--right {
+  @apply right-14 top-1/2;
+}
+
+.dock-item__arrow {
+  @apply absolute size-1.5 rotate-45 bg-ds-950 border-ds-800;
+
+  @variant dark {
+    @apply bg-ds-0 border-ds-200;
+  }
+}
+
+.dock-item__arrow--bottom {
+  @apply bottom-[-4px] left-1/2 -translate-x-1/2 border-b border-r;
+}
+
+.dock-item__arrow--left {
+  @apply left-[-4px] top-1/2 -translate-y-1/2 border-b border-l;
+}
+
+.dock-item__arrow--right {
+  @apply right-[-4px] top-1/2 -translate-y-1/2 border-t border-r;
+}

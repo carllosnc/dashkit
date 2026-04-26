@@ -1,4 +1,5 @@
 import { cn } from '../utils/cn';
+import './dropdown.css';
 
 export interface DropdownSeparatorProps {
   className?: string;
@@ -6,6 +7,6 @@ export interface DropdownSeparatorProps {
 
 export function DropdownSeparator({ className }: DropdownSeparatorProps) {
   return (
-    <div className={cn("my-1 h-px bg-border", className)} />
+    <div className={cn("dropdown-separator", className)} />
   );
 }

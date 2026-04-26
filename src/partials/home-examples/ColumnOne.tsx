@@ -97,7 +97,7 @@ export function ColumnOne() {
       <Card>
          <CardHeader 
             leftIcon={<FiUsers className="text-ds-primary-600" size={18} />}
-            action={<Badge content="12 Active" color="success" variant="soft" />}
+            action={<Badge content="12 Active" color="primary" variant="soft" />}
          >
             <CardTitle>Active Team</CardTitle>
             <CardDescription>Members currently online.</CardDescription>
@@ -143,7 +143,7 @@ export function ColumnOne() {
                         <span className="text-xs text-ds-500 italic">Lead Architect</span>
                      </div>
                   </div>
-                  <FiTrendingUp className="text-ds-success-600" size={14} />
+                  <FiTrendingUp className="text-ds-primary-600" size={14} />
                </div>
 
                <div className="flex items-center justify-between group cursor-pointer">
@@ -154,7 +154,7 @@ export function ColumnOne() {
                         <span className="text-xs text-ds-500 italic">Product Manager</span>
                      </div>
                   </div>
-                  <div className="size-2 rounded-full bg-ds-success-500" />
+                  <div className="size-2 rounded-full bg-ds-primary-500" />
                </div>
             </div>
          </CardContent>
@@ -297,8 +297,8 @@ export function ColumnOne() {
         {/* New 9: Support Ticket */}
         <Card>
            <CardHeader
-              leftIcon={<FiHelpCircle className="text-ds-danger-600" size={18} />}
-              action={<Badge content="High Priority" color="danger" variant="soft" />}
+              leftIcon={<FiHelpCircle className="text-ds-primary-600" size={18} />}
+              action={<Badge content="High Priority" color="primary" variant="soft" />}
            >
               <CardTitle>Active Ticket</CardTitle>
               <CardDescription>Support requested.</CardDescription>
@@ -362,7 +362,7 @@ export function ColumnOne() {
               <div className="space-y-3">
                  <div className="flex items-center justify-between">
                     <span className="text-sm font-medium">TouchID / FaceID</span>
-                    <Badge content="Active" color="success" variant="solid" dot pulse show />
+                    <Badge content="Active" color="primary" variant="solid" dot pulse show />
                  </div>
                  <div className="flex items-center justify-between">
                     <span className="text-sm font-medium">Hardware Key (Yubico)</span>
@@ -374,7 +374,7 @@ export function ColumnOne() {
                   </div>
                   <div className="flex items-center justify-between">
                      <span className="text-sm font-medium">Active VPN Tunnel</span>
-                     <Badge content="Connected" color="success" variant="soft" />
+                     <Badge content="Connected" color="primary" variant="soft" />
                   </div>
                   <div className="flex items-center justify-between">
                      <span className="text-sm font-medium">System Firewall</span>
@@ -386,7 +386,7 @@ export function ColumnOne() {
                   </div>
                   <div className="flex items-center justify-between">
                      <span className="text-sm font-medium">Secure Boot</span>
-                     <Badge content="Active" color="success" variant="soft" />
+                     <Badge content="Active" color="primary" variant="soft" />
                   </div>
               </div>
               <Button variant="filled" className="w-full" onClick={() => toast({ title: 'Authentication', description: 'Biometric scan initiated.', type: 'info', invert: true })}>Re-verify Identity</Button>

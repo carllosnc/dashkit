@@ -3,20 +3,6 @@ import { type PanInfo } from 'framer-motion';
 
 export type FloatActionPosition = 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left';
 
-export const positionClasses = {
-  'bottom-right': 'bottom-6 right-6',
-  'bottom-left': 'bottom-6 left-6',
-  'top-right': 'top-6 right-6',
-  'top-left': 'top-6 left-6',
-};
-
-export const menuPositionClasses = {
-  'bottom-right': 'bottom-0 right-0 origin-bottom-right',
-  'bottom-left': 'bottom-0 left-0 origin-bottom-left',
-  'top-right': 'top-0 right-0 origin-top-right',
-  'top-left': 'top-0 left-0 origin-top-left',
-};
-
 export interface UseFloatActionMenuProps {
   position: FloatActionPosition;
 }
@@ -61,7 +47,5 @@ export function useFloatActionMenu({ position }: UseFloatActionMenuProps) {
     menuRef,
     isRight,
     handleDragEnd,
-    positionClasses,
-    menuPositionClasses
   };
 }

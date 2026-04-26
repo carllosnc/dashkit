@@ -4,6 +4,7 @@ import { cn } from '../utils/cn';
 import { FiX, FiMenu } from 'react-icons/fi';
 import { IconButton } from '../IconButton/IconButton';
 import { useFloatActionMenu, type FloatActionPosition } from './useFloatActionMenu';
+import './float-action-menu.css';
 
 export interface FloatActionMenuProps {
   icon?: React.ReactNode;
@@ -32,32 +33,27 @@ export function FloatActionMenu({
     menuRef,
     isRight,
     handleDragEnd,
-    positionClasses,
-    menuPositionClasses
   } = useFloatActionMenu({ position });
 
   const hasPosition = className?.includes('fixed') || className?.includes('absolute') || className?.includes('relative') || className?.includes('sticky');
 
   return (
     <div className={cn(
-      'z-50',
-      !hasPosition && 'fixed',
-      positionClasses[position],
+      'float-action-menu',
+      !hasPosition && 'float-action-menu--fixed',
+      `float-action-menu--${position}`,
       className
     )}>
       <motion.button
         key="fab"
         onClick={() => setIsOpen(!isOpen)}
-        className={cn(
-          'flex items-center gap-2.5 px-4 py-3 ds-rounded ds-primary-gradient text-white active:scale-95 transition-all hover:brightness-120 cursor-pointer border border-white/10 relative z-10',
-          buttonClassName
-        )}
+        className={cn('float-action-menu__button', buttonClassName)}
       >
-        <div className="flex items-center justify-center size-5">
+        <div className="float-action-menu__icon">
           {icon}
         </div>
         {label && (
-          <span className="font-medium text-sm tracking-tight">
+          <span className="float-action-menu__label">
             {label}
           </span>
         )}
@@ -69,8 +65,8 @@ export function FloatActionMenu({
             key="menu"
             ref={menuRef}
             className={cn(
-              'absolute w-[calc(100vw-3rem)] sm:w-[400px] max-w-[400px] min-h-[300px] bg-white dark:bg-ds-900 ds-rounded shadow-2xl border dark:border-ds-800 overflow-hidden flex flex-col z-20',
-              menuPositionClasses[position],
+              'float-action-menu__menu',
+              `float-action-menu__menu--${position}`,
               menuClassName
             )}
             initial={{ x: isRight ? 20 : -20, opacity: 0 }}
@@ -83,9 +79,9 @@ export function FloatActionMenu({
             onDragEnd={handleDragEnd}
           >
             <div className="flex-1">
-              <div className="flex items-center justify-between px-4 py-2 border-b border-border/60 dark:border-ds-800">
+              <div className="float-action-menu__header">
                 {label && (
-                  <h3 className="font-medium text-foreground dark:text-ds-50 tracking-tight">
+                  <h3 className="float-action-menu__title">
                     {label}
                   </h3>
                 )}
@@ -95,7 +91,7 @@ export function FloatActionMenu({
                   onClick={() => setIsOpen(false)}
                 />
               </div>
-              <div className='p-4'>
+              <div className="float-action-menu__content">
                 {children}
               </div>
             </div>

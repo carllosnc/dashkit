@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useDropdown, DropdownContext } from './useDropdown';
+import './dropdown.css';
 
 export interface DropdownProps {
   children: React.ReactNode;
@@ -25,7 +26,7 @@ export function Dropdown({ children }: DropdownProps) {
       triggerElement,
       setTriggerElement
     }}>
-      <div className="relative inline-block text-left" ref={containerRef}>
+      <div className="dropdown" ref={containerRef}>
         {children}
       </div>
     </DropdownContext.Provider>

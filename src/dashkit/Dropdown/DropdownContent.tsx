@@ -2,6 +2,7 @@ import * as React from 'react';
 import { createPortal } from 'react-dom';
 import { useDropdownContext } from './useDropdown';
 import { cn } from '../utils/cn';
+import './dropdown.css';
 
 export interface DropdownContentProps {
   children: React.ReactNode;
@@ -108,7 +109,7 @@ export function DropdownContent({
       id="dashkit-dropdown-portal"
       style={style}
       className={cn(
-        "min-w-[12rem] bg-popover text-popover-fg border border-popover-border ds-rounded shadow-lg p-1 overflow-hidden",
+        "dropdown-content",
         animProps.originClass,
         className
       )}

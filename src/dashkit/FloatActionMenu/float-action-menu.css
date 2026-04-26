@@ -1,0 +1,61 @@
+@reference "../dashkit.css";
+
+.float-action-menu {
+  @apply z-50;
+}
+
+.float-action-menu--fixed {
+  @apply fixed;
+}
+
+/* Positions */
+.float-action-menu--bottom-right { @apply bottom-6 right-6; }
+.float-action-menu--bottom-left { @apply bottom-6 left-6; }
+.float-action-menu--top-right { @apply top-6 right-6; }
+.float-action-menu--top-left { @apply top-6 left-6; }
+
+.float-action-menu__button {
+  @apply flex items-center gap-2.5 px-4 py-3 ds-rounded ds-primary-gradient text-white active:scale-95 transition-all hover:brightness-120 cursor-pointer border border-white/10 relative z-10;
+}
+
+.float-action-menu__icon {
+  @apply flex items-center justify-center size-5;
+}
+
+.float-action-menu__label {
+  @apply font-medium text-sm tracking-tight;
+}
+
+.float-action-menu__menu {
+  @apply absolute w-[calc(100vw-3rem)] sm:w-[400px] max-w-[400px] min-h-[300px] bg-white ds-rounded shadow-2xl border overflow-hidden flex flex-col z-20;
+
+  @variant dark {
+    @apply bg-ds-900 border-ds-800;
+  }
+}
+
+/* Menu Positions */
+.float-action-menu__menu--bottom-right { @apply bottom-0 right-0 origin-bottom-right; }
+.float-action-menu__menu--bottom-left { @apply bottom-0 left-0 origin-bottom-left; }
+.float-action-menu__menu--top-right { @apply top-0 right-0 origin-top-right; }
+.float-action-menu__menu--top-left { @apply top-0 left-0 origin-top-left; }
+
+.float-action-menu__header {
+  @apply flex items-center justify-between px-4 py-2 border-b border-border/60;
+
+  @variant dark {
+    @apply border-ds-800;
+  }
+}
+
+.float-action-menu__title {
+  @apply font-medium text-foreground tracking-tight;
+
+  @variant dark {
+    @apply text-ds-50;
+  }
+}
+
+.float-action-menu__content {
+  @apply p-4;
+}

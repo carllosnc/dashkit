@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useDropdownContext } from './useDropdown';
+import './dropdown.css';
 
 export interface DropdownTriggerProps {
   children: React.ReactNode;
@@ -30,7 +31,7 @@ export function DropdownTrigger({ children, asChild }: DropdownTriggerProps) {
   }
 
   return (
-    <div ref={internalRef} onClick={toggleOpen} className="cursor-pointer inline-block">
+    <div ref={internalRef} onClick={toggleOpen} className="dropdown-trigger">
       {children}
     </div>
   );

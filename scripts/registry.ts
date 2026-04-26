@@ -327,7 +327,8 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'FloatActionMenu',
     files: [
       'src/dashkit/FloatActionMenu/FloatActionMenu.tsx',
-      'src/dashkit/FloatActionMenu/useFloatActionMenu.ts'
+      'src/dashkit/FloatActionMenu/useFloatActionMenu.ts',
+      'src/dashkit/FloatActionMenu/float-action-menu.css'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
     registryDependencies: ['iconbutton'],
