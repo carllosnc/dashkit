@@ -1,0 +1,25 @@
+@reference "../dashkit.css";
+
+.surface {
+  @apply ds-rounded border;
+}
+
+.surface--default {
+  @apply bg-ds-0 dark:bg-ds-900 border-ds-200 dark:border-ds-800;
+}
+
+.surface--info {
+  @apply bg-ds-info-50 dark:bg-ds-info-700/10 border-ds-info-300 dark:border-ds-info-900;
+}
+
+.surface--success {
+  @apply bg-ds-success-50 dark:bg-ds-success-700/10 border-ds-success-300 dark:border-ds-success-900;
+}
+
+.surface--warning {
+  @apply bg-ds-warning-50 dark:bg-ds-warning-700/10 border-ds-warning-400 dark:border-ds-warning-900;
+}
+
+.surface--danger {
+  @apply bg-ds-danger-50 dark:bg-ds-danger-700/10 border-ds-danger-300 dark:border-ds-danger-900;
+}

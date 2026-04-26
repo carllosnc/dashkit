@@ -1,0 +1,57 @@
+@reference "../dashkit.css";
+
+.navigation-menu {
+  @apply relative z-[100] flex w-full items-center justify-center;
+}
+
+.navigation-menu__list {
+  @apply flex flex-1 list-none items-center justify-center gap-1;
+}
+
+.navigation-menu__item {
+  @apply relative;
+}
+
+.navigation-menu__trigger {
+  @apply inline-flex h-9 w-max items-center justify-center ds-rounded bg-transparent px-4 py-2 text-sm font-medium hover:bg-ds-100 dark:hover:bg-ds-800 focus:bg-ds-100 dark:focus:bg-ds-800 focus:outline-none disabled:pointer-events-none disabled:opacity-50 text-ds-500 transition-colors;
+
+  @variant dark {
+    @apply text-ds-400;
+  }
+}
+
+.navigation-menu__trigger--active {
+  @apply text-ds-950;
+
+  @variant dark {
+    @apply text-ds-50;
+  }
+}
+
+.navigation-menu__trigger-icon {
+  @apply relative top-[1px] ml-1 h-3 w-3 transition-transform duration-200;
+}
+
+.navigation-menu__trigger-icon--active {
+  @apply rotate-180;
+}
+
+.navigation-menu__viewport-wrapper {
+  @apply absolute left-0 top-full flex justify-center w-full pointer-events-none z-[100];
+}
+
+.navigation-menu__viewport {
+  @apply relative mt-1 ds-rounded border border-ds-200 bg-ds-50 text-ds-950 shadow-2xl pointer-events-auto overflow-hidden;
+
+  @variant dark {
+    @apply bg-ds-900 text-ds-50 border-ds-800;
+  }
+}
+
+.navigation-menu__viewport-content {
+  @apply w-max p-2 min-w-[300px];
+}
+
+.navigation-menu__link {
+  @apply block select-none space-y-1 ds-rounded p-2 leading-none no-underline outline-none hover:bg-ds-100 dark:hover:bg-ds-800 transition-colors;
+}

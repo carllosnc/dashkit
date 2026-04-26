@@ -2,6 +2,7 @@ import * as React from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '../utils/cn';
 import { FiCheck } from 'react-icons/fi';
+import './stepper.css';
 
 interface StepperContextType {
   activeStep: number;
@@ -32,8 +33,8 @@ export function Stepper({
     <StepperContext.Provider value={{ activeStep, orientation, onChange }}>
       <div
         className={cn(
-          "flex",
-          orientation === 'horizontal' ? "flex-row items-start w-full" : "flex-col w-full",
+          'stepper',
+          orientation === 'horizontal' ? 'stepper--horizontal' : 'stepper--vertical',
           className
         )}
         {...props}
@@ -73,7 +74,7 @@ export function Step({
   }
 
   const { activeStep, orientation, onChange } = context;
-  
+
   const isCompleted = index < activeStep;
   const isActive = index === activeStep;
   const isClickable = !!onChange;
@@ -88,9 +89,9 @@ export function Step({
   return (
     <div
       className={cn(
-        "relative flex",
-        orientation === 'horizontal' ? "flex-1" : "flex-col items-start pb-8",
-        isClickable ? "cursor-pointer group" : "",
+        'step',
+        orientation === 'horizontal' ? 'step--horizontal' : 'step--vertical',
+        isClickable && 'step--clickable',
         className
       )}
       onClick={handleClick}
@@ -98,11 +99,11 @@ export function Step({
     >
       {/* Horizontal Line */}
       {!isLast && orientation === 'horizontal' && (
-        <div className="absolute top-4 left-[50%] w-full h-[2px] -translate-y-1/2 z-0">
-           <div className="absolute left-6 right-6 h-full bg-ds-200 dark:bg-ds-800 rounded-full" />
-           <div className="absolute left-6 right-6 h-full overflow-hidden rounded-full">
-             <motion.div 
-               className="absolute top-0 left-0 bg-primary h-full w-full"
+        <div className="step__connector--horizontal">
+           <div className="step__connector-line--bg" />
+           <div className="step__connector-line--fill-container">
+             <motion.div
+               className="step__connector-line--fill"
                initial={false}
                animate={{ scaleX: isCompleted ? 1 : 0 }}
                style={{ transformOrigin: 'left center' }}
@@ -114,17 +115,14 @@ export function Step({
 
       {/* Main Content */}
       <div className={cn(
-        "flex shrink-0 relative z-10",
-        orientation === 'horizontal' ? "flex-col items-center text-center w-full gap-3" : "items-start gap-4",
+        'step__container',
+        orientation === 'horizontal' ? 'step__container--horizontal' : 'step__container--vertical',
       )}>
         {/* Step Icon */}
         <div
           className={cn(
-            "flex items-center justify-center size-8 rounded-full border-2 shrink-0 transition-colors duration-300 bg-card",
-            isCompleted || isActive 
-               ? "border-primary bg-primary text-primary-foreground" 
-               : "border-ds-200 dark:border-ds-800 text-muted-foreground",
-            isClickable && !isCompleted && !isActive && "group-hover:border-ds-400 dark:group-hover:border-ds-600"
+            'step__icon',
+            (isCompleted || isActive) ? 'step__icon--active' : 'step__icon--inactive'
           )}
         >
           {isCompleted ? (
@@ -140,22 +138,21 @@ export function Step({
 
         {/* Step Content */}
         <div className={cn(
-          "flex flex-col",
-           orientation === 'horizontal' ? "items-center" : "mt-0.5"
+          'step__content',
+           orientation === 'horizontal' ? 'step__content--horizontal' : 'step__content--vertical'
         )}>
           {title && (
             <span className={cn(
-              "text-sm font-bold transition-colors duration-300",
-              isActive ? "text-foreground" : isCompleted ? "text-foreground/80" : "text-muted-foreground",
-              isClickable && !isActive && !isCompleted && "group-hover:text-foreground/80"
+              'step__title',
+              isActive ? 'step__title--active' : isCompleted ? 'step__title--completed' : 'step__title--inactive'
             )}>
               {title}
             </span>
           )}
           {description && (
             <span className={cn(
-              "text-xs text-muted-foreground mt-0.5 leading-tight",
-              orientation === 'horizontal' ? "max-w-[150px]" : "max-w-[200px]"
+              'step__description',
+              orientation === 'horizontal' ? 'step__description--horizontal' : 'step__description--vertical'
             )}>
               {description}
             </span>
@@ -165,10 +162,10 @@ export function Step({
 
       {/* Vertical Line */}
       {!isLast && orientation === 'vertical' && (
-        <div className="absolute top-[2rem] left-4 bottom-0 w-[2px] -translate-x-1/2">
-           <div className="absolute inset-0 bg-ds-200 dark:bg-ds-800 rounded-full" />
-           <motion.div 
-             className="absolute bg-primary rounded-full h-full w-full"
+        <div className="step__connector--vertical">
+           <div className="step__connector-line--bg" />
+           <motion.div
+             className="step__connector-line--fill"
              initial={false}
              animate={{ scaleY: isCompleted ? 1 : 0 }}
              style={{ transformOrigin: 'top center' }}
@@ -179,3 +176,6 @@ export function Step({
     </div>
   );
 }
+
+Step.displayName = 'Step';
+Stepper.displayName = 'Stepper';

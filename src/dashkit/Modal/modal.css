@@ -1,0 +1,45 @@
+@reference "../dashkit.css";
+
+.modal__wrapper {
+  @apply fixed inset-0 z-[100] isolate flex items-center justify-center p-6;
+}
+
+.modal__content-wrapper {
+  @apply w-full bg-ds-50 text-ds-950 ds-rounded shadow-sm overflow-hidden flex flex-col;
+
+  @variant dark {
+    @apply bg-ds-900 text-ds-50 border border-ds-800;
+  }
+}
+
+/* Sizes */
+.modal__content-wrapper--sm { @apply max-w-sm; }
+.modal__content-wrapper--md { @apply max-w-md; }
+.modal__content-wrapper--lg { @apply max-w-lg; }
+.modal__content-wrapper--xl { @apply max-w-xl; }
+.modal__content-wrapper--2xl { @apply max-w-2xl; }
+.modal__content-wrapper--full { @apply w-full h-full; }
+
+.modal__header {
+  @apply flex items-start justify-between px-6 pt-6;
+}
+
+.modal__header-content {
+  @apply flex flex-col gap-1.5 flex-1;
+}
+
+.modal__close-button {
+  @apply -mr-2 text-ds-400 hover:text-ds-900;
+
+  @variant dark {
+    @apply hover:text-white;
+  }
+}
+
+.modal__body {
+  @apply flex-1 overflow-y-auto p-6 no-scrollbar;
+}
+
+.modal__footer {
+  @apply p-6 pb-6 flex items-center justify-end gap-3;
+}

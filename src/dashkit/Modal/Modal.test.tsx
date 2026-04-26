@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { Modal, ModalHeader, ModalContent, ModalFooter } from './Modal';
+import { Modal, ModalHeader, ModalContent, ModalFooter } from './index';
 import type { ReactNode } from 'react';
 
 // Mock framer-motion because it uses features like requestAnimationFrame that might be tricky in tests

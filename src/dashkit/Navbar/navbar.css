@@ -1,0 +1,37 @@
+@reference "../dashkit.css";
+
+.navbar {
+  @apply w-full h-16 flex items-center border-b px-4 md:px-8 bg-ds-50 text-ds-950;
+
+  @variant dark {
+    @apply bg-ds-900 text-ds-50 border-ds-800;
+  }
+}
+
+.navbar--sticky {
+  @apply sticky top-0 z-50;
+}
+
+.navbar--blur {
+  @apply bg-ds-100/70 backdrop-blur-xl;
+
+  @variant dark {
+    @apply bg-ds-950/70;
+  }
+}
+
+.navbar__inner {
+  @apply w-full mx-auto flex items-center justify-between gap-4;
+}
+
+.navbar__brand {
+  @apply flex items-center gap-4 shrink-0 flex-nowrap whitespace-nowrap;
+}
+
+.navbar__links {
+  @apply hidden md:flex items-center gap-8;
+}
+
+.navbar__actions {
+  @apply flex items-center gap-2.5 shrink-0 flex-nowrap;
+}

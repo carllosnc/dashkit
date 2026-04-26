@@ -1,0 +1,130 @@
+@reference "../dashkit.css";
+
+.stepper {
+  @apply flex;
+}
+
+.stepper--horizontal {
+  @apply flex-row items-start w-full;
+}
+
+.stepper--vertical {
+  @apply flex-col w-full;
+}
+
+.step {
+  @apply relative flex;
+}
+
+.step--horizontal {
+  @apply flex-1;
+}
+
+.step--vertical {
+  @apply flex-col items-start pb-8;
+}
+
+.step--clickable {
+  @apply cursor-pointer;
+}
+
+.step__connector--horizontal {
+  @apply absolute top-4 left-[50%] w-full h-[2px] -translate-y-1/2 z-0;
+}
+
+.step__connector--vertical {
+  @apply absolute top-[2rem] left-4 bottom-0 w-[2px] -translate-x-1/2;
+}
+
+.step__connector-line--bg {
+  @apply absolute left-6 right-6 h-full bg-ds-200 dark:bg-ds-800 rounded-full;
+
+  .step--vertical & {
+    @apply left-0 right-0 top-0 bottom-0 inset-0;
+  }
+}
+
+.step__connector-line--fill-container {
+  @apply absolute left-6 right-6 h-full overflow-hidden rounded-full;
+
+  .step--vertical & {
+    @apply left-0 right-0 top-0 bottom-0 inset-0;
+  }
+}
+
+.step__connector-line--fill {
+  @apply absolute top-0 left-0 bg-primary h-full w-full;
+}
+
+.step__container {
+  @apply flex shrink-0 relative z-10;
+}
+
+.step__container--horizontal {
+  @apply flex-col items-center text-center w-full gap-3;
+}
+
+.step__container--vertical {
+  @apply items-start gap-4;
+}
+
+.step__icon {
+  @apply flex items-center justify-center size-8 rounded-full border-2 shrink-0 transition-colors duration-300 bg-card;
+}
+
+.step__icon--active,
+.step__icon--completed {
+  @apply border-primary bg-primary text-primary-foreground;
+}
+
+.step__icon--inactive {
+  @apply border-ds-200 dark:border-ds-800 text-muted-foreground;
+}
+
+.step--clickable:hover .step__icon--inactive {
+  @apply border-ds-400 dark:border-ds-600;
+}
+
+.step__content {
+  @apply flex flex-col;
+}
+
+.step__content--horizontal {
+  @apply items-center;
+}
+
+.step__content--vertical {
+  @apply mt-0.5;
+}
+
+.step__title {
+  @apply text-sm font-bold transition-colors duration-300;
+}
+
+.step__title--active {
+  @apply text-foreground;
+}
+
+.step__title--completed {
+  @apply text-foreground/80;
+}
+
+.step__title--inactive {
+  @apply text-muted-foreground;
+}
+
+.step--clickable:hover .step__title--inactive {
+  @apply text-foreground/80;
+}
+
+.step__description {
+  @apply text-xs text-muted-foreground mt-0.5 leading-tight;
+}
+
+.step__description--horizontal {
+  @apply max-w-[150px];
+}
+
+.step__description--vertical {
+  @apply max-w-[200px];
+}

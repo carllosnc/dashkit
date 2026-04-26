@@ -9,6 +9,6 @@ describe('Surface', () => {
 
   it('applies variant classes', () => {
     const { container } = render(<Surface variant="success">Success area</Surface>);
-    expect(container.firstChild).toHaveClass('bg-ds-success-50');
+    expect(container.firstChild).toHaveClass('surface--success');
   });
 });

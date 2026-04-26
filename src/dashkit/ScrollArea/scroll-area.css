@@ -1,0 +1,21 @@
+@reference "../dashkit.css";
+
+.scroll-area {
+  @apply relative overflow-hidden w-full h-full;
+}
+
+.scroll-area__viewport {
+  @apply h-full w-full rounded-[inherit] custom-scrollbar;
+}
+
+.scroll-area__viewport--vertical {
+  @apply overflow-y-auto overflow-x-hidden;
+}
+
+.scroll-area__viewport--horizontal {
+  @apply overflow-x-auto overflow-y-hidden;
+}
+
+.scroll-area__viewport--both {
+  @apply overflow-auto;
+}

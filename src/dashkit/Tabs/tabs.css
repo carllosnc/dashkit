@@ -1,0 +1,29 @@
+@reference "../dashkit.css";
+
+.tabs {
+  @apply w-full flex flex-col font-sans ds-rounded shadow-sm overflow-hidden bg-card;
+}
+
+.tabs__list {
+  @apply flex w-full items-stretch justify-start border-b border-border/70 bg-muted/20;
+}
+
+.tabs__trigger {
+  @apply relative flex-1 text-sm px-4 py-3 font-medium duration-200 outline-none isolate whitespace-nowrap flex items-center justify-center cursor-pointer border-r border-border/70 last:border-r-0 bg-card;
+}
+
+.tabs__trigger--active {
+  @apply text-foreground;
+}
+
+.tabs__trigger--inactive {
+  @apply text-muted-foreground hover:text-foreground;
+}
+
+.tabs__active-indicator {
+  @apply absolute bottom-[-1px] left-0 right-0 h-[2px] bg-primary z-10;
+}
+
+.tabs__content {
+  @apply p-6 flex-1 outline-none;
+}

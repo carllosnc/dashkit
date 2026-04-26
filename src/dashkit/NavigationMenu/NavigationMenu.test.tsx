@@ -8,7 +8,7 @@ import {
   NavigationMenuContent, 
   NavigationMenuViewport,
   NavigationMenuLink 
-} from './NavigationMenu';
+} from './index';
 import type { ReactNode } from 'react';
 
 // Mock framer-motion

@@ -23,8 +23,7 @@ describe('ScrollArea', () => {
 
     const root = container.firstChild as HTMLElement;
     const viewport = root.firstChild as HTMLElement;
-    expect(viewport).toHaveClass('overflow-y-auto');
-    expect(viewport).toHaveClass('overflow-x-hidden');
+    expect(viewport).toHaveClass('scroll-area__viewport--vertical');
   });
 
   it('applies horizontal overflow when orientation is horizontal', () => {
@@ -36,8 +35,7 @@ describe('ScrollArea', () => {
 
     const root = container.firstChild as HTMLElement;
     const viewport = root.firstChild as HTMLElement;
-    expect(viewport).toHaveClass('overflow-x-auto');
-    expect(viewport).toHaveClass('overflow-y-hidden');
+    expect(viewport).toHaveClass('scroll-area__viewport--horizontal');
   });
 
   it('applies both overflow when orientation is both', () => {
@@ -49,7 +47,7 @@ describe('ScrollArea', () => {
 
     const root = container.firstChild as HTMLElement;
     const viewport = root.firstChild as HTMLElement;
-    expect(viewport).toHaveClass('overflow-auto');
+    expect(viewport).toHaveClass('scroll-area__viewport--both');
   });
 
   it('applies custom className and viewportClassName', () => {
