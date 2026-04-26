@@ -1,11 +1,7 @@
 import { forwardRef, type InputHTMLAttributes } from 'react';
-import clsx, { type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import { cn } from '../utils/cn';
 import { useSlider } from './useSlider';
-
-function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
+import './slider.css';
 
 export interface SliderProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'onChange' | 'value' | 'defaultValue'> {
   label?: string;
@@ -29,42 +25,39 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(
     });
 
     return (
-      <div className={cn("flex flex-col gap-3 group relative w-full", disabled && "opacity-60 cursor-not-allowed pointer-events-none")}>
+      <div className={cn('slider', disabled && 'slider--disabled')}>
         {(label || description || showValue) && (
-          <div className="flex justify-between items-end">
-            <div className="flex flex-col">
+          <div className="slider__header">
+            <div className="slider__label-group">
               {label && (
                 <label
                   htmlFor={sliderId}
-                  className="text-sm font-medium text-ds-800 dark:text-ds-200 tracking-tight cursor-pointer"
+                  className="slider__label"
                 >
                   {label}
                 </label>
               )}
               {description && (
-                <span className="text-[13px] text-muted-foreground tracking-tight">
+                <span className="slider__description">
                   {description}
                 </span>
               )}
             </div>
             {showValue && (
-              <span className="text-[13px] font-semibold tabular-nums text-primary">
+              <span className="slider__value">
                 {currentValue}
               </span>
             )}
           </div>
         )}
-        <div className="relative flex items-center h-5 w-full">
-          <div className="absolute inset-x-0 h-1.5 rounded-full bg-ds-200 dark:bg-ds-800 pointer-events-none" />
+        <div className="slider__track-container">
+          <div className="slider__track-bg" />
           <div
-            className="absolute left-0 h-1.5 rounded-full bg-primary pointer-events-none"
+            className="slider__track-fill"
             style={{ width: `${percentage}%` }}
           />
           <div
-            className={cn(
-              "absolute w-4 h-4 rounded-full bg-white dark:bg-ds-0 border-2 border-primary shadow-sm pointer-events-none z-10",
-              "group-hover:ring-4 group-hover:ring-primary/10"
-            )}
+            className="slider__thumb"
             style={{
               left: `calc(${percentage}% - 8px)`
             }}
@@ -80,10 +73,7 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(
             value={currentValue}
             onChange={handleChange}
             disabled={disabled}
-            className={cn(
-              "absolute inset-0 w-full h-full opacity-0 cursor-pointer accent-transparent z-20",
-              className
-            )}
+            className={cn('slider__input', className)}
           />
         </div>
       </div>

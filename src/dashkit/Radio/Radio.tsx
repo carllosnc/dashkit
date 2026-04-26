@@ -1,11 +1,7 @@
 import { forwardRef, type InputHTMLAttributes } from 'react';
-import clsx, { type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import { cn } from '../utils/cn';
 import { useRadio } from './useRadio';
-
-function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
+import './radio.css';
 
 export interface RadioProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
   label?: string;
@@ -17,40 +13,32 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
     const { radioId } = useRadio({ id, label });
 
     return (
-      <div className="flex gap-3 group relative items-center">
-        <div className="flex items-center h-6">
-          <label htmlFor={radioId} className="relative flex items-center justify-center cursor-pointer">
+      <div className={cn('radio', props.disabled && 'radio--disabled')}>
+        <div className="radio__input-wrapper">
+          <label htmlFor={radioId} className="radio__label-trigger">
             <input
               {...props}
               type="radio"
               id={radioId}
               ref={ref}
-              className="peer sr-only"
+              className="radio__input"
             />
-            <div
-              className={cn(
-                "w-6 h-6 border-2 transition-all duration-200 flex items-center justify-center shrink-0 bg-background border-input-border peer-checked:border-primary peer-checked:bg-background peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-transparent group-hover:border-primary/50 peer-disabled:opacity-60 peer-disabled:cursor-not-allowed rounded-full",
-                className
-              )}
-            />
-            <div className={cn(
-              "absolute w-2.5 h-2.5 rounded-full bg-primary transition-all duration-200 pointer-events-none",
-              "opacity-0 scale-50 peer-checked:opacity-100 peer-checked:scale-100 peer-checked:peer-disabled:opacity-60"
-            )} />
+            <div className={cn('radio__circle', className)} />
+            <div className="radio__dot" />
           </label>
         </div>
         {(label || description) && (
           <label
             htmlFor={radioId}
-            className="flex flex-col cursor-pointer select-none"
+            className="radio__label-content"
           >
             {label && (
-              <span className="text-sm font-medium text-ds-800 dark:text-ds-200 tracking-tight leading-5">
+              <span className="radio__label-text">
                 {label}
               </span>
             )}
             {description && (
-              <span className="text-sm text-muted-foreground tracking-tight mt-0.5">
+              <span className="radio__description">
                 {description}
               </span>
             )}

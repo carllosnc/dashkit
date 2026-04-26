@@ -1,11 +1,7 @@
 import { forwardRef, type TextareaHTMLAttributes } from 'react';
-import clsx, { type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import { cn } from '../utils/cn';
 import { useTextarea } from './useTextarea';
-
-function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
+import './textarea.css';
 
 export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
@@ -25,11 +21,11 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     });
 
     return (
-      <div className="flex flex-col gap-1.5 w-full font-sans">
+      <div className="textarea">
         {label && (
           <label
             htmlFor={internalId}
-            className="text-[13px] font-semibold text-ds-700 dark:text-ds-300 ml-1 tracking-tight"
+            className="textarea__label"
           >
             {label}
           </label>
@@ -47,18 +43,16 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           }}
           onChange={handleChange}
           className={cn(
-            "w-full px-4 py-3 text-sm bg-input-bg text-input-fg border border-input-border ds-rounded outline-none transition-all duration-200 focus:border-input-focus focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-transparent placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 resize-none min-h-[100px]",
-            autoGrow && "overflow-hidden",
-            {
-              "border-ds-danger-500/50 focus:border-ds-danger-500 focus:ring-ds-danger-50 dark:border-ds-danger-500/30 dark:focus:border-ds-danger-500/50 dark:focus:ring-ds-danger-500/10": !!error,
-            },
+            'textarea__field',
+            autoGrow && 'textarea__field--auto-grow',
+            error && 'textarea__field--error',
             className
           )}
         />
         {(error || helperText) && (
           <span className={cn(
-            "text-[12px] ml-1 tracking-tight",
-            error ? "text-ds-danger-600 dark:text-ds-danger-400" : "text-ds-600"
+            'textarea__message',
+            error ? 'textarea__message--error' : 'textarea__message--helper'
           )}>
             {error || helperText}
           </span>

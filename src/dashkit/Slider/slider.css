@@ -1,0 +1,50 @@
+@reference "../dashkit.css";
+
+.slider {
+  @apply flex flex-col gap-3 relative w-full;
+}
+
+.slider--disabled {
+  @apply opacity-60 cursor-not-allowed pointer-events-none;
+}
+
+.slider__header {
+  @apply flex justify-between items-end;
+}
+
+.slider__label-group {
+  @apply flex flex-col;
+}
+
+.slider__label {
+  @apply text-sm font-medium text-ds-800 dark:text-ds-200 tracking-tight cursor-pointer;
+}
+
+.slider__description {
+  @apply text-[13px] text-muted-foreground tracking-tight;
+}
+
+.slider__value {
+  @apply text-[13px] font-semibold tabular-nums text-primary;
+}
+
+.slider__track-container {
+  @apply relative flex items-center h-5 w-full;
+}
+
+.slider__track-bg {
+  @apply absolute inset-x-0 h-1.5 rounded-full bg-ds-200 dark:bg-ds-800 pointer-events-none;
+}
+
+.slider__track-fill {
+  @apply absolute left-0 h-1.5 rounded-full bg-primary pointer-events-none;
+}
+
+.slider__thumb {
+  @apply absolute w-4 h-4 rounded-full bg-white dark:bg-ds-0 border-2 border-primary shadow-sm pointer-events-none z-10;
+  @apply group-hover:ring-4 group-hover:ring-primary/10 transition-all duration-200;
+}
+
+.slider__input {
+  @apply absolute inset-0 w-full h-full opacity-0 cursor-pointer accent-transparent z-20;
+}

@@ -1,0 +1,82 @@
+@reference "../dashkit.css";
+
+.select {
+  @apply flex flex-col gap-1.5 w-full font-sans;
+}
+
+.select__label {
+  @apply text-[13px] font-semibold text-ds-700 dark:text-ds-300 ml-1 tracking-tight;
+}
+
+.select__trigger-wrapper {
+  @apply relative;
+}
+
+.select__trigger {
+  @apply w-full px-4 h-9 text-sm text-left flex items-center justify-between gap-2;
+  @apply bg-input-bg text-input-fg border border-input-border ds-rounded outline-none;
+  @apply focus:border-input-focus focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-transparent;
+  @apply placeholder:text-ds-500;
+  @apply disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.select__trigger-text {
+  @apply truncate block;
+}
+
+.select__trigger-text--placeholder {
+  @apply text-ds-500 dark:text-ds-500;
+}
+
+.select__chevron {
+  @apply shrink-0 text-ds-500 transition-transform duration-200;
+}
+
+.select__chevron--open {
+  @apply rotate-180 text-input-focus;
+}
+
+.select__popover {
+  @apply p-1 bg-popover text-popover-fg border border-popover-border ds-rounded shadow-lg overflow-hidden;
+}
+
+.select__popover--side-top {
+  @apply origin-bottom;
+}
+
+.select__popover--side-bottom {
+  @apply origin-top;
+}
+
+.select__options-container {
+  @apply max-h-60 overflow-y-auto flex flex-col gap-0.5 custom-scrollbar;
+}
+
+.select__no-options {
+  @apply px-4 py-2 text-sm text-ds-400 text-center;
+}
+
+.select__option {
+  @apply w-full px-4 py-2.5 text-sm text-left flex items-center justify-between duration-200 transition-colors ds-rounded;
+}
+
+.select__option--selected {
+  @apply bg-popover-item-selected text-popover-item-selected-fg font-semibold;
+}
+
+.select__option--default {
+  @apply text-popover-fg hover:bg-popover-item;
+}
+
+.select__option-text {
+  @apply truncate;
+}
+
+.select__check-icon {
+  @apply size-4 shrink-0;
+  @apply text-popover-item-selected-fg;
+}
+
+.select__description {
+  @apply text-[12px] text-ds-600 dark:text-ds-400 ml-1 tracking-tight;
+}

@@ -1,10 +1,6 @@
-import clsx, { type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import { cn } from '../utils/cn';
 import { useOtpInput } from './useOtpInput';
-
-function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
+import './otp-input.css';
 
 export interface OtpInputProps {
   length?: number;
@@ -15,14 +11,14 @@ export interface OtpInputProps {
   containerClassName?: string;
 }
 
-export const OtpInput = ({
+export function OtpInput({
   length = 6,
   value = '',
   onChange,
   disabled,
   className,
   containerClassName
-}: OtpInputProps) => {
+}: OtpInputProps) {
   const {
     inputsRef,
     handleInput,
@@ -31,7 +27,7 @@ export const OtpInput = ({
   } = useOtpInput({ length, value, onChange, disabled });
 
   return (
-    <div className={cn("flex flex-wrap gap-2 sm:gap-3 items-center justify-start", containerClassName)}>
+    <div className={cn('otp-input', containerClassName)}>
       {Array.from({ length }).map((_, i) => (
         <input
           key={i}
@@ -46,15 +42,11 @@ export const OtpInput = ({
           onKeyDown={(e) => handleKeyDown(e, i)}
           onPaste={handlePaste}
           disabled={disabled}
-          className={cn(
-            "w-10 h-12 sm:w-11 sm:h-13 text-center text-lg sm:text-xl font-bold bg-input-bg text-input-fg border border-input-border ds-rounded outline-none transition-all duration-300 focus:border-input-focus focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-transparent placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
-            "hover:border-ds-500 dark:hover:border-ds-500",
-            className
-          )}
+          className={cn('otp-input__field', className)}
         />
       ))}
     </div>
   );
-};
+}
 
 OtpInput.displayName = 'OtpInput';

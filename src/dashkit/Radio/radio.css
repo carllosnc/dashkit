@@ -1,0 +1,63 @@
+@reference "../dashkit.css";
+
+.radio {
+  @apply flex gap-3 relative items-center;
+}
+
+.radio__input-wrapper {
+  @apply flex items-center h-6;
+}
+
+.radio__label-trigger {
+  @apply relative flex items-center justify-center cursor-pointer;
+}
+
+.radio__input {
+  @apply sr-only;
+}
+
+.radio__circle {
+  @apply w-6 h-6 border-2 transition-all duration-200 flex items-center justify-center shrink-0 rounded-full;
+  @apply bg-background border-input-border;
+
+  .radio__input:checked + & {
+    @apply border-primary bg-background;
+  }
+
+  .radio__input:focus-visible + & {
+    @apply ring-2 ring-ring ring-offset-2 ring-offset-transparent;
+  }
+
+  .radio:hover & {
+    @apply border-primary/50;
+  }
+
+  .radio__input:disabled + & {
+    @apply opacity-60 cursor-not-allowed;
+  }
+}
+
+.radio__dot {
+  @apply absolute w-2.5 h-2.5 rounded-full bg-primary transition-all duration-200 pointer-events-none;
+  @apply opacity-0 scale-50;
+
+  .radio__input:checked ~ & {
+    @apply opacity-100 scale-100;
+  }
+
+  .radio__input:checked:disabled ~ & {
+    @apply opacity-60;
+  }
+}
+
+.radio__label-content {
+  @apply flex flex-col cursor-pointer select-none;
+}
+
+.radio__label-text {
+  @apply text-sm font-medium text-ds-800 dark:text-ds-200 tracking-tight leading-5;
+}
+
+.radio__description {
+  @apply text-sm text-muted-foreground tracking-tight mt-0.5;
+}
