@@ -31,10 +31,10 @@ export function ColumnFour() {
   };
 
   const trafficData = [
-    { label: "Organic", value: 480, color: "#0099ff" },
-    { label: "Referral", value: 320, color: "#6666ff" },
-    { label: "Direct", value: 140, color: "#006699" },
-    { label: "Social", value: 60, color: "#00cccc" }
+    { label: "Organic", value: 480, color: "var(--color-ds-primary-600)" },
+    { label: "Referral", value: 320, color: "var(--color-ds-primary-400)" },
+    { label: "Direct", value: 140, color: "var(--color-ds-primary-700)" },
+    { label: "Social", value: 60, color: "var(--color-ds-primary-300)" }
   ];
 
   return (
@@ -114,7 +114,7 @@ export function ColumnFour() {
 
       {/* 16. Cloud Storage Usage */}
       <Card>
-         <CardHeader leftIcon={<FiFolder className="text-ds-warning-600" size={18} />}>
+         <CardHeader leftIcon={<FiFolder className="text-ds-primary-600" size={18} />}>
             <CardTitle>Storage</CardTitle>
          </CardHeader>
          <CardContent className="space-y-4">
@@ -125,7 +125,7 @@ export function ColumnFour() {
                </div>
                <FiTrendingUp className="text-ds-danger-600 mb-1" />
             </div>
-            <ProgressBar value={42.8} size="sm" color="warning" />
+            <ProgressBar value={42.8} size="sm" color="primary" />
             <div className="grid grid-cols-2 gap-2">
                <div className="flex flex-col p-2 bg-ds-50/50 dark:bg-ds-800/10 ds-rounded border border-ds-200 dark:border-ds-800">
                   <span className="text-xs font-bold uppercase text-ds-500 tracking-wider">Images</span>
@@ -141,7 +141,7 @@ export function ColumnFour() {
 
       {/* 17. Quick Integrations */}
       <Card>
-         <CardHeader leftIcon={<FiShare2 className="text-ds-info-600" size={18} />}>
+         <CardHeader leftIcon={<FiShare2 className="text-ds-primary-600" size={18} />}>
             <CardTitle>Integrations</CardTitle>
          </CardHeader>
          <CardContent className="space-y-4">
@@ -162,7 +162,7 @@ export function ColumnFour() {
                   leading={item.icon}
                   trailing={
                     item.connected
-                      ? <Badge content="Connected" color="success" variant="soft" />
+                      ? <Badge content="Connected" color="primary" variant="soft" />
                       : <Button variant="soft" size="sm">Connect</Button>
                   }
                 />
@@ -177,7 +177,7 @@ export function ColumnFour() {
 
       {/* New 16: Security Audit */}
       <Card>
-         <CardHeader leftIcon={<FiShield className="text-ds-success-600" size={18} />}>
+         <CardHeader leftIcon={<FiShield className="text-ds-primary-600" size={18} />}>
             <CardTitle>Security Audit</CardTitle>
          </CardHeader>
          <CardContent className="space-y-4">
@@ -240,8 +240,8 @@ export function ColumnFour() {
       {/* New 4: API Keys */}
       <Card>
          <CardHeader
-            leftIcon={<FiLock className="text-ds-warning-600" size={18} />}
-            action={<Badge content="Pro" color="warning" variant="soft" />}
+            leftIcon={<FiLock className="text-ds-primary-600" size={18} />}
+            action={<Badge content="Pro" color="primary" variant="soft" />}
          >
             <CardTitle>API Credentials</CardTitle>
             <CardDescription>Manage your secret keys for external integrations.</CardDescription>
@@ -327,7 +327,7 @@ export function ColumnFour() {
       <Card>
          <CardHeader
             leftIcon={<FiFileText className="text-ds-primary-600" size={18} />}
-            action={<Badge content="Paid" color="success" variant="soft" />}
+            action={<Badge content="Paid" color="primary" variant="soft" />}
          >
             <CardTitle>Recent Invoice</CardTitle>
             <CardDescription>Generated automatically.</CardDescription>

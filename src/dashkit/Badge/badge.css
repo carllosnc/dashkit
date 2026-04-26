@@ -80,6 +80,17 @@
   @variant dark { @apply bg-ds-info-500; }
 }
 
+/* Primary colors */
+.badge--solid-primary { 
+  @apply bg-ds-primary text-ds-primary-fg border-transparent;
+}
+.badge--soft-primary { 
+  @apply bg-ds-primary/15 text-ds-primary border-transparent;
+}
+.badge--pulse-primary { 
+  @apply bg-ds-primary;
+}
+
 /* Pulse animations */
 .badge__pulse {
   @apply absolute animate-ping opacity-60;
@@ -98,3 +109,4 @@
 .badge__pulse--warning { @apply bg-ds-warning-500; @variant dark { @apply bg-ds-warning-500; } }
 .badge__pulse--danger { @apply bg-ds-danger-600; @variant dark { @apply bg-ds-danger-500; } }
 .badge__pulse--info { @apply bg-ds-info-600; @variant dark { @apply bg-ds-info-500; } }
+.badge__pulse--primary { @apply bg-ds-primary; }

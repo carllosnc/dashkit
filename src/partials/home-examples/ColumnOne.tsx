@@ -196,13 +196,13 @@ export function ColumnOne() {
             </div>
             <div className="flex items-center justify-between p-3 ds-rounded border border-ds-200 dark:border-ds-800 bg-ds-50/30 dark:bg-ds-100/5">
                <div className="flex items-center gap-3">
-                  <FiActivity className="text-ds-warning-600" size={16} />
+                  <FiActivity className="text-ds-primary-600" size={16} />
                   <div className="flex flex-col">
                      <span className="text-sm font-bold leading-tight">API Rate Limit</span>
                      <span className="text-xs text-ds-500 tracking-wider font-bold uppercase">Public Access</span>
                     </div>
                  </div>
-                 <Badge content="Warning" color="warning" variant="soft" className="text-xs" />
+                 <Badge content="Warning" color="primary" variant="soft" className="text-xs" />
               </div>
               <Button variant="outlined" size="sm" className="w-full">View Security Logs</Button>
            </CardContent>
@@ -382,7 +382,7 @@ export function ColumnOne() {
                   </div>
                   <div className="flex items-center justify-between">
                      <span className="text-sm font-medium">Malware Protection</span>
-                     <Badge content="Scanning" color="warning" variant="solid" dot />
+                     <Badge content="Scanning" color="primary" variant="solid" dot />
                   </div>
                   <div className="flex items-center justify-between">
                      <span className="text-sm font-medium">Secure Boot</span>

@@ -5,7 +5,7 @@ import { cn } from '../utils/cn';
 import './badge.css';
 
 export type BadgeVariant = 'solid' | 'soft';
-export type BadgeColor = 'success' | 'warning' | 'danger' | 'error' | 'info' | 'base';
+export type BadgeColor = 'primary' | 'success' | 'warning' | 'danger' | 'error' | 'info' | 'base';
 
 export interface BadgeProps {
   content?: React.ReactNode;

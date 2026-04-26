@@ -84,8 +84,8 @@ export function ColumnThree() {
               <BarChart
                  data={CONVERSION_DATA}
                  series={[
-                    { key: 'desktop', label: 'Desktop', color: '#3b82f6' },
-                    { key: 'mobile', label: 'Mobile', color: '#10b981' }
+                    { key: 'desktop', label: 'Desktop', color: 'var(--color-ds-primary-600)' },
+                    { key: 'mobile', label: 'Mobile', color: 'var(--color-ds-primary-400)' }
                  ]}
                  showGrid={false}
                  rounded
@@ -301,8 +301,8 @@ export function ColumnThree() {
        {/* New 15: Appearance Engine (New) */}
        <Card>
           <CardHeader
-             leftIcon={<FiSun className="text-ds-warning-600" size={18} />}
-             action={<Badge content="Pro" color="warning" variant="soft" />}
+             leftIcon={<FiSun className="text-ds-primary-600" size={18} />}
+             action={<Badge content="Pro" color="primary" variant="soft" />}
           >
              <CardTitle>Appearance Engine</CardTitle>
              <CardDescription>Customize your workspace theme.</CardDescription>

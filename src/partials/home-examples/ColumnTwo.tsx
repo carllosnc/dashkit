@@ -80,7 +80,7 @@ export function ColumnTwo() {
              <div className="py-2">
                 <LineChart
                   data={REVENUE_DATA}
-                  series={[{ key: 'revenue', label: 'Revenue', color: '#10b981' }]} 
+                  series={[{ key: 'revenue', label: 'Revenue', color: 'var(--ds-primary)' }]} 
                   showGrid={false}
                   showLabels={true}
                 />
@@ -96,13 +96,13 @@ export function ColumnTwo() {
       <Card>
          <CardHeader 
             className="pb-2"
-            leftIcon={<FiShoppingCart className="text-ds-success-600" size={18} />}
+            leftIcon={<FiShoppingCart className="text-ds-primary-600" size={18} />}
          >
             <CardTitle className="text-3xl font-medium tracking-tight">
                <AnimateNumber value={liveValue} prefix="$" precision={2} />
             </CardTitle>
             <CardDescription className="flex items-center gap-1.5 mt-1">
-               <Badge content="Live" color="success" variant="solid" pulse dot show />
+               <Badge content="Live" color="primary" variant="solid" pulse dot show />
                <span className="text-xs text-ds-500">Real-time transaction stream</span>
             </CardDescription>
          </CardHeader>
@@ -112,7 +112,7 @@ export function ColumnTwo() {
                   <span className="text-xs text-ds-500 font-bold uppercase tracking-wider">Avg. Ticket</span>
                   <span className="text-base font-bold">$242.10</span>
                </div>
-               <div className="flex items-center gap-1 text-ds-success-600 font-bold text-xs">
+               <div className="flex items-center gap-1 text-ds-primary-600 font-bold text-xs">
                   <FiArrowUpRight size={14} />
                   <span>+2.4%</span>
                </div>
@@ -123,7 +123,7 @@ export function ColumnTwo() {
       {/* 5. Interactive Control Panel (Replaces Weekly Progress) */}
       <Card className=" dark:border-ds-800 overflow-visible">
          <CardHeader 
-            leftIcon={<FiShield className="text-ds-success-600" size={18} />}
+            leftIcon={<FiShield className="text-ds-primary-600" size={18} />}
             action={
                <Popover>
                   <PopoverTrigger>
@@ -150,7 +150,7 @@ export function ColumnTwo() {
          <CardContent className="pt-2">
             <div className="grid grid-cols-2 gap-3 mb-6">
                <div className="p-4 ds-rounded bg-ds-50/30 dark:bg-ds-800/20 border border-ds-200 dark:border-ds-800 flex flex-col gap-3">
-                  <FiShield className="text-ds-success-600" size={20} />
+                  <FiShield className="text-ds-primary-600" size={20} />
                   <div>
                      <div className="text-lg font-bold leading-none mb-1">Active</div>
                      <div className="text-xs uppercase font-bold text-ds-500 tracking-wider">Firewall</div>
@@ -249,8 +249,8 @@ export function ColumnTwo() {
          <CardContent className="space-y-3">
             <div className="flex items-center justify-between group">
                <div className="flex items-center gap-3">
-                  <div className="size-8 rounded-full bg-ds-success-500/10 flex items-center justify-center">
-                     <FiGlobe className="text-ds-success-600" size={16} />
+                  <div className="size-8 rounded-full bg-ds-primary-500/10 flex items-center justify-center">
+                     <FiGlobe className="text-ds-primary-600" size={16} />
                   </div>
                   <div className="flex flex-col">
                      <span className="text-sm font-bold">Main API</span>
@@ -285,11 +285,11 @@ export function ColumnTwo() {
          <CardContent className="flex flex-col gap-6">
             <div className="flex items-center justify-center py-2 gap-8">
                <div className="flex flex-col items-center gap-3">
-                  <CircularProgress value={94} size="lg" showValue color="success" trackColor="text-ds-100 dark:text-ds-800" />
+                  <CircularProgress value={94} size="lg" showValue color="primary" trackColor="text-ds-100 dark:text-ds-800" />
                   <span className="text-xs font-bold text-ds-500 uppercase tracking-widest">Uptime</span>
                </div>
                <div className="flex flex-col items-center gap-3">
-                  <CircularProgress value={28} size="lg" showValue color="warning" trackColor="text-ds-100 dark:text-ds-800" />
+                  <CircularProgress value={28} size="lg" showValue color="primary" trackColor="text-ds-100 dark:text-ds-800" />
                   <span className="text-xs font-bold text-ds-500 uppercase tracking-widest">Latency</span>
                </div>
             </div>
@@ -300,9 +300,9 @@ export function ColumnTwo() {
                      <FiCpu className="text-ds-500" size={14} />
                      <span className="text-sm font-medium">CPU Usage</span>
                   </div>
-                  <span className="text-sm font-bold text-ds-success-600">Optimal</span>
+                  <span className="text-sm font-bold text-ds-primary-600">Optimal</span>
                </div>
-               <ProgressBar value={12} size="xs" color="success" />
+               <ProgressBar value={12} size="xs" color="primary" />
             </div>
          </CardContent>
       </Card>
@@ -395,7 +395,7 @@ export function ColumnTwo() {
                   <span className="text-sm font-bold">Mozilla Firefox</span>
                   <span className="text-sm font-bold text-ds-500">12%</span>
                </div>
-               <ProgressBar value={12} color="warning" size="xs" />
+               <ProgressBar value={12} color="primary" size="xs" />
             </div>
             <Button variant="soft" size="sm" className="w-full mt-2">View Full Analytics</Button>
          </CardContent>
@@ -420,7 +420,7 @@ export function ColumnTwo() {
                   <span className="font-medium text-ds-500">Memory (RAM)</span>
                   <span className="font-bold">12.4 / 16 GB</span>
                </div>
-               <ProgressBar value={78} color="warning" />
+               <ProgressBar value={78} color="primary" />
             </div>
             <Button variant="soft" size="sm" className="w-full mt-2" leftIcon={<FiActivity size={14} />}>View Node Panel</Button>
          </CardContent>
