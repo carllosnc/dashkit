@@ -42,7 +42,11 @@
 
 .slider__thumb {
   @apply absolute w-4 h-4 rounded-full bg-white dark:bg-ds-0 border-2 border-primary shadow-sm pointer-events-none z-10;
-  @apply group-hover:ring-4 group-hover:ring-primary/10 transition-all duration-200;
+  @apply transition-[box-shadow,transform] duration-200;
+}
+
+.slider__track-container:hover .slider__thumb {
+  @apply ring-4 ring-primary/10;
 }
 
 .slider__input {
