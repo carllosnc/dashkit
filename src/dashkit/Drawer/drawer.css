@@ -1,11 +1,11 @@
 @reference "../dashkit.css";
 
 .drawer {
-  @apply fixed inset-0 z-[100] isolate overflow-hidden flex items-center justify-center;
+  @apply fixed inset-0 z-[1100] isolate overflow-hidden flex items-center justify-center;
 }
 
 .drawer__panel {
-  @apply absolute bg-card text-card-foreground shadow-sm overflow-hidden flex flex-col touch-none z-[60];
+  @apply absolute bg-card text-card-foreground shadow-sm overflow-hidden flex flex-col touch-none z-[1110];
 }
 
 .drawer__panel--left {
@@ -41,7 +41,7 @@
 }
 
 .drawer__close {
-  @apply absolute p-3 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-colors z-[110] backdrop-blur-md;
+  @apply absolute p-3 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-colors z-[1120] backdrop-blur-md;
 }
 
 .drawer__close--right {

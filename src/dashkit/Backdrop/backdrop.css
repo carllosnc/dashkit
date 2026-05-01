@@ -1,7 +1,7 @@
 @reference "../dashkit.css";
 
 .backdrop {
-  @apply fixed inset-0 z-50 flex items-center justify-center p-6 isolate;
+  @apply fixed inset-0 z-[1100] flex items-center justify-center p-6 isolate;
 }
 
 .backdrop--absolute {

@@ -1,7 +1,7 @@
 @reference "../dashkit.css";
 
 .modal__wrapper {
-  @apply fixed inset-0 z-[100] isolate flex items-center justify-center p-6;
+  @apply fixed inset-0 z-[1100] isolate flex items-center justify-center p-6;
 }
 
 .modal__content-wrapper {
