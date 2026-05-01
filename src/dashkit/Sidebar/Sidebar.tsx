@@ -4,8 +4,8 @@ import { motion } from 'framer-motion';
 import type { HTMLMotionProps } from 'framer-motion';
 import { FiChevronsLeft, FiMenu, FiChevronDown } from 'react-icons/fi';
 import { IconButton } from '../IconButton/IconButton';
-import { SidebarContext } from './SidebarContext';
-import { useSidebar } from './useSidebar';
+import { SidebarContext, useSidebar } from './SidebarContext';
+import { useSidebarState } from './useSidebar';
 import { AnimatePresence } from 'framer-motion';
 import { Tooltip, TooltipTrigger, TooltipContent } from '../Tooltip/Tooltip';
 import './sidebar.css';
@@ -21,7 +21,7 @@ export interface SidebarProps extends
 
 export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
   ({ className, children, collapsible = true, defaultOpen = true, open: controlledOpen, onOpenChange, ...props }, ref) => {
-    const { isOpen, toggle } = useSidebar({ defaultOpen, open: controlledOpen, onOpenChange });
+    const { isOpen, toggle } = useSidebarState({ defaultOpen, open: controlledOpen, onOpenChange });
 
     return (
       <SidebarContext.Provider value={{ isOpen, setIsOpen: () => {}, toggle }}>
@@ -62,9 +62,7 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
 Sidebar.displayName = 'Sidebar';
 
 export function SidebarHeader({ children, className }: { children: React.ReactNode; className?: string }) {
-  const sidebarContext = React.useContext(SidebarContext);
-  if (!sidebarContext) throw new Error('SidebarHeader must be used within Sidebar');
-  const { isOpen } = sidebarContext;
+  const { isOpen } = useSidebar();
 
   return (
     <motion.div
@@ -82,23 +80,19 @@ export function SidebarHeader({ children, className }: { children: React.ReactNo
 }
 
 export function SidebarHeaderOpen({ children }: { children: React.ReactNode }) {
-  const sidebarContext = React.useContext(SidebarContext);
-  if (!sidebarContext) throw new Error('SidebarHeaderOpen must be used within Sidebar');
-  if (!sidebarContext.isOpen) return null;
+  const { isOpen } = useSidebar();
+  if (!isOpen) return null;
   return <>{children}</>;
 }
 
 export function SidebarHeaderClose({ children }: { children: React.ReactNode }) {
-  const sidebarContext = React.useContext(SidebarContext);
-  if (!sidebarContext) throw new Error('SidebarHeaderClose must be used within Sidebar');
-  if (sidebarContext.isOpen) return null;
+  const { isOpen } = useSidebar();
+  if (isOpen) return null;
   return <>{children}</>;
 }
 
 export function SidebarFooter({ children, className }: { children: React.ReactNode; className?: string }) {
-  const sidebarContext = React.useContext(SidebarContext);
-  if (!sidebarContext) throw new Error('SidebarFooter must be used within Sidebar');
-  const { isOpen } = sidebarContext;
+  const { isOpen } = useSidebar();
 
   return (
     <motion.div
@@ -118,16 +112,14 @@ export function SidebarFooter({ children, className }: { children: React.ReactNo
 }
 
 export function SidebarFooterOpen({ children }: { children: React.ReactNode }) {
-  const sidebarContext = React.useContext(SidebarContext);
-  if (!sidebarContext) throw new Error('SidebarFooterOpen must be used within Sidebar');
-  if (!sidebarContext.isOpen) return null;
+  const { isOpen } = useSidebar();
+  if (!isOpen) return null;
   return <>{children}</>;
 }
 
 export function SidebarFooterClose({ children }: { children: React.ReactNode }) {
-  const sidebarContext = React.useContext(SidebarContext);
-  if (!sidebarContext) throw new Error('SidebarFooterClose must be used within Sidebar');
-  if (sidebarContext.isOpen) return null;
+  const { isOpen } = useSidebar();
+  if (isOpen) return null;
   return <>{children}</>;
 }
 
@@ -213,9 +205,7 @@ export interface SidebarItemProps extends Omit<HTMLMotionProps<'button'>, 'child
 }
 
 export function SidebarItem({ icon, active, children, badgeSlot, className, href, target, ...props }: SidebarItemProps) {
-  const sidebarContext = React.useContext(SidebarContext);
-  if (!sidebarContext) throw new Error('SidebarItem must be used within Sidebar');
-  const { isOpen } = sidebarContext;
+  const { isOpen } = useSidebar();
 
   const sharedClasses = cn(
     "sidebar__item",

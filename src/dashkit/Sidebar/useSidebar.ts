@@ -6,7 +6,7 @@ export interface UseSidebarProps {
   onOpenChange?: (open: boolean) => void;
 }
 
-export function useSidebar({ defaultOpen = true, open: controlledOpen, onOpenChange }: UseSidebarProps) {
+export function useSidebarState({ defaultOpen = true, open: controlledOpen, onOpenChange }: UseSidebarProps) {
   const [internalOpen, setInternalOpen] = React.useState(defaultOpen);
 
   const isOpen = controlledOpen !== undefined ? controlledOpen : internalOpen;
