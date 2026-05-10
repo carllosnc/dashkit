@@ -43,7 +43,7 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: `${percentage}%` }}
-            transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+            transition={{ type: 'spring', bounce: 0, duration: 0.6 }}
             className={cn('progress-bar__fill', `progress-bar__fill--${color}`)}
           />
         ) : (

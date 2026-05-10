@@ -26,7 +26,7 @@
 .progress-bar__track--lg { @apply h-4; }
 
 .progress-bar__fill {
-  @apply h-full rounded-full transition-all;
+  @apply h-full rounded-full;
 }
 
 .progress-bar__fill--primary { @apply bg-primary; }
