@@ -43,11 +43,9 @@ export const removeToast = (id: string) => {
 };
 
 export function useToast() {
-  const [toasts, setToasts] = React.useState<ToastData[]>([]);
+  const [toasts, setToasts] = React.useState<ToastData[]>(currentToasts);
 
   React.useEffect(() => {
-    // Sync initial state on mount to avoid hydration mismatch while keeping state
-    setToasts([...currentToasts]);
     observers.add(setToasts);
     return () => { 
       observers.delete(setToasts); 
