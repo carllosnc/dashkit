@@ -47,8 +47,8 @@ export function DropdownContent({
   const dropdownHeight = contentRect?.height || 0;
   const dropdownWidth = contentRect?.width || 0;
 
-  let top = 0;
-  let left = 0;
+  let top: number;
+  let left: number;
   let actualSide = side;
 
   if (side === 'bottom' || side === 'top') {
