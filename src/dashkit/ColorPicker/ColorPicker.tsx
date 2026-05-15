@@ -34,12 +34,14 @@ export function ColorPicker({
   presets = DEFAULT_PRESETS
 }: ColorPickerProps) {
   const [hex, setHex] = React.useState(value || defaultValue);
+  const [prevValue, setPrevValue] = React.useState(value);
 
-  React.useEffect(() => {
+  if (value !== prevValue) {
+    setPrevValue(value);
     if (value !== undefined) {
       setHex(value);
     }
-  }, [value]);
+  }
 
   const handleColorChange = (newColor: string) => {
     setHex(newColor);
