@@ -52,8 +52,8 @@ export function PopoverContent({
   const popoverHeight = contentRect?.height || 0;
   const popoverWidth = contentRect?.width || 0;
 
-  let top = 0;
-  let left = 0;
+  let top: number;
+  let left: number;
   let actualSide = side;
 
   if (side === 'bottom' || side === 'top') {
