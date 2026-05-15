@@ -23,10 +23,13 @@ export function ToastProvider({
   invert?: boolean;
 }) {
   const { toasts } = useToast();
-  const [isMounted, setIsMounted] = React.useState(false);
+  const isMounted = React.useSyncExternalStore(
+    React.useCallback(() => () => {}, []),
+    () => true,
+    () => false
+  );
 
   React.useEffect(() => {
-    setIsMounted(true);
     setToastDefaultPosition(position);
   }, [position]);
 
