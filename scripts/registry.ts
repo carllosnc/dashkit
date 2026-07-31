@@ -106,6 +106,11 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Dropdown',
     files: [
       'src/dashkit/Dropdown/Dropdown.tsx',
+      'src/dashkit/Dropdown/DropdownContent.tsx',
+      'src/dashkit/Dropdown/DropdownItem.tsx',
+      'src/dashkit/Dropdown/DropdownLabel.tsx',
+      'src/dashkit/Dropdown/DropdownSeparator.tsx',
+      'src/dashkit/Dropdown/DropdownTrigger.tsx',
       'src/dashkit/Dropdown/dropdown.css',
       'src/dashkit/Dropdown/useDropdown.ts',
       'src/dashkit/Dropdown/Dropdown.test.tsx',
@@ -138,6 +143,9 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Modal',
     files: [
       'src/dashkit/Modal/Modal.tsx',
+      'src/dashkit/Modal/ModalContent.tsx',
+      'src/dashkit/Modal/ModalFooter.tsx',
+      'src/dashkit/Modal/ModalHeader.tsx',
       'src/dashkit/Modal/modal.css',
       'src/dashkit/Modal/useModal.ts',
       'src/dashkit/Modal/Modal.test.tsx',
@@ -255,7 +263,6 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Spinner',
     files: [
       'src/dashkit/Spinner/Spinner.tsx',
-      'src/dashkit/Spinner/spinner.css',
       'src/dashkit/Spinner/Spinner.test.tsx',
       'src/dashkit/Spinner/index.ts'
     ],
@@ -265,6 +272,9 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Navbar',
     files: [
       'src/dashkit/Navbar/Navbar.tsx',
+      'src/dashkit/Navbar/NavbarActions.tsx',
+      'src/dashkit/Navbar/NavbarBrand.tsx',
+      'src/dashkit/Navbar/NavbarLinks.tsx',
       'src/dashkit/Navbar/navbar.css',
       'src/dashkit/Navbar/Navbar.test.tsx',
       'src/dashkit/Navbar/index.ts'
@@ -386,6 +396,7 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Divider',
     files: [
       'src/dashkit/Divider/Divider.tsx',
+      'src/dashkit/Divider/divider.css',
       'src/dashkit/Divider/Divider.test.tsx',
       'src/dashkit/Divider/index.ts'
     ],
@@ -472,6 +483,7 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Dock',
     files: [
       'src/dashkit/Dock/Dock.tsx',
+      'src/dashkit/Dock/DockItem.tsx',
       'src/dashkit/Dock/dock.css',
       'src/dashkit/Dock/Dock.test.tsx',
       'src/dashkit/Dock/index.ts'
@@ -482,6 +494,8 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Popover',
     files: [
       'src/dashkit/Popover/Popover.tsx',
+      'src/dashkit/Popover/PopoverContent.tsx',
+      'src/dashkit/Popover/PopoverTrigger.tsx',
       'src/dashkit/Popover/popover.css',
       'src/dashkit/Popover/usePopover.ts',
       'src/dashkit/Popover/Popover.test.tsx',
@@ -565,7 +579,6 @@ export const registry: Record<string, ComponentConfig> = {
     files: [
       'src/dashkit/StatsCard/StatsCard.tsx',
       'src/dashkit/StatsCard/stats-card.css',
-      'src/dashkit/StatsCard/StatsCard.test.tsx',
       'src/dashkit/StatsCard/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],

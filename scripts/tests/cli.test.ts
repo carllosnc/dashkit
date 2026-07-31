@@ -4,8 +4,8 @@ import { execSync } from 'child_process';
 import fs from 'fs-extra';
 import path from 'path';
 
-const CLI_PATH = path.resolve(__dirname, 'cli.ts');
-const TEMP_DIR = path.resolve(__dirname, '../tmp/cli-tests');
+const CLI_PATH = path.resolve(__dirname, '../cli.ts');
+const TEMP_DIR = path.resolve(__dirname, '../../tmp/cli-tests');
 
 describe('Dashkit CLI', () => {
   beforeAll(async () => {
@@ -50,7 +50,7 @@ describe('Dashkit CLI', () => {
   it('should run doctor diagnostics successfully', async () => {
     // Running doctor on the current dashkit project itself
     const output = execSync(`bun x tsx ${CLI_PATH} doctor`, {
-      cwd: path.resolve(__dirname, '..'),
+      cwd: path.resolve(__dirname, '../..'),
       encoding: 'utf8'
     });
 
@@ -63,7 +63,7 @@ describe('Dashkit CLI', () => {
   it('should fail doctor if core file is missing', async () => {
     const testDir = path.join(TEMP_DIR, 'doctor-fail');
     await fs.ensureDir(testDir);
-    
+
     // Initialize empty without src/index.css
     try {
       execSync(`bun x tsx ${CLI_PATH} doctor`, {

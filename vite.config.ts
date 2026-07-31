@@ -24,6 +24,11 @@ export default defineConfig({
     react({ include: /\.(jsx|js|mdx|md|tsx|ts)$/ }),
     tailwindcss(),
   ],
+  server: {
+    watch: {
+      ignored: ['**/tmp/**']
+    }
+  },
   test: {
     environment: 'jsdom',
     setupFiles: ['./src/setupTests.ts'],
