@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { Command } from 'commander';
 import { handleAdd, handleInit, handleDoctor } from './commands';
 
@@ -20,6 +21,7 @@ program
 program
   .command('init')
   .description('Initialize Dashkit in your project (installs dashkit.css)')
+  .option('-y, --yes', 'Accept all defaults without prompting')
   .action(handleInit);
 
 program

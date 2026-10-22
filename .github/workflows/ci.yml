@@ -30,5 +30,8 @@ jobs:
       - name: Build CLI
         run: bun run build:cli
 
+      - name: Verify CLI bundle matches source
+        run: git diff --exit-code exec/cli.js
+
       - name: Run test suite
         run: bun run test
