@@ -14,6 +14,7 @@ program
   .argument('[component]', 'Component to add')
   .option('-o, --output <dir>', 'Output directory (defaults to smart detection)')
   .option('--no-install', 'Do not automatically install dependencies')
+  .option('-f, --force', 'Overwrite existing component files')
   .action(handleAdd);
 
 program

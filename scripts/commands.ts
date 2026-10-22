@@ -48,6 +48,7 @@ const projectRoot = path.resolve(__dirname, '..');
 export interface CliOptions {
   output: string;
   install: boolean;
+  force?: boolean;
 }
 
 async function installDashkitCss(targetPath: string, sourcePath: string) {
@@ -65,7 +66,20 @@ async function installDashkitCss(targetPath: string, sourcePath: string) {
   return false;
 }
 
-async function copyComponentFiles(component: ComponentConfig, targetDir: string) {
+interface CopyResult {
+  copied: number;
+  kept: string[];
+}
+
+async function copyComponentFiles(
+  component: ComponentConfig,
+  targetDir: string,
+  force = false
+): Promise<CopyResult> {
+  // Resolve and validate every source first, then detect conflicts before writing
+  // anything, so existing user files are never overwritten silently.
+  const files: Array<{ sourcePath: string; targetPath: string; exists: boolean }> = [];
+
   for (const file of component.files) {
     const sourcePath = path.resolve(projectRoot, file);
     const targetPath = path.join(targetDir, path.basename(file));
@@ -73,8 +87,47 @@ async function copyComponentFiles(component: ComponentConfig, targetDir: string)
     if (!(await fs.pathExists(sourcePath))) {
       throw new Error(`File not found: ${sourcePath}`);
     }
-    await fs.copy(sourcePath, targetPath);
+    files.push({ sourcePath, targetPath, exists: await fs.pathExists(targetPath) });
   }
+
+  const conflicts = files.filter(file => file.exists);
+  let overwrite = force;
+
+  if (conflicts.length > 0 && !overwrite) {
+    if (process.stdin.isTTY && process.stdout.isTTY) {
+      try {
+        const prompt = new Confirm({
+          name: 'overwrite',
+          message: `${conflicts.length} file(s) for ${component.name} already exist. Overwrite?`,
+          initial: false
+        });
+        overwrite = await prompt.run();
+      } catch {
+        // Cancelled (e.g. Ctrl+C): treat as "no" so user files stay untouched
+        overwrite = false;
+      }
+    }
+    // Non-interactive sessions never overwrite; existing files are kept below
+  }
+
+  const result: CopyResult = { copied: 0, kept: [] };
+
+  for (const file of files) {
+    if (file.exists && !overwrite) {
+      result.kept.push(path.basename(file.targetPath));
+      continue;
+    }
+    await fs.copy(file.sourcePath, file.targetPath);
+    result.copied += 1;
+  }
+
+  if (result.kept.length > 0) {
+    logger.warning(
+      `Kept existing file(s) for ${component.name}: ${result.kept.join(', ')} (use --force to overwrite).`
+    );
+  }
+
+  return result;
 }
 
 async function installDependencies(deps: string[]) {
@@ -94,6 +147,7 @@ async function installDependencies(deps: string[]) {
     spinner.stop();
     logger.error('Failed to install dependencies. Please run:');
     logger.bold(`  ${command}`);
+    process.exitCode = 1;
   }
 }
 
@@ -107,6 +161,7 @@ async function addComponent(
   if (!component) {
     logger.error(`Component "${componentName}" not found in registry.`);
     if (!isDependency) process.exit(1);
+    process.exitCode = 1;
     return;
   }
 
@@ -116,7 +171,7 @@ async function addComponent(
     const targetDir = path.resolve(process.cwd(), options.output, component.name);
     await fs.ensureDir(targetDir);
 
-    await copyComponentFiles(component, targetDir);
+    await copyComponentFiles(component, targetDir, options.force);
 
     if (component.dependencies) {
       component.dependencies.forEach((dep: string) => allDeps.add(dep));
@@ -149,6 +204,7 @@ async function addComponent(
     spinner.stop();
     logger.error(`Error adding ${isDependency ? 'dependency ' : ''}${component.name}`);
     if (error instanceof Error) logger.error(error.message);
+    process.exitCode = 1;
   }
 }
 
@@ -201,6 +257,7 @@ export async function handleAdd(componentName: string | undefined, options: CliO
 export async function handleInit() {
   const info = await getProjectInfo();
   const defaults = getFolderStructure(info);
+  let spinner: ReturnType<typeof ora> | undefined;
 
   try {
     const componentsDirPrompt = new Input({
@@ -229,7 +286,7 @@ export async function handleInit() {
     });
     const shouldSave = await confirmPrompt.run();
 
-    const spinner = ora('Initializing Dashkit...').start();
+    spinner = ora('Initializing Dashkit...').start();
 
     // Ensure CSS installation
     const targetPath = path.resolve(process.cwd(), cssDir, 'dashkit.css');
@@ -266,6 +323,11 @@ export async function handleInit() {
     }
     logger.error('Failed to initialize Dashkit.');
     if (error instanceof Error) logger.error(error.message);
+    process.exitCode = 1;
+  } finally {
+    // Always stop the spinner, even when a step throws — otherwise ora's
+    // render interval keeps the process alive forever.
+    spinner?.stop();
   }
 }
 
