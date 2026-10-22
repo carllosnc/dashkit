@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { lockBodyScroll } from '../utils/scrollLock';
 
 export interface UseModalProps {
   isOpen: boolean;
@@ -7,14 +8,8 @@ export interface UseModalProps {
 
 export function useModal({ isOpen, onClose }: UseModalProps) {
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
+    if (!isOpen) return;
+    return lockBodyScroll();
   }, [isOpen]);
 
   useEffect(() => {

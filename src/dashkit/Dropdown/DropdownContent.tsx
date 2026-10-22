@@ -19,15 +19,14 @@ export function DropdownContent({
   side = 'bottom',
   sideOffset = 8
 }: DropdownContentProps) {
-  const { open, triggerElement, setTriggerRect, triggerRect } = useDropdownContext();
+  const { open, triggerElement, setTriggerRect, triggerRect, portalRef } = useDropdownContext();
   const [contentRect, setContentRect] = React.useState<DOMRect | null>(null);
-  const contentRef = React.useRef<HTMLDivElement>(null);
 
   React.useLayoutEffect(() => {
-    if (open && contentRef.current) {
-      setContentRect(contentRef.current.getBoundingClientRect());
+    if (open && portalRef.current) {
+      setContentRect(portalRef.current.getBoundingClientRect());
     }
-  }, [open]);
+  }, [open, portalRef]);
 
   React.useEffect(() => {
     if (!open) return;
@@ -105,8 +104,7 @@ export function DropdownContent({
 
   return createPortal(
     <div
-      ref={contentRef}
-      id="dashkit-dropdown-portal"
+      ref={portalRef}
       style={style}
       className={cn(
         "dropdown-content",

@@ -20,6 +20,7 @@ export function useDatePicker({ value, onChange, disabled }: UseDatePickerProps)
   const [position, setPosition] = useState<'bottom' | 'top'>('bottom');
   const containerRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const portalRef = useRef<HTMLDivElement>(null);
 
   const toggleOpen = () => {
     if (disabled) return;
@@ -42,7 +43,7 @@ export function useDatePicker({ value, onChange, disabled }: UseDatePickerProps)
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      const menu = document.getElementById('dashkit-datepicker-portal');
+      const menu = portalRef.current;
       if (
         containerRef.current && !containerRef.current.contains(event.target as Node) &&
         (!menu || !menu.contains(event.target as Node))
@@ -127,6 +128,7 @@ export function useDatePicker({ value, onChange, disabled }: UseDatePickerProps)
     position,
     containerRef,
     buttonRef,
+    portalRef,
     toggleOpen,
     currentMonth,
     currentYear,

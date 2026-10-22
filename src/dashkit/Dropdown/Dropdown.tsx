@@ -14,7 +14,8 @@ export function Dropdown({ children }: DropdownProps) {
     setTriggerRect,
     triggerElement,
     setTriggerElement,
-    containerRef
+    containerRef,
+    portalRef
   } = useDropdown();
 
   return (
@@ -24,7 +25,8 @@ export function Dropdown({ children }: DropdownProps) {
       triggerRect,
       setTriggerRect,
       triggerElement,
-      setTriggerElement
+      setTriggerElement,
+      portalRef
     }}>
       <div className="dropdown" ref={containerRef}>
         {children}

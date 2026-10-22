@@ -14,7 +14,8 @@ export function Popover({ children, trigger = 'click' }: PopoverProps) {
     setTriggerRect,
     triggerElement,
     setTriggerElement,
-    containerRef
+    containerRef,
+    portalRef
   } = usePopover();
 
   const closeTimer = React.useRef<number | null>(null);
@@ -52,7 +53,8 @@ export function Popover({ children, trigger = 'click' }: PopoverProps) {
         setTriggerElement,
         triggerMode: trigger,
         onMouseEnter,
-        onMouseLeave
+        onMouseLeave,
+        portalRef
     }}>
       <div className="relative inline-block text-left" ref={containerRef}>
         {children}

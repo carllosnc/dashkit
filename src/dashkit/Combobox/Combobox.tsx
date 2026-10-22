@@ -47,6 +47,7 @@ export function Combobox({
     containerRef,
     inputWrapperRef,
     inputRef,
+    portalRef,
     selectedOptions,
     filteredOptions,
     handleSelect,
@@ -148,7 +149,7 @@ export function Combobox({
 
         {isOpen && triggerRect && createPortal(
           <div
-            id="dashkit-combobox-portal"
+            ref={portalRef}
             role="listbox"
             style={{
               position: 'fixed',

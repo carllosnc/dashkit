@@ -12,6 +12,7 @@ export interface PopoverContextValue {
   triggerMode: PopoverTriggerMode;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
+  portalRef: React.RefObject<HTMLDivElement | null>;
 }
 
 export const PopoverContext = React.createContext<PopoverContextValue | undefined>(undefined);
@@ -29,10 +30,11 @@ export function usePopover() {
   const [triggerRect, setTriggerRect] = React.useState<DOMRect | null>(null);
   const [triggerElement, setTriggerElement] = React.useState<HTMLElement | null>(null);
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const portalRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      const popover = document.getElementById('dashkit-popover-portal');
+      const popover = portalRef.current;
       if (
         containerRef.current && !containerRef.current.contains(event.target as Node) &&
         (!popover || !popover.contains(event.target as Node))
@@ -69,6 +71,7 @@ export function usePopover() {
     setTriggerRect,
     triggerElement,
     setTriggerElement,
-    containerRef
+    containerRef,
+    portalRef
   };
 }

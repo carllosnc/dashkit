@@ -21,15 +21,14 @@ export function PopoverContent({
     side = 'bottom',
     sideOffset = 8
 }: PopoverContentProps) {
-  const { open, triggerElement, setTriggerRect, triggerRect, triggerMode, onMouseEnter, onMouseLeave } = usePopoverContext();
+  const { open, triggerElement, setTriggerRect, triggerRect, triggerMode, onMouseEnter, onMouseLeave, portalRef } = usePopoverContext();
   const [contentRect, setContentRect] = React.useState<DOMRect | null>(null);
-  const contentRef = React.useRef<HTMLDivElement>(null);
 
   React.useLayoutEffect(() => {
-    if (open && contentRef.current) {
-        setContentRect(contentRef.current.getBoundingClientRect());
+    if (open && portalRef.current) {
+        setContentRect(portalRef.current.getBoundingClientRect());
     }
-  }, [open]);
+  }, [open, portalRef]);
 
   React.useEffect(() => {
     if (!open) return;
@@ -108,8 +107,7 @@ export function PopoverContent({
     <AnimatePresence>
       {open && (
         <motion.div
-           ref={contentRef}
-           id="dashkit-popover-portal"
+           ref={portalRef}
            initial={{ opacity: 0, scale: 0.95, y: animProps.y, x: animProps.x }}
            animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
            exit={{ opacity: 0, scale: 0.95, y: animProps.y, x: animProps.x }}

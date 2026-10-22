@@ -30,6 +30,7 @@ export function DatePicker({
     position,
     containerRef,
     buttonRef,
+    portalRef,
     toggleOpen,
     currentMonth,
     currentYear,
@@ -69,7 +70,7 @@ export function DatePicker({
 
         {isOpen && triggerRect && createPortal(
           <div
-            id="dashkit-datepicker-portal"
+            ref={portalRef}
             style={{
               position: 'fixed',
               top: position === 'bottom' ? triggerRect.bottom + 8 : triggerRect.top - 8,

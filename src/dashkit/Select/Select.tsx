@@ -38,6 +38,7 @@ export function Select({
     side,
     containerRef,
     buttonRef,
+    portalRef,
     selectedOption,
     handleKeyDown
   } = useSelect({ options, value, disabled });
@@ -74,7 +75,7 @@ export function Select({
 
         {isOpen && triggerRect && createPortal(
           <div
-            id="dashkit-select-portal"
+            ref={portalRef}
             role="listbox"
             style={{
               position: 'fixed',

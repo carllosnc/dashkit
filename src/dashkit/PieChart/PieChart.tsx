@@ -11,11 +11,11 @@ export interface PieChartDataItem {
 }
 
 const DEFAULT_COLORS = [
-  'var(--color-primary)',
-  'var(--color-primary-400)',
-  'var(--color-primary-200)',
-  'var(--color-primary-800)',
-  'var(--color-primary-300)',
+  'var(--color-ds-primary-600)',
+  'var(--color-ds-primary-400)',
+  'var(--color-ds-primary-200)',
+  'var(--color-ds-primary-800)',
+  'var(--color-ds-primary-300)',
 ];
 
 export interface PieChartProps {
