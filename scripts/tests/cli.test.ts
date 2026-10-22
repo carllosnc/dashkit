@@ -96,6 +96,63 @@ describe('Dashkit CLI', () => {
     }
   });
 
+  it('should not overwrite existing files without --force', async () => {
+    const testDir = path.join(TEMP_DIR, 'no-overwrite');
+    await fs.ensureDir(path.join(testDir, 'components', 'Badge'));
+    const customFile = path.join(testDir, 'components', 'Badge', 'Badge.tsx');
+    await fs.writeFile(customFile, '// my local modifications\n');
+
+    const output = execSync(`bun x tsx ${CLI_PATH} add badge -o components --no-install`, {
+      cwd: testDir,
+      encoding: 'utf8',
+      stdio: 'pipe'
+    });
+
+    // User modifications are preserved
+    expect(await fs.readFile(customFile, 'utf8')).toBe('// my local modifications\n');
+    expect(output).toContain('[WARNING]');
+    expect(output).toContain('use --force to overwrite');
+    // Non-conflicting files are still copied
+    expect(await fs.pathExists(path.join(testDir, 'components', 'Badge', 'index.ts'))).toBe(true);
+  }, 20000);
+
+  it('should overwrite existing files with --force', async () => {
+    const testDir = path.join(TEMP_DIR, 'force-overwrite');
+    await fs.ensureDir(path.join(testDir, 'components', 'Badge'));
+    const customFile = path.join(testDir, 'components', 'Badge', 'Badge.tsx');
+    await fs.writeFile(customFile, '// my local modifications\n');
+
+    execSync(`bun x tsx ${CLI_PATH} add badge -o components --no-install --force`, {
+      cwd: testDir,
+      stdio: 'pipe'
+    });
+
+    const source = await fs.readFile(
+      path.resolve(__dirname, '../../src/dashkit/Badge/Badge.tsx'),
+      'utf8'
+    );
+    expect(await fs.readFile(customFile, 'utf8')).toBe(source);
+  }, 20000);
+
+  it('should exit with a non-zero code when adding a component fails', async () => {
+    const testDir = path.join(TEMP_DIR, 'add-failure');
+    // A file where the component directory must go makes the copy fail
+    await fs.ensureDir(path.join(testDir, 'components'));
+    await fs.writeFile(path.join(testDir, 'components', 'Card'), 'not a directory');
+
+    try {
+      execSync(`bun x tsx ${CLI_PATH} add card -o components --no-install`, {
+        cwd: testDir,
+        stdio: 'pipe'
+      });
+      expect(true).toBe(false);
+    } catch (error: unknown) {
+      const err = error as { status?: number | null; stderr: Buffer };
+      expect(err.status).not.toBe(0);
+      expect(err.stderr.toString()).toContain('[ERROR] Error adding Card');
+    }
+  }, 20000);
+
   it('should use output directory from dashkit.json if available', async () => {
     const testDir = path.join(TEMP_DIR, 'dashkit-json-config');
     await fs.ensureDir(testDir);
