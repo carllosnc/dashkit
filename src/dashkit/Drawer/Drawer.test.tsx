@@ -47,6 +47,19 @@ describe('Drawer', () => {
     expect(screen.getByText('Test Title')).toBeInTheDocument();
     expect(screen.getByText('Test Desc')).toBeInTheDocument();
   });
+
+  it('calls onClose exactly once when Escape is pressed', () => {
+    const handleClose = vi.fn();
+    render(
+      <Drawer isOpen={true} onClose={handleClose}>
+        <div>Content</div>
+      </Drawer>
+    );
+
+    fireEvent.keyDown(window, { key: 'Escape' });
+
+    expect(handleClose).toHaveBeenCalledTimes(1);
+  });
 });
 
 

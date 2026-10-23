@@ -13,6 +13,7 @@ export function useSelect({ options, value, disabled }: UseSelectProps) {
   const [side, setSide] = useState<'top' | 'bottom'>('bottom');
   const containerRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const portalRef = useRef<HTMLDivElement>(null);
 
   const selectedOption = options.find(opt => opt.value === value);
 
@@ -34,7 +35,7 @@ export function useSelect({ options, value, disabled }: UseSelectProps) {
     };
 
     const handleScroll = (event: Event) => {
-      const menu = document.getElementById('dashkit-select-portal');
+      const menu = portalRef.current;
       if (isOpen && menu && !menu.contains(event.target as Node)) {
         setIsOpen(false);
       }
@@ -48,13 +49,13 @@ export function useSelect({ options, value, disabled }: UseSelectProps) {
 
     return () => {
       window.removeEventListener('resize', updateRect);
-      window.removeEventListener('scroll', () => setIsOpen(false), true);
+      window.removeEventListener('scroll', handleScroll, true);
     };
   }, [isOpen]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      const menu = document.getElementById('dashkit-select-portal');
+      const menu = portalRef.current;
       if (
         containerRef.current && !containerRef.current.contains(event.target as Node) &&
         (!menu || !menu.contains(event.target as Node))
@@ -89,6 +90,7 @@ export function useSelect({ options, value, disabled }: UseSelectProps) {
     side,
     containerRef,
     buttonRef,
+    portalRef,
     selectedOption,
     handleKeyDown
   };

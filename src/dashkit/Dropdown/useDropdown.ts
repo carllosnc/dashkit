@@ -7,6 +7,7 @@ export interface DropdownContextValue {
   setTriggerRect: (rect: DOMRect | null) => void;
   triggerElement: HTMLElement | null;
   setTriggerElement: (el: HTMLElement | null) => void;
+  portalRef: React.RefObject<HTMLDivElement | null>;
 }
 
 export const DropdownContext = React.createContext<DropdownContextValue | undefined>(undefined);
@@ -24,10 +25,11 @@ export function useDropdown() {
   const [triggerRect, setTriggerRect] = React.useState<DOMRect | null>(null);
   const [triggerElement, setTriggerElement] = React.useState<HTMLElement | null>(null);
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const portalRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      const menu = document.getElementById('dashkit-dropdown-portal');
+      const menu = portalRef.current;
       if (
         containerRef.current && !containerRef.current.contains(event.target as Node) &&
         (!menu || !menu.contains(event.target as Node))
@@ -64,6 +66,7 @@ export function useDropdown() {
     setTriggerRect,
     triggerElement,
     setTriggerElement,
-    containerRef
+    containerRef,
+    portalRef
   };
 }

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { type Variants, type PanInfo } from 'framer-motion';
+import { lockBodyScroll } from '../utils/scrollLock';
 
 export type DrawerPosition = 'left' | 'right' | 'top' | 'bottom';
 
@@ -36,15 +37,19 @@ export interface UseDrawerProps {
 
 export function useDrawer({ isOpen, onClose, position }: UseDrawerProps) {
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
+    if (!isOpen) return;
+    return lockBodyScroll();
   }, [isOpen]);
+
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    if (isOpen) {
+      window.addEventListener('keydown', handleEsc);
+    }
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [isOpen, onClose]);
 
 
 

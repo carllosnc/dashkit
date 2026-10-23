@@ -23,11 +23,9 @@ export function NotFound() {
             </p>
           </div>
 
-          <Link to="/">
-            <Button variant="filled" leftIcon={<FiArrowLeft />}>
-              Back to Home
-            </Button>
-          </Link>
+          <Button asChild variant="filled" leftIcon={<FiArrowLeft />}>
+            <Link to="/">Back to Home</Link>
+          </Button>
         </div>
       </main>
     </div>

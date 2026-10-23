@@ -54,16 +54,14 @@ function App() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 items-center">
-          <Link to="/docs" tabIndex={-1}>
-            <Button variant="filled" rightIcon={<FiArrowRight />}>
-              Get Started
-            </Button>
-          </Link>
-          <a href="https://github.com/carllosnc/dashkit" target="_blank" rel="noopener noreferrer">
-            <Button variant="outlined" leftIcon={<FiGithub />}>
+          <Button asChild variant="filled" rightIcon={<FiArrowRight />}>
+            <Link to="/docs">Get Started</Link>
+          </Button>
+          <Button asChild variant="outlined" leftIcon={<FiGithub />}>
+            <a href="https://github.com/carllosnc/dashkit" target="_blank" rel="noopener noreferrer">
               View on GitHub
-            </Button>
-          </a>
+            </a>
+          </Button>
         </div>
 
         {/* CLI Emulator */}

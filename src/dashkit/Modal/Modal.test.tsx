@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { Modal, ModalHeader, ModalContent, ModalFooter } from './index';
 import type { ReactNode } from 'react';
 
@@ -15,6 +15,10 @@ vi.mock('framer-motion', () => ({
 
 describe('Modal', () => {
   const onClose = vi.fn();
+
+  beforeEach(() => {
+    onClose.mockClear();
+  });
 
   it('renders children when isOpen is true', () => {
     render(
@@ -108,7 +112,7 @@ describe('Modal', () => {
     );
 
     fireEvent.keyDown(window, { key: 'Escape', code: 'Escape' });
-    expect(onClose).toHaveBeenCalled();
+    expect(onClose).toHaveBeenCalledTimes(1);
   });
 
   it('locks body scroll when open', () => {
@@ -126,7 +130,8 @@ describe('Modal', () => {
       </Modal>
     );
 
-    expect(document.body.style.overflow).toBe('unset');
+    // Releasing the lock removes the inline style instead of forcing 'unset'
+    expect(document.body.style.overflow).toBe('');
   });
 });
 

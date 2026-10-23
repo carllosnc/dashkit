@@ -22,19 +22,8 @@ export function Backdrop({
   children,
   ...props
 }: BackdropProps) {
-  React.useEffect(() => {
-    if (!show || !onClick) return;
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        onClick({} as React.MouseEvent<HTMLDivElement>);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [show, onClick]);
-
+  // Note: Escape-to-close is handled by the overlay hooks (useModal/useDrawer)
+  // instead of here, so `onClose` is invoked exactly once with a real event.
   const overlay = (
     <motion.div
       initial={{ opacity: 0 }}

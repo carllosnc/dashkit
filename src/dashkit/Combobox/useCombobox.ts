@@ -26,6 +26,7 @@ export function useCombobox({
   const containerRef = useRef<HTMLDivElement>(null);
   const inputWrapperRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const portalRef = useRef<HTMLDivElement>(null);
 
   const selectedOptions = useMemo(() => {
     if (multiple && Array.isArray(value)) {
@@ -86,7 +87,7 @@ export function useCombobox({
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      const menu = document.getElementById('dashkit-combobox-portal');
+      const menu = portalRef.current;
       if (
         containerRef.current && !containerRef.current.contains(event.target as Node) &&
         (!menu || !menu.contains(event.target as Node))
@@ -96,7 +97,7 @@ export function useCombobox({
     };
 
     const handleScroll = (event: Event) => {
-      const menu = document.getElementById('dashkit-combobox-portal');
+      const menu = portalRef.current;
       if (isOpen && menu && !menu.contains(event.target as Node)) {
         setIsOpen(false);
       }
@@ -177,6 +178,7 @@ export function useCombobox({
     containerRef,
     inputWrapperRef,
     inputRef,
+    portalRef,
     selectedOptions,
     filteredOptions,
     handleSelect,

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { lockBodyScroll } from '../utils/scrollLock';
 
 export function useImageExpander() {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,14 +9,14 @@ export function useImageExpander() {
       if (e.key === 'Escape') setIsOpen(false);
     };
 
-    if (isOpen) {
-      window.addEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'hidden';
-    }
+    if (!isOpen) return;
+
+    window.addEventListener('keydown', handleKeyDown);
+    const releaseScroll = lockBodyScroll();
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'unset';
+      releaseScroll();
     };
   }, [isOpen]);
 
