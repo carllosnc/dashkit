@@ -68,4 +68,31 @@ describe('Registry Integrity', () => {
       }
     }
   });
+
+  it('should keep registryDependencies acyclic', () => {
+    // A cycle (a -> b -> a) would make `dashkit add` recurse infinitely
+    const state = new Map<string, 'visiting' | 'done'>();
+    const cycles: string[] = [];
+
+    const visit = (key: string, chain: string[]): void => {
+      const current = state.get(key);
+      if (current === 'done') return;
+      if (current === 'visiting') {
+        cycles.push([...chain, key].join(' -> '));
+        return;
+      }
+
+      state.set(key, 'visiting');
+      for (const dep of registry[key].registryDependencies ?? []) {
+        visit(dep, [...chain, key]);
+      }
+      state.set(key, 'done');
+    };
+
+    for (const key of Object.keys(registry)) {
+      visit(key, []);
+    }
+
+    expect(cycles, `Cycle(s) detected in registryDependencies:\n${cycles.join('\n')}`).toEqual([]);
+  });
 });

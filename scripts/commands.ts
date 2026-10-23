@@ -155,15 +155,22 @@ async function addComponent(
   componentName: string,
   options: CliOptions,
   isDependency = false,
-  allDeps = new Set<string>()
+  allDeps = new Set<string>(),
+  visited = new Set<string>()
 ) {
-  const component = registry[componentName.toLowerCase()];
+  const registryKey = componentName.toLowerCase();
+  const component = registry[registryKey];
   if (!component) {
     logger.error(`Component "${componentName}" not found in registry.`);
     if (!isDependency) process.exit(1);
     process.exitCode = 1;
     return;
   }
+
+  // Guard against cycles and diamond dependencies in registryDependencies —
+  // without this a self/cycle reference would recurse until the stack blows.
+  if (visited.has(registryKey)) return;
+  visited.add(registryKey);
 
   const spinner = ora(isDependency ? `Adding dependency ${chalk.bold(component.name)}...` : `Adding ${chalk.bold(component.name)}...`).start();
 
@@ -179,7 +186,7 @@ async function addComponent(
 
     if (component.registryDependencies) {
       for (const depName of component.registryDependencies) {
-        await addComponent(depName, options, true, allDeps);
+        await addComponent(depName, options, true, allDeps, visited);
       }
     }
 
@@ -234,57 +241,91 @@ async function promptComponentSelection(): Promise<string[]> {
 }
 
 export async function handleAdd(componentName: string | undefined, options: CliOptions) {
+  const info = await getProjectInfo();
+  const defaults = getFolderStructure(info);
+  const config = await loadConfig();
+
   // Smart default output detection
   if (!options.output) {
-    const config = await loadConfig();
-    if (config?.componentsDir) {
-      options.output = config.componentsDir;
+    options.output = config?.componentsDir ?? defaults.components;
+  }
+
+  // Components import ../utils/cn and their CSS relies on dashkit.css tokens;
+  // emit/check these prerequisites here (previously only `init` did).
+  const sourceCnPath = path.resolve(projectRoot, 'src', 'dashkit', 'utils', 'cn.ts');
+  const targetCnPath = path.resolve(process.cwd(), options.output, 'utils', 'cn.ts');
+  if (!(await fs.pathExists(targetCnPath))) {
+    if (await fs.pathExists(sourceCnPath)) {
+      await fs.ensureDir(path.dirname(targetCnPath));
+      await fs.copy(sourceCnPath, targetCnPath);
+      logger.success('Installed utils/cn.ts.');
     } else {
-      const info = await getProjectInfo();
-      options.output = getFolderStructure(info).components;
+      logger.warning(`utils/cn.ts not found at ${sourceCnPath} — components import it and will not compile without it.`);
     }
+  }
+
+  const cssDir = config?.cssDir ?? defaults.css;
+  const cssPath = path.resolve(process.cwd(), cssDir, 'dashkit.css');
+  if (!(await fs.pathExists(cssPath))) {
+    logger.warning(`dashkit.css not found at ${cssPath} — run \`dashkit init\` to install it (component styles need its tokens).`);
   }
 
   const componentNames = componentName ? [componentName] : await promptComponentSelection();
 
   if (componentNames.length > 0) {
+    // Shared across the whole run so multi-selection doesn't re-copy shared deps
+    const visited = new Set<string>();
     for (const name of componentNames) {
-      await addComponent(name, options);
+      await addComponent(name, options, false, new Set<string>(), visited);
     }
   }
 }
 
-export async function handleInit() {
+export interface InitOptions {
+  yes?: boolean;
+}
+
+export async function handleInit(options: InitOptions = {}) {
   const info = await getProjectInfo();
   const defaults = getFolderStructure(info);
   let spinner: ReturnType<typeof ora> | undefined;
 
   try {
-    const componentsDirPrompt = new Input({
-      name: 'componentsDir',
-      message: 'Where would you like to store your components?',
-      initial: defaults.components
-    });
-    let componentsDir = await componentsDirPrompt.run();
+    let componentsDir: string;
+    let cssDirRaw: string;
+    let shouldSave: boolean;
+
+    if (options.yes) {
+      componentsDir = defaults.components;
+      cssDirRaw = defaults.css || '.';
+      shouldSave = true;
+    } else {
+      const componentsDirPrompt = new Input({
+        name: 'componentsDir',
+        message: 'Where would you like to store your components?',
+        initial: defaults.components
+      });
+      componentsDir = await componentsDirPrompt.run();
+
+      const cssDirPrompt = new Input({
+        name: 'cssDir',
+        message: 'Where would you like to store your dashkit.css?',
+        initial: defaults.css || '.'
+      });
+      cssDirRaw = await cssDirPrompt.run();
+
+      const confirmPrompt = new Confirm({
+        name: 'save',
+        message: 'Save these settings to dashkit.json?',
+        initial: true
+      });
+      shouldSave = await confirmPrompt.run();
+    }
 
     if (!componentsDir.replace(/\\/g, '/').split('/').pop()?.includes('dashkit')) {
       componentsDir = path.join(componentsDir, 'dashkit').replace(/\\/g, '/');
     }
-
-    const cssDirPrompt = new Input({
-      name: 'cssDir',
-      message: 'Where would you like to store your dashkit.css?',
-      initial: defaults.css || '.'
-    });
-    const cssDirRaw = await cssDirPrompt.run();
     const cssDir = cssDirRaw === '.' ? '' : cssDirRaw;
-
-    const confirmPrompt = new Confirm({
-      name: 'save',
-      message: 'Save these settings to dashkit.json?',
-      initial: true
-    });
-    const shouldSave = await confirmPrompt.run();
 
     spinner = ora('Initializing Dashkit...').start();
 
