@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Sidebar, SidebarHeader, SidebarFooter, SidebarSection, SidebarItem } from './Sidebar';
+import { useSidebar } from './SidebarContext';
 import { FiLayout } from 'react-icons/fi';
 import { describe, it, expect, vi } from 'vitest';
 
@@ -55,5 +56,44 @@ describe('Sidebar', () => {
     );
     fireEvent.click(screen.getByText('Click me'));
     expect(handleClick).toHaveBeenCalledTimes(1);
+  });
+
+  it('exposes a working setIsOpen via useSidebar (not a no-op)', () => {
+    function Probe() {
+      const { isOpen, setIsOpen } = useSidebar();
+      return (
+        <div>
+          <span data-testid="state">{isOpen ? 'open' : 'closed'}</span>
+          <button onClick={() => setIsOpen(false)}>Close</button>
+        </div>
+      );
+    }
+
+    render(
+      <Sidebar defaultOpen={true}>
+        <Probe />
+      </Sidebar>
+    );
+
+    expect(screen.getByTestId('state')).toHaveTextContent('open');
+    fireEvent.click(screen.getByText('Close'));
+    expect(screen.getByTestId('state')).toHaveTextContent('closed');
+  });
+
+  it('calls onOpenChange when setIsOpen is used', () => {
+    const handleOpenChange = vi.fn();
+    function Probe() {
+      const { setIsOpen } = useSidebar();
+      return <button onClick={() => setIsOpen(false)}>Close</button>;
+    }
+
+    render(
+      <Sidebar defaultOpen={true} onOpenChange={handleOpenChange}>
+        <Probe />
+      </Sidebar>
+    );
+
+    fireEvent.click(screen.getByText('Close'));
+    expect(handleOpenChange).toHaveBeenCalledWith(false);
   });
 });

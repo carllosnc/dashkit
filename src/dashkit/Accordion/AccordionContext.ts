@@ -14,6 +14,7 @@ export const AccordionContext = React.createContext<AccordionContextValue | unde
 export interface AccordionItemContextValue {
   value: string;
   isOpen: boolean;
+  disabled?: boolean;
 }
 
 export const AccordionItemContext = React.createContext<AccordionItemContextValue | undefined>(undefined);
