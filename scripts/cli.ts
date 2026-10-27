@@ -29,5 +29,7 @@ program
   .description('Run diagnostics on the registry and project structure')
   .action(handleDoctor);
 
-program.parse();
+// parseAsync (not parse) so async action handlers are awaited and their
+// rejections surface instead of becoming unhandled promise rejections.
+program.parseAsync();
 

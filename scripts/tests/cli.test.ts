@@ -185,6 +185,46 @@ describe('Dashkit CLI', () => {
     expect(await fs.pathExists(path.join(testDir, 'components/utils/cn.ts'))).toBe(true);
   }, 30000);
 
+  it('should install every file a component imports so the output compiles (modal)', async () => {
+    const testDir = path.join(TEMP_DIR, 'modal-compiles');
+    await fs.ensureDir(testDir);
+
+    // Modal imports Backdrop, IconButton and utils/scrollLock — all three were
+    // previously missing from the registry/copy logic, so the emitted Modal.tsx
+    // failed to resolve its imports in a user project.
+    execSync(`bun x tsx ${CLI_PATH} add modal -o components --no-install`, {
+      cwd: testDir,
+      stdio: 'pipe',
+      timeout: SPAWN_TIMEOUT
+    });
+
+    expect(await fs.pathExists(path.join(testDir, 'components/Modal/Modal.tsx'))).toBe(true);
+    // registryDependencies: backdrop + iconbutton
+    expect(await fs.pathExists(path.join(testDir, 'components/Backdrop/Backdrop.tsx'))).toBe(true);
+    expect(await fs.pathExists(path.join(testDir, 'components/IconButton/IconButton.tsx'))).toBe(true);
+    // utils/scrollLock is imported by useModal and previously never copied
+    expect(await fs.pathExists(path.join(testDir, 'components/utils/scrollLock.ts'))).toBe(true);
+  }, 30000);
+
+  it('should install tooltip for sidebar and divider for statscard', async () => {
+    const testDir = path.join(TEMP_DIR, 'misc-registry-deps');
+    await fs.ensureDir(testDir);
+
+    execSync(`bun x tsx ${CLI_PATH} add sidebar -o components --no-install`, {
+      cwd: testDir,
+      stdio: 'pipe',
+      timeout: SPAWN_TIMEOUT
+    });
+    expect(await fs.pathExists(path.join(testDir, 'components/Tooltip/Tooltip.tsx'))).toBe(true);
+
+    execSync(`bun x tsx ${CLI_PATH} add statscard -o components --no-install`, {
+      cwd: testDir,
+      stdio: 'pipe',
+      timeout: SPAWN_TIMEOUT
+    });
+    expect(await fs.pathExists(path.join(testDir, 'components/Divider/Divider.tsx'))).toBe(true);
+  }, 30000);
+
   it('should initialize a project with init (css, config, cn.ts)', async () => {
     const testDir = path.join(TEMP_DIR, 'init');
     await fs.ensureDir(testDir);

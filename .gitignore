@@ -26,3 +26,6 @@ dist-ssr
 # Temporary files
 tmp/
 test_output.txt
+
+# Agent scratch directories
+.agent/

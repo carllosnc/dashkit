@@ -66,6 +66,30 @@ async function installDashkitCss(targetPath: string, sourcePath: string) {
   return false;
 }
 
+// Components import shared helpers from ../utils (cn.ts, scrollLock.ts, ...).
+// Copy every non-test util so copied components always resolve their imports;
+// existing user files are never overwritten unless force is set.
+async function copyUtilsFiles(targetUtilsDir: string, force = false): Promise<string[]> {
+  const sourceUtilsDir = path.resolve(projectRoot, 'src', 'dashkit', 'utils');
+  if (!(await fs.pathExists(sourceUtilsDir))) return [];
+
+  const utilFiles = (await fs.readdir(sourceUtilsDir)).filter(
+    (file) => /\.(ts|tsx)$/.test(file) && !/\.(test|spec)\.(ts|tsx)$/.test(file)
+  );
+
+  const copied: string[] = [];
+  await fs.ensureDir(targetUtilsDir);
+
+  for (const file of utilFiles) {
+    const targetPath = path.join(targetUtilsDir, file);
+    if (!force && (await fs.pathExists(targetPath))) continue;
+    await fs.copy(path.join(sourceUtilsDir, file), targetPath);
+    copied.push(file);
+  }
+
+  return copied;
+}
+
 interface CopyResult {
   copied: number;
   kept: string[];
@@ -250,18 +274,13 @@ export async function handleAdd(componentName: string | undefined, options: CliO
     options.output = config?.componentsDir ?? defaults.components;
   }
 
-  // Components import ../utils/cn and their CSS relies on dashkit.css tokens;
-  // emit/check these prerequisites here (previously only `init` did).
-  const sourceCnPath = path.resolve(projectRoot, 'src', 'dashkit', 'utils', 'cn.ts');
-  const targetCnPath = path.resolve(process.cwd(), options.output, 'utils', 'cn.ts');
-  if (!(await fs.pathExists(targetCnPath))) {
-    if (await fs.pathExists(sourceCnPath)) {
-      await fs.ensureDir(path.dirname(targetCnPath));
-      await fs.copy(sourceCnPath, targetCnPath);
-      logger.success('Installed utils/cn.ts.');
-    } else {
-      logger.warning(`utils/cn.ts not found at ${sourceCnPath} — components import it and will not compile without it.`);
-    }
+  // Components import ../utils/cn (and overlays import ../utils/scrollLock) and
+  // their CSS relies on dashkit.css tokens; emit/check these prerequisites here
+  // (previously only `init` did, and only cn.ts).
+  const targetUtilsDir = path.resolve(process.cwd(), options.output, 'utils');
+  const copiedUtils = await copyUtilsFiles(targetUtilsDir, options.force);
+  if (copiedUtils.length > 0) {
+    logger.success(`Installed utils/${copiedUtils.join(', utils/')}.`);
   }
 
   const cssDir = config?.cssDir ?? defaults.css;
@@ -339,12 +358,9 @@ export async function handleInit(options: InitOptions = {}) {
     const utilsDir = path.join(fullComponentsDir, 'utils');
     await fs.ensureDir(utilsDir);
 
-    // Default to copying cn.ts utility
-    const targetCnPath = path.join(utilsDir, 'cn.ts');
-    const sourceCnPath = path.resolve(projectRoot, 'src', 'dashkit', 'utils', 'cn.ts');
-    if (!(await fs.pathExists(targetCnPath)) && (await fs.pathExists(sourceCnPath))) {
-      await fs.copy(sourceCnPath, targetCnPath);
-    }
+    // Copy shared utils (cn.ts, scrollLock.ts, ...) so every component's
+    // ../utils imports resolve in the user's project.
+    await copyUtilsFiles(utilsDir);
 
     if (shouldSave) {
       await saveConfig({ componentsDir, cssDir });
