@@ -21,10 +21,18 @@ export interface SidebarProps extends
 
 export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
   ({ className, children, collapsible = true, defaultOpen = true, open: controlledOpen, onOpenChange, ...props }, ref) => {
-    const { isOpen, toggle } = useSidebarState({ defaultOpen, open: controlledOpen, onOpenChange });
+    const { isOpen, setIsOpen, toggle } = useSidebarState({ defaultOpen, open: controlledOpen, onOpenChange });
+
+    // Memoized so consumers (SidebarHeader, SidebarItem, ...) don't re-render
+    // on every parent render. setIsOpen was previously a no-op, so calling it
+    // from useSidebar() silently did nothing.
+    const contextValue = React.useMemo(
+      () => ({ isOpen, setIsOpen, toggle }),
+      [isOpen, setIsOpen, toggle]
+    );
 
     return (
-      <SidebarContext.Provider value={{ isOpen, setIsOpen: () => {}, toggle }}>
+      <SidebarContext.Provider value={contextValue}>
         <motion.aside
           ref={ref as React.Ref<HTMLDivElement>}
           initial={false}

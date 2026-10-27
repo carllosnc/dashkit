@@ -10,6 +10,7 @@ interface TooltipContextType {
   triggerRect: DOMRect | null;
   setTriggerRect: (rect: DOMRect | null) => void;
   animate: boolean;
+  tooltipId: string;
 }
 
 const TooltipContext = React.createContext<TooltipContextType | undefined>(undefined);
@@ -28,6 +29,7 @@ export function Tooltip({
   const [open, setOpen] = React.useState(false);
   const [triggerRect, setTriggerRect] = React.useState<DOMRect | null>(null);
   const timeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+  const tooltipId = React.useId();
 
   const handleOpen = (rect: DOMRect) => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -42,12 +44,22 @@ export function Tooltip({
     setOpen(false);
   };
 
+  // Clear any pending open timer on unmount so a delayed tooltip can't set
+  // state after the component is gone.
+  React.useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
+
   return (
-    <TooltipContext.Provider value={{ open, setOpen, triggerRect, setTriggerRect, animate }}>
+    <TooltipContext.Provider value={{ open, setOpen, triggerRect, setTriggerRect, animate, tooltipId }}>
       <div
         className={cn('tooltip', className)}
         onMouseEnter={(e) => handleOpen(e.currentTarget.getBoundingClientRect())}
         onMouseLeave={handleClose}
+        onFocus={(e) => handleOpen(e.currentTarget.getBoundingClientRect())}
+        onBlur={handleClose}
       >
         {children}
       </div>
@@ -56,13 +68,17 @@ export function Tooltip({
 }
 
 export function TooltipTrigger({ children, asChild }: { children: React.ReactNode; asChild?: boolean }) {
+  const context = React.useContext(TooltipContext);
+  const describedBy = context?.open ? context.tooltipId : undefined;
+
   if (asChild && React.isValidElement(children)) {
-    const child = children as React.ReactElement<{ className?: string }>;
+    const child = children as React.ReactElement<{ className?: string; 'aria-describedby'?: string }>;
     return React.cloneElement(child, {
-      className: cn(child.props.className)
+      className: cn(child.props.className),
+      'aria-describedby': [child.props['aria-describedby'], describedBy].filter(Boolean).join(' ') || undefined,
     });
   }
-  return <span>{children}</span>;
+  return <span aria-describedby={describedBy}>{children}</span>;
 }
 
 export function TooltipContent({
@@ -79,7 +95,7 @@ export function TooltipContent({
   const context = React.useContext(TooltipContext);
   if (!context) throw new Error('TooltipContent must be used within a Tooltip');
 
-  const { open, triggerRect, animate } = context;
+  const { open, triggerRect, animate, tooltipId } = context;
   const [contentRect, setContentRect] = React.useState<DOMRect | null>(null);
   const contentRef = React.useRef<HTMLDivElement>(null);
 
@@ -126,6 +142,8 @@ export function TooltipContent({
       {open && (
         <motion.div
           ref={contentRef}
+          id={tooltipId}
+          role="tooltip"
           initial={animate ? {
             opacity: 0,
             scale: 0.95,

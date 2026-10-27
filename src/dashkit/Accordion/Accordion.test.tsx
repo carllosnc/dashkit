@@ -73,6 +73,44 @@ describe('Accordion', () => {
     );
     expect(screen.getByText('Content 1')).toBeInTheDocument();
   });
+
+  it('marks a disabled item and does not toggle it on click', () => {
+    render(
+      <Accordion type="single">
+        <AccordionItem value="item-1" disabled>
+          <AccordionTrigger>Disabled Trigger</AccordionTrigger>
+          <AccordionContent>Disabled Content</AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    );
+
+    const trigger = screen.getByRole('button', { name: /disabled trigger/i });
+    expect(trigger).toBeDisabled();
+    expect(trigger).toHaveAttribute('aria-disabled', 'true');
+    expect(trigger).toHaveAttribute('aria-expanded', 'false');
+
+    // The disabled guard must block the toggle (aria-expanded stays false)
+    fireEvent.click(trigger);
+    expect(trigger).toHaveAttribute('aria-expanded', 'false');
+    expect(screen.queryByText('Disabled Content')).not.toBeInTheDocument();
+  });
+
+  it('exposes aria-expanded reflecting open state on enabled triggers', () => {
+    render(
+      <Accordion type="single">
+        <AccordionItem value="item-1">
+          <AccordionTrigger>Trigger 1</AccordionTrigger>
+          <AccordionContent>Content 1</AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    );
+
+    const trigger = screen.getByRole('button', { name: /trigger 1/i });
+    expect(trigger).toHaveAttribute('aria-expanded', 'false');
+    fireEvent.click(trigger);
+    expect(trigger).toHaveAttribute('aria-expanded', 'true');
+    expect(trigger).not.toBeDisabled();
+  });
 });
 
 

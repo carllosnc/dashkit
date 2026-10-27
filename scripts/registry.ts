@@ -55,6 +55,7 @@ export const registry: Record<string, ComponentConfig> = {
       'src/dashkit/Button/Button.test.tsx',
       'src/dashkit/Button/index.ts'
     ],
+    registryDependencies: ['spinner'],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   card: {
@@ -100,6 +101,7 @@ export const registry: Record<string, ComponentConfig> = {
       'src/dashkit/Drawer/Drawer.test.tsx',
       'src/dashkit/Drawer/index.ts'
     ],
+    registryDependencies: ['backdrop'],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   dropdown: {
@@ -151,6 +153,7 @@ export const registry: Record<string, ComponentConfig> = {
       'src/dashkit/Modal/Modal.test.tsx',
       'src/dashkit/Modal/index.ts'
     ],
+    registryDependencies: ['backdrop', 'iconbutton'],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
   otpinput: {
@@ -413,7 +416,7 @@ export const registry: Record<string, ComponentConfig> = {
       'src/dashkit/Sidebar/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
-    registryDependencies: ['iconbutton'],
+    registryDependencies: ['iconbutton', 'tooltip'],
   },
   'float-action-menu': {
     name: 'FloatActionMenu',
@@ -582,7 +585,7 @@ export const registry: Record<string, ComponentConfig> = {
       'src/dashkit/StatsCard/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
-    registryDependencies: ['card', 'animatenumber'],
+    registryDependencies: ['card', 'animatenumber', 'divider'],
   },
   colorpicker: {
     name: 'ColorPicker',

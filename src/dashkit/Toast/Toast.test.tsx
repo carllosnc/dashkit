@@ -7,8 +7,23 @@ import type { ReactNode } from 'react';
 // Mock framer-motion
 vi.mock('framer-motion', () => ({
   motion: {
-    div: ({ children, onClick, className, animate }: { children: ReactNode, onClick?: () => void, className?: string, animate?: Record<string, unknown> }) => (
-      <div onClick={onClick} className={className} data-animate={JSON.stringify(animate)}>{children}</div>
+    div: ({ children, onClick, className, animate, role, 'aria-atomic': ariaAtomic }: {
+      children: ReactNode;
+      onClick?: () => void;
+      className?: string;
+      animate?: Record<string, unknown>;
+      role?: string;
+      'aria-atomic'?: boolean;
+    }) => (
+      <div
+        onClick={onClick}
+        className={className}
+        role={role}
+        aria-atomic={ariaAtomic}
+        data-animate={JSON.stringify(animate)}
+      >
+        {children}
+      </div>
     ),
   },
   AnimatePresence: ({ children }: { children: ReactNode }) => <>{children}</>,
@@ -147,6 +162,28 @@ describe('Toast Component', () => {
     expect(container).toHaveClass('toast-viewport--top-left');
 
     // Default was bottom-right in previous tests
+  });
+
+  it('announces toasts through a live region with appropriate roles', () => {
+    render(
+      <ToastProvider>
+        <div>App Content</div>
+      </ToastProvider>
+    );
+
+    act(() => {
+      toast({ title: 'Saved', type: 'success' });
+      toast({ title: 'Boom', type: 'error' });
+    });
+
+    // Every viewport is a polite live region.
+    document.querySelectorAll('.toast-viewport').forEach((viewport) => {
+      expect(viewport).toHaveAttribute('aria-live', 'polite');
+    });
+
+    // Errors announce assertively; everything else uses status.
+    expect(screen.getByText('Saved').closest('[role]')).toHaveAttribute('role', 'status');
+    expect(screen.getByText('Boom').closest('[role]')).toHaveAttribute('role', 'alert');
   });
 });
 

@@ -19,14 +19,18 @@ export function AccordionItem({ value, children, className, disabled }: Accordio
     : context.value === value;
 
   return (
-    <AccordionItemContext.Provider value={{ value, isOpen }}>
-      <div className={cn(
-        'accordion__item',
-        isOpen && "accordion__item--open",
-        !context.shadowed && "accordion__item--shadow-none",
-        disabled && "accordion__item--disabled",
-        className
-      )}>
+    <AccordionItemContext.Provider value={{ value, isOpen, disabled }}>
+      <div
+        data-disabled={disabled || undefined}
+        aria-disabled={disabled || undefined}
+        className={cn(
+          'accordion__item',
+          isOpen && "accordion__item--open",
+          !context.shadowed && "accordion__item--shadow-none",
+          disabled && "accordion__item--disabled",
+          className
+        )}
+      >
         {children}
       </div>
     </AccordionItemContext.Provider>

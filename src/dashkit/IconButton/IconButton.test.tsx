@@ -47,4 +47,14 @@ describe('IconButton', () => {
     render(<IconButton icon={<FiPlus />} disabled />);
     expect(screen.getByRole('button')).toBeDisabled();
   });
+
+  it('keeps a visible focus ring for keyboard users', () => {
+    render(<IconButton icon={<FiPlus />} />);
+    const button = screen.getByRole('button');
+    // outline-none is paired with a focus-visible ring so keyboard focus isn't
+    // silently invisible.
+    expect(button).toHaveClass('focus:outline-none');
+    expect(button).toHaveClass('focus-visible:ring-2');
+    expect(button).toHaveClass('focus-visible:ring-ring');
+  });
 });

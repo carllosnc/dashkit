@@ -29,7 +29,9 @@ export const IconButton = forwardRef<HTMLElement, IconButtonProps>(function Icon
     'border border-border', // Default border as utility
     'size-9', // Default size as utility
     'transition-all duration-200',
-    'focus:outline-none cursor-pointer whitespace-nowrap select-none shrink-0 font-medium',
+    // Keep the default outline off but restore a visible focus ring for
+    // keyboard users (matches the design-system ring used across inputs).
+    'focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-transparent cursor-pointer whitespace-nowrap select-none shrink-0 font-medium',
     `icon-button--${variant}`,
     rounded && 'icon-button--rounded !rounded-full', // Force full round if requested
     {

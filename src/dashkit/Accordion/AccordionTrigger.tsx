@@ -10,9 +10,18 @@ export function AccordionTrigger({ children, className }: { children: React.Reac
   const context = React.useContext(AccordionContext);
   if (!itemContext || !context) throw new Error('AccordionTrigger must be used within AccordionItem');
 
+  const { disabled } = itemContext;
+
   return (
     <button
-      onClick={() => context.onValueChange(itemContext.value)}
+      type="button"
+      disabled={disabled}
+      aria-disabled={disabled || undefined}
+      aria-expanded={itemContext.isOpen}
+      onClick={() => {
+        if (disabled) return;
+        context.onValueChange(itemContext.value);
+      }}
       className={cn(
         'accordion__trigger',
         itemContext.isOpen && 'accordion__trigger--active',

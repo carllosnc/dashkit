@@ -60,6 +60,42 @@ describe('Drawer', () => {
 
     expect(handleClose).toHaveBeenCalledTimes(1);
   });
+
+  it('has dialog semantics when open', () => {
+    render(
+      <Drawer isOpen={true} onClose={() => {}}>
+        <div>Content</div>
+      </Drawer>
+    );
+
+    const dialog = screen.getByRole('dialog');
+    expect(dialog).toHaveAttribute('aria-modal', 'true');
+    expect(dialog).toHaveAttribute('data-testid', 'drawer-content');
+  });
+
+  it('moves focus into the drawer and restores it on close', () => {
+    function Harness({ isOpen }: { isOpen: boolean }) {
+      return (
+        <div>
+          <button data-testid="outside">outside</button>
+          <Drawer isOpen={isOpen} onClose={() => {}}>
+            <button data-testid="inside">inside</button>
+          </Drawer>
+        </div>
+      );
+    }
+
+    const { rerender } = render(<Harness isOpen={false} />);
+    const outside = screen.getByTestId('outside');
+    outside.focus();
+    expect(document.activeElement).toBe(outside);
+
+    rerender(<Harness isOpen={true} />);
+    expect(document.activeElement).toBe(screen.getByTestId('inside'));
+
+    rerender(<Harness isOpen={false} />);
+    expect(document.activeElement).toBe(outside);
+  });
 });
 
 
