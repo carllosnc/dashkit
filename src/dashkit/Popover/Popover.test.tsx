@@ -54,4 +54,24 @@ describe('Popover', () => {
     fireEvent.click(trigger);
     expect(screen.queryByText('Content')).not.toBeInTheDocument();
   });
+
+  it('promotes a plain-text trigger to an accessible button without nesting', () => {
+    render(
+      <Popover>
+        <PopoverTrigger>Open</PopoverTrigger>
+        <PopoverContent>
+          <div data-testid="popover-content">Popover Content</div>
+        </PopoverContent>
+      </Popover>
+    );
+
+    // Text child -> the wrapper itself becomes the accessible button.
+    const trigger = screen.getByRole('button', { name: 'Open' });
+    expect(trigger).toHaveAttribute('aria-haspopup', 'dialog');
+    expect(trigger).toHaveAttribute('aria-expanded', 'false');
+
+    fireEvent.keyDown(trigger, { key: 'Enter' });
+    expect(trigger).toHaveAttribute('aria-expanded', 'true');
+    expect(screen.getByTestId('popover-content')).toBeInTheDocument();
+  });
 });

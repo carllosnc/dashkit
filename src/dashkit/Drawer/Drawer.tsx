@@ -1,9 +1,10 @@
-import { type ReactNode, forwardRef } from 'react';
+import { type ReactNode, forwardRef, useCallback, type MutableRefObject } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiX } from 'react-icons/fi';
 import { cn } from '../utils/cn';
 import { useDrawer, type DrawerPosition } from './useDrawer';
+import { useFocusTrap } from '../utils/useFocusTrap';
 import { Backdrop } from '../Backdrop/Backdrop';
 import './drawer.css';
 
@@ -56,6 +57,18 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(function Drawer({
     positionVariants
   } = useDrawer({ isOpen, onClose, position });
 
+  const contentRef = useFocusTrap<HTMLDivElement>(isOpen);
+
+  // Merge the forwarded consumer ref with the focus-trap ref onto one node.
+  const setPanelRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      contentRef.current = node;
+      if (typeof ref === 'function') ref(node);
+      else if (ref) (ref as MutableRefObject<HTMLDivElement | null>).current = node;
+    },
+    [ref, contentRef]
+  );
+
   if (typeof document === 'undefined') return null;
 
   return createPortal(
@@ -76,8 +89,10 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(function Drawer({
           </Backdrop>
 
           <motion.div
-            ref={ref}
+            ref={setPanelRef}
             data-testid="drawer-content"
+            role="dialog"
+            aria-modal="true"
             variants={positionVariants[position]}
             initial="initial"
             animate="animate"

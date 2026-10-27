@@ -9,9 +9,9 @@ export interface PopoverTriggerProps {
 export function PopoverTrigger({ children, asChild }: PopoverTriggerProps) {
   const { open, setOpen, setTriggerRect, setTriggerElement, triggerMode, onMouseEnter, onMouseLeave } = usePopoverContext();
 
-  const toggleOpen = (e: React.MouseEvent) => {
+  const toggleOpen = (element: HTMLElement) => {
     if (triggerMode === 'hover') return;
-    const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+    const rect = element.getBoundingClientRect();
     setTriggerRect(rect);
     setOpen(!open);
   };
@@ -38,7 +38,7 @@ export function PopoverTrigger({ children, asChild }: PopoverTriggerProps) {
       ref: internalRef,
       onClick: (e: React.MouseEvent) => {
         (children.props as { onClick?: React.MouseEventHandler }).onClick?.(e);
-        toggleOpen(e);
+        toggleOpen(e.currentTarget as HTMLElement);
       },
       onMouseEnter: (e: React.MouseEvent) => {
         (children.props as { onMouseEnter?: React.MouseEventHandler }).onMouseEnter?.(e);
@@ -51,10 +51,40 @@ export function PopoverTrigger({ children, asChild }: PopoverTriggerProps) {
     });
   }
 
+  // Mirror DropdownTrigger: only promote the wrapper into an accessible button
+  // when the child isn't itself an interactive element, so we never nest
+  // interactive semantics inside a real <button> (which would also duplicate
+  // the accessible name).
+  const hasElementChild = React.Children.toArray(children).some((child) => React.isValidElement(child));
+
+  if (hasElementChild) {
+    return (
+      <div
+        ref={internalRef}
+        onClick={(e) => toggleOpen(e.currentTarget)}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={onMouseLeave}
+        className="cursor-pointer inline-block"
+      >
+        {children}
+      </div>
+    );
+  }
+
   return (
     <div
       ref={internalRef}
-      onClick={toggleOpen}
+      role="button"
+      tabIndex={0}
+      aria-haspopup="dialog"
+      aria-expanded={open}
+      onClick={(e) => toggleOpen(e.currentTarget)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleOpen(e.currentTarget);
+        }
+      }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={onMouseLeave}
       className="cursor-pointer inline-block"

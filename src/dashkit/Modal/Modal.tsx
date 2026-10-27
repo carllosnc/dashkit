@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '../utils/cn';
 import { useModal } from './useModal';
+import { useFocusTrap } from '../utils/useFocusTrap';
 import { Backdrop } from '../Backdrop/Backdrop';
 import './modal.css';
 
@@ -22,6 +23,7 @@ export function Modal({
   className,
 }: ModalProps) {
   useModal({ isOpen, onClose });
+  const contentRef = useFocusTrap<HTMLDivElement>(isOpen);
 
   return createPortal(
     <AnimatePresence>
@@ -30,6 +32,9 @@ export function Modal({
           <Backdrop show={true} fixed={false} onClick={onClose} />
 
           <motion.div
+            ref={contentRef}
+            role="dialog"
+            aria-modal="true"
             initial={{ opacity: 0, scale: 0.95, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}

@@ -45,6 +45,7 @@ export function ToastProvider({
             return (
               <div
                 key={pos}
+                aria-live="polite"
                 className={cn('toast-viewport', `toast-viewport--${pos}`)}
               >
                 <AnimatePresence mode="popLayout">
@@ -93,6 +94,7 @@ function ToastItem({
   invert
 }: ToastItemProps) {
   const isTop = position.startsWith('top');
+  const isUrgent = toast.type === 'error' || toast.type === 'warning';
 
   const offset = index * 12;
   const scale = 1 - index * 0.05;
@@ -101,6 +103,8 @@ function ToastItem({
   return (
     <motion.div
       layout
+      role={isUrgent ? 'alert' : 'status'}
+      aria-atomic="true"
       initial={{ opacity: 0, y: isTop ? -20 : 20, scale: 0.95 }}
       animate={{
         opacity: opacity > 0 ? opacity : 0,

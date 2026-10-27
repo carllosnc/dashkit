@@ -160,6 +160,25 @@ describe('Dropdown Component', () => {
     expect(screen.getByText('Selected Item')).toBeInTheDocument();
     // The check icon (FiCheck) should be there.
   });
+
+  it('promotes a plain-text trigger to an accessible, keyboard-operable button', () => {
+    render(
+      <Dropdown>
+        <DropdownTrigger>Open</DropdownTrigger>
+        <DropdownContent>
+          <div>Menu content</div>
+        </DropdownContent>
+      </Dropdown>
+    );
+
+    const trigger = screen.getByRole('button', { name: 'Open' });
+    expect(trigger).toHaveAttribute('aria-haspopup', 'menu');
+    expect(trigger).toHaveAttribute('aria-expanded', 'false');
+
+    fireEvent.keyDown(trigger, { key: 'Enter' });
+    expect(screen.getByText('Menu content')).toBeInTheDocument();
+    expect(trigger).toHaveAttribute('aria-expanded', 'true');
+  });
 });
 
 
