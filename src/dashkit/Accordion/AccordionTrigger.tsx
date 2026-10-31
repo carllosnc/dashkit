@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { motion } from 'framer-motion';
-import { FiChevronRight } from 'react-icons/fi';
+import { FiChevronDown } from 'react-icons/fi';
 import { cn } from '../utils/cn';
 import { AccordionContext, AccordionItemContext } from './AccordionContext';
 import './accordion.css';
@@ -28,17 +28,16 @@ export function AccordionTrigger({ children, className }: { children: React.Reac
         className
       )}
     >
-      <motion.div
-        animate={{ rotate: itemContext.isOpen ? 90 : 0 }}
-        transition={{ type: 'spring', damping: 20, stiffness: 300 }}
-        className="text-ds-400 shrink-0"
-      >
-        <FiChevronRight size={18} />
-      </motion.div>
       <span className="accordion__trigger-content">{children}</span>
+      <motion.div
+        animate={{ rotate: itemContext.isOpen ? 180 : 0 }}
+        transition={{ type: 'spring', damping: 20, stiffness: 300 }}
+        className="accordion__trigger-icon text-muted-foreground shrink-0"
+      >
+        <FiChevronDown size={16} />
+      </motion.div>
     </button>
   );
 }
 
 AccordionTrigger.displayName = 'AccordionTrigger';
-

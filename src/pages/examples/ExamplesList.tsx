@@ -51,7 +51,7 @@ export const ExamplesList = () => {
 
       <main className="flex-1 max-w-5xl w-full mx-auto px-6 py-20">
         <header className="mb-10">
-          <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-ds-500 hover:text-ds-900 dark:text-ds-400 dark:hover:text-white mb-6">
+          <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground mb-6">
             <FiArrowLeft size={16} />
             Back to Home
           </Link>
@@ -76,7 +76,7 @@ export const ExamplesList = () => {
             >
               <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-4">
-                  <div className={`size-10 rounded-[var(--radius-md)] ${example.bg} ${example.color} flex items-center justify-center shrink-0 border border-ds-200 dark:border-ds-800`}>
+                  <div className="size-10 rounded-[var(--radius-md)] bg-muted text-muted-foreground flex items-center justify-center shrink-0 border border-border group-hover:text-primary transition-colors">
                     {example.icon}
                   </div>
                   <h3 className="text-xl font-bold text-foreground hover:underline">
@@ -88,7 +88,7 @@ export const ExamplesList = () => {
                 </p>
               </div>
               <div className="flex items-center gap-4 mt-4 md:mt-0">
-                <FiArrowRight className="size-6 text-ds-300 dark:text-ds-700 transition-all duration-300" />
+                <FiArrowRight className="size-6 text-muted-foreground/40 group-hover:text-foreground group-hover:translate-x-1 transition-all duration-200" />
               </div>
             </Link>
           ))}

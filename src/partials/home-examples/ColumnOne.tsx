@@ -27,7 +27,7 @@ export function ColumnOne() {
     <div className="flex flex-col gap-4">
       {/* 1. Login Form Example */}
       <Card>
-        <CardHeader leftIcon={<FiLock className="text-ds-primary-600" size={18} />}>
+        <CardHeader leftIcon={<FiLock className="text-primary" size={18} />}>
           <CardTitle>Welcome Back</CardTitle>
           <CardDescription>Enter your credentials to access your dashboard.</CardDescription>
         </CardHeader>
@@ -61,22 +61,22 @@ export function ColumnOne() {
           </div>
 
           <div className="text-center pt-2">
-             <a href="#" className="text-sm text-ds-500 hover:text-ds-primary-500 transition-colors">Forgot your password?</a>
+             <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Forgot your password?</a>
           </div>
         </CardContent>
       </Card>
 
       {/* 4. Action / Quick Settings Example */}
       <Card>
-        <CardHeader leftIcon={<FiZap className="text-ds-primary-600" size={18} />}>
+        <CardHeader leftIcon={<FiZap className="text-primary" size={18} />}>
            <CardTitle>System Optimizer</CardTitle>
            <CardDescription>Configure your node performance and scaling settings.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
-          <div className="space-y-4 p-4 ds-rounded bg-ds-50/50 dark:bg-ds-900/50 border border-ds-200 dark:border-ds-800">
+          <Surface className="space-y-4 p-4">
               <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold uppercase tracking-widest text-ds-500">Current Load</span>
-                  <FiZap size={14} className="text-ds-primary-600" />
+                  <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Current Load</span>
+                  <FiZap size={14} className="text-primary" />
               </div>
               <div className="text-3xl font-bold tracking-tighter">84.2%</div>
               <ProgressBar
@@ -84,7 +84,7 @@ export function ColumnOne() {
                 size="sm"
                 color="primary"
               />
-          </div>
+          </Surface>
 
           <div className="flex flex-col gap-3">
               <Button variant="outlined" className="w-full">Run System Diagnostics</Button>
@@ -96,14 +96,14 @@ export function ColumnOne() {
       {/* 7. Team Activity Card (New with Avatars) */}
       <Card>
          <CardHeader 
-            leftIcon={<FiUsers className="text-ds-primary-600" size={18} />}
+            leftIcon={<FiUsers className="text-primary" size={18} />}
             action={<Badge content="12 Active" color="primary" variant="soft" />}
          >
             <CardTitle>Active Team</CardTitle>
             <CardDescription>Members currently online.</CardDescription>
          </CardHeader>
          <CardContent className="space-y-6">
-            <div className="flex items-center justify-between p-3 ds-rounded border border-ds-200 dark:border-ds-800 bg-ds-50/30 dark:bg-ds-800/20">
+            <Surface className="flex items-center justify-between p-3">
                <div className="flex items-center gap-3">
                   <AvatarGroup max={3} spacing="md" size="sm">
                      <Avatar src={AVATAR_URLS.user1} alt="User 1" />
@@ -114,14 +114,12 @@ export function ColumnOne() {
                   </AvatarGroup>
                   <div className="flex flex-col">
                      <span className="text-sm font-bold">In Collaboration</span>
-                     <span className="text-xs text-ds-500">Design System Project</span>
+                     <span className="text-xs text-muted-foreground">Design System Project</span>
                   </div>
                </div>
                <Dropdown>
                   <DropdownTrigger asChild>
-                     <Button variant="soft" size="sm" className="p-0 size-8 aspect-square min-w-0">
-                        <FiMoreHorizontal size={14} className="mx-auto" />
-                     </Button>
+                     <IconButton variant="soft" icon={<FiMoreHorizontal size={14} />} />
                   </DropdownTrigger>
                   <DropdownContent className="w-56" align="end">
                      <DropdownLabel>Project Actions</DropdownLabel>
@@ -132,29 +130,29 @@ export function ColumnOne() {
                      <DropdownItem leftIcon={<FiLogOut size={14} />} destructive>Leave Project</DropdownItem>
                   </DropdownContent>
                </Dropdown>
-            </div>
+            </Surface>
 
             <div className="space-y-4">
                <div className="flex items-center justify-between group cursor-pointer">
                   <div className="flex items-center gap-3">
                      <Avatar size="sm" src={AVATAR_URLS.user1} alt="Carlos N." />
                      <div className="flex flex-col">
-                        <span className="text-sm font-bold group-hover:text-ds-primary-600 transition-colors">Carlos N.</span>
-                        <span className="text-xs text-ds-500 italic">Lead Architect</span>
+                        <span className="text-sm font-bold group-hover:text-primary transition-colors">Carlos N.</span>
+                        <span className="text-xs text-muted-foreground italic">Lead Architect</span>
                      </div>
                   </div>
-                  <FiTrendingUp className="text-ds-primary-600" size={14} />
+                  <FiTrendingUp className="text-primary" size={14} />
                </div>
 
                <div className="flex items-center justify-between group cursor-pointer">
                   <div className="flex items-center gap-3">
                      <Avatar size="sm" src={AVATAR_URLS.user2} alt="Ana Blue" />
                      <div className="flex flex-col">
-                        <span className="text-sm font-bold group-hover:text-ds-primary-600 transition-colors">Ana Blue</span>
-                        <span className="text-xs text-ds-500 italic">Product Manager</span>
+                        <span className="text-sm font-bold group-hover:text-primary transition-colors">Ana Blue</span>
+                        <span className="text-xs text-muted-foreground italic">Product Manager</span>
                      </div>
                   </div>
-                  <div className="size-2 rounded-full bg-ds-primary-500" />
+                  <div className="size-2 rounded-full bg-primary" />
                </div>
             </div>
          </CardContent>
@@ -168,7 +166,7 @@ export function ColumnOne() {
         trend={24.5}
         trendLabel="vs last month"
         status="success"
-        icon={<FiDollarSign className="text-ds-success-600" size={16} />}
+        icon={<FiDollarSign className="text-success" size={16} />}
         chart={{
           data: [110, 115, 112, 118, 122, 128],
         }}
@@ -178,32 +176,32 @@ export function ColumnOne() {
       {/* 11. Security Events (New) */}
       <Card>
          <CardHeader 
-            leftIcon={<FiShield size={18} className="text-ds-primary-600" />}
+            leftIcon={<FiShield size={18} className="text-primary" />}
          >
             <CardTitle>Security Events</CardTitle>
             <CardDescription>Recent threat intelligence log.</CardDescription>
          </CardHeader>
          <CardContent className="space-y-4">
-            <div className="flex items-center justify-between p-3 ds-rounded border border-ds-200 dark:border-ds-800 bg-ds-50/30 dark:bg-ds-100/5">
+            <Surface className="flex items-center justify-between p-3">
                <div className="flex items-center gap-3">
-                  <FiShieldOff className="text-ds-primary-600" size={16} />
+                  <FiShieldOff className="text-primary" size={16} />
                   <div className="flex flex-col">
                      <span className="text-sm font-bold leading-tight">Unauthorized Entry</span>
-                     <span className="text-xs text-ds-500 tracking-wider font-bold uppercase">Node 0x42-E</span>
+                     <span className="text-xs text-muted-foreground tracking-wider font-bold uppercase">Node 0x42-E</span>
                   </div>
                </div>
-               <Badge content="Critical" color="danger" variant="soft" className="text-xs" />
-            </div>
-            <div className="flex items-center justify-between p-3 ds-rounded border border-ds-200 dark:border-ds-800 bg-ds-50/30 dark:bg-ds-100/5">
+               <Badge content="Critical" color="danger" variant="soft" />
+            </Surface>
+            <Surface className="flex items-center justify-between p-3">
                <div className="flex items-center gap-3">
-                  <FiActivity className="text-ds-primary-600" size={16} />
+                  <FiActivity className="text-primary" size={16} />
                   <div className="flex flex-col">
                      <span className="text-sm font-bold leading-tight">API Rate Limit</span>
-                     <span className="text-xs text-ds-500 tracking-wider font-bold uppercase">Public Access</span>
+                     <span className="text-xs text-muted-foreground tracking-wider font-bold uppercase">Public Access</span>
                     </div>
                  </div>
-                 <Badge content="Warning" color="primary" variant="soft" className="text-xs" />
-              </div>
+                 <Badge content="Warning" color="primary" variant="soft" />
+              </Surface>
               <Button variant="outlined" size="sm" className="w-full">View Security Logs</Button>
            </CardContent>
         </Card>
@@ -211,20 +209,20 @@ export function ColumnOne() {
         {/* 18. Wallet Portfolio (New) */}
         <Card>
            <CardHeader
-              leftIcon={<FiDollarSign className="text-ds-success-600" size={18} />}
+              leftIcon={<FiDollarSign className="text-success" size={18} />}
               action={<Badge content="Active" color="success" variant="soft" />}
            >
               <CardTitle>Portfolio</CardTitle>
            </CardHeader>
            <CardContent className="space-y-4">
               <div className="flex flex-col gap-1">
-                 <span className="text-xs text-ds-500 font-bold uppercase tracking-widest">Total Balance</span>
+                 <span className="text-xs text-muted-foreground font-bold uppercase tracking-widest">Total Balance</span>
                  <div className="text-3xl font-bold tracking-tighter">
                    <AnimateNumber value={42850.25} prefix="$" precision={2} />
                  </div>
               </div>
               <Surface variant="success" className="p-3 flex items-center justify-between">
-                 <div className="flex items-center gap-2 text-ds-success-600">
+                 <div className="flex items-center gap-2 text-success">
                     <FiTrendingUp size={14} />
                     <span className="text-xs font-bold">+12.4% this month</span>
                  </div>
@@ -239,55 +237,58 @@ export function ColumnOne() {
 
         {/* New 1: Podcast / Audio Player */}
         <Card>
-           <CardContent className="space-y-4">
-              <div className="flex items-center gap-4">
-                 <Avatar src={AVATAR_URLS.user3} size="lg" shape="square" className="rounded-xl" />
-                 <div className="flex flex-col flex-1">
-                    <span className="text-sm font-bold tracking-tight">Design Details</span>
-                    <span className="text-xs text-ds-500">Episode 42: The future of UI frameworks.</span>
+           <CardContent className="space-y-5">
+              <div className="flex items-center justify-between">
+                 <div className="flex items-center gap-3">
+                    <Avatar src={AVATAR_URLS.user3} size="lg" shape="square" />
+                    <div className="flex flex-col">
+                       <span className="text-sm font-bold tracking-tight">Design Details</span>
+                       <span className="text-xs text-muted-foreground">Episode 42: The future of UI frameworks.</span>
+                    </div>
                  </div>
+                 <Badge content="1.5x" color="primary" variant="soft" />
               </div>
-              <div className="flex flex-col gap-1">
-                 <Slider defaultValue={35} showValue={false} />
-                 <div className="flex items-center justify-between text-xs text-ds-500 font-medium font-mono">
+
+              <div className="flex flex-col gap-1.5">
+                 <Slider defaultValue={38} showValue={false} />
+                 <div className="flex items-center justify-between text-xs text-muted-foreground font-medium font-mono">
                     <span>12:45</span>
                     <span>32:10</span>
                  </div>
               </div>
-               <div className="flex items-center justify-between px-4">
-                  <IconButton
-                    variant="soft"
-                    rounded
-                    icon={<FiSkipBack size={16} />}
-                    className="size-10"
-                  />
-                  <IconButton
-                    variant="filled"
-                    rounded
-                    icon={<FiPlay size={23} className="ml-1 group-hover:scale-110 transition-transform" />}
-                    className="size-14 shadow-lg shadow-primary/30 group"
-                  />
-                  <IconButton
-                    variant="soft"
-                    rounded
-                    icon={<FiSkipForward size={16} />}
-                    className="size-10"
-                  />
-               </div>
+
+              <div className="flex items-center justify-center gap-6 pt-1">
+                 <IconButton
+                   variant="soft"
+                   rounded
+                   icon={<FiSkipBack size={18} />}
+                 />
+                 <IconButton
+                   variant="filled"
+                   rounded
+                   className="size-14 shadow-lg shadow-primary/25 hover:scale-105 active:scale-95 transition-transform"
+                   icon={<FiPlay size={22} className="ml-0.5 fill-current" />}
+                 />
+                 <IconButton
+                   variant="soft"
+                   rounded
+                   icon={<FiSkipForward size={18} />}
+                 />
+              </div>
            </CardContent>
         </Card>
 
         {/* New 5: Modal Trigger Example */}
         <Card>
-           <CardHeader leftIcon={<FiLock className="text-ds-danger-600" size={18} />}>
+           <CardHeader leftIcon={<FiLock className="text-danger" size={18} />}>
               <CardTitle>Danger Zone</CardTitle>
               <CardDescription>Irreversible actions for this project.</CardDescription>
            </CardHeader>
            <CardContent className="space-y-4">
-              <div className="p-3 ds-rounded border border-ds-danger-200 bg-ds-danger-50 dark:border-ds-danger-900/50 dark:bg-ds-danger-500/10 flex flex-col gap-1">
-                 <span className="text-sm font-bold text-ds-danger-800 dark:text-ds-danger-200">Delete this project</span>
-                 <span className="text-xs text-ds-danger-600 dark:text-ds-danger-400">Once you delete it, there is no going back. Please be certain.</span>
-              </div>
+              <Surface variant="danger" className="p-3 flex flex-col gap-1">
+                 <span className="text-sm font-bold">Delete this project</span>
+                 <span className="text-xs">Once you delete it, there is no going back. Please be certain.</span>
+              </Surface>
               <Button variant="outlined" className="w-full" onClick={() => setIsModalOpen(true)}>
                  Delete Project
               </Button>
@@ -297,7 +298,7 @@ export function ColumnOne() {
         {/* New 9: Support Ticket */}
         <Card>
            <CardHeader
-              leftIcon={<FiHelpCircle className="text-ds-primary-600" size={18} />}
+              leftIcon={<FiHelpCircle className="text-primary" size={18} />}
               action={<Badge content="High Priority" color="primary" variant="soft" />}
            >
               <CardTitle>Active Ticket</CardTitle>
@@ -323,7 +324,7 @@ export function ColumnOne() {
         {/* New 13: Transaction History (Pagination) */}
         <Card>
            <CardHeader
-              leftIcon={<FiZap className="text-ds-primary-600" size={18} />}
+              leftIcon={<FiZap className="text-primary" size={18} />}
            >
               <CardTitle>Transactions</CardTitle>
               <CardDescription>View your latest transfers.</CardDescription>
@@ -332,7 +333,7 @@ export function ColumnOne() {
               <div className="flex flex-col gap-2">
                  <div className="flex items-center justify-between py-2 hover:bg-ds-50/50 dark:hover:bg-ds-800/30 ds-rounded transition-colors">
                     <span className="text-sm font-medium">Stripe Payout</span>
-                    <span className="text-sm font-bold text-ds-success-600">+$124.50</span>
+                    <span className="text-sm font-bold text-success">+$124.50</span>
                  </div>
                  <div className="flex items-center justify-between py-2 hover:bg-ds-50/50 dark:hover:bg-ds-800/30 ds-rounded transition-colors">
                     <span className="text-sm font-medium">AWS Hosting</span>
@@ -343,7 +344,7 @@ export function ColumnOne() {
                     <span className="text-sm font-bold">-$4.00</span>
                  </div>
               </div>
-               <div className="pt-2 border-t border-ds-200 dark:border-ds-800 flex justify-center">
+               <div className="pt-2 border-t border-border flex justify-center">
                   <Pagination currentPage={paginatedPage} totalPages={10} onChange={setPaginatedPage} siblingCount={0} />
                </div>
             </CardContent>
@@ -352,7 +353,7 @@ export function ColumnOne() {
         {/* New 15: Security Perimeter (New) */}
         <Card>
            <CardHeader
-              leftIcon={<FiFingerprint className="text-ds-primary-600" size={18} />}
+              leftIcon={<FiFingerprint className="text-primary" size={18} />}
               action={<Badge content="Enforced" color="info" variant="soft" />}
            >
               <CardTitle>Security Perimeter</CardTitle>
@@ -366,7 +367,7 @@ export function ColumnOne() {
                  </div>
                  <div className="flex items-center justify-between">
                     <span className="text-sm font-medium">Hardware Key (Yubico)</span>
-                    <span className="text-xs text-ds-500 italic">Connected via USB-C</span>
+                    <span className="text-xs text-muted-foreground italic">Connected via USB-C</span>
                  </div>
                   <div className="flex items-center justify-between">
                      <span className="text-sm font-medium">Node Encryption</span>
@@ -399,12 +400,12 @@ export function ColumnOne() {
         </ModalHeader>
         <ModalContent className="flex flex-col gap-4">
            <div className="flex items-start gap-4">
-              <div className="size-11 rounded-full bg-ds-danger-600/10 flex items-center justify-center shrink-0">
-                 <FiAlertTriangle className="text-ds-danger-600" size={22} />
+              <div className="size-11 rounded-full bg-danger/10 flex items-center justify-center shrink-0">
+                 <FiAlertTriangle className="text-danger" size={22} />
               </div>
               <div className="space-y-1">
                  <p className="text-sm font-medium">Are you sure you want to delete this project?</p>
-                 <p className="text-sm text-ds-500 leading-relaxed"> This action cannot be undone. All resources and data associated with this project will be permanently removed.</p>
+                 <p className="text-sm text-muted-foreground leading-relaxed"> This action cannot be undone. All resources and data associated with this project will be permanently removed.</p>
               </div>
            </div>
         </ModalContent>

@@ -34,12 +34,12 @@ export function ColumnThree() {
     <div className="flex flex-col gap-4">
       {/* 3. Settings & Preferences Example */}
       <Card>
-        <CardHeader leftIcon={<FiSettings className="text-ds-primary-600" size={18} />}>
+        <CardHeader leftIcon={<FiSettings className="text-primary" size={18} />}>
            <CardTitle>Preferences</CardTitle>
            <CardDescription>Manage your workspace and notification settings.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-             <span className="text-xs block font-bold uppercase tracking-widest text-ds-500">Privacy & Security</span>
+             <span className="text-xs block font-bold uppercase tracking-widest text-muted-foreground">Privacy & Security</span>
              <div className="space-y-3">
                 <Checkbox
                    label="Two-factor auth"
@@ -52,8 +52,8 @@ export function ColumnThree() {
                 />
              </div>
 
-          <div className="space-y-4 border-t  dark:border-ds-800 pt-6">
-             <span className="text-xs block font-bold uppercase tracking-widest text-ds-500">Subscription Plan</span>
+          <div className="space-y-4 border-t  border-border pt-6">
+             <span className="text-xs block font-bold uppercase tracking-widest text-muted-foreground">Subscription Plan</span>
              <Radio
                 name="plan"
                 label="Starter Plan"
@@ -74,7 +74,7 @@ export function ColumnThree() {
       {/* 9. Conversion Overview Card (New with BarChart) */}
       <Card>
           <CardHeader
-             leftIcon={<FiBarChart2 className="text-ds-primary-600" size={18} />}
+             leftIcon={<FiBarChart2 className="text-primary" size={18} />}
              action={<Badge content="Monthly" color="info" variant="soft" />}
           >
              <CardTitle>Traffic Sources</CardTitle>
@@ -84,8 +84,8 @@ export function ColumnThree() {
               <BarChart
                  data={CONVERSION_DATA}
                  series={[
-                    { key: 'desktop', label: 'Desktop', color: 'var(--color-ds-primary-600)' },
-                    { key: 'mobile', label: 'Mobile', color: 'var(--color-ds-primary-400)' }
+                    { key: 'desktop', label: 'Desktop', color: 'var(--color-chart-1)' },
+                    { key: 'mobile', label: 'Mobile', color: 'var(--color-chart-2)' }
                  ]}
                  showGrid={false}
                  rounded
@@ -95,13 +95,13 @@ export function ColumnThree() {
           <Divider />
           <div className="flex items-center justify-around">
              <div className="flex flex-col items-center text-center">
-                <span className="text-xs uppercase font-bold text-ds-500 tracking-wider">Highest</span>
+                <span className="text-xs uppercase font-bold text-muted-foreground tracking-wider">Highest</span>
                 <span className="text-sm font-bold">Organic</span>
              </div>
              <Divider orientation="vertical" />
              <div className="flex flex-col items-center text-center">
-                <span className="text-xs uppercase font-bold text-ds-500 tracking-wider">Engagement</span>
-                <span className="text-sm font-bold text-ds-success-600">+18.4%</span>
+                <span className="text-xs uppercase font-bold text-muted-foreground tracking-wider">Engagement</span>
+                <span className="text-sm font-bold text-success">+18.4%</span>
              </div>
           </div>
          </CardContent>
@@ -109,7 +109,7 @@ export function ColumnThree() {
 
       {/* 6. OTP Verification Card */}
       <Card>
-         <CardHeader leftIcon={<FiLock className="text-ds-primary-600" size={18} />}>
+         <CardHeader leftIcon={<FiLock className="text-primary" size={18} />}>
             <CardTitle>Two-Factor Auth</CardTitle>
             <CardDescription>Enter the 6-digit code sent to your device.</CardDescription>
          </CardHeader>
@@ -123,8 +123,8 @@ export function ColumnThree() {
             <div className="space-y-3">
                <Button variant="filled" className="w-full">Verify Identity</Button>
                <div className="text-center">
-                  <span className="text-xs text-ds-500">Didn't receive the code? </span>
-                  <button className="text-xs font-bold text-ds-primary-600 hover:underline cursor-pointer">Resend</button>
+                  <span className="text-xs text-muted-foreground">Didn't receive the code? </span>
+                  <button className="text-xs font-bold text-primary hover:underline cursor-pointer">Resend</button>
                </div>
             </div>
          </CardContent>
@@ -138,7 +138,7 @@ export function ColumnThree() {
         trend={12.8}
         trendLabel="vs yesterday"
         status="success"
-        icon={<FiUsers className="text-ds-primary-600" size={16} />}
+        icon={<FiUsers className="text-primary" size={16} />}
         chart={{
           data: [100, 110, 115, 120, 125, 128],
         }}
@@ -147,7 +147,7 @@ export function ColumnThree() {
 
       {/* 13. Personalization Survey (New) */}
       <Card>
-         <CardHeader leftIcon={<FiUsers className="text-ds-primary-600" size={18} />}>
+         <CardHeader leftIcon={<FiUsers className="text-primary" size={18} />}>
             <CardTitle>Personalize your experience</CardTitle>
             <CardDescription>Select your areas of interest to tailor the dashboard to your needs.</CardDescription>
          </CardHeader>
@@ -186,59 +186,58 @@ export function ColumnThree() {
 
       {/* New 3: Active Sessions */}
       <Card>
-         <CardHeader leftIcon={<FiMonitor className="text-ds-primary-600" size={18} />}>
+         <CardHeader leftIcon={<FiMonitor className="text-primary" size={18} />}>
             <CardTitle>Active Sessions</CardTitle>
             <CardDescription>Devices logged into your account.</CardDescription>
          </CardHeader>
          <CardContent className="space-y-4">
             <Surface variant="info" className="flex items-center justify-between p-3">
                <div className="flex items-center gap-3">
-                  <FiMonitor className="text-ds-info-600" size={18} />
+                  <FiMonitor className="text-info" size={18} />
                   <div className="flex flex-col">
                      <span className="text-sm font-bold">MacBook Pro 16"</span>
-                     <span className="text-xs text-ds-500">San Francisco, US • Current session</span>
+                     <span className="text-xs text-muted-foreground">San Francisco, US • Current session</span>
                   </div>
                </div>
                <Badge content="Active" color="info" variant="soft" pulse />
             </Surface>
-            <div className="flex items-center justify-between p-3">
+            <Surface className="flex items-center justify-between p-3">
                <div className="flex items-center gap-3">
-                  <FiSmartphone className="text-ds-500" size={18} />
+                  <FiSmartphone className="text-muted-foreground" size={18} />
                   <div className="flex flex-col">
                      <span className="text-sm font-bold">iPhone 14 Pro</span>
-                     <span className="text-xs text-ds-500">New York, US • 2 hours ago</span>
+                     <span className="text-xs text-muted-foreground">New York, US • 2 hours ago</span>
                   </div>
                </div>
                <Button variant="soft" size="sm">Revoke</Button>
-            </div>
-            <Divider />
-            <div className="flex items-center justify-between p-3">
+            </Surface>
+            <Surface className="flex items-center justify-between p-3">
                <div className="flex items-center gap-3">
-                  <FiMonitor className="text-ds-500" size={18} />
+                  <FiMonitor className="text-muted-foreground" size={18} />
                   <div className="flex flex-col">
                      <span className="text-sm font-bold">Chrome on Windows</span>
-                     <span className="text-xs text-ds-500">London, UK • 3 days ago</span>
+                     <span className="text-xs text-muted-foreground">London, UK • 3 days ago</span>
                   </div>
                </div>
                <Button variant="soft" size="sm">Revoke</Button>
-            </div>
+            </Surface>
          </CardContent>
       </Card>
 
       {/* New 7: Toast Example */}
       <Card>
-         <CardHeader leftIcon={<FiBell className="text-ds-primary-600" size={18} />}>
+         <CardHeader leftIcon={<FiBell className="text-primary" size={18} />}>
             <CardTitle>Notifications</CardTitle>
             <CardDescription>System toast dispatcher testing.</CardDescription>
          </CardHeader>
          <CardContent className="space-y-4">
-            <div className="flex flex-col gap-2 p-3 bg-ds-50 dark:bg-ds-800/40 ds-rounded border border-ds-200 dark:border-ds-800">
+            <Surface className="flex flex-col gap-2 p-3">
                <div className="flex items-center justify-between">
                   <span className="text-sm font-bold">Push Notifications</span>
                   <Switch defaultChecked />
                </div>
-               <span className="text-xs text-ds-500">Allow systemic alerts to pop up.</span>
-            </div>
+               <span className="text-xs text-muted-foreground">Allow systemic alerts to pop up.</span>
+            </Surface>
             <div className="grid grid-cols-2 gap-2">
                <Button variant="soft" size="sm" leftIcon={<FiCheckCircle size={14} />} onClick={() => toast({ title: 'Saved!', description: 'Settings updated successfully.', type: 'success', invert: true })}>Success</Button>
                <Button variant="soft" size="sm" leftIcon={<FiXCircle size={14} />} onClick={() => toast({ title: 'Error', description: 'Failed to apply change.', type: 'error', invert: true })}>Error</Button>
@@ -248,7 +247,7 @@ export function ColumnThree() {
 
       {/* New 11: Invite Team */}
       <Card>
-         <CardHeader leftIcon={<FiUserPlus className="text-ds-success-600" size={18} />}>
+         <CardHeader leftIcon={<FiUserPlus className="text-success" size={18} />}>
             <CardTitle>Invite Members</CardTitle>
             <CardDescription>Grow your workspace team.</CardDescription>
          </CardHeader>
@@ -274,7 +273,7 @@ export function ColumnThree() {
          </CardContent>
       </Card>
       <Card>
-         <CardHeader leftIcon={<FiDownload className="text-ds-primary-600" size={18} />}>
+         <CardHeader leftIcon={<FiDownload className="text-primary" size={18} />}>
             <CardTitle>Data Export</CardTitle>
             <CardDescription>Download your workspace activity logs.</CardDescription>
          </CardHeader>
@@ -301,7 +300,7 @@ export function ColumnThree() {
        {/* New 15: Appearance Engine (New) */}
        <Card>
           <CardHeader
-             leftIcon={<FiSun className="text-ds-primary-600" size={18} />}
+             leftIcon={<FiSun className="text-primary" size={18} />}
              action={<Badge content="Pro" color="primary" variant="soft" />}
           >
              <CardTitle>Appearance Engine</CardTitle>
@@ -309,13 +308,13 @@ export function ColumnThree() {
           </CardHeader>
           <CardContent className="space-y-6">
              <div className="space-y-3">
-                <span className="text-[11px] font-bold uppercase tracking-widest text-ds-500">Interface Theme</span>
+                <span className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">Interface Theme</span>
                 <ButtonGroup className="w-full">
                    <ButtonGroupItem 
                      className="flex-1 text-xs gap-2 font-semibold"
                      selected
                    >
-                     <FiCheckCircle size={14} className="text-ds-primary-600" />
+                     <FiCheckCircle size={14} className="text-primary" />
                      Light
                    </ButtonGroupItem>
                    <ButtonGroupItem 
@@ -334,18 +333,18 @@ export function ColumnThree() {
              </div>
              <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                   <span className="text-xs font-bold uppercase tracking-widest text-ds-500">Contrast Ratio</span>
-                   <span className="text-sm font-bold text-ds-primary-600">Enhanced</span>
+                   <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Contrast Ratio</span>
+                   <span className="text-sm font-bold text-primary">Enhanced</span>
                 </div>
                 <Slider defaultValue={75} showValue={false} />
              </div>
-             <div className="flex items-center justify-between p-3 ds-rounded border border-ds-200 dark:border-ds-800 bg-ds-50/50 dark:bg-ds-100/5">
+             <Surface className="flex items-center justify-between p-3">
                 <div className="flex items-center gap-2">
-                   <div className="size-2 rounded-full bg-ds-success-500" />
+                   <div className="size-2 rounded-full bg-success" />
                    <span className="text-sm font-medium">Automatic Brightness</span>
                 </div>
                 <Switch defaultChecked />
-             </div>
+             </Surface>
           </CardContent>
        </Card>
     </div>
