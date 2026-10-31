@@ -1,25 +1,25 @@
 @reference "../dashkit.css";
 
 .surface {
-  @apply ds-rounded border;
+  @apply ds-rounded-md border transition-colors text-foreground;
 }
 
 .surface--default {
-  @apply bg-ds-0 dark:bg-ds-900 border-ds-200 dark:border-ds-800;
+  @apply bg-muted/40 dark:bg-muted/20 border-border;
 }
 
 .surface--info {
-  @apply bg-ds-info-50 dark:bg-ds-info-700/10 border-ds-info-300 dark:border-ds-info-900;
+  @apply bg-info/8 dark:bg-info/15 border-info/25 dark:border-info/30;
 }
 
 .surface--success {
-  @apply bg-ds-success-50 dark:bg-ds-success-700/10 border-ds-success-300 dark:border-ds-success-900;
+  @apply bg-success/8 dark:bg-success/15 border-success/25 dark:border-success/30;
 }
 
 .surface--warning {
-  @apply bg-ds-warning-50 dark:bg-ds-warning-700/10 border-ds-warning-400 dark:border-ds-warning-900;
+  @apply bg-warning/10 dark:bg-warning/15 border-warning/30 dark:border-warning/35;
 }
 
 .surface--danger {
-  @apply bg-ds-danger-50 dark:bg-ds-danger-700/10 border-ds-danger-300 dark:border-ds-danger-900;
+  @apply bg-danger/8 dark:bg-danger/15 border-danger/25 dark:border-danger/30;
 }
