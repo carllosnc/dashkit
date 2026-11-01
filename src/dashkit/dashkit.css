@@ -54,17 +54,17 @@
   --color-ds-success-900:   var(--color-green-900);
   --color-ds-success-950:   var(--color-green-950);
 
-  --color-ds-warning-50:    var(--color-yellow-50);
-  --color-ds-warning-100:   var(--color-yellow-100);
-  --color-ds-warning-200:   var(--color-yellow-200);
-  --color-ds-warning-300:   var(--color-yellow-300);
-  --color-ds-warning-400:   var(--color-yellow-400);
-  --color-ds-warning-500:   var(--color-yellow-500);
-  --color-ds-warning-600:   var(--color-yellow-600);
-  --color-ds-warning-700:   var(--color-yellow-700);
-  --color-ds-warning-800:   var(--color-yellow-800);
-  --color-ds-warning-900:   var(--color-yellow-900);
-  --color-ds-warning-950:   var(--color-yellow-950);
+  --color-ds-warning-50:    var(--color-amber-50);
+  --color-ds-warning-100:   var(--color-amber-100);
+  --color-ds-warning-200:   var(--color-amber-200);
+  --color-ds-warning-300:   var(--color-amber-300);
+  --color-ds-warning-400:   var(--color-amber-400);
+  --color-ds-warning-500:   var(--color-amber-500);
+  --color-ds-warning-600:   var(--color-amber-600);
+  --color-ds-warning-700:   var(--color-amber-700);
+  --color-ds-warning-800:   var(--color-amber-800);
+  --color-ds-warning-900:   var(--color-amber-900);
+  --color-ds-warning-950:   var(--color-amber-950);
 
   --color-ds-danger-50:    var(--color-red-50);
   --color-ds-danger-100:   var(--color-red-100);
@@ -85,6 +85,7 @@
   --color-card-foreground: var(--ds-card-fg);
 
   --color-popover: var(--ds-popover);
+  --color-popover-foreground: var(--ds-popover-fg);
   --color-popover-fg: var(--ds-popover-fg);
   --color-popover-border: var(--ds-popover-border);
   --color-popover-item: var(--ds-popover-item);
@@ -93,9 +94,11 @@
 
   --color-border: var(--ds-border);
 
+  --color-input: var(--ds-input-border);
   --color-input-bg: var(--ds-input-bg);
   --color-input-border: var(--ds-input-border);
   --color-input-focus: var(--ds-input-focus);
+  --color-input-foreground: var(--ds-input-fg);
   --color-input-fg: var(--ds-input-fg);
   --color-ring: var(--ds-input-ring);
 
@@ -108,6 +111,21 @@
   --color-muted-foreground: var(--ds-muted-fg);
   --color-accent: var(--ds-accent);
   --color-accent-foreground: var(--ds-accent-fg);
+
+  --color-danger: var(--ds-danger);
+  --color-danger-foreground: var(--ds-danger-fg);
+  --color-success: var(--ds-success);
+  --color-success-foreground: var(--ds-success-fg);
+  --color-warning: var(--ds-warning);
+  --color-warning-foreground: var(--ds-warning-fg);
+  --color-info: var(--ds-info);
+  --color-info-foreground: var(--ds-info-fg);
+
+  --color-chart-1: var(--ds-chart-1);
+  --color-chart-2: var(--ds-chart-2);
+  --color-chart-3: var(--ds-chart-3);
+  --color-chart-4: var(--ds-chart-4);
+  --color-chart-5: var(--ds-chart-5);
 
   --radius-base: 0.5rem;
   --radius-md: 0.75rem;
@@ -136,7 +154,7 @@
   --ds-popover-item-selected-fg: var(--color-ds-primary-700);
 
   --ds-primary: var(--color-ds-primary-600);
-  --ds-primary-fg: var(--color-ds-50);
+  --ds-primary-fg: var(--color-white);
   --ds-secondary: var(--color-ds-200);
   --ds-secondary-fg: var(--color-ds-900);
 
@@ -145,11 +163,26 @@
   --ds-accent: var(--color-ds-100);
   --ds-accent-fg: var(--color-ds-950);
 
+  --ds-danger: var(--color-ds-danger-600);
+  --ds-danger-fg: var(--color-white);
+  --ds-success: var(--color-ds-success-600);
+  --ds-success-fg: var(--color-white);
+  --ds-warning: var(--color-ds-warning-600);
+  --ds-warning-fg: var(--color-ds-950);
+  --ds-info: var(--color-ds-info-600);
+  --ds-info-fg: var(--color-white);
+
   --ds-input-bg: var(--color-ds-100);
   --ds-input-border: var(--color-ds-300);
   --ds-input-focus: var(--color-ds-400);
   --ds-input-fg: var(--color-ds-900);
-  --ds-input-ring: var(--color-ds-primary-100);
+  --ds-input-ring: var(--color-ds-primary-200);
+
+  --ds-chart-1: var(--color-ds-primary-600);
+  --ds-chart-2: var(--color-ds-success-600);
+  --ds-chart-3: var(--color-ds-warning-500);
+  --ds-chart-4: var(--color-indigo-500);
+  --ds-chart-5: var(--color-ds-danger-500);
 }
 
 .dark {
@@ -161,28 +194,43 @@
   --ds-card: var(--color-ds-900);
   --ds-card-fg: var(--color-ds-100);
 
-  --ds-popover: var(--color-ds-950);
+  --ds-popover: var(--color-ds-900);
   --ds-popover-fg: var(--color-ds-100);
   --ds-popover-border: var(--color-ds-800);
-  --ds-popover-item: var(--color-ds-900);
+  --ds-popover-item: var(--color-ds-800);
   --ds-popover-item-selected: var(--color-ds-primary-950);
   --ds-popover-item-selected-fg: var(--color-ds-primary-400);
 
   --ds-primary: var(--color-ds-primary-500);
-  --ds-primary-fg: var(--color-ds-0);
+  --ds-primary-fg: var(--color-white);
   --ds-secondary: var(--color-ds-800);
   --ds-secondary-fg: var(--color-ds-100);
 
   --ds-muted: var(--color-ds-800);
-  --ds-muted-fg: var(--color-ds-500);
+  --ds-muted-fg: var(--color-ds-400);
   --ds-accent: var(--color-ds-900);
   --ds-accent-fg: var(--color-ds-50);
 
+  --ds-danger: var(--color-ds-danger-500);
+  --ds-danger-fg: var(--color-white);
+  --ds-success: var(--color-ds-success-500);
+  --ds-success-fg: var(--color-white);
+  --ds-warning: var(--color-ds-warning-400);
+  --ds-warning-fg: var(--color-ds-950);
+  --ds-info: var(--color-ds-info-500);
+  --ds-info-fg: var(--color-white);
+
   --ds-input-bg: var(--color-ds-800);
   --ds-input-border: var(--color-ds-700);
-  --ds-input-focus: var(--color-ds-600);
+  --ds-input-focus: var(--color-ds-500);
   --ds-input-fg: var(--color-ds-100);
-  --ds-input-ring: var(--color-ds-800);
+  --ds-input-ring: var(--color-ds-primary-500);
+
+  --ds-chart-1: var(--color-ds-primary-400);
+  --ds-chart-2: var(--color-ds-success-400);
+  --ds-chart-3: var(--color-ds-warning-400);
+  --ds-chart-4: var(--color-indigo-400);
+  --ds-chart-5: var(--color-ds-danger-400);
 }
 
 /* ────────────────────────────────────────────────

@@ -39,8 +39,8 @@ export const ComplexFormExample = () => {
       <Card className="w-full max-w-4xl relative z-10 shrink-0">
         <CardHeader>
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-blue-50 dark:bg-blue-500/10 rounded-xl">
-              <FiUser className="size-5 text-blue-600 dark:text-blue-400" />
+            <div className="p-2 bg-primary/10 rounded-xl">
+              <FiUser className="size-5 text-primary" />
             </div>
             <CardTitle className="text-2xl font-bold tracking-tight">Complete Your Profile</CardTitle>
           </div>
@@ -96,7 +96,7 @@ export const ComplexFormExample = () => {
                   description="When can you start the project?"
                 />
                 <div className="md:col-span-2 flex flex-col gap-4">
-                  <label className="text-[13px] font-semibold text-ds-700 dark:text-ds-300 ml-1 tracking-tight">
+                  <label className="text-[13px] font-semibold text-foreground ml-1 tracking-tight">
                     Gender
                   </label>
                   <div className="flex gap-12">
@@ -109,7 +109,7 @@ export const ComplexFormExample = () => {
             </section>
 
             {/* Company Info Section */}
-            <section className="flex flex-col gap-8 text-6">
+            <section className="flex flex-col gap-8">
               <Divider contentPosition="left">
                 Company Information
               </Divider>

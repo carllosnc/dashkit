@@ -1,11 +1,15 @@
 @reference "../dashkit.css";
 
 .accordion {
-  @apply flex flex-col gap-3 w-full;
+  @apply flex flex-col w-full;
 }
 
 .accordion__item {
-  @apply bg-card text-card-foreground ds-rounded shadow-sm overflow-hidden;
+  @apply border-b border-border transition-colors;
+}
+
+.accordion__item:last-child {
+  @apply border-b-0;
 }
 
 .accordion__item--disabled {
@@ -13,15 +17,15 @@
 }
 
 .accordion__trigger {
-  @apply flex w-full items-center gap-3 px-4 py-4 text-left transition-colors;
+  @apply flex w-full items-center justify-between py-4 text-left transition-colors cursor-pointer outline-none hover:text-foreground;
 }
 
 .accordion__trigger--active {
-  @apply font-semibold;
+  @apply text-foreground font-medium;
 }
 
 .accordion__trigger:not(.accordion__trigger--active) {
-  @apply text-ds-950 font-medium;
+  @apply text-ds-700 font-medium;
 
   @variant dark {
     @apply text-ds-300;
@@ -29,7 +33,15 @@
 }
 
 .accordion__trigger-content {
-  @apply text-base text-foreground font-medium tracking-tight;
+  @apply text-sm md:text-base font-medium tracking-tight text-foreground flex-1;
+}
+
+.accordion__trigger-icon {
+  @apply text-muted-foreground transition-colors shrink-0;
+}
+
+.accordion__trigger:hover .accordion__trigger-icon {
+  @apply text-foreground;
 }
 
 .accordion__content {
@@ -37,5 +49,5 @@
 }
 
 .accordion__content-inner {
-  @apply px-4 pb-4 pl-[44px] text-sm text-muted-foreground leading-relaxed font-medium;
+  @apply pb-4 pt-1 text-sm text-muted-foreground leading-relaxed font-normal;
 }

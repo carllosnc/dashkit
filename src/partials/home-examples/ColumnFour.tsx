@@ -8,6 +8,7 @@ import { Checkbox } from '../../dashkit/Checkbox/Checkbox';
 import { Slider } from '../../dashkit/Slider/Slider';
 import { Select } from '../../dashkit/Select/Select';
 import { CopyField } from '../../dashkit/CopyField/CopyField';
+import { Surface } from '../../dashkit/Surface/Surface';
 import { StatsCard } from '../../dashkit/StatsCard/StatsCard';
 import { ListTile } from '../../dashkit/ListTile/ListTile';
 import { FiBell, FiZap, FiShield, FiMessageSquare, FiList, FiFolder, FiTrendingUp, FiShare2, FiCheckCircle, FiXCircle, FiLock, FiServer, FiDownload, FiFileText, FiActivity } from 'react-icons/fi';
@@ -31,10 +32,10 @@ export function ColumnFour() {
   };
 
   const trafficData = [
-    { label: "Organic", value: 480, color: "var(--color-ds-primary-600)" },
-    { label: "Referral", value: 320, color: "var(--color-ds-primary-400)" },
-    { label: "Direct", value: 140, color: "var(--color-ds-primary-700)" },
-    { label: "Social", value: 60, color: "var(--color-ds-primary-300)" }
+    { label: "Organic", value: 480, color: "var(--color-chart-1)" },
+    { label: "Referral", value: 320, color: "var(--color-chart-2)" },
+    { label: "Direct", value: 140, color: "var(--color-chart-3)" },
+    { label: "Social", value: 60, color: "var(--color-chart-4)" }
   ];
 
   return (
@@ -42,7 +43,7 @@ export function ColumnFour() {
       {/* 14. Notifications Feed */}
       <Card>
          <CardHeader
-            leftIcon={<FiBell className="text-ds-primary-600" size={18} />}
+            leftIcon={<FiBell className="text-primary" size={18} />}
             action={<Badge content="3 New" color="info" variant="soft" />}
          >
             <CardTitle>Notifications</CardTitle>
@@ -77,8 +78,8 @@ export function ColumnFour() {
       {/* 15. Task Management */}
       <Card>
          <CardHeader
-            leftIcon={<FiList className="text-ds-primary-600" size={18} />}
-            action={<span className="text-xs font-bold text-ds-500">{Math.round(progressValue)}% Done</span>}
+            leftIcon={<FiList className="text-primary" size={18} />}
+            action={<span className="text-xs font-bold text-muted-foreground">{Math.round(progressValue)}% Done</span>}
          >
             <CardTitle>Tasks</CardTitle>
          </CardHeader>
@@ -105,7 +106,7 @@ export function ColumnFour() {
         trend={0.01}
         trendLabel="vs last month"
         status="info"
-        icon={<FiActivity className="text-ds-info-600" size={16} />}
+        icon={<FiActivity className="text-info" size={16} />}
         chart={{
           data: [99.97, 99.98, 99.99, 99.98, 99.97, 99.98],
         }}
@@ -114,47 +115,47 @@ export function ColumnFour() {
 
       {/* 16. Cloud Storage Usage */}
       <Card>
-         <CardHeader leftIcon={<FiFolder className="text-ds-primary-600" size={18} />}>
+         <CardHeader leftIcon={<FiFolder className="text-primary" size={18} />}>
             <CardTitle>Storage</CardTitle>
          </CardHeader>
          <CardContent className="space-y-4">
             <div className="flex items-end justify-between">
                <div className="flex flex-col">
                   <span className="text-2xl font-bold">42.8 GB</span>
-                  <span className="text-xs text-ds-500">of 100 GB used</span>
+                  <span className="text-xs text-muted-foreground">of 100 GB used</span>
                </div>
-               <FiTrendingUp className="text-ds-primary-600 mb-1" />
+               <FiTrendingUp className="text-primary mb-1" />
             </div>
             <ProgressBar value={42.8} size="sm" color="primary" />
             <div className="grid grid-cols-2 gap-2">
-               <div className="flex flex-col p-2 bg-ds-50/50 dark:bg-ds-800/10 ds-rounded border border-ds-200 dark:border-ds-800">
-                  <span className="text-xs font-bold uppercase text-ds-500 tracking-wider">Images</span>
+               <Surface className="p-2 flex flex-col">
+                  <span className="text-xs font-bold uppercase text-muted-foreground tracking-wider">Images</span>
                   <span className="text-sm font-bold">12.4 GB</span>
-               </div>
-               <div className="flex flex-col p-2 bg-ds-50/50 dark:bg-ds-800/10 ds-rounded border border-ds-200 dark:border-ds-800">
-                  <span className="text-xs font-bold uppercase text-ds-500 tracking-wider">Backups</span>
+               </Surface>
+               <Surface className="p-2 flex flex-col">
+                  <span className="text-xs font-bold uppercase text-muted-foreground tracking-wider">Backups</span>
                   <span className="text-sm font-bold">30.4 GB</span>
-               </div>
+               </Surface>
             </div>
          </CardContent>
       </Card>
 
       {/* 17. Quick Integrations */}
       <Card>
-         <CardHeader leftIcon={<FiShare2 className="text-ds-primary-600" size={18} />}>
+         <CardHeader leftIcon={<FiShare2 className="text-primary" size={18} />}>
             <CardTitle>Integrations</CardTitle>
          </CardHeader>
          <CardContent className="space-y-4">
             <div>
               {[
-                { icon: <FaGithub size={20} className="text-ds-600 dark:text-ds-400" />, label: "GitHub", connected: true },
-                { icon: <FaGoogle size={18} className="text-ds-600 dark:text-ds-400" />, label: "Google Workspace", connected: false },
-                { icon: <FaSlack size={20} className="text-ds-600 dark:text-ds-400" />, label: "Slack", connected: false },
-                { icon: <FaDiscord size={20} className="text-ds-600 dark:text-ds-400" />, label: "Discord", connected: true },
-                { icon: <FaAws size={22} className="text-ds-600 dark:text-ds-400" />, label: "AWS Cloud", connected: false },
-                { icon: <SiVercel size={18} className="text-ds-600 dark:text-ds-400" />, label: "Vercel", connected: true },
-                { icon: <FaFigma size={20} className="text-ds-600 dark:text-ds-400" />, label: "Figma", connected: true },
-                { icon: <SiNotion size={20} className="text-ds-600 dark:text-ds-400" />, label: "Notion", connected: false },
+                { icon: <FaGithub size={20} className="text-muted-foreground" />, label: "GitHub", connected: true },
+                { icon: <FaGoogle size={18} className="text-muted-foreground" />, label: "Google Workspace", connected: false },
+                { icon: <FaSlack size={20} className="text-muted-foreground" />, label: "Slack", connected: false },
+                { icon: <FaDiscord size={20} className="text-muted-foreground" />, label: "Discord", connected: true },
+                { icon: <FaAws size={22} className="text-muted-foreground" />, label: "AWS Cloud", connected: false },
+                { icon: <SiVercel size={18} className="text-muted-foreground" />, label: "Vercel", connected: true },
+                { icon: <FaFigma size={20} className="text-muted-foreground" />, label: "Figma", connected: true },
+                { icon: <SiNotion size={20} className="text-muted-foreground" />, label: "Notion", connected: false },
               ].map((item) => (
                 <ListTile
                   key={item.label}
@@ -177,26 +178,26 @@ export function ColumnFour() {
 
       {/* New 16: Security Audit */}
       <Card>
-         <CardHeader leftIcon={<FiShield className="text-ds-primary-600" size={18} />}>
+         <CardHeader leftIcon={<FiShield className="text-primary" size={18} />}>
             <CardTitle>Security Audit</CardTitle>
          </CardHeader>
          <CardContent className="space-y-4">
-            <div className="flex items-center gap-3 p-3 bg-ds-success-50 dark:bg-ds-success-900/10 ds-rounded border border-ds-success-200 dark:border-ds-success-800">
-               <FiCheckCircle className="text-ds-success-600 shrink-0" size={18} />
-               <p className="text-xs text-ds-success-800 dark:text-ds-success-200 font-medium leading-tight">No vulnerabilities detected matching active CVE signatures.</p>
-            </div>
+            <Surface variant="success" className="flex items-center gap-3 p-3">
+               <FiCheckCircle className="text-success shrink-0" size={18} />
+               <p className="text-xs font-medium leading-tight">No vulnerabilities detected matching active CVE signatures.</p>
+            </Surface>
             <div className="space-y-3">
-               <div className="flex items-center justify-between text-sm border-b pb-2 border-ds-200 dark:border-ds-800">
+               <div className="flex items-center justify-between text-sm border-b pb-2 border-border">
                   <span className="font-bold">MFA Required</span>
                   <Badge content="Enforced" color="success" variant="soft" />
                </div>
-               <div className="flex items-center justify-between text-sm border-b pb-2 border-ds-200 dark:border-ds-800">
+               <div className="flex items-center justify-between text-sm border-b pb-2 border-border">
                   <span className="font-bold">Suspicious Logins</span>
-                  <span className="font-bold text-ds-500 tracking-wider">0</span>
+                  <span className="font-bold text-muted-foreground tracking-wider">0</span>
                </div>
                <div className="flex items-center justify-between text-sm">
                   <span className="font-bold">Password Policy</span>
-                  <span className="font-bold text-ds-500 tracking-wider text-xs uppercase">STRICT</span>
+                  <span className="font-bold text-muted-foreground tracking-wider text-xs uppercase">STRICT</span>
                </div>
             </div>
          </CardContent>
@@ -205,7 +206,7 @@ export function ColumnFour() {
       {/* 21. Model Training (New) */}
       <Card>
          <CardHeader
-            leftIcon={<FiZap className="text-ds-primary-600 animate-pulse" size={18} />}
+            leftIcon={<FiZap className="text-primary animate-pulse" size={18} />}
          >
             <CardTitle>Model Training</CardTitle>
             <CardDescription>GPT-Neo Large (Ver. 4.2)</CardDescription>
@@ -213,21 +214,21 @@ export function ColumnFour() {
          <CardContent className="space-y-5">
             <div className="space-y-2">
                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-ds-500 uppercase">Training Progress</span>
+                  <span className="text-xs font-bold text-muted-foreground uppercase">Training Progress</span>
                   <span className="text-xs font-black">68%</span>
                </div>
                <ProgressBar value={68} color="primary" />
             </div>
             
             <div className="grid grid-cols-2 gap-3 tabular-nums">
-               <div className="flex flex-col p-2 bg-ds-50/50 dark:bg-ds-800/10 ds-rounded border border-ds-200 dark:border-ds-800">
-                  <span className="text-xs font-bold uppercase text-ds-500 tracking-wider">Loss</span>
+               <Surface className="p-2 flex flex-col">
+                  <span className="text-xs font-bold uppercase text-muted-foreground tracking-wider">Loss</span>
                   <span className="text-sm font-bold">0.0421</span>
-               </div>
-               <div className="flex flex-col p-2 bg-ds-50/50 dark:bg-ds-800/10 ds-rounded border border-ds-200 dark:border-ds-800">
-                  <span className="text-xs font-bold uppercase text-ds-500 tracking-wider">ETA</span>
+               </Surface>
+               <Surface className="p-2 flex flex-col">
+                  <span className="text-xs font-bold uppercase text-muted-foreground tracking-wider">ETA</span>
                   <span className="text-sm font-bold">04:12:08</span>
-               </div>
+               </Surface>
             </div>
 
             <div className="flex gap-2">
@@ -240,7 +241,7 @@ export function ColumnFour() {
       {/* New 4: API Keys */}
       <Card>
          <CardHeader
-            leftIcon={<FiLock className="text-ds-primary-600" size={18} />}
+            leftIcon={<FiLock className="text-primary" size={18} />}
             action={<Badge content="Pro" color="primary" variant="soft" />}
          >
             <CardTitle>API Credentials</CardTitle>
@@ -263,7 +264,7 @@ export function ColumnFour() {
       {/* New 15: Traffic Analytics Refactored */}
       <Card>
          <CardHeader
-            leftIcon={<FiTrendingUp className="text-ds-primary-600" size={18} />}
+            leftIcon={<FiTrendingUp className="text-primary" size={18} />}
             action={<Badge content="+12.5%" color="success" variant="soft" />}
          >
             <CardTitle>Traffic Analytics</CardTitle>
@@ -282,7 +283,7 @@ export function ColumnFour() {
 
       {/* New 8: Select Example */}
       <Card>
-         <CardHeader leftIcon={<FiServer className="text-ds-primary-600" size={18} />}>
+         <CardHeader leftIcon={<FiServer className="text-primary" size={18} />}>
             <CardTitle>Environment Settings</CardTitle>
             <CardDescription>Configure deployment targets and domains.</CardDescription>
          </CardHeader>
@@ -309,16 +310,16 @@ export function ColumnFour() {
                onChange={() => {}}
             />
             <div className="flex flex-col gap-1.5 pt-2">
-               <span className="text-xs font-bold uppercase tracking-wider text-ds-500">Status</span>
-               <div className="flex items-center justify-between p-3 ds-rounded border border-ds-200 dark:border-ds-800 bg-ds-50/50 dark:bg-ds-800/10">
+               <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Status</span>
+               <Surface className="p-3 flex items-center justify-between">
                   <div className="flex items-center gap-2">
                      <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-ds-success-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-ds-success-500"></span>
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-success/75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-success"></span>
                      </span>
                      <span className="text-sm font-bold">All systems operational</span>
                   </div>
-              </div>
+              </Surface>
             </div>
          </CardContent>
       </Card>
@@ -326,20 +327,20 @@ export function ColumnFour() {
       {/* New 12: Recent Invoice */}
       <Card>
          <CardHeader
-            leftIcon={<FiFileText className="text-ds-primary-600" size={18} />}
+            leftIcon={<FiFileText className="text-primary" size={18} />}
             action={<Badge content="Paid" color="primary" variant="soft" />}
          >
             <CardTitle>Recent Invoice</CardTitle>
             <CardDescription>Generated automatically.</CardDescription>
          </CardHeader>
          <CardContent className="space-y-4">
-            <div className="flex items-center justify-between p-3 ds-rounded border border-ds-200 dark:border-ds-800 bg-ds-50/50 dark:bg-ds-800/10">
+            <Surface className="p-3 flex items-center justify-between">
                <div className="flex flex-col">
                   <span className="text-sm font-bold">INV-0492-MAR</span>
-                  <span className="text-xs text-ds-500">Issued Mar 1st, 2026</span>
+                  <span className="text-xs text-muted-foreground">Issued Mar 1st, 2026</span>
                </div>
                <span className="text-lg font-bold">$1,249.00</span>
-            </div>
+            </Surface>
             <Button variant="soft" className="w-full" leftIcon={<FiDownload size={14} />}>
                Download PDF
             </Button>

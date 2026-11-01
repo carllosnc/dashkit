@@ -7,11 +7,11 @@ import './area-chart.css';
 import { useAreaChart, type AreaChartSeries } from './useAreaChart';
 
 const DEFAULT_COLORS = [
-  'var(--color-ds-primary-600)',
-  'var(--color-ds-primary-400)',
-  'var(--color-ds-primary-200)',
-  'var(--color-ds-primary-800)',
-  'var(--color-ds-primary-300)',
+  'var(--color-chart-1)',
+  'var(--color-chart-2)',
+  'var(--color-chart-3)',
+  'var(--color-chart-4)',
+  'var(--color-chart-5)',
 ];
 
 export interface AreaChartProps {
