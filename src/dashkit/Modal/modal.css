@@ -8,7 +8,7 @@
   @apply w-full bg-ds-50 text-ds-950 ds-rounded shadow-sm overflow-hidden flex flex-col;
 
   @variant dark {
-    @apply bg-ds-900 text-ds-50 border border-ds-800;
+    @apply bg-ds-900 text-ds-50 border border-ds-700/60 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_25px_50px_-12px_rgba(0,0,0,0.7)];
   }
 }
 

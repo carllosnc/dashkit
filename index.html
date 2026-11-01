@@ -37,6 +37,8 @@
           if (base) document.documentElement.setAttribute('data-base', base);
           var primary = localStorage.getItem('dashkit-primary-color');
           if (primary) document.documentElement.setAttribute('data-primary', primary);
+          var darkBg = localStorage.getItem('dashkit-dark-bg');
+          if (darkBg) document.documentElement.setAttribute('data-dark-bg', darkBg);
         } catch (e) {}
       })();
     </script>

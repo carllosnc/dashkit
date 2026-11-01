@@ -1,5 +1,11 @@
 import { useEffect, useState, type ReactNode } from 'react';
-import { ThemeContext, type Theme, type BaseColor, type PrimaryColor } from './ThemeContext';
+import {
+  ThemeContext,
+  type Theme,
+  type BaseColor,
+  type PrimaryColor,
+  type DarkBackground,
+} from './ThemeContext';
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>(() => {
@@ -27,6 +33,14 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     return 'blue';
   });
 
+  const [darkBg, setDarkBg] = useState<DarkBackground>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('dashkit-dark-bg') as DarkBackground;
+      if (saved) return saved;
+    }
+    return 'midnight';
+  });
+
   useEffect(() => {
     const root = window.document.documentElement;
     if (theme === 'dark') {
@@ -49,6 +63,12 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     localStorage.setItem('dashkit-primary-color', primaryColor);
   }, [primaryColor]);
 
+  useEffect(() => {
+    const root = window.document.documentElement;
+    root.setAttribute('data-dark-bg', darkBg);
+    localStorage.setItem('dashkit-dark-bg', darkBg);
+  }, [darkBg]);
+
   const toggleTheme = () => {
     setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
   };
@@ -62,6 +82,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         setBaseColor,
         primaryColor,
         setPrimaryColor,
+        darkBg,
+        setDarkBg,
       }}
     >
       {children}

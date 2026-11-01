@@ -13,10 +13,18 @@ export type PrimaryColor =
   | 'teal'
   | 'fuchsia';
 
+export type DarkBackground = 'midnight' | 'oled';
+
 export interface ColorOption<T extends string> {
   id: T;
   label: string;
   color: string;
+}
+
+export interface DarkBgOption {
+  id: DarkBackground;
+  label: string;
+  description: string;
 }
 
 export const BASE_COLORS: ColorOption<BaseColor>[] = [
@@ -39,4 +47,9 @@ export const PRIMARY_COLORS: ColorOption<PrimaryColor>[] = [
   { id: 'cyan', label: 'Cyan', color: '#06b6d4' },
   { id: 'teal', label: 'Teal', color: '#14b8a6' },
   { id: 'fuchsia', label: 'Fuchsia', color: '#d946ef' },
+];
+
+export const DARK_BG_OPTIONS: DarkBgOption[] = [
+  { id: 'midnight', label: 'Midnight', description: 'Deep graphite dark mode' },
+  { id: 'oled', label: 'OLED', description: 'Pure black #000000' },
 ];

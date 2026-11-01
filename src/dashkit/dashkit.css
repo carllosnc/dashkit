@@ -93,6 +93,7 @@
   --color-popover-item-selected-fg: var(--ds-popover-item-selected-fg);
 
   --color-border: var(--ds-border);
+  --color-border-subtle: var(--ds-border-subtle);
 
   --color-input: var(--ds-input-border);
   --color-input-bg: var(--ds-input-bg);
@@ -142,6 +143,7 @@
   --ds-fg: var(--color-ds-800);
 
   --ds-border: var(--color-ds-300);
+  --ds-border-subtle: var(--color-ds-200);
 
   --ds-card: var(--color-ds-0);
   --ds-card-fg: var(--color-ds-900);
@@ -190,13 +192,14 @@
   --ds-fg: var(--color-ds-100);
 
   --ds-border: var(--color-ds-800);
+  --ds-border-subtle: var(--color-ds-800)/60;
 
   --ds-card: var(--color-ds-900);
   --ds-card-fg: var(--color-ds-100);
 
   --ds-popover: var(--color-ds-900);
   --ds-popover-fg: var(--color-ds-100);
-  --ds-popover-border: var(--color-ds-800);
+  --ds-popover-border: var(--color-ds-700);
   --ds-popover-item: var(--color-ds-800);
   --ds-popover-item-selected: var(--color-ds-800);
   --ds-popover-item-selected-fg: var(--color-ds-100);
@@ -544,3 +547,18 @@
   --ds-color-primary-950: oklch(29.3% 0.136 325.661);
 }
 
+
+/* OLED Pure Black Mode */
+.dark[data-dark-bg="oled"],
+[data-dark-bg="oled"].dark,
+[data-dark-bg="oled"] .dark {
+  --ds-bg: #000000;
+  --ds-card: var(--color-ds-950);
+  --ds-card-fg: var(--color-ds-100);
+  --ds-popover: var(--color-ds-950);
+  --ds-popover-border: var(--color-ds-800);
+  --ds-border: var(--color-ds-800);
+  --ds-border-subtle: var(--color-ds-800)/40;
+  --ds-input-bg: var(--color-ds-900);
+  --ds-input-border: var(--color-ds-800);
+}

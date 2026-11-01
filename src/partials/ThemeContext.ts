@@ -1,8 +1,8 @@
 import { createContext, useContext } from 'react';
-import type { BaseColor, PrimaryColor } from './themeConfig';
+import type { BaseColor, PrimaryColor, DarkBackground } from './themeConfig';
 
 export type Theme = 'light' | 'dark';
-export type { BaseColor, PrimaryColor };
+export type { BaseColor, PrimaryColor, DarkBackground };
 
 export interface ThemeContextType {
   theme: Theme;
@@ -11,6 +11,8 @@ export interface ThemeContextType {
   setBaseColor: (base: BaseColor) => void;
   primaryColor: PrimaryColor;
   setPrimaryColor: (primary: PrimaryColor) => void;
+  darkBg: DarkBackground;
+  setDarkBg: (bg: DarkBackground) => void;
 }
 
 export const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
