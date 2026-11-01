@@ -7,6 +7,7 @@ import {
 } from './themeConfig';
 import { Popover, PopoverTrigger, PopoverContent } from '../dashkit/Popover';
 import { IconButton } from '../dashkit/IconButton/IconButton';
+import { Button } from '../dashkit/Button/Button';
 import { LuPalette } from 'react-icons/lu';
 import { FiCheck, FiRotateCcw } from 'react-icons/fi';
 import clsx from 'clsx';
@@ -44,22 +45,9 @@ export function ThemeCustomizer({ className }: ThemeCustomizerProps) {
       <PopoverContent align="end" side="bottom" sideOffset={8} className="w-[320px] p-4">
         <div className="space-y-4">
           {/* Header */}
-          <div className="flex items-center justify-between pb-3 border-b border-border">
-            <div>
-              <h4 className="font-semibold text-sm text-foreground">Theme Customizer</h4>
-              <p className="text-xs text-muted-foreground">Adjust base & brand colors in real-time</p>
-            </div>
-            {!isDefault && (
-              <button
-                type="button"
-                onClick={handleReset}
-                title="Reset to default (Zinc / Blue / Midnight)"
-                className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer px-2 py-1 rounded-md hover:bg-muted"
-              >
-                <FiRotateCcw size={12} />
-                <span>Reset</span>
-              </button>
-            )}
+          <div className="pb-3 border-b border-border">
+            <h4 className="font-semibold text-sm text-foreground">Theme Customizer</h4>
+            <p className="text-xs text-muted-foreground">Adjust base & brand colors in real-time</p>
           </div>
 
           {/* Primary Color Section */}
@@ -130,6 +118,20 @@ export function ThemeCustomizer({ className }: ThemeCustomizerProps) {
                 );
               })}
             </div>
+          </div>
+
+          {/* Footer Reset Button */}
+          <div className="pt-2 border-t border-border">
+            <Button
+              variant="outlined"
+              size="sm"
+              className="w-full"
+              leftIcon={<FiRotateCcw size={13} />}
+              onClick={handleReset}
+              disabled={isDefault}
+            >
+              Reset to default
+            </Button>
           </div>
         </div>
       </PopoverContent>
