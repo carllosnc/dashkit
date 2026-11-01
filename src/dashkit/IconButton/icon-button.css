@@ -20,7 +20,7 @@
 }
 
 .icon-button--filled:hover {
-  @apply brightness-125;
+  @apply brightness-105;
 }
 
 .icon-button--outlined {

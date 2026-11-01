@@ -21,7 +21,7 @@
 }
 
 .image-expander__dialog {
-  @apply fixed inset-0 z-[100] flex items-center justify-center isolate;
+  @apply fixed inset-0 z-[1100] flex items-center justify-center isolate;
 }
 
 .image-expander__backdrop {

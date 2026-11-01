@@ -15,7 +15,8 @@ import { Modal, ModalHeader, ModalContent, ModalFooter } from '../../dashkit/Mod
 import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem, DropdownLabel, DropdownSeparator } from '../../dashkit/Dropdown';
 import { toast } from '../../dashkit/Toast/useToast';
 import { StatsCard } from '../../dashkit/StatsCard/StatsCard';
-import { FiMail, FiLock, FiZap, FiMoreHorizontal, FiTrendingUp, FiShieldOff, FiActivity, FiShield, FiDollarSign, FiPlay, FiSkipBack, FiSkipForward, FiHelpCircle, FiLock as FiFingerprint, FiAlertTriangle, FiUsers, FiSettings, FiLogOut } from 'react-icons/fi';
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '../../dashkit/Table';
+import { FiMail, FiLock, FiZap, FiMoreHorizontal, FiTrendingUp, FiShieldOff, FiActivity, FiShield, FiDollarSign, FiPlay, FiSkipBack, FiSkipForward, FiHelpCircle, FiLock as FiFingerprint, FiAlertTriangle, FiUsers, FiSettings, FiLogOut, FiServer } from 'react-icons/fi';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
 import { IconButton } from '../../dashkit/IconButton/IconButton';
 import { AVATAR_URLS } from './Constants';
@@ -27,7 +28,7 @@ export function ColumnOne() {
     <div className="flex flex-col gap-4">
       {/* 1. Login Form Example */}
       <Card>
-        <CardHeader leftIcon={<FiLock className="text-primary" size={18} />}>
+        <CardHeader leftIcon={<FiLock size={18} />}>
           <CardTitle>Welcome Back</CardTitle>
           <CardDescription>Enter your credentials to access your dashboard.</CardDescription>
         </CardHeader>
@@ -68,7 +69,7 @@ export function ColumnOne() {
 
       {/* 4. Action / Quick Settings Example */}
       <Card>
-        <CardHeader leftIcon={<FiZap className="text-primary" size={18} />}>
+        <CardHeader leftIcon={<FiZap size={18} />}>
            <CardTitle>System Optimizer</CardTitle>
            <CardDescription>Configure your node performance and scaling settings.</CardDescription>
         </CardHeader>
@@ -76,7 +77,7 @@ export function ColumnOne() {
           <Surface className="space-y-4 p-4">
               <div className="flex items-center justify-between">
                   <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Current Load</span>
-                  <FiZap size={14} className="text-primary" />
+                  <FiZap size={14} className="text-muted-foreground" />
               </div>
               <div className="text-3xl font-bold tracking-tighter">84.2%</div>
               <ProgressBar
@@ -96,7 +97,7 @@ export function ColumnOne() {
       {/* 7. Team Activity Card (New with Avatars) */}
       <Card>
          <CardHeader 
-            leftIcon={<FiUsers className="text-primary" size={18} />}
+            leftIcon={<FiUsers size={18} />}
             action={<Badge content="12 Active" color="primary" variant="soft" />}
          >
             <CardTitle>Active Team</CardTitle>
@@ -141,7 +142,7 @@ export function ColumnOne() {
                         <span className="text-xs text-muted-foreground italic">Lead Architect</span>
                      </div>
                   </div>
-                  <FiTrendingUp className="text-primary" size={14} />
+                  <FiTrendingUp className="text-success" size={14} />
                </div>
 
                <div className="flex items-center justify-between group cursor-pointer">
@@ -176,7 +177,7 @@ export function ColumnOne() {
       {/* 11. Security Events (New) */}
       <Card>
          <CardHeader 
-            leftIcon={<FiShield size={18} className="text-primary" />}
+            leftIcon={<FiShield size={18} />}
          >
             <CardTitle>Security Events</CardTitle>
             <CardDescription>Recent threat intelligence log.</CardDescription>
@@ -184,7 +185,7 @@ export function ColumnOne() {
          <CardContent className="space-y-4">
             <Surface className="flex items-center justify-between p-3">
                <div className="flex items-center gap-3">
-                  <FiShieldOff className="text-primary" size={16} />
+                  <FiShieldOff className="text-muted-foreground" size={16} />
                   <div className="flex flex-col">
                      <span className="text-sm font-bold leading-tight">Unauthorized Entry</span>
                      <span className="text-xs text-muted-foreground tracking-wider font-bold uppercase">Node 0x42-E</span>
@@ -194,7 +195,7 @@ export function ColumnOne() {
             </Surface>
             <Surface className="flex items-center justify-between p-3">
                <div className="flex items-center gap-3">
-                  <FiActivity className="text-primary" size={16} />
+                  <FiActivity className="text-muted-foreground" size={16} />
                   <div className="flex flex-col">
                      <span className="text-sm font-bold leading-tight">API Rate Limit</span>
                      <span className="text-xs text-muted-foreground tracking-wider font-bold uppercase">Public Access</span>
@@ -203,6 +204,45 @@ export function ColumnOne() {
                  <Badge content="Warning" color="primary" variant="soft" />
               </Surface>
               <Button variant="outlined" size="sm" className="w-full">View Security Logs</Button>
+           </CardContent>
+        </Card>
+
+        {/* Cluster Nodes (Table) */}
+        <Card>
+           <CardHeader
+              leftIcon={<FiServer size={18} />}
+              action={<Badge content="3 Active" color="success" variant="soft" />}
+           >
+              <CardTitle>Cluster Nodes</CardTitle>
+              <CardDescription>Status across regions.</CardDescription>
+           </CardHeader>
+           <CardContent>
+              <Table framed={false} minWidth="100%">
+                 <TableHeader>
+                    <TableRow>
+                       <TableHead>Node</TableHead>
+                       <TableHead>Region</TableHead>
+                       <TableHead>Status</TableHead>
+                    </TableRow>
+                 </TableHeader>
+                 <TableBody>
+                    <TableRow>
+                       <TableCell className="font-medium text-foreground">us-east-1a</TableCell>
+                       <TableCell>iad-1</TableCell>
+                       <TableCell><Badge content="Healthy" color="success" variant="soft" /></TableCell>
+                    </TableRow>
+                    <TableRow>
+                       <TableCell className="font-medium text-foreground">eu-west-1b</TableCell>
+                       <TableCell>fra-1</TableCell>
+                       <TableCell><Badge content="Healthy" color="success" variant="soft" /></TableCell>
+                    </TableRow>
+                    <TableRow>
+                       <TableCell className="font-medium text-foreground">ap-east-1a</TableCell>
+                       <TableCell>hkg-1</TableCell>
+                       <TableCell><Badge content="Standby" color="primary" variant="soft" /></TableCell>
+                    </TableRow>
+                 </TableBody>
+              </Table>
            </CardContent>
         </Card>
 
@@ -298,7 +338,7 @@ export function ColumnOne() {
         {/* New 9: Support Ticket */}
         <Card>
            <CardHeader
-              leftIcon={<FiHelpCircle className="text-primary" size={18} />}
+              leftIcon={<FiHelpCircle size={18} />}
               action={<Badge content="High Priority" color="primary" variant="soft" />}
            >
               <CardTitle>Active Ticket</CardTitle>
@@ -324,7 +364,7 @@ export function ColumnOne() {
         {/* New 13: Transaction History (Pagination) */}
         <Card>
            <CardHeader
-              leftIcon={<FiZap className="text-primary" size={18} />}
+              leftIcon={<FiZap size={18} />}
            >
               <CardTitle>Transactions</CardTitle>
               <CardDescription>View your latest transfers.</CardDescription>
@@ -353,7 +393,7 @@ export function ColumnOne() {
         {/* New 15: Security Perimeter (New) */}
         <Card>
            <CardHeader
-              leftIcon={<FiFingerprint className="text-primary" size={18} />}
+              leftIcon={<FiFingerprint size={18} />}
               action={<Badge content="Enforced" color="info" variant="soft" />}
            >
               <CardTitle>Security Perimeter</CardTitle>

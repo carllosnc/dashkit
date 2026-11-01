@@ -10,11 +10,11 @@
 
 /* Variants: Filled */
 .button--filled-primary {
-  @apply ds-primary-gradient text-primary-foreground;
+  @apply ds-primary-gradient text-primary-foreground shadow-xs;
 }
 
 .button--filled-primary:hover {
-  @apply brightness-120;
+  @apply brightness-105;
 }
 
 .button--filled-danger {

@@ -5,7 +5,7 @@
 }
 
 .checkbox:hover .checkbox__box {
-  @apply border-primary/50;
+  @apply border-ds-400 dark:border-ds-500;
 }
 
 .checkbox__input-container {

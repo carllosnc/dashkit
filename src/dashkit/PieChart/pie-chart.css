@@ -13,11 +13,11 @@
 }
 
 .pie-chart__slice {
-  @apply text-white dark:text-ds-950 transition-colors duration-200 cursor-pointer;
+  @apply stroke-card text-card transition-colors duration-200 cursor-pointer;
 }
 
 .pie-chart__tooltip {
-  @apply absolute z-50 pointer-events-none transform -translate-x-1/2 bg-ds-950 text-white ds-rounded shadow-2xl border border-ds-800 p-3 flex flex-col gap-1 min-w-[120px] transition-transform duration-200;
+  @apply absolute z-50 pointer-events-none transform -translate-x-1/2 bg-popover text-popover-fg ds-rounded shadow-xl border border-border p-3 flex flex-col gap-1 min-w-[120px] transition-transform duration-200;
 }
 
 .pie-chart__tooltip--near-top {
@@ -37,15 +37,15 @@
 }
 
 .pie-chart__tooltip-label {
-  @apply text-xs font-medium text-ds-200 whitespace-nowrap;
+  @apply text-xs font-medium text-muted-foreground whitespace-nowrap;
 }
 
 .pie-chart__tooltip-value-container {
-  @apply flex border-b border-ds-800 pb-1 mt-1 mb-1;
+  @apply flex border-b border-border pb-1 mt-1 mb-1;
 }
 
 .pie-chart__tooltip-value {
-  @apply text-xs font-bold text-white;
+  @apply text-xs font-bold text-foreground;
 }
 
 .pie-chart__tooltip-percentage {

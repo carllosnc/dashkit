@@ -13,7 +13,7 @@
 }
 
 .input__wrapper {
-  @apply relative flex items-center bg-input-bg border border-input-border ds-rounded outline-none transition-all duration-200 focus-within:border-input-focus focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-transparent;
+  @apply relative flex items-center bg-input-bg border border-input-border ds-rounded outline-none transition-all duration-200 focus-within:border-input-focus focus-within:ring-2 focus-within:ring-input-focus/20;
 }
 
 .input__wrapper--error {

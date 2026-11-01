@@ -18,7 +18,11 @@ import { toast } from '../../dashkit/Toast/useToast';
 import { CopyField } from '../../dashkit/CopyField/CopyField';
 import { Slider } from '../../dashkit/Slider/Slider';
 import { StatsCard } from '../../dashkit/StatsCard/StatsCard';
-import { FiSettings, FiBarChart2, FiMonitor, FiSmartphone, FiBell, FiCheckCircle, FiXCircle, FiUserPlus, FiSend, FiSun, FiMoon, FiUsers, FiLock, FiDownload } from 'react-icons/fi';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../../dashkit/Accordion';
+import { DatePicker } from '../../dashkit/DatePicker/DatePicker';
+import { Tooltip, TooltipTrigger, TooltipContent } from '../../dashkit/Tooltip';
+import { IconButton } from '../../dashkit/IconButton/IconButton';
+import { FiSettings, FiBarChart2, FiMonitor, FiSmartphone, FiBell, FiCheckCircle, FiXCircle, FiUserPlus, FiSend, FiSun, FiMoon, FiUsers, FiLock, FiDownload, FiHelpCircle, FiCalendar, FiInfo } from 'react-icons/fi';
 import { CONVERSION_DATA } from './Constants';
 
 export function ColumnThree() {
@@ -34,7 +38,7 @@ export function ColumnThree() {
     <div className="flex flex-col gap-4">
       {/* 3. Settings & Preferences Example */}
       <Card>
-        <CardHeader leftIcon={<FiSettings className="text-primary" size={18} />}>
+        <CardHeader leftIcon={<FiSettings size={18} />}>
            <CardTitle>Preferences</CardTitle>
            <CardDescription>Manage your workspace and notification settings.</CardDescription>
         </CardHeader>
@@ -74,7 +78,7 @@ export function ColumnThree() {
       {/* 9. Conversion Overview Card (New with BarChart) */}
       <Card>
           <CardHeader
-             leftIcon={<FiBarChart2 className="text-primary" size={18} />}
+             leftIcon={<FiBarChart2 size={18} />}
              action={<Badge content="Monthly" color="info" variant="soft" />}
           >
              <CardTitle>Traffic Sources</CardTitle>
@@ -109,7 +113,7 @@ export function ColumnThree() {
 
       {/* 6. OTP Verification Card */}
       <Card>
-         <CardHeader leftIcon={<FiLock className="text-primary" size={18} />}>
+         <CardHeader leftIcon={<FiLock size={18} />}>
             <CardTitle>Two-Factor Auth</CardTitle>
             <CardDescription>Enter the 6-digit code sent to your device.</CardDescription>
          </CardHeader>
@@ -138,7 +142,7 @@ export function ColumnThree() {
         trend={12.8}
         trendLabel="vs yesterday"
         status="success"
-        icon={<FiUsers className="text-primary" size={16} />}
+        icon={<FiUsers size={16} />}
         chart={{
           data: [100, 110, 115, 120, 125, 128],
         }}
@@ -147,7 +151,7 @@ export function ColumnThree() {
 
       {/* 13. Personalization Survey (New) */}
       <Card>
-         <CardHeader leftIcon={<FiUsers className="text-primary" size={18} />}>
+         <CardHeader leftIcon={<FiUsers size={18} />}>
             <CardTitle>Personalize your experience</CardTitle>
             <CardDescription>Select your areas of interest to tailor the dashboard to your needs.</CardDescription>
          </CardHeader>
@@ -186,7 +190,7 @@ export function ColumnThree() {
 
       {/* New 3: Active Sessions */}
       <Card>
-         <CardHeader leftIcon={<FiMonitor className="text-primary" size={18} />}>
+         <CardHeader leftIcon={<FiMonitor size={18} />}>
             <CardTitle>Active Sessions</CardTitle>
             <CardDescription>Devices logged into your account.</CardDescription>
          </CardHeader>
@@ -226,7 +230,7 @@ export function ColumnThree() {
 
       {/* New 7: Toast Example */}
       <Card>
-         <CardHeader leftIcon={<FiBell className="text-primary" size={18} />}>
+         <CardHeader leftIcon={<FiBell size={18} />}>
             <CardTitle>Notifications</CardTitle>
             <CardDescription>System toast dispatcher testing.</CardDescription>
          </CardHeader>
@@ -273,7 +277,7 @@ export function ColumnThree() {
          </CardContent>
       </Card>
       <Card>
-         <CardHeader leftIcon={<FiDownload className="text-primary" size={18} />}>
+         <CardHeader leftIcon={<FiDownload size={18} />}>
             <CardTitle>Data Export</CardTitle>
             <CardDescription>Download your workspace activity logs.</CardDescription>
          </CardHeader>
@@ -300,7 +304,7 @@ export function ColumnThree() {
        {/* New 15: Appearance Engine (New) */}
        <Card>
           <CardHeader
-             leftIcon={<FiSun className="text-primary" size={18} />}
+             leftIcon={<FiSun size={18} />}
              action={<Badge content="Pro" color="primary" variant="soft" />}
           >
              <CardTitle>Appearance Engine</CardTitle>
@@ -314,7 +318,7 @@ export function ColumnThree() {
                      className="flex-1 text-xs gap-2 font-semibold"
                      selected
                    >
-                     <FiCheckCircle size={14} className="text-primary" />
+                     <FiCheckCircle size={14} className="text-success" />
                      Light
                    </ButtonGroupItem>
                    <ButtonGroupItem 
@@ -334,7 +338,7 @@ export function ColumnThree() {
              <div className="space-y-3">
                 <div className="flex items-center justify-between">
                    <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Contrast Ratio</span>
-                   <span className="text-sm font-bold text-primary">Enhanced</span>
+                   <span className="text-sm font-bold text-foreground">Enhanced</span>
                 </div>
                 <Slider defaultValue={75} showValue={false} />
              </div>
@@ -346,6 +350,63 @@ export function ColumnThree() {
                 <Switch defaultChecked />
              </Surface>
           </CardContent>
+       </Card>
+
+       {/* Knowledge Base (Accordion) */}
+       <Card>
+         <CardHeader leftIcon={<FiHelpCircle size={18} />}>
+           <CardTitle>Knowledge Base</CardTitle>
+           <CardDescription>Common infrastructure questions.</CardDescription>
+         </CardHeader>
+         <CardContent>
+           <Accordion type="single" defaultValue="q-1">
+             <AccordionItem value="q-1">
+               <AccordionTrigger>How are edge nodes synchronized?</AccordionTrigger>
+               <AccordionContent>
+                 Changes propagate globally in sub-100ms via distributed consensus.
+               </AccordionContent>
+             </AccordionItem>
+             <AccordionItem value="q-2">
+               <AccordionTrigger>Can I revert a live deployment?</AccordionTrigger>
+               <AccordionContent>
+                 Instant rollbacks are available from the deployments log with one click.
+               </AccordionContent>
+             </AccordionItem>
+             <AccordionItem value="q-3">
+               <AccordionTrigger>Are backups automated?</AccordionTrigger>
+               <AccordionContent>
+                 Automated snapshots occur hourly with 30-day encrypted retention.
+               </AccordionContent>
+             </AccordionItem>
+           </Accordion>
+         </CardContent>
+       </Card>
+
+       {/* Maintenance Window (DatePicker & Tooltip) */}
+       <Card>
+         <CardHeader
+           leftIcon={<FiCalendar size={18} />}
+           action={
+             <Tooltip>
+               <TooltipTrigger asChild>
+                 <IconButton variant="soft" icon={<FiInfo size={14} />} aria-label="Maintenance Info" />
+               </TooltipTrigger>
+               <TooltipContent>Non-disruptive patching schedule</TooltipContent>
+             </Tooltip>
+           }
+         >
+           <CardTitle>Maintenance Window</CardTitle>
+           <CardDescription>Schedule system updates and reboots.</CardDescription>
+         </CardHeader>
+         <CardContent className="space-y-4">
+           <DatePicker
+             label="Patch Date"
+             placeholder="Select date"
+           />
+           <Button variant="filled" className="w-full">
+             Schedule Window
+           </Button>
+         </CardContent>
        </Card>
     </div>
   );

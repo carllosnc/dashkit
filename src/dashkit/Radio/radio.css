@@ -29,7 +29,7 @@
   }
 
   .radio:hover & {
-    @apply border-primary/50;
+    @apply border-ds-400 dark:border-ds-500;
   }
 
   .radio__input:disabled + & {

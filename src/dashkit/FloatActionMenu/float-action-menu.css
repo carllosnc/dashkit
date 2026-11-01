@@ -15,7 +15,15 @@
 .float-action-menu--top-left { @apply top-6 left-6; }
 
 .float-action-menu__button {
-  @apply flex items-center gap-2.5 px-4 py-3 ds-rounded ds-primary-gradient text-white active:scale-95 transition-all hover:brightness-120 cursor-pointer border border-white/10 relative z-10;
+  @apply flex items-center gap-2.5 px-4 py-3 ds-rounded active:scale-95 transition-all cursor-pointer relative z-10 shadow-lg;
+}
+
+.float-action-menu__button--primary {
+  @apply ds-primary-gradient text-white hover:brightness-105 border border-white/10;
+}
+
+.float-action-menu__button--neutral {
+  @apply bg-ds-900 text-white dark:bg-ds-100 dark:text-ds-950 hover:bg-ds-800 dark:hover:bg-ds-200 border border-border;
 }
 
 .float-action-menu__icon {

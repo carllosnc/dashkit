@@ -33,7 +33,7 @@
 }
 
 .line-chart__tooltip {
-  @apply absolute z-50 pointer-events-none transform -translate-x-1/2 bg-ds-950 text-white ds-rounded border border-ds-800 p-3 shadow-2xl flex flex-col gap-2 min-w-[140px] transition-transform duration-200;
+  @apply absolute z-50 pointer-events-none transform -translate-x-1/2 bg-popover text-popover-fg ds-rounded border border-border p-3 shadow-xl backdrop-blur-sm flex flex-col gap-2 min-w-[140px] transition-transform duration-200;
 }
 
 .line-chart__tooltip--top {
@@ -45,11 +45,11 @@
 }
 
 .line-chart__tooltip-header {
-  @apply flex border-b border-ds-800 pb-1 mb-1;
+  @apply flex border-b border-border pb-1 mb-1;
 }
 
 .line-chart__tooltip-title {
-  @apply text-[10px] font-bold uppercase tracking-widest text-ds-400;
+  @apply text-[10px] font-bold uppercase tracking-widest text-muted-foreground;
 }
 
 .line-chart__tooltip-item {
@@ -65,11 +65,11 @@
 }
 
 .line-chart__tooltip-item-label {
-  @apply text-xs font-medium text-ds-200 whitespace-nowrap;
+  @apply text-xs font-medium text-muted-foreground whitespace-nowrap;
 }
 
 .line-chart__tooltip-item-value {
-  @apply text-xs font-bold text-white;
+  @apply text-xs font-bold text-foreground;
 }
 
 .line-chart__labels {

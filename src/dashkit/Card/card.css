@@ -1,7 +1,8 @@
 @reference "../dashkit.css";
 
 .card {
-  /* Base card functionality. Visual styles moved to component for utility override support. */
+  @apply relative;
+  @apply dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.03)];
 }
 
 .card--no-border {

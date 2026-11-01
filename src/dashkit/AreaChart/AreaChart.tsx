@@ -72,7 +72,7 @@ export function AreaChart({
           <defs>
             {series.map(s => (
               <linearGradient key={`grad-${s.key}`} id={`grad-${s.key}`} x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor={s.color} stopOpacity={0.3} />
+                <stop offset="0%" stopColor={s.color} stopOpacity={0.2} />
                 <stop offset="100%" stopColor={s.color} stopOpacity={0} />
               </linearGradient>
             ))}
@@ -147,7 +147,7 @@ export function AreaChart({
                   height: hoveredIndex === i ? 12 : 8,
                   x: "-50%",
                   y: "-50%",
-                  backgroundColor: hoveredIndex === i ? s.color : '#fff',
+                  backgroundColor: hoveredIndex === i ? s.color : 'var(--color-card, #fff)',
                   borderColor: s.color,
                 }}
                 initial={animate ? { scale: 0, opacity: 0 } : false}

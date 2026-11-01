@@ -21,15 +21,15 @@
 }
 
 .bar-chart__tooltip {
-  @apply absolute z-50 pointer-events-none transform -translate-x-1/2 bg-ds-950 text-white ds-rounded shadow-2xl border border-ds-800 p-3 flex flex-col gap-2 min-w-[140px] transition-transform duration-200;
+  @apply absolute z-50 pointer-events-none transform -translate-x-1/2 bg-popover text-popover-fg ds-rounded shadow-xl border border-border p-3 flex flex-col gap-2 min-w-[140px] transition-transform duration-200;
 }
 
 .bar-chart__tooltip-header {
-  @apply flex border-b border-ds-800 pb-1 mb-1;
+  @apply flex border-b border-border pb-1 mb-1;
 }
 
 .bar-chart__tooltip-header-text {
-  @apply text-[10px] font-bold uppercase tracking-widest text-ds-400;
+  @apply text-[10px] font-bold uppercase tracking-widest text-muted-foreground;
 }
 
 .bar-chart__tooltip-entry {
@@ -45,11 +45,11 @@
 }
 
 .bar-chart__tooltip-entry-text {
-  @apply text-xs font-medium text-ds-200 whitespace-nowrap;
+  @apply text-xs font-medium text-muted-foreground whitespace-nowrap;
 }
 
 .bar-chart__tooltip-entry-value {
-  @apply text-xs font-bold text-white;
+  @apply text-xs font-bold text-foreground;
 }
 
 .bar-chart__x-axis {

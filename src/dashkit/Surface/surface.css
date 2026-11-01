@@ -1,7 +1,7 @@
 @reference "../dashkit.css";
 
 .surface {
-  @apply ds-rounded-md border transition-colors text-foreground;
+  @apply ds-rounded-md border text-foreground;
 }
 
 .surface--default {

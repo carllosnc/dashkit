@@ -55,8 +55,22 @@
 
 /* Variants and Colors */
 .chip--tonal-base { @apply bg-secondary text-secondary-foreground border-transparent; }
-.chip--filled-base { @apply bg-primary text-primary-foreground border-transparent; }
-.chip--outlined-base { @apply bg-transparent text-foreground; }
+.chip--filled-base { @apply bg-foreground text-background border-transparent; }
+.chip--outlined-base { @apply bg-transparent text-foreground border-border; }
+
+.chip--tonal-primary { 
+  @apply bg-primary/15 text-primary border-transparent; 
+}
+.chip--filled-primary { 
+  @apply bg-primary text-primary-foreground border-transparent; 
+}
+.chip--outlined-primary { 
+  @apply bg-transparent text-primary border-primary/30; 
+
+  @variant dark {
+    @apply border-primary/40;
+  }
+}
 
 .chip--tonal-success { 
   @apply bg-ds-success-600/10 text-ds-success-700 border-ds-success-600/20; 

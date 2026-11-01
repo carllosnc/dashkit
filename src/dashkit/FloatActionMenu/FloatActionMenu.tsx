@@ -9,6 +9,7 @@ import './float-action-menu.css';
 export interface FloatActionMenuProps {
   icon?: React.ReactNode;
   label?: string;
+  variant?: 'neutral' | 'primary';
   children: React.ReactNode;
   position?: FloatActionPosition;
   className?: string;
@@ -21,6 +22,7 @@ export { type FloatActionPosition };
 export function FloatActionMenu({
   icon = <FiMenu />,
   label,
+  variant = 'neutral',
   children,
   position = 'bottom-right',
   className,
@@ -47,7 +49,11 @@ export function FloatActionMenu({
       <motion.button
         key="fab"
         onClick={() => setIsOpen(!isOpen)}
-        className={cn('float-action-menu__button', buttonClassName)}
+        className={cn(
+          'float-action-menu__button',
+          `float-action-menu__button--${variant}`,
+          buttonClassName
+        )}
       >
         <div className="float-action-menu__icon">
           {icon}

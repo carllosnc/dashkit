@@ -24,6 +24,24 @@
     <meta property="twitter:title" content="Dashkit | Dashboard Component Library" />
     <meta property="twitter:description" content="Dashkit - A minimalist dashboard component library focused on speed, low dependency counts, and total code ownership." />
     <meta property="twitter:image" content="https://dashkit.netlify.app/og.png" />
+
+    <script>
+      (function() {
+        try {
+          var theme = localStorage.getItem('theme');
+          var supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+          if (theme === 'dark' || (!theme && supportDarkMode)) {
+            document.documentElement.classList.add('dark');
+          }
+          var base = localStorage.getItem('dashkit-base-color');
+          if (base) document.documentElement.setAttribute('data-base', base);
+          var primary = localStorage.getItem('dashkit-primary-color');
+          if (primary) document.documentElement.setAttribute('data-primary', primary);
+          var darkBg = localStorage.getItem('dashkit-dark-bg');
+          if (darkBg) document.documentElement.setAttribute('data-dark-bg', darkBg);
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

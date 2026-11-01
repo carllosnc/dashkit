@@ -25,7 +25,7 @@
 }
 
 .slider__value {
-  @apply text-[13px] font-semibold tabular-nums text-primary;
+  @apply text-[13px] font-semibold tabular-nums text-foreground;
 }
 
 .slider__track-container {

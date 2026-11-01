@@ -13,7 +13,7 @@
 }
 
 .system-logs__header-icon {
-  @apply text-ds-primary-400;
+  @apply text-ds-400;
 }
 
 .system-logs__header-title {
