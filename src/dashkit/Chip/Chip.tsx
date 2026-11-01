@@ -4,7 +4,7 @@ import { FiX, FiCheck } from 'react-icons/fi';
 import './chip.css';
 
 export type ChipVariant = 'filled' | 'outlined' | 'tonal';
-export type ChipColor = 'base' | 'success' | 'warning' | 'danger' | 'error' | 'info';
+export type ChipColor = 'base' | 'primary' | 'success' | 'warning' | 'danger' | 'error' | 'info';
 
 export interface ChipProps {
   label: React.ReactNode;

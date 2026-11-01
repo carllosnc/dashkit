@@ -21,7 +21,7 @@
 }
 
 .pagination__item--current {
-  @apply z-10 text-primary-foreground pointer-events-none;
+  @apply z-10 text-background font-semibold pointer-events-none;
 }
 
 .pagination__item--default {
@@ -29,5 +29,5 @@
 }
 
 .pagination__active-indicator {
-  @apply absolute inset-0 ds-primary-gradient shadow-sm ds-rounded pointer-events-none;
+  @apply absolute inset-0 bg-foreground shadow-sm ds-rounded pointer-events-none;
 }
