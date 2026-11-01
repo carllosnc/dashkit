@@ -48,10 +48,10 @@ export function ThemeCustomizer({ className }: ThemeCustomizerProps) {
         />
       </PopoverTrigger>
 
-      <PopoverContent align="end" side="bottom" sideOffset={8} className="w-80 p-4">
+      <PopoverContent align="end" side="bottom" sideOffset={8} className="w-[320px] p-4">
         <div className="space-y-4">
           {/* Header */}
-          <div className="flex items-center justify-between pb-2 border-b border-border">
+          <div className="flex items-center justify-between pb-3 border-b border-border">
             <div>
               <h4 className="font-semibold text-sm text-foreground">Theme Customizer</h4>
               <p className="text-xs text-muted-foreground">Adjust base & brand colors in real-time</p>
@@ -61,7 +61,7 @@ export function ThemeCustomizer({ className }: ThemeCustomizerProps) {
                 type="button"
                 onClick={handleReset}
                 title="Reset to default (Zinc / Blue / Midnight)"
-                className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer px-2 py-1 rounded-md hover:bg-muted"
               >
                 <FiRotateCcw size={12} />
                 <span>Reset</span>
@@ -70,14 +70,16 @@ export function ThemeCustomizer({ className }: ThemeCustomizerProps) {
           </div>
 
           {/* Primary Color Section */}
-          <div className="space-y-2">
+          <div className="space-y-2.5">
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                 Primary Color
               </span>
-              <span className="text-xs capitalize font-medium text-foreground">{primaryColor}</span>
+              <span className="text-xs capitalize font-semibold text-foreground">
+                {PRIMARY_COLORS.find(c => c.id === primaryColor)?.label || primaryColor}
+              </span>
             </div>
-            <div className="grid grid-cols-3 gap-1.5">
+            <div className="grid grid-cols-6 gap-2.5 justify-items-center">
               {PRIMARY_COLORS.map(c => {
                 const isSelected = primaryColor === c.id;
                 return (
@@ -85,20 +87,17 @@ export function ThemeCustomizer({ className }: ThemeCustomizerProps) {
                     key={c.id}
                     type="button"
                     onClick={() => setPrimaryColor(c.id as PrimaryColor)}
+                    title={c.label}
+                    aria-label={c.label}
                     className={clsx(
-                      'flex items-center gap-2 px-2 py-1.5 rounded-md text-xs font-medium cursor-pointer transition-all border',
+                      'size-8 rounded-full flex items-center justify-center transition-all cursor-pointer',
                       isSelected
-                        ? 'border-primary bg-primary/10 text-foreground ring-1 ring-primary'
-                        : 'border-border/60 hover:border-border hover:bg-muted text-muted-foreground hover:text-foreground'
+                        ? 'ring-2 ring-primary ring-offset-2 ring-offset-background scale-105'
+                        : 'hover:scale-105 opacity-90 hover:opacity-100'
                     )}
+                    style={{ backgroundColor: c.color }}
                   >
-                    <span
-                      className="w-3.5 h-3.5 rounded-full shrink-0 flex items-center justify-center shadow-xs"
-                      style={{ backgroundColor: c.color }}
-                    >
-                      {isSelected && <FiCheck size={10} className="text-white drop-shadow-xs" />}
-                    </span>
-                    <span className="truncate">{c.label}</span>
+                    {isSelected && <FiCheck size={14} className="text-white drop-shadow-xs" />}
                   </button>
                 );
               })}
@@ -106,14 +105,16 @@ export function ThemeCustomizer({ className }: ThemeCustomizerProps) {
           </div>
 
           {/* Base Color (Neutrals) Section */}
-          <div className="space-y-2">
+          <div className="space-y-2.5">
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                 Base Neutral
               </span>
-              <span className="text-xs capitalize font-medium text-foreground">{baseColor}</span>
+              <span className="text-xs capitalize font-semibold text-foreground">
+                {BASE_COLORS.find(c => c.id === baseColor)?.label || baseColor}
+              </span>
             </div>
-            <div className="grid grid-cols-5 gap-1.5">
+            <div className="grid grid-cols-5 gap-2.5 justify-items-center">
               {BASE_COLORS.map(c => {
                 const isSelected = baseColor === c.id;
                 return (
@@ -122,20 +123,16 @@ export function ThemeCustomizer({ className }: ThemeCustomizerProps) {
                     type="button"
                     onClick={() => setBaseColor(c.id as BaseColor)}
                     title={c.label}
+                    aria-label={c.label}
                     className={clsx(
-                      'flex flex-col items-center gap-1.5 p-2 rounded-md text-xs font-medium cursor-pointer transition-all border text-center',
+                      'size-8 rounded-full flex items-center justify-center transition-all cursor-pointer border border-black/10 dark:border-white/10',
                       isSelected
-                        ? 'border-primary bg-primary/10 text-foreground ring-1 ring-primary'
-                        : 'border-border/60 hover:border-border hover:bg-muted text-muted-foreground hover:text-foreground'
+                        ? 'ring-2 ring-primary ring-offset-2 ring-offset-background scale-105'
+                        : 'hover:scale-105 opacity-90 hover:opacity-100'
                     )}
+                    style={{ backgroundColor: c.color }}
                   >
-                    <span
-                      className="w-4 h-4 rounded-full shrink-0 flex items-center justify-center border border-black/10 dark:border-white/10"
-                      style={{ backgroundColor: c.color }}
-                    >
-                      {isSelected && <FiCheck size={10} className="text-white drop-shadow-xs" />}
-                    </span>
-                    <span className="truncate text-[11px]">{c.label}</span>
+                    {isSelected && <FiCheck size={14} className="text-white drop-shadow-xs" />}
                   </button>
                 );
               })}
@@ -143,7 +140,7 @@ export function ThemeCustomizer({ className }: ThemeCustomizerProps) {
           </div>
 
           {/* Dark Background (Midnight vs OLED Pure Black) */}
-          <div className="space-y-2 pt-1 border-t border-border">
+          <div className="space-y-2.5 pt-2 border-t border-border">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-1.5">
                 <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
@@ -153,9 +150,9 @@ export function ThemeCustomizer({ className }: ThemeCustomizerProps) {
                   <span className="text-[10px] text-muted-foreground/75">(Dark mode only)</span>
                 )}
               </div>
-              <span className="text-xs capitalize font-medium text-foreground">{darkBg}</span>
+              <span className="text-xs capitalize font-semibold text-foreground">{darkBg}</span>
             </div>
-            <div className="grid grid-cols-2 gap-1.5">
+            <div className="grid grid-cols-2 gap-2">
               {DARK_BG_OPTIONS.map(opt => {
                 const isSelected = darkBg === opt.id;
                 return (
@@ -164,7 +161,7 @@ export function ThemeCustomizer({ className }: ThemeCustomizerProps) {
                     type="button"
                     onClick={() => setDarkBg(opt.id as DarkBackground)}
                     className={clsx(
-                      'flex items-center justify-between px-2.5 py-1.5 rounded-md text-xs font-medium cursor-pointer transition-all border',
+                      'flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium cursor-pointer transition-all border',
                       isSelected
                         ? 'border-primary bg-primary/10 text-foreground ring-1 ring-primary'
                         : 'border-border/60 hover:border-border hover:bg-muted text-muted-foreground hover:text-foreground'
@@ -173,7 +170,7 @@ export function ThemeCustomizer({ className }: ThemeCustomizerProps) {
                     <div className="flex items-center gap-2">
                       <span
                         className={clsx(
-                          'w-3.5 h-3.5 rounded-full border border-border shrink-0',
+                          'size-3.5 rounded-full border border-border shrink-0',
                           opt.id === 'oled' ? 'bg-black' : 'bg-[#18181b]'
                         )}
                       />
