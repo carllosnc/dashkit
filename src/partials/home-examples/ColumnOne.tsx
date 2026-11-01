@@ -15,7 +15,8 @@ import { Modal, ModalHeader, ModalContent, ModalFooter } from '../../dashkit/Mod
 import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem, DropdownLabel, DropdownSeparator } from '../../dashkit/Dropdown';
 import { toast } from '../../dashkit/Toast/useToast';
 import { StatsCard } from '../../dashkit/StatsCard/StatsCard';
-import { FiMail, FiLock, FiZap, FiMoreHorizontal, FiTrendingUp, FiShieldOff, FiActivity, FiShield, FiDollarSign, FiPlay, FiSkipBack, FiSkipForward, FiHelpCircle, FiLock as FiFingerprint, FiAlertTriangle, FiUsers, FiSettings, FiLogOut } from 'react-icons/fi';
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '../../dashkit/Table';
+import { FiMail, FiLock, FiZap, FiMoreHorizontal, FiTrendingUp, FiShieldOff, FiActivity, FiShield, FiDollarSign, FiPlay, FiSkipBack, FiSkipForward, FiHelpCircle, FiLock as FiFingerprint, FiAlertTriangle, FiUsers, FiSettings, FiLogOut, FiServer } from 'react-icons/fi';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
 import { IconButton } from '../../dashkit/IconButton/IconButton';
 import { AVATAR_URLS } from './Constants';
@@ -203,6 +204,45 @@ export function ColumnOne() {
                  <Badge content="Warning" color="primary" variant="soft" />
               </Surface>
               <Button variant="outlined" size="sm" className="w-full">View Security Logs</Button>
+           </CardContent>
+        </Card>
+
+        {/* Cluster Nodes (Table) */}
+        <Card>
+           <CardHeader
+              leftIcon={<FiServer size={18} />}
+              action={<Badge content="3 Active" color="success" variant="soft" />}
+           >
+              <CardTitle>Cluster Nodes</CardTitle>
+              <CardDescription>Status across regions.</CardDescription>
+           </CardHeader>
+           <CardContent>
+              <Table framed={false} minWidth="100%">
+                 <TableHeader>
+                    <TableRow>
+                       <TableHead>Node</TableHead>
+                       <TableHead>Region</TableHead>
+                       <TableHead>Status</TableHead>
+                    </TableRow>
+                 </TableHeader>
+                 <TableBody>
+                    <TableRow>
+                       <TableCell className="font-medium text-foreground">us-east-1a</TableCell>
+                       <TableCell>iad-1</TableCell>
+                       <TableCell><Badge content="Healthy" color="success" variant="soft" /></TableCell>
+                    </TableRow>
+                    <TableRow>
+                       <TableCell className="font-medium text-foreground">eu-west-1b</TableCell>
+                       <TableCell>fra-1</TableCell>
+                       <TableCell><Badge content="Healthy" color="success" variant="soft" /></TableCell>
+                    </TableRow>
+                    <TableRow>
+                       <TableCell className="font-medium text-foreground">ap-east-1a</TableCell>
+                       <TableCell>hkg-1</TableCell>
+                       <TableCell><Badge content="Standby" color="primary" variant="soft" /></TableCell>
+                    </TableRow>
+                 </TableBody>
+              </Table>
            </CardContent>
         </Card>
 
