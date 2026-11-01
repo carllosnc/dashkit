@@ -14,8 +14,18 @@ export const LoginExample = () => {
         <title>Login | Dashkit UI</title>
         <meta name="description" content="A premium split-screen login page with social authentication and brand positioning built with Dashkit UI." />
       </Helmet>
-      <div className="hidden lg:flex justify-center w-full relative bg-ds-950">
-        <div className="relative h-full flex flex-col items-center justify-between p-12">
+      <div className="hidden lg:flex justify-center w-full relative bg-ds-950 overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1920&auto=format&fit=crop"
+            alt="Dashkit background"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-ds-950/75 backdrop-blur-[1px]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-ds-950 via-ds-950/40 to-ds-950/75" />
+        </div>
+
+        <div className="relative z-10 h-full flex flex-col items-center justify-between p-12">
           <div className="flex items-center gap-3">
             <img src="/logo.svg" className="h-8 invert" alt="Dashkit" />
           </div>
