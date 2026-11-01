@@ -15,6 +15,10 @@ import { FiBell, FiZap, FiShield, FiMessageSquare, FiList, FiFolder, FiTrendingU
 import { FaGithub, FaGoogle, FaSlack, FaDiscord, FaAws, FaFigma } from 'react-icons/fa';
 import { SiVercel, SiNotion } from 'react-icons/si';
 import { PieChart } from '../../dashkit/PieChart/PieChart';
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '../../dashkit/Table';
+import { Skeleton } from '../../dashkit/Skeleton';
+import { Breadcrumb } from '../../dashkit/Breadcrumb';
+import { Textarea } from '../../dashkit/Textarea';
 
 export function ColumnFour() {
   const [tasks, setTasks] = React.useState<{ label: string; checked: boolean }[]>([
@@ -343,6 +347,91 @@ export function ColumnFour() {
             </Surface>
             <Button variant="soft" className="w-full" leftIcon={<FiDownload size={14} />}>
                Download PDF
+            </Button>
+         </CardContent>
+      </Card>
+
+      {/* Cluster Nodes (Table) */}
+      <Card>
+         <CardHeader
+            leftIcon={<FiServer size={18} />}
+            action={<Badge content="3 Active" color="success" variant="soft" />}
+         >
+            <CardTitle>Cluster Nodes</CardTitle>
+            <CardDescription>Status across regions.</CardDescription>
+         </CardHeader>
+         <CardContent>
+            <Table framed={false} minWidth="100%">
+               <TableHeader>
+                  <TableRow>
+                     <TableHead>Node</TableHead>
+                     <TableHead>Region</TableHead>
+                     <TableHead>Status</TableHead>
+                  </TableRow>
+               </TableHeader>
+               <TableBody>
+                  <TableRow>
+                     <TableCell className="font-medium text-foreground">us-east-1a</TableCell>
+                     <TableCell>iad-1</TableCell>
+                     <TableCell><Badge content="Healthy" color="success" variant="soft" /></TableCell>
+                  </TableRow>
+                  <TableRow>
+                     <TableCell className="font-medium text-foreground">eu-west-1b</TableCell>
+                     <TableCell>fra-1</TableCell>
+                     <TableCell><Badge content="Healthy" color="success" variant="soft" /></TableCell>
+                  </TableRow>
+                  <TableRow>
+                     <TableCell className="font-medium text-foreground">ap-east-1a</TableCell>
+                     <TableCell>hkg-1</TableCell>
+                     <TableCell><Badge content="Standby" color="primary" variant="soft" /></TableCell>
+                  </TableRow>
+               </TableBody>
+            </Table>
+         </CardContent>
+      </Card>
+
+      {/* Telemetry Sync (Skeleton) */}
+      <Card>
+         <CardHeader leftIcon={<FiActivity size={18} />}>
+            <CardTitle>Telemetry Sync</CardTitle>
+            <CardDescription>Fetching latest performance metrics...</CardDescription>
+         </CardHeader>
+         <CardContent className="space-y-4">
+            <div className="flex items-center gap-3">
+               <Skeleton variant="circular" className="size-10 shrink-0" />
+               <div className="space-y-2 flex-1">
+                  <Skeleton variant="text" className="h-4 w-3/4" />
+                  <Skeleton variant="text" className="h-3 w-1/2" />
+               </div>
+            </div>
+            <Skeleton variant="rectangular" className="h-14 w-full" />
+            <div className="flex gap-2">
+               <Skeleton variant="rectangular" className="h-8 flex-1" />
+               <Skeleton variant="rectangular" className="h-8 flex-1" />
+            </div>
+         </CardContent>
+      </Card>
+
+      {/* Quick Feedback (Breadcrumb & Textarea) */}
+      <Card>
+         <CardHeader leftIcon={<FiMessageSquare size={18} />}>
+            <CardTitle>Quick Feedback</CardTitle>
+            <CardDescription>Send notes directly to maintainers.</CardDescription>
+         </CardHeader>
+         <CardContent className="space-y-4">
+            <Breadcrumb
+               items={[
+                  { label: 'Workspace' },
+                  { label: 'Feedback', active: true },
+               ]}
+            />
+            <Textarea
+               label="Notes"
+               placeholder="Share feedback or report an issue..."
+               rows={3}
+            />
+            <Button variant="filled" className="w-full">
+               Submit Note
             </Button>
          </CardContent>
       </Card>

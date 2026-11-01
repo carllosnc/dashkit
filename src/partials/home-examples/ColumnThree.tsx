@@ -18,7 +18,11 @@ import { toast } from '../../dashkit/Toast/useToast';
 import { CopyField } from '../../dashkit/CopyField/CopyField';
 import { Slider } from '../../dashkit/Slider/Slider';
 import { StatsCard } from '../../dashkit/StatsCard/StatsCard';
-import { FiSettings, FiBarChart2, FiMonitor, FiSmartphone, FiBell, FiCheckCircle, FiXCircle, FiUserPlus, FiSend, FiSun, FiMoon, FiUsers, FiLock, FiDownload } from 'react-icons/fi';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../../dashkit/Accordion';
+import { DatePicker } from '../../dashkit/DatePicker/DatePicker';
+import { Tooltip, TooltipTrigger, TooltipContent } from '../../dashkit/Tooltip';
+import { IconButton } from '../../dashkit/IconButton/IconButton';
+import { FiSettings, FiBarChart2, FiMonitor, FiSmartphone, FiBell, FiCheckCircle, FiXCircle, FiUserPlus, FiSend, FiSun, FiMoon, FiUsers, FiLock, FiDownload, FiHelpCircle, FiCalendar, FiInfo } from 'react-icons/fi';
 import { CONVERSION_DATA } from './Constants';
 
 export function ColumnThree() {
@@ -346,6 +350,63 @@ export function ColumnThree() {
                 <Switch defaultChecked />
              </Surface>
           </CardContent>
+       </Card>
+
+       {/* Knowledge Base (Accordion) */}
+       <Card>
+         <CardHeader leftIcon={<FiHelpCircle size={18} />}>
+           <CardTitle>Knowledge Base</CardTitle>
+           <CardDescription>Common infrastructure questions.</CardDescription>
+         </CardHeader>
+         <CardContent>
+           <Accordion type="single" defaultValue="q-1">
+             <AccordionItem value="q-1">
+               <AccordionTrigger>How are edge nodes synchronized?</AccordionTrigger>
+               <AccordionContent>
+                 Changes propagate globally in sub-100ms via distributed consensus.
+               </AccordionContent>
+             </AccordionItem>
+             <AccordionItem value="q-2">
+               <AccordionTrigger>Can I revert a live deployment?</AccordionTrigger>
+               <AccordionContent>
+                 Instant rollbacks are available from the deployments log with one click.
+               </AccordionContent>
+             </AccordionItem>
+             <AccordionItem value="q-3">
+               <AccordionTrigger>Are backups automated?</AccordionTrigger>
+               <AccordionContent>
+                 Automated snapshots occur hourly with 30-day encrypted retention.
+               </AccordionContent>
+             </AccordionItem>
+           </Accordion>
+         </CardContent>
+       </Card>
+
+       {/* Maintenance Window (DatePicker & Tooltip) */}
+       <Card>
+         <CardHeader
+           leftIcon={<FiCalendar size={18} />}
+           action={
+             <Tooltip>
+               <TooltipTrigger asChild>
+                 <IconButton variant="soft" icon={<FiInfo size={14} />} aria-label="Maintenance Info" />
+               </TooltipTrigger>
+               <TooltipContent>Non-disruptive patching schedule</TooltipContent>
+             </Tooltip>
+           }
+         >
+           <CardTitle>Maintenance Window</CardTitle>
+           <CardDescription>Schedule system updates and reboots.</CardDescription>
+         </CardHeader>
+         <CardContent className="space-y-4">
+           <DatePicker
+             label="Patch Date"
+             placeholder="Select date"
+           />
+           <Button variant="filled" className="w-full">
+             Schedule Window
+           </Button>
+         </CardContent>
        </Card>
     </div>
   );
