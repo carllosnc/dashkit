@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Navbar, NavbarBrand, NavbarLinks, NavbarActions } from '../dashkit/Navbar';
 import { IconButton } from '../dashkit/IconButton/IconButton';
 import { ThemeToggle } from './ThemeToggle';
+import { ThemeCustomizer } from './ThemeCustomizer';
 import { FiGithub, FiMenu } from 'react-icons/fi';
 import clsx from 'clsx';
 
@@ -63,6 +64,7 @@ export function Header({ onMenuClick, showNavLinks = true }: HeaderProps) {
       )}
 
       <NavbarActions>
+        <ThemeCustomizer />
         <ThemeToggle />
         <IconButton
           icon={<FiGithub size={20} />}
@@ -75,5 +77,3 @@ export function Header({ onMenuClick, showNavLinks = true }: HeaderProps) {
     </Navbar>
   );
 }
-
-

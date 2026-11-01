@@ -77,7 +77,46 @@ Changing `--radius-base` will update almost all components in the library (Butto
 
 ## Customizing Your Theme
 
-To customize Dashkit, simply edit the values in `src/dashkit.css`.
+### Dynamic Theme Switching (`data-base` & `data-primary`)
+
+Dashkit includes built-in support for dynamic base neutral palettes and primary brand colors. You can switch themes at runtime or scope them to specific sections using data attributes:
+
+```html
+<!-- Set globally on <html> or <body> -->
+<html data-base="slate" data-primary="violet">
+```
+
+Or scoped to a specific card or container:
+
+```tsx
+<div data-primary="emerald" data-base="stone">
+  <Button variant="filled">Emerald Action in Stone Surface</Button>
+</div>
+```
+
+#### Available Base Palettes
+- `zinc` (default)
+- `slate`
+- `gray`
+- `neutral`
+- `stone`
+
+#### Available Primary Palettes
+- `blue` (default)
+- `violet`
+- `indigo`
+- `emerald`
+- `green`
+- `rose`
+- `orange`
+- `amber`
+- `cyan`
+- `teal`
+- `fuchsia`
+
+### Static Token Customization
+
+To customize Dashkit statically, simply edit the values in `src/dashkit.css`.
 
 ### Example: Customizing Roundness
 
