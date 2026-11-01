@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { type ReactNode } from 'react';
+import { createPortal } from 'react-dom';
 import { FiMaximize2, FiX } from 'react-icons/fi';
 import { cn } from '../utils/cn';
 import { useImageExpander } from './useImageExpander';
@@ -34,9 +35,16 @@ export function ImageExpander({ children, full, caption, className }: ImageExpan
         </div>
       </div>
 
+      {typeof document !== 'undefined' && createPortal(
       <AnimatePresence>
         {isOpen && (
-          <div className="image-expander__dialog">
+          <motion.div
+            key="image-expander-dialog"
+            className="image-expander__dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-label={caption}
+          >
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -53,6 +61,7 @@ export function ImageExpander({ children, full, caption, className }: ImageExpan
               exit={{ opacity: 0, scale: 0.8 }}
               onClick={() => setIsOpen(false)}
               className="image-expander__close-button"
+              aria-label="Close"
             >
               <FiX className="size-6" />
             </motion.button>
@@ -96,9 +105,11 @@ export function ImageExpander({ children, full, caption, className }: ImageExpan
                 </>
               )}
             </motion.div>
-          </div>
+          </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence>,
+      document.body
+      )}
     </>
   );
 }
