@@ -33,6 +33,6 @@ export const CONVERSION_DATA = [
 ];
 
 export const CHART_SERIES = [
-    { key: 'value', label: 'Active Users', color: 'var(--color-chart-1)' },
-    { key: 'secondary', label: 'Retention', color: 'var(--color-chart-2)' }
+    { key: 'value', label: 'Active Users', color: 'var(--color-foreground)' },
+    { key: 'secondary', label: 'Retention', color: 'var(--color-muted-foreground)' }
 ];
