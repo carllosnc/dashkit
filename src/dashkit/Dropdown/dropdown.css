@@ -9,7 +9,7 @@
 }
 
 .dropdown-content {
-  @apply min-w-[12rem] bg-popover text-popover-fg border border-popover-border ds-rounded shadow-lg p-1 overflow-hidden;
+  @apply min-w-[12rem] bg-popover text-popover-fg border border-popover-border ds-rounded shadow-lg p-1 overflow-hidden flex flex-col gap-1;
 }
 
 .dropdown-item {
@@ -59,5 +59,5 @@
 }
 
 .dropdown-separator {
-  @apply my-1 h-px bg-border;
+  @apply my-0.5 h-px bg-border;
 }
