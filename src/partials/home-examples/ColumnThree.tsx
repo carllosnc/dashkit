@@ -84,8 +84,8 @@ export function ColumnThree() {
               <BarChart
                  data={CONVERSION_DATA}
                  series={[
-                    { key: 'desktop', label: 'Desktop', color: 'var(--color-foreground)' },
-                    { key: 'mobile', label: 'Mobile', color: 'var(--color-muted-foreground)' }
+                    { key: 'desktop', label: 'Desktop', color: 'var(--color-chart-1)' },
+                    { key: 'mobile', label: 'Mobile', color: 'var(--color-chart-2)' }
                  ]}
                  showGrid={false}
                  rounded

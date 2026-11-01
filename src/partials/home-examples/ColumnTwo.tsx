@@ -84,7 +84,7 @@ export function ColumnTwo() {
                <div className="py-2">
                   <LineChart
                     data={REVENUE_DATA}
-                    series={[{ key: 'revenue', label: 'Revenue', color: 'var(--color-foreground)' }]} 
+                    series={[{ key: 'revenue', label: 'Revenue', color: 'var(--color-chart-1)' }]} 
                     showGrid={false}
                     showLabels={true}
                   />

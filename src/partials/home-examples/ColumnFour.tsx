@@ -32,10 +32,10 @@ export function ColumnFour() {
   };
 
   const trafficData = [
-    { label: "Organic", value: 480, color: "var(--color-foreground)" },
-    { label: "Referral", value: 320, color: "var(--color-muted-foreground)" },
-    { label: "Direct", value: 140, color: "var(--color-ds-500)" },
-    { label: "Social", value: 60, color: "var(--color-ds-400)" }
+    { label: "Organic", value: 480, color: "var(--color-chart-1)" },
+    { label: "Referral", value: 320, color: "var(--color-chart-2)" },
+    { label: "Direct", value: 140, color: "var(--color-chart-3)" },
+    { label: "Social", value: 60, color: "var(--color-chart-4)" }
   ];
 
   return (
