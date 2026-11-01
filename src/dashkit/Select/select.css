@@ -15,7 +15,7 @@
 .select__trigger {
   @apply w-full px-4 h-9 text-sm text-left flex items-center justify-between gap-2;
   @apply bg-input-bg text-input-fg border border-input-border ds-rounded outline-none;
-  @apply focus:border-input-focus focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-transparent;
+  @apply focus:border-input-focus focus:ring-2 focus:ring-input-focus/20;
   @apply placeholder:text-ds-500;
   @apply disabled:cursor-not-allowed disabled:opacity-50;
 }

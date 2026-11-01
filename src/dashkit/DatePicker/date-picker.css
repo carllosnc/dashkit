@@ -17,7 +17,7 @@
 }
 
 .date-picker__trigger:focus {
-  @apply border-input-focus ring-2 ring-ring ring-offset-2 ring-offset-transparent;
+  @apply border-input-focus ring-2 ring-input-focus/20;
 }
 
 .date-picker__trigger:disabled {

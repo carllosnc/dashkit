@@ -49,7 +49,7 @@
 }
 
 .combobox__input:focus, .combobox__input--open {
-  @apply border-input-focus ring-2 ring-ring ring-offset-2 ring-offset-transparent;
+  @apply border-input-focus ring-2 ring-input-focus/20;
 }
 
 .combobox__input:disabled {

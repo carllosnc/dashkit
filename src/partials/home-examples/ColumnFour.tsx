@@ -43,7 +43,7 @@ export function ColumnFour() {
       {/* 14. Notifications Feed */}
       <Card>
          <CardHeader
-            leftIcon={<FiBell className="text-primary" size={18} />}
+            leftIcon={<FiBell size={18} />}
             action={<Badge content="3 New" color="info" variant="soft" />}
          >
             <CardTitle>Notifications</CardTitle>
@@ -78,7 +78,7 @@ export function ColumnFour() {
       {/* 15. Task Management */}
       <Card>
          <CardHeader
-            leftIcon={<FiList className="text-primary" size={18} />}
+            leftIcon={<FiList size={18} />}
             action={<span className="text-xs font-bold text-muted-foreground">{Math.round(progressValue)}% Done</span>}
          >
             <CardTitle>Tasks</CardTitle>
@@ -115,7 +115,7 @@ export function ColumnFour() {
 
       {/* 16. Cloud Storage Usage */}
       <Card>
-         <CardHeader leftIcon={<FiFolder className="text-primary" size={18} />}>
+         <CardHeader leftIcon={<FiFolder size={18} />}>
             <CardTitle>Storage</CardTitle>
          </CardHeader>
          <CardContent className="space-y-4">
@@ -124,7 +124,7 @@ export function ColumnFour() {
                   <span className="text-2xl font-bold">42.8 GB</span>
                   <span className="text-xs text-muted-foreground">of 100 GB used</span>
                </div>
-               <FiTrendingUp className="text-primary mb-1" />
+               <FiTrendingUp className="text-success mb-1" />
             </div>
             <ProgressBar value={42.8} size="sm" color="primary" />
             <div className="grid grid-cols-2 gap-2">
@@ -142,7 +142,7 @@ export function ColumnFour() {
 
       {/* 17. Quick Integrations */}
       <Card>
-         <CardHeader leftIcon={<FiShare2 className="text-primary" size={18} />}>
+         <CardHeader leftIcon={<FiShare2 size={18} />}>
             <CardTitle>Integrations</CardTitle>
          </CardHeader>
          <CardContent className="space-y-4">
@@ -178,7 +178,7 @@ export function ColumnFour() {
 
       {/* New 16: Security Audit */}
       <Card>
-         <CardHeader leftIcon={<FiShield className="text-primary" size={18} />}>
+         <CardHeader leftIcon={<FiShield size={18} />}>
             <CardTitle>Security Audit</CardTitle>
          </CardHeader>
          <CardContent className="space-y-4">
@@ -206,7 +206,7 @@ export function ColumnFour() {
       {/* 21. Model Training (New) */}
       <Card>
          <CardHeader
-            leftIcon={<FiZap className="text-primary animate-pulse" size={18} />}
+            leftIcon={<FiZap className="animate-pulse" size={18} />}
          >
             <CardTitle>Model Training</CardTitle>
             <CardDescription>GPT-Neo Large (Ver. 4.2)</CardDescription>
@@ -241,7 +241,7 @@ export function ColumnFour() {
       {/* New 4: API Keys */}
       <Card>
          <CardHeader
-            leftIcon={<FiLock className="text-primary" size={18} />}
+            leftIcon={<FiLock size={18} />}
             action={<Badge content="Pro" color="primary" variant="soft" />}
          >
             <CardTitle>API Credentials</CardTitle>
@@ -264,7 +264,7 @@ export function ColumnFour() {
       {/* New 15: Traffic Analytics Refactored */}
       <Card>
          <CardHeader
-            leftIcon={<FiTrendingUp className="text-primary" size={18} />}
+            leftIcon={<FiTrendingUp size={18} />}
             action={<Badge content="+12.5%" color="success" variant="soft" />}
          >
             <CardTitle>Traffic Analytics</CardTitle>
@@ -283,7 +283,7 @@ export function ColumnFour() {
 
       {/* New 8: Select Example */}
       <Card>
-         <CardHeader leftIcon={<FiServer className="text-primary" size={18} />}>
+         <CardHeader leftIcon={<FiServer size={18} />}>
             <CardTitle>Environment Settings</CardTitle>
             <CardDescription>Configure deployment targets and domains.</CardDescription>
          </CardHeader>
@@ -327,7 +327,7 @@ export function ColumnFour() {
       {/* New 12: Recent Invoice */}
       <Card>
          <CardHeader
-            leftIcon={<FiFileText className="text-primary" size={18} />}
+            leftIcon={<FiFileText size={18} />}
             action={<Badge content="Paid" color="primary" variant="soft" />}
          >
             <CardTitle>Recent Invoice</CardTitle>

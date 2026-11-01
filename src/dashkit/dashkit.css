@@ -201,7 +201,7 @@
   --ds-popover-item-selected: var(--color-ds-800);
   --ds-popover-item-selected-fg: var(--color-ds-100);
 
-  --ds-primary: var(--color-ds-primary-500);
+  --ds-primary: var(--color-ds-primary-600);
   --ds-primary-fg: var(--color-white);
   --ds-secondary: var(--color-ds-800);
   --ds-secondary-fg: var(--color-ds-100);
@@ -226,7 +226,7 @@
   --ds-input-fg: var(--color-ds-100);
   --ds-input-ring: var(--color-ds-600);
 
-  --ds-chart-1: var(--color-ds-primary-400);
+  --ds-chart-1: var(--color-ds-primary-500);
   --ds-chart-2: var(--color-ds-success-400);
   --ds-chart-3: var(--color-ds-warning-400);
   --ds-chart-4: var(--color-indigo-400);
@@ -306,7 +306,7 @@
 /* ────────────────────────────────────────────────
    5. Colors utilities
 ──────────────────────────────────────────────── */
-@utility ds-primary-gradient { @apply bg-gradient-to-b from-ds-primary-500 to-ds-primary-600; }
+@utility ds-primary-gradient { @apply bg-gradient-to-b from-ds-primary-500 to-ds-primary-600 dark:from-ds-primary-600 dark:to-ds-primary-700; }
 @utility ds-danger-gradient { @apply bg-gradient-to-b from-ds-danger-500 to-ds-danger-600; }
 
 

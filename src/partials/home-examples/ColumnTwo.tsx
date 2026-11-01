@@ -101,7 +101,7 @@ export function ColumnTwo() {
       <Card>
          <CardHeader 
             className="pb-2"
-            leftIcon={<FiShoppingCart className="text-primary" size={18} />}
+            leftIcon={<FiShoppingCart size={18} />}
          >
             <CardTitle className="text-3xl font-medium tracking-tight">
                <AnimateNumber value={liveValue} prefix="$" precision={2} />
@@ -117,7 +117,7 @@ export function ColumnTwo() {
                   <span className="text-xs text-muted-foreground font-bold uppercase tracking-wider">Avg. Ticket</span>
                   <span className="text-base font-bold">$242.10</span>
                </div>
-               <div className="flex items-center gap-1 text-primary font-bold text-xs">
+               <div className="flex items-center gap-1 text-success font-bold text-xs">
                   <FiArrowUpRight size={14} />
                   <span>+2.4%</span>
                </div>
@@ -128,7 +128,7 @@ export function ColumnTwo() {
       {/* 5. Interactive Control Panel (Replaces Weekly Progress) */}
       <Card className=" border-border overflow-visible">
          <CardHeader 
-            leftIcon={<FiShield className="text-primary" size={18} />}
+            leftIcon={<FiShield size={18} />}
             action={
                <Popover>
                   <PopoverTrigger asChild>
@@ -153,14 +153,14 @@ export function ColumnTwo() {
          <CardContent className="pt-2">
             <div className="grid grid-cols-2 gap-3 mb-6">
                <Surface className="p-4 flex flex-col gap-3">
-                  <FiShield className="text-primary" size={20} />
+                  <FiShield className="text-muted-foreground" size={20} />
                   <div>
                      <div className="text-lg font-bold leading-none mb-1">Active</div>
                      <div className="text-xs uppercase font-bold text-muted-foreground tracking-wider">Firewall</div>
                   </div>
                </Surface>
                <Surface className="p-4 flex flex-col gap-3">
-                  <FiActivity className="text-primary" size={20} />
+                  <FiActivity className="text-muted-foreground" size={20} />
                   <div>
                      <div className="text-lg font-bold leading-none mb-1">99.9%</div>
                      <div className="text-xs uppercase font-bold text-muted-foreground tracking-wider">Uptime</div>
@@ -200,7 +200,7 @@ export function ColumnTwo() {
       {/* 10. Schedule Card (New - Fills the gap) */}
       <Card>
          <CardHeader
-            leftIcon={<FiActivity className="text-primary" size={18} />}
+            leftIcon={<FiActivity size={18} />}
             action={<span className="text-xs font-bold text-muted-foreground">Today</span>}
          >
             <CardTitle>Upcoming</CardTitle>
@@ -244,7 +244,7 @@ export function ColumnTwo() {
       <Card>
          <CardHeader>
             <div className="flex items-center gap-2">
-               <FiServer className="text-primary" size={18} />
+               <FiServer className="text-muted-foreground" size={18} />
                <CardTitle>Core Services</CardTitle>
             </div>
             <CardDescription>Manage your mission-critical infrastructure.</CardDescription>
@@ -253,7 +253,7 @@ export function ColumnTwo() {
             <div className="flex items-center justify-between group">
                <div className="flex items-center gap-3">
                   <div className="size-8 rounded-full bg-ds-primary-500/10 flex items-center justify-center">
-                     <FiGlobe className="text-primary" size={16} />
+                     <FiGlobe className="text-muted-foreground" size={16} />
                   </div>
                   <div className="flex flex-col">
                      <span className="text-sm font-bold">Main API</span>
@@ -265,7 +265,7 @@ export function ColumnTwo() {
             <div className="flex items-center justify-between group">
                <div className="flex items-center gap-3">
                   <div className="size-8 rounded-full bg-ds-primary-500/10 flex items-center justify-center">
-                     <FiDatabase className="text-primary" size={16} />
+                     <FiDatabase className="text-muted-foreground" size={16} />
                   </div>
                   <div className="flex flex-col">
                      <span className="text-sm font-bold">Vector DB</span>
@@ -280,7 +280,7 @@ export function ColumnTwo() {
       <Card>
          <CardHeader>
             <div className="flex items-center gap-2">
-               <FiActivity className="text-primary" size={18} />
+               <FiActivity className="text-muted-foreground" size={18} />
                <CardTitle>System Health</CardTitle>
             </div>
             <CardDescription>Real-time performance diagnostics.</CardDescription>
@@ -303,7 +303,7 @@ export function ColumnTwo() {
                      <FiCpu className="text-muted-foreground" size={14} />
                      <span className="text-sm font-medium">CPU Usage</span>
                   </div>
-                  <span className="text-sm font-bold text-primary">Optimal</span>
+                  <span className="text-sm font-bold text-success">Optimal</span>
                </div>
                <ProgressBar value={12} size="xs" color="primary" />
             </div>
@@ -313,7 +313,7 @@ export function ColumnTwo() {
       {/* New 2: Recent Transactions */}
       <Card>
          <CardHeader
-            leftIcon={<FiZap className="text-primary" size={18} />}
+            leftIcon={<FiZap size={18} />}
             action={<Button variant="soft" size="sm" className="h-7 text-xs px-2">View All</Button>}
          >
             <CardTitle>Recent Activity</CardTitle>
@@ -338,7 +338,7 @@ export function ColumnTwo() {
       {/* New 6: Drawer Trigger Example */}
       <Card>
          <CardHeader
-            leftIcon={<FiActivity className="text-primary" size={18} />}
+            leftIcon={<FiActivity size={18} />}
             action={<Badge content="12 New" color="info" variant="soft" pulse />}
          >
             <CardTitle>Activity Log</CardTitle>
@@ -369,7 +369,7 @@ export function ColumnTwo() {
 
       {/* New 10: Browser Stats */}
       <Card>
-         <CardHeader leftIcon={<FiGlobe className="text-primary" size={18} />}>
+         <CardHeader leftIcon={<FiGlobe size={18} />}>
             <CardTitle>Top Browsers</CardTitle>
             <CardDescription>Traffic breakdown by engine.</CardDescription>
          </CardHeader>
@@ -401,7 +401,7 @@ export function ColumnTwo() {
 
       {/* New 14: Resource Usage */}
       <Card>
-         <CardHeader leftIcon={<FiDatabase className="text-primary" size={18} />}>
+         <CardHeader leftIcon={<FiDatabase size={18} />}>
             <CardTitle>Resource Usage</CardTitle>
             <CardDescription>Track compute and storage constraints.</CardDescription>
          </CardHeader>
@@ -426,7 +426,7 @@ export function ColumnTwo() {
 
       {/* New 15: Server Config (Refactored) */}
       <Card>
-         <CardHeader leftIcon={<FiServer className="text-primary" size={18} />}>
+         <CardHeader leftIcon={<FiServer size={18} />}>
             <CardTitle>Environment Config</CardTitle>
             <CardDescription>Provisioning node resources and SLA.</CardDescription>
          </CardHeader>
