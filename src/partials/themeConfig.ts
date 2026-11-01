@@ -36,17 +36,17 @@ export const BASE_COLORS: ColorOption<BaseColor>[] = [
 ];
 
 export const PRIMARY_COLORS: ColorOption<PrimaryColor>[] = [
-  { id: 'blue', label: 'Blue', color: '#3b82f6' },
-  { id: 'violet', label: 'Violet', color: '#8b5cf6' },
-  { id: 'indigo', label: 'Indigo', color: '#6366f1' },
-  { id: 'emerald', label: 'Emerald', color: '#10b981' },
-  { id: 'green', label: 'Green', color: '#22c55e' },
-  { id: 'rose', label: 'Rose', color: '#f43f5e' },
-  { id: 'orange', label: 'Orange', color: '#f97316' },
-  { id: 'amber', label: 'Amber', color: '#f59e0b' },
-  { id: 'cyan', label: 'Cyan', color: '#06b6d4' },
-  { id: 'teal', label: 'Teal', color: '#14b8a6' },
-  { id: 'fuchsia', label: 'Fuchsia', color: '#d946ef' },
+  { id: 'blue', label: 'Blue', color: '#2563eb' },
+  { id: 'violet', label: 'Violet', color: '#7c3aed' },
+  { id: 'indigo', label: 'Indigo', color: '#4f46e5' },
+  { id: 'emerald', label: 'Emerald', color: '#059669' },
+  { id: 'green', label: 'Green', color: '#16a34a' },
+  { id: 'rose', label: 'Rose', color: '#e11d48' },
+  { id: 'orange', label: 'Orange', color: '#ea580c' },
+  { id: 'amber', label: 'Amber', color: '#d97706' },
+  { id: 'cyan', label: 'Cyan', color: '#0891b2' },
+  { id: 'teal', label: 'Teal', color: '#0d9488' },
+  { id: 'fuchsia', label: 'Fuchsia', color: '#c026d3' },
 ];
 
 export const DARK_BG_OPTIONS: DarkBgOption[] = [
