@@ -19,7 +19,8 @@ import { ListTile } from '../../dashkit/ListTile/ListTile';
 import { Surface } from '../../dashkit/Surface/Surface';
 import { IconButton } from '../../dashkit/IconButton/IconButton';
 import { StatsCard } from '../../dashkit/StatsCard/StatsCard';
-import { FiTrendingUp, FiShoppingCart, FiArrowUpRight, FiMoreHorizontal, FiShield, FiActivity, FiGlobe, FiServer, FiArrowDownLeft, FiCpu, FiDatabase, FiZap } from 'react-icons/fi';
+import { ColorPicker } from '../../dashkit/ColorPicker/ColorPicker';
+import { FiTrendingUp, FiShoppingCart, FiArrowUpRight, FiMoreHorizontal, FiShield, FiActivity, FiGlobe, FiServer, FiArrowDownLeft, FiCpu, FiDatabase, FiZap, FiDroplet } from 'react-icons/fi';
 import { CHART_DATA, CHART_SERIES, REVENUE_DATA, AVATAR_URLS } from './Constants';
 
 export function ColumnTwo() {
@@ -332,6 +333,24 @@ export function ColumnTwo() {
                   trailing={<span className={`text-sm font-bold ${tx.type === 'in' ? 'text-success' : ''}`}>{tx.amount}</span>}
                />
             ))}
+         </CardContent>
+      </Card>
+
+      {/* Workspace Accent (ColorPicker) */}
+      <Card>
+         <CardHeader leftIcon={<FiDroplet size={18} />}>
+            <CardTitle>Workspace Accent</CardTitle>
+            <CardDescription>Customize primary color tokens.</CardDescription>
+         </CardHeader>
+         <CardContent className="space-y-4">
+            <ColorPicker
+               label="Accent Color"
+               defaultValue="#3B82F6"
+               helperText="Applied to active indicators and focus rings."
+            />
+            <Button variant="filled" className="w-full">
+               Save Palette
+            </Button>
          </CardContent>
       </Card>
 
