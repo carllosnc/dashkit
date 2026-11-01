@@ -10,7 +10,7 @@ export interface SurfaceProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const Surface = React.forwardRef<HTMLDivElement, SurfaceProps>(
-  ({ variant = 'default', className, children, ...props }, ref) => {
+  function Surface({ variant = 'default', className, children, ...props }, ref) {
     return (
       <div
         ref={ref}
