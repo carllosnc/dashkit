@@ -30,20 +30,16 @@ export const LoginExample = () => {
             <img src="/logo.svg" className="h-8 invert" alt="Dashkit" />
           </div>
 
-          <div className="max-w-xl text-center">
-            <h2 className="text-3xl font-bold leading-tight mb-8 text-white">
-              Design gorgeous interfaces at the speed of light.
+          <div className="max-w-md text-center">
+            <h2 className="text-3xl font-bold leading-tight mb-3 text-white">
+              Design interfaces at the speed of light.
             </h2>
-            <p className="text-ds-400 text-lg">
-              The most advanced UI library for high-performance React applications and modern dashboards.
+            <p className="text-ds-400 text-base">
+              Modern UI library for React applications.
             </p>
           </div>
 
-          <div className="flex items-center gap-4 text-sm font-medium text-ds-400">
-            <span>By carllosnc</span>
-            <span className="size-1 rounded-full bg-ds-700" />
-            <span>Premium UI Kit</span>
-          </div>
+          <div aria-hidden="true" className="h-8" />
         </div>
       </div>
 
