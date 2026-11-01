@@ -2,10 +2,8 @@ import { useTheme } from './ThemeContext';
 import {
   BASE_COLORS,
   PRIMARY_COLORS,
-  DARK_BG_OPTIONS,
   type BaseColor,
   type PrimaryColor,
-  type DarkBackground,
 } from './themeConfig';
 import { Popover, PopoverTrigger, PopoverContent } from '../dashkit/Popover';
 import { IconButton } from '../dashkit/IconButton/IconButton';
@@ -19,22 +17,17 @@ interface ThemeCustomizerProps {
 
 export function ThemeCustomizer({ className }: ThemeCustomizerProps) {
   const {
-    theme,
     baseColor,
     setBaseColor,
     primaryColor,
     setPrimaryColor,
-    darkBg,
-    setDarkBg,
   } = useTheme();
 
-  const isDefault =
-    baseColor === 'zinc' && primaryColor === 'blue' && darkBg === 'midnight';
+  const isDefault = baseColor === 'zinc' && primaryColor === 'blue';
 
   const handleReset = () => {
     setBaseColor('zinc');
     setPrimaryColor('blue');
-    setDarkBg('midnight');
   };
 
   return (
@@ -133,50 +126,6 @@ export function ThemeCustomizer({ className }: ThemeCustomizerProps) {
                     style={{ backgroundColor: c.color }}
                   >
                     {isSelected && <FiCheck size={14} className="text-white drop-shadow-xs" />}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Dark Background (Midnight vs OLED Pure Black) */}
-          <div className="space-y-2.5 pt-2 border-t border-border">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-1.5">
-                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                  Dark Background
-                </span>
-                {theme !== 'dark' && (
-                  <span className="text-[10px] text-muted-foreground/75">(Dark mode only)</span>
-                )}
-              </div>
-              <span className="text-xs capitalize font-semibold text-foreground">{darkBg}</span>
-            </div>
-            <div className="grid grid-cols-2 gap-2">
-              {DARK_BG_OPTIONS.map(opt => {
-                const isSelected = darkBg === opt.id;
-                return (
-                  <button
-                    key={opt.id}
-                    type="button"
-                    onClick={() => setDarkBg(opt.id as DarkBackground)}
-                    className={clsx(
-                      'flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium cursor-pointer transition-all border',
-                      isSelected
-                        ? 'border-primary bg-primary/10 text-foreground ring-1 ring-primary'
-                        : 'border-border/60 hover:border-border hover:bg-muted text-muted-foreground hover:text-foreground'
-                    )}
-                  >
-                    <div className="flex items-center gap-2">
-                      <span
-                        className={clsx(
-                          'size-3.5 rounded-full border border-border shrink-0',
-                          opt.id === 'oled' ? 'bg-black' : 'bg-[#18181b]'
-                        )}
-                      />
-                      <span>{opt.label}</span>
-                    </div>
-                    {isSelected && <FiCheck size={12} className="text-primary shrink-0" />}
                   </button>
                 );
               })}
