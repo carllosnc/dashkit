@@ -179,10 +179,10 @@
   --ds-input-ring: var(--color-ds-300);
 
   --ds-chart-1: var(--color-ds-primary-600);
-  --ds-chart-2: var(--color-ds-success-600);
-  --ds-chart-3: var(--color-ds-warning-500);
-  --ds-chart-4: var(--color-indigo-500);
-  --ds-chart-5: var(--color-ds-danger-500);
+  --ds-chart-2: var(--color-teal-600);
+  --ds-chart-3: var(--color-amber-500);
+  --ds-chart-4: var(--color-sky-500);
+  --ds-chart-5: var(--color-rose-500);
 }
 
 .dark {
@@ -227,10 +227,10 @@
   --ds-input-ring: var(--color-ds-600);
 
   --ds-chart-1: var(--color-ds-primary-500);
-  --ds-chart-2: var(--color-ds-success-400);
-  --ds-chart-3: var(--color-ds-warning-400);
-  --ds-chart-4: var(--color-indigo-400);
-  --ds-chart-5: var(--color-ds-danger-400);
+  --ds-chart-2: var(--color-teal-400);
+  --ds-chart-3: var(--color-amber-400);
+  --ds-chart-4: var(--color-sky-400);
+  --ds-chart-5: var(--color-rose-400);
 }
 
 /* ────────────────────────────────────────────────

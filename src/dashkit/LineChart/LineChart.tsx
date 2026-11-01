@@ -127,7 +127,7 @@ export const LineChart = ({
                   height: hoveredIndex === i ? 12 : 8,
                   x: "-50%",
                   y: "-50%",
-                  backgroundColor: hoveredIndex === i ? s.color : '#fff',
+                  backgroundColor: hoveredIndex === i ? s.color : 'var(--color-card, #fff)',
                   borderColor: s.color,
                 }}
                 initial={animate ? { scale: 0, opacity: 0 } : false}
