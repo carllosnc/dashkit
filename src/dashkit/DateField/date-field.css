@@ -25,11 +25,7 @@
 }
 
 .date-field__segment::placeholder {
-  @apply text-ds-400;
-
-  @variant dark {
-    @apply text-ds-600;
-  }
+  @apply text-ds-600 dark:text-ds-400;
 }
 
 .date-field__segment:focus {
@@ -41,11 +37,7 @@
 }
 
 .date-field__separator {
-  @apply text-ds-400 font-bold select-none text-lg;
-
-  @variant dark {
-    @apply text-ds-500;
-  }
+  @apply text-ds-600 dark:text-ds-400 font-bold select-none text-lg;
 }
 
 .date-field__message {

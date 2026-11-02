@@ -57,11 +57,7 @@
 }
 
 .date-picker__weekday-label {
-  @apply text-[10px] uppercase font-bold text-ds-400 text-center;
-
-  @variant dark {
-    @apply text-ds-500;
-  }
+  @apply text-[10px] uppercase font-bold text-ds-600 dark:text-ds-400 text-center;
 }
 
 .date-picker__days-grid {

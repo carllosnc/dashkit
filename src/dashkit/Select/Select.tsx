@@ -1,4 +1,4 @@
-import { type KeyboardEvent } from 'react';
+import { type KeyboardEvent, useId } from 'react';
 import { createPortal } from 'react-dom';
 import { FiChevronDown, FiCheck } from 'react-icons/fi';
 import { cn } from '../utils/cn';
@@ -40,13 +40,18 @@ export function Select({
     buttonRef,
     portalRef,
     selectedOption,
-    handleKeyDown
+    handleKeyDown,
+    handleListKeyDown
   } = useSelect({ options, value, disabled });
+
+  const labelId = useId();
+  const valueId = useId();
+  const listId = useId();
 
   return (
     <div className="select" ref={containerRef}>
       {label && (
-        <label className="select__label">
+        <label id={labelId} className="select__label">
           {label}
         </label>
       )}
@@ -59,12 +64,17 @@ export function Select({
           onKeyDown={handleKeyDown as (e: KeyboardEvent<HTMLButtonElement>) => void}
           aria-haspopup="listbox"
           aria-expanded={isOpen}
+          aria-controls={isOpen ? listId : undefined}
+          aria-labelledby={label ? `${labelId} ${valueId}` : undefined}
           className={cn('select__trigger', className)}
         >
-          <span className={cn(
-            'select__trigger-text',
-            !selectedOption && 'select__trigger-text--placeholder'
-          )}>
+          <span
+            id={valueId}
+            className={cn(
+              'select__trigger-text',
+              !selectedOption && 'select__trigger-text--placeholder'
+            )}
+          >
             {selectedOption ? selectedOption.label : placeholder}
           </span>
           <FiChevronDown className={cn(
@@ -76,7 +86,9 @@ export function Select({
         {isOpen && triggerRect && createPortal(
           <div
             ref={portalRef}
+            id={listId}
             role="listbox"
+            onKeyDown={handleListKeyDown}
             style={{
               position: 'fixed',
               ...(side === 'bottom'

@@ -22,10 +22,39 @@ export function DropdownContent({
   const { open, triggerElement, setTriggerRect, triggerRect, portalRef } = useDropdownContext();
   const [contentRect, setContentRect] = React.useState<DOMRect | null>(null);
 
+  // Latest trigger element for the focus-restore cleanup below, so the focus
+  // effect can depend only on `open`.
+  const triggerElementRef = React.useRef<HTMLElement | null>(null);
+  React.useEffect(() => {
+    triggerElementRef.current = triggerElement;
+  }, [triggerElement]);
+
   React.useLayoutEffect(() => {
     if (open && portalRef.current) {
       setContentRect(portalRef.current.getBoundingClientRect());
     }
+  }, [open, portalRef]);
+
+  // Move focus into the popup on open and hand it back to the trigger on
+  // close, so keyboard users never end up tabbing through the page behind
+  // the dropdown (WCAG 2.4.3).
+  React.useEffect(() => {
+    if (!open) return;
+
+    const firstItem = portalRef.current?.querySelector<HTMLElement>(
+      'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+    firstItem?.focus();
+
+    return () => {
+      const active = document.activeElement;
+      // Only take focus back when it would otherwise be lost (the popup is
+      // gone or focus already fell to <body>); never steal it from a control
+      // the user just clicked.
+      if (!active || active === document.body || active === document.documentElement) {
+        triggerElementRef.current?.focus();
+      }
+    };
   }, [open, portalRef]);
 
   React.useEffect(() => {

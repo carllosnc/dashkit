@@ -41,6 +41,7 @@
   @apply bg-ds-0 text-foreground border border-ds-300;
   @apply hover:bg-ds-50 transition-all cursor-pointer;
   @apply focus:outline-none focus:z-10;
+  @apply focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring;
 
   @variant dark {
     @apply bg-ds-900 border-ds-700;

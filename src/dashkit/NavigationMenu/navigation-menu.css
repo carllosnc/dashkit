@@ -14,6 +14,7 @@
 
 .navigation-menu__trigger {
   @apply inline-flex h-9 w-max items-center justify-center ds-rounded bg-transparent px-4 py-2 text-sm font-medium hover:bg-ds-100 dark:hover:bg-ds-800 focus:bg-ds-100 dark:focus:bg-ds-800 focus:outline-none disabled:pointer-events-none disabled:opacity-50 text-ds-500 transition-colors;
+  @apply focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-transparent;
 
   @variant dark {
     @apply text-ds-400;
@@ -54,4 +55,5 @@
 
 .navigation-menu__link {
   @apply block select-none space-y-1 ds-rounded p-2 leading-none no-underline outline-none hover:bg-ds-100 dark:hover:bg-ds-800 transition-colors;
+  @apply focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring;
 }

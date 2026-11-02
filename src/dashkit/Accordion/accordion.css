@@ -18,6 +18,7 @@
 
 .accordion__trigger {
   @apply flex w-full items-center justify-between py-4 text-left transition-colors cursor-pointer outline-none hover:text-foreground;
+  @apply focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring;
 }
 
 .accordion__trigger--active {

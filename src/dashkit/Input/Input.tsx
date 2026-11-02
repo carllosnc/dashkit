@@ -1,4 +1,4 @@
-import { forwardRef, type InputHTMLAttributes, type ReactNode } from 'react';
+import { forwardRef, useId, type InputHTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../utils/cn';
 
 export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'prefix'> {
@@ -18,6 +18,8 @@ import './input.css';
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   function Input({ label, leftIcon, rightIcon, prefix, suffix, error, helperText, mask, formatter, className, id, onChange, ...props }, ref) {
     const inputId = id || (label ? `input-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined);
+    const messageId = useId();
+    const hasMessage = !!(error || helperText);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       let value = e.target.value;
@@ -66,6 +68,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               id={inputId}
               ref={ref}
               onChange={handleChange}
+              aria-invalid={props['aria-invalid'] ?? (error ? true : undefined)}
+              aria-describedby={
+                [props['aria-describedby'], hasMessage ? messageId : undefined]
+                  .filter(Boolean)
+                  .join(' ') || undefined
+              }
               className={cn(
                 'input__field',
                 leftIcon && "input__field--with-left-icon",
@@ -86,10 +94,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           )}
         </div>
         {(error || helperText) && (
-          <span className={cn(
-            'input__message',
-            error ? 'input__message--error' : 'input__message--default'
-          )}>
+          <span
+            id={messageId}
+            role={error ? 'alert' : undefined}
+            className={cn(
+              'input__message',
+              error ? 'input__message--error' : 'input__message--default'
+            )}
+          >
             {error || helperText}
           </span>
         )}

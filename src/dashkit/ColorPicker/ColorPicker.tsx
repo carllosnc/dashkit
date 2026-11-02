@@ -56,10 +56,14 @@ export function ColorPicker({
     }
   };
 
+  const labelId = React.useId();
+  const valueId = React.useId();
+  const messageId = React.useId();
+
   return (
     <div className={cn('color-picker', className)}>
       {label && (
-        <label className="color-picker__label">
+        <label id={labelId} className="color-picker__label">
           {label}
         </label>
       )}
@@ -68,13 +72,14 @@ export function ColorPicker({
         <PopoverTrigger asChild>
           <button
             type="button"
+            aria-labelledby={label ? `${labelId} ${valueId}` : undefined}
             className={cn(
               'color-picker__trigger',
               error && "border-ds-danger-500/50"
             )}
           >
             <ColorSwatch color={hex} />
-            <span className="flex-1 text-left tabular-nums font-medium uppercase tracking-tight">
+            <span id={valueId} className="flex-1 text-left tabular-nums font-medium uppercase tracking-tight">
               {hex}
             </span>
           </button>
@@ -84,6 +89,9 @@ export function ColorPicker({
             {presets.map((color) => (
               <button
                 key={color}
+                type="button"
+                aria-label={`Select color ${color}`}
+                aria-pressed={hex.toLowerCase() === color.toLowerCase()}
                 onClick={() => handleColorChange(color)}
                 className={cn(
                   'color-picker__preset-item',
@@ -112,6 +120,9 @@ export function ColorPicker({
               value={hex}
               onChange={handleHexInput}
               placeholder="#000000"
+              aria-label="Hex color value"
+              aria-describedby={(error || helperText) ? messageId : undefined}
+              aria-invalid={error ? true : undefined}
               leftIcon={<ColorSwatch color={hex} size="sm" />}
               className="h-8"
             />
@@ -120,7 +131,11 @@ export function ColorPicker({
       </Popover>
 
       {(error || helperText) && (
-        <span className={error ? 'color-picker__error-text' : 'color-picker__helper-text'}>
+        <span
+          id={messageId}
+          role={error ? 'alert' : undefined}
+          className={error ? 'color-picker__error-text' : 'color-picker__helper-text'}
+        >
           {error || helperText}
         </span>
       )}
@@ -134,6 +149,7 @@ function ColorSwatch({ color, size = 'default' }: { color: string; size?: 'sm' |
 
   return (
     <div
+      aria-hidden="true"
       className={cn(
         'color-picker__swatch',
         size === 'sm' ? "size-4" : "size-5",

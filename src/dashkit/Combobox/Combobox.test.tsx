@@ -17,7 +17,7 @@ describe('Combobox', () => {
 
   it('opens dropdown and filters options on input', () => {
     render(<Combobox options={options} />);
-    const input = screen.getByRole('textbox');
+    const input = screen.getByRole('combobox');
     
     fireEvent.change(input, { target: { value: 'ap' } });
     
@@ -29,7 +29,7 @@ describe('Combobox', () => {
   it('calls onChange when an option is selected', () => {
     const handleChange = vi.fn();
     render(<Combobox options={options} onChange={handleChange} />);
-    const input = screen.getByRole('textbox');
+    const input = screen.getByRole('combobox');
     
     fireEvent.focus(input);
     fireEvent.click(screen.getByText('Banana'));
@@ -44,7 +44,7 @@ describe('Combobox', () => {
     // Check if Chip is rendered for existing value
     expect(screen.getByText('Apple')).toBeInTheDocument();
     
-    const input = screen.getByRole('textbox');
+    const input = screen.getByRole('combobox');
     fireEvent.focus(input);
     fireEvent.click(screen.getByText('Banana'));
     
@@ -63,7 +63,7 @@ describe('Combobox', () => {
 
   it('closes dropdown when Escape key is pressed', () => {
     render(<Combobox options={options} />);
-    const input = screen.getByRole('textbox');
+    const input = screen.getByRole('combobox');
     
     fireEvent.focus(input);
     expect(screen.getByRole('listbox')).toBeInTheDocument();

@@ -36,6 +36,11 @@ export function Popover({ children, trigger = 'click' }: PopoverProps) {
     }, 150);
   }, [trigger, setOpen]);
 
+  // Hover popovers must also open from the keyboard: focus plays the role of
+  // "enter" and blur that of "leave" (WCAG 2.1.1).
+  const onFocus = onMouseEnter;
+  const onBlur = onMouseLeave;
+
   // Handle triggerRect update on open for hover
   React.useEffect(() => {
     if (open && trigger === 'hover' && triggerElement) {
@@ -54,6 +59,8 @@ export function Popover({ children, trigger = 'click' }: PopoverProps) {
         triggerMode: trigger,
         onMouseEnter,
         onMouseLeave,
+        onFocus,
+        onBlur,
         portalRef
     }}>
       <div className="relative inline-block text-left" ref={containerRef}>

@@ -32,14 +32,47 @@ let toastCount = 0;
 const observers = new Set<(toasts: ToastData[]) => void>();
 let currentToasts: ToastData[] = [];
 
+interface ToastTimer {
+  remaining: number;
+  startedAt: number;
+  handle: number | null;
+}
+
+const timers = new Map<string, ToastTimer>();
+
 const notify = () => {
   const toasts = [...currentToasts];
   observers.forEach(fn => fn(toasts));
 };
 
 export const removeToast = (id: string) => {
+  const entry = timers.get(id);
+  if (entry && entry.handle !== null) window.clearTimeout(entry.handle);
+  timers.delete(id);
   currentToasts = currentToasts.filter(t => t.id !== id);
   notify();
+};
+
+/** Freeze the auto-dismiss countdown (WCAG 2.2.2: paused on hover/focus). */
+export const pauseToastTimer = (id: string) => {
+  const entry = timers.get(id);
+  if (!entry || entry.handle === null) return;
+  window.clearTimeout(entry.handle);
+  entry.remaining = Math.max(0, entry.remaining - (Date.now() - entry.startedAt));
+  entry.handle = null;
+};
+
+/** Continue the countdown where it left off. */
+export const resumeToastTimer = (id: string) => {
+  const entry = timers.get(id);
+  if (!entry || entry.handle !== null) return;
+  if (entry.remaining <= 0) {
+    timers.delete(id);
+    removeToast(id);
+    return;
+  }
+  entry.startedAt = Date.now();
+  entry.handle = window.setTimeout(() => removeToast(id), entry.remaining);
 };
 
 export function useToast() {
@@ -63,23 +96,34 @@ export const setToastDefaultPosition = (position: ToastPosition) => {
 
 export const toast = (options: ToastOptions) => {
   const id = options.id || `toast-${toastCount++}`;
+  const type = options.type || 'default';
   const newToast: ToastData = { 
     ...options, 
     id, 
-    type: options.type || 'default',
+    type,
     position: options.position || defaultPosition
   };
   
   currentToasts = [newToast, ...currentToasts].slice(0, 5); // Max 5 toasts
   notify();
 
-  if (options.duration !== 0) {
-    setTimeout(() => removeToast(id), options.duration || 5000);
+  // Errors stay until dismissed; every other toast auto-dismisses.
+  const duration = type === 'error' ? 0 : options.duration ?? 5000;
+  if (duration > 0) {
+    timers.set(id, {
+      remaining: duration,
+      startedAt: Date.now(),
+      handle: window.setTimeout(() => removeToast(id), duration)
+    });
   }
   return id;
 };
 
 export const resetToasts = () => {
+  timers.forEach((entry) => {
+    if (entry.handle !== null) window.clearTimeout(entry.handle);
+  });
+  timers.clear();
   currentToasts = [];
   toastCount = 0;
   notify();

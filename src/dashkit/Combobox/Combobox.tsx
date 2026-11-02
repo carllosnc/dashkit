@@ -1,4 +1,5 @@
 import { createPortal } from 'react-dom';
+import { useId } from 'react';
 import { FiChevronDown, FiCheck, FiSearch, FiX } from 'react-icons/fi';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '../utils/cn';
@@ -53,8 +54,10 @@ export function Combobox({
     handleSelect,
     handleRemoveOption,
     handleInputClick,
+    handleInputKeyDown,
     handleClear,
-    isOptionSelected
+    isOptionSelected,
+    activeIndex
   } = useCombobox({
     options,
     value,
@@ -64,12 +67,19 @@ export function Combobox({
     multiple
   });
 
+  const inputId = useId();
+  const listId = useId();
+  const activeOptionId =
+    isOpen && activeIndex >= 0 && activeIndex < filteredOptions.length
+      ? `${listId}-option-${activeIndex}`
+      : undefined;
+
   return (
     <div className={cn('combobox', className)} ref={containerRef}>
       {(label || (multiple && selectedOptions.length > 0)) && (
         <div className="combobox__label-area">
           {label && (
-            <label className="combobox__label">
+            <label htmlFor={inputId} className="combobox__label">
               {label}
             </label>
           )}
@@ -111,7 +121,13 @@ export function Combobox({
 
         <input
           ref={inputRef}
+          id={inputId}
           type="text"
+          role="combobox"
+          aria-expanded={isOpen}
+          aria-controls={isOpen ? listId : undefined}
+          aria-autocomplete="list"
+          aria-activedescendant={activeOptionId}
           disabled={disabled}
           value={query}
           onChange={(e) => {
@@ -120,6 +136,7 @@ export function Combobox({
           }}
           onClick={handleInputClick}
           onFocus={() => setIsOpen(true)}
+          onKeyDown={handleInputKeyDown}
           placeholder={multiple && selectedOptions.length > 0 ? "Add more..." : placeholder}
           autoComplete="off"
           className={cn(
@@ -150,6 +167,7 @@ export function Combobox({
         {isOpen && triggerRect && createPortal(
           <div
             ref={portalRef}
+            id={listId}
             role="listbox"
             style={{
               position: 'fixed',
@@ -168,12 +186,15 @@ export function Combobox({
                   No matches found for "{query}"
                 </div>
               ) : (
-                filteredOptions.map((opt) => {
+                filteredOptions.map((opt, index) => {
                   const isSelected = isOptionSelected(opt);
                   return (
                     <button
                       key={opt.value}
+                      id={`${listId}-option-${index}`}
                       type="button"
+                      role="option"
+                      aria-selected={isSelected}
                       onClick={() => handleSelect(opt)}
                       className={cn(
                         'combobox__item',

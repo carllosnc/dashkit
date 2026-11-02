@@ -10,6 +10,7 @@
 
 .tabs__trigger {
   @apply relative inline-flex items-center justify-center gap-2 text-sm pb-2.5 pt-1 px-1 font-medium duration-150 outline-none isolate whitespace-nowrap cursor-pointer transition-colors;
+  @apply focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-transparent;
 }
 
 .tabs__trigger--active {
@@ -26,4 +27,5 @@
 
 .tabs__content {
   @apply flex-1 outline-none pt-4;
+  @apply focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring;
 }

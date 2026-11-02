@@ -34,7 +34,7 @@
 }
 
 .chip__delete-button {
-  @apply size-4 -mr-1 rounded-full flex items-center justify-center transition-colors;
+  @apply size-6 -mr-1.5 -my-1 rounded-full flex items-center justify-center transition-colors;
 }
 
 .chip__delete-button:hover:not(:disabled) {

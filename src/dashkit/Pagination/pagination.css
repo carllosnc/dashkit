@@ -12,7 +12,7 @@
 }
 
 .pagination__dots {
-  @apply size-9 flex items-center justify-center text-ds-400;
+  @apply size-9 flex items-center justify-center text-ds-600 dark:text-ds-400;
 }
 
 .pagination__item {

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiX, FiInfo, FiCheckCircle, FiAlertCircle, FiAlertTriangle } from 'react-icons/fi';
 import { createPortal } from 'react-dom';
-import { useToast, type ToastData, type ToastType, removeToast, type ToastPosition, setToastDefaultPosition } from './useToast';
+import { useToast, type ToastData, type ToastType, removeToast, pauseToastTimer, resumeToastTimer, type ToastPosition, setToastDefaultPosition } from './useToast';
 import { cn } from '../utils/cn';
 import './toast.css';
 
@@ -114,7 +114,12 @@ function ToastItem({
       }}
       exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
       transition={{ type: 'spring', damping: 20, stiffness: 300 }}
+      onMouseEnter={() => pauseToastTimer(toast.id)}
+      onMouseLeave={() => resumeToastTimer(toast.id)}
+      onFocus={() => pauseToastTimer(toast.id)}
+      onBlur={() => resumeToastTimer(toast.id)}
       className={cn(
+        'group',
         'toast-item',
         invert ? 'toast-item--invert' : 'toast-item--default',
         isTop ? 'toast-item--top' : 'toast-item--bottom'
@@ -138,6 +143,8 @@ function ToastItem({
       </div>
 
       <button
+        type="button"
+        aria-label="Dismiss notification"
         onClick={() => removeToast(toast.id)}
         className={cn('toast-item__close', invert ? 'toast-item__close--invert' : 'toast-item__close--default')}
       >

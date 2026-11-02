@@ -17,7 +17,7 @@
 }
 
 .combobox__selected-count {
-  @apply text-[11px] font-bold text-ds-400 uppercase tracking-wider;
+  @apply text-[11px] font-bold text-ds-600 dark:text-ds-400 uppercase tracking-wider;
 }
 
 .combobox__chips-wrapper {
@@ -41,7 +41,7 @@
 }
 
 .combobox__input {
-  @apply w-full h-9 pl-10 pr-10 text-sm bg-input-bg text-input-fg border border-input-border ds-rounded outline-none transition-all duration-200;
+  @apply w-full h-9 pl-10 pr-10 text-base sm:text-sm bg-input-bg text-input-fg border border-input-border ds-rounded outline-none transition-all duration-200;
 }
 
 .combobox__input::placeholder {
@@ -61,7 +61,7 @@
 }
 
 .combobox__clear-button {
-  @apply p-1 rounded-full text-ds-500 transition-all;
+  @apply p-1.5 -m-0.5 rounded-full text-ds-500 transition-all;
 }
 
 .combobox__clear-button:hover {

@@ -172,7 +172,9 @@ describe('Dropdown Component', () => {
     );
 
     const trigger = screen.getByRole('button', { name: 'Open' });
-    expect(trigger).toHaveAttribute('aria-haspopup', 'menu');
+    // The popup is a plain container of buttons, not a role="menu", so the
+    // trigger must not advertise one (the role it names would never appear).
+    expect(trigger).not.toHaveAttribute('aria-haspopup');
     expect(trigger).toHaveAttribute('aria-expanded', 'false');
 
     fireEvent.keyDown(trigger, { key: 'Enter' });

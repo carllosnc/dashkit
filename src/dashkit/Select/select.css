@@ -53,7 +53,7 @@
 }
 
 .select__no-options {
-  @apply px-4 py-2 text-sm text-ds-400 text-center;
+  @apply px-4 py-2 text-sm text-ds-600 dark:text-ds-400 text-center;
 }
 
 .select__option {

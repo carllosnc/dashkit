@@ -23,6 +23,18 @@ export function useCombobox({
   const [triggerRect, setTriggerRect] = useState<DOMRect | null>(null);
   const [side, setSide] = useState<'top' | 'bottom'>('bottom');
 
+  // The option highlighted via aria-activedescendant (focus stays in the input).
+  const [activeIndex, setActiveIndex] = useState(-1);
+
+  // A new query starts with no active option. Adjusted during render (the same
+  // pattern as prevIsOpen below) instead of in an effect, which would cause a
+  // cascading render.
+  const [prevQuery, setPrevQuery] = useState(query);
+  if (query !== prevQuery) {
+    setPrevQuery(query);
+    if (activeIndex !== -1) setActiveIndex(-1);
+  }
+
   const containerRef = useRef<HTMLDivElement>(null);
   const inputWrapperRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -67,6 +79,7 @@ export function useCombobox({
 
   if (isOpen !== prevIsOpen) {
     setPrevIsOpen(isOpen);
+    if (activeIndex !== -1) setActiveIndex(-1);
     if (!isOpen && !multiple) {
       const nextQuery = selectedOption?.label || '';
       if (query !== nextQuery) {
@@ -84,6 +97,14 @@ export function useCombobox({
       opt.label.toLowerCase().includes(safeQuery)
     );
   }, [options, query, selectedOption, multiple]);
+
+  // Keep the active option visible while arrowing through the list.
+  useEffect(() => {
+    if (activeIndex < 0) return;
+    const option = portalRef.current
+      ?.querySelectorAll<HTMLElement>('[role="option"]')[activeIndex];
+    option?.scrollIntoView?.({ block: 'nearest' });
+  }, [activeIndex]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -154,6 +175,34 @@ export function useCombobox({
     setIsOpen(true);
   };
 
+  // Arrow keys move the active option, Enter selects it — the combobox
+  // keystrokes from the APG pattern (WCAG 2.1.1).
+  const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (disabled) return;
+
+    const count = filteredOptions.length;
+
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (!isOpen) {
+        setIsOpen(true);
+        return;
+      }
+      if (count === 0) return;
+      setActiveIndex((prev) => {
+        if (prev < 0) return e.key === 'ArrowDown' ? 0 : count - 1;
+        const next = e.key === 'ArrowDown' ? prev + 1 : prev - 1;
+        return (next + count) % count;
+      });
+      return;
+    }
+
+    if (e.key === 'Enter' && isOpen && activeIndex >= 0 && activeIndex < count) {
+      e.preventDefault();
+      handleSelect(filteredOptions[activeIndex]);
+    }
+  };
+
   const handleClear = (e: React.MouseEvent) => {
     e.stopPropagation();
     onChange?.(multiple ? [] : '');
@@ -184,7 +233,9 @@ export function useCombobox({
     handleSelect,
     handleRemoveOption,
     handleInputClick,
+    handleInputKeyDown,
     handleClear,
-    isOptionSelected
+    isOptionSelected,
+    activeIndex
   };
 }

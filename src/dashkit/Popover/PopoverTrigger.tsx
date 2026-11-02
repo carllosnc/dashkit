@@ -7,7 +7,7 @@ export interface PopoverTriggerProps {
 }
 
 export function PopoverTrigger({ children, asChild }: PopoverTriggerProps) {
-  const { open, setOpen, setTriggerRect, setTriggerElement, triggerMode, onMouseEnter, onMouseLeave } = usePopoverContext();
+  const { open, setOpen, setTriggerRect, setTriggerElement, triggerMode, onMouseEnter, onMouseLeave, onFocus, onBlur } = usePopoverContext();
 
   const toggleOpen = (element: HTMLElement) => {
     if (triggerMode === 'hover') return;
@@ -64,6 +64,8 @@ export function PopoverTrigger({ children, asChild }: PopoverTriggerProps) {
         onClick={(e) => toggleOpen(e.currentTarget)}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={onMouseLeave}
+        onFocus={onFocus}
+        onBlur={onBlur}
         className="cursor-pointer inline-block"
       >
         {children}
@@ -87,6 +89,8 @@ export function PopoverTrigger({ children, asChild }: PopoverTriggerProps) {
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={onMouseLeave}
+      onFocus={onFocus}
+      onBlur={onBlur}
       className="cursor-pointer inline-block"
     >
       {children}

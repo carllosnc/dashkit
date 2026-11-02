@@ -248,6 +248,25 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  /* Honor prefers-reduced-motion for CSS transitions/animations.
+     framer-motion is handled separately via MotionConfig reducedMotion="user". */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+
+    /* The loading spinner is essential feedback, so it keeps animating. */
+    .animate-spinner {
+      animation-duration: 1.5s !important;
+      animation-iteration-count: infinite !important;
+    }
+  }
 }
 
 /* ────────────────────────────────────────────────
