@@ -1,25 +1,40 @@
 @reference "../dashkit.css";
 
 .surface {
-  @apply ds-rounded-md border text-foreground;
+  @apply ds-rounded-md text-foreground transition-colors duration-200;
 }
 
 .surface--default {
-  @apply bg-muted/40 dark:bg-muted/20 border-border;
+  @apply bg-muted/50;
+  @variant dark {
+    @apply bg-muted/40;
+  }
 }
 
 .surface--info {
-  @apply bg-info/8 dark:bg-info/15 border-info/25 dark:border-info/30;
+  @apply bg-info/10;
+  @variant dark {
+    @apply bg-info/15;
+  }
 }
 
 .surface--success {
-  @apply bg-success/8 dark:bg-success/15 border-success/25 dark:border-success/30;
+  @apply bg-success/10;
+  @variant dark {
+    @apply bg-success/15;
+  }
 }
 
 .surface--warning {
-  @apply bg-warning/10 dark:bg-warning/15 border-warning/30 dark:border-warning/35;
+  @apply bg-warning/12;
+  @variant dark {
+    @apply bg-warning/15;
+  }
 }
 
 .surface--danger {
-  @apply bg-danger/8 dark:bg-danger/15 border-danger/25 dark:border-danger/30;
+  @apply bg-danger/10;
+  @variant dark {
+    @apply bg-danger/15;
+  }
 }

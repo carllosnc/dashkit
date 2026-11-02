@@ -109,7 +109,7 @@ export const PaymentPageExample = () => {
                         onChange={setCryptoCurrency}
                         description="Transaction fees vary by network."
                       />
-                      <Surface className="p-6 border-dashed flex flex-col items-center text-center gap-4">
+                      <Surface className="p-6 border border-dashed border-border flex flex-col items-center text-center gap-4">
                           <div className="size-24 bg-card border border-border flex items-center justify-center ds-rounded-md">
                             <FiCpu size={48} className="text-muted-foreground opacity-30" />
                           </div>
@@ -189,7 +189,7 @@ export const PaymentPageExample = () => {
               </CardContent>
             </Card>
 
-            <Surface className="flex flex-col gap-4 p-6 border-dashed">
+            <Surface className="flex flex-col gap-4 p-6">
                <div className="flex items-center gap-3">
                  <div className="size-8 rounded-full bg-success/10 text-success flex items-center justify-center shrink-0">
                     <FiCheckCircle size={18} />

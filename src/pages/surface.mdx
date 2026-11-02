@@ -2,7 +2,7 @@ import { Surface } from '../dashkit/Surface/Surface';
 
 # Surface
 
-A lightweight, foundational component for creating containers with consistent background and border variants based on design system states. It provides no internal padding or margin, serving as a pure visual block.
+A lightweight, foundational component for creating containers with consistent background variants based on design system states. It provides a clean, borderless surface with no internal padding or margin, serving as a pure visual block.
 
 ## Import
 
@@ -20,7 +20,7 @@ bunx carllosnc/dashkit add surface
 
 ## Basic Usage
 
-The basic surface provides a standard background and border following the theme.
+The basic surface provides a subtle, borderless background following the theme.
 
 <Preview>
   <Surface className="h-24 w-full flex items-center justify-center">
@@ -42,22 +42,22 @@ Surfaces can be styled to represent different states like `info`, `success`, `wa
   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
     <Surface variant="info" className="p-4 flex flex-col gap-2">
       <span className="text-sm font-semibold text-info">Information</span>
-      <p className="text-xs text-muted-foreground">Subtle background and matching border for info states.</p>
+      <p className="text-xs text-muted-foreground">Subtle background tint for info states.</p>
     </Surface>
 
     <Surface variant="success" className="p-4 flex flex-col gap-2">
       <span className="text-sm font-semibold text-success">Success</span>
-      <p className="text-xs text-muted-foreground">Subtle background and matching border for success states.</p>
+      <p className="text-xs text-muted-foreground">Subtle background tint for success states.</p>
     </Surface>
 
     <Surface variant="warning" className="p-4 flex flex-col gap-2">
       <span className="text-sm font-semibold text-warning">Warning</span>
-      <p className="text-xs text-muted-foreground">Subtle background and matching border for warning states.</p>
+      <p className="text-xs text-muted-foreground">Subtle background tint for warning states.</p>
     </Surface>
 
     <Surface variant="danger" className="p-4 flex flex-col gap-2">
       <span className="text-sm font-semibold text-danger">Danger</span>
-      <p className="text-xs text-muted-foreground">Subtle background and matching border for error or danger states.</p>
+      <p className="text-xs text-muted-foreground">Subtle background tint for error or danger states.</p>
     </Surface>
   </div>
 </Preview>
@@ -71,10 +71,10 @@ Surfaces can be styled to represent different states like `info`, `success`, `wa
 
 ## Custom Styling
 
-Since Surface doesn't provide padding, you can easily apply your own layout classes.
+Since Surface doesn't provide padding or forced borders, you can easily apply your own layout and border styles.
 
 <Preview>
-  <Surface variant="default" className="p-8 border-dashed border-2 bg-ds-50/50 flex flex-col items-center justify-center gap-4">
+  <Surface variant="default" className="p-8 border border-dashed border-border bg-ds-50/50 flex flex-col items-center justify-center gap-4">
     <div className="size-12 rounded-full bg-ds-100 dark:bg-ds-800 flex items-center justify-center">
         <span className="text-xl">✨</span>
     </div>
@@ -83,7 +83,7 @@ Since Surface doesn't provide padding, you can easily apply your own layout clas
 </Preview>
 
 ```tsx
-<Surface className="p-8 border-dashed border-2 bg-ds-50/50">
+<Surface className="p-8 border border-dashed border-border bg-ds-50/50">
     Customized Block
 </Surface>
 ```
