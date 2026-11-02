@@ -49,6 +49,10 @@
   @apply ring-4 ring-primary/10;
 }
 
+.slider__track-container:has(.slider__input:focus-visible) .slider__thumb {
+  @apply ring-4 ring-primary/30;
+}
+
 .slider__input {
   @apply absolute inset-0 w-full h-full opacity-0 cursor-pointer accent-transparent z-20;
 }

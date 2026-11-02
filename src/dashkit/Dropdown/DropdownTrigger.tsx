@@ -49,7 +49,6 @@ export function DropdownTrigger({ children, asChild }: DropdownTriggerProps) {
       ref={internalRef}
       role="button"
       tabIndex={0}
-      aria-haspopup="menu"
       aria-expanded={open}
       onClick={(e) => toggleOpen(e.currentTarget)}
       onKeyDown={(e) => {

@@ -1,4 +1,4 @@
-import { forwardRef, type TextareaHTMLAttributes } from 'react';
+import { forwardRef, useId, type TextareaHTMLAttributes } from 'react';
 import { cn } from '../utils/cn';
 import { useTextarea } from './useTextarea';
 import './textarea.css';
@@ -19,6 +19,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       value: props.value,
       onChange
     });
+    const messageId = useId();
+    const hasMessage = !!(error || helperText);
 
     return (
       <div className="textarea">
@@ -42,6 +44,12 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             }
           }}
           onChange={handleChange}
+          aria-invalid={props['aria-invalid'] ?? (error ? true : undefined)}
+          aria-describedby={
+            [props['aria-describedby'], hasMessage ? messageId : undefined]
+              .filter(Boolean)
+              .join(' ') || undefined
+          }
           className={cn(
             'textarea__field',
             autoGrow && 'textarea__field--auto-grow',
@@ -50,10 +58,14 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           )}
         />
         {(error || helperText) && (
-          <span className={cn(
-            'textarea__message',
-            error ? 'textarea__message--error' : 'textarea__message--helper'
-          )}>
+          <span
+            id={messageId}
+            role={error ? 'alert' : undefined}
+            className={cn(
+              'textarea__message',
+              error ? 'textarea__message--error' : 'textarea__message--helper'
+            )}
+          >
             {error || helperText}
           </span>
         )}

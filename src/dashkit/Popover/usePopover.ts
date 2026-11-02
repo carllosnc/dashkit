@@ -12,6 +12,8 @@ export interface PopoverContextValue {
   triggerMode: PopoverTriggerMode;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
+  onFocus?: () => void;
+  onBlur?: () => void;
   portalRef: React.RefObject<HTMLDivElement | null>;
 }
 

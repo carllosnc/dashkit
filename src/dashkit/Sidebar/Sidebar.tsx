@@ -53,6 +53,7 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
             <IconButton
               variant="filled"
               icon={isOpen ? <FiChevronsLeft /> : <FiMenu />}
+              aria-label={isOpen ? 'Collapse sidebar' : 'Expand sidebar'}
               onClick={toggle}
               rounded
               className={cn(
@@ -239,6 +240,9 @@ export function SidebarItem({ icon, active, children, badgeSlot, className, href
         <span className="sidebar__item-icon">
           {icon}
         </span>
+      )}
+      {!isOpen && (
+        <span className="sr-only">{children}</span>
       )}
       <motion.span
         initial={false}

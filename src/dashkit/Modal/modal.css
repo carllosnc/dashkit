@@ -29,7 +29,7 @@
 }
 
 .modal__close-button {
-  @apply -mr-2 text-ds-400 hover:text-ds-900;
+  @apply -mr-2 text-ds-600 dark:text-ds-400 hover:text-ds-900;
 
   @variant dark {
     @apply hover:text-white;

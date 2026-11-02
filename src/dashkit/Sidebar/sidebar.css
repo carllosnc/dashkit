@@ -32,6 +32,7 @@
 
 .sidebar__section-button {
   @apply w-full flex items-center my-1 justify-between py-2 transition-all duration-200 outline-none;
+  @apply focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring;
 }
 
 .sidebar__section-button--collapsible {
@@ -68,6 +69,7 @@
 
 .sidebar__item {
   @apply relative flex w-full items-center py-[8px] text-sm font-medium outline-none isolate transition-all duration-200;
+  @apply focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring;
 }
 
 .sidebar__item--active {

@@ -13,6 +13,10 @@ export interface ModalProps {
   children: ReactNode;
   size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
   className?: string;
+  /** id of the element (e.g. the ModalHeader title) that names the dialog. */
+  labelledBy?: string;
+  /** Accessible name for the dialog when there is no heading element to reference. */
+  label?: string;
 }
 
 export function Modal({
@@ -21,6 +25,8 @@ export function Modal({
   children,
   size = 'md',
   className,
+  labelledBy,
+  label,
 }: ModalProps) {
   useModal({ isOpen, onClose });
   const contentRef = useFocusTrap<HTMLDivElement>(isOpen);
@@ -35,6 +41,8 @@ export function Modal({
             ref={contentRef}
             role="dialog"
             aria-modal="true"
+            aria-labelledby={labelledBy}
+            aria-label={label}
             initial={{ opacity: 0, scale: 0.95, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}

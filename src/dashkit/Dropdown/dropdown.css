@@ -51,11 +51,7 @@
 }
 
 .dropdown-label {
-  @apply px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-ds-400;
-
-  @variant dark {
-    @apply text-ds-500;
-  }
+  @apply px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-ds-600 dark:text-ds-400;
 }
 
 .dropdown-separator {

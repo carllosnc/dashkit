@@ -17,6 +17,10 @@ export interface DrawerProps {
   children: ReactNode;
   size?: string;
   className?: string;
+  /** id of the element (e.g. the DrawerHeader title) that names the dialog. */
+  labelledBy?: string;
+  /** Accessible name for the dialog when there is no heading element to reference. */
+  label?: string;
 }
 
 export function DrawerHeader({ children, className }: { children: ReactNode; className?: string }) {
@@ -50,6 +54,8 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(function Drawer({
   children,
   size,
   className,
+  labelledBy,
+  label,
 }, ref) {
   const {
     defaultSize,
@@ -93,6 +99,8 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(function Drawer({
             data-testid="drawer-content"
             role="dialog"
             aria-modal="true"
+            aria-labelledby={labelledBy}
+            aria-label={label}
             variants={positionVariants[position]}
             initial="initial"
             animate="animate"

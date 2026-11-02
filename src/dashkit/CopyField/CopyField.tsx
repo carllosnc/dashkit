@@ -1,4 +1,4 @@
-import { useState, forwardRef } from 'react';
+import { useState, forwardRef, useId } from 'react';
 import { FiCopy, FiCheck } from 'react-icons/fi';
 import { Input } from '../Input/Input';
 import { IconButton } from '../IconButton/IconButton';
@@ -18,6 +18,7 @@ export interface CopyFieldProps {
 export const CopyField = forwardRef<HTMLDivElement, CopyFieldProps>(
   function CopyField({ label, description, value, className, showToast = true }, ref) {
     const [copied, setCopied] = useState(false);
+    const inputId = useId();
 
     const handleCopy = async (e: React.MouseEvent) => {
       e.stopPropagation();
@@ -45,11 +46,12 @@ export const CopyField = forwardRef<HTMLDivElement, CopyFieldProps>(
         className={cn('copy-field', className)}
       >
         {label && (
-          <label className="copy-field__label">
+          <label htmlFor={inputId} className="copy-field__label">
             {label}
           </label>
         )}
         <Input
+          id={inputId}
           value={value}
           readOnly
           helperText={description}

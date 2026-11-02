@@ -21,7 +21,7 @@ export function PopoverContent({
     side = 'bottom',
     sideOffset = 8
 }: PopoverContentProps) {
-  const { open, triggerElement, setTriggerRect, triggerRect, triggerMode, onMouseEnter, onMouseLeave, portalRef } = usePopoverContext();
+  const { open, triggerElement, setTriggerRect, triggerRect, triggerMode, onMouseEnter, onMouseLeave, onFocus, onBlur, portalRef } = usePopoverContext();
   const [contentRect, setContentRect] = React.useState<DOMRect | null>(null);
 
   React.useLayoutEffect(() => {
@@ -113,6 +113,8 @@ export function PopoverContent({
            exit={{ opacity: 0, scale: 0.95, y: animProps.y, x: animProps.x }}
            onMouseEnter={triggerMode === 'hover' ? onMouseEnter : undefined}
            onMouseLeave={triggerMode === 'hover' ? onMouseLeave : undefined}
+           onFocus={triggerMode === 'hover' ? onFocus : undefined}
+           onBlur={triggerMode === 'hover' ? onBlur : undefined}
            transition={{ duration: 0.15, ease: "easeOut" }}
            style={style}
            className={cn(
