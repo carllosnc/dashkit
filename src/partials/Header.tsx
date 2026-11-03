@@ -20,6 +20,7 @@ export function Header({ onMenuClick, showNavLinks = true }: HeaderProps) {
       <NavbarBrand>
         {onMenuClick && (
           <IconButton
+            aria-label="Toggle navigation menu"
             icon={<FiMenu size={20} />}
             onClick={onMenuClick}
             variant="ghost"
@@ -67,6 +68,7 @@ export function Header({ onMenuClick, showNavLinks = true }: HeaderProps) {
         <ThemeCustomizer />
         <ThemeToggle />
         <IconButton
+          aria-label="GitHub Repository"
           icon={<FiGithub size={20} />}
           href="https://github.com/carllosnc/dashkit"
           target="_blank"

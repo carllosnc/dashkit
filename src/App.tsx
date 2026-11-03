@@ -1,5 +1,7 @@
 import { Badge } from './dashkit/Badge/Badge'
 import { Button } from './dashkit/Button/Button'
+import { Chip } from './dashkit/Chip/Chip'
+import { CopyField } from './dashkit/CopyField/CopyField'
 import { Header } from './partials/Header'
 import { FiArrowRight, FiGithub } from 'react-icons/fi'
 import { SiReact, SiTailwindcss, SiFramer, SiTypescript } from 'react-icons/si'
@@ -38,15 +40,15 @@ function App() {
       <main className="relative flex flex-col items-center justify-center text-center px-6 py-14 overflow-hidden">
         <div className="mb-8 animate-in fade-in slide-in-from-top-4 duration-1000 delay-100 fill-mode-both">
           <Badge
-            color="warning"
+            color="primary"
             variant="soft"
-            content="Dashkit is currently under construction"
+            content="v1.0 • Modern React Dashboard UI"
           />
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground max-w-4xl leading-[1.05] mb-8">
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground max-w-4xl leading-tight mb-8">
           {TAGLINE_MAIN} <br className="hidden md:block" />
-          <span className="text-ds-400 dark:text-ds-600">{TAGLINE_SUB}</span>
+          <span className="text-muted-foreground">{TAGLINE_SUB}</span>
         </h1>
 
         <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-12">
@@ -64,31 +66,37 @@ function App() {
           </Button>
         </div>
 
+        <div className="mt-6 w-full max-w-xs">
+          <CopyField value="bunx carllosnc/dashkit init" />
+        </div>
+
         {/* CLI Emulator */}
         <CliEmulator />
 
         {/* Tech Stack Badges */}
-        <div className="flex flex-wrap justify-center gap-6">
-          <div className="flex items-center gap-2 text-sm font-medium text-foreground">
-            <SiReact className="w-4 h-4 text-[#61DAFB]" />
-            React
-          </div>
-          <div className="flex items-center gap-2 text-sm font-medium text-foreground">
-            <SiTailwindcss className="w-4 h-4 text-[#06B6D4]" />
-            Tailwind CSS
-          </div>
-          <div className="flex items-center gap-2 text-sm font-medium text-foreground">
-            <SiFramer className="w-4 h-4 text-foreground" />
-            Framer Motion
-          </div>
-          <div className="flex items-center gap-2 text-sm font-medium text-foreground">
-            <SiTypescript className="w-4 h-4 text-[#3178C6]" />
-            TypeScript
-          </div>
+        <div className="flex flex-wrap justify-center gap-3">
+          <Chip variant="tonal" icon={<SiReact className="w-3.5 h-3.5 text-[#61DAFB]" />} label="React 19" />
+          <Chip variant="tonal" icon={<SiTailwindcss className="w-3.5 h-3.5 text-[#06B6D4]" />} label="Tailwind CSS v4" />
+          <Chip variant="tonal" icon={<SiFramer className="w-3.5 h-3.5 text-foreground" />} label="Framer Motion" />
+          <Chip variant="tonal" icon={<SiTypescript className="w-3.5 h-3.5 text-[#3178C6]" />} label="TypeScript" />
         </div>
       </main>
 
       <Divider variant='dashed' />
+
+      {/* Showcase Section Header */}
+      <section className="text-center pt-20 px-6 max-w-4xl mx-auto">
+        <div className="inline-flex mb-4">
+          <Badge variant="soft" color="primary" content="Production-Ready Blocks" />
+        </div>
+        <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-4">
+          Pre-built Dashboard Blocks
+        </h2>
+        <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
+          Functional, interactive interfaces crafted entirely with Dashkit primitives — zero ad-hoc styling.
+        </p>
+      </section>
+
       <HomeExamples />
 
       <Footer />

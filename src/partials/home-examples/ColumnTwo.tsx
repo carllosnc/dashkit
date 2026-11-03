@@ -104,7 +104,7 @@ export function ColumnTwo() {
             className="pb-2"
             leftIcon={<FiShoppingCart size={18} />}
          >
-            <CardTitle className="text-3xl font-medium tracking-tight">
+            <CardTitle className="text-3xl font-medium tracking-tight tabular-nums">
                <AnimateNumber value={liveValue} prefix="$" precision={2} />
             </CardTitle>
             <CardDescription className="flex items-center gap-1.5 mt-1">
@@ -133,7 +133,7 @@ export function ColumnTwo() {
             action={
                <Popover>
                   <PopoverTrigger asChild>
-                     <IconButton variant="soft" rounded icon={<FiMoreHorizontal size={16} />} />
+                     <IconButton aria-label="Quick controls" variant="soft" rounded icon={<FiMoreHorizontal size={16} />} />
                   </PopoverTrigger>
                   <PopoverContent align="end" className="w-64 p-4 space-y-4">
                      <div className="flex flex-col">

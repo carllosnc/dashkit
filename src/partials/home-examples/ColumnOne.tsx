@@ -120,7 +120,7 @@ export function ColumnOne() {
                </div>
                <Dropdown>
                   <DropdownTrigger asChild>
-                     <IconButton variant="soft" icon={<FiMoreHorizontal size={14} />} />
+                     <IconButton aria-label="Project actions" variant="soft" icon={<FiMoreHorizontal size={14} />} />
                   </DropdownTrigger>
                   <DropdownContent className="w-56" align="end">
                      <DropdownLabel>Project Actions</DropdownLabel>
@@ -291,7 +291,7 @@ export function ColumnOne() {
 
               <div className="flex flex-col gap-1.5">
                  <Slider defaultValue={38} showValue={false} />
-                 <div className="flex items-center justify-between text-xs text-muted-foreground font-medium font-mono">
+                 <div className="flex items-center justify-between text-xs text-muted-foreground font-medium font-mono tabular-nums">
                     <span>12:45</span>
                     <span>32:10</span>
                  </div>
@@ -299,17 +299,20 @@ export function ColumnOne() {
 
               <div className="flex items-center justify-center gap-6 pt-1">
                  <IconButton
+                   aria-label="Previous track"
                    variant="soft"
                    rounded
                    icon={<FiSkipBack size={18} />}
                  />
                  <IconButton
+                   aria-label="Play track"
                    variant="filled"
                    rounded
-                   className="size-14 shadow-lg shadow-primary/25 hover:scale-105 active:scale-95 transition-transform"
+                   className="size-14 shadow-lg shadow-primary/25"
                    icon={<FiPlay size={22} className="ml-0.5 fill-current" />}
                  />
                  <IconButton
+                   aria-label="Next track"
                    variant="soft"
                    rounded
                    icon={<FiSkipForward size={18} />}
