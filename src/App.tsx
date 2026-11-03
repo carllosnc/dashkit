@@ -83,20 +83,6 @@ function App() {
       </main>
 
       <Divider variant='dashed' />
-
-      {/* Showcase Section Header */}
-      <section className="text-center pt-20 px-6 max-w-4xl mx-auto">
-        <div className="inline-flex mb-4">
-          <Badge variant="soft" color="primary" content="Production-Ready Blocks" />
-        </div>
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-4">
-          Pre-built Dashboard Blocks
-        </h2>
-        <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-          Functional, interactive interfaces crafted entirely with Dashkit primitives — zero ad-hoc styling.
-        </p>
-      </section>
-
       <HomeExamples />
 
       <Footer />
