@@ -57,14 +57,18 @@ TableRow.displayName = 'TableRow';
 
 export interface TableHeadProps extends ThHTMLAttributes<HTMLTableCellElement> {
   nowrap?: boolean;
+  align?: 'left' | 'center' | 'right';
 }
 
 export const TableHead = forwardRef<HTMLTableCellElement, TableHeadProps>(
-  ({ className, nowrap = true, ...props }, ref) => (
+  ({ className, nowrap = true, align = 'left', ...props }, ref) => (
     <th
       ref={ref}
       className={cn(
         'table__head',
+        align === 'left' && 'text-left',
+        align === 'center' && 'text-center',
+        align === 'right' && 'text-right',
         nowrap && 'table__head--nowrap',
         className
       )}
@@ -76,14 +80,18 @@ TableHead.displayName = 'TableHead';
 
 export interface TableCellProps extends TdHTMLAttributes<HTMLTableCellElement> {
   nowrap?: boolean;
+  align?: 'left' | 'center' | 'right';
 }
 
 export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
-  ({ className, nowrap = false, ...props }, ref) => (
+  ({ className, nowrap = false, align, ...props }, ref) => (
     <td
       ref={ref}
       className={cn(
         'table__cell',
+        align === 'left' && 'text-left',
+        align === 'center' && 'text-center',
+        align === 'right' && 'text-right',
         nowrap && 'table__cell--nowrap',
         className
       )}
