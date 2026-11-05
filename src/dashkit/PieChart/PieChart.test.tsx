@@ -34,4 +34,10 @@ describe('PieChart', () => {
     expect(screen.getByText(/Category B/i)).toBeInTheDocument();
     expect(screen.getByText(/Category C/i)).toBeInTheDocument();
   });
+
+  it('handles percentage-based innerRadius without overflow', () => {
+    const { container } = render(<PieChart data={data} innerRadius={55} />);
+    const paths = container.querySelectorAll('path');
+    expect(paths).toHaveLength(3);
+  });
 });
