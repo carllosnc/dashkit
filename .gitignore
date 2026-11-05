@@ -29,3 +29,5 @@ test_output.txt
 
 # Agent scratch directories
 .agent/
+.agents/
+skills-lock.json
