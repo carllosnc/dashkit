@@ -8,6 +8,8 @@ import {
   FiUsers,
   FiActivity,
   FiTrendingUp,
+  FiLayers,
+  FiCreditCard,
 } from 'react-icons/fi';
 import { Header } from '../../partials/Header';
 import { Footer } from '../../partials/Footer';
@@ -252,18 +254,20 @@ export const AnalyticsDashboardExample = () => {
         {/* Charts Section */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <Card className="lg:col-span-2">
-            <CardHeader className="flex flex-row items-center justify-between pb-4">
-              <div>
-                <CardTitle>Revenue Overview</CardTitle>
-                <CardDescription>Compare actual revenue vs target forecast</CardDescription>
-              </div>
-              <Tabs value={timeRange} onValueChange={setTimeRange}>
-                <TabsList>
-                  <TabsTrigger value="7d">7 Days</TabsTrigger>
-                  <TabsTrigger value="30d">30 Days</TabsTrigger>
-                  <TabsTrigger value="12m">12 Months</TabsTrigger>
-                </TabsList>
-              </Tabs>
+            <CardHeader
+              leftIcon={<FiTrendingUp size={18} />}
+              action={
+                <Tabs value={timeRange} onValueChange={setTimeRange}>
+                  <TabsList>
+                    <TabsTrigger value="7d">7 Days</TabsTrigger>
+                    <TabsTrigger value="30d">30 Days</TabsTrigger>
+                    <TabsTrigger value="12m">12 Months</TabsTrigger>
+                  </TabsList>
+                </Tabs>
+              }
+            >
+              <CardTitle>Revenue Overview</CardTitle>
+              <CardDescription>Compare actual revenue vs target forecast</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="h-72 w-full">
@@ -294,7 +298,7 @@ export const AnalyticsDashboardExample = () => {
           </Card>
 
           <Card>
-            <CardHeader>
+            <CardHeader leftIcon={<FiLayers size={18} />}>
               <CardTitle>Subscriptions by Plan</CardTitle>
               <CardDescription>Active customer accounts per tier</CardDescription>
             </CardHeader>
@@ -316,6 +320,7 @@ export const AnalyticsDashboardExample = () => {
         {/* Transactions Table Section */}
         <Card>
           <CardHeader
+            leftIcon={<FiCreditCard size={18} />}
             action={
               <Badge
                 content={`${recentTransactions.length} records`}
