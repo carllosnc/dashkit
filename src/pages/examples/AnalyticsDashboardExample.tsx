@@ -187,25 +187,33 @@ export const AnalyticsDashboardExample = () => {
             <FiArrowLeft size={16} />
             Back to Examples
           </Link>
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div>
-              <h1 className="text-2xl font-bold tracking-tight">Analytics Dashboard</h1>
-              <p className="text-muted-foreground text-base">
-                Real-time metrics, growth performance, and billing overview for your workspace.
-              </p>
+          <div>
+            <h1 className="text-2xl font-bold tracking-tight">Analytics Dashboard</h1>
+            <p className="text-muted-foreground text-base">
+              Real-time metrics, growth performance, and billing overview for your workspace.
+            </p>
+          </div>
+        </div>
+
+        {/* Dashboard Toolbar Bar */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-4 py-3 bg-card border border-border ds-rounded shadow-2xs">
+          <div className="flex items-center gap-3">
+            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
+              <FiServer className="size-3.5 text-muted-foreground" />
+              Environment:
+            </span>
+            <div className="w-44">
+              <Select
+                options={environmentOptions}
+                value={selectedEnvironment}
+                onChange={setSelectedEnvironment}
+              />
             </div>
-            <div className="flex items-center gap-3">
-              <div className="w-44">
-                <Select
-                  options={environmentOptions}
-                  value={selectedEnvironment}
-                  onChange={setSelectedEnvironment}
-                />
-              </div>
-              <Button variant="outlined" leftIcon={<FiDownload />}>
-                Export
-              </Button>
-            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <Button variant="outlined" leftIcon={<FiDownload />}>
+              Export Report
+            </Button>
           </div>
         </div>
 
