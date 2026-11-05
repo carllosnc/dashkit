@@ -75,6 +75,9 @@ export const AllComponentsExample = lazy(() =>
 export const PaymentPageExample = lazy(() =>
   import('./pages/examples/PaymentPageExample').then(m => ({ default: m.PaymentPageExample }))
 )
+export const AnalyticsDashboardExample = lazy(() =>
+  import('./pages/examples/AnalyticsDashboardExample').then(m => ({ default: m.AnalyticsDashboardExample }))
+)
 export const ExamplesList = lazy(() =>
   import('./pages/examples/ExamplesList').then(m => ({ default: m.ExamplesList }))
 )
