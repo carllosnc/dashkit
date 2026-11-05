@@ -1,15 +1,15 @@
 @reference "../dashkit.css";
 
 .badge {
-  @apply relative inline-flex items-center justify-center font-semibold select-none whitespace-nowrap uppercase;
+  @apply relative inline-flex items-center justify-center font-semibold select-none whitespace-nowrap uppercase w-fit shrink-0;
 }
 
 .badge__dot {
-  @apply w-2.5 h-2.5 rounded-full;
+  @apply w-2 h-2 rounded-full;
 }
 
 .badge__content {
-  @apply min-w-[1.125rem] pt-[5px] pb-[3px] px-2 ds-rounded text-[11px] flex items-center justify-center leading-none;
+  @apply min-w-[1.125rem] py-0.5 px-2 ds-rounded text-[10px] font-semibold tracking-wide inline-flex items-center justify-center leading-none w-fit shrink-0;
 }
 
 .badge__inner-content {
