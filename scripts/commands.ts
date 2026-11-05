@@ -7,7 +7,15 @@ import { execSync } from 'child_process';
 import enquirer from 'enquirer';
 import { registry, type ComponentConfig } from './registry';
 import { runDoctor, getPackageManager, getMissingDependencies } from './doctor';
-import { getProjectInfo, getFolderStructure, saveConfig, loadConfig } from './utils';
+import {
+  getProjectInfo,
+  getFolderStructure,
+  saveConfig,
+  loadConfig,
+  findMainCssFile,
+  getRelativeCssImport,
+  injectDashkitCss
+} from './utils';
 import { logger } from './logger';
 
 interface Enquirer {
@@ -49,6 +57,7 @@ export interface CliOptions {
   output: string;
   install: boolean;
   force?: boolean;
+  tests?: boolean;
 }
 
 async function installDashkitCss(targetPath: string, sourcePath: string) {
@@ -98,13 +107,19 @@ interface CopyResult {
 async function copyComponentFiles(
   component: ComponentConfig,
   targetDir: string,
-  force = false
+  force = false,
+  includeTests = false
 ): Promise<CopyResult> {
+  // If includeTests is false, exclude test files (*.test.tsx, *.spec.tsx)
+  const candidateFiles = includeTests
+    ? component.files
+    : component.files.filter((file) => !/\.(test|spec)\.(ts|tsx)$/.test(file));
+
   // Resolve and validate every source first, then detect conflicts before writing
   // anything, so existing user files are never overwritten silently.
   const files: Array<{ sourcePath: string; targetPath: string; exists: boolean }> = [];
 
-  for (const file of component.files) {
+  for (const file of candidateFiles) {
     const sourcePath = path.resolve(projectRoot, file);
     const targetPath = path.join(targetDir, path.basename(file));
 
@@ -202,7 +217,7 @@ async function addComponent(
     const targetDir = path.resolve(process.cwd(), options.output, component.name);
     await fs.ensureDir(targetDir);
 
-    await copyComponentFiles(component, targetDir, options.force);
+    await copyComponentFiles(component, targetDir, options.force, options.tests);
 
     if (component.dependencies) {
       component.dependencies.forEach((dep: string) => allDeps.add(dep));
@@ -300,6 +315,64 @@ export async function handleAdd(componentName: string | undefined, options: CliO
   }
 }
 
+export interface ListOptions {
+  installed?: boolean;
+  json?: boolean;
+}
+
+export async function handleList(options: ListOptions = {}) {
+  const info = await getProjectInfo();
+  const defaults = getFolderStructure(info);
+  const config = await loadConfig();
+  const componentsDir = config?.componentsDir ?? defaults.components;
+  const targetBase = path.resolve(process.cwd(), componentsDir);
+
+  const keys = Object.keys(registry).sort((a, b) =>
+    registry[a].name.localeCompare(registry[b].name)
+  );
+
+  const entries = keys.map((key) => {
+    const comp = registry[key];
+    const compPath = path.join(targetBase, comp.name);
+    const isInstalled = fs.existsSync(compPath);
+    return {
+      key,
+      name: comp.name,
+      installed: isInstalled,
+      dependencies: comp.dependencies ?? [],
+      registryDependencies: comp.registryDependencies ?? []
+    };
+  });
+
+  const filtered = options.installed ? entries.filter((e) => e.installed) : entries;
+
+  if (options.json) {
+    console.log(JSON.stringify(filtered, null, 2));
+    return;
+  }
+
+  const installedCount = entries.filter((e) => e.installed).length;
+  logger.bold('\nDashkit Components Registry\n');
+  logger.info(`Components directory: ${chalk.bold(componentsDir)}`);
+  logger.info(`Total: ${chalk.bold(String(entries.length))} components (${chalk.green(`${installedCount} installed`)})\n`);
+
+  for (const item of filtered) {
+    const statusBadge = item.installed
+      ? chalk.green('[installed]')
+      : chalk.dim('[available]');
+    const nameStr = chalk.bold(item.name.padEnd(20));
+    const regDeps = item.registryDependencies.length > 0
+      ? chalk.cyan(` (requires: ${item.registryDependencies.join(', ')})`)
+      : '';
+    console.log(`  ${statusBadge} ${nameStr}${regDeps}`);
+  }
+
+  console.log();
+  if (!options.installed) {
+    logger.info(`Tip: Run ${chalk.bold('dashkit add <component>')} to install a component.`);
+  }
+}
+
 export interface InitOptions {
   yes?: boolean;
 }
@@ -307,17 +380,20 @@ export interface InitOptions {
 export async function handleInit(options: InitOptions = {}) {
   const info = await getProjectInfo();
   const defaults = getFolderStructure(info);
+  const mainCssFile = await findMainCssFile();
   let spinner: ReturnType<typeof ora> | undefined;
 
   try {
     let componentsDir: string;
     let cssDirRaw: string;
     let shouldSave: boolean;
+    let shouldInjectCss: boolean;
 
     if (options.yes) {
       componentsDir = defaults.components;
       cssDirRaw = defaults.css || '.';
       shouldSave = true;
+      shouldInjectCss = Boolean(mainCssFile);
     } else {
       const componentsDirPrompt = new Input({
         name: 'componentsDir',
@@ -332,6 +408,18 @@ export async function handleInit(options: InitOptions = {}) {
         initial: defaults.css || '.'
       });
       cssDirRaw = await cssDirPrompt.run();
+
+      if (mainCssFile) {
+        const relMain = path.relative(process.cwd(), mainCssFile).replace(/\\/g, '/');
+        const confirmInject = new Confirm({
+          name: 'injectCss',
+          message: `Import dashkit.css into ${relMain}?`,
+          initial: true
+        });
+        shouldInjectCss = await confirmInject.run();
+      } else {
+        shouldInjectCss = false;
+      }
 
       const confirmPrompt = new Confirm({
         name: 'save',
@@ -362,6 +450,14 @@ export async function handleInit(options: InitOptions = {}) {
     // ../utils imports resolve in the user's project.
     await copyUtilsFiles(utilsDir);
 
+    let injectedCssFile: string | null = null;
+    if (shouldInjectCss && mainCssFile) {
+      const injectResult = await injectDashkitCss(mainCssFile, targetPath);
+      if (injectResult.updated) {
+        injectedCssFile = path.relative(process.cwd(), mainCssFile).replace(/\\/g, '/');
+      }
+    }
+
     if (shouldSave) {
       await saveConfig({ componentsDir, cssDir });
     }
@@ -372,6 +468,13 @@ export async function handleInit(options: InitOptions = {}) {
     logger.bold('\nInitialization Summary:');
     logger.info(`  Components Dir: ${chalk.bold(componentsDir)}`);
     logger.info(`  CSS Dir:        ${chalk.bold(cssDir || 'root')}`);
+    if (injectedCssFile) {
+      logger.info(`  Main CSS:       ${chalk.bold(injectedCssFile)} (imported dashkit.css)`);
+    } else if (mainCssFile) {
+      const relMain = path.relative(process.cwd(), mainCssFile).replace(/\\/g, '/');
+      const relImport = getRelativeCssImport(mainCssFile, targetPath);
+      logger.info(`  Main CSS:       ${chalk.bold(relMain)} (add: @import "${relImport}";)`);
+    }
     if (shouldSave) logger.info('  Configuration:  dashkit.json created');
 
   } catch (error) {
