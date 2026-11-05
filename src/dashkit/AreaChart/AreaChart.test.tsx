@@ -31,6 +31,30 @@ describe('AreaChart', () => {
     const paths = svg?.querySelectorAll('path');
     expect(paths?.length).toBeGreaterThanOrEqual(2);
   });
+
+  it('resolves gradient stopColor even without explicit color on series', () => {
+    const { container } = render(
+      <AreaChart
+        data={testData}
+        series={[{ key: 'value', label: 'Default Color Series' }]}
+        animate={false}
+      />
+    );
+    const stop = container.querySelector('linearGradient stop');
+    expect(stop).toBeInTheDocument();
+    expect(stop?.getAttribute('stop-color')).toBeTruthy();
+  });
+
+  it('applies custom strokeDasharray and strokeWidth', () => {
+    const { container } = render(
+      <AreaChart
+        data={testData}
+        series={[{ key: 'value', label: 'Dashed Target', strokeDasharray: '5 5', strokeWidth: 3 }]}
+        animate={false}
+      />
+    );
+    const linePath = container.querySelector('path[stroke-dasharray="5 5"]');
+    expect(linePath).toBeInTheDocument();
+    expect(linePath?.getAttribute('stroke-width')).toBe('3');
+  });
 });
-
-
