@@ -2,7 +2,7 @@ import fs from 'fs-extra';
 import path from 'path';
 import chalk from 'chalk';
 import ora from 'ora';
-import { getProjectInfo, getFolderStructure, loadConfig } from './utils';
+import { getProjectInfo, getFolderStructure, loadConfig, findMainCssFile } from './utils';
 import { logger } from './logger';
 
 // Helper to get package manager
@@ -61,15 +61,30 @@ export async function runDoctor() {
     totalErrors++;
   }
 
-  // 3. Check Design System Tokens
+  // 3. Check Design System Tokens & Base CSS
   const tokenSpinner = ora(`Verifying ${chalk.bold('design system context')}...`).start();
   const baseCssPath = path.resolve(process.cwd(), css, 'index.css');
+  const mainCss = await findMainCssFile();
   tokenSpinner.stop();
 
   if (fs.existsSync(baseCssPath)) {
     logger.success(`Basic styling (${path.join(css, 'index.css')}) found.`);
   } else {
     logger.info(`Design system base (${path.join(css, 'index.css')}) not found.`);
+  }
+
+  if (mainCss) {
+    const rel = path.relative(process.cwd(), mainCss).replace(/\\/g, '/');
+    try {
+      const content = await fs.readFile(mainCss, 'utf8');
+      if (content.includes('dashkit.css')) {
+        logger.success(`dashkit.css imported in ${rel}.`);
+      } else {
+        logger.warning(`${rel} found, but dashkit.css is not imported in it.`);
+      }
+    } catch {
+      // Ignore read failure
+    }
   }
 
   // 4. Environment Info
