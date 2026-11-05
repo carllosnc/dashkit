@@ -1,11 +1,19 @@
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { FiArrowRight, FiArrowLeft, FiLogIn, FiSettings, FiLayers, FiCreditCard } from 'react-icons/fi';
+import { FiArrowRight, FiArrowLeft, FiLogIn, FiSettings, FiLayers, FiCreditCard, FiTrendingUp } from 'react-icons/fi';
 import { Divider } from '../../dashkit/Divider/Divider';
 import { Header } from '../../partials/Header';
 import { Footer } from '../../partials/Footer';
 
 const examples = [
+  {
+    title: 'Analytics Dashboard',
+    description: 'A comprehensive SaaS analytics dashboard with KPI stats cards, revenue charts, plan distribution, and transaction records.',
+    href: '/examples/analytics',
+    icon: <FiTrendingUp size={20} />,
+    color: 'text-ds-500',
+    bg: 'bg-ds-50 dark:bg-ds-900',
+  },
   {
     title: 'Login Page',
     description: 'A premium split-screen login page with social authentication, brand positioning, and responsive design.',
