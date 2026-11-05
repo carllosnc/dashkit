@@ -16,7 +16,10 @@ import {
   FiCpu,
   FiHardDrive,
   FiZap,
+  FiShield,
 } from 'react-icons/fi';
+import { CircularProgress } from '../../dashkit/CircularProgress/CircularProgress';
+import { SystemLogs, type LogEntry } from '../../dashkit/SystemLogs/SystemLogs';
 import { Header } from '../../partials/Header';
 import { Footer } from '../../partials/Footer';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../dashkit/Card';
@@ -88,6 +91,14 @@ interface Transaction {
   status: 'success' | 'warning' | 'danger';
   statusLabel: string;
 }
+
+const systemLogEntries: LogEntry[] = [
+  { type: 'ok', timestamp: '14:32:01', message: 'Webhook dispatcher worker pool autoscaled to 12 instances' },
+  { type: 'info', timestamp: '14:31:45', message: 'Cluster us-east-1 replica sync verified (latency 12ms)' },
+  { type: 'ok', timestamp: '14:30:12', message: 'Database connection pool optimal (42/100 active connections)' },
+  { type: 'warn', timestamp: '14:28:50', message: 'High memory usage spike on ingest-worker-04 (cleared via GC)' },
+  { type: 'stable', timestamp: '14:25:00', message: 'Zero packet loss recorded across 24 edge points of presence' },
+];
 
 const trafficSourcesData = [
   { label: 'Organic Search', value: 42, color: 'var(--color-chart-1)' },
@@ -441,6 +452,55 @@ export const AnalyticsDashboardExample = () => {
               </div>
             </CardContent>
           </Card>
+        </div>
+
+        {/* System Health & Activity Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <Card className="flex flex-col justify-between">
+            <CardHeader
+              leftIcon={<FiShield size={18} />}
+              action={
+                <Badge
+                  content="99.98% SLA"
+                  color="success"
+                  variant="soft"
+                />
+              }
+            >
+              <CardTitle>System Health</CardTitle>
+              <CardDescription>Live availability & reliability score</CardDescription>
+            </CardHeader>
+            <CardContent className="flex flex-col items-center justify-center gap-4 py-2">
+              <CircularProgress
+                value={99}
+                size="lg"
+                color="success"
+                showValue
+              />
+              <div className="grid grid-cols-2 gap-3 w-full">
+                <div className="flex flex-col items-center p-2.5 rounded-lg bg-muted/40 border border-border text-center">
+                  <span className="text-[11px] font-medium text-muted-foreground uppercase tracking-wider">Uptime</span>
+                  <span className="text-base font-bold text-foreground">99.98%</span>
+                </div>
+                <div className="flex flex-col items-center p-2.5 rounded-lg bg-muted/40 border border-border text-center">
+                  <span className="text-[11px] font-medium text-muted-foreground uppercase tracking-wider">Latency</span>
+                  <span className="text-base font-bold text-foreground">18ms</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <div className="lg:col-span-2 flex flex-col">
+            <SystemLogs
+              className="w-full h-full"
+              title="Real-Time Event Stream"
+              session="cluster-prod-us-east"
+              status="All Systems Operational"
+              statusColor="success"
+              maxHeight={180}
+              logs={systemLogEntries}
+            />
+          </div>
         </div>
 
         {/* Transactions Table Section */}
