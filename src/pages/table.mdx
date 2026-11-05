@@ -16,7 +16,7 @@ A simple, responsive table component for displaying structured data.
 
 ## Basic usage
 
-Built with a composition pattern for ultimate flexibility. By default, it uses a card style with a clean border and subtle shadow.
+Built with a composition pattern for ultimate flexibility. Renders a clean semantic table designed to be placed inside any container, card, or scrollable wrapper.
 
 <div className="not-prose">
 <Table>
@@ -129,16 +129,10 @@ Tables often need a way to perform operations on specific rows. You can easily i
 <PropertyDoc
   properties={[
     {
-      "prop": "framed",
-      "type": "boolean",
-      "defaultValue": "true",
-      "description": "Whether to wrap the table in a card-like container with padding and shadows."
-    },
-    {
       "prop": "className",
       "type": "string",
       "defaultValue": "—",
-      "description": "Additional CSS classes for the outer container."
+      "description": "Additional CSS classes for the table element."
     },
     {
       "prop": "children",
