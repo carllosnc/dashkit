@@ -2,28 +2,15 @@ import { forwardRef, type HTMLAttributes, type TdHTMLAttributes, type ThHTMLAttr
 import { cn } from '../utils/cn';
 import './table.css';
 
-export interface TableProps extends HTMLAttributes<HTMLTableElement> {
-  framed?: boolean;
-  responsive?: boolean;
-  containerClassName?: string;
-  minWidth?: string;
-}
+export type TableProps = HTMLAttributes<HTMLTableElement>;
 
 export const Table = forwardRef<HTMLTableElement, TableProps>(
-  ({ className, framed = true, responsive = true, containerClassName, minWidth, ...props }, ref) => (
-    <div className={cn(
-      'table-container',
-      responsive && 'table-container--responsive',
-      framed && 'table-container--framed',
-      containerClassName
-    )}>
-      <table
-        ref={ref}
-        style={{ minWidth: minWidth ?? (responsive ? 'max-content' : undefined) }}
-        className={cn('table', className)}
-        {...props}
-      />
-    </div>
+  ({ className, ...props }, ref) => (
+    <table
+      ref={ref}
+      className={cn('table', className)}
+      {...props}
+    />
   )
 );
 Table.displayName = 'Table';
