@@ -266,12 +266,23 @@ export const AnalyticsDashboardExample = () => {
               </Tabs>
             </CardHeader>
             <CardContent>
-              <div className="h-80 w-full pt-4">
+              <div className="h-72 w-full">
                 <AreaChart
                   data={currentChartData}
                   series={[
-                    { key: 'revenue', label: 'Actual Revenue ($)' },
-                    { key: 'target', label: 'Target Forecast ($)' },
+                    {
+                      key: 'revenue',
+                      label: 'Actual Revenue ($)',
+                      color: 'var(--color-chart-1)',
+                      fillOpacity: 0.25,
+                    },
+                    {
+                      key: 'target',
+                      label: 'Target Forecast ($)',
+                      color: 'var(--color-chart-4)',
+                      strokeDasharray: '5 5',
+                      fillOpacity: 0.04,
+                    },
                   ]}
                   height="100%"
                   showGrid
@@ -288,7 +299,7 @@ export const AnalyticsDashboardExample = () => {
               <CardDescription>Active customer accounts per tier</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="h-80 w-full pt-4">
+              <div className="h-72 w-full">
                 <BarChart
                   data={planDistribution}
                   series={[{ key: 'active', label: 'Subscribers' }]}
