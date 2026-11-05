@@ -341,7 +341,7 @@ export const AnalyticsDashboardExample = () => {
                   <TableHead>Plan</TableHead>
                   <TableHead>Date</TableHead>
                   <TableHead>Status</TableHead>
-                  <TableHead className="text-right">Amount</TableHead>
+                  <TableHead align="right">Amount</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -372,7 +372,7 @@ export const AnalyticsDashboardExample = () => {
                           variant="soft"
                         />
                       </TableCell>
-                      <TableCell className="text-right font-medium text-foreground">
+                      <TableCell align="right" className="font-medium text-foreground">
                         {tx.amount}
                       </TableCell>
                     </TableRow>
