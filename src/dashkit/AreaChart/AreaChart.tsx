@@ -70,10 +70,10 @@ export function AreaChart({
           onMouseLeave={() => setHoveredIndex(null)}
         >
           <defs>
-            {series.map(s => (
+            {allSeriesPoints.map(s => (
               <linearGradient key={`grad-${s.key}`} id={`grad-${s.key}`} x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor={s.color} stopOpacity={0.2} />
-                <stop offset="100%" stopColor={s.color} stopOpacity={0} />
+                <stop offset="0%" stopColor={s.color} stopOpacity={s.fillOpacity} style={{ stopColor: s.color }} />
+                <stop offset="100%" stopColor={s.color} stopOpacity={0} style={{ stopColor: s.color }} />
               </linearGradient>
             ))}
           </defs>
@@ -121,11 +121,24 @@ export function AreaChart({
                   d={linePath}
                   fill="none"
                   stroke={s.color}
-                  strokeWidth="2"
+                  strokeWidth={s.strokeWidth}
+                  strokeDasharray={s.strokeDasharray}
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  initial={animate ? { pathLength: 0, opacity: 0 } : false}
-                  animate={{ pathLength: 1, opacity: 1 }}
+                  initial={
+                    animate
+                      ? s.strokeDasharray
+                        ? { opacity: 0 }
+                        : { pathLength: 0, opacity: 0 }
+                      : false
+                  }
+                  animate={
+                    animate
+                      ? s.strokeDasharray
+                        ? { opacity: 1 }
+                        : { pathLength: 1, opacity: 1 }
+                      : undefined
+                  }
                   transition={{ duration: 1.5, ease: "easeInOut" }}
                   vectorEffect="non-scaling-stroke"
                 />
