@@ -28,7 +28,7 @@
 
 /* Variants: Outlined */
 .button--outlined-primary {
-  @apply bg-transparent text-foreground border border-ds-300;
+  @apply bg-card text-foreground border border-ds-300;
 
   @variant dark {
     @apply border-ds-700;
