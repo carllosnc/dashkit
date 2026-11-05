@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
 const STEPS = [
@@ -23,7 +23,7 @@ const STEPS = [
     input: "bunx carllosnc/dashkit add area-chart",
     output: [
       "✔ Fetching registry...",
-      "✔ Resolving dependencies: recharts, framer-motion",
+      "✔ Resolving dependencies: framer-motion, clsx, tailwind-merge",
       "✔ Writing src/components/AreaChart/AreaChart.tsx",
       "✨ Component 'area-chart' added successfully!"
     ]
@@ -41,7 +41,7 @@ const STEPS = [
     input: "bunx carllosnc/dashkit add datepicker",
     output: [
       "✔ Fetching registry...",
-      "✔ Resolving dependencies: date-fns, lucide-react",
+      "✔ Resolving dependencies: framer-motion, clsx, tailwind-merge, react-icons",
       "✔ Writing src/components/DatePicker/DatePicker.tsx",
       "✨ Component 'datepicker' added successfully!"
     ]
@@ -49,14 +49,21 @@ const STEPS = [
 ];
 
 export const CliEmulator = () => {
+  const shouldReduceMotion = useReducedMotion();
+  const [isPaused, setIsPaused] = useState(false);
   const [stepIndex, setStepIndex] = useState(0);
   const [displayedInput, setDisplayedInput] = useState("");
   const [displayedOutput, setDisplayedOutput] = useState<string[]>([]);
   const [phase, setPhase] = useState<'typing' | 'output' | 'idle'>('typing');
 
+  const currentStep = STEPS[stepIndex];
+  const activeInput = shouldReduceMotion ? currentStep.input : displayedInput;
+  const activeOutput = shouldReduceMotion ? currentStep.output : displayedOutput;
+
   useEffect(() => {
+    if (shouldReduceMotion || isPaused) return;
+
     let timeout: ReturnType<typeof setTimeout>;
-    const currentStep = STEPS[stepIndex];
 
     if (phase === 'typing') {
       if (displayedInput.length < currentStep.input.length) {
@@ -88,7 +95,7 @@ export const CliEmulator = () => {
     }
 
     return () => clearTimeout(timeout);
-  }, [displayedInput, displayedOutput, phase, stepIndex]);
+  }, [displayedInput, displayedOutput, phase, stepIndex, isPaused, shouldReduceMotion, currentStep]);
 
   return (
     <div className="w-full max-w-2xl mx-auto mt-12 mb-16 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
@@ -110,12 +117,12 @@ export const CliEmulator = () => {
           <div className="flex items-center gap-3">
             <span className="text-[#27C93F] font-bold select-none transition-opacity duration-300">~</span>
             <span className="text-white flex-1 flex items-center">
-              {displayedInput}
-              {phase === 'typing' && (
+              {activeInput}
+              {phase === 'typing' && !shouldReduceMotion && (
                 <motion.span
                   animate={{ opacity: [1, 0] }}
                   transition={{ duration: 0.8, repeat: Infinity }}
-                  className="w-2 h-5 bg-[#27C93F] ml-1 inline-block"
+                  className="w-2 h-5 bg-[#27C93F] ml-1 inline-block motion-reduce:hidden"
                 />
               )}
             </span>
@@ -123,12 +130,12 @@ export const CliEmulator = () => {
 
           <div className="flex flex-col gap-1 mt-1">
             <AnimatePresence mode="popLayout">
-              {displayedOutput.map((line, i) => (
+              {activeOutput.map((line, i) => (
                 <motion.div
                   key={`${stepIndex}-${i}`}
-                  initial={{ opacity: 0, x: -4 }}
+                  initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, x: -4 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: shouldReduceMotion ? 0 : 0.2 }}
                   className={`${
                     line.startsWith('✨') 
                       ? 'text-[#27C93F] font-bold mt-2' 
@@ -145,9 +152,17 @@ export const CliEmulator = () => {
         </div>
 
         {/* Status Bar */}
-        <div className="px-4 py-2 bg-white/5 flex items-center justify-between italic text-[10px] text-white/20 select-none">
-          <span>Dashkit v1.0.4</span>
-          <span>UTF-8</span>
+        <div className="px-4 py-2 bg-white/5 flex items-center justify-between text-[11px] text-white/40 select-none">
+          <span className="italic">Dashkit CLI</span>
+          <button
+            type="button"
+            onClick={() => setIsPaused(p => !p)}
+            className="hover:text-white transition-colors cursor-pointer px-2 py-0.5 rounded border border-white/10 font-mono text-[10px]"
+            aria-label={isPaused ? "Play terminal animation" : "Pause terminal animation"}
+          >
+            {isPaused ? "▶ Play" : "⏸ Pause"}
+          </button>
+          <span className="italic">UTF-8</span>
         </div>
       </div>
 
