@@ -33,7 +33,7 @@
 }
 
 .table__head {
-  @apply h-10 px-4 text-left align-middle font-bold text-ds-500 dark:text-ds-400;
+  @apply h-10 px-4 align-middle font-bold text-ds-500 dark:text-ds-400;
   @apply text-[10px] uppercase tracking-wider;
 
   &:has([role="checkbox"]) {
