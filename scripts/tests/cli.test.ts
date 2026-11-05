@@ -273,4 +273,62 @@ describe('Dashkit CLI', () => {
     const expectedPath = path.join(testDir, 'src/dashkit/Badge/Badge.tsx');
     expect(await fs.pathExists(expectedPath)).toBe(true);
   }, 30000);
+  it("should list all components and support --json output", async () => {
+    const output = execSync(`bun x tsx ${CLI_PATH} list`, {
+      cwd: path.resolve(__dirname, "../.."),
+      encoding: "utf8",
+      timeout: SPAWN_TIMEOUT
+    });
+    expect(output).toContain("Dashkit Components Registry");
+    expect(output).toContain("Button");
+    expect(output).toContain("Card");
+
+    const jsonOutput = execSync(`bun x tsx ${CLI_PATH} list --json`, {
+      cwd: path.resolve(__dirname, "../.."),
+      encoding: "utf8",
+      timeout: SPAWN_TIMEOUT
+    });
+    const parsed = JSON.parse(jsonOutput);
+    expect(Array.isArray(parsed)).toBe(true);
+    expect(parsed.some((c: { name: string }) => c.name === "Button")).toBe(true);
+  }, 30000);
+
+  it("should exclude test files by default and include them with --tests flag", async () => {
+    const testDir = path.join(TEMP_DIR, "tests-flag");
+    await fs.ensureDir(testDir);
+
+    // Default: no test files
+    execSync(`bun x tsx ${CLI_PATH} add badge -o components --no-install`, {
+      cwd: testDir,
+      stdio: "pipe",
+      timeout: SPAWN_TIMEOUT
+    });
+    expect(await fs.pathExists(path.join(testDir, "components/Badge/Badge.tsx"))).toBe(true);
+    expect(await fs.pathExists(path.join(testDir, "components/Badge/Badge.test.tsx"))).toBe(false);
+
+    // With --tests and --force: test files included
+    execSync(`bun x tsx ${CLI_PATH} add badge -o components --no-install --tests --force`, {
+      cwd: testDir,
+      stdio: "pipe",
+      timeout: SPAWN_TIMEOUT
+    });
+    expect(await fs.pathExists(path.join(testDir, "components/Badge/Badge.test.tsx"))).toBe(true);
+  }, 30000);
+
+  it("should inject @import into existing main CSS file on init --yes", async () => {
+    const testDir = path.join(TEMP_DIR, "init-inject-css");
+    await fs.ensureDir(path.join(testDir, "src"));
+    const cssPath = path.join(testDir, "src/index.css");
+    await fs.writeFile(cssPath, "@import \"tailwindcss\";\nbody { margin: 0; }\n");
+
+    execSync(`bun x tsx ${CLI_PATH} init --yes`, {
+      cwd: testDir,
+      stdio: "pipe",
+      timeout: SPAWN_TIMEOUT
+    });
+
+    const updatedCss = await fs.readFile(cssPath, "utf8");
+    expect(updatedCss).toContain("@import \"tailwindcss\";");
+    expect(updatedCss).toContain("dashkit.css");
+  }, 30000);
 });
