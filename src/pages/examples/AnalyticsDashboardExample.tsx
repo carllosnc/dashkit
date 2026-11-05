@@ -312,7 +312,8 @@ export const AnalyticsDashboardExample = () => {
             <Badge content={`${recentTransactions.length} records`} color="info" variant="soft" />
           </CardHeader>
           <CardContent className="p-0">
-            <Table>
+            <div className="overflow-x-auto">
+              <Table>
               <TableHeader>
                 <TableRow>
                   <TableHead>Customer</TableHead>
@@ -358,6 +359,7 @@ export const AnalyticsDashboardExample = () => {
                 })}
               </TableBody>
             </Table>
+            </div>
           </CardContent>
         </Card>
       </main>
