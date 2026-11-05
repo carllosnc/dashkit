@@ -217,7 +217,7 @@ export function ColumnOne() {
               <CardDescription>Status across regions.</CardDescription>
            </CardHeader>
            <CardContent>
-              <Table framed={false} minWidth="100%">
+              <Table>
                  <TableHeader>
                     <TableRow>
                        <TableHead>Node</TableHead>
