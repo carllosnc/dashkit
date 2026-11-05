@@ -4,6 +4,9 @@ export interface AreaChartSeries {
   key: string;
   label: string;
   color?: string;
+  strokeDasharray?: string;
+  strokeWidth?: number;
+  fillOpacity?: number;
 }
 
 export interface UseAreaChartProps {
@@ -33,7 +36,7 @@ export function useAreaChart({
   }, [data, series]);
 
   const minVal = 0;
-  const range = maxVal - minVal;
+  const range = maxVal - minVal || 1;
 
   const getSeriesPoints = React.useCallback((seriesKey: string) => {
     return data.map((d, i) => {
@@ -48,6 +51,9 @@ export function useAreaChart({
     return series.map((s, i) => ({
       ...s,
       color: s.color || defaultColors[i % defaultColors.length] || 'var(--color-primary)',
+      fillOpacity: s.fillOpacity ?? 0.2,
+      strokeWidth: s.strokeWidth ?? 2,
+      strokeDasharray: s.strokeDasharray,
       points: getSeriesPoints(s.key)
     }));
   }, [series, defaultColors, getSeriesPoints]);
