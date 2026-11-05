@@ -315,12 +315,17 @@ export const AnalyticsDashboardExample = () => {
 
         {/* Transactions Table Section */}
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between">
-            <div>
-              <CardTitle>Recent Transactions</CardTitle>
-              <CardDescription>Latest customer billing events and plan upgrades</CardDescription>
-            </div>
-            <Badge content={`${recentTransactions.length} records`} color="info" variant="soft" />
+          <CardHeader
+            action={
+              <Badge
+                content={`${recentTransactions.length} records`}
+                color="info"
+                variant="soft"
+              />
+            }
+          >
+            <CardTitle>Recent Transactions</CardTitle>
+            <CardDescription>Latest customer billing events and plan upgrades</CardDescription>
           </CardHeader>
           <CardContent className="p-0">
             <div className="overflow-x-auto">
