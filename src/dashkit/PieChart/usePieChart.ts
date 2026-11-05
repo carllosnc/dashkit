@@ -31,7 +31,10 @@ export function usePieChart({ data, innerRadius, showTooltip }: UsePieChartProps
   const size = 400;
   const center = size / 2;
   const radius = size * 0.4;
-  const holeRadius = radius * innerRadius;
+  const safeInnerRadius = innerRadius > 1
+    ? Math.min(innerRadius / 100, 0.95)
+    : Math.max(0, Math.min(innerRadius, 0.95));
+  const holeRadius = radius * safeInnerRadius;
 
   const slices = data.reduce((acc, item) => {
     const { slices: currentSlices, currentAngle } = acc;

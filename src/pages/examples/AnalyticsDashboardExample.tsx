@@ -10,6 +10,12 @@ import {
   FiTrendingUp,
   FiLayers,
   FiCreditCard,
+  FiPieChart,
+  FiServer,
+  FiGlobe,
+  FiCpu,
+  FiHardDrive,
+  FiZap,
 } from 'react-icons/fi';
 import { Header } from '../../partials/Header';
 import { Footer } from '../../partials/Footer';
@@ -17,6 +23,8 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../..
 import { StatsCard } from '../../dashkit/StatsCard/StatsCard';
 import { AreaChart } from '../../dashkit/AreaChart/AreaChart';
 import { BarChart } from '../../dashkit/BarChart/BarChart';
+import { PieChart } from '../../dashkit/PieChart/PieChart';
+import { ProgressBar } from '../../dashkit/ProgressBar/ProgressBar';
 import {
   Table,
   TableHeader,
@@ -80,6 +88,13 @@ interface Transaction {
   status: 'success' | 'warning' | 'danger';
   statusLabel: string;
 }
+
+const trafficSourcesData = [
+  { label: 'Organic Search', value: 42, color: 'var(--color-chart-1)' },
+  { label: 'Direct Traffic', value: 28, color: 'var(--color-chart-2)' },
+  { label: 'Referral & Partner', value: 18, color: 'var(--color-chart-4)' },
+  { label: 'Social & Media', value: 12, color: 'var(--color-chart-3)' },
+];
 
 const recentTransactions: Transaction[] = [
   {
@@ -174,7 +189,7 @@ export const AnalyticsDashboardExample = () => {
           </Link>
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
-              <h1 className="text-3xl font-bold tracking-tight">Analytics Dashboard</h1>
+              <h1 className="text-2xl font-bold tracking-tight">Analytics Dashboard</h1>
               <p className="text-muted-foreground text-base">
                 Real-time metrics, growth performance, and billing overview for your workspace.
               </p>
@@ -312,6 +327,109 @@ export const AnalyticsDashboardExample = () => {
                   showLabels
                   showTooltip
                 />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Performance & Resource Metrics Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <Card>
+            <CardHeader
+              leftIcon={<FiPieChart size={18} />}
+              action={
+                <Badge
+                  content="Organic +18%"
+                  color="success"
+                  variant="soft"
+                />
+              }
+            >
+              <CardTitle>Acquisition Channels</CardTitle>
+              <CardDescription>Traffic sources and customer signup attribution</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
+                <div className="h-52 flex items-center justify-center">
+                  <PieChart data={trafficSourcesData} innerRadius={0.55} showLabels={false} />
+                </div>
+                <div className="flex flex-col gap-3">
+                  {trafficSourcesData.map((item) => (
+                    <div key={item.label} className="flex items-center justify-between text-sm">
+                      <div className="flex items-center gap-2 min-w-0">
+                        <span
+                          className="size-2.5 rounded-full shrink-0"
+                          style={{ backgroundColor: item.color }}
+                        />
+                        <span className="text-muted-foreground truncate">{item.label}</span>
+                      </div>
+                      <span className="font-semibold text-foreground ml-2">{item.value}%</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader
+              leftIcon={<FiServer size={18} />}
+              action={
+                <Badge
+                  content="Operational"
+                  color="success"
+                  variant="soft"
+                />
+              }
+            >
+              <CardTitle>Platform Usage & Quotas</CardTitle>
+              <CardDescription>Real-time resource utilization and workspace limits</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-1.5">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="font-medium text-foreground flex items-center gap-2">
+                      <FiGlobe className="size-4 text-muted-foreground" />
+                      API Requests
+                    </span>
+                    <span className="text-xs text-muted-foreground">84,200 / 100,000 (84%)</span>
+                  </div>
+                  <ProgressBar value={84} color="primary" size="sm" />
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="font-medium text-foreground flex items-center gap-2">
+                      <FiHardDrive className="size-4 text-muted-foreground" />
+                      Database Storage
+                    </span>
+                    <span className="text-xs text-muted-foreground">14.8 GB / 20 GB (74%)</span>
+                  </div>
+                  <ProgressBar value={74} color="primary" size="sm" />
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="font-medium text-foreground flex items-center gap-2">
+                      <FiZap className="size-4 text-muted-foreground" />
+                      Webhook Events
+                    </span>
+                    <span className="text-xs text-muted-foreground">91,500 / 100,000 (91%)</span>
+                  </div>
+                  <ProgressBar value={91} color="warning" size="sm" />
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="font-medium text-foreground flex items-center gap-2">
+                      <FiCpu className="size-4 text-muted-foreground" />
+                      Background Compute
+                    </span>
+                    <span className="text-xs text-muted-foreground">320 / 1,000 hrs (32%)</span>
+                  </div>
+                  <ProgressBar value={32} color="success" size="sm" />
+                </div>
               </div>
             </CardContent>
           </Card>
