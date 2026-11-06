@@ -19,7 +19,7 @@ import {
   FiShield,
 } from 'react-icons/fi';
 import { CircularProgress } from '../../dashkit/CircularProgress/CircularProgress';
-import { SystemLogs, type LogEntry } from '../../dashkit/SystemLogs/SystemLogs';
+
 import { Header } from '../../partials/Header';
 import { Footer } from '../../partials/Footer';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../dashkit/Card';
@@ -92,27 +92,82 @@ interface Transaction {
   statusLabel: string;
 }
 
-const systemLogEntries: LogEntry[] = [
-  { type: 'ok', timestamp: '14:32:01', message: 'Webhook dispatcher worker pool autoscaled to 12 instances' },
-  { type: 'info', timestamp: '14:31:45', message: 'Cluster us-east-1 replica sync verified (latency 12ms)' },
-  { type: 'ok', timestamp: '14:30:12', message: 'Database connection pool optimal (42/100 active connections)' },
-  { type: 'warn', timestamp: '14:28:50', message: 'High memory usage spike on ingest-worker-04 (cleared via GC)' },
-  { type: 'stable', timestamp: '14:25:00', message: 'Zero packet loss recorded across 24 edge points of presence' },
+interface ActivityItem {
+  id: string;
+  title: string;
+  description: string;
+  badge: string;
+  badgeColor: 'success' | 'info' | 'warning' | 'primary';
+  time: string;
+  icon: 'trending' | 'user' | 'credit' | 'zap' | 'download';
+}
+
+const initialActivities: ActivityItem[] = [
+  {
+    id: 'act-1',
+    title: 'Enterprise Plan Upgrade',
+    description: 'Acme Corp converted to Enterprise Annual',
+    badge: '+$2,400/yr',
+    badgeColor: 'success',
+    time: 'Just now',
+    icon: 'trending',
+  },
+  {
+    id: 'act-2',
+    title: 'New Team Member',
+    description: 'sarah.wong@fintech.io joined Analytics team',
+    badge: 'Workspace',
+    badgeColor: 'info',
+    time: '2m ago',
+    icon: 'user',
+  },
+  {
+    id: 'act-3',
+    title: 'Automated Webhook Batch',
+    description: '1,420 transaction events dispatched to BigQuery',
+    badge: 'Synced',
+    badgeColor: 'success',
+    time: '5m ago',
+    icon: 'zap',
+  },
 ];
 
-const incomingEventsPool: Omit<LogEntry, 'timestamp'>[] = [
-  { type: 'ok', message: 'Healthcheck passed across all 24 edge points of presence (latency 11ms)' },
-  { type: 'info', message: 'Ingestion pipeline processed batch of 1,420 analytical events' },
-  { type: 'ok', message: 'Database read replica sync completed in 8ms' },
-  { type: 'info', message: 'Cache warm-up completed: 98.4% hit ratio' },
-  { type: 'warn', message: 'Rate limit threshold reached for IP 198.51.100.42 (throttled)' },
-  { type: 'ok', message: 'Worker node us-east-02 CPU utilization normalized to 32%' },
-  { type: 'info', message: 'Autoscaler evaluated cluster load metrics: desired count 8' },
-  { type: 'stable', message: 'BGP routing table converged with zero dropped packets' },
-  { type: 'ok', message: 'SSL certificate handshake verified for api.dashkit.dev' },
-  { type: 'info', message: 'Snapshot backup shard completed successfully (240MB)' },
-  { type: 'ok', message: 'Webhook delivery acknowledged by customer endpoint (status 200)' },
-  { type: 'info', message: 'Elasticsearch query latency p95: 14ms across 1.2M docs' },
+const incomingActivitiesPool: Omit<ActivityItem, 'id' | 'time'>[] = [
+  {
+    title: 'Custom Revenue Export',
+    description: 'Q3 Financial summary downloaded by Finance',
+    badge: 'Exported',
+    badgeColor: 'info',
+    icon: 'download',
+  },
+  {
+    title: 'Pro Plan Subscription',
+    description: 'Nordic Labs subscribed to Pro Monthly',
+    badge: '+$149/mo',
+    badgeColor: 'success',
+    icon: 'credit',
+  },
+  {
+    title: 'Quota Threshold Notice',
+    description: 'API requests reached 84% of monthly limit',
+    badge: 'Notice',
+    badgeColor: 'warning',
+    icon: 'zap',
+  },
+  {
+    title: 'New Admin Member',
+    description: 'lucas.silva@nubank.br joined billing admins',
+    badge: 'Admin',
+    badgeColor: 'info',
+    icon: 'user',
+  },
+  {
+    title: 'Enterprise Seat Added',
+    description: 'Stripe Payments added 10 analyst seats',
+    badge: '+$350/mo',
+    badgeColor: 'success',
+    icon: 'trending',
+  },
 ];
 
 interface RegionData {
@@ -197,27 +252,26 @@ const recentTransactions: Transaction[] = [
 export const AnalyticsDashboardExample = () => {
   const [timeRange, setTimeRange] = useState('12m');
   const [selectedEnvironment, setSelectedEnvironment] = useState('production');
-  const [logs, setLogs] = useState<LogEntry[]>(systemLogEntries);
+  const [activities, setActivities] = useState<ActivityItem[]>(initialActivities);
 
   useEffect(() => {
     let poolIndex = 0;
     const interval = window.setInterval(() => {
-      const nextTemplate = incomingEventsPool[poolIndex % incomingEventsPool.length];
+      const nextTemplate = incomingActivitiesPool[poolIndex % incomingActivitiesPool.length];
       poolIndex++;
 
-      const now = new Date();
-      const hours = String(now.getHours()).padStart(2, '0');
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      const seconds = String(now.getSeconds()).padStart(2, '0');
-      const timestamp = `${hours}:${minutes}:${seconds}`;
-
-      const newEntry: LogEntry = {
+      const newEntry: ActivityItem = {
         ...nextTemplate,
-        timestamp,
+        id: `act-${Date.now()}`,
+        time: 'Just now',
       };
 
-      setLogs((prev) => [...prev.slice(-14), newEntry]);
-    }, 3000);
+      setActivities((prev) => [
+        newEntry,
+        { ...prev[0], time: '1m ago' },
+        { ...prev[1], time: '4m ago' },
+      ]);
+    }, 4500);
 
     return () => window.clearInterval(interval);
   }, []);
@@ -556,17 +610,63 @@ export const AnalyticsDashboardExample = () => {
             </CardContent>
           </Card>
 
-          <div className="flex flex-col">
-            <SystemLogs
-              className="w-full h-full shadow-xs"
-              title="Real-Time Event Stream"
-              session="prod-cluster-01"
-              status="Operational"
-              statusColor="success"
-              maxHeight={135}
-              logs={logs}
-            />
-          </div>
+          <Card className="flex flex-col justify-between">
+            <CardHeader
+              leftIcon={<FiActivity size={18} />}
+              action={
+                <Badge
+                  content="Live Feed"
+                  color="success"
+                  variant="soft"
+                />
+              }
+            >
+              <CardTitle>Real-Time Activity</CardTitle>
+              <CardDescription>Live customer events, upgrades, and workspace actions</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-col divide-y divide-border/40">
+                {activities.slice(0, 3).map((act) => {
+                  const getIcon = () => {
+                    switch (act.icon) {
+                      case 'trending':
+                        return <FiTrendingUp className="size-3.5 text-ds-success-600 dark:text-ds-success-400" />;
+                      case 'user':
+                        return <FiUsers className="size-3.5 text-ds-primary-600 dark:text-ds-primary-400" />;
+                      case 'credit':
+                        return <FiCreditCard className="size-3.5 text-ds-success-600 dark:text-ds-success-400" />;
+                      case 'download':
+                        return <FiDownload className="size-3.5 text-ds-info-600 dark:text-ds-info-400" />;
+                      case 'zap':
+                      default:
+                        return <FiZap className="size-3.5 text-ds-warning-600 dark:text-ds-warning-400" />;
+                    }
+                  };
+
+                  return (
+                    <div
+                      key={act.id}
+                      className="flex items-center justify-between py-2 first:pt-0 last:pb-0 gap-3"
+                    >
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <div className="size-7 rounded-full bg-muted/60 border border-border/60 flex items-center justify-center shrink-0">
+                          {getIcon()}
+                        </div>
+                        <div className="flex flex-col min-w-0">
+                          <span className="text-xs font-semibold text-foreground truncate">{act.title}</span>
+                          <span className="text-[11px] text-muted-foreground truncate">{act.description}</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2 shrink-0">
+                        <Badge content={act.badge} color={act.badgeColor} variant="soft" />
+                        <span className="text-[11px] text-muted-foreground tabular-nums">{act.time}</span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Top Geographic Markets Section */}
