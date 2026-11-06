@@ -28,6 +28,7 @@ import { AreaChart } from '../../dashkit/AreaChart/AreaChart';
 import { BarChart } from '../../dashkit/BarChart/BarChart';
 import { PieChart } from '../../dashkit/PieChart/PieChart';
 import { ProgressBar } from '../../dashkit/ProgressBar/ProgressBar';
+import { Divider } from '../../dashkit/Divider/Divider';
 import {
   Table,
   TableHeader,
@@ -173,7 +174,6 @@ const incomingActivitiesPool: Omit<ActivityItem, 'id' | 'time'>[] = [
 interface RegionData {
   country: string;
   code: string;
-  flag: string;
   revenue: string;
   share: number;
   users: string;
@@ -182,11 +182,11 @@ interface RegionData {
 }
 
 const topRegionsData: RegionData[] = [
-  { country: 'United States', code: 'US', flag: '🇺🇸', revenue: '$28,450', share: 48, users: '640 active', growth: '+14.2%', growthType: 'success' },
-  { country: 'European Union', code: 'EU', flag: '🇪🇺', revenue: '$14,200', share: 26, users: '348 active', growth: '+8.6%', growthType: 'success' },
-  { country: 'United Kingdom', code: 'GB', flag: '🇬🇧', revenue: '$6,800', share: 12, users: '162 active', growth: '+5.4%', growthType: 'success' },
-  { country: 'Brazil & LatAm', code: 'BR', flag: '🇧🇷', revenue: '$3,100', share: 8, users: '115 active', growth: '+22.5%', growthType: 'success' },
-  { country: 'Asia-Pacific', code: 'APAC', flag: '🌏', revenue: '$1,450', share: 6, users: '70 active', growth: '+18.1%', growthType: 'success' },
+  { country: 'United States', code: 'US', revenue: '$28,450', share: 48, users: '640 active', growth: '+14.2%', growthType: 'success' },
+  { country: 'European Union', code: 'EU', revenue: '$14,200', share: 26, users: '348 active', growth: '+8.6%', growthType: 'success' },
+  { country: 'United Kingdom', code: 'GB', revenue: '$6,800', share: 12, users: '162 active', growth: '+5.4%', growthType: 'success' },
+  { country: 'Brazil & LatAm', code: 'BR', revenue: '$3,100', share: 8, users: '115 active', growth: '+22.5%', growthType: 'success' },
+  { country: 'Asia-Pacific', code: 'APAC', revenue: '$1,450', share: 6, users: '70 active', growth: '+18.1%', growthType: 'success' },
 ];
 
 const trafficSourcesData = [
@@ -687,8 +687,8 @@ export const AnalyticsDashboardExample = () => {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <div className="lg:col-span-2 flex flex-col justify-between gap-4 py-1">
+            <div className="flex flex-col lg:flex-row gap-6 items-stretch">
+              <div className="flex-1 flex flex-col justify-between gap-4 py-1">
                 {topRegionsData.map((reg) => (
                   <div
                     key={reg.code}
@@ -696,7 +696,6 @@ export const AnalyticsDashboardExample = () => {
                   >
                     <div className="flex items-center justify-between text-sm">
                       <div className="flex items-center gap-2">
-                        <span className="text-base select-none">{reg.flag}</span>
                         <span className="font-semibold text-foreground">{reg.country}</span>
                         <span className="text-xs text-muted-foreground">({reg.users})</span>
                       </div>
@@ -711,7 +710,10 @@ export const AnalyticsDashboardExample = () => {
                 ))}
               </div>
 
-              <div className="flex flex-col justify-between gap-4 p-4 rounded-lg bg-muted/20 border border-border/60">
+              <Divider orientation="vertical" className="hidden lg:block self-stretch" />
+              <Divider orientation="horizontal" className="lg:hidden" />
+
+              <div className="lg:w-80 flex flex-col justify-between gap-4 py-1">
                 <div>
                   <h4 className="text-sm font-semibold text-foreground mb-1">Global Expansion Insights</h4>
                   <p className="text-xs text-muted-foreground leading-relaxed">
@@ -720,15 +722,15 @@ export const AnalyticsDashboardExample = () => {
                 </div>
 
                 <div className="flex flex-col gap-2.5">
-                  <div className="flex items-center justify-between p-2.5 rounded-md bg-card border border-border text-xs">
+                  <div className="flex items-center justify-between py-1 text-xs">
                     <span className="text-muted-foreground">Primary Market Share</span>
                     <span className="font-semibold text-foreground">US & Canada (48%)</span>
                   </div>
-                  <div className="flex items-center justify-between p-2.5 rounded-md bg-card border border-border text-xs">
+                  <div className="flex items-center justify-between py-1 text-xs">
                     <span className="text-muted-foreground">Fastest Growing Region</span>
                     <span className="font-semibold text-ds-success-600 dark:text-ds-success-400">LatAm (+22.5%)</span>
                   </div>
-                  <div className="flex items-center justify-between p-2.5 rounded-md bg-card border border-border text-xs">
+                  <div className="flex items-center justify-between py-1 text-xs">
                     <span className="text-muted-foreground">Regional Compliance</span>
                     <Badge content="GDPR / CCPA" color="success" variant="soft" />
                   </div>
