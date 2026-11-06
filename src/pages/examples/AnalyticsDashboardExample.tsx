@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import {
@@ -100,6 +100,21 @@ const systemLogEntries: LogEntry[] = [
   { type: 'stable', timestamp: '14:25:00', message: 'Zero packet loss recorded across 24 edge points of presence' },
 ];
 
+const incomingEventsPool: Omit<LogEntry, 'timestamp'>[] = [
+  { type: 'ok', message: 'Healthcheck passed across all 24 edge points of presence (latency 11ms)' },
+  { type: 'info', message: 'Ingestion pipeline processed batch of 1,420 analytical events' },
+  { type: 'ok', message: 'Database read replica sync completed in 8ms' },
+  { type: 'info', message: 'Cache warm-up completed: 98.4% hit ratio' },
+  { type: 'warn', message: 'Rate limit threshold reached for IP 198.51.100.42 (throttled)' },
+  { type: 'ok', message: 'Worker node us-east-02 CPU utilization normalized to 32%' },
+  { type: 'info', message: 'Autoscaler evaluated cluster load metrics: desired count 8' },
+  { type: 'stable', message: 'BGP routing table converged with zero dropped packets' },
+  { type: 'ok', message: 'SSL certificate handshake verified for api.dashkit.dev' },
+  { type: 'info', message: 'Snapshot backup shard completed successfully (240MB)' },
+  { type: 'ok', message: 'Webhook delivery acknowledged by customer endpoint (status 200)' },
+  { type: 'info', message: 'Elasticsearch query latency p95: 14ms across 1.2M docs' },
+];
+
 const trafficSourcesData = [
   { label: 'Organic Search', value: 42, color: 'var(--color-chart-1)' },
   { label: 'Direct Traffic', value: 28, color: 'var(--color-chart-2)' },
@@ -163,6 +178,30 @@ const recentTransactions: Transaction[] = [
 export const AnalyticsDashboardExample = () => {
   const [timeRange, setTimeRange] = useState('12m');
   const [selectedEnvironment, setSelectedEnvironment] = useState('production');
+  const [logs, setLogs] = useState<LogEntry[]>(systemLogEntries);
+
+  useEffect(() => {
+    let poolIndex = 0;
+    const interval = window.setInterval(() => {
+      const nextTemplate = incomingEventsPool[poolIndex % incomingEventsPool.length];
+      poolIndex++;
+
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      const timestamp = `${hours}:${minutes}:${seconds}`;
+
+      const newEntry: LogEntry = {
+        ...nextTemplate,
+        timestamp,
+      };
+
+      setLogs((prev) => [...prev.slice(-14), newEntry]);
+    }, 3000);
+
+    return () => window.clearInterval(interval);
+  }, []);
 
   const environmentOptions = [
     { value: 'production', label: 'Production' },
@@ -506,7 +545,7 @@ export const AnalyticsDashboardExample = () => {
               status="Operational"
               statusColor="success"
               maxHeight={135}
-              logs={systemLogEntries}
+              logs={logs}
             />
           </div>
         </div>
