@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import {
@@ -103,14 +103,14 @@ interface ActivityItem {
   icon: 'trending' | 'user' | 'credit' | 'zap' | 'download';
 }
 
-const initialActivities: ActivityItem[] = [
+const recentActivities: ActivityItem[] = [
   {
     id: 'act-1',
     title: 'Enterprise Plan Upgrade',
     description: 'Acme Corp converted to Enterprise Annual',
     badge: '+$2,400/yr',
     badgeColor: 'success',
-    time: 'Just now',
+    time: '12m ago',
     icon: 'trending',
   },
   {
@@ -119,55 +119,17 @@ const initialActivities: ActivityItem[] = [
     description: 'sarah.wong@fintech.io joined Analytics team',
     badge: 'Workspace',
     badgeColor: 'info',
-    time: '2m ago',
+    time: '45m ago',
     icon: 'user',
   },
   {
     id: 'act-3',
-    title: 'Automated Webhook Batch',
-    description: '1,420 transaction events dispatched to BigQuery',
-    badge: 'Synced',
-    badgeColor: 'success',
-    time: '5m ago',
-    icon: 'zap',
-  },
-];
-
-const incomingActivitiesPool: Omit<ActivityItem, 'id' | 'time'>[] = [
-  {
     title: 'Custom Revenue Export',
     description: 'Q3 Financial summary downloaded by Finance',
     badge: 'Exported',
     badgeColor: 'info',
+    time: '2h ago',
     icon: 'download',
-  },
-  {
-    title: 'Pro Plan Subscription',
-    description: 'Nordic Labs subscribed to Pro Monthly',
-    badge: '+$149/mo',
-    badgeColor: 'success',
-    icon: 'credit',
-  },
-  {
-    title: 'Quota Threshold Notice',
-    description: 'API requests reached 84% of monthly limit',
-    badge: 'Notice',
-    badgeColor: 'warning',
-    icon: 'zap',
-  },
-  {
-    title: 'New Admin Member',
-    description: 'lucas.silva@nubank.br joined billing admins',
-    badge: 'Admin',
-    badgeColor: 'info',
-    icon: 'user',
-  },
-  {
-    title: 'Enterprise Seat Added',
-    description: 'Stripe Payments added 10 analyst seats',
-    badge: '+$350/mo',
-    badgeColor: 'success',
-    icon: 'trending',
   },
 ];
 
@@ -252,29 +214,7 @@ const recentTransactions: Transaction[] = [
 export const AnalyticsDashboardExample = () => {
   const [timeRange, setTimeRange] = useState('12m');
   const [selectedEnvironment, setSelectedEnvironment] = useState('production');
-  const [activities, setActivities] = useState<ActivityItem[]>(initialActivities);
 
-  useEffect(() => {
-    let poolIndex = 0;
-    const interval = window.setInterval(() => {
-      const nextTemplate = incomingActivitiesPool[poolIndex % incomingActivitiesPool.length];
-      poolIndex++;
-
-      const newEntry: ActivityItem = {
-        ...nextTemplate,
-        id: `act-${Date.now()}`,
-        time: 'Just now',
-      };
-
-      setActivities((prev) => [
-        newEntry,
-        { ...prev[0], time: '1m ago' },
-        { ...prev[1], time: '4m ago' },
-      ]);
-    }, 4500);
-
-    return () => window.clearInterval(interval);
-  }, []);
 
   const environmentOptions = [
     { value: 'production', label: 'Production' },
@@ -615,18 +555,18 @@ export const AnalyticsDashboardExample = () => {
               leftIcon={<FiActivity size={18} />}
               action={
                 <Badge
-                  content="Live Feed"
-                  color="success"
+                  content="Recent"
+                  color="info"
                   variant="soft"
                 />
               }
             >
-              <CardTitle>Real-Time Activity</CardTitle>
-              <CardDescription>Live customer events, upgrades, and workspace actions</CardDescription>
+              <CardTitle>Recent Activity</CardTitle>
+              <CardDescription>Latest customer events, upgrades, and workspace actions</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex flex-col divide-y divide-border/40">
-                {activities.slice(0, 3).map((act) => {
+                {recentActivities.map((act) => {
                   const getIcon = () => {
                     switch (act.icon) {
                       case 'trending':
