@@ -129,7 +129,7 @@ interface RegionData {
 const topRegionsData: RegionData[] = [
   { country: 'United States', code: 'US', flag: '🇺🇸', revenue: '$28,450', share: 48, users: '640 active', growth: '+14.2%', growthType: 'success' },
   { country: 'European Union', code: 'EU', flag: '🇪🇺', revenue: '$14,200', share: 26, users: '348 active', growth: '+8.6%', growthType: 'success' },
-  { country: 'United Kingdom', code: 'GB', flag: '🇬🇧', revenue: '$6,800', share: 12, users: '162 active', growth: '+5.4%', growthType: 'info' },
+  { country: 'United Kingdom', code: 'GB', flag: '🇬🇧', revenue: '$6,800', share: 12, users: '162 active', growth: '+5.4%', growthType: 'success' },
   { country: 'Brazil & LatAm', code: 'BR', flag: '🇧🇷', revenue: '$3,100', share: 8, users: '115 active', growth: '+22.5%', growthType: 'success' },
   { country: 'Asia-Pacific', code: 'APAC', flag: '🌏', revenue: '$1,450', share: 6, users: '70 active', growth: '+18.1%', growthType: 'success' },
 ];
