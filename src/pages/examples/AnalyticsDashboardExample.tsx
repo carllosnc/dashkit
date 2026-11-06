@@ -207,7 +207,7 @@ export const AnalyticsDashboardExample = () => {
         </div>
 
         {/* Dashboard Toolbar Bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-4 py-3 bg-card border border-border ds-rounded shadow-2xs">
+        <Card className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-4 py-3">
           <div className="flex items-center gap-3">
             <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
               <FiServer className="size-3.5 text-muted-foreground" />
@@ -226,7 +226,7 @@ export const AnalyticsDashboardExample = () => {
               Export Report
             </Button>
           </div>
-        </div>
+        </Card>
 
         {/* KPI Stats Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
