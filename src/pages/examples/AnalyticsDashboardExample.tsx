@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import {
@@ -19,7 +19,7 @@ import {
   FiShield,
 } from 'react-icons/fi';
 import { CircularProgress } from '../../dashkit/CircularProgress/CircularProgress';
-import { SystemLogs, type LogEntry } from '../../dashkit/SystemLogs/SystemLogs';
+
 import { Header } from '../../partials/Header';
 import { Footer } from '../../partials/Footer';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../dashkit/Card';
@@ -28,6 +28,7 @@ import { AreaChart } from '../../dashkit/AreaChart/AreaChart';
 import { BarChart } from '../../dashkit/BarChart/BarChart';
 import { PieChart } from '../../dashkit/PieChart/PieChart';
 import { ProgressBar } from '../../dashkit/ProgressBar/ProgressBar';
+import { Divider } from '../../dashkit/Divider/Divider';
 import {
   Table,
   TableHeader,
@@ -92,33 +93,49 @@ interface Transaction {
   statusLabel: string;
 }
 
-const systemLogEntries: LogEntry[] = [
-  { type: 'ok', timestamp: '14:32:01', message: 'Webhook dispatcher worker pool autoscaled to 12 instances' },
-  { type: 'info', timestamp: '14:31:45', message: 'Cluster us-east-1 replica sync verified (latency 12ms)' },
-  { type: 'ok', timestamp: '14:30:12', message: 'Database connection pool optimal (42/100 active connections)' },
-  { type: 'warn', timestamp: '14:28:50', message: 'High memory usage spike on ingest-worker-04 (cleared via GC)' },
-  { type: 'stable', timestamp: '14:25:00', message: 'Zero packet loss recorded across 24 edge points of presence' },
-];
+interface ActivityItem {
+  id: string;
+  title: string;
+  description: string;
+  badge: string;
+  badgeColor: 'success' | 'info' | 'warning' | 'primary';
+  time: string;
+  icon: 'trending' | 'user' | 'credit' | 'zap' | 'download';
+}
 
-const incomingEventsPool: Omit<LogEntry, 'timestamp'>[] = [
-  { type: 'ok', message: 'Healthcheck passed across all 24 edge points of presence (latency 11ms)' },
-  { type: 'info', message: 'Ingestion pipeline processed batch of 1,420 analytical events' },
-  { type: 'ok', message: 'Database read replica sync completed in 8ms' },
-  { type: 'info', message: 'Cache warm-up completed: 98.4% hit ratio' },
-  { type: 'warn', message: 'Rate limit threshold reached for IP 198.51.100.42 (throttled)' },
-  { type: 'ok', message: 'Worker node us-east-02 CPU utilization normalized to 32%' },
-  { type: 'info', message: 'Autoscaler evaluated cluster load metrics: desired count 8' },
-  { type: 'stable', message: 'BGP routing table converged with zero dropped packets' },
-  { type: 'ok', message: 'SSL certificate handshake verified for api.dashkit.dev' },
-  { type: 'info', message: 'Snapshot backup shard completed successfully (240MB)' },
-  { type: 'ok', message: 'Webhook delivery acknowledged by customer endpoint (status 200)' },
-  { type: 'info', message: 'Elasticsearch query latency p95: 14ms across 1.2M docs' },
+const recentActivities: ActivityItem[] = [
+  {
+    id: 'act-1',
+    title: 'Enterprise Plan Upgrade',
+    description: 'Acme Corp converted to Enterprise Annual',
+    badge: '+$2,400/yr',
+    badgeColor: 'success',
+    time: '12m ago',
+    icon: 'trending',
+  },
+  {
+    id: 'act-2',
+    title: 'New Team Member',
+    description: 'sarah.wong@fintech.io joined Analytics team',
+    badge: 'Workspace',
+    badgeColor: 'info',
+    time: '45m ago',
+    icon: 'user',
+  },
+  {
+    id: 'act-3',
+    title: 'Custom Revenue Export',
+    description: 'Q3 Financial summary downloaded by Finance',
+    badge: 'Exported',
+    badgeColor: 'info',
+    time: '2h ago',
+    icon: 'download',
+  },
 ];
 
 interface RegionData {
   country: string;
   code: string;
-  flag: string;
   revenue: string;
   share: number;
   users: string;
@@ -127,11 +144,11 @@ interface RegionData {
 }
 
 const topRegionsData: RegionData[] = [
-  { country: 'United States', code: 'US', flag: '🇺🇸', revenue: '$28,450', share: 48, users: '640 active', growth: '+14.2%', growthType: 'success' },
-  { country: 'European Union', code: 'EU', flag: '🇪🇺', revenue: '$14,200', share: 26, users: '348 active', growth: '+8.6%', growthType: 'success' },
-  { country: 'United Kingdom', code: 'GB', flag: '🇬🇧', revenue: '$6,800', share: 12, users: '162 active', growth: '+5.4%', growthType: 'info' },
-  { country: 'Brazil & LatAm', code: 'BR', flag: '🇧🇷', revenue: '$3,100', share: 8, users: '115 active', growth: '+22.5%', growthType: 'success' },
-  { country: 'Asia-Pacific', code: 'APAC', flag: '🌏', revenue: '$1,450', share: 6, users: '70 active', growth: '+18.1%', growthType: 'success' },
+  { country: 'United States', code: 'US', revenue: '$28,450', share: 48, users: '640 active', growth: '+14.2%', growthType: 'success' },
+  { country: 'European Union', code: 'EU', revenue: '$14,200', share: 26, users: '348 active', growth: '+8.6%', growthType: 'success' },
+  { country: 'United Kingdom', code: 'GB', revenue: '$6,800', share: 12, users: '162 active', growth: '+5.4%', growthType: 'success' },
+  { country: 'Brazil & LatAm', code: 'BR', revenue: '$3,100', share: 8, users: '115 active', growth: '+22.5%', growthType: 'success' },
+  { country: 'Asia-Pacific', code: 'APAC', revenue: '$1,450', share: 6, users: '70 active', growth: '+18.1%', growthType: 'success' },
 ];
 
 const trafficSourcesData = [
@@ -197,30 +214,7 @@ const recentTransactions: Transaction[] = [
 export const AnalyticsDashboardExample = () => {
   const [timeRange, setTimeRange] = useState('12m');
   const [selectedEnvironment, setSelectedEnvironment] = useState('production');
-  const [logs, setLogs] = useState<LogEntry[]>(systemLogEntries);
 
-  useEffect(() => {
-    let poolIndex = 0;
-    const interval = window.setInterval(() => {
-      const nextTemplate = incomingEventsPool[poolIndex % incomingEventsPool.length];
-      poolIndex++;
-
-      const now = new Date();
-      const hours = String(now.getHours()).padStart(2, '0');
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      const seconds = String(now.getSeconds()).padStart(2, '0');
-      const timestamp = `${hours}:${minutes}:${seconds}`;
-
-      const newEntry: LogEntry = {
-        ...nextTemplate,
-        timestamp,
-      };
-
-      setLogs((prev) => [...prev.slice(-14), newEntry]);
-    }, 3000);
-
-    return () => window.clearInterval(interval);
-  }, []);
 
   const environmentOptions = [
     { value: 'production', label: 'Production' },
@@ -494,7 +488,7 @@ export const AnalyticsDashboardExample = () => {
                     </span>
                     <span className="text-xs text-muted-foreground">91,500 / 100,000 (91%)</span>
                   </div>
-                  <ProgressBar value={91} color="warning" size="sm" />
+                  <ProgressBar value={91} color="primary" size="sm" />
                 </div>
 
                 <div className="flex flex-col gap-1.5">
@@ -505,7 +499,7 @@ export const AnalyticsDashboardExample = () => {
                     </span>
                     <span className="text-xs text-muted-foreground">320 / 1,000 hrs (32%)</span>
                   </div>
-                  <ProgressBar value={32} color="success" size="sm" />
+                  <ProgressBar value={32} color="primary" size="sm" />
                 </div>
               </div>
             </CardContent>
@@ -556,17 +550,63 @@ export const AnalyticsDashboardExample = () => {
             </CardContent>
           </Card>
 
-          <div className="flex flex-col">
-            <SystemLogs
-              className="w-full h-full shadow-xs"
-              title="Real-Time Event Stream"
-              session="prod-cluster-01"
-              status="Operational"
-              statusColor="success"
-              maxHeight={135}
-              logs={logs}
-            />
-          </div>
+          <Card className="flex flex-col justify-between">
+            <CardHeader
+              leftIcon={<FiActivity size={18} />}
+              action={
+                <Badge
+                  content="Recent"
+                  color="info"
+                  variant="soft"
+                />
+              }
+            >
+              <CardTitle>Recent Activity</CardTitle>
+              <CardDescription>Latest customer events, upgrades, and workspace actions</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-col divide-y divide-border/40">
+                {recentActivities.map((act) => {
+                  const getIcon = () => {
+                    switch (act.icon) {
+                      case 'trending':
+                        return <FiTrendingUp className="size-3.5 text-ds-success-600 dark:text-ds-success-400" />;
+                      case 'user':
+                        return <FiUsers className="size-3.5 text-ds-primary-600 dark:text-ds-primary-400" />;
+                      case 'credit':
+                        return <FiCreditCard className="size-3.5 text-ds-success-600 dark:text-ds-success-400" />;
+                      case 'download':
+                        return <FiDownload className="size-3.5 text-ds-info-600 dark:text-ds-info-400" />;
+                      case 'zap':
+                      default:
+                        return <FiZap className="size-3.5 text-ds-warning-600 dark:text-ds-warning-400" />;
+                    }
+                  };
+
+                  return (
+                    <div
+                      key={act.id}
+                      className="flex items-center justify-between py-2 first:pt-0 last:pb-0 gap-3"
+                    >
+                      <div className="flex items-center gap-3 min-w-0">
+                        <div className="size-8 rounded-full bg-muted/60 border border-border/60 flex items-center justify-center shrink-0">
+                          {getIcon()}
+                        </div>
+                        <div className="flex flex-col min-w-0">
+                          <span className="text-sm font-semibold text-foreground truncate">{act.title}</span>
+                          <span className="text-xs text-muted-foreground truncate">{act.description}</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2.5 shrink-0">
+                        <Badge content={act.badge} color={act.badgeColor} variant="soft" />
+                        <span className="text-xs text-muted-foreground tabular-nums">{act.time}</span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Top Geographic Markets Section */}
@@ -587,22 +627,21 @@ export const AnalyticsDashboardExample = () => {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <div className="lg:col-span-2 flex flex-col gap-3">
+            <div className="flex flex-col lg:flex-row gap-6 items-stretch">
+              <div className="flex-1 flex flex-col justify-between gap-4 py-1">
                 {topRegionsData.map((reg) => (
                   <div
                     key={reg.code}
-                    className="flex flex-col gap-2 p-3 rounded-lg bg-muted/30 border border-border/50"
+                    className="flex flex-col gap-2"
                   >
-                    <div className="flex items-center justify-between text-sm">
+                    <div className="flex items-center justify-between text-base">
                       <div className="flex items-center gap-2">
-                        <span className="text-base select-none">{reg.flag}</span>
                         <span className="font-semibold text-foreground">{reg.country}</span>
-                        <span className="text-xs text-muted-foreground">({reg.users})</span>
+                        <span className="text-sm text-muted-foreground">({reg.users})</span>
                       </div>
                       <div className="flex items-center gap-3">
                         <span className="font-bold text-foreground">{reg.revenue}</span>
-                        <span className="text-xs text-muted-foreground w-8 text-right">{reg.share}%</span>
+                        <span className="text-sm text-muted-foreground w-10 text-right">{reg.share}%</span>
                         <Badge content={reg.growth} color={reg.growthType} variant="soft" />
                       </div>
                     </div>
@@ -611,24 +650,27 @@ export const AnalyticsDashboardExample = () => {
                 ))}
               </div>
 
-              <div className="flex flex-col justify-between gap-4 p-4 rounded-lg bg-muted/20 border border-border/60">
+              <Divider orientation="vertical" className="hidden lg:block self-stretch" />
+              <Divider orientation="horizontal" className="lg:hidden" />
+
+              <div className="lg:w-84 flex flex-col justify-between gap-4 py-1">
                 <div>
-                  <h4 className="text-sm font-semibold text-foreground mb-1">Global Expansion Insights</h4>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
+                  <h4 className="text-base font-semibold text-foreground mb-1.5">Global Expansion Insights</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     Regional adoption continues to accelerate outside North America, led by Latin America (+22.5%) and Asia-Pacific (+18.1%).
                   </p>
                 </div>
 
                 <div className="flex flex-col gap-2.5">
-                  <div className="flex items-center justify-between p-2.5 rounded-md bg-card border border-border text-xs">
+                  <div className="flex items-center justify-between py-1 text-sm">
                     <span className="text-muted-foreground">Primary Market Share</span>
                     <span className="font-semibold text-foreground">US & Canada (48%)</span>
                   </div>
-                  <div className="flex items-center justify-between p-2.5 rounded-md bg-card border border-border text-xs">
+                  <div className="flex items-center justify-between py-1 text-sm">
                     <span className="text-muted-foreground">Fastest Growing Region</span>
                     <span className="font-semibold text-ds-success-600 dark:text-ds-success-400">LatAm (+22.5%)</span>
                   </div>
-                  <div className="flex items-center justify-between p-2.5 rounded-md bg-card border border-border text-xs">
+                  <div className="flex items-center justify-between py-1 text-sm">
                     <span className="text-muted-foreground">Regional Compliance</span>
                     <Badge content="GDPR / CCPA" color="success" variant="soft" />
                   </div>
