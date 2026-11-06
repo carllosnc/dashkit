@@ -648,18 +648,18 @@ export const AnalyticsDashboardExample = () => {
                       key={act.id}
                       className="flex items-center justify-between py-2 first:pt-0 last:pb-0 gap-3"
                     >
-                      <div className="flex items-center gap-2.5 min-w-0">
-                        <div className="size-7 rounded-full bg-muted/60 border border-border/60 flex items-center justify-center shrink-0">
+                      <div className="flex items-center gap-3 min-w-0">
+                        <div className="size-8 rounded-full bg-muted/60 border border-border/60 flex items-center justify-center shrink-0">
                           {getIcon()}
                         </div>
                         <div className="flex flex-col min-w-0">
-                          <span className="text-xs font-semibold text-foreground truncate">{act.title}</span>
-                          <span className="text-[11px] text-muted-foreground truncate">{act.description}</span>
+                          <span className="text-sm font-semibold text-foreground truncate">{act.title}</span>
+                          <span className="text-xs text-muted-foreground truncate">{act.description}</span>
                         </div>
                       </div>
-                      <div className="flex items-center gap-2 shrink-0">
+                      <div className="flex items-center gap-2.5 shrink-0">
                         <Badge content={act.badge} color={act.badgeColor} variant="soft" />
-                        <span className="text-[11px] text-muted-foreground tabular-nums">{act.time}</span>
+                        <span className="text-xs text-muted-foreground tabular-nums">{act.time}</span>
                       </div>
                     </div>
                   );
@@ -694,14 +694,14 @@ export const AnalyticsDashboardExample = () => {
                     key={reg.code}
                     className="flex flex-col gap-2"
                   >
-                    <div className="flex items-center justify-between text-sm">
+                    <div className="flex items-center justify-between text-base">
                       <div className="flex items-center gap-2">
                         <span className="font-semibold text-foreground">{reg.country}</span>
-                        <span className="text-xs text-muted-foreground">({reg.users})</span>
+                        <span className="text-sm text-muted-foreground">({reg.users})</span>
                       </div>
                       <div className="flex items-center gap-3">
                         <span className="font-bold text-foreground">{reg.revenue}</span>
-                        <span className="text-xs text-muted-foreground w-8 text-right">{reg.share}%</span>
+                        <span className="text-sm text-muted-foreground w-10 text-right">{reg.share}%</span>
                         <Badge content={reg.growth} color={reg.growthType} variant="soft" />
                       </div>
                     </div>
@@ -713,24 +713,24 @@ export const AnalyticsDashboardExample = () => {
               <Divider orientation="vertical" className="hidden lg:block self-stretch" />
               <Divider orientation="horizontal" className="lg:hidden" />
 
-              <div className="lg:w-80 flex flex-col justify-between gap-4 py-1">
+              <div className="lg:w-84 flex flex-col justify-between gap-4 py-1">
                 <div>
-                  <h4 className="text-sm font-semibold text-foreground mb-1">Global Expansion Insights</h4>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
+                  <h4 className="text-base font-semibold text-foreground mb-1.5">Global Expansion Insights</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     Regional adoption continues to accelerate outside North America, led by Latin America (+22.5%) and Asia-Pacific (+18.1%).
                   </p>
                 </div>
 
                 <div className="flex flex-col gap-2.5">
-                  <div className="flex items-center justify-between py-1 text-xs">
+                  <div className="flex items-center justify-between py-1 text-sm">
                     <span className="text-muted-foreground">Primary Market Share</span>
                     <span className="font-semibold text-foreground">US & Canada (48%)</span>
                   </div>
-                  <div className="flex items-center justify-between py-1 text-xs">
+                  <div className="flex items-center justify-between py-1 text-sm">
                     <span className="text-muted-foreground">Fastest Growing Region</span>
                     <span className="font-semibold text-ds-success-600 dark:text-ds-success-400">LatAm (+22.5%)</span>
                   </div>
-                  <div className="flex items-center justify-between py-1 text-xs">
+                  <div className="flex items-center justify-between py-1 text-sm">
                     <span className="text-muted-foreground">Regional Compliance</span>
                     <Badge content="GDPR / CCPA" color="success" variant="soft" />
                   </div>
