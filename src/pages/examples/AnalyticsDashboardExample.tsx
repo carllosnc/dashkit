@@ -494,7 +494,7 @@ export const AnalyticsDashboardExample = () => {
                     </span>
                     <span className="text-xs text-muted-foreground">91,500 / 100,000 (91%)</span>
                   </div>
-                  <ProgressBar value={91} color="warning" size="sm" />
+                  <ProgressBar value={91} color="primary" size="sm" />
                 </div>
 
                 <div className="flex flex-col gap-1.5">
@@ -505,7 +505,7 @@ export const AnalyticsDashboardExample = () => {
                     </span>
                     <span className="text-xs text-muted-foreground">320 / 1,000 hrs (32%)</span>
                   </div>
-                  <ProgressBar value={32} color="success" size="sm" />
+                  <ProgressBar value={32} color="primary" size="sm" />
                 </div>
               </div>
             </CardContent>
