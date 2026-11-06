@@ -455,7 +455,7 @@ export const AnalyticsDashboardExample = () => {
         </div>
 
         {/* System Health & Activity Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <Card className="flex flex-col justify-between">
             <CardHeader
               leftIcon={<FiShield size={18} />}
@@ -468,36 +468,44 @@ export const AnalyticsDashboardExample = () => {
               }
             >
               <CardTitle>System Health</CardTitle>
-              <CardDescription>Live availability & reliability score</CardDescription>
+              <CardDescription>Live infrastructure availability & performance</CardDescription>
             </CardHeader>
-            <CardContent className="flex flex-col items-center justify-center gap-4 py-2">
-              <CircularProgress
-                value={99}
-                size="lg"
-                color="success"
-                showValue
-              />
-              <div className="grid grid-cols-2 gap-3 w-full">
-                <div className="flex flex-col items-center p-2.5 rounded-lg bg-muted/40 border border-border text-center">
-                  <span className="text-[11px] font-medium text-muted-foreground uppercase tracking-wider">Uptime</span>
-                  <span className="text-base font-bold text-foreground">99.98%</span>
+            <CardContent>
+              <div className="flex items-center gap-6 py-2">
+                <div className="shrink-0 flex items-center justify-center">
+                  <CircularProgress
+                    value={99}
+                    size="lg"
+                    color="success"
+                    showValue
+                  />
                 </div>
-                <div className="flex flex-col items-center p-2.5 rounded-lg bg-muted/40 border border-border text-center">
-                  <span className="text-[11px] font-medium text-muted-foreground uppercase tracking-wider">Latency</span>
-                  <span className="text-base font-bold text-foreground">18ms</span>
+                <div className="flex flex-col gap-2.5 flex-1 min-w-0">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-muted-foreground">30-Day Uptime</span>
+                    <span className="font-semibold text-foreground">99.98%</span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-muted-foreground">Global P99 Latency</span>
+                    <span className="font-semibold text-foreground">18ms</span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-muted-foreground">Active Incidents</span>
+                    <Badge content="0 Active" color="success" variant="soft" />
+                  </div>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <div className="lg:col-span-2 flex flex-col">
+          <div className="flex flex-col">
             <SystemLogs
-              className="w-full h-full"
+              className="w-full h-full shadow-xs"
               title="Real-Time Event Stream"
-              session="cluster-prod-us-east"
-              status="All Systems Operational"
+              session="prod-cluster-01"
+              status="Operational"
               statusColor="success"
-              maxHeight={180}
+              maxHeight={135}
               logs={systemLogEntries}
             />
           </div>
