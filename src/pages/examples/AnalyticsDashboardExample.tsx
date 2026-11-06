@@ -115,6 +115,25 @@ const incomingEventsPool: Omit<LogEntry, 'timestamp'>[] = [
   { type: 'info', message: 'Elasticsearch query latency p95: 14ms across 1.2M docs' },
 ];
 
+interface RegionData {
+  country: string;
+  code: string;
+  flag: string;
+  revenue: string;
+  share: number;
+  users: string;
+  growth: string;
+  growthType: 'success' | 'info' | 'warning';
+}
+
+const topRegionsData: RegionData[] = [
+  { country: 'United States', code: 'US', flag: '🇺🇸', revenue: '$28,450', share: 48, users: '640 active', growth: '+14.2%', growthType: 'success' },
+  { country: 'European Union', code: 'EU', flag: '🇪🇺', revenue: '$14,200', share: 26, users: '348 active', growth: '+8.6%', growthType: 'success' },
+  { country: 'United Kingdom', code: 'GB', flag: '🇬🇧', revenue: '$6,800', share: 12, users: '162 active', growth: '+5.4%', growthType: 'info' },
+  { country: 'Brazil & LatAm', code: 'BR', flag: '🇧🇷', revenue: '$3,100', share: 8, users: '115 active', growth: '+22.5%', growthType: 'success' },
+  { country: 'Asia-Pacific', code: 'APAC', flag: '🌏', revenue: '$1,450', share: 6, users: '70 active', growth: '+18.1%', growthType: 'success' },
+];
+
 const trafficSourcesData = [
   { label: 'Organic Search', value: 42, color: 'var(--color-chart-1)' },
   { label: 'Direct Traffic', value: 28, color: 'var(--color-chart-2)' },
@@ -549,6 +568,75 @@ export const AnalyticsDashboardExample = () => {
             />
           </div>
         </div>
+
+        {/* Top Geographic Markets Section */}
+        <Card>
+          <CardHeader
+            leftIcon={<FiGlobe size={18} />}
+            action={
+              <Badge
+                content="142 Countries"
+                color="info"
+                variant="soft"
+              />
+            }
+          >
+            <CardTitle>Top Geographic Markets</CardTitle>
+            <CardDescription>
+              Global revenue distribution, active customer concentration, and regional expansion
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <div className="lg:col-span-2 flex flex-col gap-3">
+                {topRegionsData.map((reg) => (
+                  <div
+                    key={reg.code}
+                    className="flex flex-col gap-2 p-3 rounded-lg bg-muted/30 border border-border/50"
+                  >
+                    <div className="flex items-center justify-between text-sm">
+                      <div className="flex items-center gap-2">
+                        <span className="text-base select-none">{reg.flag}</span>
+                        <span className="font-semibold text-foreground">{reg.country}</span>
+                        <span className="text-xs text-muted-foreground">({reg.users})</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="font-bold text-foreground">{reg.revenue}</span>
+                        <span className="text-xs text-muted-foreground w-8 text-right">{reg.share}%</span>
+                        <Badge content={reg.growth} color={reg.growthType} variant="soft" />
+                      </div>
+                    </div>
+                    <ProgressBar value={reg.share} color="primary" size="sm" />
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-col justify-between gap-4 p-4 rounded-lg bg-muted/20 border border-border/60">
+                <div>
+                  <h4 className="text-sm font-semibold text-foreground mb-1">Global Expansion Insights</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    Regional adoption continues to accelerate outside North America, led by Latin America (+22.5%) and Asia-Pacific (+18.1%).
+                  </p>
+                </div>
+
+                <div className="flex flex-col gap-2.5">
+                  <div className="flex items-center justify-between p-2.5 rounded-md bg-card border border-border text-xs">
+                    <span className="text-muted-foreground">Primary Market Share</span>
+                    <span className="font-semibold text-foreground">US & Canada (48%)</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2.5 rounded-md bg-card border border-border text-xs">
+                    <span className="text-muted-foreground">Fastest Growing Region</span>
+                    <span className="font-semibold text-ds-success-600 dark:text-ds-success-400">LatAm (+22.5%)</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2.5 rounded-md bg-card border border-border text-xs">
+                    <span className="text-muted-foreground">Regional Compliance</span>
+                    <Badge content="GDPR / CCPA" color="success" variant="soft" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Transactions Table Section */}
         <Card>
