@@ -5,7 +5,7 @@
 }
 
 .stats-card__title {
-  @apply text-xs font-medium text-muted-foreground tracking-tight uppercase;
+  @apply text-xs font-medium text-muted-foreground tracking-wider uppercase;
 }
 
 .stats-card__value-container {
@@ -13,11 +13,11 @@
 }
 
 .stats-card__value {
-  @apply text-3xl font-medium text-foreground tabular-nums tracking-tight whitespace-nowrap truncate leading-none pt-1;
+  @apply text-3xl font-bold text-foreground tabular-nums tracking-tight whitespace-nowrap truncate leading-none;
 }
 
 .stats-card__trend {
-  @apply flex items-center gap-1.5 pt-1;
+  @apply flex items-center gap-1.5 pt-0.5;
 }
 
 .stats-card__trend-badge {
@@ -25,7 +25,7 @@
 }
 
 .stats-card__trend-label {
-  @apply text-xs uppercase font-medium text-muted-foreground whitespace-nowrap hidden sm:block;
+  @apply text-xs uppercase font-medium text-muted-foreground whitespace-nowrap tracking-wider;
 }
 
 .stats-card__description {
