@@ -872,7 +872,7 @@ export const AllComponentsExample = () => {
             <CardDescription>Structured tabular presentation with status badges and synchronized pagination.</CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
-            <div className="overflow-x-auto border border-border ds-rounded">
+            <div className="overflow-x-auto">
               <Table>
                 <TableCaption>Recent enterprise invoice transactions.</TableCaption>
                 <TableHeader>
