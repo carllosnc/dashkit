@@ -15,7 +15,7 @@ export function Card({
   children,
   animate = false,
   bordered = true,
-  shadowed = true,
+  shadowed = false,
   className,
   ref,
   ...props
@@ -29,9 +29,9 @@ export function Card({
       transition={{ duration: 0.3, ease: 'easeOut' }}
       className={cn(
         'card',
-        'bg-card text-card-foreground p-6 ds-rounded shadow-sm gap-6 flex flex-col font-sans',
+        'bg-card text-card-foreground p-6 ds-rounded-md gap-6 flex flex-col font-sans',
         !bordered && 'card--no-border border-none',
-        !shadowed && 'card--no-shadow shadow-none',
+        shadowed ? 'card--shadowed shadow-sm' : 'card--no-shadow shadow-none',
         className
       )}
     >
