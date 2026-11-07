@@ -9,7 +9,7 @@
 }
 
 .badge__content {
-  @apply min-w-5 h-5 px-2.5 ds-rounded text-[10px] font-semibold tracking-wider inline-flex items-center justify-center leading-none w-fit shrink-0;
+  @apply min-w-5 h-5.5 px-2.5 ds-rounded text-[11px] font-semibold tracking-wide inline-flex items-center justify-center leading-none w-fit shrink-0;
 }
 
 .badge__inner-content {
