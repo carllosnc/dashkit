@@ -241,30 +241,35 @@ export const AllComponentsExample = () => {
               <Button variant="filled">Filled</Button>
               <Button variant="outlined">Outlined</Button>
               <Button variant="soft">Soft</Button>
+              <Button variant="ghost">Ghost</Button>
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
               <Button variant="filled" size="lg">Large</Button>
               <Button variant="outlined" size="lg">Large</Button>
               <Button variant="soft" size="lg">Large</Button>
+              <Button variant="ghost" size="lg">Large</Button>
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
               <Button variant="filled" size="sm">Small</Button>
               <Button variant="outlined" size="sm">Small</Button>
               <Button variant="soft" size="sm">Small</Button>
+              <Button variant="ghost" size="sm">Small</Button>
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
               <Button variant="filled" leftIcon={<FiPlus />}>With Icon</Button>
               <Button variant="outlined" leftIcon={<FiPlus />}>With Icon</Button>
               <Button variant="soft" leftIcon={<FiPlus />}>With Icon</Button>
+              <Button variant="ghost" leftIcon={<FiPlus />}>With Icon</Button>
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
               <Button variant="filled" loading>Loading</Button>
               <Button variant="outlined" loading>Loading</Button>
               <Button variant="soft" loading>Loading</Button>
+              <Button variant="ghost" loading>Loading</Button>
             </div>
           </CardContent>
         </Card>
@@ -275,12 +280,25 @@ export const AllComponentsExample = () => {
             <CardTitle>Icon Buttons</CardTitle>
             <CardDescription>Compact circular and rounded triggers for icon-driven interactions.</CardDescription>
           </CardHeader>
-          <CardContent className="flex flex-wrap items-center gap-4 py-4">
-            <IconButton icon={<FiPlus />} variant="filled" aria-label="Add item" />
-            <IconButton icon={<FiDownload />} variant="filled" rounded aria-label="Download file" />
-            <IconButton icon={<FiEdit2 />} variant="soft" aria-label="Edit details" />
-            <IconButton icon={<FiShare2 />} rounded aria-label="Share resource" />
-            <IconButton icon={<FiTrash2 />} variant="ghost" aria-label="Delete resource" />
+          <CardContent className="flex flex-col gap-5 py-4">
+            <div className="flex flex-col gap-2">
+              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Sizes (sm, md, lg)</span>
+              <div className="flex flex-wrap items-center gap-3">
+                <IconButton icon={<FiPlus />} size="sm" variant="filled" aria-label="Add item sm" />
+                <IconButton icon={<FiPlus />} size="md" variant="filled" aria-label="Add item md" />
+                <IconButton icon={<FiPlus />} size="lg" variant="filled" aria-label="Add item lg" />
+              </div>
+            </div>
+            <div className="flex flex-col gap-2">
+              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Variants & Shapes</span>
+              <div className="flex flex-wrap items-center gap-4">
+                <IconButton icon={<FiPlus />} variant="filled" aria-label="Add item" />
+                <IconButton icon={<FiDownload />} variant="filled" rounded aria-label="Download file" />
+                <IconButton icon={<FiEdit2 />} variant="soft" aria-label="Edit details" />
+                <IconButton icon={<FiShare2 />} rounded aria-label="Share resource" />
+                <IconButton icon={<FiTrash2 />} variant="ghost" aria-label="Delete resource" />
+              </div>
+            </div>
           </CardContent>
         </Card>
 
@@ -328,6 +346,57 @@ export const AllComponentsExample = () => {
                 <ButtonGroupItem className="justify-start" selected>Middle Action</ButtonGroupItem>
                 <ButtonGroupItem className="justify-start">Bottom Action</ButtonGroupItem>
               </ButtonGroup>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* CONTROLS HARMONY */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Controls Harmony</CardTitle>
+            <CardDescription>Mathematical height, radius, and tactile alignment across Input, Select, Button, and IconButton.</CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-6">
+            <div className="flex flex-col gap-2">
+              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Small Controls (32px / sm)</span>
+              <div className="flex flex-wrap items-center gap-3">
+                <div className="w-52">
+                  <Input size="sm" placeholder="Search..." leftIcon={<FiSearch />} />
+                </div>
+                <div className="w-44">
+                  <Select size="sm" options={options} value={selected} onChange={setSelected} />
+                </div>
+                <Button size="sm" variant="filled">Action</Button>
+                <IconButton size="sm" icon={<FiPlus />} aria-label="Add" />
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Medium Controls (38px / md - Default)</span>
+              <div className="flex flex-wrap items-center gap-3">
+                <div className="w-56">
+                  <Input size="md" placeholder="Search docs..." leftIcon={<FiSearch />} />
+                </div>
+                <div className="w-48">
+                  <Select size="md" options={options} value={selected} onChange={setSelected} />
+                </div>
+                <Button size="md" variant="filled">Action</Button>
+                <IconButton size="md" icon={<FiPlus />} aria-label="Add" />
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Large Controls (44px / lg)</span>
+              <div className="flex flex-wrap items-center gap-3">
+                <div className="w-64">
+                  <Input size="lg" placeholder="Search workspace..." leftIcon={<FiSearch />} />
+                </div>
+                <div className="w-52">
+                  <Select size="lg" options={options} value={selected} onChange={setSelected} />
+                </div>
+                <Button size="lg" variant="filled">Action</Button>
+                <IconButton size="lg" icon={<FiPlus />} aria-label="Add" />
+              </div>
             </div>
           </CardContent>
         </Card>
@@ -773,6 +842,7 @@ export const AllComponentsExample = () => {
             <Chip label="Info" color="info" />
             <Chip label="Filled" variant="filled" />
             <Chip label="Outlined" variant="outlined" />
+            <Chip label="Soft" variant="soft" color="primary" />
             <Chip label="Tonal" variant="tonal" />
             <Chip label="Selected" variant="filled" selected />
             <Chip label="With Icon" icon={<FiInfo />} />
@@ -1036,34 +1106,57 @@ export const AllComponentsExample = () => {
         <Card>
           <CardHeader>
             <CardTitle>Tabs</CardTitle>
-            <CardDescription>Segmented views for organizing high-density panels in a single block.</CardDescription>
+            <CardDescription>Segmented views for organizing high-density panels with line and modern pills variants.</CardDescription>
           </CardHeader>
-          <CardContent>
-            <Tabs defaultValue="account">
-              <TabsList>
-                <TabsTrigger value="account">Account</TabsTrigger>
-                <TabsTrigger value="security">Security</TabsTrigger>
-                <TabsTrigger value="settings">Settings</TabsTrigger>
-              </TabsList>
-              <TabsContent value="account">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                  <Input label="Display Name" defaultValue="Alex Rivera" />
-                  <Input label="Email Address" defaultValue="alex@company.com" />
-                </div>
-              </TabsContent>
-              <TabsContent value="security">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                  <Input label="Current Password" type="password" placeholder="••••••••" />
-                  <Input label="New Password" type="password" placeholder="••••••••" />
-                </div>
-              </TabsContent>
-              <TabsContent value="settings">
-                <div className="flex flex-col gap-3 pt-2">
-                  <Switch label="Marketing Communications" defaultChecked />
-                  <Switch label="Incident Webhooks" defaultChecked />
-                </div>
-              </TabsContent>
-            </Tabs>
+          <CardContent className="flex flex-col gap-8">
+            <div className="flex flex-col gap-3">
+              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Pills / Segmented Variant</span>
+              <Tabs defaultValue="overview" variant="pills">
+                <TabsList>
+                  <TabsTrigger value="overview">Overview</TabsTrigger>
+                  <TabsTrigger value="analytics">Analytics</TabsTrigger>
+                  <TabsTrigger value="reports">Reports</TabsTrigger>
+                </TabsList>
+                <TabsContent value="overview">
+                  <div className="text-sm text-muted-foreground pt-1">Overview metrics and system health indicators.</div>
+                </TabsContent>
+                <TabsContent value="analytics">
+                  <div className="text-sm text-muted-foreground pt-1">Real-time user engagement and conversion funnels.</div>
+                </TabsContent>
+                <TabsContent value="reports">
+                  <div className="text-sm text-muted-foreground pt-1">Automated daily and weekly audit exports.</div>
+                </TabsContent>
+              </Tabs>
+            </div>
+
+            <div className="flex flex-col gap-3">
+              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Line / Underlined Variant (Default)</span>
+              <Tabs defaultValue="account" variant="line">
+                <TabsList>
+                  <TabsTrigger value="account">Account</TabsTrigger>
+                  <TabsTrigger value="security">Security</TabsTrigger>
+                  <TabsTrigger value="settings">Settings</TabsTrigger>
+                </TabsList>
+                <TabsContent value="account">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                    <Input label="Display Name" defaultValue="Alex Rivera" />
+                    <Input label="Email Address" defaultValue="alex@company.com" />
+                  </div>
+                </TabsContent>
+                <TabsContent value="security">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                    <Input label="Current Password" type="password" placeholder="••••••••" />
+                    <Input label="New Password" type="password" placeholder="••••••••" />
+                  </div>
+                </TabsContent>
+                <TabsContent value="settings">
+                  <div className="flex flex-col gap-3 pt-2">
+                    <Switch label="Marketing Communications" defaultChecked />
+                    <Switch label="Incident Webhooks" defaultChecked />
+                  </div>
+                </TabsContent>
+              </Tabs>
+            </div>
           </CardContent>
         </Card>
 
