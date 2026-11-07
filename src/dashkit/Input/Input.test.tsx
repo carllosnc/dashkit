@@ -64,6 +64,15 @@ describe('Input', () => {
     expect(screen.getByText('Start')).toBeInTheDocument();
     expect(screen.getByText('End')).toBeInTheDocument();
   });
+
+  it('applies size modifiers correctly', () => {
+    const { container, rerender } = render(<Input size="sm" />);
+    expect(container.firstChild).toHaveClass('input--sm');
+
+    rerender(<Input size="lg" />);
+    expect(container.firstChild).toHaveClass('input--lg');
+
+    rerender(<Input />);
+    expect(container.firstChild).toHaveClass('input--md');
+  });
 });
-
-

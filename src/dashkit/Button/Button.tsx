@@ -49,6 +49,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) {
     const isIconOnly = !children && (!!leftIcon || !!rightIcon);
+    const spinnerSize = size === 'sm' ? 14 : size === 'lg' ? 18 : 16;
 
     const classes = cn(
       'button',
@@ -77,7 +78,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         className: twMerge(classes, childProps.className),
         children: (
           <>
-            {loading && <Spinner size={16} color="currentColor" thickness={3} />}
+            {loading && <Spinner size={spinnerSize} color="currentColor" thickness={3} />}
             {!loading && leftIcon && <span className="inline-flex shrink-0">{leftIcon}</span>}
             {childProps.children}
             {!loading && rightIcon && <span className="inline-flex shrink-0">{rightIcon}</span>}
@@ -93,7 +94,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         className={classes}
         {...props}
       >
-        {loading && <Spinner size={16} color="currentColor" thickness={3} />}
+        {loading && <Spinner size={spinnerSize} color="currentColor" thickness={3} />}
         {!loading && leftIcon && <span className="inline-flex shrink-0">{leftIcon}</span>}
         {children}
         {!loading && rightIcon && <span className="inline-flex shrink-0">{rightIcon}</span>}

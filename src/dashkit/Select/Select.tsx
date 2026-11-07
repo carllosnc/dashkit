@@ -19,6 +19,8 @@ export interface SelectProps {
   onChange?: (value: string) => void;
   className?: string;
   disabled?: boolean;
+  size?: 'sm' | 'md' | 'lg';
+  error?: string;
 }
 
 export function Select({
@@ -29,7 +31,9 @@ export function Select({
   value,
   onChange,
   className,
-  disabled
+  disabled,
+  size = 'md',
+  error,
 }: SelectProps) {
   const {
     isOpen,
@@ -49,7 +53,7 @@ export function Select({
   const listId = useId();
 
   return (
-    <div className="select" ref={containerRef}>
+    <div className={cn('select', `select--${size}`)} ref={containerRef}>
       {label && (
         <label id={labelId} className="select__label">
           {label}
@@ -66,7 +70,14 @@ export function Select({
           aria-expanded={isOpen}
           aria-controls={isOpen ? listId : undefined}
           aria-labelledby={label ? `${labelId} ${valueId}` : undefined}
-          className={cn('select__trigger', className)}
+          aria-invalid={error ? true : undefined}
+          className={cn(
+            'select__trigger',
+            `select__trigger--${size}`,
+            isOpen && 'select__trigger--open',
+            error && 'select__trigger--error',
+            className
+          )}
         >
           <span
             id={valueId}
@@ -133,9 +144,14 @@ export function Select({
           document.body
         )}
       </div>
-      {description && (
-        <span className="select__description">
-          {description}
+      {(error || description) && (
+        <span
+          className={cn(
+            'select__description',
+            error ? 'select__description--error' : 'select__description--default'
+          )}
+        >
+          {error || description}
         </span>
       )}
     </div>

@@ -14,9 +14,22 @@
   @apply rounded-full;
 }
 
+/* Sizes */
+.icon-button--sm {
+  @apply size-7 text-xs;
+}
+
+.icon-button--md {
+  @apply size-9 text-sm;
+}
+
+.icon-button--lg {
+  @apply size-11 text-base;
+}
+
 /* Variants */
 .icon-button--filled {
-  @apply ds-primary-gradient text-primary-foreground border-transparent;
+  @apply ds-primary-gradient text-primary-foreground border border-transparent;
 }
 
 .icon-button--filled:hover {
@@ -24,14 +37,14 @@
 }
 
 .icon-button--outlined {
-  @apply bg-transparent text-foreground border border-ds-200;
+  @apply bg-transparent text-foreground border border-ds-300;
 
   &:hover {
-    @apply bg-ds-100/50 brightness-95;
+    @apply bg-ds-50 brightness-95;
   }
 
   @variant dark {
-    @apply border-ds-800;
+    @apply border-ds-700;
 
     &:hover {
       @apply bg-ds-800/50 brightness-110;
@@ -40,7 +53,7 @@
 }
 
 .icon-button--soft {
-  @apply bg-secondary text-secondary-foreground border-transparent;
+  @apply bg-secondary text-secondary-foreground border border-transparent;
 
   &:hover {
     @apply brightness-85;
@@ -54,7 +67,7 @@
 }
 
 .icon-button--ghost {
-  @apply bg-transparent text-muted-foreground border-transparent;
+  @apply bg-transparent text-muted-foreground border border-transparent;
 
   &:hover {
     @apply bg-accent text-accent-foreground brightness-95;

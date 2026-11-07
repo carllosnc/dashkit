@@ -43,6 +43,20 @@ describe('IconButton', () => {
     expect(button).toHaveClass('icon-button--outlined');
   });
 
+  it('applies size modifiers correctly', () => {
+    const { rerender } = render(<IconButton icon={<FiPlus />} size="sm" />);
+    let button = screen.getByRole('button');
+    expect(button).toHaveClass('icon-button--sm');
+
+    rerender(<IconButton icon={<FiPlus />} size="lg" />);
+    button = screen.getByRole('button');
+    expect(button).toHaveClass('icon-button--lg');
+
+    rerender(<IconButton icon={<FiPlus />} />);
+    button = screen.getByRole('button');
+    expect(button).toHaveClass('icon-button--md');
+  });
+
   it('is disabled when disabled prop is true', () => {
     render(<IconButton icon={<FiPlus />} disabled />);
     expect(screen.getByRole('button')).toBeDisabled();

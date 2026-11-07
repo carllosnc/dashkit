@@ -1,7 +1,7 @@
 import { forwardRef, useId, type InputHTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../utils/cn';
 
-export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'prefix'> {
+export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'prefix' | 'size'> {
   label?: string;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
@@ -11,12 +11,31 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
   helperText?: string;
   mask?: RegExp;
   formatter?: (value: string) => string;
+  size?: 'sm' | 'md' | 'lg';
 }
 
 import './input.css';
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  function Input({ label, leftIcon, rightIcon, prefix, suffix, error, helperText, mask, formatter, className, id, onChange, ...props }, ref) {
+  function Input(
+    {
+      label,
+      leftIcon,
+      rightIcon,
+      prefix,
+      suffix,
+      error,
+      helperText,
+      mask,
+      formatter,
+      size = 'md',
+      className,
+      id,
+      onChange,
+      ...props
+    },
+    ref
+  ) {
     const inputId = id || (label ? `input-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined);
     const messageId = useId();
     const hasMessage = !!(error || helperText);
@@ -34,7 +53,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     };
 
     return (
-      <div className="input">
+      <div className={cn('input', `input--${size}`)}>
         {label && (
           <label
             htmlFor={inputId}
@@ -46,6 +65,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         <div
           className={cn(
             'input__wrapper',
+            `input__wrapper--${size}`,
             error && 'input__wrapper--error',
             props.disabled && 'input__wrapper--disabled',
             className
@@ -76,6 +96,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               }
               className={cn(
                 'input__field',
+                `input__field--${size}`,
                 leftIcon && "input__field--with-left-icon",
                 rightIcon && "input__field--with-right-icon"
               )}

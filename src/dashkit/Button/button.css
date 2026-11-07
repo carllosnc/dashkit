@@ -103,11 +103,11 @@
 }
 
 .button--with-text {
-  @apply gap-2 px-4 py-[5px];
+  @apply gap-2 px-4;
 }
 
 .button--with-text-sm {
-  @apply px-2;
+  @apply px-2.5;
 }
 
 .button--with-text-lg {
@@ -115,5 +115,5 @@
 }
 
 .button--icon-only {
-  @apply p-[8px] aspect-square;
+  @apply aspect-square;
 }
