@@ -406,8 +406,7 @@ export const DevOpsDashboardExample = () => {
             <ThemeToggle />
             <Button
               variant="soft"
-              size="sm"
-              leftIcon={<FiExternalLink size={14} />}
+              leftIcon={<FiExternalLink size={16} />}
               onClick={() => window.open('https://dashkit.netlify.app', '_blank')}
             >
               Visit App
@@ -415,8 +414,7 @@ export const DevOpsDashboardExample = () => {
 
             <Button
               variant="filled"
-              size="sm"
-              leftIcon={<FiPlus size={14} />}
+              leftIcon={<FiPlus size={16} />}
               onClick={handleTriggerDeploy}
             >
               New Deployment
