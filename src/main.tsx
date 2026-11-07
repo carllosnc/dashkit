@@ -14,6 +14,7 @@ import {
   AccordionDocs,
   AllComponentsExample,
   AnalyticsDashboardExample,
+  DevOpsDashboardExample,
   AnimateNumberDocs,
   AreaChartDocs,
   AvatarDocs,
@@ -171,6 +172,7 @@ createRoot(document.getElementById('root')!).render(
                     <Route path="complex-form" element={<ComplexFormExample />} />
                     <Route path="payment" element={<PaymentPageExample />} />
                     <Route path="analytics" element={<AnalyticsDashboardExample />} />
+                    <Route path="devops" element={<DevOpsDashboardExample />} />
                     <Route path="all-components" element={<AllComponentsExample />} />
                   </Route>
                   <Route path="*" element={<NotFound />} />
