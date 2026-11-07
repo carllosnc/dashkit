@@ -68,11 +68,11 @@ export function StatsCard({
 
   return (
     <Card
-      className={cn('stats-card', 'pb-0', className)}
+      className={cn('stats-card', !chart && 'pb-4', className)}
       animate={animate}
     >
-      <div className="flex items-start justify-between">
-        <div className="space-y-1 overflow-hidden">
+      <div className="flex items-start justify-between gap-3">
+        <div className="space-y-1.5 overflow-hidden flex-1 min-w-0">
           <p className="stats-card__title">{title}</p>
           <div className="stats-card__value-container">
             <span className="stats-card__value">
@@ -83,22 +83,22 @@ export function StatsCard({
                 precision={precision}
               />
             </span>
-            {typeof trend === 'number' && (
-              <div className="stats-card__trend">
-                <span className={cn('stats-card__trend-badge', `stats-card--${status}`)}>
-                  <TrendIcon className="size-3.5" />
-                  {trend > 0 ? '+' : ''}{trend}%
-                </span>
-                {trendLabel && (
-                  <span className="stats-card__trend-label">
-                    {trendLabel}
-                  </span>
-                )}
-              </div>
-            )}
           </div>
+          {typeof trend === 'number' && (
+            <div className="stats-card__trend">
+              <span className={cn('stats-card__trend-badge', `stats-card--${status}`)}>
+                <TrendIcon className="size-3.5" />
+                {trend > 0 ? '+' : ''}{trend}%
+              </span>
+              {trendLabel && (
+                <span className="stats-card__trend-label">
+                  {trendLabel}
+                </span>
+              )}
+            </div>
+          )}
         </div>
-        {icon && icon}
+        {icon && <div className="text-muted-foreground shrink-0">{icon}</div>}
       </div>
 
       {description && (
@@ -108,8 +108,8 @@ export function StatsCard({
         </div>
       )}
 
-      <div className="stats-card__chart-container">
-        {chart && (
+      {chart && (
+        <div className="stats-card__chart-container">
           <svg
             viewBox="0 0 100 40"
             className={cn('stats-card__chart-svg', !chart.color && `stats-card--${status}`)}
@@ -141,8 +141,8 @@ export function StatsCard({
               transition={{ duration: 1.5, ease: "easeInOut" }}
             />
           </svg>
-        )}
-      </div>
+        </div>
+      )}
     </Card>
   );
 }
