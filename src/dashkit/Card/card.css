@@ -2,7 +2,14 @@
 
 .card {
   @apply relative;
-  @apply dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.03)];
+}
+
+.card--shadowed {
+  @apply shadow-sm;
+
+  @variant dark {
+    @apply shadow-[inset_0_1px_0_0_rgba(255,255,255,0.03)];
+  }
 }
 
 .card--no-border {
@@ -18,7 +25,7 @@
 }
 
 .card__title {
-  @apply text-base font-medium text-foreground tracking-tight leading-tight;
+  @apply text-base font-bold text-foreground tracking-tight leading-tight;
 }
 
 .card__description {
