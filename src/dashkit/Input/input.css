@@ -32,8 +32,28 @@
   @apply pl-4 text-sm text-ds-500 font-medium select-none whitespace-nowrap;
 }
 
+.input__prefix--sm {
+  @apply pl-2.5 text-xs;
+}
+
+.input__prefix--lg {
+  @apply pl-4 text-base;
+}
+
 .input__inner {
   @apply relative flex-1 flex items-center h-9;
+}
+
+.input__inner--sm {
+  @apply h-7;
+}
+
+.input__inner--md {
+  @apply h-9;
+}
+
+.input__inner--lg {
+  @apply h-11;
 }
 
 .input__icon {
@@ -52,10 +72,32 @@
   @apply right-4;
 }
 
-.input__field {
-  @apply w-full h-full px-4 text-sm bg-transparent border-none outline-none text-input-fg placeholder:text-muted-foreground disabled:cursor-not-allowed;
+.input__icon--sm-left {
+  @apply left-2.5;
 }
 
+.input__icon--sm-right {
+  @apply right-2.5;
+}
+
+.input__field {
+  @apply w-full h-full bg-transparent border-none outline-none text-input-fg placeholder:text-muted-foreground disabled:cursor-not-allowed;
+}
+
+.input__field,
+.input__field--md {
+  @apply text-sm px-4;
+}
+
+.input__field--sm {
+  @apply text-xs px-2.5;
+}
+
+.input__field--lg {
+  @apply text-base px-4;
+}
+
+/* Icon offsets on input field - placed after sizing so pl/pr overrides base px */
 .input__field--with-left-icon {
   @apply pl-11;
 }
@@ -64,8 +106,32 @@
   @apply pr-11;
 }
 
+.input__field--sm.input__field--with-left-icon {
+  @apply pl-8;
+}
+
+.input__field--sm.input__field--with-right-icon {
+  @apply pr-8;
+}
+
+.input__field--lg.input__field--with-left-icon {
+  @apply pl-12;
+}
+
+.input__field--lg.input__field--with-right-icon {
+  @apply pr-12;
+}
+
 .input__suffix {
   @apply pr-4 text-sm text-ds-500 font-medium select-none whitespace-nowrap;
+}
+
+.input__suffix--sm {
+  @apply pr-2.5 text-xs;
+}
+
+.input__suffix--lg {
+  @apply pr-4 text-base;
 }
 
 .input__message {
@@ -86,77 +152,4 @@
   @variant dark {
     @apply text-ds-danger-400;
   }
-}
-
-/* Sizes */
-.input--sm .input__inner {
-  @apply h-7;
-}
-
-.input--sm .input__field {
-  @apply text-xs px-2.5;
-}
-
-.input--sm .input__icon--left {
-  @apply left-2.5;
-}
-
-.input--sm .input__icon--right {
-  @apply right-2.5;
-}
-
-.input--sm .input__field--with-left-icon {
-  @apply pl-8;
-}
-
-.input--sm .input__field--with-right-icon {
-  @apply pr-8;
-}
-
-.input--sm .input__prefix {
-  @apply pl-2.5 text-xs;
-}
-
-.input--sm .input__suffix {
-  @apply pr-2.5 text-xs;
-}
-
-.input--md .input__inner {
-  @apply h-9;
-}
-
-.input--md .input__field {
-  @apply text-sm px-4;
-}
-
-.input--lg .input__inner {
-  @apply h-11;
-}
-
-.input--lg .input__field {
-  @apply text-base px-4;
-}
-
-.input--lg .input__icon--left {
-  @apply left-4;
-}
-
-.input--lg .input__icon--right {
-  @apply right-4;
-}
-
-.input--lg .input__field--with-left-icon {
-  @apply pl-12;
-}
-
-.input--lg .input__field--with-right-icon {
-  @apply pr-12;
-}
-
-.input--lg .input__prefix {
-  @apply pl-4 text-base;
-}
-
-.input--lg .input__suffix {
-  @apply pr-4 text-base;
 }

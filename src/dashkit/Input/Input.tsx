@@ -72,14 +72,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           )}
         >
           {prefix && (
-            <div className="input__prefix">
+            <div className={cn('input__prefix', size === 'sm' && 'input__prefix--sm', size === 'lg' && 'input__prefix--lg')}>
               {prefix}
             </div>
           )}
 
-          <div className="input__inner">
+          <div className={cn('input__inner', `input__inner--${size}`)}>
             {leftIcon && (
-              <div className="input__icon input__icon--left">
+              <div className={cn('input__icon', 'input__icon--left', size === 'sm' && 'input__icon--sm-left')}>
                 {leftIcon}
               </div>
             )}
@@ -102,14 +102,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               )}
             />
             {rightIcon && (
-              <div className="input__icon input__icon--right">
+              <div className={cn('input__icon', 'input__icon--right', size === 'sm' && 'input__icon--sm-right')}>
                 {rightIcon}
               </div>
             )}
           </div>
 
           {suffix && (
-            <div className="input__suffix">
+            <div className={cn('input__suffix', size === 'sm' && 'input__suffix--sm', size === 'lg' && 'input__suffix--lg')}>
               {suffix}
             </div>
           )}

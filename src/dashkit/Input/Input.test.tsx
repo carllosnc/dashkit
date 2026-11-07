@@ -12,11 +12,13 @@ describe('Input', () => {
   it('renders left icon when passed', () => {
     render(<Input leftIcon={<FiSearch data-testid="left-icon" />} />);
     expect(screen.getByTestId('left-icon')).toBeInTheDocument();
+    expect(screen.getByRole('textbox')).toHaveClass('input__field--with-left-icon');
   });
 
   it('renders right icon when passed', () => {
     render(<Input rightIcon={<FiLock data-testid="right-icon" />} />);
     expect(screen.getByTestId('right-icon')).toBeInTheDocument();
+    expect(screen.getByRole('textbox')).toHaveClass('input__field--with-right-icon');
   });
 
   it('shows error message and applies error styles', () => {

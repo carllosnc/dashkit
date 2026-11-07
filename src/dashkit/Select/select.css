@@ -117,14 +117,18 @@
 }
 
 /* Sizes */
-.select--sm .select__trigger {
-  @apply h-7 text-xs px-2.5;
-}
-
+.select__trigger,
+.select__trigger--md,
 .select--md .select__trigger {
   @apply h-9 text-sm px-4;
 }
 
+.select__trigger--sm,
+.select--sm .select__trigger {
+  @apply h-7 text-xs px-2.5;
+}
+
+.select__trigger--lg,
 .select--lg .select__trigger {
   @apply h-11 text-base px-4;
 }
