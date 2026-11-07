@@ -1,11 +1,19 @@
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { FiArrowRight, FiArrowLeft, FiLogIn, FiSettings, FiLayers, FiCreditCard, FiTrendingUp } from 'react-icons/fi';
+import { FiArrowRight, FiArrowLeft, FiLogIn, FiSettings, FiLayers, FiCreditCard, FiTrendingUp, FiServer } from 'react-icons/fi';
 import { Divider } from '../../dashkit/Divider/Divider';
 import { Header } from '../../partials/Header';
 import { Footer } from '../../partials/Footer';
 
 const examples = [
+  {
+    title: 'Cloud & DevOps Console',
+    description: 'A cloud infrastructure dashboard featuring a collapsible Sidebar, real-time deployments table, edge request analytics, and cluster metrics.',
+    href: '/examples/devops',
+    icon: <FiServer size={20} />,
+    color: 'text-ds-500',
+    bg: 'bg-ds-50 dark:bg-ds-900',
+  },
   {
     title: 'Analytics Dashboard',
     description: 'A comprehensive SaaS analytics dashboard with KPI stats cards, revenue charts, plan distribution, and transaction records.',
