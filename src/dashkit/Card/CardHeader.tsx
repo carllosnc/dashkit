@@ -38,11 +38,14 @@ export function CardHeader({
   );
 }
 
-export type CardTitleProps = React.ComponentPropsWithRef<'h3'>;
+export type CardTitleProps = React.HTMLAttributes<HTMLHeadingElement> & {
+  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  ref?: React.Ref<HTMLHeadingElement>;
+};
 
-export function CardTitle({ className, ref, ...props }: CardTitleProps) {
+export function CardTitle({ className, as: Component = 'h3', ref, ...props }: CardTitleProps) {
   return (
-    <h3
+    <Component
       ref={ref}
       className={cn('card__title', className)}
       {...props}
