@@ -926,7 +926,7 @@ export const DevOpsDashboardExample = () => {
                 action={
                   <Badge
                     content="Protected"
-                    color="success"
+                    color="primary"
                     variant="soft"
                     className="normal-case tracking-normal font-medium"
                   />
@@ -946,7 +946,7 @@ export const DevOpsDashboardExample = () => {
                 ].map((sec) => (
                   <div key={sec.label} className="flex items-center justify-between gap-3 text-sm py-0.5">
                     <div className="flex items-center gap-2.5 min-w-0">
-                      <FiCheckCircle size={15} className="text-emerald-500 shrink-0" />
+                      <FiCheckCircle size={15} className="text-primary shrink-0" />
                       <div className="flex flex-col min-w-0">
                         <span className="font-medium text-foreground truncate">{sec.label}</span>
                         <span className="text-xs text-muted-foreground truncate">{sec.detail}</span>
