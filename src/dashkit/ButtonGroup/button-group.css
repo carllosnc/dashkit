@@ -50,9 +50,9 @@
 }
 
 .button-group__item--selected {
-  @apply bg-ds-200 text-foreground font-semibold z-10 border-ds-400 shadow-xs;
+  @apply bg-ds-200 text-foreground font-semibold z-10 shadow-xs;
 
   @variant dark {
-    @apply bg-ds-700 text-foreground border-ds-600;
+    @apply bg-ds-700 text-foreground;
   }
 }
