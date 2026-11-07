@@ -44,7 +44,7 @@
 }
 
 .sidebar__section-title {
-  @apply text-[10px] font-bold text-muted-foreground uppercase tracking-[0.2em] truncate px-4;
+  @apply text-xs font-semibold text-muted-foreground uppercase tracking-wider truncate px-4;
 }
 
 .sidebar__section-button--collapsible:hover .sidebar__section-title {
