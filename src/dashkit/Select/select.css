@@ -52,7 +52,7 @@
 }
 
 .select__popover {
-  @apply p-1 bg-popover text-popover-fg border border-popover-border ds-rounded shadow-lg overflow-hidden;
+  @apply p-1 bg-popover/95 backdrop-blur-md text-popover-fg border border-popover-border/80 ds-rounded-lg shadow-lg overflow-hidden;
 }
 
 .select__popover--side-top {

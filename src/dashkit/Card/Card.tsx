@@ -29,8 +29,8 @@ export function Card({
       transition={{ duration: 0.3, ease: 'easeOut' }}
       className={cn(
         'card',
-        'bg-card text-card-foreground p-6 ds-rounded-md gap-6 flex flex-col font-sans',
-        !bordered && 'card--no-border border-none',
+        'bg-card text-card-foreground p-6 ds-rounded-lg gap-6 flex flex-col font-sans border border-border/80',
+        !bordered && 'card--no-border !border-none',
         shadowed ? 'card--shadowed shadow-sm' : 'card--no-shadow shadow-none',
         className
       )}
@@ -39,4 +39,3 @@ export function Card({
     </motion.div>
   );
 }
-

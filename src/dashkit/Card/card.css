@@ -8,7 +8,7 @@
   @apply shadow-sm;
 
   @variant dark {
-    @apply shadow-[inset_0_1px_0_0_rgba(255,255,255,0.03)];
+    @apply shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)];
   }
 }
 

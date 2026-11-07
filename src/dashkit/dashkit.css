@@ -128,11 +128,11 @@
   --color-chart-4: var(--ds-chart-4);
   --color-chart-5: var(--ds-chart-5);
 
-  --radius-base: 0.5rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1rem;
-
-  --radius: var(--radius-base);
+  --radius: 0.75rem;
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 3px);
+  --radius-sm: calc(var(--radius) - 5px);
+  --radius-base: var(--radius-md);
 }
 
 /* ────────────────────────────────────────────────
@@ -261,6 +261,13 @@
       scroll-behavior: auto !important;
     }
 
+    .button:active,
+    .icon-button:active,
+    .chip:active,
+    .button-group__item:active {
+      transform: none !important;
+    }
+
     /* The loading spinner is essential feedback, so it keeps animating. */
     .animate-spinner {
       animation-duration: 1.5s !important;
@@ -320,9 +327,12 @@
 /* ────────────────────────────────────────────────
    5. Components utilities
 ──────────────────────────────────────────────── */
-@utility ds-rounded { @apply rounded-[var(--radius)]; }
+@utility ds-rounded { @apply rounded-[var(--radius-md)]; }
+@utility ds-rounded-sm { @apply rounded-[var(--radius-sm)]; }
 @utility ds-rounded-md { @apply rounded-[var(--radius-md)]; }
 @utility ds-rounded-lg { @apply rounded-[var(--radius-lg)]; }
+@utility ds-surface-glass { @apply bg-popover/95 backdrop-blur-md; }
+@utility ds-active-press { @apply active:scale-[0.97] transition-transform duration-150 ease-out; }
 
 
 /* ────────────────────────────────────────────────

@@ -4,6 +4,10 @@
   @apply ds-rounded;
 }
 
+.icon-button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
 .icon-button:disabled,
 .icon-button--disabled {
   @apply opacity-50 cursor-not-allowed pointer-events-none;

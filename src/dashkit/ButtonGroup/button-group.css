@@ -43,6 +43,10 @@
   @apply focus:outline-none focus:z-10;
   @apply focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring;
 
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+
   @variant dark {
     @apply bg-ds-900 border-ds-700;
     @apply hover:bg-ds-800;

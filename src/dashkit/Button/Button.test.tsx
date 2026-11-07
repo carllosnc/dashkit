@@ -30,6 +30,18 @@ describe('Button', () => {
     expect(button).toHaveClass('button--outlined-primary');
   });
 
+  it('applies soft variant when passed', () => {
+    render(<Button variant="soft">Click Me</Button>);
+    const button = screen.getByRole('button', { name: /click me/i });
+    expect(button).toHaveClass('button--soft-primary');
+  });
+
+  it('applies ghost variant when passed', () => {
+    render(<Button variant="ghost">Click Me</Button>);
+    const button = screen.getByRole('button', { name: /click me/i });
+    expect(button).toHaveClass('button--ghost-primary');
+  });
+
   it('passes generic attributes to button element', () => {
     render(<Button disabled>Click Me</Button>);
     const button = screen.getByRole('button');
@@ -43,5 +55,3 @@ describe('Button', () => {
     expect(container.querySelector('svg.drop-shadow-sm')).toBeInTheDocument();
   });
 });
-
-

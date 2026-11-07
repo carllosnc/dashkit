@@ -5,6 +5,10 @@
   @apply focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-transparent;
 }
 
+.button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
 .button:disabled {
   @apply opacity-60 cursor-not-allowed;
 }
@@ -81,6 +85,28 @@
 
   @variant dark {
     @apply bg-ds-danger-500/20 brightness-125;
+  }
+}
+
+
+/* Variants: Ghost */
+.button--ghost-primary {
+  @apply bg-transparent text-foreground border border-transparent;
+}
+
+.button--ghost-primary:hover {
+  @apply bg-accent text-accent-foreground;
+}
+
+.button--ghost-danger {
+  @apply bg-transparent text-ds-danger-600 border border-transparent;
+}
+
+.button--ghost-danger:hover {
+  @apply bg-ds-danger-600/10 text-ds-danger-600;
+
+  @variant dark {
+    @apply bg-ds-danger-500/20 text-ds-danger-400;
   }
 }
 

@@ -1,11 +1,15 @@
 @reference "../dashkit.css";
 
 .chip {
-  @apply inline-flex items-center gap-1.5 h-8 px-3 ds-rounded text-[13px] font-medium transition-all duration-200 border select-none;
+  @apply inline-flex items-center gap-1.5 h-8 px-3 ds-rounded-sm text-xs font-medium transition-all duration-200 border select-none;
 }
 
 .chip--interactive {
   @apply cursor-pointer;
+}
+
+.chip--interactive:active:not(:disabled) {
+  transform: scale(0.97);
 }
 
 .chip--static {

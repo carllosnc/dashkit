@@ -17,7 +17,7 @@ function cn(...inputs: ClassValue[]) {
 }
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'filled' | 'outlined' | 'soft';
+  variant?: 'filled' | 'outlined' | 'soft' | 'ghost';
   color?: 'primary' | 'danger';
   size?: 'sm' | 'md' | 'lg';
   leftIcon?: ReactNode;
