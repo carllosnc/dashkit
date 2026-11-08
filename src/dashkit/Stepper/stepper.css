@@ -21,7 +21,7 @@
 }
 
 .step--vertical {
-  @apply flex-col items-start pb-8;
+  @apply flex-col items-start pb-6 w-full;
 }
 
 .step--clickable {
@@ -65,7 +65,7 @@
 }
 
 .step__container--vertical {
-  @apply items-start gap-4;
+  @apply items-start gap-3.5 w-full;
 }
 
 .step__icon {
@@ -94,7 +94,7 @@
 }
 
 .step__content--vertical {
-  @apply mt-0.5;
+  @apply mt-0.5 flex-1 w-full min-w-0;
 }
 
 .step__title {
@@ -126,5 +126,30 @@
 }
 
 .step__description--vertical {
-  @apply max-w-[200px];
+  @apply w-full max-w-none;
+}
+
+/* Base Color Styles */
+.stepper--base .step__connector-line--fill {
+  @apply bg-foreground/30;
+
+  @variant dark {
+    @apply bg-foreground/25;
+  }
+}
+
+.stepper--base .step__icon--active {
+  @apply border-foreground/60 bg-muted text-foreground ring-2 ring-foreground/10;
+
+  @variant dark {
+    @apply border-foreground/50 bg-ds-800 text-foreground ring-2 ring-foreground/10;
+  }
+}
+
+.stepper--base .step__icon--completed {
+  @apply border-border/80 bg-muted text-foreground;
+
+  @variant dark {
+    @apply border-border bg-ds-800/80 text-foreground;
+  }
 }
