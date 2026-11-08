@@ -162,6 +162,18 @@ bun run dev
 - `bun run check:all`: Execute test, lint, and build sequentially.
 - `bun run build:cli`: Compile the CLI bundle using tsup.
 
+## Roadmap
+
+Dashkit is actively expanding its capabilities with an emphasis on developer ergonomics and AI-first readiness:
+
+- Structured Model Documentation: Automated `llms.txt` and `llms-full.txt` for coding agents and LLM context windows.
+- Machine-Readable Registry & MCP: Public `registry.json` endpoint and official Model Context Protocol server.
+- Repository Agent Rules: Synchronized skill files and comprehensive guidelines for autonomous coding assistants.
+- Code Metadata & Typing: JSDoc annotations with `@example` blocks and strict discriminated unions across all components.
+- Downstream AI Tooling: CLI command to scaffold AI rules (`.cursorrules`) into consuming applications.
+
+For detailed tracking and upcoming milestones, see [ROADMAP.md](ROADMAP.md).
+
 ## Contributing
 
 Pull requests are welcome. When contributing:
