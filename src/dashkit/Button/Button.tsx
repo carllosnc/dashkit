@@ -23,6 +23,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   loading?: boolean;
+  rounded?: boolean;
   /**
    * Render the button styles onto its single child element instead of a
    * <button> — use for links (<Link>, <a>) so interactive content is never
@@ -42,6 +43,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       leftIcon,
       rightIcon,
       loading,
+      rounded,
       disabled,
       asChild = false,
       ...props
@@ -55,6 +57,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       'button',
       `button--${variant}-${color}`,
       `button--${size}`,
+      rounded === false && '!rounded-md',
       {
         "button--loading": loading,
         "button--with-text": !isIconOnly,
