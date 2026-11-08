@@ -15,6 +15,7 @@ import {
   AllComponentsExample,
   AnalyticsDashboardExample,
   DevOpsDashboardExample,
+  AiGatewayDashboardExample,
   AnimateNumberDocs,
   AreaChartDocs,
   AvatarDocs,
@@ -173,6 +174,7 @@ createRoot(document.getElementById('root')!).render(
                     <Route path="payment" element={<PaymentPageExample />} />
                     <Route path="analytics" element={<AnalyticsDashboardExample />} />
                     <Route path="devops" element={<DevOpsDashboardExample />} />
+                    <Route path="ai-gateway" element={<AiGatewayDashboardExample />} />
                     <Route path="all-components" element={<AllComponentsExample />} />
                   </Route>
                   <Route path="*" element={<NotFound />} />
