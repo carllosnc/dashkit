@@ -1,7 +1,8 @@
 @reference "../dashkit.css";
 
 .table {
-  @apply w-full caption-top text-sm;
+  @apply w-full caption-top text-sm font-sans;
+  font-family: 'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .table__header {
