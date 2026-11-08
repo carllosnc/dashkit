@@ -43,6 +43,8 @@ describe('Sidebar', () => {
     );
     const button = screen.getByRole('button', { name: /active item/i });
     expect(button).toHaveClass('sidebar__item--active');
+    expect(button).toHaveAttribute('aria-current', 'page');
+    expect(screen.getByText('Active Item')).toHaveAttribute('title', 'Active Item');
   });
 
   it('triggers onClick when an item is clicked', () => {
@@ -56,6 +58,16 @@ describe('Sidebar', () => {
     );
     fireEvent.click(screen.getByText('Click me'));
     expect(handleClick).toHaveBeenCalledTimes(1);
+  });
+
+  it('sets aria-expanded on the collapse toggle button', () => {
+    render(
+      <Sidebar collapsible defaultOpen={true}>
+        Content
+      </Sidebar>
+    );
+    const toggleButton = screen.getByRole('button', { name: /collapse sidebar/i });
+    expect(toggleButton).toHaveAttribute('aria-expanded', 'true');
   });
 
   it('exposes a working setIsOpen via useSidebar (not a no-op)', () => {
