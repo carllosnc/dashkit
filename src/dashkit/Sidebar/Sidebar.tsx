@@ -17,10 +17,25 @@ export interface SidebarProps extends
   defaultOpen?: boolean;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
+  width?: number;
+  collapsedWidth?: number;
 }
 
 export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
-  ({ className, children, collapsible = true, defaultOpen = true, open: controlledOpen, onOpenChange, ...props }, ref) => {
+  (
+    {
+      className,
+      children,
+      collapsible = true,
+      defaultOpen = true,
+      open: controlledOpen,
+      onOpenChange,
+      width = 272,
+      collapsedWidth = 72,
+      ...props
+    },
+    ref
+  ) => {
     const { isOpen, setIsOpen, toggle } = useSidebarState({ defaultOpen, open: controlledOpen, onOpenChange });
 
     // Memoized so consumers (SidebarHeader, SidebarItem, ...) don't re-render
@@ -37,7 +52,7 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
           ref={ref as React.Ref<HTMLDivElement>}
           initial={false}
           animate={{
-            width: isOpen ? 256 : 80
+            width: isOpen ? width : collapsedWidth
           }}
           transition={{
             type: 'spring',
@@ -51,9 +66,10 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
           {children}
           {collapsible && (
             <IconButton
-              variant="filled"
+              variant="outlined"
               icon={isOpen ? <FiChevronsLeft /> : <FiMenu />}
               aria-label={isOpen ? 'Collapse sidebar' : 'Expand sidebar'}
+              aria-expanded={isOpen}
               onClick={toggle}
               rounded
               className={cn(
@@ -77,8 +93,8 @@ export function SidebarHeader({ children, className }: { children: React.ReactNo
     <motion.div
       initial={false}
       animate={{
-        paddingLeft: isOpen ? 24 : 0,
-        paddingRight: isOpen ? 24 : 0,
+        paddingLeft: isOpen ? 16 : 0,
+        paddingRight: isOpen ? 16 : 0,
         justifyContent: isOpen ? 'flex-start' : 'center'
       }}
       className={cn("sidebar__header", className)}
@@ -107,10 +123,10 @@ export function SidebarFooter({ children, className }: { children: React.ReactNo
     <motion.div
       initial={false}
       animate={{
-        paddingTop: 16,
+        paddingTop: 12,
         paddingLeft: 16,
         paddingRight: 16,
-        paddingBottom: isOpen ? 28 : 16,
+        paddingBottom: isOpen ? 16 : 12,
         alignItems: isOpen ? 'stretch' : 'center'
       }}
       className={cn("sidebar__footer", className)}
@@ -249,9 +265,10 @@ export function SidebarItem({ icon, active, children, badgeSlot, className, href
         animate={{
           opacity: isOpen ? 1 : 0,
           width: isOpen ? 'auto' : 0,
-          marginLeft: isOpen ? 12 : 0
+          marginLeft: isOpen ? 10 : 0
         }}
         transition={{ duration: 0.2 }}
+        title={typeof children === 'string' ? children : undefined}
         className={cn(
           "sidebar__item-text",
           isOpen ? "sidebar__item-text--open" : "sidebar__item-text--closed"
@@ -272,6 +289,7 @@ export function SidebarItem({ icon, active, children, badgeSlot, className, href
     <motion.a
       href={href}
       target={target}
+      aria-current={active ? 'page' : undefined}
       className={sharedClasses}
       {...props as HTMLMotionProps<'a'>}
     >
@@ -280,6 +298,7 @@ export function SidebarItem({ icon, active, children, badgeSlot, className, href
   ) : (
     <motion.button
       type="button"
+      aria-current={active ? 'page' : undefined}
       className={sharedClasses}
       {...props as HTMLMotionProps<'button'>}
     >
