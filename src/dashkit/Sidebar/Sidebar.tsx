@@ -66,7 +66,7 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
           {children}
           {collapsible && (
             <IconButton
-              variant="outlined"
+              variant="filled"
               icon={isOpen ? <FiChevronsLeft /> : <FiMenu />}
               aria-label={isOpen ? 'Collapse sidebar' : 'Expand sidebar'}
               aria-expanded={isOpen}
