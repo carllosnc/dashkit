@@ -7,9 +7,9 @@ This document outlines planned improvements, architectural milestones, and strat
 Initiatives to make Dashkit fully optimized for AI coding assistants (Cursor, Claude Code, GitHub Copilot, Antigravity, Windsurf, Aider) and generative UI workflows.
 
 ### Structured Model Documentation
-- [ ] Implement automated generation of `/public/llms.txt` and `/public/llms-full.txt` during build.
-- [ ] Include core CLI instructions, design token definitions, and component API summaries in `llms.txt`.
-- [ ] Consolidate full MDX component docs and usage examples into `llms-full.txt` for RAG and context-window consumption.
+- [x] Implement automated generation of `/public/llms.txt` and `/public/llms-full.txt` during build.
+- [x] Include core CLI instructions, design token definitions, and component API summaries in `llms.txt`.
+- [x] Consolidate full MDX component docs and usage examples into `llms-full.txt` for RAG and context-window consumption.
 
 ### Machine-Readable Registry and MCP
 - [ ] Export a public `registry.json` schema on build containing component metadata, dependencies, and file manifests.
