@@ -41,4 +41,14 @@ describe('Stepper', () => {
     // Should not throw
     expect(screen.getByText('S2')).toBeInTheDocument();
   });
+
+  it('supports color="base"', () => {
+    const { container } = render(
+      <Stepper activeStep={1} color="base">
+        <Step title="Step 1" />
+        <Step title="Step 2" />
+      </Stepper>
+    );
+    expect(container.firstChild).toHaveClass('stepper--base');
+  });
 });
