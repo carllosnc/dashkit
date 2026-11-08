@@ -4,7 +4,10 @@ import { cn } from '../utils/cn';
 import { FiCheck } from 'react-icons/fi';
 import './stepper.css';
 
+export type StepperColor = 'primary' | 'base';
+
 interface StepperContextType {
+  color: StepperColor;
   activeStep: number;
   orientation: 'horizontal' | 'vertical';
   onChange?: (step: number) => void;
@@ -15,6 +18,7 @@ const StepperContext = React.createContext<StepperContextType | undefined>(undef
 export interface StepperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
   activeStep: number;
   orientation?: 'horizontal' | 'vertical';
+  color?: StepperColor;
   onChange?: (step: number) => void;
   children: React.ReactNode;
 }
@@ -22,6 +26,7 @@ export interface StepperProps extends Omit<React.HTMLAttributes<HTMLDivElement>,
 export function Stepper({
   activeStep,
   orientation = 'horizontal',
+  color = 'primary',
   onChange,
   children,
   className,
@@ -30,11 +35,12 @@ export function Stepper({
   const steps = React.Children.toArray(children).filter(React.isValidElement);
 
   return (
-    <StepperContext.Provider value={{ activeStep, orientation, onChange }}>
+    <StepperContext.Provider value={{ activeStep, orientation, color, onChange }}>
       <div
         className={cn(
           'stepper',
           orientation === 'horizontal' ? 'stepper--horizontal' : 'stepper--vertical',
+          `stepper--${color}`,
           className
         )}
         {...props}
@@ -73,7 +79,7 @@ export function Step({
     throw new Error('Step must be used within a Stepper');
   }
 
-  const { activeStep, orientation, onChange } = context;
+  const { activeStep, orientation, color, onChange } = context;
 
   const isCompleted = index < activeStep;
   const isActive = index === activeStep;
@@ -127,7 +133,7 @@ export function Step({
         >
           {isCompleted ? (
             <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", stiffness: 300, damping: 20 }}>
-               <FiCheck size={14} className="text-primary-foreground stroke-[3]" />
+               <FiCheck size={14} className={cn(color === 'base' ? 'text-foreground' : 'text-primary-foreground', 'stroke-[3]')} />
             </motion.div>
           ) : icon ? (
             icon

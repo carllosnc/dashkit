@@ -25,7 +25,7 @@
 }
 
 .stats-card__trend-label {
-  @apply text-xs uppercase font-medium text-muted-foreground whitespace-nowrap tracking-wider;
+  @apply text-xs font-medium text-muted-foreground whitespace-nowrap;
 }
 
 .stats-card__description {

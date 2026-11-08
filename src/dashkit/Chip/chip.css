@@ -1,11 +1,15 @@
 @reference "../dashkit.css";
 
 .chip {
-  @apply inline-flex items-center gap-1.5 h-8 px-3 ds-rounded text-[13px] font-medium transition-all duration-200 border select-none;
+  @apply inline-flex items-center gap-1.5 h-8 px-3 rounded-full text-xs font-medium transition-all duration-200 border select-none;
 }
 
 .chip--interactive {
   @apply cursor-pointer;
+}
+
+.chip--interactive:active:not(:disabled) {
+  transform: scale(0.97);
 }
 
 .chip--static {
@@ -60,6 +64,9 @@
 
 .chip--tonal-primary { 
   @apply bg-primary/15 text-primary border-transparent; 
+  @variant dark {
+    @apply text-ds-primary-400 bg-ds-primary-500/15 border-ds-primary-500/20;
+  }
 }
 .chip--filled-primary { 
   @apply bg-primary text-primary-foreground border-transparent; 

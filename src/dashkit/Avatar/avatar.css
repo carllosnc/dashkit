@@ -2,10 +2,10 @@
 
 /* Avatar Root styles */
 .avatar {
-  @apply relative flex shrink-0 items-center justify-center overflow-hidden bg-ds-100;
+  @apply relative flex shrink-0 items-center justify-center overflow-hidden bg-ds-200/80 border border-border/70 text-foreground;
 
   @variant dark {
-    @apply bg-ds-800;
+    @apply bg-ds-800 border-ds-700/80 text-ds-100;
   }
 }
 
@@ -40,7 +40,11 @@
 }
 
 .avatar__fallback {
-  @apply flex h-full w-full items-center justify-center font-bold text-ds-500 uppercase select-none tracking-tighter;
+  @apply flex h-full w-full items-center justify-center font-semibold text-foreground uppercase select-none tracking-tight;
+
+  @variant dark {
+    @apply text-ds-100;
+  }
 }
 
 .avatar-group {

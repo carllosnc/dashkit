@@ -18,6 +18,9 @@ import { Combobox } from '../../dashkit/Combobox/Combobox';
 import { ListTile } from '../../dashkit/ListTile/ListTile';
 import { Surface } from '../../dashkit/Surface/Surface';
 import { IconButton } from '../../dashkit/IconButton/IconButton';
+import { Select } from '../../dashkit/Select/Select';
+import { Checkbox } from '../../dashkit/Checkbox/Checkbox';
+import { toast } from '../../dashkit/Toast/useToast';
 import { StatsCard } from '../../dashkit/StatsCard/StatsCard';
 import { ColorPicker } from '../../dashkit/ColorPicker/ColorPicker';
 import { FiTrendingUp, FiShoppingCart, FiArrowUpRight, FiMoreHorizontal, FiShield, FiActivity, FiGlobe, FiServer, FiArrowDownLeft, FiCpu, FiDatabase, FiZap, FiDroplet } from 'react-icons/fi';
@@ -27,6 +30,7 @@ export function ColumnTwo() {
   const [liveValue, setLiveValue] = React.useState(12400.50);
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
   const [selectedFleet, setSelectedFleet] = React.useState<string | string[]>('Alpha Logistics');
+  const [branchSource, setBranchSource] = React.useState('prod');
 
   React.useEffect(() => {
     const interval = setInterval(() => {
@@ -494,6 +498,42 @@ export function ColumnTwo() {
             </div>
 
             <Button variant="outlined" className="w-full mt-2">Provision Changes</Button>
+         </CardContent>
+      </Card>
+      {/* Database Branching (Select, Input, Checkbox, Button) */}
+      <Card>
+         <CardHeader leftIcon={<FiDatabase size={18} />}>
+            <CardTitle>Database Branching</CardTitle>
+            <CardDescription>Instant copy-on-write clone for preview environments.</CardDescription>
+         </CardHeader>
+         <CardContent className="space-y-4">
+            <Select
+               label="Source Snapshot"
+               options={[
+                  { label: 'Production (v2.4.1 - 42.8 GB)', value: 'prod' },
+                  { label: 'Staging (v2.5.0-rc1 - 18.2 GB)', value: 'staging' },
+                  { label: 'Nightly Seed Dump (4.1 GB)', value: 'nightly' },
+               ]}
+               value={branchSource}
+               onChange={setBranchSource}
+            />
+            <Input
+               label="Target Branch Name"
+               placeholder="preview-checkout-v3"
+               defaultValue="feat-billing-schema"
+            />
+            <Checkbox
+               label="Sanitize sensitive PII records"
+               description="Anonymize user emails, tokens, and payment methods."
+               defaultChecked
+            />
+            <Button
+               variant="filled"
+               className="w-full"
+               onClick={() => toast({ title: 'Branch Created', description: 'Ephemeral DB ready in 820ms.', type: 'success' })}
+            >
+               Create Ephemeral Branch
+            </Button>
          </CardContent>
       </Card>
 

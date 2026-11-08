@@ -17,12 +17,13 @@ function cn(...inputs: ClassValue[]) {
 }
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'filled' | 'outlined' | 'soft';
+  variant?: 'filled' | 'outlined' | 'soft' | 'ghost';
   color?: 'primary' | 'danger';
   size?: 'sm' | 'md' | 'lg';
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   loading?: boolean;
+  rounded?: boolean;
   /**
    * Render the button styles onto its single child element instead of a
    * <button> — use for links (<Link>, <a>) so interactive content is never
@@ -42,6 +43,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       leftIcon,
       rightIcon,
       loading,
+      rounded,
       disabled,
       asChild = false,
       ...props
@@ -49,11 +51,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) {
     const isIconOnly = !children && (!!leftIcon || !!rightIcon);
+    const spinnerSize = size === 'sm' ? 14 : size === 'lg' ? 18 : 16;
 
     const classes = cn(
       'button',
       `button--${variant}-${color}`,
       `button--${size}`,
+      rounded === false && '!rounded-md',
       {
         "button--loading": loading,
         "button--with-text": !isIconOnly,
@@ -77,7 +81,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         className: twMerge(classes, childProps.className),
         children: (
           <>
-            {loading && <Spinner size={16} color="currentColor" thickness={3} />}
+            {loading && <Spinner size={spinnerSize} color="currentColor" thickness={3} />}
             {!loading && leftIcon && <span className="inline-flex shrink-0">{leftIcon}</span>}
             {childProps.children}
             {!loading && rightIcon && <span className="inline-flex shrink-0">{rightIcon}</span>}
@@ -93,7 +97,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         className={classes}
         {...props}
       >
-        {loading && <Spinner size={16} color="currentColor" thickness={3} />}
+        {loading && <Spinner size={spinnerSize} color="currentColor" thickness={3} />}
         {!loading && leftIcon && <span className="inline-flex shrink-0">{leftIcon}</span>}
         {children}
         {!loading && rightIcon && <span className="inline-flex shrink-0">{rightIcon}</span>}

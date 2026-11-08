@@ -37,7 +37,7 @@ import {
   TableHead,
   TableCell,
 } from '../../dashkit/Table/Table';
-import { Badge } from '../../dashkit/Badge/Badge';
+import { clsx } from 'clsx';
 import { Avatar } from '../../dashkit/Avatar/Avatar';
 import { Button } from '../../dashkit/Button/Button';
 import { Select } from '../../dashkit/Select/Select';
@@ -397,6 +397,8 @@ export const AnalyticsDashboardExample = () => {
                   showGrid
                   showLabels
                   showTooltip
+                  texture="striped"
+                  showTrack
                 />
               </div>
             </CardContent>
@@ -409,11 +411,7 @@ export const AnalyticsDashboardExample = () => {
             <CardHeader
               leftIcon={<FiPieChart size={18} />}
               action={
-                <Badge
-                  content="Organic +18%"
-                  color="success"
-                  variant="soft"
-                />
+                <div className="flex items-center gap-1 text-xs font-medium text-emerald-600 dark:text-emerald-400"><FiTrendingUp className="size-3.5" /><span>Organic +18%</span></div>
               }
             >
               <CardTitle>Acquisition Channels</CardTitle>
@@ -446,11 +444,7 @@ export const AnalyticsDashboardExample = () => {
             <CardHeader
               leftIcon={<FiServer size={18} />}
               action={
-                <Badge
-                  content="Operational"
-                  color="success"
-                  variant="soft"
-                />
+                <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground"><span className="size-1.5 rounded-full bg-emerald-500 shrink-0" /><span>Operational</span></div>
               }
             >
               <CardTitle>Platform Usage & Quotas</CardTitle>
@@ -512,11 +506,7 @@ export const AnalyticsDashboardExample = () => {
             <CardHeader
               leftIcon={<FiShield size={18} />}
               action={
-                <Badge
-                  content="99.98% SLA"
-                  color="success"
-                  variant="soft"
-                />
+                <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground"><span className="size-1.5 rounded-full bg-emerald-500 shrink-0" /><span>99.98% SLA</span></div>
               }
             >
               <CardTitle>System Health</CardTitle>
@@ -543,7 +533,7 @@ export const AnalyticsDashboardExample = () => {
                   </div>
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-muted-foreground">Active Incidents</span>
-                    <Badge content="0 Active" color="success" variant="soft" />
+                    <div className="flex items-center gap-1.5 text-xs font-medium text-emerald-600 dark:text-emerald-400"><span className="size-1.5 rounded-full bg-emerald-500" /><span>0 Active</span></div>
                   </div>
                 </div>
               </div>
@@ -554,11 +544,7 @@ export const AnalyticsDashboardExample = () => {
             <CardHeader
               leftIcon={<FiActivity size={18} />}
               action={
-                <Badge
-                  content="Recent"
-                  color="info"
-                  variant="soft"
-                />
+                <span className="text-xs font-medium text-muted-foreground">Live Feed</span>
               }
             >
               <CardTitle>Recent Activity</CardTitle>
@@ -598,8 +584,12 @@ export const AnalyticsDashboardExample = () => {
                         </div>
                       </div>
                       <div className="flex items-center gap-2.5 shrink-0">
-                        <Badge content={act.badge} color={act.badgeColor} variant="soft" />
-                        <span className="text-xs text-muted-foreground tabular-nums">{act.time}</span>
+                        {act.badge.startsWith('+$') ? (
+                          <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400">{act.badge}</span>
+                        ) : (
+                          <span className="text-xs font-medium text-muted-foreground px-2 py-0.5 rounded-md bg-muted/60">{act.badge}</span>
+                        )}
+                        <span className="text-xs text-muted-foreground">{act.time}</span>
                       </div>
                     </div>
                   );
@@ -614,11 +604,7 @@ export const AnalyticsDashboardExample = () => {
           <CardHeader
             leftIcon={<FiGlobe size={18} />}
             action={
-              <Badge
-                content="142 Countries"
-                color="info"
-                variant="soft"
-              />
+              <span className="text-xs font-medium text-muted-foreground">142 Countries</span>
             }
           >
             <CardTitle>Top Geographic Markets</CardTitle>
@@ -640,9 +626,9 @@ export const AnalyticsDashboardExample = () => {
                         <span className="text-sm text-muted-foreground">({reg.users})</span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <span className="font-bold text-foreground">{reg.revenue}</span>
+                        <span className="font-semibold text-foreground">{reg.revenue}</span>
                         <span className="text-sm text-muted-foreground w-10 text-right">{reg.share}%</span>
-                        <Badge content={reg.growth} color={reg.growthType} variant="soft" />
+                        <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 min-w-[52px] text-right">{reg.growth}</span>
                       </div>
                     </div>
                     <ProgressBar value={reg.share} color="primary" size="sm" />
@@ -672,7 +658,7 @@ export const AnalyticsDashboardExample = () => {
                   </div>
                   <div className="flex items-center justify-between py-1 text-sm">
                     <span className="text-muted-foreground">Regional Compliance</span>
-                    <Badge content="GDPR / CCPA" color="success" variant="soft" />
+                    <span className="font-semibold text-foreground">GDPR / CCPA</span>
                   </div>
                 </div>
               </div>
@@ -685,11 +671,7 @@ export const AnalyticsDashboardExample = () => {
           <CardHeader
             leftIcon={<FiCreditCard size={18} />}
             action={
-              <Badge
-                content={`${recentTransactions.length} records`}
-                color="info"
-                variant="soft"
-              />
+              <span className="text-xs font-medium text-muted-foreground">{recentTransactions.length} records</span>
             }
           >
             <CardTitle>Recent Transactions</CardTitle>
@@ -729,11 +711,19 @@ export const AnalyticsDashboardExample = () => {
                       <TableCell className="text-muted-foreground">{tx.plan}</TableCell>
                       <TableCell className="text-muted-foreground">{tx.date}</TableCell>
                       <TableCell>
-                        <Badge
-                          content={tx.statusLabel}
-                          color={tx.status}
-                          variant="soft"
-                        />
+                        <div className="flex items-center gap-2 whitespace-nowrap">
+                          <span
+                            className={clsx(
+                              'size-1.5 rounded-full shrink-0',
+                              tx.status === 'success' && 'bg-emerald-500',
+                              tx.status === 'warning' && 'bg-amber-500',
+                              tx.status === 'danger' && 'bg-rose-500'
+                            )}
+                          />
+                          <span className="text-xs font-medium text-foreground">
+                            {tx.statusLabel}
+                          </span>
+                        </div>
                       </TableCell>
                       <TableCell align="right" className="font-medium text-foreground">
                         {tx.amount}

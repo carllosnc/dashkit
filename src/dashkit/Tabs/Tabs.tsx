@@ -3,10 +3,13 @@ import { motion } from 'framer-motion';
 import { cn } from '../utils/cn';
 import './tabs.css';
 
+export type TabsVariant = 'line' | 'pills';
+
 interface TabsContextType {
   activeTab: string;
   setActiveTab: (val: string) => void;
   tabsId: string;
+  variant: TabsVariant;
 }
 
 const TabsContext = createContext<TabsContextType | undefined>(undefined);
@@ -17,9 +20,10 @@ export interface TabsProps {
   onValueChange?: (val: string) => void;
   children: ReactNode;
   className?: string;
+  variant?: TabsVariant;
 }
 
-export function Tabs({ defaultValue, value, onValueChange, children, className }: TabsProps) {
+export function Tabs({ defaultValue, value, onValueChange, children, className, variant = 'line' }: TabsProps) {
   const [internalValue, setInternalValue] = useState(defaultValue || '');
   const [tabsId] = useState(() => Math.random().toString(36).substring(7));
 
@@ -31,8 +35,8 @@ export function Tabs({ defaultValue, value, onValueChange, children, className }
   };
 
   return (
-    <TabsContext.Provider value={{ activeTab, setActiveTab, tabsId }}>
-      <div className={cn('tabs', className)}>
+    <TabsContext.Provider value={{ activeTab, setActiveTab, tabsId, variant }}>
+      <div className={cn('tabs', `tabs--${variant}`, className)}>
         {children}
       </div>
     </TabsContext.Provider>
@@ -42,11 +46,15 @@ export function Tabs({ defaultValue, value, onValueChange, children, className }
 export interface TabsListProps {
   children: ReactNode;
   className?: string;
+  variant?: TabsVariant;
 }
 
-export function TabsList({ children, className }: TabsListProps) {
+export function TabsList({ children, className, variant: variantProp }: TabsListProps) {
+  const context = useContext(TabsContext);
+  const variant = variantProp || context?.variant || 'line';
+
   return (
-    <div role="tablist" className={cn('tabs__list', className)}>
+    <div role="tablist" className={cn('tabs__list', `tabs__list--${variant}`, className)}>
       {children}
     </div>
   );
@@ -56,15 +64,17 @@ export interface TabsTriggerProps {
   value: string;
   children: ReactNode;
   className?: string;
+  disabled?: boolean;
 }
 
 const TAB_KEYS = ['ArrowRight', 'ArrowLeft', 'Home', 'End'];
 
-export function TabsTrigger({ value, children, className }: TabsTriggerProps) {
+export function TabsTrigger({ value, children, className, disabled }: TabsTriggerProps) {
   const context = useContext(TabsContext);
   if (!context) throw new Error('TabsTrigger must be used within Tabs');
 
   const isActive = context.activeTab === value;
+  const variant = context.variant;
 
   const focusTab = (tab: HTMLElement | undefined) => {
     if (!tab) return;
@@ -76,7 +86,7 @@ export function TabsTrigger({ value, children, className }: TabsTriggerProps) {
     if (!TAB_KEYS.includes(event.key)) return;
     const list = event.currentTarget.closest('[role="tablist"]');
     if (!list) return;
-    const tabs = Array.from(list.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+    const tabs = Array.from(list.querySelectorAll<HTMLButtonElement>('[role="tab"]:not(:disabled)'));
     const index = tabs.indexOf(event.currentTarget);
     if (index === -1) return;
 
@@ -105,15 +115,17 @@ export function TabsTrigger({ value, children, className }: TabsTriggerProps) {
       aria-selected={isActive}
       aria-controls={`${context.tabsId}-panel-${value}`}
       tabIndex={isActive ? 0 : -1}
+      disabled={disabled}
       onClick={() => context.setActiveTab(value)}
       onKeyDown={handleKeyDown}
       className={cn(
         'tabs__trigger',
+        `tabs__trigger--${variant}`,
         isActive ? 'tabs__trigger--active' : 'tabs__trigger--inactive',
         className
       )}
     >
-      {isActive && (
+      {isActive && variant === 'line' && (
         <motion.div
           layoutId={`active-tab-line-${context.tabsId}`}
           className="tabs__active-indicator"
@@ -124,7 +136,18 @@ export function TabsTrigger({ value, children, className }: TabsTriggerProps) {
           }}
         />
       )}
-      {children}
+      {isActive && variant === 'pills' && (
+        <motion.div
+          layoutId={`active-tab-pill-${context.tabsId}`}
+          className="tabs__active-pill"
+          transition={{
+            type: 'spring',
+            stiffness: 500,
+            damping: 35
+          }}
+        />
+      )}
+      <span className="relative z-10 inline-flex items-center gap-2">{children}</span>
     </button>
   );
 }

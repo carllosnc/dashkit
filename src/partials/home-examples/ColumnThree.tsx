@@ -8,6 +8,7 @@ import { Divider } from '../../dashkit/Divider/Divider';
 import { Checkbox } from '../../dashkit/Checkbox/Checkbox';
 import { Radio } from '../../dashkit/Radio/Radio';
 import { BarChart } from '../../dashkit/BarChart/BarChart';
+import { ProgressBar } from '../../dashkit/ProgressBar/ProgressBar';
 import { OtpInput } from '../../dashkit/OtpInput/OtpInput';
 import { Chip } from '../../dashkit/Chip/Chip';
 import { SystemLogs, type LogEntry } from '../../dashkit/SystemLogs/SystemLogs';
@@ -22,7 +23,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '..
 import { DatePicker } from '../../dashkit/DatePicker/DatePicker';
 import { Tooltip, TooltipTrigger, TooltipContent } from '../../dashkit/Tooltip';
 import { IconButton } from '../../dashkit/IconButton/IconButton';
-import { FiSettings, FiBarChart2, FiMonitor, FiSmartphone, FiBell, FiCheckCircle, FiXCircle, FiUserPlus, FiSend, FiSun, FiMoon, FiUsers, FiLock, FiDownload, FiHelpCircle, FiCalendar, FiInfo } from 'react-icons/fi';
+import { FiSettings, FiHardDrive, FiBarChart2, FiMonitor, FiSmartphone, FiBell, FiCheckCircle, FiXCircle, FiUserPlus, FiSend, FiSun, FiMoon, FiUsers, FiLock, FiDownload, FiHelpCircle, FiCalendar, FiInfo } from 'react-icons/fi';
 import { CONVERSION_DATA } from './Constants';
 
 export function ColumnThree() {
@@ -408,6 +409,34 @@ export function ColumnThree() {
            </Button>
          </CardContent>
        </Card>
+      {/* Storage Volume & Quota (ProgressBar, Button) */}
+      <Card>
+         <CardHeader leftIcon={<FiHardDrive size={18} />}>
+            <CardTitle>Storage Volume & Quota</CardTitle>
+            <CardDescription>Persistent NVMe block storage allocation.</CardDescription>
+         </CardHeader>
+         <CardContent className="space-y-4">
+            <div className="space-y-2">
+               <div className="flex items-center justify-between text-sm">
+                  <span className="font-medium text-foreground">Cluster NVMe Pool</span>
+                  <span className="text-xs text-muted-foreground">1.42 TB / 2.0 TB (71%)</span>
+               </div>
+               <ProgressBar value={71} color="primary" size="sm" />
+            </div>
+            <div className="flex items-center justify-between text-xs pt-1">
+               <span className="text-muted-foreground">Automatic backup snapshot daily</span>
+               <span className="font-medium text-emerald-600 dark:text-emerald-400">Encrypted</span>
+            </div>
+            <Button
+               variant="outlined"
+               className="w-full"
+               onClick={() => toast({ title: 'Volume Expansion', description: 'Request queued: +500 GB NVMe.', type: 'info' })}
+            >
+               Expand Storage Pool
+            </Button>
+         </CardContent>
+      </Card>
+
     </div>
   );
 }

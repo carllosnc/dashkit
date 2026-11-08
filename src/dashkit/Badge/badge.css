@@ -1,7 +1,7 @@
 @reference "../dashkit.css";
 
 .badge {
-  @apply relative inline-flex items-center justify-center font-semibold select-none whitespace-nowrap uppercase w-fit shrink-0;
+  @apply relative inline-flex items-center justify-center font-semibold select-none whitespace-nowrap w-fit shrink-0;
 }
 
 .badge__dot {
@@ -9,7 +9,7 @@
 }
 
 .badge__content {
-  @apply min-w-5 h-5.5 px-2.5 ds-rounded text-[11px] font-semibold tracking-wide inline-flex items-center justify-center leading-none w-fit shrink-0;
+  @apply min-w-5 h-5.5 px-2.5 ds-rounded-sm text-[11px] font-semibold inline-flex items-center justify-center leading-none w-fit shrink-0;
 }
 
 .badge__inner-content {
@@ -20,7 +20,7 @@
 .badge--solid-base { @apply bg-ds-500 text-white border-transparent; }
 .badge--soft-base { 
   @apply bg-ds-500/15 text-ds-600 border-transparent;
-  @variant dark { @apply text-ds-400; }
+  @variant dark { @apply text-ds-400 bg-ds-500/20; }
 }
 .badge--pulse-base { @apply bg-ds-500; }
 
@@ -86,6 +86,7 @@
 }
 .badge--soft-primary { 
   @apply bg-primary/15 text-primary border-transparent;
+  @variant dark { @apply text-ds-primary-400 bg-ds-primary-500/20; }
 }
 .badge--pulse-primary { 
   @apply bg-primary;

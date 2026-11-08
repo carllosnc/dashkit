@@ -91,6 +91,28 @@ describe('Tabs', () => {
     expect(screen.getByRole('tab', { name: /tab 3/i })).toHaveAttribute('aria-selected', 'true');
     expect(screen.getByText('Content 3')).toBeInTheDocument();
   });
+
+  it('supports pills variant correctly', () => {
+    render(
+      <Tabs defaultValue="overview" variant="pills">
+        <TabsList>
+          <TabsTrigger value="overview">Overview</TabsTrigger>
+          <TabsTrigger value="analytics">Analytics</TabsTrigger>
+        </TabsList>
+        <TabsContent value="overview">Overview Panel</TabsContent>
+        <TabsContent value="analytics">Analytics Panel</TabsContent>
+      </Tabs>
+    );
+
+    const list = screen.getByRole('tablist');
+    expect(list).toHaveClass('tabs__list--pills');
+
+    const overviewTab = screen.getByRole('tab', { name: /overview/i });
+    expect(overviewTab).toHaveClass('tabs__trigger--pills');
+    expect(overviewTab).toHaveClass('tabs__trigger--active');
+
+    fireEvent.click(screen.getByRole('tab', { name: /analytics/i }));
+    expect(screen.getByText('Analytics Panel')).toBeInTheDocument();
+    expect(screen.queryByText('Overview Panel')).not.toBeInTheDocument();
+  });
 });
-
-

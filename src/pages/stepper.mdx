@@ -120,6 +120,29 @@ import { FiUser, FiCreditCard, FiCheckCircle } from 'react-icons/fi';
 </Stepper>
 ```
 
+## Color Palettes
+
+Control the stepper's accent theme using the `color` prop. Use `"primary"` (default) for brand accenting or `"base"` for clean, monochrome neutral styling.
+
+<div className="not-prose border bg-card border-ds-200 dark:border-ds-800 ds-rounded flex flex-col gap-6 p-4 w-full">
+  <div className="space-y-2">
+    <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Base Monochrome Theme (`color="base"`)</span>
+    <Stepper activeStep={1} color="base">
+      <Step title="Configuration" description="Setup parameters" />
+      <Step title="Verification" description="Review cluster state" />
+      <Step title="Deployment" description="Rollout to edge" />
+    </Stepper>
+  </div>
+</div>
+
+```tsx
+<Stepper activeStep={1} color="base">
+  <Step title="Configuration" description="Setup parameters" />
+  <Step title="Verification" description="Review cluster state" />
+  <Step title="Deployment" description="Rollout to edge" />
+</Stepper>
+```
+
 ## Clickable Navigation
 If you provide an `onChange` handler, steps become fully interactive and users can jump between them by clicking.
 ```tsx

@@ -93,6 +93,37 @@ Use semantic colors to visualize system performance or resource distribution.
 />
 </Card>
 
+### Textured Bars & Background Tracks
+
+Apply SVG patterns to bars using the `texture` prop (`'striped' | 'dots' | 'grid' | 'gradient'`) and enable ghost background tracks with `showTrack`.
+
+<Card className='not-prose'>
+<BarChart 
+  data={[
+    { label: 'Starter', count: 1240 },
+    { label: 'Pro', count: 2890 },
+    { label: 'Team', count: 1420 },
+    { label: 'Enterprise', count: 680 },
+  ]} 
+  series={[
+    { key: 'count', label: 'Subscriptions', color: 'var(--color-primary)' }
+  ]}
+  texture="striped"
+  showTrack
+/>
+</Card>
+
+```tsx
+<BarChart 
+  data={planData} 
+  series={[
+    { key: 'count', label: 'Subscriptions', color: 'var(--color-primary)' }
+  ]}
+  texture="striped"
+  showTrack
+/>
+```
+
 ## API Reference
 
 ### BarChart

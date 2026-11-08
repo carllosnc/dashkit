@@ -35,6 +35,7 @@
 .progress-bar__fill--danger { @apply bg-ds-danger-600 dark:bg-ds-danger-500; }
 .progress-bar__fill--info { @apply bg-ds-info-600 dark:bg-ds-info-500; }
 .progress-bar__fill--neutral { @apply bg-ds-500 dark:bg-ds-400; }
+.progress-bar__fill--base { @apply bg-foreground; }
 
 .progress-bar__header {
   @apply flex items-center justify-between gap-4 min-w-0;

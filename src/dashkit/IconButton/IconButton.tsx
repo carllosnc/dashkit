@@ -6,6 +6,7 @@ import './icon-button.css';
 
 type IconButtonBaseProps = {
   variant?: 'filled' | 'outlined' | 'soft' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
   icon: ReactNode;
   rounded?: boolean;
 };
@@ -17,7 +18,7 @@ export type IconButtonProps = IconButtonBaseProps &
   );
 
 export const IconButton = forwardRef<HTMLElement, IconButtonProps>(function IconButton(
-  { className, variant = 'soft', icon, rounded = false, ...props },
+  { className, variant = 'soft', size = 'md', icon, rounded = false, ...props },
   ref
 ) {
   const isLink = 'href' in props && props.href !== undefined;
@@ -25,14 +26,12 @@ export const IconButton = forwardRef<HTMLElement, IconButtonProps>(function Icon
   const classes = cn(
     'icon-button',
     'inline-flex items-center justify-center',
-    'rounded-lg', // Default rounding as utility
-    'border border-border', // Default border as utility
-    'size-9', // Default size as utility
     'transition-all duration-200',
     // Keep the default outline off but restore a visible focus ring for
     // keyboard users (matches the design-system ring used across inputs).
     'focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-transparent cursor-pointer whitespace-nowrap select-none shrink-0 font-medium',
     `icon-button--${variant}`,
+    `icon-button--${size}`,
     rounded && 'icon-button--rounded !rounded-full', // Force full round if requested
     {
       'icon-button--disabled': 'disabled' in props && props.disabled,

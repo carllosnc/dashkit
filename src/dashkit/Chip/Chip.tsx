@@ -3,7 +3,7 @@ import { cn } from '../utils/cn';
 import { FiX, FiCheck } from 'react-icons/fi';
 import './chip.css';
 
-export type ChipVariant = 'filled' | 'outlined' | 'tonal';
+export type ChipVariant = 'filled' | 'outlined' | 'tonal' | 'soft';
 export type ChipColor = 'base' | 'primary' | 'success' | 'warning' | 'danger' | 'error' | 'info';
 
 export interface ChipProps {
@@ -36,9 +36,11 @@ export function Chip({
   const useButtonElement = !!onClick && !disabled && !onDelete;
   const isKeyboardActivatable = !!onClick && !disabled && !useButtonElement;
 
+  const resolvedVariant = variant === 'soft' ? 'tonal' : variant;
+
   const classes = cn(
     'chip',
-    `chip--${variant}-${color}`,
+    `chip--${resolvedVariant}-${color}`,
     isInteractive ? 'chip--interactive' : 'chip--static',
     selected && variant === 'outlined' && 'chip--selected',
     disabled && 'chip--disabled',

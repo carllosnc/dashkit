@@ -12,11 +12,13 @@ describe('Input', () => {
   it('renders left icon when passed', () => {
     render(<Input leftIcon={<FiSearch data-testid="left-icon" />} />);
     expect(screen.getByTestId('left-icon')).toBeInTheDocument();
+    expect(screen.getByRole('textbox')).toHaveClass('input__field--with-left-icon');
   });
 
   it('renders right icon when passed', () => {
     render(<Input rightIcon={<FiLock data-testid="right-icon" />} />);
     expect(screen.getByTestId('right-icon')).toBeInTheDocument();
+    expect(screen.getByRole('textbox')).toHaveClass('input__field--with-right-icon');
   });
 
   it('shows error message and applies error styles', () => {
@@ -64,6 +66,15 @@ describe('Input', () => {
     expect(screen.getByText('Start')).toBeInTheDocument();
     expect(screen.getByText('End')).toBeInTheDocument();
   });
+
+  it('applies size modifiers correctly', () => {
+    const { container, rerender } = render(<Input size="sm" />);
+    expect(container.firstChild).toHaveClass('input--sm');
+
+    rerender(<Input size="lg" />);
+    expect(container.firstChild).toHaveClass('input--lg');
+
+    rerender(<Input />);
+    expect(container.firstChild).toHaveClass('input--md');
+  });
 });
-
-

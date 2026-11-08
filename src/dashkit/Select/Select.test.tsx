@@ -48,6 +48,22 @@ describe('Select', () => {
     fireEvent.click(trigger);
     expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
   });
+
+  it('applies size modifiers correctly', () => {
+    const { container, rerender } = render(<Select options={options} size="sm" />);
+    expect(container.firstChild).toHaveClass('select--sm');
+
+    rerender(<Select options={options} size="lg" />);
+    expect(container.firstChild).toHaveClass('select--lg');
+
+    rerender(<Select options={options} />);
+    expect(container.firstChild).toHaveClass('select--md');
+  });
+
+  it('renders error message and applies error styles', () => {
+    render(<Select options={options} error="Please select a value" />);
+    expect(screen.getByText('Please select a value')).toBeInTheDocument();
+    const trigger = screen.getByRole('button');
+    expect(trigger).toHaveClass('select__trigger--error');
+  });
 });
-
-

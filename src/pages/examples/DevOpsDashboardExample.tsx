@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { cn } from '../../dashkit/utils/cn';
 import { Helmet } from 'react-helmet-async';
 import {
   FiLayers,
@@ -45,7 +46,7 @@ import { Stepper, Step } from '../../dashkit/Stepper';
 import { Badge } from '../../dashkit/Badge/Badge';
 import { Avatar } from '../../dashkit/Avatar/Avatar';
 import { Button } from '../../dashkit/Button/Button';
-import { ButtonGroup, ButtonGroupItem } from '../../dashkit/ButtonGroup/ButtonGroup';
+import { Tabs, TabsList, TabsTrigger } from '../../dashkit/Tabs';
 import {
   Dropdown,
   DropdownTrigger,
@@ -54,7 +55,6 @@ import {
   DropdownSeparator,
 } from '../../dashkit/Dropdown';
 import { IconButton } from '../../dashkit/IconButton/IconButton';
-import { Input } from '../../dashkit/Input/Input';
 import { Divider } from '../../dashkit/Divider/Divider';
 import { Breadcrumb } from '../../dashkit/Breadcrumb/Breadcrumb';
 import {
@@ -174,7 +174,6 @@ const connectedDomains = [
 
 export const DevOpsDashboardExample = () => {
   const [activeItem, setActiveItem] = useState('deployments');
-  const [searchFilter, setSearchFilter] = useState('');
   const [selectedBranch, setSelectedBranch] = useState('all');
   const [timeRange, setTimeRange] = useState<'24h' | '7d' | '30d'>('7d');
   const { toast } = useToast();
@@ -238,12 +237,7 @@ export const DevOpsDashboardExample = () => {
   const currentCharts = chartsByTimeRange[timeRange];
 
   const filteredDeployments = recentDeployments.filter((d) => {
-    const matchesSearch =
-      d.commitMessage.toLowerCase().includes(searchFilter.toLowerCase()) ||
-      d.commitHash.toLowerCase().includes(searchFilter.toLowerCase()) ||
-      d.author.toLowerCase().includes(searchFilter.toLowerCase());
-    const matchesBranch = selectedBranch === 'all' || d.branch === selectedBranch;
-    return matchesSearch && matchesBranch;
+    return selectedBranch === 'all' || d.branch === selectedBranch;
   });
 
   const handleTriggerDeploy = () => {
@@ -401,7 +395,14 @@ export const DevOpsDashboardExample = () => {
             ]}
           />
 
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-3">
+            <div className="hidden md:flex items-center gap-2 text-xs font-medium text-muted-foreground mr-1">
+              <span className="relative flex size-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75" />
+                <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
+              </span>
+              <span>All Systems Operational</span>
+            </div>
             <ThemeCustomizer />
             <ThemeToggle />
             <Button
@@ -428,39 +429,31 @@ export const DevOpsDashboardExample = () => {
           {/* HEADER HERO TITLE */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex flex-col gap-1">
-              <div className="flex items-center gap-3">
-                <h1 className="text-2xl font-bold tracking-tight text-foreground">
-                  Deployments & Infrastructure
-                </h1>
-                <Badge
-                  content="All Systems Operational"
-                  color="success"
-                  variant="soft"
-                  className="normal-case tracking-normal font-medium"
-                />
-              </div>
+              <h1 className="text-2xl font-bold tracking-tight text-foreground">
+                Deployments & Infrastructure
+              </h1>
               <p className="text-sm text-muted-foreground">
                 Edge telemetry, global pipelines, and production clusters.
               </p>
             </div>
 
             {/* TIMEFRAME SELECTOR */}
-            <ButtonGroup className="self-start sm:self-auto">
-              {(['24h', '7d', '30d'] as const).map((range) => (
-                <ButtonGroupItem
-                  key={range}
-                  selected={timeRange === range}
-                  onClick={() => setTimeRange(range)}
-                  className="h-8 px-3 text-xs font-medium"
-                >
-                  {range}
-                </ButtonGroupItem>
-              ))}
-            </ButtonGroup>
+            <Tabs
+              value={timeRange}
+              onValueChange={(val) => setTimeRange(val as '24h' | '7d' | '30d')}
+              variant="pills"
+              className="w-fit shrink-0 self-start sm:self-auto"
+            >
+              <TabsList>
+                <TabsTrigger value="24h">24h</TabsTrigger>
+                <TabsTrigger value="7d">7d</TabsTrigger>
+                <TabsTrigger value="30d">30d</TabsTrigger>
+              </TabsList>
+            </Tabs>
           </div>
 
           {/* 4 STATS CARDS */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <StatsCard
               title="Active Deployments"
               value={currentStats.deployments.value}
@@ -501,41 +494,29 @@ export const DevOpsDashboardExample = () => {
 
           {/* RECENT DEPLOYMENTS TABLE (FULL WIDTH ROW) */}
           <Card>
-            <CardHeader leftIcon={<FiGitCommit size={18} />}>
+            <CardHeader
+              leftIcon={<FiGitCommit size={18} />}
+              action={
+                <Tabs
+                  value={selectedBranch}
+                  onValueChange={(val) => setSelectedBranch(val)}
+                  variant="pills"
+                  className="w-fit shrink-0"
+                >
+                  <TabsList>
+                    <TabsTrigger value="all">All</TabsTrigger>
+                    <TabsTrigger value="main">main</TabsTrigger>
+                  </TabsList>
+                </Tabs>
+              }
+            >
               <CardTitle as="h2" className="text-base font-bold">Recent Deployments</CardTitle>
               <CardDescription>
                 CI/CD git triggers, branch previews, and releases
               </CardDescription>
             </CardHeader>
-                <CardContent className="flex flex-col gap-4">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                    <div className="w-full sm:w-72">
-                      <Input
-                        placeholder="Search commits or deploys..."
-                        value={searchFilter}
-                        onChange={(e) => setSearchFilter(e.target.value)}
-                        leftIcon={<FiSearch size={14} />}
-                      />
-                    </div>
-                    <ButtonGroup className="self-start sm:self-auto">
-                      <ButtonGroupItem
-                        selected={selectedBranch === 'all'}
-                        onClick={() => setSelectedBranch('all')}
-                        className="h-9 px-4 text-sm font-medium"
-                      >
-                        All
-                      </ButtonGroupItem>
-                      <ButtonGroupItem
-                        selected={selectedBranch === 'main'}
-                        onClick={() => setSelectedBranch('main')}
-                        className="h-9 px-4 text-sm font-medium"
-                      >
-                        main
-                      </ButtonGroupItem>
-                    </ButtonGroup>
-                  </div>
-
-                  <div className="overflow-x-auto">
+            <CardContent className="flex flex-col gap-4">
+              <div className="overflow-x-auto font-sans">
                     <Table>
                       <TableHeader>
                         <TableRow>
@@ -550,19 +531,17 @@ export const DevOpsDashboardExample = () => {
                         {filteredDeployments.map((dep) => (
                           <TableRow key={dep.id}>
                             <TableCell>
-                              <div className="flex items-start gap-3">
-                                <Avatar fallback={dep.authorAvatar} size="sm" />
-                                <div className="flex flex-col min-w-0 gap-1">
-                                  <span className="font-semibold text-sm text-foreground truncate">
+                              <div className="flex items-center gap-3">
+                                <Avatar fallback={dep.authorAvatar} size="sm" className="shrink-0" />
+                                <div className="flex flex-col min-w-0 gap-0.5">
+                                  <span className="font-medium text-sm text-foreground truncate">
                                     {dep.commitMessage}
                                   </span>
-                                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                                    <code className="font-mono text-xs px-1.5 py-0.5 rounded bg-muted/80 text-foreground/90 font-medium">
-                                      {dep.commitHash}
-                                    </code>
-                                    <span className="text-muted-foreground/40">•</span>
-                                    <span className="text-foreground/90 font-medium">{dep.author}</span>
-                                    <span className="text-muted-foreground/40">•</span>
+                                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                                    <span className="text-muted-foreground/80 font-medium">{dep.commitHash}</span>
+                                    <span className="text-muted-foreground/30 text-[10px]">•</span>
+                                    <span className="text-muted-foreground font-normal">{dep.author}</span>
+                                    <span className="text-muted-foreground/30 text-[10px]">•</span>
                                     <span>{dep.timeAgo}</span>
                                   </div>
                                 </div>
@@ -570,34 +549,35 @@ export const DevOpsDashboardExample = () => {
                             </TableCell>
 
                             <TableCell>
-                              <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-muted/50 border border-border/40 font-mono text-xs font-medium text-foreground">
+                              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-muted/50 border border-border/40 text-xs font-medium text-foreground">
                                 <FiGitBranch size={13} className="text-muted-foreground shrink-0" />
                                 <span>{dep.branch}</span>
                               </div>
                             </TableCell>
 
                             <TableCell>
-                              <Badge
-                                content={dep.environment}
-                                color={dep.environment === 'Production' ? 'primary' : 'info'}
-                                variant="soft"
-                                className="normal-case tracking-normal font-medium"
-                              />
+                              <span
+                                className={cn(
+                                  'text-xs font-medium',
+                                  dep.environment === 'Production' ? 'text-foreground' : 'text-muted-foreground'
+                                )}
+                              >
+                                {dep.environment}
+                              </span>
                             </TableCell>
 
                             <TableCell>
-                              <Badge
-                                content={dep.status}
-                                color={
-                                  dep.status === 'Ready'
-                                    ? 'success'
-                                    : dep.status === 'Building'
-                                    ? 'warning'
-                                    : 'danger'
-                                }
-                                variant="soft"
-                                className="normal-case tracking-normal font-medium"
-                              />
+                              <div className="inline-flex items-center gap-2 text-xs font-medium text-foreground">
+                                <span
+                                  className={cn(
+                                    'size-2 rounded-full shrink-0',
+                                    dep.status === 'Ready' && 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.35)]',
+                                    dep.status === 'Building' && 'bg-amber-500 animate-pulse',
+                                    dep.status === 'Failed' && 'bg-rose-500'
+                                  )}
+                                />
+                                <span>{dep.status}</span>
+                              </div>
                             </TableCell>
 
                             <TableCell className="text-right">
@@ -605,7 +585,7 @@ export const DevOpsDashboardExample = () => {
                                 <Dropdown>
                                   <DropdownTrigger asChild>
                                     <IconButton
-                                      variant="soft"
+                                      variant="ghost"
                                       icon={<FiMoreVertical size={18} />}
                                       aria-label={`Actions for deployment ${dep.commitHash}`}
                                     />
@@ -686,7 +666,7 @@ export const DevOpsDashboardExample = () => {
                       </span>
                       <span className="text-xs text-muted-foreground tabular-nums">38% (8 / 24 cores)</span>
                     </div>
-                    <ProgressBar value={38} color="primary" size="sm" />
+                    <ProgressBar value={38} color="base" size="sm" />
                   </div>
 
                   <div className="flex flex-col gap-1.5">
@@ -697,7 +677,7 @@ export const DevOpsDashboardExample = () => {
                       </span>
                       <span className="text-xs text-muted-foreground tabular-nums">62% (19.8 / 32 GB)</span>
                     </div>
-                    <ProgressBar value={62} color="primary" size="sm" />
+                    <ProgressBar value={62} color="base" size="sm" />
                   </div>
 
                   <div className="flex flex-col gap-1.5">
@@ -708,7 +688,7 @@ export const DevOpsDashboardExample = () => {
                       </span>
                       <span className="text-xs text-muted-foreground tabular-nums">98.4%</span>
                     </div>
-                    <ProgressBar value={98} color="primary" size="sm" />
+                    <ProgressBar value={98} color="base" size="sm" />
                   </div>
 
                   <div className="flex flex-col gap-1.5">
@@ -719,7 +699,7 @@ export const DevOpsDashboardExample = () => {
                       </span>
                       <span className="text-xs text-muted-foreground tabular-nums">41% (164 / 400 GB)</span>
                     </div>
-                    <ProgressBar value={41} color="primary" size="sm" />
+                    <ProgressBar value={41} color="base" size="sm" />
                   </div>
                 </div>
 
@@ -727,7 +707,10 @@ export const DevOpsDashboardExample = () => {
                   <Divider />
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-muted-foreground">Worker Pool Autoscaling</span>
-                    <Badge content="Active (2-16 instances)" color="success" variant="soft" className="normal-case tracking-normal font-medium" />
+                    <div className="flex items-center gap-1.5 text-xs font-medium text-foreground">
+                      <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
+                      <span>Active (2–16 instances)</span>
+                    </div>
                   </div>
                 </div>
               </CardContent>
@@ -737,7 +720,7 @@ export const DevOpsDashboardExample = () => {
             <Card className="flex flex-col h-full">
               <CardHeader
                 leftIcon={<FiShield size={18} />}
-                action={<Badge content="4 Domains" color="info" variant="soft" className="normal-case tracking-normal font-medium" />}
+                action={<span className="text-xs font-medium text-muted-foreground">4 Domains</span>}
               >
                 <CardTitle as="h2">Domains & SSL</CardTitle>
                 <CardDescription>Domain routing and certificate renewal</CardDescription>
@@ -751,11 +734,14 @@ export const DevOpsDashboardExample = () => {
                           <FiGlobe size={14} className="text-muted-foreground" />
                           <span className="font-semibold text-foreground">{dom.domain}</span>
                         </div>
-                        <Badge content={dom.status} color="success" variant="soft" className="normal-case tracking-normal font-medium" />
+                        <div className="flex items-center gap-1.5 text-xs font-medium text-foreground">
+                          <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
+                          <span>{dom.status}</span>
+                        </div>
                       </div>
                       <div className="flex items-center justify-between text-xs text-muted-foreground">
                         <span>{dom.type}</span>
-                        <span className="tabular-nums font-mono">{dom.certDays}</span>
+                        <span className="tabular-nums">{dom.certDays}</span>
                       </div>
                     </div>
                   ))}
@@ -765,7 +751,10 @@ export const DevOpsDashboardExample = () => {
                   <Divider />
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-muted-foreground">SSL Auto-Renewal</span>
-                    <Badge content="Enabled (Wildcard)" color="success" variant="soft" className="normal-case tracking-normal font-medium" />
+                    <div className="flex items-center gap-1.5 text-xs font-medium text-foreground">
+                      <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
+                      <span>Enabled (Wildcard)</span>
+                    </div>
                   </div>
                 </div>
               </CardContent>
@@ -778,7 +767,15 @@ export const DevOpsDashboardExample = () => {
             <Card className="flex flex-col h-full">
               <CardHeader
                 leftIcon={<FiActivity size={18} />}
-                action={<Badge content="Live Stream" color="success" variant="soft" className="normal-case tracking-normal font-medium" />}
+                action={
+                  <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                    <span className="relative flex size-2">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75" />
+                      <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
+                    </span>
+                    <span>Live Stream</span>
+                  </div>
+                }
               >
                 <CardTitle as="h2">Request Ingress</CardTitle>
                 <CardDescription>
@@ -809,19 +806,20 @@ export const DevOpsDashboardExample = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent className="flex-1 flex flex-col justify-center py-2">
-                <Stepper activeStep={4} orientation="vertical" className="w-full">
+                <Stepper activeStep={4} orientation="vertical" color="base" className="w-full">
                   <Step
                     className="w-full pb-3 last:pb-0 [&_.step__container]:w-full [&_.step__content]:flex-1 [&_.step__content]:min-w-0"
                     title={
                       <div className="flex items-center justify-between gap-2 w-full">
                         <span className="text-sm font-semibold text-foreground">Lint & Typecheck</span>
-                        <span className="text-xs text-muted-foreground font-mono tabular-nums">14s</span>
+                        <span className="text-xs text-muted-foreground tabular-nums">14s</span>
                       </div>
                     }
                     description={
-                      <span className="text-xs text-muted-foreground font-mono block truncate">
-                        tsc -b && eslint .
-                      </span>
+                      <div className="flex items-center justify-between gap-4 w-full">
+                        <span className="text-xs text-muted-foreground truncate">tsc -b && eslint .</span>
+                        <span className="text-[11px] text-muted-foreground/60 shrink-0">passed</span>
+                      </div>
                     }
                   />
                   <Step
@@ -829,13 +827,14 @@ export const DevOpsDashboardExample = () => {
                     title={
                       <div className="flex items-center justify-between gap-2 w-full">
                         <span className="text-sm font-semibold text-foreground">Automated Tests</span>
-                        <span className="text-xs text-muted-foreground font-mono tabular-nums">28s</span>
+                        <span className="text-xs text-muted-foreground tabular-nums">28s</span>
                       </div>
                     }
                     description={
-                      <span className="text-xs text-muted-foreground font-mono block truncate">
-                        vitest run (54 suites)
-                      </span>
+                      <div className="flex items-center justify-between gap-4 w-full">
+                        <span className="text-xs text-muted-foreground truncate">vitest run (54 suites)</span>
+                        <span className="text-[11px] text-muted-foreground/60 shrink-0">passed</span>
+                      </div>
                     }
                   />
                   <Step
@@ -843,13 +842,14 @@ export const DevOpsDashboardExample = () => {
                     title={
                       <div className="flex items-center justify-between gap-2 w-full">
                         <span className="text-sm font-semibold text-foreground">Container Build</span>
-                        <span className="text-xs text-muted-foreground font-mono tabular-nums">45s</span>
+                        <span className="text-xs text-muted-foreground tabular-nums">45s</span>
                       </div>
                     }
                     description={
-                      <span className="text-xs text-muted-foreground font-mono block truncate">
-                        docker build (linux/amd64)
-                      </span>
+                      <div className="flex items-center justify-between gap-4 w-full">
+                        <span className="text-xs text-muted-foreground truncate">docker build (linux/amd64)</span>
+                        <span className="text-[11px] text-muted-foreground/60 shrink-0">passed</span>
+                      </div>
                     }
                   />
                   <Step
@@ -857,13 +857,14 @@ export const DevOpsDashboardExample = () => {
                     title={
                       <div className="flex items-center justify-between gap-2 w-full">
                         <span className="text-sm font-semibold text-foreground">Global Edge Sync</span>
-                        <span className="text-xs text-muted-foreground font-mono tabular-nums">12s</span>
+                        <span className="text-xs text-muted-foreground tabular-nums">12s</span>
                       </div>
                     }
                     description={
-                      <span className="text-xs text-muted-foreground font-mono block truncate">
-                        syncing 28 anycast PoPs
-                      </span>
+                      <div className="flex items-center justify-between gap-4 w-full">
+                        <span className="text-xs text-muted-foreground truncate">syncing 28 anycast PoPs</span>
+                        <span className="text-[11px] text-muted-foreground/60 shrink-0">synced</span>
+                      </div>
                     }
                   />
                 </Stepper>
@@ -875,12 +876,10 @@ export const DevOpsDashboardExample = () => {
               <CardHeader
                 leftIcon={<FiGlobe size={18} />}
                 action={
-                  <Badge
-                    content="28 PoPs Online"
-                    color="success"
-                    variant="soft"
-                    className="normal-case tracking-normal font-medium"
-                  />
+                  <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                    <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
+                    <span>28 PoPs Active</span>
+                  </div>
                 }
               >
                 <CardTitle as="h2">Edge Points of Presence</CardTitle>
@@ -888,32 +887,25 @@ export const DevOpsDashboardExample = () => {
                   Regional latency and ingress traffic share
                 </CardDescription>
               </CardHeader>
-              <CardContent className="flex-1 flex flex-col justify-between gap-3 pt-1">
+              <CardContent className="flex-1 flex flex-col justify-between gap-4 pt-1">
                 {[
                   { code: 'IAD', region: 'North Virginia, USA', latency: '4.2ms', traffic: '38%', pct: 38 },
                   { code: 'FRA', region: 'Frankfurt, Germany', latency: '18.5ms', traffic: '27%', pct: 27 },
                   { code: 'NRT', region: 'Tokyo, Japan', latency: '41.8ms', traffic: '21%', pct: 21 },
                   { code: 'GRU', region: 'São Paulo, Brazil', latency: '27.9ms', traffic: '14%', pct: 14 },
                 ].map((pop) => (
-                  <div key={pop.code} className="flex flex-col gap-1.5 text-sm">
-                    <div className="flex items-center justify-between gap-2">
+                  <div key={pop.code} className="flex flex-col gap-1.5">
+                    <div className="flex items-center justify-between text-sm">
                       <div className="flex items-center gap-2 min-w-0">
-                        <span className="font-mono text-xs font-semibold px-1.5 py-0.5 rounded bg-muted text-foreground shrink-0">
-                          {pop.code}
-                        </span>
-                        <span className="font-medium text-foreground truncate">{pop.region}</span>
+                        <span className="font-semibold text-foreground truncate">{pop.region}</span>
+                        <span className="text-xs text-muted-foreground">{pop.code}</span>
                       </div>
-                      <div className="flex items-center gap-1.5 shrink-0">
-                        <span className="size-2 rounded-full bg-emerald-500 shrink-0" />
-                        <span className="text-xs text-foreground font-mono font-medium tabular-nums">{pop.latency}</span>
+                      <div className="flex items-center gap-3 shrink-0 text-xs">
+                        <span className="text-muted-foreground">{pop.traffic} traffic</span>
+                        <span className="font-semibold text-foreground">{pop.latency}</span>
                       </div>
                     </div>
-                    <div className="flex items-center justify-between text-xs text-muted-foreground gap-3">
-                      <span>{pop.traffic} of edge traffic</span>
-                      <div className="w-24 shrink-0">
-                        <ProgressBar value={pop.pct} size="xs" color="primary" />
-                      </div>
-                    </div>
+                    <ProgressBar value={pop.pct} size="sm" color="base" />
                   </div>
                 ))}
               </CardContent>
@@ -924,12 +916,10 @@ export const DevOpsDashboardExample = () => {
               <CardHeader
                 leftIcon={<FiShield size={18} />}
                 action={
-                  <Badge
-                    content="Protected"
-                    color="primary"
-                    variant="soft"
-                    className="normal-case tracking-normal font-medium"
-                  />
+                  <div className="flex items-center gap-1.5 text-xs font-medium text-emerald-500">
+                    <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
+                    <span>Protected</span>
+                  </div>
                 }
               >
                 <CardTitle as="h2">Security & Compliance</CardTitle>
@@ -937,24 +927,54 @@ export const DevOpsDashboardExample = () => {
                   Firewall rules and automated security scans
                 </CardDescription>
               </CardHeader>
-              <CardContent className="flex-1 flex flex-col justify-between gap-3 pt-1">
+              <CardContent className="flex-1 flex flex-col justify-between divide-y divide-border/60 pt-1">
                 {[
-                  { label: 'DDoS Shield & WAF', detail: 'Cloudflare Layer 7 active', stat: '0 attacks blocked' },
-                  { label: 'Secret Detection', detail: 'Repository clean & signed', stat: '0 leaks detected' },
-                  { label: 'Vulnerability Scan', detail: 'Trivy container audit passed', stat: '0 CVE findings' },
-                  { label: 'Branch Protection', detail: 'Required CI checks & 1 approval', stat: 'Strict policy' },
+                  {
+                    icon: <FiShield size={15} />,
+                    label: 'DDoS Shield & WAF',
+                    detail: 'Cloudflare Layer 7 active',
+                    status: 'Active',
+                    stat: '0 attacks blocked',
+                  },
+                  {
+                    icon: <FiKey size={15} />,
+                    label: 'Secret Detection',
+                    detail: 'Repository clean & signed',
+                    status: 'Clean',
+                    stat: '0 leaks detected',
+                  },
+                  {
+                    icon: <FiSearch size={15} />,
+                    label: 'Vulnerability Scan',
+                    detail: 'Trivy container audit passed',
+                    status: 'Passed',
+                    stat: '0 CVE findings',
+                  },
+                  {
+                    icon: <FiGitBranch size={15} />,
+                    label: 'Branch Protection',
+                    detail: 'Strict merge & status check',
+                    status: 'Strict',
+                    stat: '1 approval required',
+                  },
                 ].map((sec) => (
-                  <div key={sec.label} className="flex items-center justify-between gap-3 text-sm py-0.5">
-                    <div className="flex items-center gap-2.5 min-w-0">
-                      <FiCheckCircle size={15} className="text-primary shrink-0" />
+                  <div key={sec.label} className="flex items-center justify-between gap-4 py-2.5 first:pt-0 last:pb-0">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="size-8 rounded-lg bg-muted flex items-center justify-center text-muted-foreground shrink-0">
+                        {sec.icon}
+                      </div>
                       <div className="flex flex-col min-w-0">
-                        <span className="font-medium text-foreground truncate">{sec.label}</span>
+                        <span className="font-semibold text-foreground text-sm truncate">{sec.label}</span>
                         <span className="text-xs text-muted-foreground truncate">{sec.detail}</span>
                       </div>
                     </div>
-                    <span className="text-xs font-mono font-medium text-muted-foreground tabular-nums shrink-0">
-                      {sec.stat}
-                    </span>
+                    <div className="flex flex-col items-end shrink-0 gap-0.5">
+                      <div className="flex items-center gap-1.5 text-xs font-medium text-emerald-500">
+                        <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
+                        <span>{sec.status}</span>
+                      </div>
+                      <span className="text-[11px] text-muted-foreground tabular-nums">{sec.stat}</span>
+                    </div>
                   </div>
                 ))}
               </CardContent>

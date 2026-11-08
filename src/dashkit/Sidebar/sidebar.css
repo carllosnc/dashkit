@@ -73,11 +73,14 @@
 }
 
 .sidebar__item--active {
-  @apply text-primary;
+  @apply text-primary bg-primary/10 font-semibold;
+  @variant dark {
+    @apply text-ds-primary-400 bg-primary/15;
+  }
 }
 
 .sidebar__item--inactive {
-  @apply text-muted-foreground hover:text-foreground hover:bg-muted/30;
+  @apply text-muted-foreground hover:text-foreground hover:bg-muted/40;
 }
 
 .sidebar__item--open {
@@ -89,7 +92,10 @@
 }
 
 .sidebar__item-indicator {
-  @apply absolute left-0 top-2 bottom-2 w-1 rounded-r-full bg-primary z-10;
+  @apply absolute left-0 top-1.5 bottom-1.5 w-1 rounded-r-full bg-primary z-10;
+  @variant dark {
+    @apply bg-ds-primary-400;
+  }
 }
 
 .sidebar__item-icon {
@@ -98,6 +104,9 @@
 
 .sidebar__item--active .sidebar__item-icon {
   @apply text-primary;
+  @variant dark {
+    @apply text-ds-primary-400;
+  }
 }
 
 .sidebar__item--inactive .sidebar__item-icon {
