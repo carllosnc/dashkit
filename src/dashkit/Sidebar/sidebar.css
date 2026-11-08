@@ -82,7 +82,7 @@
 }
 
 .sidebar__item--closed {
-  @apply mx-2 w-[calc(100%-1rem)] h-9 px-0 gap-0 justify-center text-center;
+  @apply mx-auto size-9 shrink-0 p-0 rounded-full gap-0 justify-center text-center;
 }
 
 .sidebar__item-icon {
