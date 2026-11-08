@@ -99,30 +99,30 @@ export const CliEmulator = () => {
 
   return (
     <div className="w-full max-w-2xl mx-auto mt-12 mb-16 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
-      <div className="bg-[#0D0D0D] rounded-xl border border-white/10 shadow-2xl overflow-hidden font-mono text-sm md:text-base">
+      <div className="bg-card text-card-foreground rounded-xl border border-border shadow-xl overflow-hidden font-mono text-sm md:text-base">
         {/* Terminal Header */}
-        <div className="bg-white/5 px-4 py-3 flex items-center gap-2 border-b border-white/5">
+        <div className="bg-muted/40 px-4 py-3 flex items-center gap-2 border-b border-border">
           <div className="flex gap-1.5">
-            <div className="size-3 rounded-full bg-[#FF5F56]" />
-            <div className="size-3 rounded-full bg-[#FFBD2E]" />
-            <div className="size-3 rounded-full bg-[#27C93F]" />
+            <div className="size-3 rounded-full bg-danger/80" />
+            <div className="size-3 rounded-full bg-warning/80" />
+            <div className="size-3 rounded-full bg-success/80" />
           </div>
-          <div className="flex-1 text-center pr-10 text-[10px] uppercase tracking-widest text-white/30 font-bold select-none">
+          <div className="flex-1 text-center pr-10 text-[10px] uppercase tracking-widest text-muted-foreground/70 font-bold select-none">
             dashkit-cli — bash
           </div>
         </div>
 
         {/* Terminal Body */}
-        <div className="p-6 h-[260px] flex flex-col gap-2 text-left overflow-hidden bg-gradient-to-b from-transparent to-white/[0.02]">
+        <div className="p-6 h-[260px] flex flex-col gap-2 text-left overflow-hidden bg-gradient-to-b from-transparent to-muted/15">
           <div className="flex items-center gap-3">
-            <span className="text-[#27C93F] font-bold select-none transition-opacity duration-300">~</span>
-            <span className="text-white flex-1 flex items-center">
+            <span className="text-primary font-bold select-none transition-opacity duration-300">~</span>
+            <span className="text-foreground flex-1 flex items-center">
               {activeInput}
               {phase === 'typing' && !shouldReduceMotion && (
                 <motion.span
                   animate={{ opacity: [1, 0] }}
                   transition={{ duration: 0.8, repeat: Infinity }}
-                  className="w-2 h-5 bg-[#27C93F] ml-1 inline-block motion-reduce:hidden"
+                  className="w-2 h-5 bg-primary ml-1 inline-block motion-reduce:hidden"
                 />
               )}
             </span>
@@ -138,10 +138,10 @@ export const CliEmulator = () => {
                   transition={{ duration: shouldReduceMotion ? 0 : 0.2 }}
                   className={`${
                     line.startsWith('✨') 
-                      ? 'text-[#27C93F] font-bold mt-2' 
+                      ? 'text-primary font-bold mt-2' 
                       : line.startsWith('✖') 
-                        ? 'text-[#FF5F56]' 
-                        : 'text-white/60'
+                        ? 'text-danger' 
+                        : 'text-muted-foreground'
                   }`}
                 >
                   {line}
@@ -152,12 +152,12 @@ export const CliEmulator = () => {
         </div>
 
         {/* Status Bar */}
-        <div className="px-4 py-2 bg-white/5 flex items-center justify-between text-[11px] text-white/40 select-none">
+        <div className="px-4 py-2 bg-muted/30 border-t border-border flex items-center justify-between text-[11px] text-muted-foreground select-none">
           <span className="italic">Dashkit CLI</span>
           <button
             type="button"
             onClick={() => setIsPaused(p => !p)}
-            className="hover:text-white transition-colors cursor-pointer px-2 py-0.5 rounded border border-white/10 font-mono text-[10px]"
+            className="hover:text-foreground hover:bg-muted/50 transition-colors cursor-pointer px-2 py-0.5 rounded border border-border font-mono text-[10px]"
             aria-label={isPaused ? "Play terminal animation" : "Pause terminal animation"}
           >
             {isPaused ? "▶ Play" : "⏸ Pause"}
@@ -167,7 +167,7 @@ export const CliEmulator = () => {
       </div>
 
       <div className="mt-6 flex flex-col items-center gap-2">
-        <p className="text-sm text-muted-foreground font-medium grayscale">
+        <p className="text-sm text-muted-foreground font-medium">
           Zero-bloat installation directly into your codebase
         </p>
       </div>
