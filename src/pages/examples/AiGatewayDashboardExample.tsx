@@ -22,6 +22,9 @@ import {
 } from 'react-icons/fi';
 import {
   Sidebar,
+  SidebarProvider,
+  SidebarTrigger,
+  SidebarContent,
   SidebarHeader,
   SidebarHeaderOpen,
   SidebarHeaderClose,
@@ -50,12 +53,13 @@ import { Divider } from '../../dashkit/Divider/Divider';
 import { Breadcrumb } from '../../dashkit/Breadcrumb/Breadcrumb';
 import {
   Table,
+  TableContainer,
   TableHeader,
   TableBody,
   TableRow,
   TableHead,
   TableCell,
-} from '../../dashkit/Table/Table';
+} from "../../dashkit/Table/Table";
 import { useToast } from '../../dashkit/Toast/useToast';
 import { ThemeToggle } from '../../partials/ThemeToggle';
 import { ThemeCustomizer } from '../../partials/ThemeCustomizer';
@@ -235,7 +239,8 @@ export const AiGatewayDashboardExample = () => {
   };
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-background text-foreground font-sans">
+    <SidebarProvider>
+      <div className="flex h-[100dvh] w-full overflow-hidden bg-background text-foreground font-sans">
       <Helmet>
         <title>AI & Model Gateway Console | Dashkit UI</title>
         <meta
@@ -261,7 +266,7 @@ export const AiGatewayDashboardExample = () => {
           </SidebarHeaderClose>
         </SidebarHeader>
 
-        <div className="flex-1 overflow-y-auto flex flex-col gap-1 py-2">
+        <SidebarContent>
           <SidebarSection title="Gateway Core">
             <SidebarItem
               icon={<FiActivity size={17} />}
@@ -333,7 +338,7 @@ export const AiGatewayDashboardExample = () => {
               Gateway Settings
             </SidebarItem>
           </SidebarSection>
-        </div>
+        </SidebarContent>
 
         <SidebarFooter>
           <SidebarFooterOpen>
@@ -352,46 +357,53 @@ export const AiGatewayDashboardExample = () => {
       </Sidebar>
 
       {/* RIGHT MAIN VIEWPORT */}
-      <div className="flex-1 flex flex-col h-screen min-w-0 overflow-hidden">
+      <div className="flex-1 flex flex-col h-[100dvh] min-w-0 overflow-hidden">
         {/* TOP NAVBAR */}
-        <header className="h-16 shrink-0 border-b border-border bg-card px-6 flex items-center justify-between gap-4">
-          <Breadcrumb
-            items={[
-              { label: 'Examples', href: '/examples' },
-              { label: 'ai-gateway' },
-              { label: 'Analytics & Models', active: true },
-            ]}
-          />
+        <header className="h-16 shrink-0 border-b border-border bg-card px-3 sm:px-6 flex items-center justify-between gap-2 sm:gap-4">
+          <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+            <SidebarTrigger size="sm" className="md:hidden" />
+            <div className="hidden sm:block min-w-0 overflow-hidden">
+              <Breadcrumb
+                items={[
+                  { label: "Examples", href: "/examples" },
+                  { label: "ai-gateway" },
+                  { label: "Analytics & Models", active: true },
+                ]}
+              />
+            </div>
+          </div>
 
-          <div className="flex items-center gap-2.5">
-            <ThemeCustomizer />
-            <ThemeToggle />
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            <ThemeCustomizer size="sm" />
+            <ThemeToggle size="sm" />
             <Button
               variant="soft"
-              size="md"
-              leftIcon={<FiExternalLink size={16} />}
-              onClick={() => window.open('https://github.com/dashkit-ui/dashkit', '_blank')}
+              size="sm"
+              leftIcon={<FiExternalLink size={14} />}
+              className="hidden md:inline-flex"
+              onClick={() => window.open("https://github.com/dashkit-ui/dashkit", "_blank")}
             >
               Docs API
             </Button>
             <Button
               variant="filled"
-              size="md"
-              leftIcon={<FiPlus size={16} />}
+              size="sm"
+              leftIcon={<FiPlus size={14} />}
               onClick={handleCreateKey}
             >
-              Create API Key
+              <span className="hidden sm:inline">Create API Key</span>
+              <span className="sm:hidden">New Key</span>
             </Button>
           </div>
         </header>
 
         {/* SCROLLABLE DASHBOARD BODY */}
-        <main className="flex-1 overflow-y-auto p-6">
+        <main className="flex-1 overflow-y-auto p-4 sm:p-6">
           <div className="max-w-7xl w-full mx-auto flex flex-col gap-6">
             {/* HERO TITLE & SEGMENTED TIMEFRAME */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="flex flex-col gap-1.5">
-                <h1 className="text-2xl font-bold tracking-tight text-foreground">
+                <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
                   AI & Model Gateway Console
                 </h1>
                 <p className="text-sm text-muted-foreground">
@@ -415,7 +427,7 @@ export const AiGatewayDashboardExample = () => {
             </div>
 
             {/* 4 STATS CARDS */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               <StatsCard
                 title="Token Throughput"
                 value={currentStats.throughput.value}
@@ -549,9 +561,11 @@ export const AiGatewayDashboardExample = () => {
             {/* RECENT INVOCATIONS TABLE (FULL WIDTH ROW - 1 CARD) */}
             <Card className="w-full">
               <CardHeader
+                className="flex-col sm:flex-row sm:items-start gap-3"
                 leftIcon={<FiTerminal size={18} />}
                 action={
-                  <Tabs
+                  <div className="overflow-x-auto max-w-full">
+                    <Tabs
                     value={selectedModel}
                     onValueChange={(val) => setSelectedModel(val)}
                     variant="pills"
@@ -565,6 +579,7 @@ export const AiGatewayDashboardExample = () => {
                       <TabsTrigger value="gemini-1-5-pro">Gemini</TabsTrigger>
                     </TabsList>
                   </Tabs>
+                  </div>
                 }
               >
                 <CardTitle as="h2" className="text-base font-bold">Recent Gateway Invocations</CardTitle>
@@ -573,7 +588,7 @@ export const AiGatewayDashboardExample = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent className="flex flex-col gap-4">
-                <div className="overflow-x-auto font-sans">
+                <TableContainer className="font-sans">
                   <Table>
                     <TableHeader>
                       <TableRow>
@@ -710,7 +725,7 @@ export const AiGatewayDashboardExample = () => {
                       ))}
                     </TableBody>
                   </Table>
-                </div>
+                </TableContainer>
               </CardContent>
             </Card>
 
@@ -832,18 +847,16 @@ export const AiGatewayDashboardExample = () => {
                         <div className="size-8 rounded-lg bg-muted flex items-center justify-center text-muted-foreground shrink-0">
                           {sec.icon}
                         </div>
-                        <div className="flex flex-col min-w-0">
+                        <div className="flex flex-col min-w-0 gap-0.5">
                           <span className="font-semibold text-foreground text-sm truncate">{sec.label}</span>
                           <span className="text-xs text-muted-foreground truncate">{sec.detail}</span>
+                          <div className="flex items-center gap-1.5 text-xs font-medium text-emerald-500 pt-0.5">
+                            <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
+                            <span>{sec.status}</span>
+                          </div>
                         </div>
                       </div>
-                      <div className="flex items-center gap-3 shrink-0">
-                        <div className="flex items-center gap-1.5 text-xs font-medium text-emerald-500">
-                          <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
-                          <span>{sec.status}</span>
-                        </div>
-                        <span className="text-[11px] text-muted-foreground">{sec.stat}</span>
-                      </div>
+                      <span className="text-[11px] text-muted-foreground shrink-0">{sec.stat}</span>
                     </div>
                   ))}
 
@@ -861,5 +874,6 @@ export const AiGatewayDashboardExample = () => {
         </main>
       </div>
     </div>
+    </SidebarProvider>
   );
 };

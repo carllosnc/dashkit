@@ -416,7 +416,7 @@ export const registry: Record<string, ComponentConfig> = {
       'src/dashkit/Sidebar/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
-    registryDependencies: ['iconbutton', 'tooltip'],
+    registryDependencies: ['iconbutton', 'tooltip', 'backdrop'],
   },
   'float-action-menu': {
     name: 'FloatActionMenu',

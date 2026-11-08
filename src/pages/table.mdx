@@ -1,5 +1,6 @@
 import {
   Table,
+  TableContainer,
   TableHeader,
   TableBody,
   TableFooter,
@@ -19,6 +20,7 @@ A simple, responsive table component for displaying structured data.
 Built with a composition pattern for ultimate flexibility. Renders a clean semantic table designed to be placed inside any container, card, or scrollable wrapper.
 
 <div className="not-prose">
+<TableContainer>
 <Table>
   <TableCaption>Inventory list exported today.</TableCaption>
   <TableHeader>
@@ -55,6 +57,7 @@ Built with a composition pattern for ultimate flexibility. Renders a clean seman
     </TableRow>
   </TableFooter>
 </Table>
+</TableContainer>
 </div>
 
 ## Actions Support
@@ -123,6 +126,26 @@ Tables often need a way to perform operations on specific rows. You can easily i
 ```
 
 ## API Reference
+
+### TableContainer
+
+<PropertyDoc
+  properties={[
+    {
+      "prop": "className",
+      "type": "string",
+      "defaultValue": "—",
+      "description": "Additional CSS classes for the horizontal scroll wrapper with custom scrollbar styling."
+    },
+    {
+      "prop": "children",
+      "type": "ReactNode",
+      "defaultValue": "—",
+      "description": "The table element."
+    }
+  ]}
+/>
+
 
 ### Table
 

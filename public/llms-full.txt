@@ -722,9 +722,9 @@ import { FiGithub, FiBell } from 'react-icons/fi';
   <NavbarBrand>Acme Corp</NavbarBrand>
   
   <NavbarActions>
-     <IconButton icon={<FiBell />} variant="ghost" />
+     <IconButton icon={<FiBell size={18} />} size="sm" variant="ghost" />
      <Divider orientation="vertical" className="h-6" />
-     <IconButton icon={<FiGithub />} variant="ghost" />
+     <IconButton icon={<FiGithub size={18} />} size="sm" variant="ghost" />
   </NavbarActions>
 </Navbar>
 ```
@@ -841,7 +841,7 @@ The Navigation Menu uses a value-based system to track the active item. Ensure t
 - Slug: `sidebar`
 - Installation: `bunx carllosnc/dashkit add sidebar`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
-- Dashkit Dependencies: `iconbutton`, `tooltip`
+- Dashkit Dependencies: `iconbutton`, `tooltip`, `backdrop`
 
 export const InteractiveSidebar = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -867,20 +867,22 @@ export const InteractiveSidebar = () => {
         
 
         
-          } active={activeTab === 'dashboard'} onClick={() => setActiveTab('dashboard')}>
-            Overview
           
-          } active={activeTab === 'analytics'} onClick={() => setActiveTab('analytics')}>
-            Analytics
+            } active={activeTab === 'dashboard'} onClick={() => setActiveTab('dashboard')}>
+              Overview
+            
+            } active={activeTab === 'analytics'} onClick={() => setActiveTab('analytics')}>
+              Analytics
+            
           
-        
 
-        }>
-          } active={activeTab === 'team'} onClick={() => setActiveTab('team')}>
-            Team
-          
-          } active={activeTab === 'settings'} onClick={() => setActiveTab('settings')}>
-            Settings
+          }>
+            } active={activeTab === 'team'} onClick={() => setActiveTab('team')}>
+              Team
+            
+            } active={activeTab === 'settings'} onClick={() => setActiveTab('settings')}>
+              Settings
+            
           
         
 
@@ -939,20 +941,27 @@ export const CollapsibleSectionExample = () => {
 
 # Sidebar
 
-A versatile and premium navigation sidebar component that supports complex layouts, branding, and status indicators using a flexible composition pattern.
+A versatile and premium navigation sidebar component that supports complex layouts, branding, status indicators, and responsive mobile drawer adaptation out of the box.
 
 ## Import
 
 ```tsx
 import { 
+  Sidebar,
+  SidebarProvider,
+  SidebarTrigger,
+  SidebarContent,
   SidebarHeader, 
-  SidebarHeaderOpen,
-  SidebarHeaderClose,
+  SidebarHeaderOpen, 
+  SidebarHeaderClose, 
   SidebarFooter, 
-  SidebarFooterOpen,
-  SidebarFooterClose,
+  SidebarFooterOpen, 
+  SidebarFooterClose, 
   SidebarSection, 
-  SidebarItem
+  SidebarItem,
+  SidebarSubList,
+  SidebarSubItem,
+  useSidebar
 } from '@/dashkit/Sidebar/Sidebar'
 ```
 
@@ -966,14 +975,10 @@ bunx carllosnc/dashkit add sidebar
 
 ## Basic Usage
 
-The `Sidebar` uses a semantic composition of headers, sections, and footers to create a cohesive navigation experience.
-
-
-
-
+The `Sidebar` uses a semantic composition of headers, content scroll area, sections, and footers to create a cohesive navigation experience.
 
 ```tsx
-import { Sidebar, SidebarHeader, SidebarSection, SidebarItem } from '@/dashkit';
+import { Sidebar, SidebarHeader, SidebarContent, SidebarSection, SidebarItem } from '@/dashkit';
 import { FiLayout, FiActivity, FiSettings } from 'react-icons/fi';
 
 export default function App() {
@@ -986,41 +991,69 @@ export default function App() {
         <span>Dashkit</span>
       </SidebarHeader>
 
-      <SidebarSection title="General">
-        <SidebarItem
-          icon={<FiLayout />}
-          active={activeTab === 'dashboard'}
-          onClick={() => setActiveTab('dashboard')}
-        >
-          Overview
-        </SidebarItem>
-      </SidebarSection>
+      <SidebarContent>
+        <SidebarSection title="General">
+          <SidebarItem
+            icon={<FiLayout />}
+            active={activeTab === 'dashboard'}
+            onClick={() => setActiveTab('dashboard')}
+          >
+            Overview
+          </SidebarItem>
+        </SidebarSection>
+      </SidebarContent>
     </Sidebar>
   );
 }
 ```
 
-## Components Breakdown
+## Responsive Mobile Drawer
 
-The Sidebar library is composed of several specialized layers designed for specific layout roles:
+By default (`responsive={true}`), the `Sidebar` automatically adapts between desktop and mobile devices:
+- **Desktop (≥ 768px)**: Sits in the layout flow and smoothly expands or collapses between `width` (272px) and `collapsedWidth` (72px).
+- **Mobile (< 768px)**: Disappears from the layout flow so the main content takes full width, and opens as an accessible sliding **Drawer with Backdrop Blur** via ``.
+- Supports focus management, `Escape` key to close, swipe gestures, and dynamic viewport heights (`100dvh`).
 
+```tsx
+import { SidebarProvider, Sidebar, SidebarTrigger, SidebarContent, SidebarHeader, SidebarSection, SidebarItem } from '@/dashkit';
+import { Navbar, NavbarBrand } from '@/dashkit';
 
-| Property | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `Sidebar` | - | - | The main container that handles height, width, and transitions. |
-| `SidebarHeader` | - | - | Designed for branding, logos, or organization switchers. |
-| `SidebarHeaderOpen/Close` | - | - | Conditional wrappers that show content based on sidebar expansion. |
-| `SidebarFooter` | - | - | Bottom section for user profiles, help links, or versioning. |
-| `SidebarFooterOpen/Close` | - | - | Conditional wrappers for specialized footer layouts. |
-| `SidebarSection` | - | - | Groups related items with an optional title. |
-| `SidebarItem` | - | - | Individual navigation links, optionally collapsible with sub-items. |
-| `SidebarSubList` | - | - | Vertical tree-guide container for indented sub-items. |
-| `SidebarSubItem` | - | - | Sub-navigation link styled for nested tree hierarchies. |
+export default function DashboardLayout({ children }) {
+  return (
+    <SidebarProvider>
+      <div className="flex h-screen w-full">
+        {/* On desktop: in-flow collapsible sidebar. On mobile: portal Drawer */}
+        <Sidebar>
+          <SidebarHeader>My App</SidebarHeader>
+          <SidebarContent>
+            <SidebarSection title="Menu">
+              <SidebarItem icon={<FiLayout />}>Dashboard</SidebarItem>
+            </SidebarSection>
+          </SidebarContent>
+        </Sidebar>
 
+        <div className="flex-1 flex flex-col min-w-0">
+          <Navbar>
+            <NavbarBrand>
+              {/* Toggles sidebar on desktop or opens Drawer on mobile */}
+              <SidebarTrigger />
+              <span>Dashboard</span>
+            </NavbarBrand>
+          </Navbar>
+
+          <main className="flex-1 p-6">
+            {children}
+          </main>
+        </div>
+      </div>
+    </SidebarProvider>
+  );
+}
+```
 
 ## Collapsible Sidebar
 
-Enable the `collapsible` prop to show a floating toggle button on the sidebar edge. You can use the `isOpen` state to conditionally render content using native utility components.
+Enable the `collapsible` prop to show a floating toggle button on the desktop sidebar edge. You can use the `isOpen` state to conditionally render content using native utility components.
 
 ```tsx
 <Sidebar collapsible defaultOpen={true}>
@@ -1036,8 +1069,6 @@ Enable the `collapsible` prop to show a floating toggle button on the sidebar ed
 
 Sections can be individually collapsed to conserve vertical space or group related functionality. Use the `collapsible` prop on `SidebarSection` to enable this behavior. You can also control the initial expansion state with the `defaultOpen` prop.
 
-
-
 ```tsx
 <SidebarSection title="Account" collapsible>
   <SidebarItem icon={<FiUser />}>Profile</SidebarItem>
@@ -1049,25 +1080,53 @@ Sections can be individually collapsed to conserve vertical space or group relat
 </SidebarSection>
 ```
 
+## Components Breakdown
+
+The Sidebar library is composed of several specialized layers designed for specific layout roles:
+
+| Property | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `SidebarProvider` | - | - | Context provider for coordinating state between Sidebar and external triggers. |
+| `Sidebar` | - | - | The main container that handles desktop collapse and mobile drawer portal. |
+| `SidebarTrigger` | - | - | Accessible button to toggle the sidebar collapse (desktop) or mobile drawer. |
+| `SidebarContent` | - | - | Scrollable flex-1 body for navigation sections and items. |
+| `SidebarHeader` | - | - | Designed for branding, logos, organization switchers, and mobile dismiss. |
+| `SidebarHeaderOpen/Close` | - | - | Conditional wrappers that show content based on sidebar expansion. |
+| `SidebarFooter` | - | - | Bottom section for user profiles, help links, or versioning. |
+| `SidebarFooterOpen/Close` | - | - | Conditional wrappers for specialized footer layouts. |
+| `SidebarSection` | - | - | Groups related items with an optional title. |
+| `SidebarItem` | - | - | Individual navigation links, optionally collapsible with sub-items. |
+| `SidebarSubList` | - | - | Vertical tree-guide container for indented sub-items. |
+| `SidebarSubItem` | - | - | Sub-navigation link styled for nested tree hierarchies. |
+
 ## API Reference
 
 ### Sidebar
 
-
 | Property | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
 | `children` | `ReactNode` | - | The content of the sidebar. |
-| `collapsible` | `boolean` | `true` | Shows a floating toggle button on the edge. |
-| `defaultOpen` | `boolean` | `true` | Initial state for uncontrolled sidebar. |
-| `open` | `boolean` | - | Controlled open state. |
-| `onOpenChange` | `(open: boolean) => void` | - | Event handler for state changes. |
-| `width` | `number` | `272` | Expanded width of the sidebar in pixels. |
-| `collapsedWidth` | `number` | `72` | Collapsed width of the sidebar in pixels. |
+| `responsive` | `boolean` | `true` | Automatically switches to an overlay Drawer with Backdrop on mobile. |
+| `collapsible` | `boolean` | `true` | Shows a floating toggle button on the desktop edge. |
+| `defaultOpen` | `boolean` | `true` | Initial state for uncontrolled desktop sidebar. |
+| `open` | `boolean` | - | Controlled open state for desktop sidebar. |
+| `onOpenChange` | `(open: boolean) => void` | - | Event handler for desktop state changes. |
+| `defaultOpenMobile` | `boolean` | `false` | Initial open state for mobile drawer. |
+| `openMobile` | `boolean` | - | Controlled open state for mobile drawer. |
+| `onOpenMobileChange` | `(open: boolean) => void` | - | Event handler for mobile drawer state changes. |
+| `mobileBreakpoint` | `number` | `768` | Screen width breakpoint in px below which mobile drawer activates. |
+| `width` | `number` | `272` | Expanded width of the desktop sidebar in pixels. |
+| `collapsedWidth` | `number` | `72` | Collapsed width of the desktop sidebar in pixels. |
 | `className` | `string` | - | Custom classes for the container. |
 
+### SidebarTrigger
+
+", "description": "Custom icon for the trigger button." },
+    { "prop": "className", "type": "string", "defaultValue": "—", "description": "Custom class names for the button." }
+  ]}
+/>
 
 ### SidebarSection
-
 
 | Property | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
@@ -1077,9 +1136,7 @@ Sections can be individually collapsed to conserve vertical space or group relat
 | `collapsible` | `boolean` | `false` | Whether the section can be collapsed. |
 | `defaultOpen` | `boolean` | `true` | Initial expansion state for the section. |
 
-
 ### SidebarItem
-
 
 | Property | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
@@ -1094,9 +1151,7 @@ Sections can be individually collapsed to conserve vertical space or group relat
 | `subItems` | `SidebarSubItemConfig[]` | - | Nested tree items rendered with guide lines. |
 | `onClick` | `() => void` | - | Standard click event handler. |
 
-
 ### SidebarSubItem
-
 
 | Property | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
@@ -6490,6 +6545,15 @@ Tables often need a way to perform operations on specific rows. You can easily i
 ```
 
 ## API Reference
+
+### TableContainer
+
+| Property | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `className` | `string` | - | Additional CSS classes for the horizontal scroll wrapper with custom scrollbar styling. |
+| `children` | `ReactNode` | - | The table element. |
+
+
 
 ### Table
 

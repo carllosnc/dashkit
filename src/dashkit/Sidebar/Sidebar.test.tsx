@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import {
   Sidebar,
   SidebarHeader,
@@ -7,10 +7,13 @@ import {
   SidebarItem,
   SidebarSubList,
   SidebarSubItem,
+  SidebarContent,
+  SidebarTrigger,
+  SidebarProvider,
 } from './Sidebar';
 import { useSidebar } from './SidebarContext';
 import { FiLayout } from 'react-icons/fi';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 
 describe('Sidebar', () => {
   it('renders the sidebar children correctly', () => {
@@ -154,5 +157,167 @@ describe('Sidebar', () => {
     expect(subItem).toBeInTheDocument();
     fireEvent.click(subItem);
     expect(handleSubClick).toHaveBeenCalledTimes(1);
+  });
+
+  it('renders SidebarContent correctly', () => {
+    render(
+      <Sidebar defaultOpen={true}>
+        <SidebarContent data-testid="sidebar-content">
+          <span>Items list</span>
+        </SidebarContent>
+      </Sidebar>
+    );
+
+    const content = screen.getByTestId('sidebar-content');
+    expect(content).toBeInTheDocument();
+    expect(content).toHaveClass('sidebar__content');
+    expect(screen.getByText('Items list')).toBeInTheDocument();
+  });
+
+  it('renders SidebarTrigger and triggers toggle', () => {
+    render(
+      <SidebarProvider defaultOpen={true}>
+        <SidebarTrigger data-testid="sidebar-trigger" />
+        <Sidebar>
+          <div>Nav body</div>
+        </Sidebar>
+      </SidebarProvider>
+    );
+
+    const trigger = screen.getByTestId('sidebar-trigger');
+    expect(trigger).toBeInTheDocument();
+    expect(trigger).toHaveAttribute('aria-label', 'Collapse sidebar');
+    fireEvent.click(trigger);
+    expect(trigger).toHaveAttribute('aria-label', 'Expand sidebar');
+  });
+
+  describe('Mobile Drawer Mode', () => {
+    const originalMatchMedia = window.matchMedia;
+
+    beforeEach(() => {
+      // Mock mobile matchMedia (< 768px matches true)
+      window.matchMedia = vi.fn().mockImplementation((query: string) => ({
+        matches: query.includes('max-width'),
+        media: query,
+        onchange: null,
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
+      }));
+    });
+
+    afterEach(() => {
+      window.matchMedia = originalMatchMedia;
+    });
+
+    it('renders mobile drawer as a dialog portal when openMobile is true', () => {
+      render(
+        <SidebarProvider defaultOpenMobile={true}>
+          <Sidebar>
+            <SidebarHeader>Mobile Logo</SidebarHeader>
+            <SidebarItem>Mobile Link</SidebarItem>
+          </Sidebar>
+        </SidebarProvider>
+      );
+
+      const dialog = screen.getByRole('dialog', { name: /navigation sidebar/i });
+      expect(dialog).toBeInTheDocument();
+      expect(dialog).toHaveClass('sidebar--mobile');
+      expect(screen.getByText('Mobile Logo')).toBeInTheDocument();
+      expect(screen.getByText('Mobile Link')).toBeInTheDocument();
+    });
+
+    it('closes mobile drawer when clicking close button in SidebarHeader', async () => {
+      render(
+        <SidebarProvider defaultOpenMobile={true}>
+          <Sidebar>
+            <SidebarHeader>Mobile Logo</SidebarHeader>
+          </Sidebar>
+        </SidebarProvider>
+      );
+
+      const closeBtn = screen.getByRole('button', { name: /close navigation/i });
+      expect(closeBtn).toBeInTheDocument();
+      fireEvent.click(closeBtn);
+
+      await waitFor(() => {
+        expect(screen.queryByRole('dialog', { name: /navigation sidebar/i })).not.toBeInTheDocument();
+      });
+    });
+
+    it('closes mobile drawer when clicking a leaf SidebarItem', async () => {
+      const handleItemClick = vi.fn();
+      render(
+        <SidebarProvider defaultOpenMobile={true}>
+          <Sidebar>
+            <SidebarItem onClick={handleItemClick}>Dashboard</SidebarItem>
+          </Sidebar>
+        </SidebarProvider>
+      );
+
+      const item = screen.getByText('Dashboard');
+      fireEvent.click(item);
+      expect(handleItemClick).toHaveBeenCalledTimes(1);
+
+      await waitFor(() => {
+        expect(screen.queryByRole('dialog', { name: /navigation sidebar/i })).not.toBeInTheDocument();
+      });
+    });
+
+    it('toggles mobile drawer with SidebarTrigger', async () => {
+      render(
+        <SidebarProvider defaultOpenMobile={false}>
+          <SidebarTrigger data-testid="mobile-trigger" />
+          <Sidebar>
+            <div>Mobile Content</div>
+          </Sidebar>
+        </SidebarProvider>
+      );
+
+      expect(screen.queryByRole('dialog', { name: /navigation sidebar/i })).not.toBeInTheDocument();
+
+      const trigger = screen.getByTestId('mobile-trigger');
+      fireEvent.click(trigger);
+
+      expect(screen.getByRole('dialog', { name: /navigation sidebar/i })).toBeInTheDocument();
+      expect(screen.getByText('Mobile Content')).toBeInTheDocument();
+    });
+
+    it('closes mobile drawer when clicking backdrop overlay', async () => {
+      render(
+        <SidebarProvider defaultOpenMobile={true}>
+          <Sidebar>
+            <div>Mobile Content</div>
+          </Sidebar>
+        </SidebarProvider>
+      );
+
+      const backdrop = screen.getByTestId('backdrop-overlay');
+      expect(backdrop).toBeInTheDocument();
+      fireEvent.click(backdrop);
+
+      await waitFor(() => {
+        expect(screen.queryByRole('dialog', { name: /navigation sidebar/i })).not.toBeInTheDocument();
+      });
+    });
+  });
+
+  describe('Collapsed desktop header centering', () => {
+    it('centers content in SidebarHeader when sidebar is collapsed', () => {
+      render(
+        <Sidebar defaultOpen={false}>
+          <SidebarHeader>
+            <span data-testid="collapsed-logo">AI</span>
+          </SidebarHeader>
+        </Sidebar>
+      );
+
+      const logo = screen.getByTestId('collapsed-logo');
+      expect(logo).toBeInTheDocument();
+      const container = logo.parentElement;
+      expect(container).toHaveClass('justify-center');
+    });
   });
 });
