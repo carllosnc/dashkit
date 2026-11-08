@@ -1,7 +1,7 @@
 @reference "../dashkit.css";
 
 .icon-button {
-  @apply ds-rounded;
+  @apply rounded-full;
 }
 
 .icon-button:active:not(:disabled) {
@@ -49,7 +49,7 @@
 
   @variant dark {
     @apply border-ds-700;
-
+  
     &:hover {
       @apply bg-ds-800/50 brightness-110;
     }
