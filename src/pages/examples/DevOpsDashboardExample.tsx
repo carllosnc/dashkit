@@ -666,7 +666,7 @@ export const DevOpsDashboardExample = () => {
                       </span>
                       <span className="text-xs text-muted-foreground tabular-nums">38% (8 / 24 cores)</span>
                     </div>
-                    <ProgressBar value={38} color="base" size="sm" />
+                    <ProgressBar value={38} color="primary" size="sm" />
                   </div>
 
                   <div className="flex flex-col gap-1.5">
@@ -677,7 +677,7 @@ export const DevOpsDashboardExample = () => {
                       </span>
                       <span className="text-xs text-muted-foreground tabular-nums">62% (19.8 / 32 GB)</span>
                     </div>
-                    <ProgressBar value={62} color="base" size="sm" />
+                    <ProgressBar value={62} color="primary" size="sm" />
                   </div>
 
                   <div className="flex flex-col gap-1.5">
@@ -688,7 +688,7 @@ export const DevOpsDashboardExample = () => {
                       </span>
                       <span className="text-xs text-muted-foreground tabular-nums">98.4%</span>
                     </div>
-                    <ProgressBar value={98} color="base" size="sm" />
+                    <ProgressBar value={98} color="primary" size="sm" />
                   </div>
 
                   <div className="flex flex-col gap-1.5">
@@ -699,7 +699,7 @@ export const DevOpsDashboardExample = () => {
                       </span>
                       <span className="text-xs text-muted-foreground tabular-nums">41% (164 / 400 GB)</span>
                     </div>
-                    <ProgressBar value={41} color="base" size="sm" />
+                    <ProgressBar value={41} color="primary" size="sm" />
                   </div>
                 </div>
 
@@ -905,7 +905,7 @@ export const DevOpsDashboardExample = () => {
                         <span className="font-semibold text-foreground">{pop.latency}</span>
                       </div>
                     </div>
-                    <ProgressBar value={pop.pct} size="sm" color="base" />
+                    <ProgressBar value={pop.pct} size="sm" color="primary" />
                   </div>
                 ))}
               </CardContent>
