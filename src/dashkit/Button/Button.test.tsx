@@ -54,4 +54,14 @@ describe('Button', () => {
     expect(button).toBeDisabled();
     expect(container.querySelector('svg.drop-shadow-sm')).toBeInTheDocument();
   });
+
+  it('applies non-full rounded class when rounded is false', () => {
+    const { rerender } = render(<Button rounded={false}>Click Me</Button>);
+    let button = screen.getByRole('button');
+    expect(button).toHaveClass('!rounded-md');
+
+    rerender(<Button>Click Me</Button>);
+    button = screen.getByRole('button');
+    expect(button).not.toHaveClass('!rounded-md');
+  });
 });
