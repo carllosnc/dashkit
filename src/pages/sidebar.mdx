@@ -250,6 +250,8 @@ Sections can be individually collapsed to conserve vertical space or group relat
     { "prop": "defaultOpen", "type": "boolean", "defaultValue": "true", "description": "Initial state for uncontrolled sidebar." },
     { "prop": "open", "type": "boolean", "defaultValue": "—", "description": "Controlled open state." },
     { "prop": "onOpenChange", "type": "(open: boolean) => void", "defaultValue": "—", "description": "Event handler for state changes." },
+    { "prop": "width", "type": "number", "defaultValue": "272", "description": "Expanded width of the sidebar in pixels." },
+    { "prop": "collapsedWidth", "type": "number", "defaultValue": "72", "description": "Collapsed width of the sidebar in pixels." },
     { "prop": "className", "type": "string", "defaultValue": "—", "description": "Custom classes for the container." }
   ]}
 />
@@ -273,6 +275,9 @@ Sections can be individually collapsed to conserve vertical space or group relat
     { "prop": "active", "type": "boolean", "defaultValue": "false", "description": "Applies active highlight styling." },
     { "prop": "icon", "type": "ReactNode", "defaultValue": "—", "description": "Icon to be displayed beside the text." },
     { "prop": "children", "type": "ReactNode", "defaultValue": "—", "description": "Descriptive text for the nav link." },
+    { "prop": "badgeSlot", "type": "ReactNode", "defaultValue": "—", "description": "Optional badge or status slot aligned to the right edge." },
+    { "prop": "href", "type": "string", "defaultValue": "—", "description": "Optional link destination for anchor rendering." },
+    { "prop": "target", "type": "string", "defaultValue": "—", "description": "Anchor target when href is provided." },
     { "prop": "onClick", "type": "() => void", "defaultValue": "—", "description": "Standard click event handler." }
   ]}
 />
