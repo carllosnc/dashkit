@@ -43,4 +43,18 @@ describe('Navbar', () => {
     const nav = screen.getByRole('navigation');
     expect(nav).toBeInTheDocument();
   });
+
+  it('renders responsive structure with proper subcomponent classes', () => {
+    render(
+      <Navbar>
+        <NavbarBrand data-testid="brand">Logo</NavbarBrand>
+        <NavbarActions data-testid="actions">Actions</NavbarActions>
+      </Navbar>
+    );
+
+    const brand = screen.getByTestId('brand');
+    const actions = screen.getByTestId('actions');
+    expect(brand).toHaveClass('navbar__brand');
+    expect(actions).toHaveClass('navbar__actions');
+  });
 });

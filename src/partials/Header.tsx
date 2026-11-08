@@ -21,10 +21,11 @@ export function Header({ onMenuClick, showNavLinks = true }: HeaderProps) {
         {onMenuClick && (
           <IconButton
             aria-label="Toggle navigation menu"
-            icon={<FiMenu size={20} />}
+            size="sm"
+            icon={<FiMenu size={18} />}
             onClick={onMenuClick}
             variant="ghost"
-            className="md:hidden text-muted-foreground mr-2"
+            className="md:hidden text-muted-foreground mr-1"
           />
         )}
         <Link to="/" className="flex items-center transition-opacity hover:opacity-80">
@@ -65,11 +66,12 @@ export function Header({ onMenuClick, showNavLinks = true }: HeaderProps) {
       )}
 
       <NavbarActions>
-        <ThemeCustomizer />
-        <ThemeToggle />
+        <ThemeCustomizer size="sm" />
+        <ThemeToggle size="sm" />
         <IconButton
           aria-label="GitHub Repository"
-          icon={<FiGithub size={20} />}
+          size="sm"
+          icon={<FiGithub size={16} />}
           href="https://github.com/carllosnc/dashkit"
           target="_blank"
           rel="noopener noreferrer"

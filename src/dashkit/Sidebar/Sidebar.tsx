@@ -1,14 +1,47 @@
 import * as React from 'react';
+import { createPortal } from 'react-dom';
 import { cn } from '../utils/cn';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import type { HTMLMotionProps } from 'framer-motion';
-import { FiChevronsLeft, FiMenu, FiChevronDown } from 'react-icons/fi';
+import { FiChevronsLeft, FiMenu, FiChevronDown, FiX } from 'react-icons/fi';
 import { IconButton } from '../IconButton/IconButton';
+import { Backdrop } from '../Backdrop/Backdrop';
+import { lockBodyScroll } from '../utils/scrollLock';
 import { SidebarContext, useSidebar } from './SidebarContext';
-import { useSidebarState } from './useSidebar';
-import { AnimatePresence } from 'framer-motion';
+import { useSidebarState, type UseSidebarProps } from './useSidebar';
 import { Tooltip, TooltipTrigger, TooltipContent } from '../Tooltip/Tooltip';
 import './sidebar.css';
+
+export interface SidebarProviderProps extends UseSidebarProps {
+  children: React.ReactNode;
+}
+
+export function SidebarProvider({
+  children,
+  defaultOpen,
+  open,
+  onOpenChange,
+  defaultOpenMobile,
+  openMobile,
+  onOpenMobileChange,
+  mobileBreakpoint,
+}: SidebarProviderProps) {
+  const state = useSidebarState({
+    defaultOpen,
+    open,
+    onOpenChange,
+    defaultOpenMobile,
+    openMobile,
+    onOpenMobileChange,
+    mobileBreakpoint,
+  });
+
+  return (
+    <SidebarContext.Provider value={state}>
+      {children}
+    </SidebarContext.Provider>
+  );
+}
 
 export interface SidebarProps extends
   Omit<HTMLMotionProps<'aside'>, 'children' | 'defaultValue'> {
@@ -19,6 +52,11 @@ export interface SidebarProps extends
   onOpenChange?: (open: boolean) => void;
   width?: number;
   collapsedWidth?: number;
+  responsive?: boolean;
+  defaultOpenMobile?: boolean;
+  openMobile?: boolean;
+  onOpenMobileChange?: (open: boolean) => void;
+  mobileBreakpoint?: number;
 }
 
 export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
@@ -30,55 +68,129 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
       defaultOpen = true,
       open: controlledOpen,
       onOpenChange,
+      defaultOpenMobile = false,
+      openMobile: controlledOpenMobile,
+      onOpenMobileChange,
       width = 272,
       collapsedWidth = 72,
+      responsive = true,
+      mobileBreakpoint = 768,
       ...props
     },
     ref
   ) => {
-    const { isOpen, setIsOpen, toggle } = useSidebarState({ defaultOpen, open: controlledOpen, onOpenChange });
+    const parentContext = React.useContext(SidebarContext);
 
-    // Memoized so consumers (SidebarHeader, SidebarItem, ...) don't re-render
-    // on every parent render. setIsOpen was previously a no-op, so calling it
-    // from useSidebar() silently did nothing.
-    const contextValue = React.useMemo(
-      () => ({ isOpen, setIsOpen, toggle }),
-      [isOpen, setIsOpen, toggle]
+    const localState = useSidebarState({
+      defaultOpen,
+      open: controlledOpen,
+      onOpenChange,
+      defaultOpenMobile,
+      openMobile: controlledOpenMobile,
+      onOpenMobileChange,
+      mobileBreakpoint,
+    });
+
+    const activeContext = parentContext ?? localState;
+    const { isOpen, isMobile, openMobile, setOpenMobile, toggle } = activeContext;
+
+    const isMobileMode = responsive && isMobile;
+
+    React.useEffect(() => {
+      if (!isMobileMode || !openMobile) return;
+      return lockBodyScroll();
+    }, [isMobileMode, openMobile]);
+
+    React.useEffect(() => {
+      if (!isMobileMode || !openMobile) return;
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          setOpenMobile(false);
+        }
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [isMobileMode, openMobile, setOpenMobile]);
+
+    const desktopElement = (
+      <motion.aside
+        ref={ref as React.Ref<HTMLDivElement>}
+        initial={false}
+        animate={{
+          width: isOpen ? width : collapsedWidth
+        }}
+        transition={{
+          type: 'spring',
+          stiffness: 300,
+          damping: 30,
+          mass: 0.8
+        }}
+        className={cn("sidebar", className)}
+        {...props}
+      >
+        {children}
+        {collapsible && (
+          <IconButton
+            variant="filled"
+            icon={isOpen ? <FiChevronsLeft /> : <FiMenu />}
+            aria-label={isOpen ? 'Collapse sidebar' : 'Expand sidebar'}
+            aria-expanded={isOpen}
+            onClick={toggle}
+            rounded
+            className={cn(
+              "sidebar__toggle",
+              !isOpen && "sidebar__toggle--closed"
+            )}
+          />
+        )}
+      </motion.aside>
     );
 
-    return (
-      <SidebarContext.Provider value={contextValue}>
-        <motion.aside
-          ref={ref as React.Ref<HTMLDivElement>}
-          initial={false}
-          animate={{
-            width: isOpen ? width : collapsedWidth
-          }}
-          transition={{
-            type: 'spring',
-            stiffness: 300,
-            damping: 30,
-            mass: 0.8
-          }}
-          className={cn("sidebar", className)}
-          {...props}
-        >
-          {children}
-          {collapsible && (
-            <IconButton
-              variant="filled"
-              icon={isOpen ? <FiChevronsLeft /> : <FiMenu />}
-              aria-label={isOpen ? 'Collapse sidebar' : 'Expand sidebar'}
-              aria-expanded={isOpen}
-              onClick={toggle}
-              rounded
-              className={cn(
-                "sidebar__toggle",
-                !isOpen && "sidebar__toggle--closed"
-              )}
-            />
+    const mobilePortal = isMobileMode && typeof document !== 'undefined' ? (
+      createPortal(
+        <AnimatePresence>
+          {openMobile && (
+            <div className="sidebar__portal">
+              <Backdrop
+                show={true}
+                blur={true}
+                fixed={false}
+                onClick={() => setOpenMobile(false)}
+              />
+              <motion.aside
+                ref={ref as React.Ref<HTMLDivElement>}
+                initial={{ x: '-100%' }}
+                animate={{ x: 0 }}
+                exit={{ x: '-100%' }}
+                transition={{
+                  type: 'spring',
+                  damping: 28,
+                  stiffness: 300,
+                }}
+                className={cn("sidebar--mobile", className)}
+                role="dialog"
+                aria-modal="true"
+                aria-label="Navigation sidebar"
+                {...props}
+              >
+                {children}
+              </motion.aside>
+            </div>
           )}
-        </motion.aside>
+        </AnimatePresence>,
+        document.body
+      )
+    ) : null;
+
+    const content = isMobileMode ? mobilePortal : desktopElement;
+
+    if (parentContext) {
+      return content;
+    }
+
+    return (
+      <SidebarContext.Provider value={localState}>
+        {content}
       </SidebarContext.Provider>
     );
   }
@@ -86,8 +198,65 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
 
 Sidebar.displayName = 'Sidebar';
 
+export interface SidebarTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  icon?: React.ReactNode;
+  size?: 'sm' | 'md' | 'lg';
+}
+
+export const SidebarTrigger = React.forwardRef<HTMLButtonElement, SidebarTriggerProps>(
+  function SidebarTrigger({ icon, size = 'sm', className, ...props }, ref) {
+    const { toggle, isOpen, isMobile, openMobile } = useSidebar();
+    const activeOpen = isMobile ? openMobile : isOpen;
+
+    return (
+      <IconButton
+        ref={ref}
+        variant="ghost"
+        size={size}
+        aria-label={activeOpen ? 'Collapse sidebar' : 'Expand sidebar'}
+        aria-expanded={activeOpen}
+        icon={icon ?? <FiMenu size={size === 'sm' ? 18 : 20} />}
+        onClick={toggle}
+        className={cn("sidebar__trigger", className)}
+        {...props}
+      />
+    );
+  }
+);
+SidebarTrigger.displayName = 'SidebarTrigger';
+
+export interface SidebarContentProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+}
+
+export function SidebarContent({ children, className, ...props }: SidebarContentProps) {
+  return (
+    <div className={cn("sidebar__content", className)} {...props}>
+      {children}
+    </div>
+  );
+}
+
 export function SidebarHeader({ children, className }: { children: React.ReactNode; className?: string }) {
-  const { isOpen } = useSidebar();
+  const { isOpen, isMobile, setOpenMobile } = useSidebar();
+
+  if (isMobile) {
+    return (
+      <div className={cn("sidebar__header px-4 flex items-center justify-between", className)}>
+        <div className="flex items-center min-w-0 flex-1">
+          {children}
+        </div>
+        <IconButton
+          variant="ghost"
+          size="sm"
+          icon={<FiX size={18} />}
+          aria-label="Close navigation"
+          onClick={() => setOpenMobile(false)}
+          className="sidebar__mobile-close shrink-0 ml-2"
+        />
+      </div>
+    );
+  }
 
   return (
     <motion.div
@@ -99,25 +268,30 @@ export function SidebarHeader({ children, className }: { children: React.ReactNo
       }}
       className={cn("sidebar__header", className)}
     >
-      {children}
+      <div className={cn("flex items-center min-w-0", isOpen ? "flex-1" : "justify-center w-full")}>
+        {children}
+      </div>
     </motion.div>
   );
 }
 
 export function SidebarHeaderOpen({ children }: { children: React.ReactNode }) {
-  const { isOpen } = useSidebar();
-  if (!isOpen) return null;
+  const { isOpen, isMobile } = useSidebar();
+  const show = isMobile ? true : isOpen;
+  if (!show) return null;
   return <>{children}</>;
 }
 
 export function SidebarHeaderClose({ children }: { children: React.ReactNode }) {
-  const { isOpen } = useSidebar();
-  if (isOpen) return null;
+  const { isOpen, isMobile } = useSidebar();
+  const show = isMobile ? false : !isOpen;
+  if (!show) return null;
   return <>{children}</>;
 }
 
 export function SidebarFooter({ children, className }: { children: React.ReactNode; className?: string }) {
-  const { isOpen } = useSidebar();
+  const { isOpen, isMobile } = useSidebar();
+  const effectiveOpen = isMobile ? true : isOpen;
 
   return (
     <motion.div
@@ -126,8 +300,8 @@ export function SidebarFooter({ children, className }: { children: React.ReactNo
         paddingTop: 12,
         paddingLeft: 16,
         paddingRight: 16,
-        paddingBottom: isOpen ? 16 : 12,
-        alignItems: isOpen ? 'stretch' : 'center'
+        paddingBottom: effectiveOpen ? 16 : 12,
+        alignItems: effectiveOpen ? 'stretch' : 'center'
       }}
       className={cn("sidebar__footer", className)}
     >
@@ -137,14 +311,16 @@ export function SidebarFooter({ children, className }: { children: React.ReactNo
 }
 
 export function SidebarFooterOpen({ children }: { children: React.ReactNode }) {
-  const { isOpen } = useSidebar();
-  if (!isOpen) return null;
+  const { isOpen, isMobile } = useSidebar();
+  const show = isMobile ? true : isOpen;
+  if (!show) return null;
   return <>{children}</>;
 }
 
 export function SidebarFooterClose({ children }: { children: React.ReactNode }) {
-  const { isOpen } = useSidebar();
-  if (isOpen) return null;
+  const { isOpen, isMobile } = useSidebar();
+  const show = isMobile ? false : !isOpen;
+  if (!show) return null;
   return <>{children}</>;
 }
 
@@ -166,7 +342,8 @@ export function SidebarSection({
   defaultOpen = true
 }: SidebarSectionProps) {
   const sidebarContext = React.useContext(SidebarContext);
-  const isOpen = sidebarContext?.isOpen ?? true;
+  const isMobile = sidebarContext?.isMobile ?? false;
+  const isOpen = sidebarContext ? (isMobile ? true : sidebarContext.isOpen) : true;
   const [isSectionOpen, setIsSectionOpen] = React.useState(defaultOpen);
 
   return (
@@ -249,6 +426,17 @@ export function SidebarSubItem({
   onClick,
   ...props
 }: SidebarSubItemProps) {
+  const sidebarContext = React.useContext(SidebarContext);
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
+    if (sidebarContext?.isMobile) {
+      sidebarContext.setOpenMobile(false);
+    }
+    if (onClick) {
+      (onClick as React.MouseEventHandler<HTMLAnchorElement | HTMLButtonElement>)(e);
+    }
+  };
+
   const sharedClasses = cn(
     "sidebar__subitem",
     active && "sidebar__subitem--active",
@@ -275,7 +463,7 @@ export function SidebarSubItem({
         target={target}
         aria-current={active ? 'page' : undefined}
         className={sharedClasses}
-        onClick={onClick as unknown as React.MouseEventHandler<HTMLAnchorElement>}
+        onClick={handleClick as unknown as React.MouseEventHandler<HTMLAnchorElement>}
       >
         {content}
       </a>
@@ -287,7 +475,7 @@ export function SidebarSubItem({
       type="button"
       aria-current={active ? 'page' : undefined}
       className={sharedClasses}
-      onClick={onClick}
+      onClick={handleClick as unknown as React.MouseEventHandler<HTMLButtonElement>}
       {...props}
     >
       {content}
@@ -296,7 +484,8 @@ export function SidebarSubItem({
 }
 
 export function SidebarSubList({ children, className }: { children: React.ReactNode; className?: string }) {
-  const { isOpen } = useSidebar();
+  const sidebarContext = React.useContext(SidebarContext);
+  const isOpen = sidebarContext ? (sidebarContext.isMobile ? true : sidebarContext.isOpen) : true;
   if (!isOpen) return null;
 
   return (
@@ -336,7 +525,11 @@ export function SidebarItem({
   onClick,
   ...props
 }: SidebarItemProps) {
-  const { isOpen } = useSidebar();
+  const sidebarContext = React.useContext(SidebarContext);
+  const isMobile = sidebarContext?.isMobile ?? false;
+  const isOpen = sidebarContext?.isOpen ?? true;
+  const effectiveOpen = isMobile ? true : isOpen;
+
   const hasSubItems = Boolean((subItems && subItems.length > 0) || collapsible);
 
   const [isSubOpen, setIsSubOpen] = React.useState(defaultOpen);
@@ -349,6 +542,8 @@ export function SidebarItem({
         setIsSubOpen(next);
       }
       onOpenChange?.(next);
+    } else if (isMobile && sidebarContext) {
+      sidebarContext.setOpenMobile(false);
     }
     if (onClick) {
       (onClick as React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>)(e);
@@ -358,7 +553,7 @@ export function SidebarItem({
   const sharedClasses = cn(
     "sidebar__item",
     active ? "sidebar__item--active" : "sidebar__item--inactive",
-    isOpen ? "sidebar__item--open" : "sidebar__item--closed",
+    effectiveOpen ? "sidebar__item--open" : "sidebar__item--closed",
     className
   );
 
@@ -369,32 +564,32 @@ export function SidebarItem({
           {icon}
         </span>
       )}
-      {!isOpen && (
+      {!effectiveOpen && (
         <span className="sr-only">{children}</span>
       )}
       <motion.span
         initial={false}
         animate={{
-          opacity: isOpen ? 1 : 0,
-          width: isOpen ? 'auto' : 0
+          opacity: effectiveOpen ? 1 : 0,
+          width: effectiveOpen ? 'auto' : 0
         }}
         transition={{ duration: 0.2 }}
         title={typeof children === 'string' ? children : undefined}
         className={cn(
           "sidebar__item-text",
-          isOpen ? "sidebar__item-text--open" : "sidebar__item-text--closed"
+          effectiveOpen ? "sidebar__item-text--open" : "sidebar__item-text--closed"
         )}
       >
         {children}
       </motion.span>
 
-      {isOpen && badgeSlot && (
+      {effectiveOpen && badgeSlot && (
         <div className="sidebar__item-badge">
           {badgeSlot}
         </div>
       )}
 
-      {isOpen && hasSubItems && (
+      {effectiveOpen && hasSubItems && (
         <motion.span
           animate={{ rotate: isExpanded ? 0 : -90 }}
           transition={{ duration: 0.2 }}
@@ -430,7 +625,7 @@ export function SidebarItem({
     </motion.button>
   );
 
-  if (!isOpen) {
+  if (!effectiveOpen) {
     return (
       <Tooltip className="block w-full">
         <TooltipTrigger asChild>

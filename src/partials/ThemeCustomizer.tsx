@@ -12,11 +12,12 @@ import { LuPalette } from 'react-icons/lu';
 import { FiCheck, FiRotateCcw } from 'react-icons/fi';
 import clsx from 'clsx';
 
-interface ThemeCustomizerProps {
+export interface ThemeCustomizerProps {
   className?: string;
+  size?: 'sm' | 'md' | 'lg';
 }
 
-export function ThemeCustomizer({ className }: ThemeCustomizerProps) {
+export function ThemeCustomizer({ className, size = 'sm' }: ThemeCustomizerProps) {
   const {
     baseColor,
     setBaseColor,
@@ -35,7 +36,8 @@ export function ThemeCustomizer({ className }: ThemeCustomizerProps) {
     <Popover>
       <PopoverTrigger asChild>
         <IconButton
-          icon={<LuPalette size={18} />}
+          icon={<LuPalette size={size === 'sm' ? 16 : 18} />}
+          size={size}
           variant="soft"
           aria-label="Customize theme colors"
           className={className}

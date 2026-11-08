@@ -1,14 +1,19 @@
 import { useState } from 'react';
 import { 
   Sidebar, 
+  SidebarProvider,
+  SidebarTrigger,
+  SidebarContent,
   SidebarHeader, 
-  SidebarHeaderOpen,
-  SidebarHeaderClose,
+  SidebarHeaderOpen, 
+  SidebarHeaderClose, 
   SidebarFooter, 
-  SidebarFooterOpen,
-  SidebarFooterClose,
+  SidebarFooterOpen, 
+  SidebarFooterClose, 
   SidebarSection, 
-  SidebarItem 
+  SidebarItem,
+  SidebarSubList,
+  SidebarSubItem
 } from '../dashkit/Sidebar/Sidebar';
 import { Badge } from '../dashkit/Badge';
 import { 
@@ -36,6 +41,7 @@ export const InteractiveSidebar = () => {
   return (
     <div className="flex h-[450px] w-full border border-ds-200 dark:border-ds-800 rounded-2xl overflow-hidden bg-white dark:bg-ds-950 shadow-sm relative">
       <Sidebar
+        responsive={false}
         collapsible
         open={isOpen}
         onOpenChange={setIsOpen}
@@ -56,23 +62,25 @@ export const InteractiveSidebar = () => {
           </SidebarHeaderClose>
         </SidebarHeader>
 
-        <SidebarSection title="General" collapsible>
-          <SidebarItem icon={<FiLayout size={18} />} active={activeTab === 'dashboard'} onClick={() => setActiveTab('dashboard')}>
-            Overview
-          </SidebarItem>
-          <SidebarItem icon={<FiActivity size={18} />} active={activeTab === 'analytics'} onClick={() => setActiveTab('analytics')}>
-            Analytics
-          </SidebarItem>
-        </SidebarSection>
+        <SidebarContent>
+          <SidebarSection title="General" collapsible>
+            <SidebarItem icon={<FiLayout size={18} />} active={activeTab === 'dashboard'} onClick={() => setActiveTab('dashboard')}>
+              Overview
+            </SidebarItem>
+            <SidebarItem icon={<FiActivity size={18} />} active={activeTab === 'analytics'} onClick={() => setActiveTab('analytics')}>
+              Analytics
+            </SidebarItem>
+          </SidebarSection>
 
-        <SidebarSection title="Management" collapsible badge={<Badge content="2" variant="soft" color="info" />}>
-          <SidebarItem icon={<FiUsers size={18} />} active={activeTab === 'team'} onClick={() => setActiveTab('team')}>
-            Team
-          </SidebarItem>
-          <SidebarItem icon={<FiSettings size={18} />} active={activeTab === 'settings'} onClick={() => setActiveTab('settings')}>
-            Settings
-          </SidebarItem>
-        </SidebarSection>
+          <SidebarSection title="Management" collapsible badge={<Badge content="2" variant="soft" color="info" />}>
+            <SidebarItem icon={<FiUsers size={18} />} active={activeTab === 'team'} onClick={() => setActiveTab('team')}>
+              Team
+            </SidebarItem>
+            <SidebarItem icon={<FiSettings size={18} />} active={activeTab === 'settings'} onClick={() => setActiveTab('settings')}>
+              Settings
+            </SidebarItem>
+          </SidebarSection>
+        </SidebarContent>
 
         <SidebarFooter className="p-4 border-t border-ds-100 dark:border-ds-900">
           <div className="flex items-center gap-3 px-2 py-2 rounded-xl group hover:bg-ds-50 dark:hover:bg-ds-800 transition-all cursor-pointer">
@@ -98,7 +106,7 @@ export const InteractiveSidebar = () => {
 export const CollapsibleSectionExample = () => {
   return (
     <div className="flex h-[400px] w-full border border-ds-200 dark:border-ds-800 rounded-2xl overflow-hidden bg-white dark:bg-ds-950 shadow-sm relative">
-      <Sidebar>
+      <Sidebar responsive={false}>
         <SidebarHeader>
           <SidebarHeaderOpen>
             <div className="font-bold px-6">Sections</div>
@@ -109,7 +117,7 @@ export const CollapsibleSectionExample = () => {
             </div>
           </SidebarHeaderClose>
         </SidebarHeader>
-        <div className="flex-1 overflow-y-auto">
+        <SidebarContent>
           <SidebarSection title="Account" collapsible>
             <SidebarItem icon={<FiUser size={18} />}>Profile</SidebarItem>
             <SidebarItem icon={<FiShield size={18} />}>Security</SidebarItem>
@@ -118,7 +126,7 @@ export const CollapsibleSectionExample = () => {
             <SidebarItem icon={<FiSettings size={18} />}>Basic Settings</SidebarItem>
             <SidebarItem icon={<FiActivity size={18} />}>Logs</SidebarItem>
           </SidebarSection>
-        </div>
+        </SidebarContent>
       </Sidebar>
       <div className="flex-1 bg-ds-50/50 dark:bg-ds-900/20 p-8 flex items-center justify-center text-ds-400 text-sm">
         Documentation Preview
@@ -129,20 +137,27 @@ export const CollapsibleSectionExample = () => {
 
 # Sidebar
 
-A versatile and premium navigation sidebar component that supports complex layouts, branding, and status indicators using a flexible composition pattern.
+A versatile and premium navigation sidebar component that supports complex layouts, branding, status indicators, and responsive mobile drawer adaptation out of the box.
 
 ## Import
 
 ```tsx
 import { 
+  Sidebar,
+  SidebarProvider,
+  SidebarTrigger,
+  SidebarContent,
   SidebarHeader, 
-  SidebarHeaderOpen,
-  SidebarHeaderClose,
+  SidebarHeaderOpen, 
+  SidebarHeaderClose, 
   SidebarFooter, 
-  SidebarFooterOpen,
-  SidebarFooterClose,
+  SidebarFooterOpen, 
+  SidebarFooterClose, 
   SidebarSection, 
-  SidebarItem
+  SidebarItem,
+  SidebarSubList,
+  SidebarSubItem,
+  useSidebar
 } from '@/components/Sidebar/Sidebar'
 ```
 
@@ -156,14 +171,14 @@ bunx carllosnc/dashkit add sidebar
 
 ## Basic Usage
 
-The `Sidebar` uses a semantic composition of headers, sections, and footers to create a cohesive navigation experience.
+The `Sidebar` uses a semantic composition of headers, content scroll area, sections, and footers to create a cohesive navigation experience.
 
 <div className="not-prose">
 <InteractiveSidebar />
 </div>
 
 ```tsx
-import { Sidebar, SidebarHeader, SidebarSection, SidebarItem } from '@/dashkit';
+import { Sidebar, SidebarHeader, SidebarContent, SidebarSection, SidebarItem } from '@/dashkit';
 import { FiLayout, FiActivity, FiSettings } from 'react-icons/fi';
 
 export default function App() {
@@ -176,41 +191,69 @@ export default function App() {
         <span>Dashkit</span>
       </SidebarHeader>
 
-      <SidebarSection title="General">
-        <SidebarItem
-          icon={<FiLayout />}
-          active={activeTab === 'dashboard'}
-          onClick={() => setActiveTab('dashboard')}
-        >
-          Overview
-        </SidebarItem>
-      </SidebarSection>
+      <SidebarContent>
+        <SidebarSection title="General">
+          <SidebarItem
+            icon={<FiLayout />}
+            active={activeTab === 'dashboard'}
+            onClick={() => setActiveTab('dashboard')}
+          >
+            Overview
+          </SidebarItem>
+        </SidebarSection>
+      </SidebarContent>
     </Sidebar>
   );
 }
 ```
 
-## Components Breakdown
+## Responsive Mobile Drawer
 
-The Sidebar library is composed of several specialized layers designed for specific layout roles:
+By default (`responsive={true}`), the `Sidebar` automatically adapts between desktop and mobile devices:
+- **Desktop (≥ 768px)**: Sits in the layout flow and smoothly expands or collapses between `width` (272px) and `collapsedWidth` (72px).
+- **Mobile (< 768px)**: Disappears from the layout flow so the main content takes full width, and opens as an accessible sliding **Drawer with Backdrop Blur** via `<SidebarTrigger />`.
+- Supports focus management, `Escape` key to close, swipe gestures, and dynamic viewport heights (`100dvh`).
 
-<PropertyDoc
-  properties={[
-    { "prop": "Sidebar", "description": "The main container that handles height, width, and transitions." },
-    { "prop": "SidebarHeader", "description": "Designed for branding, logos, or organization switchers." },
-    { "prop": "SidebarHeaderOpen/Close", "description": "Conditional wrappers that show content based on sidebar expansion." },
-    { "prop": "SidebarFooter", "description": "Bottom section for user profiles, help links, or versioning." },
-    { "prop": "SidebarFooterOpen/Close", "description": "Conditional wrappers for specialized footer layouts." },
-    { "prop": "SidebarSection", "description": "Groups related items with an optional title." },
-    { "prop": "SidebarItem", "description": "Individual navigation links, optionally collapsible with sub-items." },
-    { "prop": "SidebarSubList", "description": "Vertical tree-guide container for indented sub-items." },
-    { "prop": "SidebarSubItem", "description": "Sub-navigation link styled for nested tree hierarchies." }
-  ]}
-/>
+```tsx
+import { SidebarProvider, Sidebar, SidebarTrigger, SidebarContent, SidebarHeader, SidebarSection, SidebarItem } from '@/dashkit';
+import { Navbar, NavbarBrand } from '@/dashkit';
+
+export default function DashboardLayout({ children }) {
+  return (
+    <SidebarProvider>
+      <div className="flex h-screen w-full">
+        {/* On desktop: in-flow collapsible sidebar. On mobile: portal Drawer */}
+        <Sidebar>
+          <SidebarHeader>My App</SidebarHeader>
+          <SidebarContent>
+            <SidebarSection title="Menu">
+              <SidebarItem icon={<FiLayout />}>Dashboard</SidebarItem>
+            </SidebarSection>
+          </SidebarContent>
+        </Sidebar>
+
+        <div className="flex-1 flex flex-col min-w-0">
+          <Navbar>
+            <NavbarBrand>
+              {/* Toggles sidebar on desktop or opens Drawer on mobile */}
+              <SidebarTrigger />
+              <span>Dashboard</span>
+            </NavbarBrand>
+          </Navbar>
+
+          <main className="flex-1 p-6">
+            {children}
+          </main>
+        </div>
+      </div>
+    </SidebarProvider>
+  );
+}
+```
 
 ## Collapsible Sidebar
 
-Enable the `collapsible` prop to show a floating toggle button on the sidebar edge. You can use the `isOpen` state to conditionally render content using native utility components.
+Enable the `collapsible` prop to show a floating toggle button on the desktop sidebar edge. You can use the `isOpen` state to conditionally render content using native utility components.
 
 ```tsx
 <Sidebar collapsible defaultOpen={true}>
@@ -241,6 +284,27 @@ Sections can be individually collapsed to conserve vertical space or group relat
 </SidebarSection>
 ```
 
+## Components Breakdown
+
+The Sidebar library is composed of several specialized layers designed for specific layout roles:
+
+<PropertyDoc
+  properties={[
+    { "prop": "SidebarProvider", "description": "Context provider for coordinating state between Sidebar and external triggers." },
+    { "prop": "Sidebar", "description": "The main container that handles desktop collapse and mobile drawer portal." },
+    { "prop": "SidebarTrigger", "description": "Accessible button to toggle the sidebar collapse (desktop) or mobile drawer." },
+    { "prop": "SidebarContent", "description": "Scrollable flex-1 body for navigation sections and items." },
+    { "prop": "SidebarHeader", "description": "Designed for branding, logos, organization switchers, and mobile dismiss." },
+    { "prop": "SidebarHeaderOpen/Close", "description": "Conditional wrappers that show content based on sidebar expansion." },
+    { "prop": "SidebarFooter", "description": "Bottom section for user profiles, help links, or versioning." },
+    { "prop": "SidebarFooterOpen/Close", "description": "Conditional wrappers for specialized footer layouts." },
+    { "prop": "SidebarSection", "description": "Groups related items with an optional title." },
+    { "prop": "SidebarItem", "description": "Individual navigation links, optionally collapsible with sub-items." },
+    { "prop": "SidebarSubList", "description": "Vertical tree-guide container for indented sub-items." },
+    { "prop": "SidebarSubItem", "description": "Sub-navigation link styled for nested tree hierarchies." }
+  ]}
+/>
+
 ## API Reference
 
 ### Sidebar
@@ -248,13 +312,27 @@ Sections can be individually collapsed to conserve vertical space or group relat
 <PropertyDoc
   properties={[
     { "prop": "children", "type": "ReactNode", "defaultValue": "—", "description": "The content of the sidebar." },
-    { "prop": "collapsible", "type": "boolean", "defaultValue": "true", "description": "Shows a floating toggle button on the edge." },
-    { "prop": "defaultOpen", "type": "boolean", "defaultValue": "true", "description": "Initial state for uncontrolled sidebar." },
-    { "prop": "open", "type": "boolean", "defaultValue": "—", "description": "Controlled open state." },
-    { "prop": "onOpenChange", "type": "(open: boolean) => void", "defaultValue": "—", "description": "Event handler for state changes." },
-    { "prop": "width", "type": "number", "defaultValue": "272", "description": "Expanded width of the sidebar in pixels." },
-    { "prop": "collapsedWidth", "type": "number", "defaultValue": "72", "description": "Collapsed width of the sidebar in pixels." },
+    { "prop": "responsive", "type": "boolean", "defaultValue": "true", "description": "Automatically switches to an overlay Drawer with Backdrop on mobile." },
+    { "prop": "collapsible", "type": "boolean", "defaultValue": "true", "description": "Shows a floating toggle button on the desktop edge." },
+    { "prop": "defaultOpen", "type": "boolean", "defaultValue": "true", "description": "Initial state for uncontrolled desktop sidebar." },
+    { "prop": "open", "type": "boolean", "defaultValue": "—", "description": "Controlled open state for desktop sidebar." },
+    { "prop": "onOpenChange", "type": "(open: boolean) => void", "defaultValue": "—", "description": "Event handler for desktop state changes." },
+    { "prop": "defaultOpenMobile", "type": "boolean", "defaultValue": "false", "description": "Initial open state for mobile drawer." },
+    { "prop": "openMobile", "type": "boolean", "defaultValue": "—", "description": "Controlled open state for mobile drawer." },
+    { "prop": "onOpenMobileChange", "type": "(open: boolean) => void", "defaultValue": "—", "description": "Event handler for mobile drawer state changes." },
+    { "prop": "mobileBreakpoint", "type": "number", "defaultValue": "768", "description": "Screen width breakpoint in px below which mobile drawer activates." },
+    { "prop": "width", "type": "number", "defaultValue": "272", "description": "Expanded width of the desktop sidebar in pixels." },
+    { "prop": "collapsedWidth", "type": "number", "defaultValue": "72", "description": "Collapsed width of the desktop sidebar in pixels." },
     { "prop": "className", "type": "string", "defaultValue": "—", "description": "Custom classes for the container." }
+  ]}
+/>
+
+### SidebarTrigger
+
+<PropertyDoc
+  properties={[
+    { "prop": "icon", "type": "ReactNode", "defaultValue": "<FiMenu />", "description": "Custom icon for the trigger button." },
+    { "prop": "className", "type": "string", "defaultValue": "—", "description": "Custom class names for the button." }
   ]}
 />
 

@@ -2,6 +2,23 @@ import { forwardRef, type HTMLAttributes, type TdHTMLAttributes, type ThHTMLAttr
 import { cn } from '../utils/cn';
 import './table.css';
 
+export interface TableContainerProps extends HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+}
+
+export const TableContainer = forwardRef<HTMLDivElement, TableContainerProps>(
+  ({ className, children, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn('table__container', className)}
+      {...props}
+    >
+      {children}
+    </div>
+  )
+);
+TableContainer.displayName = 'TableContainer';
+
 export type TableProps = HTMLAttributes<HTMLTableElement>;
 
 export const Table = forwardRef<HTMLTableElement, TableProps>(

@@ -54,7 +54,7 @@ Complete list of 55 production-ready components. For full API signatures, props 
 
 - [Navbar](llms-full.txt#navbar): A premium, responsive navigation header with support for branding, navigation, and action buttons using a flexible composition pattern.
 - [NavigationMenu](llms-full.txt#navigation-menu): A premium navigation menu component inspired by modern, high-end dashboards. It features a shared viewport that smoothly moves and resizes to accommodate different content sections.
-- [Sidebar](llms-full.txt#sidebar): A versatile and premium navigation sidebar component that supports complex layouts, branding, and status indicators using a flexible composition pattern.
+- [Sidebar](llms-full.txt#sidebar): A versatile and premium navigation sidebar component that supports complex layouts, branding, status indicators, and responsive mobile drawer adaptation out of the box.
 - [Breadcrumb](llms-full.txt#breadcrumb): A secondary navigation component that helps users understand their current location in the application hierarchy.
 - [Tabs](llms-full.txt#tabs): A performant and premium tabs component with a smooth, fluid indicator animation powered by Framer Motion.
 - [Stepper](llms-full.txt#stepper): A progress visualization component for multi-step processes or sequence indicators.

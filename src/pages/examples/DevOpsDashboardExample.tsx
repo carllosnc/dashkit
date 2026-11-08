@@ -29,6 +29,9 @@ import {
 } from 'react-icons/fi';
 import {
   Sidebar,
+  SidebarProvider,
+  SidebarTrigger,
+  SidebarContent,
   SidebarHeader,
   SidebarHeaderOpen,
   SidebarHeaderClose,
@@ -59,12 +62,13 @@ import { Divider } from '../../dashkit/Divider/Divider';
 import { Breadcrumb } from '../../dashkit/Breadcrumb/Breadcrumb';
 import {
   Table,
+  TableContainer,
   TableHeader,
   TableBody,
   TableRow,
   TableHead,
   TableCell,
-} from '../../dashkit/Table/Table';
+} from "../../dashkit/Table/Table";
 import { useToast } from '../../dashkit/Toast/useToast';
 import { ThemeToggle } from '../../partials/ThemeToggle';
 import { ThemeCustomizer } from '../../partials/ThemeCustomizer';
@@ -257,7 +261,8 @@ export const DevOpsDashboardExample = () => {
   };
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-background text-foreground font-sans">
+    <SidebarProvider>
+      <div className="flex h-[100dvh] w-full overflow-hidden bg-background text-foreground font-sans">
       <Helmet>
         <title>Cloud & DevOps Console | Dashkit UI</title>
         <meta
@@ -283,7 +288,7 @@ export const DevOpsDashboardExample = () => {
           </SidebarHeaderClose>
         </SidebarHeader>
 
-        <div className="flex-1 overflow-y-auto flex flex-col gap-1">
+        <SidebarContent>
           <SidebarSection title="Platform">
             <SidebarItem
               icon={<FiLayers size={18} />}
@@ -365,7 +370,7 @@ export const DevOpsDashboardExample = () => {
               Project Settings
             </SidebarItem>
           </SidebarSection>
-        </div>
+        </SidebarContent>
 
         <SidebarFooter>
           <SidebarFooterOpen>
@@ -384,52 +389,61 @@ export const DevOpsDashboardExample = () => {
       </Sidebar>
 
       {/* RIGHT MAIN CONTENT VIEWPORT */}
-      <div className="flex-1 flex flex-col h-screen min-w-0 overflow-hidden">
+      <div className="flex-1 flex flex-col h-[100dvh] min-w-0 overflow-hidden">
         {/* TOP NAVBAR */}
-        <header className="h-16 shrink-0 border-b bg-card px-6 flex items-center justify-between gap-4">
-          <Breadcrumb
-            items={[
-              { label: 'Examples', href: '/examples' },
-              { label: 'dashkit-web' },
-              { label: 'Deployments', active: true },
-            ]}
-          />
+        <header className="h-16 shrink-0 border-b bg-card px-3 sm:px-6 flex items-center justify-between gap-2 sm:gap-4">
+          <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+            <SidebarTrigger size="sm" className="md:hidden" />
+            <div className="hidden sm:block min-w-0 overflow-hidden">
+              <Breadcrumb
+                items={[
+                  { label: "Examples", href: "/examples" },
+                  { label: "dashkit-web" },
+                  { label: "Deployments", active: true },
+                ]}
+              />
+            </div>
+          </div>
 
-          <div className="flex items-center gap-3">
-            <div className="hidden md:flex items-center gap-2 text-xs font-medium text-muted-foreground mr-1">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            <div className="hidden lg:flex items-center gap-2 text-xs font-medium text-muted-foreground mr-1">
               <span className="relative flex size-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75" />
                 <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
               </span>
               <span>All Systems Operational</span>
             </div>
-            <ThemeCustomizer />
-            <ThemeToggle />
+            <ThemeCustomizer size="sm" />
+            <ThemeToggle size="sm" />
             <Button
               variant="soft"
-              leftIcon={<FiExternalLink size={16} />}
-              onClick={() => window.open('https://dashkit.netlify.app', '_blank')}
+              size="sm"
+              leftIcon={<FiExternalLink size={14} />}
+              className="hidden md:inline-flex"
+              onClick={() => window.open("https://dashkit.netlify.app", "_blank")}
             >
               Visit App
             </Button>
 
             <Button
               variant="filled"
-              leftIcon={<FiPlus size={16} />}
+              size="sm"
+              leftIcon={<FiPlus size={14} />}
               onClick={handleTriggerDeploy}
             >
-              New Deployment
+              <span className="hidden sm:inline">New Deployment</span>
+              <span className="sm:hidden">Deploy</span>
             </Button>
           </div>
         </header>
 
         {/* SCROLLABLE DASHBOARD BODY */}
-        <main className="flex-1 overflow-y-auto p-6">
+        <main className="flex-1 overflow-y-auto p-4 sm:p-6">
           <div className="max-w-7xl w-full mx-auto flex flex-col gap-6">
           {/* HEADER HERO TITLE */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex flex-col gap-1">
-              <h1 className="text-2xl font-bold tracking-tight text-foreground">
+              <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
                 Deployments & Infrastructure
               </h1>
               <p className="text-sm text-muted-foreground">
@@ -453,7 +467,7 @@ export const DevOpsDashboardExample = () => {
           </div>
 
           {/* 4 STATS CARDS */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             <StatsCard
               title="Active Deployments"
               value={currentStats.deployments.value}
@@ -494,9 +508,7 @@ export const DevOpsDashboardExample = () => {
 
           {/* RECENT DEPLOYMENTS TABLE (FULL WIDTH ROW) */}
           <Card>
-            <CardHeader
-              leftIcon={<FiGitCommit size={18} />}
-              action={
+            <CardHeader className="flex-col sm:flex-row sm:items-center gap-3" leftIcon={<FiGitCommit size={18} />} action={
                 <Tabs
                   value={selectedBranch}
                   onValueChange={(val) => setSelectedBranch(val)}
@@ -516,7 +528,7 @@ export const DevOpsDashboardExample = () => {
               </CardDescription>
             </CardHeader>
             <CardContent className="flex flex-col gap-4">
-              <div className="overflow-x-auto font-sans">
+              <TableContainer className="font-sans">
                     <Table>
                       <TableHeader>
                         <TableRow>
@@ -644,7 +656,7 @@ export const DevOpsDashboardExample = () => {
                         ))}
                       </TableBody>
                     </Table>
-                </div>
+              </TableContainer>
               </CardContent>
             </Card>
 
@@ -984,5 +996,6 @@ export const DevOpsDashboardExample = () => {
       </main>
       </div>
     </div>
+    </SidebarProvider>
   );
 };

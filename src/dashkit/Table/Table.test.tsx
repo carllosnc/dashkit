@@ -1,6 +1,14 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from './Table';
+import {
+  Table,
+  TableContainer,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from './Table';
 import { describe, it, expect } from 'vitest';
 
 describe('Table', () => {
@@ -78,5 +86,39 @@ describe('Table', () => {
 
     const rightClassCell = screen.getByText('Right Class Cell');
     expect(rightClassCell).toHaveClass('text-right');
+  });
+
+  describe('TableContainer', () => {
+    it('renders with table__container class and custom scrollbar support', () => {
+      const { container } = render(
+        <TableContainer data-testid="table-container">
+          <Table>
+            <TableBody>
+              <TableRow>
+                <TableCell>Cell</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
+      );
+
+      const wrapper = screen.getByTestId('table-container');
+      expect(wrapper).toBeInTheDocument();
+      expect(wrapper).toHaveClass('table__container');
+      expect(container.querySelector('table')).toBeInTheDocument();
+    });
+
+    it('forwards ref and attributes to TableContainer', () => {
+      const ref = React.createRef<HTMLDivElement>();
+      render(
+        <TableContainer ref={ref} className="custom-scroll-container">
+          <table><tbody><tr><td>Data</td></tr></tbody></table>
+        </TableContainer>
+      );
+
+      expect(ref.current).toBeInstanceOf(HTMLDivElement);
+      expect(ref.current).toHaveClass('custom-scroll-container');
+      expect(ref.current).toHaveClass('table__container');
+    });
   });
 });
