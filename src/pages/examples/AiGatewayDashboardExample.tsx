@@ -276,7 +276,7 @@ export const AiGatewayDashboardExample = () => {
               icon={<FiCpu size={18} />}
               active={activeNav === 'models'}
               onClick={() => setActiveNav('models')}
-              badgeSlot={<Badge content="5 Active" color="base" variant="soft" />}
+              badgeSlot={<Badge content={5} color="base" variant="soft" />}
             >
               Model Registry
             </SidebarItem>
@@ -359,7 +359,7 @@ export const AiGatewayDashboardExample = () => {
       {/* RIGHT MAIN VIEWPORT */}
       <div className="flex-1 flex flex-col h-screen min-w-0 overflow-hidden">
         {/* TOP NAVBAR */}
-        <header className="h-16 shrink-0 border-b bg-card px-6 flex items-center justify-between gap-4">
+        <header className="h-16 shrink-0 border-b border-border bg-card px-6 flex items-center justify-between gap-4">
           <Breadcrumb
             items={[
               { label: 'Examples', href: '/examples' },
