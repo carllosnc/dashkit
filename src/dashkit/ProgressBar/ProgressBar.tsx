@@ -4,7 +4,7 @@ import { cn } from '../utils/cn';
 import { useProgressBar } from './useProgressBar';
 import './progress-bar.css';
 
-export type ProgressBarColor = 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'neutral';
+export type ProgressBarColor = 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'neutral' | 'base';
 export type ProgressBarSize = 'xs' | 'sm' | 'md' | 'lg';
 
 export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
