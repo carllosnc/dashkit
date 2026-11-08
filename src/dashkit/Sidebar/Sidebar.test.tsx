@@ -1,5 +1,13 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { Sidebar, SidebarHeader, SidebarFooter, SidebarSection, SidebarItem } from './Sidebar';
+import {
+  Sidebar,
+  SidebarHeader,
+  SidebarFooter,
+  SidebarSection,
+  SidebarItem,
+  SidebarSubList,
+  SidebarSubItem,
+} from './Sidebar';
 import { useSidebar } from './SidebarContext';
 import { FiLayout } from 'react-icons/fi';
 import { describe, it, expect, vi } from 'vitest';
@@ -107,5 +115,44 @@ describe('Sidebar', () => {
 
     fireEvent.click(screen.getByText('Close'));
     expect(handleOpenChange).toHaveBeenCalledWith(false);
+  });
+
+  it('renders nested sub-items when subItems prop is provided and toggles', () => {
+    render(
+      <Sidebar defaultOpen={true}>
+        <SidebarItem
+          defaultOpen={true}
+          subItems={[
+            { label: 'Overview', active: true },
+            { label: 'Reports' },
+          ]}
+        >
+          Analytics
+        </SidebarItem>
+      </Sidebar>
+    );
+
+    expect(screen.getByText('Analytics')).toBeInTheDocument();
+    expect(screen.getByText('Overview')).toBeInTheDocument();
+    expect(screen.getByText('Reports')).toBeInTheDocument();
+
+    const overviewBtn = screen.getByText('Overview').closest('button');
+    expect(overviewBtn).toHaveClass('sidebar__subitem--active');
+  });
+
+  it('renders composable SidebarSubList and SidebarSubItem correctly', () => {
+    const handleSubClick = vi.fn();
+    render(
+      <Sidebar defaultOpen={true}>
+        <SidebarSubList>
+          <SidebarSubItem onClick={handleSubClick}>Conversions</SidebarSubItem>
+        </SidebarSubList>
+      </Sidebar>
+    );
+
+    const subItem = screen.getByText('Conversions');
+    expect(subItem).toBeInTheDocument();
+    fireEvent.click(subItem);
+    expect(handleSubClick).toHaveBeenCalledTimes(1);
   });
 });
