@@ -1,0 +1,116 @@
+# Dashkit UI
+
+> Open-source React component library built with Tailwind CSS v4. Copy-paste distribution model giving developers complete source code ownership, minimal runtime overhead, and accessible building blocks.
+
+Dashkit components are installed directly into your repository source code via the CLI. It uses pure Tailwind v4 tokens, CSS variables, and standard React primitives with Framer Motion for micro-interactions.
+
+## Quick Start
+
+Initialize Dashkit in your project:
+
+```bash
+bunx carllosnc/dashkit init
+```
+
+Add components individually:
+
+```bash
+bunx carllosnc/dashkit add button
+bunx carllosnc/dashkit add card
+bunx carllosnc/dashkit add sidebar
+```
+
+## CLI Reference
+
+- `dashkit init [-y]`: Configures dashkit.json and injects design token stylesheet (dashkit.css).
+- `dashkit add <component> [-o <dir>] [-t] [-f] [--no-install]`: Scaffolds component and resolves dependencies.
+- `dashkit list [--installed] [--json]`: Lists all registry components with status.
+- `dashkit doctor`: Verifies CSS imports, dependencies, and directory configuration.
+
+## Design Tokens and Theming
+
+Dashkit relies on CSS custom properties configured in `dashkit.css`:
+- `--color-primary`: Main theme accent color.
+- `--color-background`: Light (#ffffff) and dark (#09090b) page background.
+- `--color-foreground`: High-contrast body text.
+- `--color-muted`: Secondary text and subtle borders.
+- `--color-border`: Standard card and input border.
+- `--color-card`: Card and surface backgrounds.
+- `--radius-*`: Tokenized border radii (sm, md, lg, full).
+
+## Component Catalog
+
+Complete list of 55 production-ready components. For full API signatures, props tables, and code snippets, see [llms-full.txt](llms-full.txt).
+
+### Layout & Containers
+
+- [Accordion](llms-full.txt#accordion): A vertically stacked list of headers that reveal associated content areas when clicked.
+- [Card](llms-full.txt#card): Dashkit's Card is designed as a **composed wrapper**, providing total layout control through granular sub-components.
+- [Surface](llms-full.txt#surface): A lightweight, foundational component for creating containers with consistent background variants based on design system states. It provides a clean, borderless surface with no internal padding or margin, serving as a pure visual block.
+- [Divider](llms-full.txt#divider): A versatile component used to separate sections of content with horizontal or vertical lines.
+- [ScrollArea](llms-full.txt#scrollarea): A minimalist scroll area component that provides theme-aware, custom scrollbars across all browsers and operating systems.
+
+### Navigation
+
+- [Navbar](llms-full.txt#navbar): A premium, responsive navigation header with support for branding, navigation, and action buttons using a flexible composition pattern.
+- [NavigationMenu](llms-full.txt#navigation-menu): A premium navigation menu component inspired by modern, high-end dashboards. It features a shared viewport that smoothly moves and resizes to accommodate different content sections.
+- [Sidebar](llms-full.txt#sidebar): A versatile and premium navigation sidebar component that supports complex layouts, branding, and status indicators using a flexible composition pattern.
+- [Breadcrumb](llms-full.txt#breadcrumb): A secondary navigation component that helps users understand their current location in the application hierarchy.
+- [Tabs](llms-full.txt#tabs): A performant and premium tabs component with a smooth, fluid indicator animation powered by Framer Motion.
+- [Stepper](llms-full.txt#stepper): A progress visualization component for multi-step processes or sequence indicators.
+- [Pagination](llms-full.txt#pagination): A functional and responsive component for navigating between large sets of data or views.
+- [Dock](llms-full.txt#dock): A fluid, magnified navigation bar inspired by macOS, using Framer Motion for high-fidelity interactive physics.
+
+### Forms & Inputs
+
+- [Button](llms-full.txt#button): A highly customizable button component supporting multiple variants, icons, and loading states.
+- [IconButton](llms-full.txt#iconbutton): A premium, specialized button for icon-only actions with customizable variant and rounding options.
+- [ButtonGroup](llms-full.txt#buttongroup): The **ButtonGroup** component is used to cluster multiple buttons together in a single, cohesive unit. This is often used for toolbar actions, toggle switches, or navigation. It features a modern, border-aware outlined design with dedicated selection states.
+- [Input](llms-full.txt#input): A primitive input component with support for labels, icons, error states, and helper text.
+- [Textarea](llms-full.txt#textarea): A multiline text input component with support for labels, error states, and auto-growing height.
+- [Checkbox](llms-full.txt#checkbox): A custom-styled checkbox component for binary choices, with support for labels and descriptions.
+- [Radio](llms-full.txt#radio): A premium radio button component for single choices from a set, with support for labels and descriptions.
+- [Switch](llms-full.txt#switch): A high-performance, premium toggle switch component for binary choices, with support for labels and descriptions.
+- [Select](llms-full.txt#select): A high-performance dropdown component for single choices, featuring portalled rendering to prevent layout overflow and full keyboard accessibility.
+- [Combobox](llms-full.txt#combobox): A combobox is a flexible select component that allows users to filter a large list of options via a search input.
+- [Slider](llms-full.txt#slider): A premium, interactive slider component for selecting a value from a range, featuring smooth animations and real-time feedback.
+- [DateField](llms-full.txt#datefield): A premium, HeroUI-inspired input component for entering and editing date values with individual segments for Day, Month, and Year.
+- [DatePicker](llms-full.txt#datepicker): A minimal, animated date selection component built with native React and Framer Motion. Ideal for dashboards and forms that require single date selection with a premium look.
+- [OtpInput](llms-full.txt#otpinput): A premium input component optimized for One-Time Passwords, featuring automatic focus shifting, digit masking, and full paste support.
+- [ColorPicker](llms-full.txt#colorpicker): A premium color picker component that allows users to select from a curated list of presets or provide a custom hex value.
+- [CopyField](llms-full.txt#copyfield): A specialized input component designed for displaying read-only text that needs to be copied to the clipboard, such as invite links, API keys, or referral codes.
+
+### Feedback & Overlays
+
+- [Modal](llms-full.txt#modal): A centered, layered dialog component that focuses user attention on critical information or actions.
+- [Drawer](llms-full.txt#drawer): A premium panel component that slides in from the edges of the screen, providing a temporary surface for navigation, settings, or details. It uses a compositional pattern to give you full control over the header, content, and footer sections.
+- [Dropdown](llms-full.txt#dropdown): An interactive menu that displays a list of actions or options when triggered.
+- [Popover](llms-full.txt#popover): A floating container that displays rich content anchored to a trigger element. Popovers are ideal for more complex content than tooltips, such as forms or descriptive text.
+- [Tooltip](llms-full.txt#tooltip): A small popup that displays information when a user hovers over an element.
+- [Toast](llms-full.txt#toast): A succinct message that provides feedback about an operation in a small, non-intrusive card.
+- [Backdrop](llms-full.txt#backdrop): A blurred or semi-transparent full-screen overlay, often used behind modals, drawers, or to dim the background for focus.
+- [Spinner](llms-full.txt#spinner): A sleek, high-performance loading indicator built with SVG and CSS animations.
+- [ProgressBar](llms-full.txt#progressbar): Animated, fluid indicators for tracking task completion, loading states, or data metrics with high precision.
+- [CircularProgress](llms-full.txt#circularprogress): A high-fidelity circular progress indicator built with SVG and Framer Motion. It provides smooth, fluid animations for status monitoring, health metrics, and loading states.
+- [Skeleton](llms-full.txt#skeleton): A placeholder component used to mimic the layout of actual content while it is loading.
+- [FloatActionMenu](llms-full.txt#float-action-menu): A premium floating action button that reveals an interactive menu card sliding from right to left.
+
+### Data Display & Metrics
+
+- [Avatar](llms-full.txt#avatar): A versatile component for presenting user profile pictures, with built-in fallback Support and smooth loading transitions.
+- [Badge](llms-full.txt#badge): Visual indicators used for counts, statuses, or high-priority labels. Dashkit provides two distinct badge components optimized for different use cases.
+- [FloatBadge](llms-full.txt#floatbadge): Visual indicators used for counts, statuses, or high-priority labels. Dashkit provides two distinct badge components optimized for different use cases.
+- [Chip](llms-full.txt#chip): A compact, interactive element that represents an input, attribute, or action, inspired by Material Design 3.
+- [ListTile](llms-full.txt#listtile): A flexible row component for building lists, menus, and settings panels. Supports leading icons or avatars, a title and subtitle text block, and a trailing slot for actions or indicators.
+- [StatsCard](llms-full.txt#statscard): A high-level component for displaying key performance indicators, metrics, and trends at a glance.
+- [AnimateNumber](llms-full.txt#animatenumber): A specialized component for creating sleek numeric counters with independent digit animations. It uses a "top-to-bottom" sliding effect for each character, providing a premium and dynamic feel for dashboards and metrics.
+- [SystemLogs](llms-full.txt#systemlogs): A terminal-style component for displaying real-time system logs, process outputs, or audit trails with auto-scrolling and status indicators.
+- [Table](llms-full.txt#table): A simple, responsive table component for displaying structured data.
+
+### Visualization & Media
+
+- [AreaChart](llms-full.txt#areachart): The **AreaChart** component is a lightweight, responsive data visualization tool built using native SVG and **Framer Motion**. It's designed to be lean, performant, and deeply customizable through theme tokens.
+- [BarChart](llms-full.txt#barchart): The **BarChart** component is a powerful, animated data visualization tool built for comparing discrete categories or showing distribution across groups. It supports multiple grouped series, interactive tooltips, and smooth entrance animations.
+- [LineChart](llms-full.txt#linechart): The **LineChart** component is a clean, minimal data visualization tool built using native SVG and **Framer Motion**. It's ideal for showing precise trends without the visual weight of an area fill.
+- [PieChart](llms-full.txt#piechart): The **PieChart** component is an expressive tool for visualizing categorical distributions. It features interactive segments with tooltips, smooth hover scaling, and supports donut variations via the `innerRadius` prop.
+- [ImageExpander](llms-full.txt#imageexpander): A premium component that enables cinematic image expansion with smooth animations, backdrop blur, and caption support.
