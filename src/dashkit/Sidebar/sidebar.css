@@ -25,7 +25,7 @@
 }
 
 .sidebar__section-button {
-  @apply w-auto mx-2 flex items-center justify-between py-1 px-2.5 transition-colors duration-150 outline-none;
+  @apply w-[calc(100%-1rem)] mx-2 flex items-center justify-between py-1 px-2.5 transition-colors duration-150 outline-none;
   @apply focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring;
 }
 
@@ -78,11 +78,11 @@
 }
 
 .sidebar__item--open {
-  @apply mx-2 px-2.5 gap-2.5 text-left;
+  @apply mx-2 w-[calc(100%-1rem)] px-2.5 gap-2.5 text-left;
 }
 
 .sidebar__item--closed {
-  @apply mx-2 px-0 justify-center text-center;
+  @apply mx-2 w-[calc(100%-1rem)] h-9 px-0 gap-0 justify-center text-center;
 }
 
 .sidebar__item-icon {
@@ -106,7 +106,7 @@
 }
 
 .sidebar__item-text--closed {
-  @apply invisible w-0;
+  @apply invisible w-0 min-w-0 overflow-hidden;
 }
 
 .sidebar__item-badge {
