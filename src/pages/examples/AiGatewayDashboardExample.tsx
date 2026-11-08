@@ -262,10 +262,10 @@ export const AiGatewayDashboardExample = () => {
           </SidebarHeaderClose>
         </SidebarHeader>
 
-        <div className="flex-1 overflow-y-auto flex flex-col gap-1">
+        <div className="flex-1 overflow-y-auto flex flex-col gap-1 py-1">
           <SidebarSection title="Gateway Core">
             <SidebarItem
-              icon={<FiActivity size={18} />}
+              icon={<FiActivity size={17} />}
               active={activeNav === 'overview'}
               onClick={() => setActiveNav('overview')}
               badgeSlot={<Badge content="Live" color="success" variant="soft" />}
@@ -273,7 +273,7 @@ export const AiGatewayDashboardExample = () => {
               Overview & Telemetry
             </SidebarItem>
             <SidebarItem
-              icon={<FiCpu size={18} />}
+              icon={<FiCpu size={17} />}
               active={activeNav === 'models'}
               onClick={() => setActiveNav('models')}
               badgeSlot={<Badge content={5} color="base" variant="soft" />}
@@ -281,14 +281,14 @@ export const AiGatewayDashboardExample = () => {
               Model Registry
             </SidebarItem>
             <SidebarItem
-              icon={<FiTerminal size={18} />}
+              icon={<FiTerminal size={17} />}
               active={activeNav === 'logs'}
               onClick={() => setActiveNav('logs')}
             >
               Request Logs
             </SidebarItem>
             <SidebarItem
-              icon={<FiZap size={18} />}
+              icon={<FiZap size={17} />}
               active={activeNav === 'caching'}
               onClick={() => setActiveNav('caching')}
               badgeSlot={<Badge content="94%" color="info" variant="soft" />}
@@ -299,14 +299,14 @@ export const AiGatewayDashboardExample = () => {
 
           <SidebarSection title="Governance & Security">
             <SidebarItem
-              icon={<FiKey size={18} />}
+              icon={<FiKey size={17} />}
               active={activeNav === 'keys'}
               onClick={() => setActiveNav('keys')}
             >
               API Credentials
             </SidebarItem>
             <SidebarItem
-              icon={<FiShield size={18} />}
+              icon={<FiShield size={17} />}
               active={activeNav === 'guardrails'}
               onClick={() => setActiveNav('guardrails')}
               badgeSlot={<Badge content="Strict" color="success" variant="soft" />}
@@ -314,7 +314,7 @@ export const AiGatewayDashboardExample = () => {
               PII & Guardrails
             </SidebarItem>
             <SidebarItem
-              icon={<FiDollarSign size={18} />}
+              icon={<FiDollarSign size={17} />}
               active={activeNav === 'billing'}
               onClick={() => setActiveNav('billing')}
             >
@@ -324,14 +324,14 @@ export const AiGatewayDashboardExample = () => {
 
           <SidebarSection title="Settings">
             <SidebarItem
-              icon={<FiSliders size={18} />}
+              icon={<FiSliders size={17} />}
               active={activeNav === 'routing'}
               onClick={() => setActiveNav('routing')}
             >
               Fallback Routing
             </SidebarItem>
             <SidebarItem
-              icon={<FiSettings size={18} />}
+              icon={<FiSettings size={17} />}
               active={activeNav === 'settings'}
               onClick={() => setActiveNav('settings')}
             >
