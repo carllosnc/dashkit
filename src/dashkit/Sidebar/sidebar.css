@@ -5,7 +5,7 @@
 }
 
 .sidebar__toggle {
-  @apply absolute -right-3 top-8 -translate-y-1/2 z-[60] size-6 shadow-xs bg-card border border-border text-muted-foreground hover:text-foreground hover:bg-muted transition-colors;
+  @apply absolute -right-3 top-16 -translate-y-1/2 z-[60] size-6 shadow-xs bg-card border border-border text-muted-foreground hover:text-foreground hover:bg-muted transition-colors;
 }
 
 .sidebar__toggle--closed {
@@ -21,16 +21,16 @@
 }
 
 .sidebar__section {
-  @apply text-foreground my-1;
+  @apply text-foreground mt-4 first:mt-1 mb-1;
 }
 
 .sidebar__section-button {
-  @apply w-full flex items-center justify-between py-1.5 px-3 transition-colors duration-150 outline-none;
+  @apply w-auto mx-2 flex items-center justify-between py-1 px-2.5 transition-colors duration-150 outline-none;
   @apply focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring;
 }
 
 .sidebar__section-button--collapsible {
-  @apply hover:bg-muted/50 cursor-pointer rounded-xl mx-2;
+  @apply hover:bg-muted/50 cursor-pointer rounded-lg;
 }
 
 .sidebar__section-button--static {
@@ -38,7 +38,7 @@
 }
 
 .sidebar__section-title {
-  @apply text-[11px] font-semibold text-muted-foreground uppercase tracking-wider truncate px-3;
+  @apply text-[11px] font-semibold text-muted-foreground/80 uppercase tracking-wider truncate px-3 py-1;
 }
 
 .sidebar__section-button--collapsible:hover .sidebar__section-title {
@@ -62,7 +62,7 @@
 }
 
 .sidebar__item {
-  @apply relative flex items-center py-1.5 text-[13px] font-medium outline-none isolate transition-colors duration-150 rounded-xl cursor-pointer w-full;
+  @apply relative flex items-center py-1.5 text-[13px] font-medium outline-none isolate transition-colors duration-150 rounded-lg cursor-pointer;
   @apply focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring;
 }
 
@@ -78,7 +78,7 @@
 }
 
 .sidebar__item--open {
-  @apply mx-2 px-2.5 gap-2 text-left;
+  @apply mx-2 px-2.5 gap-2.5 text-left;
 }
 
 .sidebar__item--closed {
