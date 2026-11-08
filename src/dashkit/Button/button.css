@@ -1,7 +1,7 @@
 @reference "../dashkit.css";
 
 .button {
-  @apply ds-rounded inline-flex font-medium items-center justify-center cursor-pointer whitespace-nowrap transition-all duration-200 outline-none;
+  @apply rounded-full inline-flex font-medium items-center justify-center cursor-pointer whitespace-nowrap transition-all duration-200 outline-none;
   @apply focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-transparent;
 }
 
