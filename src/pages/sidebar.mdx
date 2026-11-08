@@ -202,7 +202,9 @@ The Sidebar library is composed of several specialized layers designed for speci
     { "prop": "SidebarFooter", "description": "Bottom section for user profiles, help links, or versioning." },
     { "prop": "SidebarFooterOpen/Close", "description": "Conditional wrappers for specialized footer layouts." },
     { "prop": "SidebarSection", "description": "Groups related items with an optional title." },
-    { "prop": "SidebarItem", "description": "Individual navigation links or interactive buttons." }
+    { "prop": "SidebarItem", "description": "Individual navigation links, optionally collapsible with sub-items." },
+    { "prop": "SidebarSubList", "description": "Vertical tree-guide container for indented sub-items." },
+    { "prop": "SidebarSubItem", "description": "Sub-navigation link styled for nested tree hierarchies." }
   ]}
 />
 
@@ -278,6 +280,22 @@ Sections can be individually collapsed to conserve vertical space or group relat
     { "prop": "badgeSlot", "type": "ReactNode", "defaultValue": "—", "description": "Optional badge or status slot aligned to the right edge." },
     { "prop": "href", "type": "string", "defaultValue": "—", "description": "Optional link destination for anchor rendering." },
     { "prop": "target", "type": "string", "defaultValue": "—", "description": "Anchor target when href is provided." },
+    { "prop": "collapsible", "type": "boolean", "defaultValue": "false", "description": "Shows chevron and toggles sub-items." },
+    { "prop": "defaultOpen", "type": "boolean", "defaultValue": "false", "description": "Initial expansion state for sub-items." },
+    { "prop": "subItems", "type": "SidebarSubItemConfig[]", "defaultValue": "—", "description": "Nested tree items rendered with guide lines." },
     { "prop": "onClick", "type": "() => void", "defaultValue": "—", "description": "Standard click event handler." }
+  ]}
+/>
+
+### SidebarSubItem
+
+<PropertyDoc
+  properties={[
+    { "prop": "children", "type": "ReactNode", "defaultValue": "—", "description": "Text or label for the nested navigation link." },
+    { "prop": "active", "type": "boolean", "defaultValue": "false", "description": "Applies active highlight styling." },
+    { "prop": "href", "type": "string", "defaultValue": "—", "description": "Optional destination URL." },
+    { "prop": "target", "type": "string", "defaultValue": "—", "description": "Anchor target when href is provided." },
+    { "prop": "badgeSlot", "type": "ReactNode", "defaultValue": "—", "description": "Optional status badge for the sub-item." },
+    { "prop": "onClick", "type": "() => void", "defaultValue": "—", "description": "Click event handler." }
   ]}
 />
