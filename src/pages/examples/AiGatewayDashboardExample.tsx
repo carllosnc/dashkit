@@ -35,7 +35,6 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../..
 import { StatsCard } from '../../dashkit/StatsCard/StatsCard';
 import { AreaChart } from '../../dashkit/AreaChart/AreaChart';
 import { ProgressBar } from '../../dashkit/ProgressBar/ProgressBar';
-import { Badge } from '../../dashkit/Badge/Badge';
 import { Avatar } from '../../dashkit/Avatar/Avatar';
 import { Button } from '../../dashkit/Button/Button';
 import { Tabs, TabsList, TabsTrigger } from '../../dashkit/Tabs';
@@ -262,13 +261,12 @@ export const AiGatewayDashboardExample = () => {
           </SidebarHeaderClose>
         </SidebarHeader>
 
-        <div className="flex-1 overflow-y-auto flex flex-col gap-1 py-1">
+        <div className="flex-1 overflow-y-auto flex flex-col gap-1 py-2">
           <SidebarSection title="Gateway Core">
             <SidebarItem
               icon={<FiActivity size={17} />}
               active={activeNav === 'overview'}
               onClick={() => setActiveNav('overview')}
-              badgeSlot={<Badge content="Live" color="success" variant="soft" />}
             >
               Overview & Telemetry
             </SidebarItem>
@@ -276,7 +274,6 @@ export const AiGatewayDashboardExample = () => {
               icon={<FiCpu size={17} />}
               active={activeNav === 'models'}
               onClick={() => setActiveNav('models')}
-              badgeSlot={<Badge content={5} color="base" variant="soft" />}
             >
               Model Registry
             </SidebarItem>
@@ -291,7 +288,6 @@ export const AiGatewayDashboardExample = () => {
               icon={<FiZap size={17} />}
               active={activeNav === 'caching'}
               onClick={() => setActiveNav('caching')}
-              badgeSlot={<Badge content="94%" color="info" variant="soft" />}
             >
               Semantic Cache
             </SidebarItem>
@@ -309,7 +305,6 @@ export const AiGatewayDashboardExample = () => {
               icon={<FiShield size={17} />}
               active={activeNav === 'guardrails'}
               onClick={() => setActiveNav('guardrails')}
-              badgeSlot={<Badge content="Strict" color="success" variant="soft" />}
             >
               PII & Guardrails
             </SidebarItem>
