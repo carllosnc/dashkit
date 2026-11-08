@@ -41,12 +41,14 @@ The component supports all semantic color palettes from your design system.
     <ProgressBar value={45} color="warning" showLabel label="Background Task" />
     <ProgressBar value={20} color="danger" showLabel label="System Overload" />
     <ProgressBar value={90} color="info" showLabel label="Syncing Cloud" />
+    <ProgressBar value={85} color="base" showLabel label="NVMe Block Storage (Base)" />
   </div>
 </Preview>
 
 ```tsx
 <ProgressBar value={100} color="success" showLabel label="Deployment Complete" />
 <ProgressBar value={75} color="primary" showLabel label="Uploading Assets" />
+<ProgressBar value={85} color="base" showLabel label="NVMe Block Storage" />
 ```
 
 ## Sizes
@@ -108,7 +110,7 @@ Labels can be placed either above the bar or to the side, which is ideal for com
   properties={[
     { "prop": "value", "type": "number", "defaultValue": "0", "description": "Current value of the progress bar." },
     { "prop": "max", "type": "number", "defaultValue": "100", "description": "The target/maximum value." },
-    { "prop": "color", "type": "ProgressBarColor", "defaultValue": "'primary'", "description": "Semantic color theme (primary, success, etc)." },
+    { "prop": "color", "type": "'primary' | 'success' | 'warning' | 'danger' | 'info' | 'base'", "defaultValue": "'primary'", "description": "Color theme for the progress indicator fill." },
     { "prop": "size", "type": "ProgressBarSize", "defaultValue": "'sm'", "description": "Height variant (xs, sm, md, lg)." },
     { "prop": "showLabel", "type": "boolean", "defaultValue": "false", "description": "Display the percentage text." },
     { "prop": "label", "type": "ReactNode", "defaultValue": "—", "description": "Custom descriptive text." },
