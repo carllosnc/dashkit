@@ -70,6 +70,7 @@ Dashkit provides an interactive CLI to streamline component integration.
 Dashkit includes 55 production-ready components:
 
 ### Layout & Containers
+- Accordion
 - Card
 - Surface
 - Divider
@@ -106,6 +107,7 @@ Dashkit includes 55 production-ready components:
 ### Feedback & Overlays
 - Modal
 - Drawer
+- Dropdown
 - Popover
 - Tooltip
 - Toast
