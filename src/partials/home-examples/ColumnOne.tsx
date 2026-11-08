@@ -19,6 +19,9 @@ import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '.
 import { FiMail, FiLock, FiZap, FiMoreHorizontal, FiTrendingUp, FiShieldOff, FiActivity, FiShield, FiDollarSign, FiPlay, FiSkipBack, FiSkipForward, FiHelpCircle, FiLock as FiFingerprint, FiAlertTriangle, FiUsers, FiSettings, FiLogOut, FiServer } from 'react-icons/fi';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
 import { IconButton } from '../../dashkit/IconButton/IconButton';
+import { CopyField } from '../../dashkit/CopyField/CopyField';
+import { Switch } from '../../dashkit/Switch/Switch';
+import { FiGlobe } from 'react-icons/fi';
 import { AVATAR_URLS } from './Constants';
 
 export function ColumnOne() {
@@ -436,6 +439,54 @@ export function ColumnOne() {
               <Button variant="filled" className="w-full" onClick={() => toast({ title: 'Authentication', description: 'Biometric scan initiated.', type: 'info', invert: true })}>Re-verify Identity</Button>
            </CardContent>
         </Card>
+      {/* Webhook Subscriptions (CopyField, Switch, Button) */}
+      <Card>
+         <CardHeader leftIcon={<FiGlobe size={18} />}>
+            <CardTitle>Webhook Endpoints</CardTitle>
+            <CardDescription>Listen for real-time deployment and incident events.</CardDescription>
+         </CardHeader>
+         <CardContent className="space-y-4">
+            <CopyField
+               label="Payload URL"
+               value="https://api.dashkit.dev/v1/hooks/prod_edge_99a"
+            />
+            <div className="space-y-2 pt-1">
+               <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground block">
+                  Event Subscriptions
+               </span>
+               <div className="divide-y divide-border/60">
+                  <div className="flex items-center justify-between py-2 text-sm">
+                     <div className="flex flex-col">
+                        <span className="font-medium text-foreground text-xs">Deployments & Releases</span>
+                        <span className="text-[11px] text-muted-foreground">Trigger on successful builds</span>
+                     </div>
+                     <Switch defaultChecked />
+                  </div>
+                  <div className="flex items-center justify-between py-2 text-sm">
+                     <div className="flex flex-col">
+                        <span className="font-medium text-foreground text-xs">Security & Failovers</span>
+                        <span className="text-[11px] text-muted-foreground">Alert on perimeter breaches</span>
+                     </div>
+                     <Switch defaultChecked />
+                  </div>
+               </div>
+            </div>
+            <div className="flex items-center justify-between pt-1">
+               <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                  <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
+                  <span>Delivery Active (200 OK)</span>
+               </div>
+               <Button
+                  size="sm"
+                  variant="outlined"
+                  onClick={() => toast({ title: 'Webhook Pinged', description: 'Test event delivered with status 200 OK.', type: 'success' })}
+               >
+                  Test Ping
+               </Button>
+            </div>
+         </CardContent>
+      </Card>
+
       {/* Modals */}
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <ModalHeader onClose={() => setIsModalOpen(false)}>
