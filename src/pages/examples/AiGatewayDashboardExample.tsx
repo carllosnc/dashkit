@@ -50,7 +50,6 @@ import {
 } from '../../dashkit/Dropdown';
 import { IconButton } from '../../dashkit/IconButton/IconButton';
 import { Divider } from '../../dashkit/Divider/Divider';
-import { Breadcrumb } from '../../dashkit/Breadcrumb/Breadcrumb';
 import {
   Table,
   TableContainer,
@@ -362,15 +361,6 @@ export const AiGatewayDashboardExample = () => {
         <header className="h-16 shrink-0 border-b border-border bg-card px-3 sm:px-6 flex items-center justify-between gap-2 sm:gap-4">
           <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
             <SidebarTrigger size="sm" className="md:hidden" />
-            <div className="hidden sm:block min-w-0 overflow-hidden">
-              <Breadcrumb
-                items={[
-                  { label: "Examples", href: "/examples" },
-                  { label: "ai-gateway" },
-                  { label: "Analytics & Models", active: true },
-                ]}
-              />
-            </div>
           </div>
 
           <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
