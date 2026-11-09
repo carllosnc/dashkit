@@ -41,7 +41,7 @@
 }
 
 .checkbox__box {
-  @apply w-6 h-6 border-2 transition-all duration-200 flex items-center justify-center shrink-0 bg-background rounded-sm;
+  @apply w-6 h-6 border-2 transition-all duration-200 flex items-center justify-center shrink-0 bg-background rounded-[4px];
 }
 
 .checkbox__indicator {
