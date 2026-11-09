@@ -156,6 +156,7 @@ const apiKeys = [
   { id: 'key_prod_01', name: 'Production Gateway', prefix: 'dk_live_9a4f...', rpmLimit: '2,000 RPM', created: '14d ago', status: 'Active' },
   { id: 'key_stag_02', name: 'Staging & Preview', prefix: 'dk_test_3b81...', rpmLimit: '500 RPM', created: '28d ago', status: 'Active' },
   { id: 'key_agent_03', name: 'Autonomous Coding Agent', prefix: 'dk_live_7c29...', rpmLimit: '1,200 RPM', created: '4d ago', status: 'Active' },
+  { id: 'key_rag_04', name: 'RAG Pipeline & Retrieval', prefix: 'dk_live_6c19...', rpmLimit: '1,500 RPM', created: '2d ago', status: 'Active' },
 ];
 
 const tokenSeries = [
@@ -728,7 +729,7 @@ export const AiGatewayDashboardExample = () => {
                   action={
                     <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                       <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
-                      <span>3 Active Keys</span>
+                      <span>{apiKeys.length} Active Keys</span>
                     </div>
                   }
                 >
@@ -737,7 +738,7 @@ export const AiGatewayDashboardExample = () => {
                 </CardHeader>
                 <CardContent className="flex-1 flex flex-col justify-between divide-y divide-border/60 pt-1">
                   {apiKeys.map((key) => (
-                    <div key={key.id} className="flex items-center justify-between gap-4 py-3 first:pt-0 last:pb-0">
+                    <div key={key.id} className="flex items-center justify-between gap-4 py-2.5 first:pt-0 last:pb-0">
                       <div className="flex items-center gap-3 min-w-0">
                         <div className="size-8 rounded-lg bg-muted flex items-center justify-center text-muted-foreground shrink-0">
                           <FiKey size={15} />
@@ -745,35 +746,33 @@ export const AiGatewayDashboardExample = () => {
                         <div className="flex flex-col min-w-0 gap-0.5">
                           <span className="font-semibold text-sm text-foreground truncate">{key.name}</span>
                           <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                            <span className="text-muted-foreground/90 font-medium">{key.prefix}</span>
+                            <span className="text-muted-foreground/90 font-mono font-medium">{key.prefix}</span>
                             <span className="text-muted-foreground/30 text-[10px]">•</span>
                             <span>{key.rpmLimit}</span>
                             <span className="text-muted-foreground/30 text-[10px]">•</span>
                             <span>Created {key.created}</span>
                           </div>
+                          <div className="flex items-center gap-1.5 text-xs font-medium text-emerald-500 pt-0.5">
+                            <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
+                            <span>{key.status}</span>
+                          </div>
                         </div>
                       </div>
-                      <div className="flex items-center gap-3 shrink-0">
-                        <div className="flex items-center gap-1.5 text-xs font-medium text-emerald-500">
-                          <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
-                          <span>{key.status}</span>
-                        </div>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          leftIcon={<FiCopy size={13} />}
-                          onClick={() => {
-                            navigator.clipboard?.writeText(key.prefix);
-                            toast({
-                              title: 'Key Copied',
-                              description: `${key.name} token prefix copied.`,
-                              type: 'success',
-                            });
-                          }}
-                        >
-                          Copy
-                        </Button>
-                      </div>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        leftIcon={<FiCopy size={13} />}
+                        onClick={() => {
+                          navigator.clipboard?.writeText(key.prefix);
+                          toast({
+                            title: 'Key Copied',
+                            description: `${key.name} token prefix copied.`,
+                            type: 'success',
+                          });
+                        }}
+                      >
+                        Copy
+                      </Button>
                     </div>
                   ))}
 
