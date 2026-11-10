@@ -2,12 +2,14 @@ import * as React from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '../utils/cn';
+import { getPortalThemeAttrs } from '../utils/portalTheme';
 
 interface TooltipContextType {
   open: boolean;
   setOpen: (open: boolean) => void;
   triggerRect: DOMRect | null;
   setTriggerRect: (rect: DOMRect | null) => void;
+  triggerEl: HTMLElement | null;
   animate: boolean;
   tooltipId: string;
 }
@@ -27,10 +29,13 @@ export function Tooltip({
 }) {
   const [open, setOpen] = React.useState(false);
   const [triggerRect, setTriggerRect] = React.useState<DOMRect | null>(null);
+  const [triggerEl, setTriggerEl] = React.useState<HTMLElement | null>(null);
   const timeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
   const tooltipId = React.useId();
 
-  const handleOpen = (rect: DOMRect) => {
+  const handleOpen = (el: HTMLElement) => {
+    const rect = el.getBoundingClientRect();
+    setTriggerEl(el);
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     timeoutRef.current = setTimeout(() => {
       setTriggerRect(rect);
@@ -52,12 +57,12 @@ export function Tooltip({
   }, []);
 
   return (
-    <TooltipContext.Provider value={{ open, setOpen, triggerRect, setTriggerRect, animate, tooltipId }}>
+    <TooltipContext.Provider value={{ open, setOpen, triggerRect, setTriggerRect, triggerEl, animate, tooltipId }}>
       <div
         className={cn('inline-block', className)}
-        onMouseEnter={(e) => handleOpen(e.currentTarget.getBoundingClientRect())}
+        onMouseEnter={(e) => handleOpen(e.currentTarget)}
         onMouseLeave={handleClose}
-        onFocus={(e) => handleOpen(e.currentTarget.getBoundingClientRect())}
+        onFocus={(e) => handleOpen(e.currentTarget)}
         onBlur={handleClose}
       >
         {children}
@@ -103,7 +108,7 @@ export function TooltipContent({
   const context = React.useContext(TooltipContext);
   if (!context) throw new Error('TooltipContent must be used within a Tooltip');
 
-  const { open, triggerRect, animate, tooltipId } = context;
+  const { open, triggerRect, triggerEl, animate, tooltipId } = context;
   const [contentRect, setContentRect] = React.useState<DOMRect | null>(null);
   const contentRef = React.useRef<HTMLDivElement>(null);
 
@@ -150,6 +155,7 @@ export function TooltipContent({
       {open && (
         <motion.div
           ref={contentRef}
+          {...getPortalThemeAttrs(triggerEl)}
           id={tooltipId}
           role="tooltip"
           initial={animate ? {
