@@ -331,4 +331,89 @@ describe('Dashkit CLI', () => {
     expect(updatedCss).toContain("@import \"tailwindcss\";");
     expect(updatedCss).toContain("dashkit.css");
   }, 30000);
+
+  it("should add multiple components in a single command and maintain root index.ts barrel file", async () => {
+    const testDir = path.join(TEMP_DIR, "multi-add-barrel");
+    await fs.ensureDir(testDir);
+
+    execSync(`bun x tsx ${CLI_PATH} add badge switch input -o components --no-install`, {
+      cwd: testDir,
+      stdio: "pipe",
+      timeout: SPAWN_TIMEOUT
+    });
+
+    expect(await fs.pathExists(path.join(testDir, "components/Badge/Badge.tsx"))).toBe(true);
+    expect(await fs.pathExists(path.join(testDir, "components/Switch/Switch.tsx"))).toBe(true);
+    expect(await fs.pathExists(path.join(testDir, "components/Input/Input.tsx"))).toBe(true);
+
+    const barrelPath = path.join(testDir, "components/index.ts");
+    expect(await fs.pathExists(barrelPath)).toBe(true);
+    const barrelContent = await fs.readFile(barrelPath, "utf8");
+    expect(barrelContent).toContain("export * from './Badge';");
+    expect(barrelContent).toContain("export * from './Input';");
+    expect(barrelContent).toContain("export * from './Switch';");
+  }, 30000);
+
+  it("should output component metadata and props via info --json", async () => {
+    const jsonOutput = execSync(`bun x tsx ${CLI_PATH} info card --json`, {
+      cwd: path.resolve(__dirname, "../.."),
+      encoding: "utf8",
+      timeout: SPAWN_TIMEOUT
+    });
+
+    const parsed = JSON.parse(jsonOutput);
+    expect(parsed.key).toBe("card");
+    expect(parsed.name).toBe("Card");
+    expect(parsed.exports).toEqual(expect.arrayContaining(["Card", "CardHeader", "CardContent", "CardFooter"]));
+    expect(Array.isArray(parsed.propsDefinitions)).toBe(true);
+    expect(parsed.propsDefinitions.length).toBeGreaterThan(0);
+  }, 30000);
+
+  it("should not hang when init or add without args is run in non-TTY mode", async () => {
+    const testDir = path.join(TEMP_DIR, "non-tty-guard");
+    await fs.ensureDir(testDir);
+
+    // init without --yes in piped (non-TTY) mode should auto-accept defaults
+    execSync(`bun x tsx ${CLI_PATH} init`, {
+      cwd: testDir,
+      stdio: "pipe",
+      timeout: SPAWN_TIMEOUT
+    });
+    expect(await fs.pathExists(path.join(testDir, "dashkit.json"))).toBe(true);
+
+    // add without component arguments in piped mode should exit with non-zero code instead of hanging
+    let threw = false;
+    try {
+      execSync(`bun x tsx ${CLI_PATH} add`, {
+        cwd: testDir,
+        stdio: "pipe",
+        timeout: SPAWN_TIMEOUT
+      });
+    } catch {
+      threw = true;
+    }
+    expect(threw).toBe(true);
+  }, 30000);
+
+  it("should scaffold consumer AI rules via dashkit ai-rules", async () => {
+    const testDir = path.join(TEMP_DIR, "ai-rules-cmd");
+    await fs.ensureDir(testDir);
+    await fs.writeJson(path.join(testDir, "dashkit.json"), {
+      componentsDir: "src/ui/dashkit",
+      cssDir: "src/styles"
+    });
+
+    execSync(`bun x tsx ${CLI_PATH} ai-rules`, {
+      cwd: testDir,
+      stdio: "pipe",
+      timeout: SPAWN_TIMEOUT
+    });
+
+    const agentsPath = path.join(testDir, "AGENTS.md");
+    expect(await fs.pathExists(agentsPath)).toBe(true);
+    const content = await fs.readFile(agentsPath, "utf8");
+    expect(content).toContain("src/ui/dashkit");
+    expect(content).toContain("src/styles/dashkit.css");
+    expect(content).toContain("3-Tier AI Customization Protocol");
+  }, 30000);
 });
