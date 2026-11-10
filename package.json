@@ -4,12 +4,12 @@
     "dashkit": "./exec/cli.js"
   },
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build:llms": "bun scripts/generate-llms.ts",
-    "build": "bun run build:llms && tsc -b && vite build",
+    "build": "bun run build:llms && bun run build:cli && tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
