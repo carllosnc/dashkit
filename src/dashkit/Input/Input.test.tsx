@@ -12,21 +12,21 @@ describe('Input', () => {
   it('renders left icon when passed', () => {
     render(<Input leftIcon={<FiSearch data-testid="left-icon" />} />);
     expect(screen.getByTestId('left-icon')).toBeInTheDocument();
-    expect(screen.getByRole('textbox')).toHaveClass('input__field--with-left-icon');
+    expect(screen.getByRole('textbox')).toHaveClass('pl-11');
   });
 
   it('renders right icon when passed', () => {
     render(<Input rightIcon={<FiLock data-testid="right-icon" />} />);
     expect(screen.getByTestId('right-icon')).toBeInTheDocument();
-    expect(screen.getByRole('textbox')).toHaveClass('input__field--with-right-icon');
+    expect(screen.getByRole('textbox')).toHaveClass('pr-11');
   });
 
   it('shows error message and applies error styles', () => {
     render(<Input error="Invalid input" />);
     expect(screen.getByText(/Invalid input/i)).toBeInTheDocument();
     
-    const wrapper = screen.getByRole('textbox').closest('.input__wrapper');
-    expect(wrapper).toHaveClass('input__wrapper--error');
+    const wrapper = screen.getByTestId('input-wrapper');
+    expect(wrapper).toHaveClass('border-ds-danger-500/50');
   });
 
   it('shows helper text when provided', () => {
@@ -39,8 +39,8 @@ describe('Input', () => {
     const input = screen.getByDisplayValue(/test/i);
     expect(input).toBeDisabled();
     
-    const wrapper = input.closest('.input__wrapper');
-    expect(wrapper).toHaveClass('input__wrapper--disabled');
+    const wrapper = screen.getByTestId('input-wrapper');
+    expect(wrapper).toHaveClass('opacity-50');
   });
 
   it('generates an ID automatically from label if not provided', () => {
@@ -68,13 +68,13 @@ describe('Input', () => {
   });
 
   it('applies size modifiers correctly', () => {
-    const { container, rerender } = render(<Input size="sm" />);
-    expect(container.firstChild).toHaveClass('input--sm');
+    const { rerender } = render(<Input size="sm" leftIcon={<FiSearch />} />);
+    expect(screen.getByRole('textbox')).toHaveClass('pl-8');
 
-    rerender(<Input size="lg" />);
-    expect(container.firstChild).toHaveClass('input--lg');
+    rerender(<Input size="lg" leftIcon={<FiSearch />} />);
+    expect(screen.getByRole('textbox')).toHaveClass('pl-12');
 
-    rerender(<Input />);
-    expect(container.firstChild).toHaveClass('input--md');
+    rerender(<Input leftIcon={<FiSearch />} />);
+    expect(screen.getByRole('textbox')).toHaveClass('pl-11');
   });
 });

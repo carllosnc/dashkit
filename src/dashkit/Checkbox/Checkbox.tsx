@@ -6,39 +6,51 @@ export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement
   description?: string;
 }
 
-import './checkbox.css';
-
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   function Checkbox({ label, description, className, id, ...props }, ref) {
     const checkboxId = id || (label ? `checkbox-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined);
 
     return (
-      <div className="checkbox">
-        <div className="checkbox__input-container">
-          <label htmlFor={checkboxId} className="checkbox__label-inner">
+      <div className={cn('group flex gap-3 relative transition-all duration-200 items-center', className)}>
+        <div className="flex items-center h-6">
+          <label htmlFor={checkboxId} className="relative flex items-center justify-center cursor-pointer">
             <input
               {...props}
               type="checkbox"
               id={checkboxId}
               ref={ref}
-              className="checkbox__input"
+              className="peer sr-only"
             />
-            <div className={cn('checkbox__box', className)} />
-            <div className="checkbox__indicator" />
+            <div
+              className={cn(
+                'w-6 h-6 border-2 transition-all duration-200 flex items-center justify-center shrink-0 bg-background rounded-[4px]',
+                'border-border group-hover:border-ds-400 dark:group-hover:border-ds-500',
+                'peer-checked:border-primary peer-checked:bg-background',
+                'peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-transparent',
+                'peer-disabled:opacity-60 peer-disabled:cursor-not-allowed'
+              )}
+            />
+            <div
+              className={cn(
+                'absolute w-[13px] h-[13px] rounded-[2px] bg-primary transition-all duration-200 pointer-events-none opacity-0 scale-50',
+                'peer-checked:opacity-100 peer-checked:scale-100',
+                'peer-checked:peer-disabled:opacity-60'
+              )}
+            />
           </label>
         </div>
         {(label || description) && (
           <label
             htmlFor={checkboxId}
-            className="checkbox__text-container"
+            className="flex flex-col cursor-pointer select-none"
           >
             {label && (
-              <span className="checkbox__text-label">
+              <span className="text-sm font-medium text-ds-800 dark:text-ds-200 tracking-tight leading-5">
                 {label}
               </span>
             )}
             {description && (
-              <span className="checkbox__text-description">
+              <span className="text-xs text-ds-500 dark:text-ds-400 tracking-tight">
                 {description}
               </span>
             )}
@@ -48,3 +60,5 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     );
   }
 );
+
+Checkbox.displayName = 'Checkbox';

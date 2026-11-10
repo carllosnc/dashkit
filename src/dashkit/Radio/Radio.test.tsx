@@ -37,9 +37,8 @@ describe('Radio', () => {
     render(<Radio label="Disabled Radio" disabled />);
     const radio = screen.getByLabelText(/Disabled Radio/i);
     expect(radio).toBeDisabled();
-    // Check if the visual div also reflects disabled state (via opacity)
-    const container = radio.closest('.radio');
-    expect(container).toHaveClass('radio--disabled');
+    const container = radio.closest('div.group');
+    expect(container).toHaveClass('opacity-60');
   });
 
   it('generates an ID automatically from label if not provided', () => {
@@ -50,5 +49,3 @@ describe('Radio', () => {
     expect(label.parentElement).toHaveAttribute('for', 'radio-my-radio');
   });
 });
-
-

@@ -83,7 +83,6 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Checkbox',
     files: [
       'src/dashkit/Checkbox/Checkbox.tsx',
-      'src/dashkit/Checkbox/checkbox.css',
       'src/dashkit/Checkbox/Checkbox.test.tsx',
       'src/dashkit/Checkbox/index.ts'
     ],
@@ -132,11 +131,10 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Input',
     files: [
       'src/dashkit/Input/Input.tsx',
-      'src/dashkit/Input/input.css',
       'src/dashkit/Input/Input.test.tsx',
       'src/dashkit/Input/index.ts'
     ],
-    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'class-variance-authority', 'react-icons'],
   },
   modal: {
     name: 'Modal',
@@ -168,7 +166,6 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Radio',
     files: [
       'src/dashkit/Radio/Radio.tsx',
-      'src/dashkit/Radio/radio.css',
       'src/dashkit/Radio/useRadio.ts',
       'src/dashkit/Radio/Radio.test.tsx',
       'src/dashkit/Radio/index.ts'
@@ -190,7 +187,6 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Switch',
     files: [
       'src/dashkit/Switch/Switch.tsx',
-      'src/dashkit/Switch/switch.css',
       'src/dashkit/Switch/useSwitch.ts',
       'src/dashkit/Switch/Switch.test.tsx',
       'src/dashkit/Switch/index.ts'
@@ -429,7 +425,6 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Textarea',
     files: [
       'src/dashkit/Textarea/Textarea.tsx',
-      'src/dashkit/Textarea/textarea.css',
       'src/dashkit/Textarea/useTextarea.ts',
       'src/dashkit/Textarea/Textarea.test.tsx',
       'src/dashkit/Textarea/index.ts'

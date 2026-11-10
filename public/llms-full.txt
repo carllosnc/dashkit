@@ -2235,7 +2235,7 @@ Vertical groups are useful for sidebars or property menus.
 
 - Slug: `input`
 - Installation: `bunx carllosnc/dashkit add input`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
+- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`, `react-icons`
 
 export const PatternsExample = () => {
   const formatCPF = (val) => val
