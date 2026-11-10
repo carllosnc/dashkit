@@ -163,4 +163,34 @@ describe('Registry Integrity', () => {
 
     expect(problems, `Components import files that \`dashkit add\` would not install:\n${problems.join('\n')}`).toEqual([]);
   });
+
+  it('should accurately declare external NPM dependencies for every component', () => {
+    const problems: string[] = [];
+
+    for (const [key, component] of Object.entries(registry)) {
+      const actualDeps = new Set<string>(['clsx', 'tailwind-merge']);
+      const nonTestFiles = component.files.filter((f) => !/\.(test|spec)\.(ts|tsx)$/.test(f));
+
+      for (const file of nonTestFiles) {
+        const absFile = path.resolve(projectRoot, file);
+        const source = fs.readFileSync(absFile, 'utf8');
+
+        if (source.includes('framer-motion')) actualDeps.add('framer-motion');
+        if (source.includes('class-variance-authority')) actualDeps.add('class-variance-authority');
+        if (source.includes('react-icons')) actualDeps.add('react-icons');
+      }
+
+      const declaredDeps = new Set<string>(component.dependencies ?? []);
+      const missing = [...actualDeps].filter((d) => !declaredDeps.has(d));
+      const extra = [...declaredDeps].filter((d) => !actualDeps.has(d));
+
+      if (missing.length > 0 || extra.length > 0) {
+        problems.push(
+          `${key}: ${missing.length ? `missing [${missing.join(', ')}] ` : ''}${extra.length ? `unused [${extra.join(', ')}]` : ''}`.trim()
+        );
+      }
+    }
+
+    expect(problems, `Registry NPM dependency mismatch:\n${problems.join('\n')}`).toEqual([]);
+  });
 });
