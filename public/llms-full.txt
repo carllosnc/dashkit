@@ -977,6 +977,10 @@ bunx carllosnc/dashkit add sidebar
 
 The `Sidebar` uses a semantic composition of headers, content scroll area, sections, and footers to create a cohesive navigation experience.
 
+
+
+
+
 ```tsx
 import { Sidebar, SidebarHeader, SidebarContent, SidebarSection, SidebarItem } from '@/dashkit';
 import { FiLayout, FiActivity, FiSettings } from 'react-icons/fi';
@@ -1069,6 +1073,8 @@ Enable the `collapsible` prop to show a floating toggle button on the desktop si
 
 Sections can be individually collapsed to conserve vertical space or group related functionality. Use the `collapsible` prop on `SidebarSection` to enable this behavior. You can also control the initial expansion state with the `defaultOpen` prop.
 
+
+
 ```tsx
 <SidebarSection title="Account" collapsible>
   <SidebarItem icon={<FiUser />}>Profile</SidebarItem>
@@ -1083,6 +1089,7 @@ Sections can be individually collapsed to conserve vertical space or group relat
 ## Components Breakdown
 
 The Sidebar library is composed of several specialized layers designed for specific layout roles:
+
 
 | Property | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
@@ -1099,9 +1106,11 @@ The Sidebar library is composed of several specialized layers designed for speci
 | `SidebarSubList` | - | - | Vertical tree-guide container for indented sub-items. |
 | `SidebarSubItem` | - | - | Sub-navigation link styled for nested tree hierarchies. |
 
+
 ## API Reference
 
 ### Sidebar
+
 
 | Property | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
@@ -1119,6 +1128,7 @@ The Sidebar library is composed of several specialized layers designed for speci
 | `collapsedWidth` | `number` | `72` | Collapsed width of the desktop sidebar in pixels. |
 | `className` | `string` | - | Custom classes for the container. |
 
+
 ### SidebarTrigger
 
 ", "description": "Custom icon for the trigger button." },
@@ -1128,6 +1138,7 @@ The Sidebar library is composed of several specialized layers designed for speci
 
 ### SidebarSection
 
+
 | Property | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
 | `title` | `string` | - | Uppercase header above the section. |
@@ -1136,7 +1147,9 @@ The Sidebar library is composed of several specialized layers designed for speci
 | `collapsible` | `boolean` | `false` | Whether the section can be collapsed. |
 | `defaultOpen` | `boolean` | `true` | Initial expansion state for the section. |
 
+
 ### SidebarItem
+
 
 | Property | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
@@ -1151,7 +1164,9 @@ The Sidebar library is composed of several specialized layers designed for speci
 | `subItems` | `SidebarSubItemConfig[]` | - | Nested tree items rendered with guide lines. |
 | `onClick` | `() => void` | - | Standard click event handler. |
 
+
 ### SidebarSubItem
+
 
 | Property | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
@@ -6442,6 +6457,7 @@ Built with a composition pattern for ultimate flexibility. Renders a clean seman
 
 
 
+
   Inventory list exported today.
   
     
@@ -6476,6 +6492,7 @@ Built with a composition pattern for ultimate flexibility. Renders a clean seman
       Total: $750.00
     
   
+
 
 
 
@@ -6547,6 +6564,7 @@ Tables often need a way to perform operations on specific rows. You can easily i
 ## API Reference
 
 ### TableContainer
+
 
 | Property | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
