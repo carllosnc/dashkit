@@ -416,4 +416,42 @@ describe('Dashkit CLI', () => {
     expect(content).toContain("src/styles/dashkit.css");
     expect(content).toContain("3-Tier AI Customization Protocol");
   }, 30000);
+
+  it("should detect modified and up-to-date components via dashkit diff --json", async () => {
+    const testDir = path.join(TEMP_DIR, "diff-cmd");
+    await fs.ensureDir(testDir);
+    await fs.writeJson(path.join(testDir, "dashkit.json"), {
+      componentsDir: "components",
+      cssDir: "styles"
+    });
+
+    execSync(`bun x tsx ${CLI_PATH} add badge switch --no-install`, {
+      cwd: testDir,
+      stdio: "pipe",
+      timeout: SPAWN_TIMEOUT
+    });
+
+    // Modify Switch.tsx locally
+    const switchFile = path.join(testDir, "components/Switch/Switch.tsx");
+    await fs.appendFile(switchFile, "\n// local customization\n");
+
+    const diffJson = execSync(`bun x tsx ${CLI_PATH} diff --json`, {
+      cwd: testDir,
+      encoding: "utf8",
+      timeout: SPAWN_TIMEOUT
+    });
+
+    const parsed = JSON.parse(diffJson) as Array<{
+      key: string;
+      status: string;
+      modifiedFiles: string[];
+    }>;
+
+    const badgeDiff = parsed.find((c) => c.key === "badge");
+    const switchDiff = parsed.find((c) => c.key === "switch");
+
+    expect(badgeDiff?.status).toBe("up-to-date");
+    expect(switchDiff?.status).toBe("modified");
+    expect(switchDiff?.modifiedFiles).toContain("Switch.tsx");
+  }, 30000);
 });
