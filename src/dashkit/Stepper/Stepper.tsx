@@ -2,7 +2,6 @@ import * as React from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '../utils/cn';
 import { FiCheck } from 'react-icons/fi';
-import './stepper.css';
 
 export type StepperColor = 'primary' | 'base';
 
@@ -37,10 +36,11 @@ export function Stepper({
   return (
     <StepperContext.Provider value={{ activeStep, orientation, color, onChange }}>
       <div
+        data-color={color}
+        data-orientation={orientation}
         className={cn(
-          'stepper',
-          orientation === 'horizontal' ? 'stepper--horizontal' : 'stepper--vertical',
-          `stepper--${color}`,
+          'flex w-full',
+          orientation === 'horizontal' ? 'flex-row items-start' : 'flex-col',
           className
         )}
         {...props}
@@ -95,9 +95,9 @@ export function Step({
   return (
     <div
       className={cn(
-        'step',
-        orientation === 'horizontal' ? 'step--horizontal' : 'step--vertical',
-        isClickable && 'step--clickable',
+        'group relative flex',
+        orientation === 'horizontal' ? 'flex-1' : 'flex-col items-start pb-6 w-full',
+        isClickable && 'cursor-pointer',
         className
       )}
       onClick={handleClick}
@@ -105,30 +105,39 @@ export function Step({
     >
       {/* Horizontal Line */}
       {!isLast && orientation === 'horizontal' && (
-        <div className="step__connector--horizontal">
-           <div className="step__connector-line--bg" />
-           <div className="step__connector-line--fill-container">
-             <motion.div
-               className="step__connector-line--fill"
-               initial={false}
-               animate={{ scaleX: isCompleted ? 1 : 0 }}
-               style={{ transformOrigin: 'left center' }}
-               transition={{ duration: 0.4, ease: "easeInOut" }}
-             />
-           </div>
+        <div className="absolute top-4 left-[50%] w-full h-[2px] -translate-y-1/2 z-0">
+          <div className="absolute left-6 right-6 h-full bg-ds-200 dark:bg-ds-800 rounded-full" />
+          <div className="absolute left-6 right-6 h-full overflow-hidden rounded-full">
+            <motion.div
+              className={cn(
+                'absolute top-0 left-0 h-full w-full',
+                color === 'base' ? 'bg-foreground/30 dark:bg-foreground/25' : 'bg-primary'
+              )}
+              initial={false}
+              animate={{ scaleX: isCompleted ? 1 : 0 }}
+              style={{ transformOrigin: 'left center' }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+            />
+          </div>
         </div>
       )}
 
       {/* Main Content */}
       <div className={cn(
-        'step__container',
-        orientation === 'horizontal' ? 'step__container--horizontal' : 'step__container--vertical',
+        'flex shrink-0 relative z-10',
+        orientation === 'horizontal' ? 'flex-col items-center text-center w-full gap-3' : 'items-start gap-3.5 w-full'
       )}>
         {/* Step Icon */}
         <div
           className={cn(
-            'step__icon',
-            (isCompleted || isActive) ? 'step__icon--active' : 'step__icon--inactive'
+            'flex items-center justify-center size-8 rounded-full border-2 shrink-0 transition-colors duration-300 bg-card',
+            (isCompleted || isActive)
+              ? color === 'base'
+                ? isActive
+                  ? 'border-foreground/60 bg-muted text-foreground ring-2 ring-foreground/10 dark:border-foreground/50 dark:bg-ds-800 dark:text-foreground dark:ring-2 dark:ring-foreground/10'
+                  : 'border-border/80 bg-muted text-foreground dark:border-border dark:bg-ds-800/80 dark:text-foreground'
+                : 'border-primary bg-primary text-primary-foreground'
+              : 'border-ds-200 dark:border-ds-800 text-muted-foreground group-hover:border-ds-400 dark:group-hover:border-ds-600'
           )}
         >
           {isCompleted ? (
@@ -144,21 +153,25 @@ export function Step({
 
         {/* Step Content */}
         <div className={cn(
-          'step__content',
-           orientation === 'horizontal' ? 'step__content--horizontal' : 'step__content--vertical'
+          'flex flex-col',
+          orientation === 'horizontal' ? 'items-center' : 'mt-0.5 flex-1 w-full min-w-0'
         )}>
           {title && (
             <span className={cn(
-              'step__title',
-              isActive ? 'step__title--active' : isCompleted ? 'step__title--completed' : 'step__title--inactive'
+              'text-sm font-bold transition-colors duration-300',
+              isActive
+                ? 'text-foreground'
+                : isCompleted
+                ? 'text-foreground/80'
+                : cn('text-muted-foreground', isClickable && 'group-hover:text-foreground/80')
             )}>
               {title}
             </span>
           )}
           {description && (
             <span className={cn(
-              'step__description',
-              orientation === 'horizontal' ? 'step__description--horizontal' : 'step__description--vertical'
+              'text-xs text-muted-foreground mt-0.5 leading-tight',
+              orientation === 'horizontal' ? 'max-w-[150px]' : 'w-full max-w-none'
             )}>
               {description}
             </span>
@@ -168,15 +181,20 @@ export function Step({
 
       {/* Vertical Line */}
       {!isLast && orientation === 'vertical' && (
-        <div className="step__connector--vertical">
-           <div className="step__connector-line--bg" />
-           <motion.div
-             className="step__connector-line--fill"
-             initial={false}
-             animate={{ scaleY: isCompleted ? 1 : 0 }}
-             style={{ transformOrigin: 'top center' }}
-             transition={{ duration: 0.4, ease: "easeInOut" }}
-           />
+        <div className="absolute top-[2rem] left-4 bottom-0 w-[2px] -translate-x-1/2">
+          <div className="absolute inset-0 h-full bg-ds-200 dark:bg-ds-800 rounded-full" />
+          <div className="absolute inset-0 h-full overflow-hidden rounded-full">
+            <motion.div
+              className={cn(
+                'absolute top-0 left-0 h-full w-full',
+                color === 'base' ? 'bg-foreground/30 dark:bg-foreground/25' : 'bg-primary'
+              )}
+              initial={false}
+              animate={{ scaleY: isCompleted ? 1 : 0 }}
+              style={{ transformOrigin: 'top center' }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+            />
+          </div>
         </div>
       )}
     </div>

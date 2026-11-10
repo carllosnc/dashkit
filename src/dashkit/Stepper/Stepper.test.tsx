@@ -49,6 +49,6 @@ describe('Stepper', () => {
         <Step title="Step 2" />
       </Stepper>
     );
-    expect(container.firstChild).toHaveClass('stepper--base');
+    expect(container.firstChild).toHaveAttribute('data-color', 'base');
   });
 });

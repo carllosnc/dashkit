@@ -65,7 +65,7 @@ describe('Table', () => {
     );
 
     const defaultHead = screen.getByText('Default Left');
-    expect(defaultHead).toHaveClass('table__head');
+    expect(defaultHead).toHaveClass('align-middle');
     expect(defaultHead).toHaveClass('text-left');
 
     const centerHead = screen.getByText('Center Prop');
@@ -104,7 +104,7 @@ describe('Table', () => {
 
       const wrapper = screen.getByTestId('table-container');
       expect(wrapper).toBeInTheDocument();
-      expect(wrapper).toHaveClass('table__container');
+      expect(wrapper).toHaveClass('relative', 'overflow-x-auto');
       expect(container.querySelector('table')).toBeInTheDocument();
     });
 
@@ -118,7 +118,7 @@ describe('Table', () => {
 
       expect(ref.current).toBeInstanceOf(HTMLDivElement);
       expect(ref.current).toHaveClass('custom-scroll-container');
-      expect(ref.current).toHaveClass('table__container');
+      expect(ref.current).toHaveClass('relative', 'overflow-x-auto');
     });
   });
 });

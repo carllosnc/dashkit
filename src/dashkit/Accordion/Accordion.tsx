@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { cn } from '../utils/cn';
 import { AccordionContext, type AccordionType } from './AccordionContext';
-import './accordion.css';
 
 export interface AccordionProps {
   type?: AccordionType;
@@ -45,7 +44,7 @@ export function Accordion({
 
   return (
     <AccordionContext.Provider value={{ type, value, onValueChange: handleValueChange }}>
-      <div className={cn('accordion', className)}>
+      <div className={cn('flex flex-col w-full', className)}>
         {children}
       </div>
     </AccordionContext.Provider>

@@ -5,7 +5,6 @@ import { Card } from '../Card/Card';
 import { AnimateNumber } from '../AnimateNumber/AnimateNumber';
 import { HiOutlineArrowTrendingUp, HiOutlineArrowTrendingDown } from 'react-icons/hi2';
 import { Divider } from '../Divider/Divider';
-import './stats-card.css';
 
 export interface StatsCardProps {
   title: string;
@@ -34,6 +33,14 @@ const STATUS_ICONS: Record<string, React.ElementType> = {
   neutral: HiOutlineArrowTrendingUp,
 };
 
+const STATUS_COLORS: Record<string, string> = {
+  success: 'text-ds-success-600 dark:text-ds-success-400',
+  danger: 'text-ds-danger-600 dark:text-ds-danger-400',
+  warning: 'text-ds-warning-600 dark:text-ds-warning-400',
+  info: 'text-ds-info-600 dark:text-ds-info-400',
+  neutral: 'text-muted-foreground',
+};
+
 export function StatsCard({
   title,
   value,
@@ -50,6 +57,7 @@ export function StatsCard({
   chart
 }: StatsCardProps) {
   const TrendIcon = STATUS_ICONS[status];
+  const statusColor = STATUS_COLORS[status] || STATUS_COLORS.neutral;
 
   const sparklinePoints = React.useMemo(() => {
     if (!chart || !chart.data.length) return "";
@@ -68,14 +76,14 @@ export function StatsCard({
 
   return (
     <Card
-      className={cn('stats-card', !chart && 'pb-4', className)}
+      className={cn('relative overflow-hidden', !chart && 'pb-4', className)}
       animate={animate}
     >
       <div className="flex items-start justify-between gap-3">
         <div className="space-y-1.5 overflow-hidden flex-1 min-w-0">
-          <p className="stats-card__title">{title}</p>
-          <div className="stats-card__value-container">
-            <span className="stats-card__value">
+          <p className="text-xs font-medium text-muted-foreground tracking-wider uppercase">{title}</p>
+          <div className="flex items-center gap-3 flex-wrap">
+            <span className="text-3xl font-bold text-foreground tabular-nums tracking-tight whitespace-nowrap truncate leading-none">
               <AnimateNumber
                 value={value}
                 prefix={prefix}
@@ -85,13 +93,13 @@ export function StatsCard({
             </span>
           </div>
           {typeof trend === 'number' && (
-            <div className="stats-card__trend">
-              <span className={cn('stats-card__trend-badge', `stats-card--${status}`)}>
+            <div className="flex items-center gap-1.5 pt-0.5">
+              <span className={cn('flex items-center gap-1 text-[13px] font-bold', statusColor)}>
                 <TrendIcon className="size-3.5" />
                 {trend > 0 ? '+' : ''}{trend}%
               </span>
               {trendLabel && (
-                <span className="stats-card__trend-label">
+                <span className="text-xs font-medium text-muted-foreground whitespace-nowrap">
                   {trendLabel}
                 </span>
               )}
@@ -104,15 +112,15 @@ export function StatsCard({
       {description && (
         <div>
           <Divider variant="dashed" className="w-auto mb-[16px]" />
-          <p className="stats-card__description">{description}</p>
+          <p className="text-xs text-muted-foreground mt-1">{description}</p>
         </div>
       )}
 
       {chart && (
-        <div className="stats-card__chart-container">
+        <div className="h-12 -mx-6 mt-auto">
           <svg
             viewBox="0 0 100 40"
-            className={cn('stats-card__chart-svg', !chart.color && `stats-card--${status}`)}
+            className={cn('w-full h-full overflow-visible', !chart.color && statusColor)}
             style={chart.color ? { color: chart.color } : undefined}
             preserveAspectRatio="none"
           >

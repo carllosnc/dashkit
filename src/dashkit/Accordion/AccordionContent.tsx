@@ -2,7 +2,6 @@ import * as React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '../utils/cn';
 import { AccordionItemContext } from './AccordionContext';
-import './accordion.css';
 
 export function AccordionContent({ children, className }: { children: React.ReactNode; className?: string }) {
   const itemContext = React.useContext(AccordionItemContext);
@@ -16,9 +15,9 @@ export function AccordionContent({ children, className }: { children: React.Reac
           animate={{ height: 'auto', opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
           transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-          className="accordion__content"
+          className="overflow-hidden"
         >
-          <div className={cn('accordion__content-inner', className)}>
+          <div className={cn('pb-4 pt-1 text-sm text-muted-foreground leading-relaxed font-normal', className)}>
             {children}
           </div>
         </motion.div>

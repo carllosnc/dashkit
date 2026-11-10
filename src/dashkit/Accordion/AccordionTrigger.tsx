@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { FiChevronDown } from 'react-icons/fi';
 import { cn } from '../utils/cn';
 import { AccordionContext, AccordionItemContext } from './AccordionContext';
-import './accordion.css';
 
 export function AccordionTrigger({ children, className }: { children: React.ReactNode; className?: string }) {
   const itemContext = React.useContext(AccordionItemContext);
@@ -23,16 +22,16 @@ export function AccordionTrigger({ children, className }: { children: React.Reac
         context.onValueChange(itemContext.value);
       }}
       className={cn(
-        'accordion__trigger',
-        itemContext.isOpen && 'accordion__trigger--active',
+        'group flex w-full items-center justify-between py-4 text-left transition-colors cursor-pointer outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring font-medium',
+        itemContext.isOpen ? 'text-foreground' : 'text-ds-700 dark:text-ds-300',
         className
       )}
     >
-      <span className="accordion__trigger-content">{children}</span>
+      <span className="text-sm md:text-base font-medium tracking-tight text-foreground flex-1">{children}</span>
       <motion.div
         animate={{ rotate: itemContext.isOpen ? 180 : 0 }}
         transition={{ type: 'spring', damping: 20, stiffness: 300 }}
-        className="accordion__trigger-icon text-muted-foreground shrink-0"
+        className="text-muted-foreground group-hover:text-foreground transition-colors shrink-0"
       >
         <FiChevronDown size={16} />
       </motion.div>

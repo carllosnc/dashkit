@@ -13,7 +13,6 @@ export const registry: Record<string, ComponentConfig> = {
       'src/dashkit/Accordion/AccordionItem.tsx',
       'src/dashkit/Accordion/AccordionTrigger.tsx',
       'src/dashkit/Accordion/AccordionContent.tsx',
-      'src/dashkit/Accordion/accordion.css',
       'src/dashkit/Accordion/AccordionContext.ts',
       'src/dashkit/Accordion/Accordion.test.tsx',
       'src/dashkit/Accordion/index.ts'
@@ -150,7 +149,6 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'OtpInput',
     files: [
       'src/dashkit/OtpInput/OtpInput.tsx',
-      'src/dashkit/OtpInput/otp-input.css',
       'src/dashkit/OtpInput/useOtpInput.ts',
       'src/dashkit/OtpInput/OtpInput.test.tsx',
       'src/dashkit/OtpInput/index.ts'
@@ -191,7 +189,6 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Slider',
     files: [
       'src/dashkit/Slider/Slider.tsx',
-      'src/dashkit/Slider/slider.css',
       'src/dashkit/Slider/useSlider.ts',
       'src/dashkit/Slider/Slider.test.tsx',
       'src/dashkit/Slider/index.ts'
@@ -230,7 +227,6 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Stepper',
     files: [
       'src/dashkit/Stepper/Stepper.tsx',
-      'src/dashkit/Stepper/stepper.css',
       'src/dashkit/Stepper/Stepper.test.tsx',
       'src/dashkit/Stepper/index.ts'
     ],
@@ -428,7 +424,6 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Table',
     files: [
       'src/dashkit/Table/Table.tsx',
-      'src/dashkit/Table/table.css',
       'src/dashkit/Table/Table.test.tsx',
       'src/dashkit/Table/index.ts'
     ],
@@ -546,7 +541,7 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'StatsCard',
     files: [
       'src/dashkit/StatsCard/StatsCard.tsx',
-      'src/dashkit/StatsCard/stats-card.css',
+      'src/dashkit/StatsCard/StatsCard.test.tsx',
       'src/dashkit/StatsCard/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
@@ -566,7 +561,7 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'CopyField',
     files: [
       'src/dashkit/CopyField/CopyField.tsx',
-      'src/dashkit/CopyField/copy-field.css',
+      'src/dashkit/CopyField/CopyField.test.tsx',
       'src/dashkit/CopyField/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
@@ -576,7 +571,7 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'ListTile',
     files: [
       'src/dashkit/ListTile/ListTile.tsx',
-      'src/dashkit/ListTile/list-tile.css',
+      'src/dashkit/ListTile/ListTile.test.tsx',
       'src/dashkit/ListTile/index.ts'
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
