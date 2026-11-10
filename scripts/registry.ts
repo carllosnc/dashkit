@@ -25,11 +25,10 @@ export const registry: Record<string, ComponentConfig> = {
     files: [
       'src/dashkit/Avatar/Avatar.tsx',
       'src/dashkit/Avatar/AvatarGroup.tsx',
-      'src/dashkit/Avatar/avatar.css',
       'src/dashkit/Avatar/Avatar.test.tsx',
       'src/dashkit/Avatar/index.ts'
     ],
-    dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'class-variance-authority'],
   },
   badge: {
     name: 'Badge',
@@ -73,11 +72,10 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Chip',
     files: [
       'src/dashkit/Chip/Chip.tsx',
-      'src/dashkit/Chip/chip.css',
       'src/dashkit/Chip/Chip.test.tsx',
       'src/dashkit/Chip/index.ts'
     ],
-    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'class-variance-authority', 'react-icons'],
   },
   checkbox: {
     name: 'Checkbox',
@@ -277,11 +275,10 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Skeleton',
     files: [
       'src/dashkit/Skeleton/Skeleton.tsx',
-      'src/dashkit/Skeleton/skeleton.css',
       'src/dashkit/Skeleton/Skeleton.test.tsx',
       'src/dashkit/Skeleton/index.ts'
     ],
-    dependencies: ['clsx', 'tailwind-merge'],
+    dependencies: ['clsx', 'tailwind-merge', 'class-variance-authority'],
   },
   breadcrumb: {
     name: 'Breadcrumb',
@@ -354,12 +351,11 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'ProgressBar',
     files: [
       'src/dashkit/ProgressBar/ProgressBar.tsx',
-      'src/dashkit/ProgressBar/progress-bar.css',
       'src/dashkit/ProgressBar/useProgressBar.ts',
       'src/dashkit/ProgressBar/ProgressBar.test.tsx',
       'src/dashkit/ProgressBar/index.ts'
     ],
-    dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'class-variance-authority'],
   },
   buttongroup: {
     name: 'ButtonGroup',
@@ -386,11 +382,10 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Divider',
     files: [
       'src/dashkit/Divider/Divider.tsx',
-      'src/dashkit/Divider/divider.css',
       'src/dashkit/Divider/Divider.test.tsx',
       'src/dashkit/Divider/index.ts'
     ],
-    dependencies: ['clsx', 'tailwind-merge'],
+    dependencies: ['clsx', 'tailwind-merge', 'class-variance-authority'],
   },
   sidebar: {
     name: 'Sidebar',
@@ -462,7 +457,6 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'CircularProgress',
     files: [
       'src/dashkit/CircularProgress/CircularProgress.tsx',
-      'src/dashkit/CircularProgress/circular-progress.css',
       'src/dashkit/CircularProgress/CircularProgress.test.tsx',
       'src/dashkit/CircularProgress/index.ts'
     ],

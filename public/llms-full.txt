@@ -463,7 +463,7 @@ Since Surface doesn't provide padding or forced borders, you can easily apply yo
 
 - Slug: `divider`
 - Installation: `bunx carllosnc/dashkit add divider`
-- NPM Dependencies: `clsx`, `tailwind-merge`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`
 
 # Divider
 
@@ -4988,7 +4988,7 @@ Spinners are commonly used alongside text labels to indicate specific processing
 
 - Slug: `progressbar`
 - Installation: `bunx carllosnc/dashkit add progressbar`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
+- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`
 
 # ProgressBar
 
@@ -5190,7 +5190,7 @@ Control the visibility of the background track and the shape of the progress end
 
 - Slug: `skeleton`
 - Installation: `bunx carllosnc/dashkit add skeleton`
-- NPM Dependencies: `clsx`, `tailwind-merge`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`
 
 export const SkeletonDemo = () => {
   return (
@@ -5459,7 +5459,7 @@ The menu can be positioned at any corner of the parent container or screen.
 
 - Slug: `avatar`
 - Installation: `bunx carllosnc/dashkit add avatar`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
+- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`
 
 # Avatar
 
@@ -5801,7 +5801,7 @@ Combine badges with other components to create rich status indicators.
 
 - Slug: `chip`
 - Installation: `bunx carllosnc/dashkit add chip`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
+- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`, `react-icons`
 
 export const MultiSelectExample = () => {
   const [selectedChips, setSelectedChips] = useState(['React', 'Vite']);

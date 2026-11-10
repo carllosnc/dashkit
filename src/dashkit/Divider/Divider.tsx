@@ -1,47 +1,102 @@
-import * as React from "react";
-import { cn } from "../utils/cn";
+import * as React from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { cn } from '../utils/cn';
 
-export interface DividerProps extends React.HTMLAttributes<HTMLDivElement> {
-  orientation?: "horizontal" | "vertical";
+const dividerVariants = cva('shrink-0 border-border', {
+  variants: {
+    orientation: {
+      horizontal: 'w-full',
+      vertical: 'h-auto self-stretch',
+    },
+    variant: {
+      solid: 'bg-ds-200 dark:bg-ds-800',
+      dashed: 'bg-transparent border-dashed',
+      dotted: 'bg-transparent border-dotted',
+    },
+  },
+  compoundVariants: [
+    {
+      orientation: 'horizontal',
+      variant: 'solid',
+      className: 'h-[1px]',
+    },
+    {
+      orientation: 'vertical',
+      variant: 'solid',
+      className: 'w-[1px]',
+    },
+    {
+      orientation: 'horizontal',
+      variant: ['dashed', 'dotted'],
+      className: 'h-0 border-t',
+    },
+    {
+      orientation: 'vertical',
+      variant: ['dashed', 'dotted'],
+      className: 'w-0 border-l',
+    },
+  ],
+  defaultVariants: {
+    orientation: 'horizontal',
+    variant: 'solid',
+  },
+});
+
+const dividerLineVariants = cva('flex-1 border-border', {
+  variants: {
+    variant: {
+      solid: 'h-[1px] bg-ds-200 dark:bg-ds-800',
+      dashed: 'bg-transparent border-t border-dashed',
+      dotted: 'bg-transparent border-t border-dotted',
+    },
+  },
+  defaultVariants: {
+    variant: 'solid',
+  },
+});
+
+export interface DividerProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof dividerVariants> {
   children?: React.ReactNode;
-  variant?: "solid" | "dashed" | "dotted";
-  contentPosition?: "left" | "center" | "right";
+  contentPosition?: 'left' | 'center' | 'right';
 }
-
-import './divider.css';
 
 export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
   function Divider(
     {
-      orientation = "horizontal",
+      orientation = 'horizontal',
       children,
-      variant = "solid",
-      contentPosition = "center",
+      variant = 'solid',
+      contentPosition = 'center',
       className,
       ...props
     },
     ref
   ) {
-    const isHorizontal = orientation === "horizontal";
+    const isHorizontal = orientation === 'horizontal';
     const hasContent = isHorizontal && !!children;
 
     if (hasContent) {
       return (
         <div
           ref={ref}
-          className={cn(
-            "divider",
-            "divider--with-content",
-            variant !== "solid" && `divider--${variant}`,
-            className
-          )}
+          role="separator"
+          aria-orientation="horizontal"
+          className={cn('flex items-center w-full gap-4 bg-transparent h-auto border-none', className)}
           {...props}
         >
-          <div className={cn("divider__line", contentPosition === "left" && "hidden")} />
-          <span className="divider__content">
+          <div
+            data-testid="divider-line"
+            className={cn(dividerLineVariants({ variant }), contentPosition === 'left' && 'hidden')}
+          />
+          <span className="text-[11px] font-bold uppercase tracking-widest text-ds-400 select-none whitespace-nowrap">
             {children}
           </span>
-          <div className={cn("divider__line", contentPosition === "right" && "hidden")} />
+          <div
+            data-testid="divider-line"
+            className={cn(dividerLineVariants({ variant }), contentPosition === 'right' && 'hidden')}
+          />
         </div>
       );
     }
@@ -49,19 +104,13 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
     return (
       <div
         ref={ref}
-        className={cn(
-          "divider",
-          `divider--${orientation}`,
-          variant !== "solid" && `divider--${variant}`,
-          className
-        )}
         role="separator"
-        aria-orientation={orientation}
+        aria-orientation={orientation ?? undefined}
+        className={cn(dividerVariants({ orientation, variant }), className)}
         {...props}
       />
     );
   }
 );
 
-Divider.displayName = "Divider";
-
+Divider.displayName = 'Divider';
