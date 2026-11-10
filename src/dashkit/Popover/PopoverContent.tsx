@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePopoverContext } from './usePopover';
 import { cn } from '../utils/cn';
+import { getPortalThemeAttrs } from '../utils/portalTheme';
 
 export interface PopoverContentProps {
   children: React.ReactNode;
@@ -106,6 +107,7 @@ export function PopoverContent({
       {open && (
         <motion.div
            ref={portalRef}
+           {...getPortalThemeAttrs(triggerElement)}
            initial={{ opacity: 0, scale: 0.95, y: animProps.y, x: animProps.x }}
            animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
            exit={{ opacity: 0, scale: 0.95, y: animProps.y, x: animProps.x }}
