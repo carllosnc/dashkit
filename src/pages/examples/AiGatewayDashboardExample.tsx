@@ -555,7 +555,7 @@ export const AiGatewayDashboardExample = () => {
                 className="flex-col sm:flex-row sm:items-start gap-3"
                 leftIcon={<FiTerminal size={18} />}
                 action={
-                  <div className="overflow-x-auto max-w-full">
+                  <div className="overflow-x-auto max-w-full no-scrollbar">
                     <Tabs
                     value={selectedModel}
                     onValueChange={(val) => setSelectedModel(val)}

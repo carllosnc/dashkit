@@ -112,7 +112,7 @@ export function Pagination({
               <motion.div
                 layoutId={`pagination-active-${paginationId}`}
                 className="pagination__active-indicator"
-                transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                transition={{ type: 'spring', bounce: 0, duration: 0.25 }}
               />
             )}
             <span className="relative z-10">{pageNumber}</span>

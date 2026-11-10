@@ -131,8 +131,8 @@ export function TabsTrigger({ value, children, className, disabled }: TabsTrigge
           className="tabs__active-indicator"
           transition={{
             type: 'spring',
-            stiffness: 400,
-            damping: 32
+            bounce: 0,
+            duration: 0.25
           }}
         />
       )}
@@ -142,8 +142,8 @@ export function TabsTrigger({ value, children, className, disabled }: TabsTrigge
           className="tabs__active-pill"
           transition={{
             type: 'spring',
-            stiffness: 500,
-            damping: 35
+            bounce: 0,
+            duration: 0.25
           }}
         />
       )}
