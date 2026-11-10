@@ -13,15 +13,15 @@ export const BreadcrumbItem = React.forwardRef<HTMLLIElement, BreadcrumbItemProp
     return (
       <li
         ref={ref}
-        className={cn('breadcrumb__item', className)}
+        className={cn('flex items-center gap-1.5 whitespace-nowrap', className)}
         {...props}
       >
         <Component
           href={href}
           className={cn(
-            'breadcrumb__link',
-            href ? 'breadcrumb__item--inactive' : 'breadcrumb__item--medium',
-            active && 'breadcrumb__item--active'
+            'flex items-center gap-1.5 text-sm transition-colors',
+            href ? 'text-ds-500 hover:text-ds-900 dark:text-ds-400 dark:hover:text-white' : 'text-ds-500 font-medium',
+            active && 'font-semibold text-ds-900 dark:text-white'
           )}
         >
           {children}
@@ -30,3 +30,5 @@ export const BreadcrumbItem = React.forwardRef<HTMLLIElement, BreadcrumbItemProp
     );
   }
 );
+
+BreadcrumbItem.displayName = 'BreadcrumbItem';

@@ -392,7 +392,7 @@ The bottom action area with a subtle separator.
 
 - Slug: `surface`
 - Installation: `bunx carllosnc/dashkit add surface`
-- NPM Dependencies: `clsx`, `tailwind-merge`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`
 
 # Surface
 
@@ -547,7 +547,7 @@ Horizontal dividers can contain text or other components, positioned along the l
 
 - Slug: `scrollarea`
 - Installation: `bunx carllosnc/dashkit add scrollarea`
-- NPM Dependencies: `clsx`, `tailwind-merge`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`
 
 export const VerticalExample = () => (
   
@@ -666,7 +666,7 @@ Use `orientation="both"` when you need independent scrolling in both directions.
 
 - Slug: `navbar`
 - Installation: `bunx carllosnc/dashkit add navbar`
-- NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`, `class-variance-authority`
 
 # Navbar
 
@@ -1182,7 +1182,7 @@ The Sidebar library is composed of several specialized layers designed for speci
 
 - Slug: `breadcrumb`
 - Installation: `bunx carllosnc/dashkit add breadcrumb`
-- NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`, `class-variance-authority`
 
 # Breadcrumb
 
@@ -1675,7 +1675,7 @@ const [activeStep, setActiveStep] = useState(0);
 
 - Slug: `pagination`
 - Installation: `bunx carllosnc/dashkit add pagination`
-- NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`, `framer-motion`
 
 # Pagination
 

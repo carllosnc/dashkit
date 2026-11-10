@@ -1,31 +1,35 @@
 import type { ReactNode } from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../utils/cn';
-import './scroll-area.css';
 
-export interface ScrollAreaProps {
+const viewportVariants = cva('h-full w-full rounded-[inherit] custom-scrollbar', {
+  variants: {
+    orientation: {
+      vertical: 'overflow-y-auto overflow-x-hidden',
+      horizontal: 'overflow-x-auto overflow-y-hidden',
+      both: 'overflow-auto',
+    },
+  },
+  defaultVariants: {
+    orientation: 'vertical',
+  },
+});
+
+export interface ScrollAreaProps extends VariantProps<typeof viewportVariants> {
   children: ReactNode;
   className?: string;
   viewportClassName?: string;
-  orientation?: 'vertical' | 'horizontal' | 'both';
 }
 
 export function ScrollArea({
   children,
   className,
   viewportClassName,
-  orientation = 'vertical',
+  orientation,
 }: ScrollAreaProps) {
   return (
-    <div className={cn('scroll-area', className)}>
-      <div
-        className={cn(
-          'scroll-area__viewport',
-          orientation === 'vertical' && 'scroll-area__viewport--vertical',
-          orientation === 'horizontal' && 'scroll-area__viewport--horizontal',
-          orientation === 'both' && 'scroll-area__viewport--both',
-          viewportClassName
-        )}
-      >
+    <div className={cn('relative overflow-hidden w-full h-full', className)}>
+      <div className={cn(viewportVariants({ orientation }), viewportClassName)}>
         {children}
       </div>
     </div>

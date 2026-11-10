@@ -202,11 +202,10 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Surface',
     files: [
       'src/dashkit/Surface/Surface.tsx',
-      'src/dashkit/Surface/surface.css',
       'src/dashkit/Surface/Surface.test.tsx',
       'src/dashkit/Surface/index.ts'
     ],
-    dependencies: ['clsx', 'tailwind-merge'],
+    dependencies: ['clsx', 'tailwind-merge', 'class-variance-authority'],
   },
   tabs: {
     name: 'Tabs',
@@ -241,11 +240,10 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Pagination',
     files: [
       'src/dashkit/Pagination/Pagination.tsx',
-      'src/dashkit/Pagination/pagination.css',
       'src/dashkit/Pagination/Pagination.test.tsx',
       'src/dashkit/Pagination/index.ts'
     ],
-    dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
+    dependencies: ['clsx', 'tailwind-merge', 'react-icons', 'framer-motion'],
   },
   spinner: {
     name: 'Spinner',
@@ -263,11 +261,10 @@ export const registry: Record<string, ComponentConfig> = {
       'src/dashkit/Navbar/NavbarActions.tsx',
       'src/dashkit/Navbar/NavbarBrand.tsx',
       'src/dashkit/Navbar/NavbarLinks.tsx',
-      'src/dashkit/Navbar/navbar.css',
       'src/dashkit/Navbar/Navbar.test.tsx',
       'src/dashkit/Navbar/index.ts'
     ],
-    dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
+    dependencies: ['clsx', 'tailwind-merge', 'react-icons', 'class-variance-authority'],
   },
   skeleton: {
     name: 'Skeleton',
@@ -286,11 +283,10 @@ export const registry: Record<string, ComponentConfig> = {
       'src/dashkit/Breadcrumb/BreadcrumbItem.tsx',
       'src/dashkit/Breadcrumb/BreadcrumbSeparator.tsx',
       'src/dashkit/Breadcrumb/BreadcrumbEllipsis.tsx',
-      'src/dashkit/Breadcrumb/breadcrumb.css',
       'src/dashkit/Breadcrumb/Breadcrumb.test.tsx',
       'src/dashkit/Breadcrumb/index.ts'
     ],
-    dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
+    dependencies: ['clsx', 'tailwind-merge', 'react-icons', 'class-variance-authority'],
   },
   iconbutton: {
     name: 'IconButton',
@@ -388,7 +384,6 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Sidebar',
     files: [
       'src/dashkit/Sidebar/Sidebar.tsx',
-      'src/dashkit/Sidebar/sidebar.css',
       'src/dashkit/Sidebar/useSidebar.ts',
       'src/dashkit/Sidebar/SidebarContext.tsx',
       'src/dashkit/Sidebar/Sidebar.test.tsx',
@@ -522,7 +517,6 @@ export const registry: Record<string, ComponentConfig> = {
       'src/dashkit/NavigationMenu/NavigationMenuList.tsx',
       'src/dashkit/NavigationMenu/NavigationMenuTrigger.tsx',
       'src/dashkit/NavigationMenu/NavigationMenuViewport.tsx',
-      'src/dashkit/NavigationMenu/navigation-menu.css',
       'src/dashkit/NavigationMenu/useNavigationMenu.ts',
       'src/dashkit/NavigationMenu/useNavigationMenuViewport.ts',
       'src/dashkit/NavigationMenu/NavigationMenu.test.tsx',
@@ -543,11 +537,10 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'ScrollArea',
     files: [
       'src/dashkit/ScrollArea/ScrollArea.tsx',
-      'src/dashkit/ScrollArea/scroll-area.css',
       'src/dashkit/ScrollArea/ScrollArea.test.tsx',
       'src/dashkit/ScrollArea/index.ts'
     ],
-    dependencies: ['clsx', 'tailwind-merge'],
+    dependencies: ['clsx', 'tailwind-merge', 'class-variance-authority'],
   },
   statscard: {
     name: 'StatsCard',

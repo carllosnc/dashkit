@@ -16,7 +16,7 @@ export function NavigationMenuViewport({ className }: { className?: string }) {
     <AnimatePresence>
       {activeValue && activeTrigger && (
         <div
-          className="navigation-menu__viewport-wrapper"
+          className="absolute left-0 top-full flex justify-center w-full pointer-events-none z-[1000]"
           style={{ perspective: '2000px' }}
         >
           <motion.div
@@ -36,9 +36,12 @@ export function NavigationMenuViewport({ className }: { className?: string }) {
               damping: 30,
               opacity: { duration: 0.2 }
             }}
-            className={cn('navigation-menu__viewport', className)}
+            className={cn(
+              'relative mt-1 ds-rounded border border-ds-200 bg-ds-50 text-ds-950 shadow-2xl pointer-events-auto overflow-hidden dark:bg-ds-900 dark:text-ds-50 dark:border-ds-800',
+              className
+            )}
           >
-            <div ref={setContentRef} className="navigation-menu__viewport-content">
+            <div ref={setContentRef} className="w-max p-2 min-w-[300px]">
               {contentMap[activeValue]}
             </div>
           </motion.div>

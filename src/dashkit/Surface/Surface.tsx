@@ -1,20 +1,39 @@
 import * as React from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../utils/cn';
-import './surface.css';
+
+const surfaceVariants = cva(
+  'ds-rounded-md text-foreground transition-colors duration-200',
+  {
+    variants: {
+      variant: {
+        default: 'bg-muted/50 dark:bg-muted/40',
+        info: 'bg-info/10 dark:bg-info/15',
+        success: 'bg-success/10 dark:bg-success/15',
+        warning: 'bg-warning/12 dark:bg-warning/15',
+        danger: 'bg-danger/10 dark:bg-danger/15',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+    },
+  }
+);
 
 export type SurfaceVariant = 'default' | 'info' | 'success' | 'warning' | 'danger';
 
-export interface SurfaceProps extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: SurfaceVariant;
+export interface SurfaceProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof surfaceVariants> {
   children?: React.ReactNode;
 }
 
 export const Surface = React.forwardRef<HTMLDivElement, SurfaceProps>(
-  function Surface({ variant = 'default', className, children, ...props }, ref) {
+  function Surface({ variant, className, children, ...props }, ref) {
     return (
       <div
         ref={ref}
-        className={cn('surface', `surface--${variant}`, className)}
+        className={cn(surfaceVariants({ variant }), className)}
         {...props}
       >
         {children}

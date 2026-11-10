@@ -26,12 +26,12 @@ describe('Navbar', () => {
   it('applies sticky and blur classes based on props', () => {
     const { rerender } = render(<Navbar sticky={false} blur={false}>Simple Navbar</Navbar>);
     const navbar = screen.getByRole('banner');
-    expect(navbar).not.toHaveClass('navbar--sticky');
-    expect(navbar).not.toHaveClass('navbar--blur');
+    expect(navbar).not.toHaveClass('sticky');
+    expect(navbar).not.toHaveClass('backdrop-blur-xl');
 
     rerender(<Navbar sticky={true} blur={true}>Interactive Navbar</Navbar>);
-    expect(navbar).toHaveClass('navbar--sticky');
-    expect(navbar).toHaveClass('navbar--blur');
+    expect(navbar).toHaveClass('sticky');
+    expect(navbar).toHaveClass('backdrop-blur-xl');
   });
 
   it('renders a nav element inside NavbarLinks', () => {
@@ -54,7 +54,7 @@ describe('Navbar', () => {
 
     const brand = screen.getByTestId('brand');
     const actions = screen.getByTestId('actions');
-    expect(brand).toHaveClass('navbar__brand');
-    expect(actions).toHaveClass('navbar__actions');
+    expect(brand).toHaveClass('shrink-0');
+    expect(actions).toHaveClass('shrink-0');
   });
 });

@@ -53,7 +53,7 @@ describe('Sidebar', () => {
       </Sidebar>
     );
     const button = screen.getByRole('button', { name: /active item/i });
-    expect(button).toHaveClass('sidebar__item--active');
+    expect(button).toHaveClass('bg-muted');
     expect(button).toHaveAttribute('aria-current', 'page');
     expect(screen.getByText('Active Item')).toHaveAttribute('title', 'Active Item');
   });
@@ -140,7 +140,7 @@ describe('Sidebar', () => {
     expect(screen.getByText('Reports')).toBeInTheDocument();
 
     const overviewBtn = screen.getByText('Overview').closest('button');
-    expect(overviewBtn).toHaveClass('sidebar__subitem--active');
+    expect(overviewBtn).toHaveClass('font-medium');
   });
 
   it('renders composable SidebarSubList and SidebarSubItem correctly', () => {
@@ -170,7 +170,7 @@ describe('Sidebar', () => {
 
     const content = screen.getByTestId('sidebar-content');
     expect(content).toBeInTheDocument();
-    expect(content).toHaveClass('sidebar__content');
+    expect(content).toHaveClass('overflow-y-auto');
     expect(screen.getByText('Items list')).toBeInTheDocument();
   });
 
@@ -224,7 +224,7 @@ describe('Sidebar', () => {
 
       const dialog = screen.getByRole('dialog', { name: /navigation sidebar/i });
       expect(dialog).toBeInTheDocument();
-      expect(dialog).toHaveClass('sidebar--mobile');
+      expect(dialog).toHaveClass('fixed', 'shadow-2xl');
       expect(screen.getByText('Mobile Logo')).toBeInTheDocument();
       expect(screen.getByText('Mobile Link')).toBeInTheDocument();
     });

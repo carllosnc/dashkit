@@ -2,7 +2,6 @@ import * as React from 'react';
 import { cn } from '../utils/cn';
 import { FiChevronLeft, FiChevronRight, FiMoreHorizontal } from 'react-icons/fi';
 import { motion } from 'framer-motion';
-import './pagination.css';
 
 export interface PaginationProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onChange'> {
   currentPage: number;
@@ -69,14 +68,14 @@ export function Pagination({
     <nav
       role="navigation"
       aria-label="Pagination"
-      className={cn('pagination', className)}
+      className={cn('flex flex-wrap items-center gap-1', className)}
       {...props}
     >
       <button
         type="button"
         disabled={currentPage <= 1}
         onClick={() => onChange(currentPage - 1)}
-        className="pagination__arrow"
+        className="size-9 ds-rounded flex items-center justify-center text-sm font-medium transition-colors bg-ds-200 dark:bg-ds-800 hover:bg-ds-300 dark:hover:bg-ds-700 text-ds-500 focus:outline-none focus-visible:ring-2 disabled:opacity-50 disabled:pointer-events-none"
         aria-label="Previous page"
       >
         <FiChevronLeft className="size-4" />
@@ -87,7 +86,7 @@ export function Pagination({
           return (
             <div
               key={`dots-${index}`}
-              className="pagination__dots"
+              className="size-9 flex items-center justify-center text-ds-600 dark:text-ds-400"
               aria-hidden="true"
             >
               <FiMoreHorizontal className="size-4" />
@@ -104,14 +103,16 @@ export function Pagination({
             onClick={() => onChange(pageNumber as number)}
             aria-current={isCurrent ? 'page' : undefined}
             className={cn(
-              'pagination__item',
-              isCurrent ? 'pagination__item--current' : 'pagination__item--default'
+              'relative size-9 ds-rounded flex items-center justify-center text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2',
+              isCurrent
+                ? 'z-10 text-background font-semibold pointer-events-none'
+                : 'bg-ds-200 dark:bg-ds-800 hover:bg-ds-300 dark:hover:bg-ds-700 text-foreground'
             )}
           >
             {isCurrent && (
               <motion.div
                 layoutId={`pagination-active-${paginationId}`}
-                className="pagination__active-indicator"
+                className="absolute inset-0 bg-foreground shadow-sm ds-rounded pointer-events-none"
                 transition={{ type: 'spring', bounce: 0, duration: 0.25 }}
               />
             )}
@@ -124,7 +125,7 @@ export function Pagination({
         type="button"
         disabled={currentPage >= totalPages}
         onClick={() => onChange(currentPage + 1)}
-        className="pagination__arrow"
+        className="size-9 ds-rounded flex items-center justify-center text-sm font-medium transition-colors bg-ds-200 dark:bg-ds-800 hover:bg-ds-300 dark:hover:bg-ds-700 text-ds-500 focus:outline-none focus-visible:ring-2 disabled:opacity-50 disabled:pointer-events-none"
         aria-label="Next page"
       >
         <FiChevronRight className="size-4" />
