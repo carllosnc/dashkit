@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { cva } from 'class-variance-authority';
 import { FiX } from 'react-icons/fi';
 import { cn } from '../utils/cn';
+import { getPortalThemeAttrs } from '../utils/portalTheme';
 import { useDrawer, type DrawerPosition } from './useDrawer';
 import { useFocusTrap } from '../utils/useFocusTrap';
 import { Backdrop } from '../Backdrop/Backdrop';
@@ -104,7 +105,10 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(function Drawer({
   return createPortal(
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[1100] isolate overflow-hidden flex items-center justify-center">
+        <div
+          {...getPortalThemeAttrs()}
+          className="fixed inset-0 z-[1100] isolate overflow-hidden flex items-center justify-center"
+        >
           <Backdrop show={true} fixed={false} onClick={onClose}>
             <motion.button
               initial={{ opacity: 0, scale: 0.8 }}
