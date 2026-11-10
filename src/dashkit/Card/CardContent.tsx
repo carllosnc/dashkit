@@ -7,7 +7,7 @@ export function CardContent({ className, ref, ...props }: CardContentProps) {
   return (
     <div
       ref={ref}
-      className={cn('card__content', className)}
+      className={cn('flex-1', className)}
       {...props}
     />
   );

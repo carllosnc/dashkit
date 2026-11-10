@@ -18,11 +18,11 @@ export function CardHeader({
   return (
     <div
       ref={ref}
-      className={cn('card__header flex gap-3 items-start', className)}
+      className={cn('flex gap-3 items-start', className)}
       {...props}
     >
       {leftIcon && (
-        <div className="card__header-icon shrink-0 text-muted-foreground mt-0.5">
+        <div className="shrink-0 text-muted-foreground mt-0.5">
           {leftIcon}
         </div>
       )}
@@ -30,7 +30,7 @@ export function CardHeader({
         {children}
       </div>
       {action && (
-        <div className="card__header-action shrink-0">
+        <div className="shrink-0">
           {action}
         </div>
       )}
@@ -47,7 +47,7 @@ export function CardTitle({ className, as: Component = 'h3', ref, ...props }: Ca
   return (
     <Component
       ref={ref}
-      className={cn('card__title', className)}
+      className={cn('text-base font-bold text-foreground tracking-tight leading-tight', className)}
       {...props}
     />
   );
@@ -59,7 +59,7 @@ export function CardDescription({ className, ref, ...props }: CardDescriptionPro
   return (
     <p
       ref={ref}
-      className={cn('card__description', className)}
+      className={cn('text-sm text-muted-foreground', className)}
       {...props}
     />
   );

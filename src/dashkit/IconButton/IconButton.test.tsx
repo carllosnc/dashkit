@@ -22,39 +22,39 @@ describe('IconButton', () => {
   it('applies rounded classes when rounded prop is true', () => {
     const { rerender } = render(<IconButton icon={<FiPlus />} rounded={false} />);
     let button = screen.getByRole('button');
-    expect(button).not.toHaveClass('icon-button--rounded');
+    expect(button).toHaveClass('rounded-md');
 
     rerender(<IconButton icon={<FiPlus />} rounded={true} />);
     button = screen.getByRole('button');
-    expect(button).toHaveClass('icon-button--rounded');
+    expect(button).toHaveClass('rounded-full');
   });
 
   it('applies variant styles correctly', () => {
     const { rerender } = render(<IconButton icon={<FiPlus />} variant="filled" />);
     let button = screen.getByRole('button');
-    expect(button).toHaveClass('icon-button--filled');
+    expect(button).toHaveClass('ds-primary-gradient');
 
     rerender(<IconButton icon={<FiPlus />} variant="soft" />);
     button = screen.getByRole('button');
-    expect(button).toHaveClass('icon-button--soft');
+    expect(button).toHaveClass('bg-secondary');
 
     rerender(<IconButton icon={<FiPlus />} variant="outlined" />);
     button = screen.getByRole('button');
-    expect(button).toHaveClass('icon-button--outlined');
+    expect(button).toHaveClass('border-ds-300');
   });
 
   it('applies size modifiers correctly', () => {
     const { rerender } = render(<IconButton icon={<FiPlus />} size="sm" />);
     let button = screen.getByRole('button');
-    expect(button).toHaveClass('icon-button--sm');
+    expect(button).toHaveClass('size-7');
 
     rerender(<IconButton icon={<FiPlus />} size="lg" />);
     button = screen.getByRole('button');
-    expect(button).toHaveClass('icon-button--lg');
+    expect(button).toHaveClass('size-11');
 
     rerender(<IconButton icon={<FiPlus />} />);
     button = screen.getByRole('button');
-    expect(button).toHaveClass('icon-button--md');
+    expect(button).toHaveClass('size-9');
   });
 
   it('is disabled when disabled prop is true', () => {
@@ -65,8 +65,6 @@ describe('IconButton', () => {
   it('keeps a visible focus ring for keyboard users', () => {
     render(<IconButton icon={<FiPlus />} />);
     const button = screen.getByRole('button');
-    // outline-none is paired with a focus-visible ring so keyboard focus isn't
-    // silently invisible.
     expect(button).toHaveClass('focus:outline-none');
     expect(button).toHaveClass('focus-visible:ring-2');
     expect(button).toHaveClass('focus-visible:ring-ring');

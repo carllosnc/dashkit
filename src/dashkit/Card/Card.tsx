@@ -1,15 +1,33 @@
 import * as React from 'react';
 import { motion, type HTMLMotionProps } from 'framer-motion';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../utils/cn';
 
-import './card.css';
+const cardVariants = cva(
+  'relative bg-card text-card-foreground p-6 rounded-xl gap-6 flex flex-col font-sans',
+  {
+    variants: {
+      bordered: {
+        true: 'border border-border/80',
+        false: 'border-0',
+      },
+      shadowed: {
+        true: 'shadow-sm',
+        false: 'shadow-none',
+      },
+    },
+    defaultVariants: {
+      bordered: true,
+      shadowed: false,
+    },
+  }
+);
 
-export type CardProps = Omit<HTMLMotionProps<'div'>, 'title'> & {
-  animate?: boolean;
-  bordered?: boolean;
-  shadowed?: boolean;
-  ref?: React.Ref<HTMLDivElement>;
-};
+export type CardProps = Omit<HTMLMotionProps<'div'>, 'title'> &
+  VariantProps<typeof cardVariants> & {
+    animate?: boolean;
+    ref?: React.Ref<HTMLDivElement>;
+  };
 
 export function Card({
   children,
@@ -27,13 +45,7 @@ export function Card({
       initial={animate ? { opacity: 0, y: 10 } : undefined}
       animate={animate ? { opacity: 1, y: 0 } : undefined}
       transition={{ duration: 0.3, ease: 'easeOut' }}
-      className={cn(
-        'card',
-        'bg-card text-card-foreground p-6 rounded-xl gap-6 flex flex-col font-sans border border-border/80',
-        !bordered && 'card--no-border !border-none',
-        shadowed ? 'card--shadowed shadow-sm' : 'card--no-shadow shadow-none',
-        className
-      )}
+      className={cn(cardVariants({ bordered, shadowed }), className)}
     >
       {children as React.ReactNode}
     </motion.div>

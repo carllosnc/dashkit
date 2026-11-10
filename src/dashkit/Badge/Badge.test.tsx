@@ -21,29 +21,30 @@ describe('Badge', () => {
     render(<Badge content="99" dot />);
     expect(screen.queryByText('99')).not.toBeInTheDocument();
     const badge = screen.getByTestId('badge');
-    expect(badge).toHaveClass('badge__dot');
+    expect(badge).toHaveClass('size-2', 'rounded-full');
   });
 
   it('shows pulse animation when pulse prop is true', () => {
-    const { container } = render(<Badge content="Live" pulse />);
-    const ping = container.querySelector('.badge__pulse');
+    render(<Badge content="Live" pulse />);
+    const ping = screen.getByTestId('badge-pulse');
     expect(ping).toBeInTheDocument();
+    expect(ping).toHaveClass('animate-ping');
   });
 
   it('applies color styles correctly', () => {
     const { rerender } = render(<Badge content="Test" color="success" />);
     const badge = screen.getByTestId('badge');
-    expect(badge).toHaveClass('badge--solid-success');
+    expect(badge).toHaveClass('bg-ds-success-600');
 
     rerender(<Badge content="Test" color="danger" />);
-    expect(screen.getByTestId('badge')).toHaveClass('badge--solid-danger');
+    expect(screen.getByTestId('badge')).toHaveClass('bg-ds-danger-600');
 
     // Test alias
     rerender(<Badge content="Test" color="error" />);
-    expect(screen.getByTestId('badge')).toHaveClass('badge--solid-danger');
+    expect(screen.getByTestId('badge')).toHaveClass('bg-ds-danger-600');
 
     rerender(<Badge content="Test" color="primary" />);
-    expect(screen.getByTestId('badge')).toHaveClass('badge--solid-primary');
+    expect(screen.getByTestId('badge')).toHaveClass('bg-primary');
   });
 
   it('hides the badge when show prop is false', () => {
@@ -92,5 +93,3 @@ describe('FloatBadge', () => {
     expect(container.style.marginRight).toBe('-10px');
   });
 });
-
-

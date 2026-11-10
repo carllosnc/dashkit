@@ -35,12 +35,11 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Badge',
     files: [
       'src/dashkit/Badge/Badge.tsx',
-      'src/dashkit/Badge/badge.css',
       'src/dashkit/Badge/FloatBadge.tsx',
       'src/dashkit/Badge/Badge.test.tsx',
       'src/dashkit/Badge/index.ts'
     ],
-    dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'class-variance-authority'],
   },
   floatbadge: {
     name: 'FloatBadge',
@@ -51,12 +50,11 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Button',
     files: [
       'src/dashkit/Button/Button.tsx',
-      'src/dashkit/Button/button.css',
       'src/dashkit/Button/Button.test.tsx',
       'src/dashkit/Button/index.ts'
     ],
     registryDependencies: ['spinner'],
-    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'class-variance-authority', 'react-icons'],
   },
   card: {
     name: 'Card',
@@ -65,12 +63,11 @@ export const registry: Record<string, ComponentConfig> = {
       'src/dashkit/Card/CardHeader.tsx',
       'src/dashkit/Card/CardContent.tsx',
       'src/dashkit/Card/CardFooter.tsx',
-      'src/dashkit/Card/card.css',
       'src/dashkit/Card/Card.test.tsx',
       'src/dashkit/Card/index.ts'
     ],
     registryDependencies: ['badge', 'button'],
-    dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'class-variance-authority'],
   },
   chip: {
     name: 'Chip',
@@ -312,11 +309,10 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'IconButton',
     files: [
       'src/dashkit/IconButton/IconButton.tsx',
-      'src/dashkit/IconButton/icon-button.css',
       'src/dashkit/IconButton/IconButton.test.tsx',
       'src/dashkit/IconButton/index.ts'
     ],
-    dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
+    dependencies: ['clsx', 'tailwind-merge', 'class-variance-authority', 'react-icons'],
   },
   areachart: {
     name: 'AreaChart',
@@ -377,11 +373,10 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'ButtonGroup',
     files: [
       'src/dashkit/ButtonGroup/ButtonGroup.tsx',
-      'src/dashkit/ButtonGroup/button-group.css',
       'src/dashkit/ButtonGroup/ButtonGroup.test.tsx',
       'src/dashkit/ButtonGroup/index.ts'
     ],
-    dependencies: ['clsx', 'tailwind-merge'],
+    dependencies: ['clsx', 'tailwind-merge', 'class-variance-authority'],
   },
   combobox: {
     name: 'Combobox',

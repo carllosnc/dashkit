@@ -7,7 +7,7 @@ export function CardFooter({ className, ref, ...props }: CardFooterProps) {
   return (
     <div
       ref={ref}
-      className={cn('card__footer', className)}
+      className={cn('flex gap-3', className)}
       {...props}
     />
   );

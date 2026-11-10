@@ -183,7 +183,7 @@ Use the `type="multiple"` prop to allow more than one item to be expanded at the
 
 - Slug: `card`
 - Installation: `bunx carllosnc/dashkit add card`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
+- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`
 - Dashkit Dependencies: `badge`, `button`
 
 # Card
@@ -1926,7 +1926,7 @@ You can adjust the `magnification` (how much it grows) and the `distance` (how f
 
 - Slug: `button`
 - Installation: `bunx carllosnc/dashkit add button`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
+- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`, `react-icons`
 - Dashkit Dependencies: `spinner`
 
 # Button
@@ -2060,7 +2060,7 @@ The component extends all native `ButtonHTMLAttributes` props (e.g. `onClick`, `
 
 - Slug: `iconbutton`
 - Installation: `bunx carllosnc/dashkit add iconbutton`
-- NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`, `react-icons`
 
 # Icon Button
 
@@ -2147,7 +2147,7 @@ Icon buttons can be disabled to prevent user interaction while remaining visuall
 
 - Slug: `buttongroup`
 - Installation: `bunx carllosnc/dashkit add buttongroup`
-- NPM Dependencies: `clsx`, `tailwind-merge`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`
 
 # Button Group
 
@@ -5549,7 +5549,7 @@ Cluster multiple avatars together with automatic truncation using the `max` prop
 
 - Slug: `badge`
 - Installation: `bunx carllosnc/dashkit add badge`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
+- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`
 
 # Badge
 

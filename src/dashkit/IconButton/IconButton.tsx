@@ -1,12 +1,37 @@
 import * as React from 'react';
 import { forwardRef, type ReactNode } from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../utils/cn';
 
-import './icon-button.css';
+const iconButtonVariants = cva(
+  'inline-flex items-center justify-center transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-transparent cursor-pointer whitespace-nowrap select-none shrink-0 font-medium active:scale-[0.97] disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none',
+  {
+    variants: {
+      variant: {
+        filled: 'ds-primary-gradient text-primary-foreground border border-transparent hover:brightness-105',
+        outlined: 'bg-transparent text-foreground border border-ds-300 hover:bg-ds-50 hover:brightness-95 dark:border-ds-700 dark:hover:bg-ds-800/50 dark:hover:brightness-110',
+        soft: 'bg-secondary text-secondary-foreground border border-transparent hover:brightness-85 dark:hover:brightness-150',
+        ghost: 'bg-transparent text-muted-foreground border border-transparent hover:bg-accent hover:text-accent-foreground hover:brightness-95 dark:hover:brightness-110',
+      },
+      size: {
+        sm: 'size-7 text-xs',
+        md: 'size-9 text-sm',
+        lg: 'size-11 text-base',
+      },
+      rounded: {
+        true: 'rounded-full',
+        false: 'rounded-md',
+      },
+    },
+    defaultVariants: {
+      variant: 'soft',
+      size: 'md',
+      rounded: false,
+    },
+  }
+);
 
-type IconButtonBaseProps = {
-  variant?: 'filled' | 'outlined' | 'soft' | 'ghost';
-  size?: 'sm' | 'md' | 'lg';
+type IconButtonBaseProps = Omit<VariantProps<typeof iconButtonVariants>, 'rounded'> & {
   icon: ReactNode;
   rounded?: boolean;
 };
@@ -22,24 +47,13 @@ export const IconButton = forwardRef<HTMLElement, IconButtonProps>(function Icon
   ref
 ) {
   const isLink = 'href' in props && props.href !== undefined;
-
   const classes = cn(
-    'icon-button',
-    'inline-flex items-center justify-center',
-    'transition-all duration-200',
-    // Keep the default outline off but restore a visible focus ring for
-    // keyboard users (matches the design-system ring used across inputs).
-    'focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-transparent cursor-pointer whitespace-nowrap select-none shrink-0 font-medium',
-    `icon-button--${variant}`,
-    `icon-button--${size}`,
-    rounded && 'icon-button--rounded !rounded-full', // Force full round if requested
-    {
-      'icon-button--disabled': 'disabled' in props && props.disabled,
-    },
+    iconButtonVariants({ variant, size, rounded }),
+    'disabled' in props && props.disabled && 'opacity-50 cursor-not-allowed pointer-events-none',
     className
   );
 
-  const content = <div className="icon-button__wrapper">{icon}</div>;
+  const content = <div className="flex items-center justify-center">{icon}</div>;
 
   if (isLink) {
     const { href, target, rel, ...rest } = props as React.AnchorHTMLAttributes<HTMLAnchorElement>;
