@@ -8,6 +8,7 @@ import { logger } from './logger';
 // Helper to get package manager
 export function getPackageManager() {
   const cwd = process.cwd();
+  if (fs.existsSync(path.resolve(cwd, 'bun.lock')) || fs.existsSync(path.resolve(cwd, 'bun.lockb'))) return 'bun';
   if (fs.existsSync(path.resolve(cwd, 'pnpm-lock.yaml'))) return 'pnpm';
   if (fs.existsSync(path.resolve(cwd, 'yarn.lock'))) return 'yarn';
   if (fs.existsSync(path.resolve(cwd, 'package-lock.json'))) return 'npm';
@@ -63,18 +64,12 @@ export async function runDoctor() {
 
   // 3. Check Design System Tokens & Base CSS
   const tokenSpinner = ora(`Verifying ${chalk.bold('design system context')}...`).start();
-  const baseCssPath = path.resolve(process.cwd(), css, 'index.css');
   const mainCss = await findMainCssFile();
   tokenSpinner.stop();
 
-  if (fs.existsSync(baseCssPath)) {
-    logger.success(`Basic styling (${path.join(css, 'index.css')}) found.`);
-  } else {
-    logger.info(`Design system base (${path.join(css, 'index.css')}) not found.`);
-  }
-
   if (mainCss) {
     const rel = path.relative(process.cwd(), mainCss).replace(/\\/g, '/');
+    logger.success(`Basic styling (${rel}) found.`);
     try {
       const content = await fs.readFile(mainCss, 'utf8');
       if (content.includes('dashkit.css')) {
@@ -85,6 +80,9 @@ export async function runDoctor() {
     } catch {
       // Ignore read failure
     }
+  } else {
+    const fallbackCss = path.join(info.hasSrc ? 'src' : '', 'index.css');
+    logger.info(`Design system base (${fallbackCss}) not found.`);
   }
 
   // 4. Environment Info

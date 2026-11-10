@@ -205,8 +205,7 @@
       "dependencies": [
         "clsx",
         "tailwind-merge",
-        "react-icons",
-        "class-variance-authority"
+        "react-icons"
       ],
       "registryDependencies": [],
       "exports": [
@@ -232,11 +231,9 @@
         "src/dashkit/Button/index.ts"
       ],
       "dependencies": [
-        "framer-motion",
         "clsx",
         "tailwind-merge",
-        "class-variance-authority",
-        "react-icons"
+        "class-variance-authority"
       ],
       "registryDependencies": [
         "spinner"
@@ -324,10 +321,8 @@
         "src/dashkit/Checkbox/index.ts"
       ],
       "dependencies": [
-        "framer-motion",
         "clsx",
-        "tailwind-merge",
-        "react-icons"
+        "tailwind-merge"
       ],
       "registryDependencies": [],
       "exports": [
@@ -348,7 +343,6 @@
         "src/dashkit/Chip/index.ts"
       ],
       "dependencies": [
-        "framer-motion",
         "clsx",
         "tailwind-merge",
         "class-variance-authority",
@@ -396,7 +390,6 @@
         "src/dashkit/ColorPicker/index.ts"
       ],
       "dependencies": [
-        "framer-motion",
         "clsx",
         "tailwind-merge",
         "react-icons"
@@ -452,7 +445,6 @@
         "src/dashkit/CopyField/index.ts"
       ],
       "dependencies": [
-        "framer-motion",
         "clsx",
         "tailwind-merge",
         "react-icons"
@@ -506,7 +498,6 @@
         "src/dashkit/DatePicker/index.ts"
       ],
       "dependencies": [
-        "framer-motion",
         "clsx",
         "tailwind-merge",
         "react-icons"
@@ -560,8 +551,7 @@
       "dependencies": [
         "framer-motion",
         "clsx",
-        "tailwind-merge",
-        "react-icons"
+        "tailwind-merge"
       ],
       "registryDependencies": [],
       "exports": [
@@ -624,7 +614,6 @@
         "src/dashkit/Dropdown/index.ts"
       ],
       "dependencies": [
-        "framer-motion",
         "clsx",
         "tailwind-merge",
         "react-icons"
@@ -688,7 +677,10 @@
       "files": [
         "src/dashkit/Badge/FloatBadge.tsx"
       ],
-      "dependencies": [],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
       "registryDependencies": [
         "badge"
       ],
@@ -712,8 +704,7 @@
       "dependencies": [
         "clsx",
         "tailwind-merge",
-        "class-variance-authority",
-        "react-icons"
+        "class-variance-authority"
       ],
       "registryDependencies": [],
       "exports": [
@@ -760,11 +751,9 @@
         "src/dashkit/Input/index.ts"
       ],
       "dependencies": [
-        "framer-motion",
         "clsx",
         "tailwind-merge",
-        "class-variance-authority",
-        "react-icons"
+        "class-variance-authority"
       ],
       "registryDependencies": [],
       "exports": [
@@ -879,7 +868,6 @@
       "dependencies": [
         "clsx",
         "tailwind-merge",
-        "react-icons",
         "class-variance-authority"
       ],
       "registryDependencies": [],
@@ -951,7 +939,6 @@
         "src/dashkit/OtpInput/index.ts"
       ],
       "dependencies": [
-        "framer-motion",
         "clsx",
         "tailwind-merge"
       ],
@@ -1031,8 +1018,7 @@
       "dependencies": [
         "framer-motion",
         "clsx",
-        "tailwind-merge",
-        "react-icons"
+        "tailwind-merge"
       ],
       "registryDependencies": [],
       "exports": [
@@ -1088,7 +1074,6 @@
         "src/dashkit/Radio/index.ts"
       ],
       "dependencies": [
-        "framer-motion",
         "clsx",
         "tailwind-merge"
       ],
@@ -1137,7 +1122,6 @@
         "src/dashkit/Select/index.ts"
       ],
       "dependencies": [
-        "framer-motion",
         "clsx",
         "tailwind-merge",
         "class-variance-authority",
@@ -1241,7 +1225,6 @@
         "src/dashkit/Slider/index.ts"
       ],
       "dependencies": [
-        "framer-motion",
         "clsx",
         "tailwind-merge"
       ],
@@ -1266,6 +1249,7 @@
         "src/dashkit/Spinner/index.ts"
       ],
       "dependencies": [
+        "framer-motion",
         "clsx",
         "tailwind-merge"
       ],
@@ -1366,7 +1350,6 @@
         "src/dashkit/Switch/index.ts"
       ],
       "dependencies": [
-        "framer-motion",
         "clsx",
         "tailwind-merge"
       ],
@@ -1417,8 +1400,7 @@
       ],
       "dependencies": [
         "clsx",
-        "tailwind-merge",
-        "react-icons"
+        "tailwind-merge"
       ],
       "registryDependencies": [],
       "exports": [

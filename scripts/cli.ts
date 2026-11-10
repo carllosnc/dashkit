@@ -1,23 +1,31 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
-import { handleAdd, handleInit, handleDoctor, handleList, handleInfo, handleAiRules } from './commands';
+import { handleAdd, handleInit, handleDoctor, handleList, handleInfo, handleAiRules, handleDiff } from './commands';
 
 const program = new Command();
 
 program
   .name('dashkit')
   .description('Dashkit CLI - Add premium components to your project')
-  .version('0.0.1');
+  .version('1.0.0');
 
 program
   .command('add')
   .description('Add one or more components to your project')
   .argument('[components...]', 'Components to add')
+  .option('-a, --all', 'Add all available components in the registry')
   .option('-o, --output <dir>', 'Output directory (defaults to smart detection)')
   .option('--no-install', 'Do not automatically install dependencies')
   .option('-f, --force', 'Overwrite existing component files')
   .option('-t, --tests', 'Include test files for the component (*.test.tsx)')
   .action(handleAdd);
+
+program
+  .command('diff')
+  .description('Compare installed component files with the upstream Dashkit registry')
+  .argument('[component]', 'Optional component slug or name to inspect')
+  .option('--json', 'Output diff report as JSON')
+  .action(handleDiff);
 
 program
   .command('info')
