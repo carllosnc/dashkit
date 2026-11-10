@@ -22,17 +22,19 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     const hasMessage = !!(error || helperText);
 
     return (
-      <div className="flex flex-col gap-1.5 w-full font-sans">
+      <div data-slot="root" className="flex flex-col gap-1.5 w-full font-sans">
         {label && (
           <label
+            data-slot="label"
             htmlFor={internalId}
-            className="text-[13px] font-semibold text-ds-700 dark:text-ds-300 ml-1 tracking-tight"
+            className="text-[13px] font-semibold text-foreground ml-1 tracking-tight"
           >
             {label}
           </label>
         )}
         <textarea
           {...props}
+          data-slot="textarea"
           id={internalId}
           ref={(node) => {
             textareaRef.current = node;
@@ -65,12 +67,13 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         />
         {(error || helperText) && (
           <span
+            data-slot="helper"
             id={messageId}
             className={cn(
               'text-[12px] ml-1 tracking-tight',
               error
                 ? 'text-ds-danger-600 dark:text-ds-danger-400'
-                : 'text-ds-600'
+                : 'text-muted-foreground'
             )}
           >
             {error || helperText}

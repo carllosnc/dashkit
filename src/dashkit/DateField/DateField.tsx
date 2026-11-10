@@ -49,6 +49,7 @@ const DateSegment = forwardRef<HTMLInputElement, SegmentProps>(
     return (
       <input
         ref={ref}
+        data-slot="segment"
         type="text"
         inputMode="numeric"
         placeholder={placeholder}
@@ -57,7 +58,7 @@ const DateSegment = forwardRef<HTMLInputElement, SegmentProps>(
         onKeyDown={handleKeyDown}
         disabled={disabled}
         className={cn(
-          'h-9 bg-input-bg text-input-fg border border-input-border ds-rounded text-sm font-medium text-center tabular-nums p-0 outline-none transition-all duration-200 placeholder:text-ds-600 dark:placeholder:text-ds-400 focus:border-input-focus focus:ring-2 focus:ring-input-focus/20 disabled:opacity-50 disabled:cursor-not-allowed',
+          'h-9 bg-input-bg text-input-fg border border-input-border ds-rounded text-sm font-medium text-center tabular-nums p-0 outline-none transition-all duration-200 placeholder:text-muted-foreground focus:border-input-focus focus:ring-2 focus:ring-input-focus/20 disabled:opacity-50 disabled:cursor-not-allowed',
           placeholder === 'YYYY' ? 'w-16' : 'w-11'
         )}
       />
@@ -88,15 +89,15 @@ export function DateField({
   } = useDateField({ value, onChange });
 
   return (
-    <div className={cn('flex flex-col gap-1.5 w-full font-sans', className)}>
+    <div data-slot="root" className={cn('flex flex-col gap-1.5 w-full font-sans', className)}>
       {label && (
-        <label className="text-[13px] font-semibold text-ds-700 ml-1 tracking-tight dark:text-ds-300">
+        <label data-slot="label" className="text-[13px] font-semibold text-foreground ml-1 tracking-tight">
           {label}
           {isRequired && <span className="text-ds-danger-500 ml-0.5">*</span>}
         </label>
       )}
 
-      <div className="flex items-center gap-2">
+      <div data-slot="segments" className="flex items-center gap-2">
         <DateSegment
           ref={monthRef}
           value={month}
@@ -107,7 +108,7 @@ export function DateField({
           onNext={() => dayRef.current?.focus()}
           onPrev={() => {}}
         />
-        <span className="text-ds-600 dark:text-ds-400 font-bold select-none text-lg">·</span>
+        <span className="text-muted-foreground font-bold select-none text-lg">·</span>
         <DateSegment
           ref={dayRef}
           value={day}
@@ -118,7 +119,7 @@ export function DateField({
           onNext={() => yearRef.current?.focus()}
           onPrev={() => monthRef.current?.focus()}
         />
-        <span className="text-ds-600 dark:text-ds-400 font-bold select-none text-lg">·</span>
+        <span className="text-muted-foreground font-bold select-none text-lg">·</span>
         <DateSegment
           ref={yearRef}
           value={year}
@@ -133,9 +134,10 @@ export function DateField({
 
       {(error || description) && (
         <span
+          data-slot="helper"
           className={cn(
             'text-[12px] ml-1 tracking-tight',
-            error ? 'text-ds-danger-600 dark:text-ds-danger-400 font-medium' : 'text-ds-600 dark:text-ds-400'
+            error ? 'text-ds-danger-600 dark:text-ds-danger-400 font-medium' : 'text-muted-foreground'
           )}
         >
           {error || description}

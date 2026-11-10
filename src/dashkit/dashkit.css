@@ -129,11 +129,11 @@
   --color-chart-5: var(--ds-chart-5);
 
   --radius: 0.75rem;
-  --radius-xl: 1rem;
-  --radius-2xl: 1.25rem;
+  --radius-xl: calc(var(--radius) * 1.3333);
+  --radius-2xl: calc(var(--radius) * 1.6667);
   --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 3px);
-  --radius-sm: calc(var(--radius) - 5px);
+  --radius-md: max(0px, calc(var(--radius) - 3px));
+  --radius-sm: max(0px, calc(var(--radius) - 5px));
   --radius-base: var(--radius-md);
 }
 
@@ -345,8 +345,20 @@
 /* ────────────────────────────────────────────────
    5. Colors utilities
 ──────────────────────────────────────────────── */
-@utility ds-primary-gradient { @apply bg-gradient-to-b from-ds-primary-600 to-ds-primary-700 dark:from-ds-primary-600 dark:to-ds-primary-700; }
-@utility ds-danger-gradient { @apply bg-gradient-to-b from-ds-danger-500 to-ds-danger-600; }
+@utility ds-primary-gradient {
+  background-color: var(--ds-primary);
+  background-image: var(
+    --ds-primary-gradient,
+    linear-gradient(to bottom, var(--ds-primary), color-mix(in oklch, var(--ds-primary) 86%, black))
+  );
+}
+@utility ds-danger-gradient {
+  background-color: var(--ds-danger);
+  background-image: var(
+    --ds-danger-gradient,
+    linear-gradient(to bottom, var(--ds-danger), color-mix(in oklch, var(--ds-danger) 86%, black))
+  );
+}
 
 
 /* ────────────────────────────────────────────────

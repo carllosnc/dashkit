@@ -45,12 +45,12 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             className="flex flex-col cursor-pointer select-none"
           >
             {label && (
-              <span className="text-sm font-medium text-ds-800 dark:text-ds-200 tracking-tight leading-5">
+              <span data-slot="label" className="text-sm font-medium text-foreground tracking-tight leading-5">
                 {label}
               </span>
             )}
             {description && (
-              <span className="text-xs text-ds-500 dark:text-ds-400 tracking-tight">
+              <span data-slot="description" className="text-xs text-muted-foreground tracking-tight">
                 {description}
               </span>
             )}

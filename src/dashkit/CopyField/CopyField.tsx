@@ -41,10 +41,11 @@ export const CopyField = forwardRef<HTMLDivElement, CopyFieldProps>(
     return (
       <div
         ref={ref}
+        data-slot="root"
         className={cn('flex flex-col gap-1.5 w-full font-sans', className)}
       >
         {label && (
-          <label htmlFor={inputId} className="text-[13px] font-bold uppercase text-ds-800 dark:text-ds-200 ml-1 tracking-wider">
+          <label data-slot="label" htmlFor={inputId} className="text-[13px] font-bold uppercase text-foreground ml-1 tracking-wider">
             {label}
           </label>
         )}

@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { FiChevronDown, FiCheck } from 'react-icons/fi';
 import { cva } from 'class-variance-authority';
 import { cn } from '../utils/cn';
+import { getPortalThemeAttrs } from '../utils/portalTheme';
 import { useSelect } from './useSelect';
 
 export interface SelectOption {
@@ -81,17 +82,19 @@ export function Select({
   return (
     <div
       ref={containerRef}
+      data-slot="root"
       data-size={size}
       className="flex flex-col gap-1.5 w-full font-sans"
     >
       {label && (
-        <label id={labelId} className="text-xs font-semibold text-ds-700 ml-1 tracking-tight dark:text-ds-300">
+        <label data-slot="label" id={labelId} className="text-xs font-semibold text-foreground ml-1 tracking-tight">
           {label}
         </label>
       )}
       <div className="relative">
         <button
           ref={buttonRef}
+          data-slot="trigger"
           type="button"
           disabled={disabled}
           onClick={() => !disabled && setIsOpen(!isOpen)}
@@ -117,7 +120,7 @@ export function Select({
           </span>
           <FiChevronDown
             className={cn(
-              'shrink-0 text-ds-500 transition-transform duration-200',
+              'shrink-0 text-muted-foreground transition-transform duration-200',
               isOpen && 'rotate-180 text-input-focus'
             )}
           />
@@ -126,6 +129,8 @@ export function Select({
         {isOpen && triggerRect && createPortal(
           <div
             ref={portalRef}
+            {...getPortalThemeAttrs()}
+            data-slot="content"
             id={listId}
             role="listbox"
             onKeyDown={handleListKeyDown}
@@ -145,13 +150,14 @@ export function Select({
           >
             <div className="max-h-60 overflow-y-auto flex flex-col gap-0.5 custom-scrollbar">
               {options.length === 0 ? (
-                <div className="px-4 py-2 text-sm text-ds-600 text-center dark:text-ds-400">
+                <div className="px-4 py-2 text-sm text-muted-foreground text-center">
                   No options available
                 </div>
               ) : (
                 options.map((opt) => (
                   <button
                     key={opt.value}
+                    data-slot="option"
                     role="option"
                     aria-selected={opt.value === value}
                     onClick={() => {
@@ -179,9 +185,10 @@ export function Select({
       </div>
       {(error || description) && (
         <span
+          data-slot="helper"
           className={cn(
             'text-xs ml-1 tracking-tight',
-            error ? 'text-ds-danger-500 font-medium dark:text-ds-danger-400' : 'text-ds-600 dark:text-ds-400'
+            error ? 'text-ds-danger-500 font-medium dark:text-ds-danger-400' : 'text-muted-foreground'
           )}
         >
           {error || description}

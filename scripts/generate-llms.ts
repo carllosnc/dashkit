@@ -213,19 +213,57 @@ export function generateLlmsTxt(): string {
 
   lines.push('## CLI Reference\n');
   lines.push('- `dashkit init [-y]`: Configures dashkit.json and injects design token stylesheet (dashkit.css).');
-  lines.push('- `dashkit add <component> [-o <dir>] [-t] [-f] [--no-install]`: Scaffolds component and resolves dependencies.');
+  lines.push('- `dashkit add <components...> [-o <dir>] [-t] [-f] [--no-install]`: Scaffolds one or more components, resolves dependencies, and updates the root `index.ts` barrel file.');
+  lines.push('- `dashkit info <component> [--json]`: Outputs component exports, dependencies, and TypeScript Props definitions.');
   lines.push('- `dashkit list [--installed] [--json]`: Lists all registry components with status.');
   lines.push('- `dashkit doctor`: Verifies CSS imports, dependencies, and directory configuration.\n');
 
-  lines.push('## Design Tokens and Theming\n');
-  lines.push('Dashkit relies on CSS custom properties configured in `dashkit.css`:');
-  lines.push('- `--color-primary`: Main theme accent color.');
-  lines.push('- `--color-background`: Light (#ffffff) and dark (#09090b) page background.');
-  lines.push('- `--color-foreground`: High-contrast body text.');
-  lines.push('- `--color-muted`: Secondary text and subtle borders.');
-  lines.push('- `--color-border`: Standard card and input border.');
-  lines.push('- `--color-card`: Card and surface backgrounds.');
-  lines.push('- `--radius-*`: Tokenized border radii (sm, md, lg, full).\n');
+  lines.push('## Design Tokens and Theming (`dashkit.css`)\n');
+  lines.push('Dashkit uses a two-layer token system in `dashkit.css`: `@theme inline` maps semantic Tailwind utilities (`bg-background`, `text-foreground`, `bg-card`, `text-primary`, `border-border`) to underlying `:root` and `.dark` CSS custom properties.\n');
+  lines.push('### Editable `:root` & `.dark` Variables');
+  lines.push('- `--ds-bg` / `--ds-fg`: Main application background and foreground text.');
+  lines.push('- `--ds-card` / `--ds-card-fg`: Card and container surfaces.');
+  lines.push('- `--ds-popover` / `--ds-popover-fg` / `--ds-popover-border`: Dropdowns, modals, and floating overlays.');
+  lines.push('- `--ds-primary` / `--ds-primary-fg`: Primary brand action color (`ds-primary-gradient` derives automatically from `--ds-primary`).');
+  lines.push('- `--ds-secondary` / `--ds-secondary-fg`: Secondary action surface and text.');
+  lines.push('- `--ds-muted` / `--ds-muted-fg`: Muted backgrounds and secondary/helper text.');
+  lines.push('- `--ds-accent` / `--ds-accent-fg`: Hover and subtle selection highlights.');
+  lines.push('- `--ds-border` / `--ds-border-subtle`: Default and subtle dividers/borders.');
+  lines.push('- `--ds-input-bg` / `--ds-input-border` / `--ds-input-focus` / `--ds-input-fg` / `--ds-input-ring`: Form control tokens.');
+  lines.push('- `--ds-danger`, `--ds-success`, `--ds-warning`, `--ds-info` (plus `*-fg` pairs): Semantic feedback states.');
+  lines.push('- `--ds-chart-1` through `--ds-chart-5`: Categorical data visualization palette.');
+  lines.push('- `--radius`: Master border radius (`0.75rem` default). `--radius-sm`, `--radius-md`, `--radius-lg`, `--radius-xl`, and `--radius-2xl` scale proportionally from `--radius` (set `--radius: 0rem` for sharp corners).');
+  lines.push('- `--ds-primary-gradient` / `--ds-danger-gradient`: Optional gradient overrides (set to `none` for flat buttons).\n');
+
+  lines.push('### Dynamic Runtime Theme Attributes');
+  lines.push('Apply on `<html>`, `<body>`, or any scoped container `<div>`:');
+  lines.push('- `data-base`: `zinc` (default), `slate`, `gray`, `neutral`, `stone`, `taupe`, `mauve`, `mist`, `olive`.');
+  lines.push('- `data-primary`: `blue` (default), `violet`, `indigo`, `emerald`, `green`, `rose`, `orange`, `amber`, `cyan`, `teal`, `fuchsia`, `red`, `yellow`, `lime`, `sky`, `purple`, `pink`.');
+  lines.push('- `data-dark-bg`: `oled` (enables pure `#000000` black background when `.dark` is active).\n');
+
+  lines.push('### 3-Tier AI Customization Protocol');
+  lines.push('1. **Tier 1 (Global Theme)**: Edit `:root` / `.dark` tokens or `data-base` / `data-primary` in `dashkit.css`. Never scatter inline theme classes across pages.');
+  lines.push('2. **Tier 2 (Component-Wide Style)**: Edit `cva(...)` variants directly inside `src/dashkit/<Component>/<Component>.tsx`.');
+  lines.push('3. **Tier 3 (One-Off Instance Override)**: Pass `className` (merged via `cn()`, which resolves `rounded-*` and `bg-none` against `ds-rounded*` and `ds-*-gradient`) or target sub-elements via `data-slot` (`className="[&_[data-slot=label]]:uppercase [&_[data-slot=trigger]]:rounded-full"`).\n');
+
+  lines.push('## Component API Patterns (Compound vs. Prop-Driven)\n');
+  lines.push('- **Compound Components (use subcomponents via `children`)**:');
+  lines.push('  - `Card`: `Card`, `CardHeader` (props: `title`, `description`, `action`), `CardContent`, `CardFooter`');
+  lines.push('  - `Tabs`: `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent`');
+  lines.push('  - `Accordion`: `Accordion`, `AccordionItem`, `AccordionTrigger`, `AccordionContent`');
+  lines.push('  - `Modal`: `Modal`, `ModalHeader`, `ModalContent`, `ModalFooter`');
+  lines.push('  - `Drawer`: `Drawer`, `DrawerHeader`, `DrawerContent`, `DrawerFooter`');
+  lines.push('  - `Dropdown`: `Dropdown`, `DropdownTrigger`, `DropdownContent`, `DropdownItem`, `DropdownLabel`, `DropdownSeparator`');
+  lines.push('  - `Popover`: `Popover`, `PopoverTrigger`, `PopoverContent`');
+  lines.push('  - `Table`: `TableContainer`, `Table`, `TableHeader`, `TableBody`, `TableFooter`, `TableRow`, `TableHead`, `TableCell`, `TableCaption`');
+  lines.push('  - `Navbar`: `Navbar`, `NavbarBrand`, `NavbarLinks`, `NavbarLink`, `NavbarActions`');
+  lines.push('  - `Breadcrumb`: `Breadcrumb`, `BreadcrumbList`, `BreadcrumbItem`, `BreadcrumbSeparator`, `BreadcrumbEllipsis`');
+  lines.push('  - `Stepper`: `Stepper`, `Step`');
+  lines.push('- **Prop-Driven Components (pass data via props, do NOT invent subcomponents)**:');
+  lines.push('  - `Select`, `Combobox`: Pass `options={[{ value, label }]}`, `value`, `onChange`, `label`.');
+  lines.push('  - `Input`, `Textarea`, `DatePicker`, `DateField`, `ColorPicker`, `CopyField`, `OtpInput`, `Checkbox`, `Radio`, `Switch`, `Slider`: Pass `label`, `description` / `helperText`, `error` directly as props.');
+  lines.push('  - `StatsCard`: Pass `title`, `value`, `trend`, `trendLabel`, `status`, `icon`, `chart`.');
+  lines.push('  - `AreaChart`, `BarChart`, `LineChart`, `PieChart`: Pass `data` and `series` props.\n');
 
   lines.push('## Component Catalog\n');
   lines.push('Complete list of 55 production-ready components. For full API signatures, props tables, and code snippets, see [llms-full.txt](llms-full.txt).\n');
@@ -255,8 +293,9 @@ export function generateLlmsFullTxt(): string {
 
   lines.push('## Core Architecture & Guidelines\n');
   lines.push('- Source Ownership: Every component is scaffolded directly into your codebase (default `src/dashkit/`).');
-  lines.push('- Tailwind CSS v4: All styling relies on Tailwind v4 CSS classes, BEM naming, and @variant dark.');
+  lines.push('- Tailwind CSS v4: All styling relies on Tailwind v4 CSS classes, CVA variants, and @variant dark.');
   lines.push('- Pure Usage: Rely on built-in component props and variants rather than ad-hoc inline class overrides.');
+  lines.push('- AI Customization Hierarchy: (1) Edit `dashkit.css` tokens (`--ds-*`, `--radius`) for global theme changes; (2) Edit component `cva(...)` in `src/dashkit/<Component>/` for app-wide component changes; (3) Use `className` and `data-slot` selectors (`[&_[data-slot=label]]:...`) for one-off instance tweaks.');
   lines.push('- Block-based Layouts: Use the Card component to partition page sections and views.');
   lines.push('- Bun First: Optimized for bun and bunx package management.\n');
 
@@ -311,19 +350,104 @@ export function generateLlmsFullTxt(): string {
   return lines.join('\n').trim() + '\n';
 }
 
-export function buildLlmsFiles(): { llmsPath: string; llmsFullPath: string } {
+export interface RegistryJsonEntry {
+  slug: string;
+  name: string;
+  category: string;
+  description: string;
+  installCommand: string;
+  files: string[];
+  dependencies: string[];
+  registryDependencies: string[];
+  exports: string[];
+  propsDefinitions: string[];
+}
+
+export interface RegistryJsonSchema {
+  name: string;
+  totalComponents: number;
+  components: Record<string, RegistryJsonEntry>;
+}
+
+export function generateRegistryJson(): RegistryJsonSchema {
+  const categoryBySlug = new Map<string, { category: string; mdxFile: string }>();
+  for (const cat of CATEGORIES) {
+    for (const comp of cat.components) {
+      categoryBySlug.set(comp.slug, { category: cat.name, mdxFile: comp.mdxFile });
+    }
+  }
+
+  const components: Record<string, RegistryJsonEntry> = {};
+  const sortedKeys = Object.keys(registry).sort((a, b) => a.localeCompare(b));
+
+  for (const key of sortedKeys) {
+    const entry = registry[key];
+    const catInfo = categoryBySlug.get(key);
+    let description = '';
+    if (catInfo) {
+      const mdxPath = path.join(pagesDir, catInfo.mdxFile);
+      if (fs.existsSync(mdxPath)) {
+        description = extractDescriptionFromMdx(fs.readFileSync(mdxPath, 'utf8'));
+      }
+    }
+
+    const nonTestFiles = entry.files.filter((f) => !/\.(test|spec)\.(ts|tsx)$/.test(f));
+    const exportsList: string[] = [];
+    const propsDefinitions: string[] = [];
+
+    for (const relFile of nonTestFiles) {
+      const absFile = path.resolve(projectRoot, relFile);
+      if (!fs.existsSync(absFile)) continue;
+      const source = fs.readFileSync(absFile, 'utf8');
+
+      for (const match of source.matchAll(/export\s+(?:function|const)\s+([A-Za-z0-9_]+)/g)) {
+        if (!exportsList.includes(match[1])) {
+          exportsList.push(match[1]);
+        }
+      }
+
+      for (const match of source.matchAll(/export\s+(?:interface|type)\s+[A-Za-z0-9_]*Props\b[\s\S]*?(?=\nexport\s|\nconst\s|\nfunction\s|$)/g)) {
+        propsDefinitions.push(stripEmojis(match[0].trim()));
+      }
+    }
+
+    components[key] = {
+      slug: key,
+      name: entry.name,
+      category: catInfo?.category ?? 'General',
+      description,
+      installCommand: `bunx carllosnc/dashkit add ${key}`,
+      files: nonTestFiles,
+      dependencies: entry.dependencies ?? [],
+      registryDependencies: entry.registryDependencies ?? [],
+      exports: exportsList,
+      propsDefinitions,
+    };
+  }
+
+  return {
+    name: 'Dashkit UI Registry',
+    totalComponents: sortedKeys.length,
+    components,
+  };
+}
+
+export function buildLlmsFiles(): { llmsPath: string; llmsFullPath: string; registryJsonPath: string } {
   fs.mkdirSync(publicDir, { recursive: true });
 
   const llmsContent = generateLlmsTxt();
   const llmsFullPathContent = generateLlmsFullTxt();
+  const registrySchema = generateRegistryJson();
 
   const llmsPath = path.join(publicDir, 'llms.txt');
   const llmsFullPath = path.join(publicDir, 'llms-full.txt');
+  const registryJsonPath = path.join(publicDir, 'registry.json');
 
   fs.writeFileSync(llmsPath, llmsContent, 'utf8');
   fs.writeFileSync(llmsFullPath, llmsFullPathContent, 'utf8');
+  fs.writeFileSync(registryJsonPath, JSON.stringify(registrySchema, null, 2) + '\n', 'utf8');
 
-  return { llmsPath, llmsFullPath };
+  return { llmsPath, llmsFullPath, registryJsonPath };
 }
 
 // Run directly if invoked via CLI

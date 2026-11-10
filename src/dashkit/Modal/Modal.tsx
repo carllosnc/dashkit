@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../utils/cn';
+import { getPortalThemeAttrs } from '../utils/portalTheme';
 import { useModal } from './useModal';
 import { useFocusTrap } from '../utils/useFocusTrap';
 import { Backdrop } from '../Backdrop/Backdrop';
@@ -50,7 +51,10 @@ export function Modal({
   return createPortal(
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[1100] isolate flex items-center justify-center p-6">
+        <div
+          {...getPortalThemeAttrs()}
+          className="fixed inset-0 z-[1100] isolate flex items-center justify-center p-6"
+        >
           <Backdrop show={true} fixed={false} onClick={onClose} />
 
           <motion.div

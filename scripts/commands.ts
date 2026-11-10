@@ -279,7 +279,49 @@ async function promptComponentSelection(): Promise<string[]> {
   }
 }
 
-export async function handleAdd(componentName: string | undefined, options: CliOptions) {
+async function updateRootBarrelFile(baseDir: string) {
+  if (!(await fs.pathExists(baseDir))) return;
+
+  const entries = await fs.readdir(baseDir, { withFileTypes: true });
+  const componentDirs: string[] = [];
+
+  for (const entry of entries) {
+    if (!entry.isDirectory() || entry.name === 'utils') continue;
+    const indexFile = path.join(baseDir, entry.name, 'index.ts');
+    if (await fs.pathExists(indexFile)) {
+      componentDirs.push(entry.name);
+    }
+  }
+
+  if (componentDirs.length === 0) return;
+  componentDirs.sort((a, b) => a.localeCompare(b));
+
+  const barrelPath = path.join(baseDir, 'index.ts');
+  const existingLines: string[] = [];
+
+  if (await fs.pathExists(barrelPath)) {
+    const current = await fs.readFile(barrelPath, 'utf8');
+    for (const line of current.split(/\r?\n/)) {
+      const trimmed = line.trim();
+      if (trimmed.length > 0) {
+        existingLines.push(trimmed);
+      }
+    }
+  }
+
+  const exportSet = new Set<string>(existingLines);
+  for (const dir of componentDirs) {
+    exportSet.add(`export * from './${dir}';`);
+  }
+
+  const sortedExports = Array.from(exportSet).sort((a, b) => a.localeCompare(b));
+  await fs.writeFile(barrelPath, sortedExports.join('\n') + '\n', 'utf8');
+}
+
+export async function handleAdd(
+  componentNameArg: string | string[] | undefined,
+  options: CliOptions
+) {
   const info = await getProjectInfo();
   const defaults = getFolderStructure(info);
   const config = await loadConfig();
@@ -304,7 +346,22 @@ export async function handleAdd(componentName: string | undefined, options: CliO
     logger.warning(`dashkit.css not found at ${cssPath} — run \`dashkit init\` to install it (component styles need its tokens).`);
   }
 
-  const componentNames = componentName ? [componentName] : await promptComponentSelection();
+  const normalizedArgs = Array.isArray(componentNameArg)
+    ? componentNameArg
+    : componentNameArg
+      ? [componentNameArg]
+      : [];
+
+  let componentNames: string[];
+  if (normalizedArgs.length > 0) {
+    componentNames = normalizedArgs;
+  } else if (!process.stdin.isTTY || !process.stdout.isTTY) {
+    logger.error('No component specified in non-interactive mode. Usage: dashkit add <components...>');
+    process.exitCode = 1;
+    return;
+  } else {
+    componentNames = await promptComponentSelection();
+  }
 
   if (componentNames.length > 0) {
     // Shared across the whole run so multi-selection doesn't re-copy shared deps
@@ -312,6 +369,8 @@ export async function handleAdd(componentName: string | undefined, options: CliO
     for (const name of componentNames) {
       await addComponent(name, options, false, new Set<string>(), visited);
     }
+    const baseDir = path.resolve(process.cwd(), options.output);
+    await updateRootBarrelFile(baseDir);
   }
 }
 
@@ -389,7 +448,9 @@ export async function handleInit(options: InitOptions = {}) {
     let shouldSave: boolean;
     let shouldInjectCss: boolean;
 
-    if (options.yes) {
+    const isNonInteractive = Boolean(options.yes) || !process.stdin.isTTY || !process.stdout.isTTY;
+
+    if (isNonInteractive) {
       componentsDir = defaults.components;
       cssDirRaw = defaults.css || '.';
       shouldSave = true;
@@ -489,6 +550,135 @@ export async function handleInit(options: InitOptions = {}) {
     // render interval keeps the process alive forever.
     spinner?.stop();
   }
+}
+
+export interface InfoOptions {
+  json?: boolean;
+}
+
+export async function handleInfo(componentQuery: string, options: InfoOptions = {}) {
+  const query = componentQuery.toLowerCase();
+  const matchedKey = Object.keys(registry).find(
+    (k) => k === query || registry[k].name.toLowerCase() === query
+  );
+
+  if (!matchedKey) {
+    logger.error(`Component "${componentQuery}" not found in registry.`);
+    process.exitCode = 1;
+    return;
+  }
+
+  const comp = registry[matchedKey];
+  const info = await getProjectInfo();
+  const defaults = getFolderStructure(info);
+  const config = await loadConfig();
+  const componentsDir = config?.componentsDir ?? defaults.components;
+  const compPath = path.resolve(process.cwd(), componentsDir, comp.name);
+  const installed = await fs.pathExists(compPath);
+
+  const nonTestFiles = comp.files.filter((f) => !/\.(test|spec)\.(ts|tsx)$/.test(f));
+  const exportsList: string[] = [];
+  const typeBlocks: string[] = [];
+
+  for (const relFile of nonTestFiles) {
+    const absFile = path.resolve(projectRoot, relFile);
+    if (!(await fs.pathExists(absFile))) continue;
+    const source = await fs.readFile(absFile, 'utf8');
+
+    for (const match of source.matchAll(/export\s+(?:function|const)\s+([A-Za-z0-9_]+)/g)) {
+      if (!exportsList.includes(match[1])) {
+        exportsList.push(match[1]);
+      }
+    }
+
+    for (const match of source.matchAll(/export\s+(?:interface|type)\s+[A-Za-z0-9_]*Props\b[\s\S]*?(?=\nexport\s|\nconst\s|\nfunction\s|$)/g)) {
+      typeBlocks.push(match[0].trim());
+    }
+  }
+
+  const payload = {
+    key: matchedKey,
+    name: comp.name,
+    installed,
+    installCommand: `bunx carllosnc/dashkit add ${matchedKey}`,
+    files: nonTestFiles,
+    dependencies: comp.dependencies ?? [],
+    registryDependencies: comp.registryDependencies ?? [],
+    exports: exportsList,
+    propsDefinitions: typeBlocks,
+  };
+
+  if (options.json) {
+    console.log(JSON.stringify(payload, null, 2));
+    return;
+  }
+
+  logger.bold(`\n${comp.name} (${matchedKey})\n`);
+  logger.info(`Status:                ${installed ? chalk.green('installed') : chalk.dim('available')}`);
+  logger.info(`Install:               ${chalk.bold(payload.installCommand)}`);
+  logger.info(`Exports:               ${exportsList.join(', ') || comp.name}`);
+  logger.info(`NPM Dependencies:      ${payload.dependencies.join(', ') || 'none'}`);
+  logger.info(`Registry Dependencies: ${payload.registryDependencies.join(', ') || 'none'}`);
+
+  if (typeBlocks.length > 0) {
+    logger.bold('\nProps Definitions:');
+    for (const block of typeBlocks) {
+      console.log(`\n${block}`);
+    }
+  }
+  console.log();
+}
+
+export interface AiRulesOptions {
+  output?: string;
+}
+
+export async function handleAiRules(options: AiRulesOptions = {}) {
+  const info = await getProjectInfo();
+  const defaults = getFolderStructure(info);
+  const config = await loadConfig();
+  const componentsDir = (config?.componentsDir ?? defaults.components).replace(/\\/g, '/');
+  const cssDir = (config?.cssDir ?? (defaults.css || '.')).replace(/\\/g, '/');
+  const cssFile = cssDir === '.' || cssDir === '' ? 'dashkit.css' : `${cssDir}/dashkit.css`;
+  const targetFile = options.output || 'AGENTS.md';
+  const targetPath = path.resolve(process.cwd(), targetFile);
+
+  const allSlugs = Object.keys(registry).sort((a, b) => a.localeCompare(b));
+
+  const rulesBlock = [
+    '<!-- dashkit:ai-rules:start -->',
+    '## Dashkit UI — AI Assistant Guidelines',
+    '',
+    `- **Components Directory**: \`${componentsDir}\` (import from \`${componentsDir}/<Component>\` or barrel \`${componentsDir}\`)`,
+    `- **Theme & Tokens File**: \`${cssFile}\``,
+    `- **Install Components**: \`bunx carllosnc/dashkit add <components...>\``,
+    `- **Inspect Component Props**: \`bunx carllosnc/dashkit info <component> --json\``,
+    `- **Available Components (${allSlugs.length})**: ${allSlugs.map((s) => `\`${s}\``).join(', ')}`,
+    '',
+    '### 3-Tier AI Customization Protocol',
+    `1. **Global Theme (\`${cssFile}\`)**: Edit \`:root\` / \`.dark\` variables (\`--ds-primary\`, \`--ds-bg\`, \`--ds-card\`, \`--radius\`, \`--ds-primary-gradient\`) or set \`data-primary\` / \`data-base\` attributes. Never scatter inline theme classes across pages.`,
+    `2. **Component Variants (\`${componentsDir}/<Component>/<Component>.tsx\`)**: Edit \`cva(...)\` variants directly inside the component file when changing a component across the app.`,
+    '3. **Instance Overrides (`className` & `data-slot`)**: Use `className` (merged via `cn()`) or `data-slot` selectors (`className="[&_[data-slot=label]]:uppercase"`) for one-off tweaks.',
+    '',
+    '### Component API Patterns',
+    '- **Compound (`children`)**: `Card` (`CardHeader`, `CardContent`, `CardFooter`), `Tabs` (`TabsList`, `TabsTrigger`, `TabsContent`), `Accordion` (`AccordionItem`, `AccordionTrigger`, `AccordionContent`), `Modal` (`ModalHeader`, `ModalContent`, `ModalFooter`), `Drawer` (`DrawerHeader`, `DrawerContent`, `DrawerFooter`), `Dropdown`, `Popover`, `Table`, `Navbar`, `Breadcrumb`, `Stepper`.',
+    '- **Prop-Driven (`options` / props)**: `Select` & `Combobox` use `options={[{ value, label }]}`; `Input`, `Textarea`, `DatePicker`, `DateField`, `ColorPicker`, `CopyField`, `OtpInput`, `Checkbox`, `Radio`, `Switch`, `Slider` take `label`, `description`/`helperText`, `error` as props; `StatsCard` takes `title`, `value`, `trend`, `status`, `chart`.',
+    '<!-- dashkit:ai-rules:end -->',
+  ].join('\n');
+
+  if (await fs.pathExists(targetPath)) {
+    const existing = await fs.readFile(targetPath, 'utf8');
+    const markerRegex = /<!-- dashkit:ai-rules:start -->[\s\S]*?<!-- dashkit:ai-rules:end -->/;
+    const updated = markerRegex.test(existing)
+      ? existing.replace(markerRegex, rulesBlock)
+      : `${existing.trimEnd()}\n\n${rulesBlock}\n`;
+    await fs.writeFile(targetPath, updated, 'utf8');
+  } else {
+    await fs.ensureDir(path.dirname(targetPath));
+    await fs.writeFile(targetPath, `# Project AI Instructions\n\n${rulesBlock}\n`, 'utf8');
+  }
+
+  logger.success(`AI rules written to ${targetFile}.`);
 }
 
 export async function handleDoctor() {

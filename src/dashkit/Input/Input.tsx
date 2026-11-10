@@ -80,16 +80,18 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     };
 
     return (
-      <div className={cn('flex flex-col gap-1.5 w-full font-sans', className)}>
+      <div data-slot="root" className={cn('flex flex-col gap-1.5 w-full font-sans', className)}>
         {label && (
           <label
+            data-slot="label"
             htmlFor={inputId}
-            className="text-xs font-semibold text-ds-700 dark:text-ds-300 ml-1 tracking-tight"
+            className="text-xs font-semibold text-foreground ml-1 tracking-tight"
           >
             {label}
           </label>
         )}
         <div
+          data-slot="wrapper"
           data-testid="input-wrapper"
           className={cn(
             inputWrapperVariants({ size, error: !!error, disabled: !!props.disabled }),
@@ -98,8 +100,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         >
           {prefix && (
             <div
+              data-slot="prefix"
               className={cn(
-                'text-ds-500 font-medium select-none whitespace-nowrap',
+                'text-muted-foreground font-medium select-none whitespace-nowrap',
                 size === 'sm' ? 'pl-2.5 text-xs' : 'pl-4 text-sm'
               )}
             >
@@ -115,8 +118,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           >
             {leftIcon && (
               <div
+                data-slot="left-icon"
                 className={cn(
-                  'absolute inset-y-0 text-ds-500 pointer-events-none flex items-center justify-center transition-colors',
+                  'absolute inset-y-0 text-muted-foreground pointer-events-none flex items-center justify-center transition-colors',
                   size === 'sm' ? 'left-2.5' : 'left-4'
                 )}
               >
@@ -125,6 +129,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             )}
             <input
               {...props}
+              data-slot="input"
               id={inputId}
               ref={ref}
               onChange={handleChange}
@@ -143,8 +148,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             />
             {rightIcon && (
               <div
+                data-slot="right-icon"
                 className={cn(
-                  'absolute inset-y-0 text-ds-500 pointer-events-none flex items-center justify-center transition-colors',
+                  'absolute inset-y-0 text-muted-foreground pointer-events-none flex items-center justify-center transition-colors',
                   size === 'sm' ? 'right-2.5' : 'right-4'
                 )}
               >
@@ -155,8 +161,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
           {suffix && (
             <div
+              data-slot="suffix"
               className={cn(
-                'text-ds-500 font-medium select-none whitespace-nowrap',
+                'text-muted-foreground font-medium select-none whitespace-nowrap',
                 size === 'sm' ? 'pr-2.5 text-xs' : 'pr-4 text-sm'
               )}
             >
@@ -166,13 +173,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         </div>
         {(error || helperText) && (
           <span
+            data-slot="helper"
             id={messageId}
             role={error ? 'alert' : undefined}
             className={cn(
               'text-xs ml-1 tracking-tight',
               error
                 ? 'text-ds-danger-600 dark:text-ds-danger-400'
-                : 'text-ds-600 dark:text-ds-400'
+                : 'text-muted-foreground'
             )}
           >
             {error || helperText}

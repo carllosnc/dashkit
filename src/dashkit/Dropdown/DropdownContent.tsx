@@ -2,6 +2,7 @@ import * as React from 'react';
 import { createPortal } from 'react-dom';
 import { useDropdownContext } from './useDropdown';
 import { cn } from '../utils/cn';
+import { getPortalThemeAttrs } from '../utils/portalTheme';
 
 export interface DropdownContentProps {
   children: React.ReactNode;
@@ -133,6 +134,7 @@ export function DropdownContent({
   return createPortal(
     <div
       ref={portalRef}
+      {...getPortalThemeAttrs(triggerElement)}
       style={style}
       className={cn(
         'min-w-[12rem] bg-popover/95 backdrop-blur-md text-popover-fg border border-popover-border/80 ds-rounded-lg shadow-lg p-1.5 overflow-hidden flex flex-col gap-0.5',

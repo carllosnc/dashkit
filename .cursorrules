@@ -1,0 +1,16 @@
+# Dashkit UI — AI Coding Rules (.cursorrules)
+
+## Workflow & Package Manager
+- Always use `bun` and `bunx` (never `npm`, `npx`, `pnpm`, or `yarn`).
+- Never commit directly to `master`. Always work on a dedicated branch and run `bun run check:all` before pushing.
+
+## Component Architecture (`src/dashkit/`)
+- Components live in `src/dashkit/<ComponentName>/` (`<ComponentName>.tsx`, `<ComponentName>.test.tsx`, `index.ts`) and are registered in `scripts/registry.ts`.
+- Use Tailwind CSS v4 utility classes, `class-variance-authority` (`cva`), and `cn` (`src/dashkit/utils/cn.ts`). Do not create companion `.css` files for components.
+- Use semantic tokens (`bg-background`, `text-foreground`, `text-muted-foreground`, `bg-card`, `bg-popover`, `border-border`, `bg-input-bg`, `text-input-fg`) rather than hardcoded gray/zinc scales.
+- Expose `data-slot` attributes on internal elements of composite components (`root`, `label`, `wrapper`, `input`, `trigger`, `content`, `option`, `helper`) and propagate scoped theme attributes (`getPortalThemeAttrs`) to portalled overlays.
+
+## 3-Tier AI Customization Protocol
+1. **Global Theme (`src/dashkit/dashkit.css`)**: Edit `:root` / `.dark` variables (`--ds-primary`, `--ds-bg`, `--ds-card`, `--radius`, `--ds-primary-gradient`) or set `data-primary` / `data-base` attributes. All `--radius-*` tokens scale proportionally from `--radius`, and `ds-primary-gradient` derives from `--ds-primary`.
+2. **Component-Wide Style (`src/dashkit/<Component>/<Component>.tsx`)**: Edit the `cva(...)` variants directly in the component source when changing a component across the whole application.
+3. **One-Off Instance Overrides (`className` & `data-slot`)**: Keep page JSX pure. Use `className` or `[&_[data-slot=<slot>]]:...` only for single-instance layout exceptions.

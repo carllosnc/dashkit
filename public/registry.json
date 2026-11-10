@@ -1,0 +1,1553 @@
+{
+  "name": "Dashkit UI Registry",
+  "totalComponents": 55,
+  "components": {
+    "accordion": {
+      "slug": "accordion",
+      "name": "Accordion",
+      "category": "Layout & Containers",
+      "description": "A vertically stacked list of headers that reveal associated content areas when clicked.",
+      "installCommand": "bunx carllosnc/dashkit add accordion",
+      "files": [
+        "src/dashkit/Accordion/Accordion.tsx",
+        "src/dashkit/Accordion/AccordionItem.tsx",
+        "src/dashkit/Accordion/AccordionTrigger.tsx",
+        "src/dashkit/Accordion/AccordionContent.tsx",
+        "src/dashkit/Accordion/AccordionContext.ts",
+        "src/dashkit/Accordion/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "react-icons"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "Accordion",
+        "AccordionItem",
+        "AccordionTrigger",
+        "AccordionContent",
+        "AccordionContext",
+        "AccordionItemContext"
+      ],
+      "propsDefinitions": [
+        "export interface AccordionProps {\r\n  type?: AccordionType;\r\n  defaultValue?: string | string[];\r\n  value?: string | string[];\r\n  onValueChange?: (value: string | string[]) => void;\r\n  children: React.ReactNode;\r\n  className?: string;\r\n}"
+      ]
+    },
+    "animatenumber": {
+      "slug": "animatenumber",
+      "name": "AnimateNumber",
+      "category": "Data Display & Metrics",
+      "description": "A specialized component for creating sleek numeric counters with independent digit animations. It uses a \"top-to-bottom\" sliding effect for each character, providing a premium and dynamic feel for dashboards and metrics.",
+      "installCommand": "bunx carllosnc/dashkit add animatenumber",
+      "files": [
+        "src/dashkit/AnimateNumber/AnimateNumber.tsx",
+        "src/dashkit/AnimateNumber/Digit.tsx",
+        "src/dashkit/AnimateNumber/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "AnimateNumber",
+        "Digit"
+      ],
+      "propsDefinitions": [
+        "export interface AnimateNumberProps {\n  value: number;\n  precision?: number;\n  prefix?: string;\n  suffix?: string;\n  className?: string;\n  duration?: number;\n  locale?: string;\n}"
+      ]
+    },
+    "areachart": {
+      "slug": "areachart",
+      "name": "AreaChart",
+      "category": "Visualization & Media",
+      "description": "The **AreaChart** component is a lightweight, responsive data visualization tool built using native SVG and **Framer Motion**. It's designed to be lean, performant, and deeply customizable through theme tokens.",
+      "installCommand": "bunx carllosnc/dashkit add areachart",
+      "files": [
+        "src/dashkit/AreaChart/AreaChart.tsx",
+        "src/dashkit/AreaChart/useAreaChart.ts",
+        "src/dashkit/AreaChart/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "AreaChart",
+        "useAreaChart"
+      ],
+      "propsDefinitions": [
+        "export interface AreaChartProps {\r\n  data: Record<string, string | number>[];\r\n  series: AreaChartSeries[];\r\n  height?: number | string;\r\n  className?: string;\r\n  showGrid?: boolean;\r\n  showLabels?: boolean;\r\n  showTooltip?: boolean;\r\n  animate?: boolean;\r\n}",
+        "export interface UseAreaChartProps {\r\n  data: Record<string, string | number>[];\r\n  series: AreaChartSeries[];\r\n  width?: number;\r\n  svgHeight?: number;\r\n  defaultColors?: string[];\r\n}"
+      ]
+    },
+    "avatar": {
+      "slug": "avatar",
+      "name": "Avatar",
+      "category": "Data Display & Metrics",
+      "description": "A versatile component for presenting user profile pictures, with built-in fallback Support and smooth loading transitions.",
+      "installCommand": "bunx carllosnc/dashkit add avatar",
+      "files": [
+        "src/dashkit/Avatar/Avatar.tsx",
+        "src/dashkit/Avatar/AvatarGroup.tsx",
+        "src/dashkit/Avatar/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "Avatar",
+        "AvatarGroup"
+      ],
+      "propsDefinitions": [
+        "export interface AvatarProps\r\n  extends React.HTMLAttributes<HTMLDivElement>,\r\n    VariantProps<typeof avatarVariants> {\r\n  src?: string;\r\n  alt?: string;\r\n  fallback?: React.ReactNode;\r\n}",
+        "export interface AvatarGroupProps extends React.HTMLAttributes<HTMLDivElement> {\r\n  max?: number;\r\n  size?: AvatarSize;\r\n  spacing?: 'sm' | 'md' | 'lg';\r\n}"
+      ]
+    },
+    "backdrop": {
+      "slug": "backdrop",
+      "name": "Backdrop",
+      "category": "Feedback & Overlays",
+      "description": "A blurred or semi-transparent full-screen overlay, often used behind modals, drawers, or to dim the background for focus.",
+      "installCommand": "bunx carllosnc/dashkit add backdrop",
+      "files": [
+        "src/dashkit/Backdrop/Backdrop.tsx",
+        "src/dashkit/Backdrop/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "Backdrop"
+      ],
+      "propsDefinitions": [
+        "export interface BackdropProps extends HTMLMotionProps<'div'> {\r\n  show?: boolean;\r\n  blur?: boolean;\r\n  transparent?: boolean;\r\n  fixed?: boolean;\r\n  children?: React.ReactNode;\r\n}"
+      ]
+    },
+    "badge": {
+      "slug": "badge",
+      "name": "Badge",
+      "category": "Data Display & Metrics",
+      "description": "Visual indicators used for counts, statuses, or high-priority labels. Dashkit provides two distinct badge components optimized for different use cases.",
+      "installCommand": "bunx carllosnc/dashkit add badge",
+      "files": [
+        "src/dashkit/Badge/Badge.tsx",
+        "src/dashkit/Badge/FloatBadge.tsx",
+        "src/dashkit/Badge/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "Badge",
+        "FloatBadge"
+      ],
+      "propsDefinitions": [
+        "export interface BadgeProps {\r\n  content?: React.ReactNode;\r\n  color?: BadgeColor;\r\n  variant?: BadgeVariant;\r\n  pulse?: boolean;\r\n  dot?: boolean;\r\n  show?: boolean;\r\n  max?: number;\r\n  className?: string;\r\n}",
+        "export interface FloatBadgeProps extends BadgeProps {\n  children: React.ReactNode;\n  position?: BadgePosition;\n  offset?: [number, number];\n}"
+      ]
+    },
+    "barchart": {
+      "slug": "barchart",
+      "name": "BarChart",
+      "category": "Visualization & Media",
+      "description": "The **BarChart** component is a powerful, animated data visualization tool built for comparing discrete categories or showing distribution across groups. It supports multiple grouped series, interactive tooltips, and smooth entrance animations.",
+      "installCommand": "bunx carllosnc/dashkit add barchart",
+      "files": [
+        "src/dashkit/BarChart/BarChart.tsx",
+        "src/dashkit/BarChart/useBarChart.ts",
+        "src/dashkit/BarChart/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "BarChart",
+        "useBarChart"
+      ],
+      "propsDefinitions": [
+        "export interface BarChartProps {\r\n  data: Record<string, string | number>[];\r\n  series: BarChartSeries[];\r\n  height?: number | string;\r\n  className?: string;\r\n  showGrid?: boolean;\r\n  showLabels?: boolean;\r\n  showTooltip?: boolean;\r\n  animate?: boolean;\r\n  barGap?: number;\r\n  rounded?: boolean;\r\n  texture?: BarChartTexture;\r\n  showTrack?: boolean;\r\n}"
+      ]
+    },
+    "breadcrumb": {
+      "slug": "breadcrumb",
+      "name": "Breadcrumb",
+      "category": "Navigation",
+      "description": "A secondary navigation component that helps users understand their current location in the application hierarchy.",
+      "installCommand": "bunx carllosnc/dashkit add breadcrumb",
+      "files": [
+        "src/dashkit/Breadcrumb/Breadcrumb.tsx",
+        "src/dashkit/Breadcrumb/BreadcrumbList.tsx",
+        "src/dashkit/Breadcrumb/BreadcrumbItem.tsx",
+        "src/dashkit/Breadcrumb/BreadcrumbSeparator.tsx",
+        "src/dashkit/Breadcrumb/BreadcrumbEllipsis.tsx",
+        "src/dashkit/Breadcrumb/index.ts"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "react-icons",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "Breadcrumb",
+        "BreadcrumbList",
+        "BreadcrumbItem",
+        "BreadcrumbSeparator",
+        "BreadcrumbEllipsis"
+      ],
+      "propsDefinitions": [
+        "export interface BreadcrumbProps extends React.ComponentPropsWithoutRef<'nav'> {\r\n  separator?: React.ReactNode;\r\n  items?: {\r\n    label: React.ReactNode;\r\n    href?: string;\r\n    active?: boolean;\r\n    icon?: React.ReactNode;\r\n  }[];\r\n}",
+        "export interface BreadcrumbItemProps extends React.ComponentPropsWithoutRef<'li'> {\r\n  href?: string;\r\n  active?: boolean;\r\n}"
+      ]
+    },
+    "button": {
+      "slug": "button",
+      "name": "Button",
+      "category": "Forms & Inputs",
+      "description": "A highly customizable button component supporting multiple variants, icons, and loading states.",
+      "installCommand": "bunx carllosnc/dashkit add button",
+      "files": [
+        "src/dashkit/Button/Button.tsx",
+        "src/dashkit/Button/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "class-variance-authority",
+        "react-icons"
+      ],
+      "registryDependencies": [
+        "spinner"
+      ],
+      "exports": [
+        "Button"
+      ],
+      "propsDefinitions": [
+        "export interface ButtonProps\r\n  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'>,\r\n    Omit<VariantProps<typeof buttonVariants>, 'rounded'> {\r\n  leftIcon?: ReactNode;\r\n  rightIcon?: ReactNode;\r\n  loading?: boolean;\r\n  rounded?: boolean;\r\n  /**\r\n   * Render the button styles onto its single child element instead of a\r\n   * <button> — use for links (<Link>, <a>) so interactive content is never\r\n   * nested inside an anchor.\r\n   */\r\n  asChild?: boolean;\r\n}"
+      ]
+    },
+    "buttongroup": {
+      "slug": "buttongroup",
+      "name": "ButtonGroup",
+      "category": "Forms & Inputs",
+      "description": "The **ButtonGroup** component is used to cluster multiple buttons together in a single, cohesive unit. This is often used for toolbar actions, toggle switches, or navigation. It features a modern, border-aware outlined design with dedicated selection states.",
+      "installCommand": "bunx carllosnc/dashkit add buttongroup",
+      "files": [
+        "src/dashkit/ButtonGroup/ButtonGroup.tsx",
+        "src/dashkit/ButtonGroup/index.ts"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "ButtonGroup",
+        "ButtonGroupItem"
+      ],
+      "propsDefinitions": [
+        "export interface ButtonGroupProps {\r\n  children: ReactNode;\r\n  className?: string;\r\n  vertical?: boolean;\r\n}",
+        "export interface ButtonGroupItemProps extends ButtonHTMLAttributes<HTMLButtonElement> {\r\n  selected?: boolean;\r\n}"
+      ]
+    },
+    "card": {
+      "slug": "card",
+      "name": "Card",
+      "category": "Layout & Containers",
+      "description": "Dashkit's Card is designed as a **composed wrapper**, providing total layout control through granular sub-components.",
+      "installCommand": "bunx carllosnc/dashkit add card",
+      "files": [
+        "src/dashkit/Card/Card.tsx",
+        "src/dashkit/Card/CardHeader.tsx",
+        "src/dashkit/Card/CardContent.tsx",
+        "src/dashkit/Card/CardFooter.tsx",
+        "src/dashkit/Card/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button"
+      ],
+      "exports": [
+        "Card",
+        "CardHeader",
+        "CardTitle",
+        "CardDescription",
+        "CardContent",
+        "CardFooter"
+      ],
+      "propsDefinitions": [
+        "export type CardProps = Omit<HTMLMotionProps<'div'>, 'title'> &\r\n  VariantProps<typeof cardVariants> & {\r\n    animate?: boolean;\r\n    ref?: React.Ref<HTMLDivElement>;\r\n  };",
+        "export interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {\r\n  leftIcon?: React.ReactNode;\r\n  action?: React.ReactNode;\r\n  ref?: React.Ref<HTMLDivElement>;\r\n}",
+        "export type CardTitleProps = React.HTMLAttributes<HTMLHeadingElement> & {\r\n  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';\r\n  ref?: React.Ref<HTMLHeadingElement>;\r\n};",
+        "export type CardDescriptionProps = React.ComponentPropsWithRef<'p'>;",
+        "export type CardContentProps = React.ComponentPropsWithRef<'div'>;",
+        "export type CardFooterProps = React.ComponentPropsWithRef<'div'>;"
+      ]
+    },
+    "checkbox": {
+      "slug": "checkbox",
+      "name": "Checkbox",
+      "category": "Forms & Inputs",
+      "description": "A custom-styled checkbox component for binary choices, with support for labels and descriptions.",
+      "installCommand": "bunx carllosnc/dashkit add checkbox",
+      "files": [
+        "src/dashkit/Checkbox/Checkbox.tsx",
+        "src/dashkit/Checkbox/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "react-icons"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "Checkbox"
+      ],
+      "propsDefinitions": [
+        "export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'children'> {\r\n  label?: string;\r\n  description?: string;\r\n}"
+      ]
+    },
+    "chip": {
+      "slug": "chip",
+      "name": "Chip",
+      "category": "Data Display & Metrics",
+      "description": "A compact, interactive element that represents an input, attribute, or action, inspired by Material Design 3.",
+      "installCommand": "bunx carllosnc/dashkit add chip",
+      "files": [
+        "src/dashkit/Chip/Chip.tsx",
+        "src/dashkit/Chip/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "class-variance-authority",
+        "react-icons"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "Chip"
+      ],
+      "propsDefinitions": [
+        "export interface ChipProps {\r\n  label: React.ReactNode;\r\n  icon?: React.ReactNode;\r\n  variant?: ChipVariant;\r\n  color?: ChipColor;\r\n  selected?: boolean;\r\n  disabled?: boolean;\r\n  className?: string;\r\n  onClick?: (event: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) => void;\r\n  onDelete?: (event: React.MouseEvent<HTMLButtonElement>) => void;\r\n}"
+      ]
+    },
+    "circularprogress": {
+      "slug": "circularprogress",
+      "name": "CircularProgress",
+      "category": "Feedback & Overlays",
+      "description": "A high-fidelity circular progress indicator built with SVG and Framer Motion. It provides smooth, fluid animations for status monitoring, health metrics, and loading states.",
+      "installCommand": "bunx carllosnc/dashkit add circularprogress",
+      "files": [
+        "src/dashkit/CircularProgress/CircularProgress.tsx",
+        "src/dashkit/CircularProgress/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "CircularProgress"
+      ],
+      "propsDefinitions": [
+        "export interface CircularProgressProps {\r\n  value: number;\r\n  size?: 'sm' | 'md' | 'lg' | number;\r\n  strokeWidth?: number;\r\n  color?: 'primary' | 'success' | 'warning' | 'danger' | 'info';\r\n  variant?: 'solid' | 'soft';\r\n  showValue?: boolean;\r\n  showTrack?: boolean;\r\n  roundCaps?: boolean;\r\n  trackColor?: string;\r\n  className?: string;\r\n}"
+      ]
+    },
+    "colorpicker": {
+      "slug": "colorpicker",
+      "name": "ColorPicker",
+      "category": "Forms & Inputs",
+      "description": "A premium color picker component that allows users to select from a curated list of presets or provide a custom hex value.",
+      "installCommand": "bunx carllosnc/dashkit add colorpicker",
+      "files": [
+        "src/dashkit/ColorPicker/ColorPicker.tsx",
+        "src/dashkit/ColorPicker/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "react-icons"
+      ],
+      "registryDependencies": [
+        "popover",
+        "input"
+      ],
+      "exports": [
+        "ColorPicker"
+      ],
+      "propsDefinitions": [
+        "export interface ColorPickerProps {\r\n  value?: string;\r\n  defaultValue?: string;\r\n  onChange?: (color: string) => void;\r\n  className?: string;\r\n  label?: string;\r\n  helperText?: string;\r\n  error?: string;\r\n  presets?: string[];\r\n}"
+      ]
+    },
+    "combobox": {
+      "slug": "combobox",
+      "name": "Combobox",
+      "category": "Forms & Inputs",
+      "description": "A combobox is a flexible select component that allows users to filter a large list of options via a search input.",
+      "installCommand": "bunx carllosnc/dashkit add combobox",
+      "files": [
+        "src/dashkit/Combobox/Combobox.tsx",
+        "src/dashkit/Combobox/useCombobox.ts",
+        "src/dashkit/Combobox/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "react-icons"
+      ],
+      "registryDependencies": [
+        "chip"
+      ],
+      "exports": [
+        "Combobox",
+        "useCombobox"
+      ],
+      "propsDefinitions": [
+        "export interface ComboboxProps {\r\n  label?: string;\r\n  description?: string;\r\n  placeholder?: string;\r\n  options: ComboboxOption[];\r\n  value?: string | string[];\r\n  onChange?: (value: string | string[]) => void;\r\n  className?: string;\r\n  disabled?: boolean;\r\n  clearSearchOnSelect?: boolean;\r\n  multiple?: boolean;\r\n}",
+        "export interface UseComboboxProps {\r\n  options: ComboboxOption[];\r\n  value?: string | string[];\r\n  onChange?: (value: string | string[]) => void;\r\n  disabled?: boolean;\r\n  clearSearchOnSelect?: boolean;\r\n  multiple?: boolean;\r\n}"
+      ]
+    },
+    "copyfield": {
+      "slug": "copyfield",
+      "name": "CopyField",
+      "category": "Forms & Inputs",
+      "description": "A specialized input component designed for displaying read-only text that needs to be copied to the clipboard, such as invite links, API keys, or referral codes.",
+      "installCommand": "bunx carllosnc/dashkit add copyfield",
+      "files": [
+        "src/dashkit/CopyField/CopyField.tsx",
+        "src/dashkit/CopyField/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "react-icons"
+      ],
+      "registryDependencies": [
+        "input",
+        "iconbutton",
+        "toast"
+      ],
+      "exports": [
+        "CopyField"
+      ],
+      "propsDefinitions": [
+        "export interface CopyFieldProps {\r\n  label?: string;\r\n  description?: string;\r\n  value: string;\r\n  className?: string;\r\n  showToast?: boolean;\r\n}"
+      ]
+    },
+    "datefield": {
+      "slug": "datefield",
+      "name": "DateField",
+      "category": "Forms & Inputs",
+      "description": "A premium, HeroUI-inspired input component for entering and editing date values with individual segments for Day, Month, and Year.",
+      "installCommand": "bunx carllosnc/dashkit add datefield",
+      "files": [
+        "src/dashkit/DateField/DateField.tsx",
+        "src/dashkit/DateField/useDateField.ts",
+        "src/dashkit/DateField/index.ts"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "DateField",
+        "useDateField"
+      ],
+      "propsDefinitions": [
+        "export interface DateFieldProps {\r\n  label?: string;\r\n  description?: string;\r\n  error?: string;\r\n  value?: Date | null;\r\n  onChange?: (date: Date | null) => void;\r\n  className?: string;\r\n  disabled?: boolean;\r\n  isRequired?: boolean;\r\n}\r\n\r\ninterface SegmentProps {\r\n  value: string;\r\n  placeholder: string;\r\n  max: number;\r\n  onUpdate: (val: string) => void;\r\n  onNext: () => void;\r\n  onPrev: () => void;\r\n  disabled?: boolean;\r\n}",
+        "export interface UseDateFieldProps {\n  value?: Date | null;\n  onChange?: (date: Date | null) => void;\n}"
+      ]
+    },
+    "datepicker": {
+      "slug": "datepicker",
+      "name": "DatePicker",
+      "category": "Forms & Inputs",
+      "description": "A minimal, animated date selection component built with native React and Framer Motion. Ideal for dashboards and forms that require single date selection with a premium look.",
+      "installCommand": "bunx carllosnc/dashkit add datepicker",
+      "files": [
+        "src/dashkit/DatePicker/DatePicker.tsx",
+        "src/dashkit/DatePicker/useDatePicker.ts",
+        "src/dashkit/DatePicker/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "react-icons"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "DatePicker",
+        "months",
+        "daysOfWeek",
+        "useDatePicker"
+      ],
+      "propsDefinitions": [
+        "export interface DatePickerProps {\r\n  label?: string;\r\n  description?: string;\r\n  placeholder?: string;\r\n  value?: Date;\r\n  onChange?: (date: Date) => void;\r\n  className?: string;\r\n  disabled?: boolean;\r\n}",
+        "export interface UseDatePickerProps {\r\n  value?: Date;\r\n  onChange?: (date: Date) => void;\r\n  disabled?: boolean;\r\n}"
+      ]
+    },
+    "divider": {
+      "slug": "divider",
+      "name": "Divider",
+      "category": "Layout & Containers",
+      "description": "A versatile component used to separate sections of content with horizontal or vertical lines.",
+      "installCommand": "bunx carllosnc/dashkit add divider",
+      "files": [
+        "src/dashkit/Divider/Divider.tsx",
+        "src/dashkit/Divider/index.ts"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "Divider"
+      ],
+      "propsDefinitions": [
+        "export interface DividerProps\r\n  extends React.HTMLAttributes<HTMLDivElement>,\r\n    VariantProps<typeof dividerVariants> {\r\n  children?: React.ReactNode;\r\n  contentPosition?: 'left' | 'center' | 'right';\r\n}"
+      ]
+    },
+    "dock": {
+      "slug": "dock",
+      "name": "Dock",
+      "category": "Navigation",
+      "description": "A fluid, magnified navigation bar inspired by macOS, using Framer Motion for high-fidelity interactive physics.",
+      "installCommand": "bunx carllosnc/dashkit add dock",
+      "files": [
+        "src/dashkit/Dock/Dock.tsx",
+        "src/dashkit/Dock/DockItem.tsx",
+        "src/dashkit/Dock/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "react-icons"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "Dock",
+        "DockItem"
+      ],
+      "propsDefinitions": [
+        "export interface DockProps extends React.HTMLAttributes<HTMLDivElement> {\r\n  children: React.ReactNode;\r\n  position?: \"bottom\" | \"left\" | \"right\";\r\n}",
+        "export interface DockItemProps {\r\n  icon: React.ReactNode;\r\n  label?: string;\r\n  onClick?: () => void;\r\n  href?: string;\r\n  className?: string;\r\n  /** @internal */\r\n  position?: \"bottom\" | \"left\" | \"right\";\r\n}"
+      ]
+    },
+    "drawer": {
+      "slug": "drawer",
+      "name": "Drawer",
+      "category": "Feedback & Overlays",
+      "description": "A premium panel component that slides in from the edges of the screen, providing a temporary surface for navigation, settings, or details. It uses a compositional pattern to give you full control over the header, content, and footer sections.",
+      "installCommand": "bunx carllosnc/dashkit add drawer",
+      "files": [
+        "src/dashkit/Drawer/Drawer.tsx",
+        "src/dashkit/Drawer/useDrawer.ts",
+        "src/dashkit/Drawer/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "class-variance-authority",
+        "react-icons"
+      ],
+      "registryDependencies": [
+        "backdrop"
+      ],
+      "exports": [
+        "DrawerHeader",
+        "DrawerContent",
+        "DrawerFooter",
+        "Drawer",
+        "POSITION_VARIANTS",
+        "useDrawer"
+      ],
+      "propsDefinitions": [
+        "export interface DrawerProps {\r\n  isOpen: boolean;\r\n  onClose: () => void;\r\n  position?: DrawerPosition;\r\n  children: ReactNode;\r\n  size?: string;\r\n  className?: string;\r\n  /** id of the element (e.g. the DrawerHeader title) that names the dialog. */\r\n  labelledBy?: string;\r\n  /** Accessible name for the dialog when there is no heading element to reference. */\r\n  label?: string;\r\n}",
+        "export interface UseDrawerProps {\r\n  isOpen: boolean;\r\n  onClose: () => void;\r\n  position: DrawerPosition;\r\n}"
+      ]
+    },
+    "dropdown": {
+      "slug": "dropdown",
+      "name": "Dropdown",
+      "category": "Feedback & Overlays",
+      "description": "An interactive menu that displays a list of actions or options when triggered.",
+      "installCommand": "bunx carllosnc/dashkit add dropdown",
+      "files": [
+        "src/dashkit/Dropdown/Dropdown.tsx",
+        "src/dashkit/Dropdown/DropdownContent.tsx",
+        "src/dashkit/Dropdown/DropdownItem.tsx",
+        "src/dashkit/Dropdown/DropdownLabel.tsx",
+        "src/dashkit/Dropdown/DropdownSeparator.tsx",
+        "src/dashkit/Dropdown/DropdownTrigger.tsx",
+        "src/dashkit/Dropdown/useDropdown.ts",
+        "src/dashkit/Dropdown/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "react-icons"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "Dropdown",
+        "DropdownContent",
+        "DropdownItem",
+        "DropdownLabel",
+        "DropdownSeparator",
+        "DropdownTrigger",
+        "DropdownContext",
+        "useDropdownContext",
+        "useDropdown"
+      ],
+      "propsDefinitions": [
+        "export interface DropdownProps {\r\n  children: React.ReactNode;\r\n  className?: string;\r\n}",
+        "export interface DropdownContentProps {\r\n  children: React.ReactNode;\r\n  className?: string;\r\n  align?: 'start' | 'end' | 'center';\r\n  side?: 'top' | 'bottom' | 'left' | 'right';\r\n  sideOffset?: number;\r\n}",
+        "export interface DropdownItemProps {\r\n  children: React.ReactNode;\r\n  onClick?: () => void;\r\n  className?: string;\r\n  disabled?: boolean;\r\n  leftIcon?: React.ReactNode;\r\n  rightIcon?: React.ReactNode;\r\n  destructive?: boolean;\r\n  selected?: boolean;\r\n}",
+        "export interface DropdownLabelProps {\r\n  children: React.ReactNode;\r\n  className?: string;\r\n}",
+        "export interface DropdownSeparatorProps {\r\n  className?: string;\r\n}",
+        "export interface DropdownTriggerProps {\r\n  children: React.ReactNode;\r\n  asChild?: boolean;\r\n}"
+      ]
+    },
+    "float-action-menu": {
+      "slug": "float-action-menu",
+      "name": "FloatActionMenu",
+      "category": "Feedback & Overlays",
+      "description": "A premium floating action button that reveals an interactive menu card sliding from right to left.",
+      "installCommand": "bunx carllosnc/dashkit add float-action-menu",
+      "files": [
+        "src/dashkit/FloatActionMenu/FloatActionMenu.tsx",
+        "src/dashkit/FloatActionMenu/useFloatActionMenu.ts",
+        "src/dashkit/FloatActionMenu/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "react-icons"
+      ],
+      "registryDependencies": [
+        "iconbutton"
+      ],
+      "exports": [
+        "FloatActionMenu",
+        "useFloatActionMenu"
+      ],
+      "propsDefinitions": [
+        "export interface FloatActionMenuProps {\r\n  icon?: React.ReactNode;\r\n  label?: string;\r\n  variant?: 'neutral' | 'primary';\r\n  children: React.ReactNode;\r\n  position?: FloatActionPosition;\r\n  className?: string;\r\n  buttonClassName?: string;\r\n  menuClassName?: string;\r\n}",
+        "export interface UseFloatActionMenuProps {\n  position: FloatActionPosition;\n}"
+      ]
+    },
+    "floatbadge": {
+      "slug": "floatbadge",
+      "name": "FloatBadge",
+      "category": "Data Display & Metrics",
+      "description": "Visual indicators used for counts, statuses, or high-priority labels. Dashkit provides two distinct badge components optimized for different use cases.",
+      "installCommand": "bunx carllosnc/dashkit add floatbadge",
+      "files": [
+        "src/dashkit/Badge/FloatBadge.tsx"
+      ],
+      "dependencies": [],
+      "registryDependencies": [
+        "badge"
+      ],
+      "exports": [
+        "FloatBadge"
+      ],
+      "propsDefinitions": [
+        "export interface FloatBadgeProps extends BadgeProps {\n  children: React.ReactNode;\n  position?: BadgePosition;\n  offset?: [number, number];\n}"
+      ]
+    },
+    "iconbutton": {
+      "slug": "iconbutton",
+      "name": "IconButton",
+      "category": "Forms & Inputs",
+      "description": "A premium, specialized button for icon-only actions with customizable variant and rounding options.",
+      "installCommand": "bunx carllosnc/dashkit add iconbutton",
+      "files": [
+        "src/dashkit/IconButton/IconButton.tsx",
+        "src/dashkit/IconButton/index.ts"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "class-variance-authority",
+        "react-icons"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "IconButton"
+      ],
+      "propsDefinitions": [
+        "export type IconButtonProps = IconButtonBaseProps &\r\n  (\r\n    | (React.ButtonHTMLAttributes<HTMLButtonElement> & { href?: never })\r\n    | (React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string })\r\n  );"
+      ]
+    },
+    "imageexpander": {
+      "slug": "imageexpander",
+      "name": "ImageExpander",
+      "category": "Visualization & Media",
+      "description": "A premium component that enables cinematic image expansion with smooth animations, backdrop blur, and caption support.",
+      "installCommand": "bunx carllosnc/dashkit add imageexpander",
+      "files": [
+        "src/dashkit/ImageExpander/ImageExpander.tsx",
+        "src/dashkit/ImageExpander/useImageExpander.ts",
+        "src/dashkit/ImageExpander/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "react-icons"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "ImageExpander",
+        "useImageExpander"
+      ],
+      "propsDefinitions": [
+        "export interface ImageExpanderProps {\r\n  children: ReactNode;\r\n  full?: ReactNode;\r\n  caption?: string;\r\n  className?: string;\r\n}"
+      ]
+    },
+    "input": {
+      "slug": "input",
+      "name": "Input",
+      "category": "Forms & Inputs",
+      "description": "A primitive input component with support for labels, icons, error states, and helper text.",
+      "installCommand": "bunx carllosnc/dashkit add input",
+      "files": [
+        "src/dashkit/Input/Input.tsx",
+        "src/dashkit/Input/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "class-variance-authority",
+        "react-icons"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "Input"
+      ],
+      "propsDefinitions": [
+        "export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'prefix' | 'size'> {\r\n  label?: string;\r\n  leftIcon?: ReactNode;\r\n  rightIcon?: ReactNode;\r\n  prefix?: ReactNode;\r\n  suffix?: ReactNode;\r\n  error?: string;\r\n  helperText?: string;\r\n  mask?: RegExp;\r\n  formatter?: (value: string) => string;\r\n  size?: 'sm' | 'md' | 'lg';\r\n  wrapperClassName?: string;\r\n}"
+      ]
+    },
+    "linechart": {
+      "slug": "linechart",
+      "name": "LineChart",
+      "category": "Visualization & Media",
+      "description": "The **LineChart** component is a clean, minimal data visualization tool built using native SVG and **Framer Motion**. It's ideal for showing precise trends without the visual weight of an area fill.",
+      "installCommand": "bunx carllosnc/dashkit add linechart",
+      "files": [
+        "src/dashkit/LineChart/LineChart.tsx",
+        "src/dashkit/LineChart/useLineChart.ts",
+        "src/dashkit/LineChart/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "LineChart",
+        "useLineChart"
+      ],
+      "propsDefinitions": [
+        "export interface LineChartProps {\r\n  data: Record<string, string | number>[];\r\n  series: LineChartSeries[];\r\n  className?: string;\r\n  showGrid?: boolean;\r\n  showLabels?: boolean;\r\n  showTooltip?: boolean;\r\n  animate?: boolean;\r\n}",
+        "export interface UseLineChartProps {\n  data: Record<string, string | number>[];\n  series: LineChartSeries[];\n}"
+      ]
+    },
+    "listtile": {
+      "slug": "listtile",
+      "name": "ListTile",
+      "category": "Data Display & Metrics",
+      "description": "A flexible row component for building lists, menus, and settings panels. Supports leading icons or avatars, a title and subtitle text block, and a trailing slot for actions or indicators.",
+      "installCommand": "bunx carllosnc/dashkit add listtile",
+      "files": [
+        "src/dashkit/ListTile/ListTile.tsx",
+        "src/dashkit/ListTile/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "ListTile"
+      ],
+      "propsDefinitions": [
+        "export interface ListTileProps extends Omit<HTMLMotionProps<'div'>, 'title'> {\r\n  title: React.ReactNode;\r\n  subtitle?: React.ReactNode;\r\n  leading?: React.ReactNode;\r\n  trailing?: React.ReactNode;\r\n  disabled?: boolean;\r\n  interactive?: boolean;\r\n  divider?: boolean;\r\n  ref?: React.Ref<HTMLDivElement>;\r\n}"
+      ]
+    },
+    "modal": {
+      "slug": "modal",
+      "name": "Modal",
+      "category": "Feedback & Overlays",
+      "description": "A centered, layered dialog component that focuses user attention on critical information or actions.",
+      "installCommand": "bunx carllosnc/dashkit add modal",
+      "files": [
+        "src/dashkit/Modal/Modal.tsx",
+        "src/dashkit/Modal/ModalContent.tsx",
+        "src/dashkit/Modal/ModalFooter.tsx",
+        "src/dashkit/Modal/ModalHeader.tsx",
+        "src/dashkit/Modal/useModal.ts",
+        "src/dashkit/Modal/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "class-variance-authority",
+        "react-icons"
+      ],
+      "registryDependencies": [
+        "backdrop",
+        "iconbutton"
+      ],
+      "exports": [
+        "Modal",
+        "ModalContent",
+        "ModalFooter",
+        "ModalHeader",
+        "useModal"
+      ],
+      "propsDefinitions": [
+        "export interface ModalProps extends VariantProps<typeof modalContentVariants> {\r\n  isOpen: boolean;\r\n  onClose: () => void;\r\n  children: ReactNode;\r\n  className?: string;\r\n  labelledBy?: string;\r\n  label?: string;\r\n}",
+        "export interface ModalContentProps {\r\n  children: ReactNode;\r\n  className?: string;\r\n}",
+        "export interface ModalFooterProps {\r\n  children: ReactNode;\r\n  className?: string;\r\n}",
+        "export interface ModalHeaderProps {\r\n  children?: ReactNode;\r\n  className?: string;\r\n  onClose?: () => void;\r\n}",
+        "export interface UseModalProps {\r\n  isOpen: boolean;\r\n  onClose: () => void;\r\n}"
+      ]
+    },
+    "navbar": {
+      "slug": "navbar",
+      "name": "Navbar",
+      "category": "Navigation",
+      "description": "A premium, responsive navigation header with support for branding, navigation, and action buttons using a flexible composition pattern.",
+      "installCommand": "bunx carllosnc/dashkit add navbar",
+      "files": [
+        "src/dashkit/Navbar/Navbar.tsx",
+        "src/dashkit/Navbar/NavbarActions.tsx",
+        "src/dashkit/Navbar/NavbarBrand.tsx",
+        "src/dashkit/Navbar/NavbarLinks.tsx",
+        "src/dashkit/Navbar/index.ts"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "react-icons",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "Navbar",
+        "NavbarActions",
+        "NavbarBrand",
+        "NavbarLinks"
+      ],
+      "propsDefinitions": [
+        "export interface NavbarProps\r\n  extends React.HTMLAttributes<HTMLElement>,\r\n    VariantProps<typeof navbarVariants> {\r\n  children: React.ReactNode;\r\n}",
+        "export interface NavbarActionsProps extends React.HTMLAttributes<HTMLDivElement> {\r\n  children: React.ReactNode;\r\n  className?: string;\r\n}",
+        "export interface NavbarBrandProps extends React.HTMLAttributes<HTMLDivElement> {\r\n  children: React.ReactNode;\r\n  className?: string;\r\n}",
+        "export interface NavbarLinksProps extends React.HTMLAttributes<HTMLElement> {\r\n  children: React.ReactNode;\r\n  className?: string;\r\n}"
+      ]
+    },
+    "navigation-menu": {
+      "slug": "navigation-menu",
+      "name": "NavigationMenu",
+      "category": "Navigation",
+      "description": "A premium navigation menu component inspired by modern, high-end dashboards. It features a shared viewport that smoothly moves and resizes to accommodate different content sections.",
+      "installCommand": "bunx carllosnc/dashkit add navigation-menu",
+      "files": [
+        "src/dashkit/NavigationMenu/NavigationMenu.tsx",
+        "src/dashkit/NavigationMenu/NavigationMenuContent.tsx",
+        "src/dashkit/NavigationMenu/NavigationMenuContext.tsx",
+        "src/dashkit/NavigationMenu/NavigationMenuItem.tsx",
+        "src/dashkit/NavigationMenu/NavigationMenuLink.tsx",
+        "src/dashkit/NavigationMenu/NavigationMenuList.tsx",
+        "src/dashkit/NavigationMenu/NavigationMenuTrigger.tsx",
+        "src/dashkit/NavigationMenu/NavigationMenuViewport.tsx",
+        "src/dashkit/NavigationMenu/useNavigationMenu.ts",
+        "src/dashkit/NavigationMenu/useNavigationMenuViewport.ts",
+        "src/dashkit/NavigationMenu/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "react-icons"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "NavigationMenu",
+        "NavigationMenuContent",
+        "NavigationMenuContext",
+        "useNavigationMenuContext",
+        "NavigationMenuItem",
+        "NavigationMenuLink",
+        "NavigationMenuList",
+        "NavigationMenuTrigger",
+        "NavigationMenuViewport",
+        "useNavigationMenu",
+        "useNavigationMenuViewport"
+      ],
+      "propsDefinitions": [
+        "export interface NavigationMenuProps {\r\n  children: React.ReactNode;\r\n  className?: string;\r\n}"
+      ]
+    },
+    "otpinput": {
+      "slug": "otpinput",
+      "name": "OtpInput",
+      "category": "Forms & Inputs",
+      "description": "A premium input component optimized for One-Time Passwords, featuring automatic focus shifting, digit masking, and full paste support.",
+      "installCommand": "bunx carllosnc/dashkit add otpinput",
+      "files": [
+        "src/dashkit/OtpInput/OtpInput.tsx",
+        "src/dashkit/OtpInput/useOtpInput.ts",
+        "src/dashkit/OtpInput/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "OtpInput",
+        "useOtpInput"
+      ],
+      "propsDefinitions": [
+        "export interface OtpInputProps {\r\n  length?: number;\r\n  value?: string;\r\n  onChange?: (value: string) => void;\r\n  disabled?: boolean;\r\n  label?: string;\r\n  className?: string;\r\n  containerClassName?: string;\r\n}",
+        "export interface UseOtpInputProps {\n  length: number;\n  value: string;\n  onChange?: (value: string) => void;\n  disabled?: boolean;\n}"
+      ]
+    },
+    "pagination": {
+      "slug": "pagination",
+      "name": "Pagination",
+      "category": "Navigation",
+      "description": "A functional and responsive component for navigating between large sets of data or views.",
+      "installCommand": "bunx carllosnc/dashkit add pagination",
+      "files": [
+        "src/dashkit/Pagination/Pagination.tsx",
+        "src/dashkit/Pagination/index.ts"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "react-icons",
+        "framer-motion"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "Pagination"
+      ],
+      "propsDefinitions": [
+        "export interface PaginationProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onChange'> {\r\n  currentPage: number;\r\n  totalPages: number;\r\n  onChange: (page: number) => void;\r\n  siblingCount?: number;\r\n}"
+      ]
+    },
+    "piechart": {
+      "slug": "piechart",
+      "name": "PieChart",
+      "category": "Visualization & Media",
+      "description": "The **PieChart** component is an expressive tool for visualizing categorical distributions. It features interactive segments with tooltips, smooth hover scaling, and supports donut variations via the `innerRadius` prop.",
+      "installCommand": "bunx carllosnc/dashkit add piechart",
+      "files": [
+        "src/dashkit/PieChart/PieChart.tsx",
+        "src/dashkit/PieChart/usePieChart.ts",
+        "src/dashkit/PieChart/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "PieChart",
+        "usePieChart"
+      ],
+      "propsDefinitions": [
+        "export interface PieChartProps {\r\n  data: PieChartDataItem[];\r\n  className?: string;\r\n  innerRadius?: number;\r\n  showLabels?: boolean;\r\n  showTooltip?: boolean;\r\n  animate?: boolean;\r\n}",
+        "export interface UsePieChartProps {\r\n  data: PieChartDataItem[];\r\n  innerRadius: number;\r\n  showTooltip: boolean;\r\n}"
+      ]
+    },
+    "popover": {
+      "slug": "popover",
+      "name": "Popover",
+      "category": "Feedback & Overlays",
+      "description": "A floating container that displays rich content anchored to a trigger element. Popovers are ideal for more complex content than tooltips, such as forms or descriptive text.",
+      "installCommand": "bunx carllosnc/dashkit add popover",
+      "files": [
+        "src/dashkit/Popover/Popover.tsx",
+        "src/dashkit/Popover/PopoverContent.tsx",
+        "src/dashkit/Popover/PopoverTrigger.tsx",
+        "src/dashkit/Popover/usePopover.ts",
+        "src/dashkit/Popover/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "react-icons"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "Popover",
+        "PopoverContent",
+        "PopoverTrigger",
+        "PopoverContext",
+        "usePopoverContext",
+        "usePopover"
+      ],
+      "propsDefinitions": [
+        "export interface PopoverProps {\r\n  children: React.ReactNode;\r\n  trigger?: PopoverTriggerMode;\r\n}",
+        "export interface PopoverContentProps {\r\n  children: React.ReactNode;\r\n  className?: string;\r\n  align?: 'start' | 'end' | 'center';\r\n  side?: 'top' | 'bottom' | 'left' | 'right';\r\n  sideOffset?: number;\r\n}",
+        "export interface PopoverTriggerProps {\r\n  children: React.ReactNode;\r\n  asChild?: boolean;\r\n}"
+      ]
+    },
+    "progressbar": {
+      "slug": "progressbar",
+      "name": "ProgressBar",
+      "category": "Feedback & Overlays",
+      "description": "Animated, fluid indicators for tracking task completion, loading states, or data metrics with high precision.",
+      "installCommand": "bunx carllosnc/dashkit add progressbar",
+      "files": [
+        "src/dashkit/ProgressBar/ProgressBar.tsx",
+        "src/dashkit/ProgressBar/useProgressBar.ts",
+        "src/dashkit/ProgressBar/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "ProgressBar",
+        "useProgressBar"
+      ],
+      "propsDefinitions": [
+        "export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {\r\n  value: number;\r\n  max?: number;\r\n  showLabel?: boolean;\r\n  labelPosition?: 'top' | 'side';\r\n  color?: ProgressBarColor;\r\n  size?: ProgressBarSize;\r\n  animate?: boolean;\r\n  label?: React.ReactNode;\r\n}",
+        "export interface UseProgressBarProps {\n  value: number;\n  max: number;\n}"
+      ]
+    },
+    "radio": {
+      "slug": "radio",
+      "name": "Radio",
+      "category": "Forms & Inputs",
+      "description": "A premium radio button component for single choices from a set, with support for labels and descriptions.",
+      "installCommand": "bunx carllosnc/dashkit add radio",
+      "files": [
+        "src/dashkit/Radio/Radio.tsx",
+        "src/dashkit/Radio/useRadio.ts",
+        "src/dashkit/Radio/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "Radio",
+        "useRadio"
+      ],
+      "propsDefinitions": [
+        "export interface RadioProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {\r\n  label?: string;\r\n  description?: string;\r\n}",
+        "export interface UseRadioProps {\n  id?: string;\n  label?: string;\n}"
+      ]
+    },
+    "scrollarea": {
+      "slug": "scrollarea",
+      "name": "ScrollArea",
+      "category": "Layout & Containers",
+      "description": "A minimalist scroll area component that provides theme-aware, custom scrollbars across all browsers and operating systems.",
+      "installCommand": "bunx carllosnc/dashkit add scrollarea",
+      "files": [
+        "src/dashkit/ScrollArea/ScrollArea.tsx",
+        "src/dashkit/ScrollArea/index.ts"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "ScrollArea"
+      ],
+      "propsDefinitions": [
+        "export interface ScrollAreaProps extends VariantProps<typeof viewportVariants> {\r\n  children: ReactNode;\r\n  className?: string;\r\n  viewportClassName?: string;\r\n}"
+      ]
+    },
+    "select": {
+      "slug": "select",
+      "name": "Select",
+      "category": "Forms & Inputs",
+      "description": "A high-performance dropdown component for single choices, featuring portalled rendering to prevent layout overflow and full keyboard accessibility.",
+      "installCommand": "bunx carllosnc/dashkit add select",
+      "files": [
+        "src/dashkit/Select/Select.tsx",
+        "src/dashkit/Select/useSelect.ts",
+        "src/dashkit/Select/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "class-variance-authority",
+        "react-icons"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "Select",
+        "useSelect"
+      ],
+      "propsDefinitions": [
+        "export interface SelectProps {\r\n  label?: string;\r\n  description?: string;\r\n  placeholder?: string;\r\n  options: SelectOption[];\r\n  value?: string;\r\n  onChange?: (value: string) => void;\r\n  className?: string;\r\n  disabled?: boolean;\r\n  size?: 'sm' | 'md' | 'lg';\r\n  error?: string;\r\n}",
+        "export interface UseSelectProps {\r\n  options: SelectOption[];\r\n  value?: string;\r\n  disabled?: boolean;\r\n}"
+      ]
+    },
+    "sidebar": {
+      "slug": "sidebar",
+      "name": "Sidebar",
+      "category": "Navigation",
+      "description": "A versatile and premium navigation sidebar component that supports complex layouts, branding, status indicators, and responsive mobile drawer adaptation out of the box.",
+      "installCommand": "bunx carllosnc/dashkit add sidebar",
+      "files": [
+        "src/dashkit/Sidebar/Sidebar.tsx",
+        "src/dashkit/Sidebar/useSidebar.ts",
+        "src/dashkit/Sidebar/SidebarContext.tsx",
+        "src/dashkit/Sidebar/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "react-icons"
+      ],
+      "registryDependencies": [
+        "iconbutton",
+        "tooltip",
+        "backdrop"
+      ],
+      "exports": [
+        "SidebarProvider",
+        "Sidebar",
+        "SidebarTrigger",
+        "SidebarContent",
+        "SidebarHeader",
+        "SidebarHeaderOpen",
+        "SidebarHeaderClose",
+        "SidebarFooter",
+        "SidebarFooterOpen",
+        "SidebarFooterClose",
+        "SidebarSection",
+        "SidebarSubItem",
+        "SidebarSubList",
+        "SidebarItem",
+        "useSidebarState",
+        "SidebarContext",
+        "useSidebar"
+      ],
+      "propsDefinitions": [
+        "export interface SidebarProviderProps extends UseSidebarProps {\r\n  children: React.ReactNode;\r\n}",
+        "export interface SidebarProps extends\r\n  Omit<HTMLMotionProps<'aside'>, 'children' | 'defaultValue'> {\r\n  children: React.ReactNode;\r\n  collapsible?: boolean;\r\n  defaultOpen?: boolean;\r\n  open?: boolean;\r\n  onOpenChange?: (open: boolean) => void;\r\n  width?: number;\r\n  collapsedWidth?: number;\r\n  responsive?: boolean;\r\n  defaultOpenMobile?: boolean;\r\n  openMobile?: boolean;\r\n  onOpenMobileChange?: (open: boolean) => void;\r\n  mobileBreakpoint?: number;\r\n}",
+        "export interface SidebarTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {\r\n  icon?: React.ReactNode;\r\n  size?: 'sm' | 'md' | 'lg';\r\n}",
+        "export interface SidebarContentProps extends React.HTMLAttributes<HTMLDivElement> {\r\n  children: React.ReactNode;\r\n}",
+        "export interface SidebarSectionProps {\r\n  title?: string;\r\n  badge?: React.ReactNode;\r\n  children: React.ReactNode;\r\n  className?: string;\r\n  collapsible?: boolean;\r\n  defaultOpen?: boolean;\r\n}",
+        "export interface SidebarSubItemProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {\r\n  children: React.ReactNode;\r\n  active?: boolean;\r\n  href?: string;\r\n  target?: string;\r\n  badgeSlot?: React.ReactNode;\r\n  className?: string;\r\n}",
+        "export interface SidebarItemProps extends Omit<HTMLMotionProps<'button'>, 'children' | 'onDrag' | 'onDragStart' | 'onDragEnd'> {\r\n  icon?: React.ReactNode;\r\n  active?: boolean;\r\n  children: React.ReactNode;\r\n  badgeSlot?: React.ReactNode;\r\n  href?: string;\r\n  target?: string;\r\n  collapsible?: boolean;\r\n  defaultOpen?: boolean;\r\n  open?: boolean;\r\n  onOpenChange?: (open: boolean) => void;\r\n  subItems?: SidebarSubItemConfig[];\r\n}",
+        "export interface UseSidebarProps {\r\n  defaultOpen?: boolean;\r\n  open?: boolean;\r\n  onOpenChange?: (open: boolean) => void;\r\n  defaultOpenMobile?: boolean;\r\n  openMobile?: boolean;\r\n  onOpenMobileChange?: (open: boolean) => void;\r\n  mobileBreakpoint?: number;\r\n}"
+      ]
+    },
+    "skeleton": {
+      "slug": "skeleton",
+      "name": "Skeleton",
+      "category": "Feedback & Overlays",
+      "description": "A placeholder component used to mimic the layout of actual content while it is loading.",
+      "installCommand": "bunx carllosnc/dashkit add skeleton",
+      "files": [
+        "src/dashkit/Skeleton/Skeleton.tsx",
+        "src/dashkit/Skeleton/index.ts"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "Skeleton"
+      ],
+      "propsDefinitions": [
+        "export interface SkeletonProps\r\n  extends React.HTMLAttributes<HTMLDivElement>,\r\n    VariantProps<typeof skeletonVariants> {}"
+      ]
+    },
+    "slider": {
+      "slug": "slider",
+      "name": "Slider",
+      "category": "Forms & Inputs",
+      "description": "A premium, interactive slider component for selecting a value from a range, featuring smooth animations and real-time feedback.",
+      "installCommand": "bunx carllosnc/dashkit add slider",
+      "files": [
+        "src/dashkit/Slider/Slider.tsx",
+        "src/dashkit/Slider/useSlider.ts",
+        "src/dashkit/Slider/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "Slider",
+        "useSlider"
+      ],
+      "propsDefinitions": [
+        "export interface SliderProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'onChange' | 'value' | 'defaultValue'> {\r\n  label?: string;\r\n  description?: string;\r\n  value?: number;\r\n  defaultValue?: number;\r\n  onChange?: (value: number) => void;\r\n  showValue?: boolean;\r\n}",
+        "export interface UseSliderProps {\n  id?: string;\n  label?: string;\n  min?: string | number;\n  max?: string | number;\n  value?: string | number;\n  defaultValue?: string | number;\n  onChange?: (value: number) => void;\n}"
+      ]
+    },
+    "spinner": {
+      "slug": "spinner",
+      "name": "Spinner",
+      "category": "Feedback & Overlays",
+      "description": "A sleek, high-performance loading indicator built with SVG and CSS animations.",
+      "installCommand": "bunx carllosnc/dashkit add spinner",
+      "files": [
+        "src/dashkit/Spinner/Spinner.tsx",
+        "src/dashkit/Spinner/index.ts"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "Spinner"
+      ],
+      "propsDefinitions": [
+        "export interface SpinnerProps extends Omit<React.SVGAttributes<SVGSVGElement>, 'color'> {\n  size?: number | string;\n  color?: SpinnerColor;\n  thickness?: number;\n  className?: string;\n}"
+      ]
+    },
+    "statscard": {
+      "slug": "statscard",
+      "name": "StatsCard",
+      "category": "Data Display & Metrics",
+      "description": "A high-level component for displaying key performance indicators, metrics, and trends at a glance.",
+      "installCommand": "bunx carllosnc/dashkit add statscard",
+      "files": [
+        "src/dashkit/StatsCard/StatsCard.tsx",
+        "src/dashkit/StatsCard/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "react-icons"
+      ],
+      "registryDependencies": [
+        "card",
+        "animatenumber",
+        "divider"
+      ],
+      "exports": [
+        "StatsCard"
+      ],
+      "propsDefinitions": [
+        "export interface StatsCardProps {\r\n  title: string;\r\n  value: number;\r\n  prefix?: string;\r\n  suffix?: string;\r\n  precision?: number;\r\n  trend?: number;\r\n  trendLabel?: string;\r\n  icon?: React.ReactNode;\r\n  description?: string;\r\n  status?: 'success' | 'danger' | 'warning' | 'info' | 'neutral';\r\n  animate?: boolean;\r\n  className?: string;\r\n  chart?: {\r\n    data: number[];\r\n    color?: string;\r\n  };\r\n}"
+      ]
+    },
+    "stepper": {
+      "slug": "stepper",
+      "name": "Stepper",
+      "category": "Navigation",
+      "description": "A progress visualization component for multi-step processes or sequence indicators.",
+      "installCommand": "bunx carllosnc/dashkit add stepper",
+      "files": [
+        "src/dashkit/Stepper/Stepper.tsx",
+        "src/dashkit/Stepper/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "react-icons"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "Stepper",
+        "Step"
+      ],
+      "propsDefinitions": [
+        "export interface StepperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {\r\n  activeStep: number;\r\n  orientation?: 'horizontal' | 'vertical';\r\n  color?: StepperColor;\r\n  onChange?: (step: number) => void;\r\n  children: React.ReactNode;\r\n}",
+        "export interface StepProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {\r\n  title?: React.ReactNode;\r\n  description?: React.ReactNode;\r\n  icon?: React.ReactNode;\r\n  index?: number;\r\n  isLast?: boolean;\r\n}"
+      ]
+    },
+    "surface": {
+      "slug": "surface",
+      "name": "Surface",
+      "category": "Layout & Containers",
+      "description": "A lightweight, foundational component for creating containers with consistent background variants based on design system states. It provides a clean, borderless surface with no internal padding or margin, serving as a pure visual block.",
+      "installCommand": "bunx carllosnc/dashkit add surface",
+      "files": [
+        "src/dashkit/Surface/Surface.tsx",
+        "src/dashkit/Surface/index.ts"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "Surface"
+      ],
+      "propsDefinitions": [
+        "export interface SurfaceProps\r\n  extends React.HTMLAttributes<HTMLDivElement>,\r\n    VariantProps<typeof surfaceVariants> {\r\n  children?: React.ReactNode;\r\n}"
+      ]
+    },
+    "switch": {
+      "slug": "switch",
+      "name": "Switch",
+      "category": "Forms & Inputs",
+      "description": "A high-performance, premium toggle switch component for binary choices, with support for labels and descriptions.",
+      "installCommand": "bunx carllosnc/dashkit add switch",
+      "files": [
+        "src/dashkit/Switch/Switch.tsx",
+        "src/dashkit/Switch/useSwitch.ts",
+        "src/dashkit/Switch/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "Switch",
+        "useSwitch"
+      ],
+      "propsDefinitions": [
+        "export interface SwitchProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {\r\n  label?: string;\r\n  description?: string;\r\n}",
+        "export interface UseSwitchProps {\n  id?: string;\n  label?: string;\n}"
+      ]
+    },
+    "systemlogs": {
+      "slug": "systemlogs",
+      "name": "SystemLogs",
+      "category": "Data Display & Metrics",
+      "description": "A terminal-style component for displaying real-time system logs, process outputs, or audit trails with auto-scrolling and status indicators.",
+      "installCommand": "bunx carllosnc/dashkit add systemlogs",
+      "files": [
+        "src/dashkit/SystemLogs/SystemLogs.tsx",
+        "src/dashkit/SystemLogs/index.ts"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "react-icons"
+      ],
+      "registryDependencies": [
+        "badge"
+      ],
+      "exports": [
+        "SystemLogs"
+      ],
+      "propsDefinitions": [
+        "export interface SystemLogsProps {\r\n  logs: LogEntry[];\r\n  title?: string;\r\n  session?: string;\r\n  status?: string;\r\n  statusColor?: BadgeColor;\r\n  className?: string;\r\n  maxHeight?: number | string;\r\n  autoScroll?: boolean;\r\n}"
+      ]
+    },
+    "table": {
+      "slug": "table",
+      "name": "Table",
+      "category": "Data Display & Metrics",
+      "description": "A simple, responsive table component for displaying structured data.",
+      "installCommand": "bunx carllosnc/dashkit add table",
+      "files": [
+        "src/dashkit/Table/Table.tsx",
+        "src/dashkit/Table/index.ts"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "react-icons"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "TableContainer",
+        "Table",
+        "TableHeader",
+        "TableBody",
+        "TableFooter",
+        "TableRow",
+        "TableHead",
+        "TableCell",
+        "TableCaption"
+      ],
+      "propsDefinitions": [
+        "export interface TableContainerProps extends HTMLAttributes<HTMLDivElement> {\r\n  children: React.ReactNode;\r\n}",
+        "export type TableProps = HTMLAttributes<HTMLTableElement>;",
+        "export interface TableHeadProps extends ThHTMLAttributes<HTMLTableCellElement> {\r\n  nowrap?: boolean;\r\n  align?: 'left' | 'center' | 'right';\r\n}",
+        "export interface TableCellProps extends TdHTMLAttributes<HTMLTableCellElement> {\r\n  nowrap?: boolean;\r\n  align?: 'left' | 'center' | 'right';\r\n}"
+      ]
+    },
+    "tabs": {
+      "slug": "tabs",
+      "name": "Tabs",
+      "category": "Navigation",
+      "description": "A performant and premium tabs component with a smooth, fluid indicator animation powered by Framer Motion.",
+      "installCommand": "bunx carllosnc/dashkit add tabs",
+      "files": [
+        "src/dashkit/Tabs/Tabs.tsx",
+        "src/dashkit/Tabs/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "Tabs",
+        "TabsList",
+        "TabsTrigger",
+        "TabsContent"
+      ],
+      "propsDefinitions": [
+        "export interface TabsProps {\r\n  defaultValue?: string;\r\n  value?: string;\r\n  onValueChange?: (val: string) => void;\r\n  children: ReactNode;\r\n  className?: string;\r\n  variant?: TabsVariant;\r\n}",
+        "export interface TabsListProps {\r\n  children: ReactNode;\r\n  className?: string;\r\n  variant?: TabsVariant;\r\n}",
+        "export interface TabsTriggerProps {\r\n  value: string;\r\n  children: ReactNode;\r\n  className?: string;\r\n  disabled?: boolean;\r\n}",
+        "export interface TabsContentProps {\r\n  value: string;\r\n  children: ReactNode;\r\n  className?: string;\r\n}"
+      ]
+    },
+    "textarea": {
+      "slug": "textarea",
+      "name": "Textarea",
+      "category": "Forms & Inputs",
+      "description": "A multiline text input component with support for labels, error states, and auto-growing height.",
+      "installCommand": "bunx carllosnc/dashkit add textarea",
+      "files": [
+        "src/dashkit/Textarea/Textarea.tsx",
+        "src/dashkit/Textarea/useTextarea.ts",
+        "src/dashkit/Textarea/index.ts"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "Textarea",
+        "useTextarea"
+      ],
+      "propsDefinitions": [
+        "export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {\r\n  label?: string;\r\n  error?: string;\r\n  helperText?: string;\r\n  autoGrow?: boolean;\r\n}",
+        "export interface UseTextareaProps {\n  id?: string;\n  label?: string;\n  autoGrow?: boolean;\n  value?: string | number | readonly string[];\n  onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;\n}"
+      ]
+    },
+    "toast": {
+      "slug": "toast",
+      "name": "Toast",
+      "category": "Feedback & Overlays",
+      "description": "A succinct message that provides feedback about an operation in a small, non-intrusive card.",
+      "installCommand": "bunx carllosnc/dashkit add toast",
+      "files": [
+        "src/dashkit/Toast/Toast.tsx",
+        "src/dashkit/Toast/useToast.ts",
+        "src/dashkit/Toast/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "react-icons"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "ToastProvider",
+        "removeToast",
+        "pauseToastTimer",
+        "resumeToastTimer",
+        "useToast",
+        "setToastDefaultPosition",
+        "toast",
+        "resetToasts"
+      ],
+      "propsDefinitions": []
+    },
+    "tooltip": {
+      "slug": "tooltip",
+      "name": "Tooltip",
+      "category": "Feedback & Overlays",
+      "description": "A small popup that displays information when a user hovers over an element.",
+      "installCommand": "bunx carllosnc/dashkit add tooltip",
+      "files": [
+        "src/dashkit/Tooltip/Tooltip.tsx",
+        "src/dashkit/Tooltip/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "Tooltip",
+        "TooltipTrigger",
+        "TooltipContent"
+      ],
+      "propsDefinitions": [
+        "export interface TooltipContentProps {\r\n  children: React.ReactNode;\r\n  className?: string;\r\n  side?: 'top' | 'bottom' | 'left' | 'right';\r\n  sideOffset?: number;\r\n}"
+      ]
+    }
+  }
+}
