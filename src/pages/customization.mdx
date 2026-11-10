@@ -65,15 +65,18 @@ Input components use a specialized set of tokens to ensure consistency across th
 
 ## 3. Global Radius
 
-Dashkit uses a centralized radius system for a consistent look and feel:
+Dashkit uses a centralized radius system where all size tokens scale proportionally from `--radius`:
 
-| Variable | Default Value |
+| Variable | Default Formula / Value |
 | :--- | :--- |
-| `--radius-base` | `0.5rem` |
-| `--radius-md` | `0.75rem` |
-| `--radius-lg` | `1rem` |
+| `--radius` | `0.75rem` (master control) |
+| `--radius-sm` | `max(0px, calc(var(--radius) - 5px))` |
+| `--radius-md` | `max(0px, calc(var(--radius) - 3px))` |
+| `--radius-lg` | `var(--radius)` |
+| `--radius-xl` | `calc(var(--radius) * 1.3333)` |
+| `--radius-2xl` | `calc(var(--radius) * 1.6667)` |
 
-Changing `--radius-base` will update almost all components in the library (Buttons, Inputs, Cards, etc.) as they rely on the `ds-rounded` utility.
+Changing `--radius` in `src/dashkit.css` (for example, setting `--radius: 0rem` for a sharp brutalist look or `1rem` for a soft rounded UI) automatically updates Cards, Modals, Inputs, Selects, and Surfaces across the entire library.
 
 ## Customizing Your Theme
 
@@ -168,9 +171,13 @@ When building your own components, you can add new tokens to the `:root` block t
     </div>
     ```
 
-## AI-Powered Theming
+## AI-First Customization Protocol
 
-You can use an AI (like Antigravity) to generate a completely new theme in seconds.
+Dashkit is architected for **AI-driven customization via prompts**. Because you own the source code in `src/dashkit/`, AI agents should follow a strict 3-tier hierarchy instead of scattering inline classes across pages:
+
+1. **Tier 1 — Global Theme (`src/dashkit/dashkit.css`)**: Change `--ds-primary`, `--ds-bg`, `--ds-card`, `--radius`, or set `--ds-primary-gradient: none` for flat buttons.
+2. **Tier 2 — Component Variants (`src/dashkit/[Component]/[Component].tsx`)**: Edit `cva(...)` definitions directly in the component file when changing a component's default look or adding a new variant across the app.
+3. **Tier 3 — One-Off Overrides (`className` & `data-slot`)**: Use `className` for single-instance tweaks (the `cn` utility automatically resolves conflicts between standard Tailwind classes like `rounded-full` / `bg-none` and Dashkit's `ds-rounded*` / `ds-*-gradient`). For sub-elements inside form components (`Input`, `Select`, `Combobox`, `DatePicker`, etc.), target `data-slot` attributes (e.g., `className="[&_[data-slot=label]]:uppercase [&_[data-slot=trigger]]:rounded-full"`).
 
 ### AI Prompt Example
 
@@ -179,9 +186,9 @@ Copy and paste this prompt to quickly generate a unique theme:
 > **AI Prompt:**
 > "I want to create a new theme for Dashkit UI. The theme should use a professional 'Emerald and Slate' palette. Please update `dashkit.css` by:
 > 1. Updating the `:root` and `.dark` variables for bg, fg, primary, and secondary.
-> 2. Setting a more rounded radius system (base at 0.75rem).
+> 2. Setting `--radius: 0.5rem` for a sharper, denser geometric profile.
 > 3. Ensuring inputs use a clean, bordered style with subtle rings.
-> Make it look modern and high-performance."
+> Keep all page components pure without inline style overrides."
 
 
 
