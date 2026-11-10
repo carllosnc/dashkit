@@ -4,7 +4,6 @@ import { FiX, FiInfo, FiCheckCircle, FiAlertCircle, FiAlertTriangle } from 'reac
 import { createPortal } from 'react-dom';
 import { useToast, type ToastData, type ToastType, removeToast, pauseToastTimer, resumeToastTimer, type ToastPosition, setToastDefaultPosition } from './useToast';
 import { cn } from '../utils/cn';
-import './toast.css';
 
 export type { ToastOptions, ToastType, ToastData, ToastPosition } from './useToast';
 
@@ -12,6 +11,15 @@ const POSITIONS: ToastPosition[] = [
   'top-left', 'top-right', 'top-center',
   'bottom-left', 'bottom-right', 'bottom-center'
 ];
+
+const viewportPositionClasses: Record<ToastPosition, string> = {
+  'top-left': 'top-8 left-8 items-start',
+  'top-right': 'top-8 right-8 items-end',
+  'top-center': 'top-8 left-1/2 -translate-x-1/2 items-center',
+  'bottom-left': 'bottom-8 left-8 items-start',
+  'bottom-right': 'bottom-8 right-8 items-end',
+  'bottom-center': 'bottom-8 left-1/2 -translate-x-1/2 items-center',
+};
 
 export function ToastProvider({
   children,
@@ -46,7 +54,12 @@ export function ToastProvider({
               <div
                 key={pos}
                 aria-live="polite"
-                className={cn('toast-viewport', `toast-viewport--${pos}`)}
+                data-testid="toast-viewport"
+                data-position={pos}
+                className={cn(
+                  'fixed z-[100] flex flex-col pointer-events-none w-[380px] max-w-[calc(100vw-4rem)] gap-3',
+                  viewportPositionClasses[pos]
+                )}
               >
                 <AnimatePresence mode="popLayout">
                   {posToasts.map((t, index) => (
@@ -119,24 +132,25 @@ function ToastItem({
       onFocus={() => pauseToastTimer(toast.id)}
       onBlur={() => resumeToastTimer(toast.id)}
       className={cn(
-        'group',
-        'toast-item',
-        invert ? 'toast-item--invert' : 'toast-item--default',
-        isTop ? 'toast-item--top' : 'toast-item--bottom'
+        'group absolute w-full pointer-events-auto border ds-rounded shadow-2xl p-4 flex items-center gap-4 transition-shadow',
+        invert
+          ? 'bg-ds-950 text-ds-50 border-ds-800 dark:bg-ds-0 dark:text-ds-950 dark:border-ds-200'
+          : 'bg-card text-card-foreground border-border',
+        isTop ? 'top-0 origin-top' : 'bottom-0 origin-bottom'
       )}
     >
-      <div className="toast-item__icon">
+      <div className="shrink-0 text-xl">
         {toast.icon || TYPE_ICONS[toast.type]}
       </div>
 
-      <div className="toast-item__content">
+      <div className="flex flex-col gap-1 flex-1 overflow-hidden">
         {toast.title && (
-          <h4 className={cn('toast-item__title', invert ? 'toast-item__title--invert' : 'toast-item__title--default')}>
+          <h4 className={cn('text-sm font-bold leading-tight', invert ? 'text-ds-50 dark:text-ds-950' : 'text-foreground')}>
             {toast.title}
           </h4>
         )}
         {toast.description && (
-          <p className={cn('toast-item__description', invert ? 'toast-item__description--invert' : 'toast-item__description--default')}>
+          <p className={cn('text-xs leading-relaxed', invert ? 'text-ds-300 dark:text-ds-600' : 'text-muted-foreground')}>
             {toast.description}
           </p>
         )}
@@ -146,12 +160,15 @@ function ToastItem({
         type="button"
         aria-label="Dismiss notification"
         onClick={() => removeToast(toast.id)}
-        className={cn('toast-item__close', invert ? 'toast-item__close--invert' : 'toast-item__close--default')}
+        className={cn(
+          'shrink-0 h-fit p-1.5 rounded-md transition-all opacity-0 group-hover:opacity-100 focus-visible:opacity-100 focus:opacity-100',
+          invert
+            ? 'text-ds-400 hover:text-ds-50 hover:bg-ds-800 dark:text-ds-500 dark:hover:text-ds-950 dark:hover:bg-ds-200'
+            : 'text-ds-600 dark:text-ds-400 hover:text-foreground hover:bg-muted'
+        )}
       >
-        <FiX size={14} />
+        <FiX size={16} />
       </button>
     </motion.div>
   );
 }
-
-ToastProvider.displayName = 'ToastProvider';

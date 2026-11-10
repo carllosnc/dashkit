@@ -8,7 +8,7 @@ export interface ModalContentProps {
 
 export function ModalContent({ children, className }: ModalContentProps) {
   return (
-    <div className={cn('modal__body', className)}>
+    <div className={cn('flex-1 overflow-y-auto p-6 no-scrollbar', className)}>
       {children}
     </div>
   );

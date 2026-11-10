@@ -92,13 +92,12 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Drawer',
     files: [
       'src/dashkit/Drawer/Drawer.tsx',
-      'src/dashkit/Drawer/drawer.css',
       'src/dashkit/Drawer/useDrawer.ts',
       'src/dashkit/Drawer/Drawer.test.tsx',
       'src/dashkit/Drawer/index.ts'
     ],
     registryDependencies: ['backdrop'],
-    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'class-variance-authority', 'react-icons'],
   },
   dropdown: {
     name: 'Dropdown',
@@ -143,13 +142,12 @@ export const registry: Record<string, ComponentConfig> = {
       'src/dashkit/Modal/ModalContent.tsx',
       'src/dashkit/Modal/ModalFooter.tsx',
       'src/dashkit/Modal/ModalHeader.tsx',
-      'src/dashkit/Modal/modal.css',
       'src/dashkit/Modal/useModal.ts',
       'src/dashkit/Modal/Modal.test.tsx',
       'src/dashkit/Modal/index.ts'
     ],
     registryDependencies: ['backdrop', 'iconbutton'],
-    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'class-variance-authority', 'react-icons'],
   },
   otpinput: {
     name: 'OtpInput',
@@ -218,17 +216,15 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Tabs',
     files: [
       'src/dashkit/Tabs/Tabs.tsx',
-      'src/dashkit/Tabs/tabs.css',
       'src/dashkit/Tabs/Tabs.test.tsx',
       'src/dashkit/Tabs/index.ts'
     ],
-    dependencies: ['framer-motion', 'clsx', 'tailwind-merge'],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'class-variance-authority'],
   },
   toast: {
     name: 'Toast',
     files: [
       'src/dashkit/Toast/Toast.tsx',
-      'src/dashkit/Toast/toast.css',
       'src/dashkit/Toast/useToast.ts',
       'src/dashkit/Toast/Toast.test.tsx',
       'src/dashkit/Toast/index.ts'
@@ -500,7 +496,6 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Tooltip',
     files: [
       'src/dashkit/Tooltip/Tooltip.tsx',
-      'src/dashkit/Tooltip/tooltip.css',
       'src/dashkit/Tooltip/Tooltip.test.tsx',
       'src/dashkit/Tooltip/index.ts'
     ],
@@ -551,7 +546,6 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Backdrop',
     files: [
       'src/dashkit/Backdrop/Backdrop.tsx',
-      'src/dashkit/Backdrop/backdrop.css',
       'src/dashkit/Backdrop/Backdrop.test.tsx',
       'src/dashkit/Backdrop/index.ts'
     ],

@@ -8,7 +8,7 @@ export interface ModalFooterProps {
 
 export function ModalFooter({ children, className }: ModalFooterProps) {
   return (
-    <div className={cn('modal__footer', className)}>
+    <div className={cn('p-6 pb-6 flex items-center justify-end gap-3', className)}>
       {children}
     </div>
   );

@@ -1334,7 +1334,7 @@ You can still use the `items` prop for simpler cases.
 
 - Slug: `tabs`
 - Installation: `bunx carllosnc/dashkit add tabs`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
+- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`
 
 # Tabs
 
@@ -3664,7 +3664,7 @@ Add a `label` and `description` to provide context for the value.
 
 - Slug: `modal`
 - Installation: `bunx carllosnc/dashkit add modal`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
+- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`, `react-icons`
 - Dashkit Dependencies: `backdrop`, `iconbutton`
 
 export const BasicModal = () => {
@@ -3919,7 +3919,7 @@ The `full` size provides a take-over experience while maintaining focus on a sin
 
 - Slug: `drawer`
 - Installation: `bunx carllosnc/dashkit add drawer`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
+- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`, `react-icons`
 - Dashkit Dependencies: `backdrop`
 
 export const DrawerDemo = () => {

@@ -2,7 +2,6 @@ import * as React from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '../utils/cn';
-import './tooltip.css';
 
 interface TooltipContextType {
   open: boolean;
@@ -55,7 +54,7 @@ export function Tooltip({
   return (
     <TooltipContext.Provider value={{ open, setOpen, triggerRect, setTriggerRect, animate, tooltipId }}>
       <div
-        className={cn('tooltip', className)}
+        className={cn('inline-block', className)}
         onMouseEnter={(e) => handleOpen(e.currentTarget.getBoundingClientRect())}
         onMouseLeave={handleClose}
         onFocus={(e) => handleOpen(e.currentTarget.getBoundingClientRect())}
@@ -81,17 +80,26 @@ export function TooltipTrigger({ children, asChild }: { children: React.ReactNod
   return <span aria-describedby={describedBy}>{children}</span>;
 }
 
+export interface TooltipContentProps {
+  children: React.ReactNode;
+  className?: string;
+  side?: 'top' | 'bottom' | 'left' | 'right';
+  sideOffset?: number;
+}
+
+const arrowSideClasses: Record<NonNullable<TooltipContentProps['side']>, string> = {
+  top: 'bottom-[-5px] left-1/2 -translate-x-1/2 border-r border-b',
+  bottom: 'top-[-5px] left-1/2 -translate-x-1/2 border-l border-t',
+  left: 'right-[-5px] top-1/2 -translate-y-1/2 border-r border-t',
+  right: 'left-[-5px] top-1/2 -translate-y-1/2 border-l border-b',
+};
+
 export function TooltipContent({
   children,
   className,
   side = 'top',
   sideOffset = 8
-}: {
-  children: React.ReactNode;
-  className?: string;
-  side?: 'top' | 'bottom' | 'left' | 'right';
-  sideOffset?: number;
-}) {
+}: TooltipContentProps) {
   const context = React.useContext(TooltipContext);
   if (!context) throw new Error('TooltipContent must be used within a Tooltip');
 
@@ -159,11 +167,17 @@ export function TooltipContent({
             left,
             zIndex: 9999,
           }}
-          className={cn('tooltip__content', className)}
+          className={cn(
+            'px-3 py-1.5 text-xs font-medium shadow-lg pointer-events-none relative ds-rounded bg-ds-950 text-ds-0 border border-ds-800 dark:bg-ds-0 dark:text-ds-950 dark:border-ds-200',
+            className
+          )}
         >
           {children}
           <div
-            className={cn('tooltip__arrow', `tooltip__arrow--${side}`)}
+            className={cn(
+              'absolute w-2 h-2 rotate-45 bg-ds-950 dark:bg-ds-0 border-ds-800 dark:border-ds-200',
+              arrowSideClasses[side]
+            )}
           />
         </motion.div>
       )}

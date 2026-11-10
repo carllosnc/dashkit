@@ -11,8 +11,8 @@ export interface ModalHeaderProps {
 
 export function ModalHeader({ children, className, onClose }: ModalHeaderProps) {
   return (
-    <div className={cn('modal__header', className)}>
-      <div className="modal__header-content">
+    <div className={cn('flex items-start justify-between px-6 pt-6', className)}>
+      <div className="flex flex-col gap-1.5 flex-1">
         {children}
       </div>
       {onClose && (
@@ -20,7 +20,7 @@ export function ModalHeader({ children, className, onClose }: ModalHeaderProps) 
           icon={<FiX size={18} />}
           variant="ghost"
           onClick={onClose}
-          className="modal__close-button"
+          className="-mr-2 text-ds-600 dark:text-ds-400 hover:text-ds-900 dark:hover:text-white"
           aria-label="Close modal"
         />
       )}
