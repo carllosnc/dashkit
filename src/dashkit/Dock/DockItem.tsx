@@ -1,7 +1,6 @@
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "../utils/cn";
-import "./dock.css";
 
 export interface DockItemProps {
   icon: React.ReactNode;
@@ -47,22 +46,22 @@ export const DockItem = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, 
     const [isHovered, setIsHovered] = React.useState(false);
 
     const arrowPositionClass = cn(
-      "dock-item__arrow",
-      position === "bottom" && "dock-item__arrow--bottom",
-      position === "left" && "dock-item__arrow--left",
-      position === "right" && "dock-item__arrow--right"
+      "absolute size-1.5 rotate-45 bg-ds-950 dark:bg-ds-0 border-ds-800 dark:border-ds-200",
+      position === "bottom" && "bottom-[-4px] left-1/2 -translate-x-1/2 border-b border-r",
+      position === "left" && "left-[-4px] top-1/2 -translate-y-1/2 border-b border-l",
+      position === "right" && "right-[-4px] top-1/2 -translate-y-1/2 border-t border-r"
     );
 
     const tooltipPositionClass = cn(
-      "dock-item__tooltip",
-      position === "bottom" && "dock-item__tooltip--top",
-      position === "left" && "dock-item__tooltip--left",
-      position === "right" && "dock-item__tooltip--right"
+      "absolute pointer-events-none bg-ds-950 dark:bg-ds-0 px-2 py-1 text-[10px] font-medium text-ds-0 dark:text-ds-950 border border-ds-800 dark:border-ds-200 whitespace-nowrap z-[100]",
+      position === "bottom" && "-top-12 left-1/2",
+      position === "left" && "left-14 top-1/2",
+      position === "right" && "right-14 top-1/2"
     );
 
     const content = (
       <>
-        <div className="dock-item__icon">{icon}</div>
+        <div className="flex size-full items-center justify-center text-current leading-none [&>svg]:size-5">{icon}</div>
         <AnimatePresence>
           {label && isHovered && (
             <motion.span
@@ -83,7 +82,10 @@ export const DockItem = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, 
     );
 
     const commonProps = {
-      className: cn("dock-item", className),
+      className: cn(
+        "relative flex size-10 items-center justify-center rounded-full bg-white dark:bg-ds-950 text-ds-800 dark:text-ds-200 shadow-sm shrink-0 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-ds-400",
+        className
+      ),
       onMouseEnter: () => setIsHovered(true),
       onMouseLeave: () => setIsHovered(false),
       onFocus: () => setIsHovered(true),

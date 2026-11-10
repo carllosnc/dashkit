@@ -2,7 +2,6 @@ import { useId, Fragment } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '../utils/cn';
 import { useBarChart } from './useBarChart';
-import './bar-chart.css';
 
 export interface BarChartSeries {
   key: string;
@@ -63,14 +62,14 @@ export function BarChart({
 
   return (
     <div
-      className={cn('bar-chart', className)}
+      className={cn('w-full flex-1 flex flex-col relative overflow-visible', className)}
       style={{ height: typeof height === 'number' ? `${height}px` : height }}
     >
       <svg
         ref={chartRef}
         viewBox={`0 0 ${width} ${svgHeight}`}
         preserveAspectRatio="none"
-        className="bar-chart__svg"
+        className="flex-1 w-full overflow-visible"
         onMouseMove={handleMouseMove}
         onMouseLeave={() => setHoveredIndex(null)}
       >
@@ -139,7 +138,7 @@ export function BarChart({
             y1={svgHeight * (1 - line)}
             x2={width}
             y2={svgHeight * (1 - line)}
-            className="bar-chart__grid-line"
+            className="stroke-border"
             strokeWidth="1"
             strokeDasharray="4 4"
             vectorEffect="non-scaling-stroke"
@@ -175,8 +174,8 @@ export function BarChart({
                     fill={s.color}
                     rx={rx}
                     className={cn(
-                      'bar-chart__bar',
-                      hoveredIndex !== null && hoveredIndex !== dataIdx && 'bar-chart__bar--inactive'
+                      'transition-opacity duration-200 cursor-pointer',
+                      hoveredIndex !== null && hoveredIndex !== dataIdx && 'opacity-40'
                     )}
                     style={{ transformOrigin: 'bottom' }}
                     whileHover={{
@@ -224,7 +223,7 @@ export function BarChart({
       {showTooltip && hoveredIndex !== null && (
         <div
           className={cn(
-            'bar-chart__tooltip',
+            'absolute z-50 pointer-events-none transform -translate-x-1/2 bg-popover text-popover-fg ds-rounded shadow-xl border border-border p-3 flex flex-col gap-2 min-w-[140px] transition-transform duration-200',
             isNearTop ? "translate-y-4" : "-translate-y-full -mt-12"
           )}
           style={{
@@ -232,18 +231,18 @@ export function BarChart({
             top: tooltipPos.y
           }}
         >
-          <div className="bar-chart__tooltip-header">
-             <span className="bar-chart__tooltip-header-text">
+          <div className="flex border-b border-border pb-1 mb-1">
+             <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
                {data[hoveredIndex].label}
              </span>
           </div>
           {validSeries.map(s => (
-            <div key={s.key} className="bar-chart__tooltip-entry">
-              <div className="bar-chart__tooltip-entry-label">
-                 <div className="bar-chart__tooltip-entry-dot" style={{ backgroundColor: s.color }} />
-                 <span className="bar-chart__tooltip-entry-text">{s.label}</span>
+            <div key={s.key} className="flex items-center justify-between gap-4">
+              <div className="flex items-center gap-2">
+                 <div className="size-2 rounded-full" style={{ backgroundColor: s.color }} />
+                 <span className="text-xs font-medium text-muted-foreground whitespace-nowrap">{s.label}</span>
               </div>
-              <span className="bar-chart__tooltip-entry-value">
+              <span className="text-xs font-bold text-foreground">
                 {Number(data[hoveredIndex][s.key]).toLocaleString()}
               </span>
             </div>
@@ -252,13 +251,13 @@ export function BarChart({
       )}
 
       {showLabels && (
-        <div className="bar-chart__x-axis">
+        <div className="flex w-full mt-4">
           {data.map((d, i) => (
-            <div key={i} className="bar-chart__x-axis-column">
+            <div key={i} className="flex-1 text-center">
               <span
                 className={cn(
-                  'bar-chart__x-axis-label',
-                  hoveredIndex === i && 'bar-chart__x-axis-label--active'
+                  'text-[10px] font-bold uppercase tracking-widest text-muted-foreground transition-colors inline-block',
+                  hoveredIndex === i && 'text-foreground'
                 )}
               >
                 {d.label}

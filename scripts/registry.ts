@@ -115,7 +115,6 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'ImageExpander',
     files: [
       'src/dashkit/ImageExpander/ImageExpander.tsx',
-      'src/dashkit/ImageExpander/image-expander.css',
       'src/dashkit/ImageExpander/useImageExpander.ts',
       'src/dashkit/ImageExpander/ImageExpander.test.tsx',
       'src/dashkit/ImageExpander/index.ts'
@@ -298,7 +297,6 @@ export const registry: Record<string, ComponentConfig> = {
     files: [
       'src/dashkit/AreaChart/AreaChart.tsx',
       'src/dashkit/AreaChart/useAreaChart.ts',
-      'src/dashkit/AreaChart/area-chart.css',
       'src/dashkit/AreaChart/AreaChart.test.tsx',
       'src/dashkit/AreaChart/index.ts'
     ],
@@ -309,7 +307,6 @@ export const registry: Record<string, ComponentConfig> = {
     files: [
       'src/dashkit/BarChart/BarChart.tsx',
       'src/dashkit/BarChart/useBarChart.ts',
-      'src/dashkit/BarChart/bar-chart.css',
       'src/dashkit/BarChart/BarChart.test.tsx',
       'src/dashkit/BarChart/index.ts'
     ],
@@ -319,7 +316,6 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'LineChart',
     files: [
       'src/dashkit/LineChart/LineChart.tsx',
-      'src/dashkit/LineChart/line-chart.css',
       'src/dashkit/LineChart/useLineChart.ts',
       'src/dashkit/LineChart/LineChart.test.tsx',
       'src/dashkit/LineChart/index.ts'
@@ -330,7 +326,6 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'PieChart',
     files: [
       'src/dashkit/PieChart/PieChart.tsx',
-      'src/dashkit/PieChart/pie-chart.css',
       'src/dashkit/PieChart/usePieChart.ts',
       'src/dashkit/PieChart/PieChart.test.tsx',
       'src/dashkit/PieChart/index.ts'
@@ -393,7 +388,6 @@ export const registry: Record<string, ComponentConfig> = {
     files: [
       'src/dashkit/FloatActionMenu/FloatActionMenu.tsx',
       'src/dashkit/FloatActionMenu/useFloatActionMenu.ts',
-      'src/dashkit/FloatActionMenu/float-action-menu.css',
       'src/dashkit/FloatActionMenu/FloatActionMenu.test.tsx',
       'src/dashkit/FloatActionMenu/index.ts'
     ],
@@ -453,7 +447,6 @@ export const registry: Record<string, ComponentConfig> = {
     files: [
       'src/dashkit/Dock/Dock.tsx',
       'src/dashkit/Dock/DockItem.tsx',
-      'src/dashkit/Dock/dock.css',
       'src/dashkit/Dock/Dock.test.tsx',
       'src/dashkit/Dock/index.ts'
     ],
@@ -484,7 +477,6 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'SystemLogs',
     files: [
       'src/dashkit/SystemLogs/SystemLogs.tsx',
-      'src/dashkit/SystemLogs/system-logs.css',
       'src/dashkit/SystemLogs/SystemLogs.test.tsx',
       'src/dashkit/SystemLogs/index.ts'
     ],

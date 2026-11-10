@@ -2,7 +2,6 @@ import * as React from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '../utils/cn';
 import { usePieChart } from './usePieChart';
-import './pie-chart.css';
 
 export interface PieChartDataItem {
   label: string;
@@ -58,12 +57,12 @@ export function PieChart({
   return (
     <div
       ref={containerRef}
-      className={cn('pie-chart', className)}
+      className={cn('w-full flex flex-col items-center justify-center relative overflow-visible', className)}
     >
-      <div className="pie-chart__container">
+      <div className="relative w-full aspect-square max-w-[280px] overflow-visible">
         <svg
           viewBox={`0 0 ${size} ${size}`}
-          className="pie-chart__svg"
+          className="w-full h-full overflow-visible"
         >
           {slices.map((slice, i) => (
             <motion.path
@@ -72,7 +71,7 @@ export function PieChart({
               fill={slice.color}
               stroke="currentColor"
               strokeWidth="3"
-              className="pie-chart__slice"
+              className="stroke-card text-card transition-colors duration-200 cursor-pointer"
               style={{
                 zIndex: hoveredIndex === i ? 10 : 1,
                 transformOrigin: `${center}px ${center}px`
@@ -93,22 +92,22 @@ export function PieChart({
         {showTooltip && hoveredIndex !== null && (
           <div
             className={cn(
-              'pie-chart__tooltip',
-              isNearTop ? 'pie-chart__tooltip--near-top' : 'pie-chart__tooltip--default'
+              'absolute z-50 pointer-events-none transform -translate-x-1/2 bg-popover text-popover-fg ds-rounded shadow-xl border border-border p-3 flex flex-col gap-1 min-w-[120px] transition-transform duration-200',
+              isNearTop ? 'translate-y-4' : '-translate-y-full -mt-8'
             )}
             style={{
               left: tooltipPos.x,
               top: tooltipPos.y
             }}
           >
-            <div className="pie-chart__tooltip-header">
-               <div className="pie-chart__tooltip-color" style={{ backgroundColor: validData[hoveredIndex].color }} />
-               <span className="pie-chart__tooltip-label">{validData[hoveredIndex].label}</span>
+            <div className="flex items-center gap-2">
+               <div className="size-2 rounded-full" style={{ backgroundColor: validData[hoveredIndex].color }} />
+               <span className="text-xs font-medium text-muted-foreground whitespace-nowrap">{validData[hoveredIndex].label}</span>
             </div>
-            <div className="pie-chart__tooltip-value-container">
-               <span className="pie-chart__tooltip-value">
+            <div className="flex border-b border-border pb-1 mt-1 mb-1">
+               <span className="text-xs font-bold text-foreground">
                  {validData[hoveredIndex].value.toLocaleString()}
-                 <span className="pie-chart__tooltip-percentage">
+                 <span className="ml-1 opacity-50 font-normal">
                    ({((validData[hoveredIndex].value / total) * 100).toFixed(1)}%)
                  </span>
                </span>
@@ -117,17 +116,17 @@ export function PieChart({
         )}
       </div>
       {showLabels && (
-        <div className="pie-chart__legend">
+        <div className="flex w-full flex-wrap justify-center gap-x-6 gap-y-2">
           {validData.map((item, i) => (
             <div
               key={i}
               className={cn(
-                'pie-chart__legend-item',
-                hoveredIndex !== null && hoveredIndex !== i && 'pie-chart__legend-item--dimmed'
+                'flex items-center gap-2 transition-opacity duration-200',
+                hoveredIndex !== null && hoveredIndex !== i && 'opacity-40'
               )}
             >
-              <div className="pie-chart__legend-color" style={{ backgroundColor: item.color }} />
-              <span className="pie-chart__legend-label">
+              <div className="size-2.5 rounded-sm" style={{ backgroundColor: item.color }} />
+              <span className="text-[10px] font-bold uppercase text-muted-foreground first-letter:uppercase !tracking-normal">
                 {item.label}
               </span>
             </div>

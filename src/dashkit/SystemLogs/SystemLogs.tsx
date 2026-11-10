@@ -2,7 +2,6 @@ import * as React from 'react';
 import { FiTerminal } from 'react-icons/fi';
 import { cn } from '../utils/cn';
 import { Badge, type BadgeColor } from '../Badge/Badge';
-import './system-logs.css';
 
 export type LogLevel = 'ok' | 'info' | 'warn' | 'error' | 'stable';
 
@@ -31,6 +30,14 @@ const LEVEL_LABELS: Record<LogLevel, string> = {
   stable: '[STB]',
 };
 
+const LEVEL_COLORS: Record<LogLevel, string> = {
+  ok: 'text-ds-success-500',
+  info: 'text-ds-info-500',
+  warn: 'text-ds-warning-500',
+  error: 'text-ds-danger-500',
+  stable: 'text-ds-primary-500',
+};
+
 export const SystemLogs = React.forwardRef<HTMLDivElement, SystemLogsProps>(
   ({
     logs,
@@ -53,41 +60,41 @@ export const SystemLogs = React.forwardRef<HTMLDivElement, SystemLogsProps>(
     return (
       <div
         ref={ref}
-        className={cn('system-logs', className)}
+        className={cn('overflow-hidden ds-rounded border border-ds-300 dark:border-ds-700 bg-black shadow-lg', className)}
       >
-        <div className="system-logs__header">
-          <div className="system-logs__header-content">
-            <FiTerminal className="system-logs__header-icon" size={14} />
-            <h3 className="system-logs__header-title">{title}</h3>
+        <div className="bg-zinc-950/50 dark:bg-white/[0.03] py-2.5 px-4 border-b border-white/10">
+          <div className="flex items-center gap-2">
+            <FiTerminal className="text-ds-400" size={14} />
+            <h3 className="text-xs text-ds-50 font-medium tracking-tight">{title}</h3>
           </div>
         </div>
 
         <div
           ref={scrollRef}
-          className="system-logs__viewport"
+          className="p-4 space-y-2 font-mono text-xs leading-relaxed overflow-y-auto custom-scrollbar"
           style={{ maxHeight }}
         >
           {logs.map((log, i) => (
-            <div key={i} className="system-logs__entry">
+            <div key={i} className="flex gap-2">
               {log.timestamp && (
-                <span className="system-logs__entry-timestamp">{log.timestamp}</span>
+                <span className="text-ds-500 select-none whitespace-nowrap">{log.timestamp}</span>
               )}
-              <span className={cn('system-logs__entry-level', `system-logs__entry-level--${log.type}`)}>
+              <span className={cn('font-bold min-w-[36px]', LEVEL_COLORS[log.type])}>
                 {LEVEL_LABELS[log.type]}
               </span>
-              <span className="system-logs__entry-message">{log.message}</span>
+              <span className="text-ds-300 break-all">{log.message}</span>
             </div>
           ))}
-          <div className="system-logs__cursor-line">
-            <span className="system-logs__cursor-prompt">$</span>
-            <span className="system-logs__cursor-caret">_</span>
+          <div className="flex gap-2 opacity-50 pt-1">
+            <span className="text-ds-400">$</span>
+            <span className="text-ds-100 animate-pulse">_</span>
           </div>
         </div>
 
         {(session || status) && (
-          <div className="system-logs__footer">
+          <div className="px-4 py-2.5 bg-white/[0.02] border-t border-white/10 flex items-center justify-between min-h-[2.5rem]">
             {session ? (
-              <span className="system-logs__footer-session">
+              <span className="text-[10px] text-ds-500 uppercase font-bold tracking-wider h-5 inline-flex items-center leading-none translate-y-[0.5px]">
                 session: {session}
               </span>
             ) : <div />}
