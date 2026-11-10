@@ -30,8 +30,9 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(
             <div className="flex flex-col">
               {label && (
                 <label
+                  data-slot="label"
                   htmlFor={sliderId}
-                  className="text-sm font-medium text-ds-800 dark:text-ds-200 tracking-tight cursor-pointer"
+                  className="text-sm font-medium text-foreground tracking-tight cursor-pointer"
                 >
                   {label}
                 </label>
