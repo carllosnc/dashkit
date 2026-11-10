@@ -6,8 +6,6 @@ import { cn } from '../utils/cn';
 import { Chip } from '../Chip/Chip';
 import { useCombobox } from './useCombobox';
 
-import './combobox.css';
-
 export interface ComboboxOption {
   value: string;
   label: string;
@@ -75,16 +73,16 @@ export function Combobox({
       : undefined;
 
   return (
-    <div className={cn('combobox', className)} ref={containerRef}>
+    <div className={cn('flex flex-col gap-2 w-full font-sans relative', className)} ref={containerRef}>
       {(label || (multiple && selectedOptions.length > 0)) && (
-        <div className="combobox__label-area">
+        <div className="flex items-center justify-between px-1">
           {label && (
-            <label htmlFor={inputId} className="combobox__label">
+            <label htmlFor={inputId} className="text-[13px] font-semibold text-ds-700 tracking-tight dark:text-ds-300">
               {label}
             </label>
           )}
           {multiple && selectedOptions.length > 0 && (
-            <span className="combobox__selected-count">
+            <span className="text-[11px] font-bold text-ds-600 dark:text-ds-400 uppercase tracking-wider">
               {selectedOptions.length} Selected
             </span>
           )}
@@ -92,7 +90,7 @@ export function Combobox({
       )}
 
       {multiple && selectedOptions.length > 0 && (
-        <div className="combobox__chips-wrapper">
+        <div className="flex flex-wrap gap-2 mb-1">
           <AnimatePresence>
             {selectedOptions.map(opt => (
               <motion.div
@@ -114,8 +112,8 @@ export function Combobox({
         </div>
       )}
 
-      <div className="combobox__input-container" ref={inputWrapperRef}>
-        <div className="combobox__search-icon-wrapper">
+      <div className="relative group" ref={inputWrapperRef}>
+        <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ds-500 transition-colors duration-200 pointer-events-none group-focus-within:text-black dark:group-focus-within:text-white">
           <FiSearch className="size-4" />
         </div>
 
@@ -140,25 +138,25 @@ export function Combobox({
           placeholder={multiple && selectedOptions.length > 0 ? "Add more..." : placeholder}
           autoComplete="off"
           className={cn(
-            'combobox__input',
-            isOpen && "combobox__input--open"
+            'w-full h-9 pl-10 pr-10 text-base sm:text-sm bg-input-bg text-input-fg border border-input-border ds-rounded outline-none transition-all duration-200 placeholder:text-muted-foreground focus:border-input-focus focus:ring-2 focus:ring-input-focus/20 disabled:cursor-not-allowed disabled:opacity-50',
+            isOpen && 'border-input-focus ring-2 ring-input-focus/20'
           )}
         />
 
-        <div className="combobox__action-buttons">
+        <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1">
           {(query || (multiple ? selectedOptions.length > 0 : value)) && !disabled && (
             <button
               type="button"
               onClick={handleClear}
-              className="combobox__clear-button"
+              className="p-1.5 -m-0.5 rounded-full text-ds-500 transition-all hover:text-black hover:bg-ds-100 dark:hover:text-white dark:hover:bg-ds-800"
               aria-label="Clear selection"
             >
               <FiX className="size-3.5" />
             </button>
           )}
           <div className={cn(
-            'combobox__chevron',
-            isOpen && "rotate-180"
+            'text-ds-500 transition-transform duration-300 pointer-events-none',
+            isOpen && 'rotate-180'
           )}>
             <FiChevronDown className="size-4" />
           </div>
@@ -178,11 +176,11 @@ export function Combobox({
                 ? { top: triggerRect.bottom + 8 }
                 : { bottom: (window.innerHeight - triggerRect.top) + 8 }),
             }}
-            className="combobox__popover"
+            className="p-1 bg-popover text-popover-fg border border-popover-border ds-rounded shadow-lg overflow-hidden"
           >
-            <div className="combobox__scroll-area">
+            <div className="max-h-60 overflow-y-auto custom-scrollbar flex flex-col gap-0.5 font-sans pr-1">
               {filteredOptions.length === 0 ? (
-                <div className="combobox__empty-state">
+                <div className="px-4 py-6 text-sm text-muted-foreground italic text-center">
                   No matches found for "{query}"
                 </div>
               ) : (
@@ -197,13 +195,13 @@ export function Combobox({
                       aria-selected={isSelected}
                       onClick={() => handleSelect(opt)}
                       className={cn(
-                        'combobox__item',
-                        isSelected && 'combobox__item--active'
+                        'w-full px-4 py-2.5 text-sm text-left flex items-center justify-between duration-200 transition-colors ds-rounded hover:text-popover-fg hover:bg-popover-item',
+                        isSelected && 'bg-popover-item-selected text-popover-item-selected-fg font-semibold hover:bg-popover-item-selected'
                       )}
                     >
                       <span className="truncate">{opt.label}</span>
                       {isSelected && (
-                        <FiCheck className="combobox__check-icon" />
+                        <FiCheck className="size-4 shrink-0 text-popover-item-selected-fg" />
                       )}
                     </button>
                   );
@@ -216,7 +214,7 @@ export function Combobox({
       </div>
 
       {description && (
-        <span className="combobox__description">
+        <span className="text-[12px] text-ds-500 ml-1 tracking-tight">
           {description}
         </span>
       )}
@@ -225,4 +223,3 @@ export function Combobox({
 }
 
 Combobox.displayName = 'Combobox';
-

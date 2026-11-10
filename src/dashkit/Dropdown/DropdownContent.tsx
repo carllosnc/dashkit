@@ -2,7 +2,6 @@ import * as React from 'react';
 import { createPortal } from 'react-dom';
 import { useDropdownContext } from './useDropdown';
 import { cn } from '../utils/cn';
-import './dropdown.css';
 
 export interface DropdownContentProps {
   children: React.ReactNode;
@@ -136,7 +135,7 @@ export function DropdownContent({
       ref={portalRef}
       style={style}
       className={cn(
-        "dropdown-content",
+        'min-w-[12rem] bg-popover/95 backdrop-blur-md text-popover-fg border border-popover-border/80 ds-rounded-lg shadow-lg p-1.5 overflow-hidden flex flex-col gap-0.5',
         animProps.originClass,
         className
       )}
@@ -146,3 +145,5 @@ export function DropdownContent({
     document.body
   );
 }
+
+DropdownContent.displayName = 'DropdownContent';

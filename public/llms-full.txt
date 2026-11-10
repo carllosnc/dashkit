@@ -2860,7 +2860,7 @@ Extends all native `CheckboxHTMLAttributes` (except `type`), plus these specialt
 
 - Slug: `select`
 - Installation: `bunx carllosnc/dashkit add select`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
+- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`, `react-icons`
 
 export const SelectDemo = () => {
   const [value, setValue] = useState('');

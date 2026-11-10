@@ -51,19 +51,20 @@ describe('Select', () => {
 
   it('applies size modifiers correctly', () => {
     const { container, rerender } = render(<Select options={options} size="sm" />);
-    expect(container.firstChild).toHaveClass('select--sm');
+    expect(container.firstChild).toHaveAttribute('data-size', 'sm');
 
     rerender(<Select options={options} size="lg" />);
-    expect(container.firstChild).toHaveClass('select--lg');
+    expect(container.firstChild).toHaveAttribute('data-size', 'lg');
 
     rerender(<Select options={options} />);
-    expect(container.firstChild).toHaveClass('select--md');
+    expect(container.firstChild).toHaveAttribute('data-size', 'md');
   });
 
   it('renders error message and applies error styles', () => {
     render(<Select options={options} error="Please select a value" />);
     expect(screen.getByText('Please select a value')).toBeInTheDocument();
     const trigger = screen.getByRole('button');
-    expect(trigger).toHaveClass('select__trigger--error');
+    expect(trigger).toHaveAttribute('aria-invalid', 'true');
+    expect(trigger).toHaveClass('border-ds-danger-500/50');
   });
 });

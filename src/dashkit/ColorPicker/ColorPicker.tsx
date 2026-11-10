@@ -1,10 +1,8 @@
 import * as React from 'react';
+import { FiCheck } from 'react-icons/fi';
 import { cn } from '../utils/cn';
 import { Popover, PopoverTrigger, PopoverContent } from '../Popover';
 import { Input } from '../Input/Input';
-import { FiCheck } from 'react-icons/fi';
-
-import './color-picker.css';
 
 const DEFAULT_PRESETS = [
   '#000000', '#454545', '#737373', '#A3A3A3', '#D4D4D4', '#FFFFFF',
@@ -61,9 +59,9 @@ export function ColorPicker({
   const messageId = React.useId();
 
   return (
-    <div className={cn('color-picker', className)}>
+    <div className={cn('flex flex-col gap-1.5 w-full font-sans', className)}>
       {label && (
-        <label id={labelId} className="color-picker__label">
+        <label id={labelId} className="text-[13px] font-semibold text-ds-700 ml-1 tracking-tight dark:text-ds-300">
           {label}
         </label>
       )}
@@ -74,8 +72,8 @@ export function ColorPicker({
             type="button"
             aria-labelledby={label ? `${labelId} ${valueId}` : undefined}
             className={cn(
-              'color-picker__trigger',
-              error && "border-ds-danger-500/50"
+              'flex items-center gap-3 w-full h-9 px-3 ds-rounded bg-input-bg border border-input-border text-sm text-input-fg outline-none transition-all duration-200 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-transparent hover:ring-2 hover:ring-ring hover:ring-offset-2 hover:ring-offset-transparent',
+              error && 'border-ds-danger-500/50'
             )}
           >
             <ColorSwatch color={hex} />
@@ -84,8 +82,8 @@ export function ColorPicker({
             </span>
           </button>
         </PopoverTrigger>
-        <PopoverContent align="start" className="color-picker__content">
-          <div className="color-picker__preset-grid">
+        <PopoverContent align="start" className="w-64 p-3 space-y-4 shadow-2xl bg-popover border-popover-border">
+          <div className="grid grid-cols-6 gap-2">
             {presets.map((color) => (
               <button
                 key={color}
@@ -94,18 +92,18 @@ export function ColorPicker({
                 aria-pressed={hex.toLowerCase() === color.toLowerCase()}
                 onClick={() => handleColorChange(color)}
                 className={cn(
-                  'color-picker__preset-item',
-                  "border-black/10 dark:border-white/10",
-                  color.toLowerCase() === '#ffffff' && "border-black/20",
-                  color.toLowerCase() === '#000000' && "dark:border-white/30"
+                  'size-8 rounded-lg border relative flex items-center justify-center overflow-hidden transition-all duration-200 hover:scale-110 active:scale-95',
+                  'border-black/10 dark:border-white/10',
+                  color.toLowerCase() === '#ffffff' && 'border-black/20',
+                  color.toLowerCase() === '#000000' && 'dark:border-white/30'
                 )}
                 style={{ backgroundColor: color }}
               >
                 {hex.toLowerCase() === color.toLowerCase() && (
                   <div
                     className={cn(
-                      "color-picker__preset-item--selected",
-                      (color.toLowerCase() === '#ffffff' || color.toLowerCase() === '#fbbf24') && "color-picker__preset-item--selected-light"
+                      'text-ds-50 drop-shadow-md flex items-center justify-center',
+                      (color.toLowerCase() === '#ffffff' || color.toLowerCase() === '#fbbf24') && 'text-ds-900 drop-shadow-none'
                     )}
                   >
                     <FiCheck size={14} strokeWidth={4} />
@@ -115,7 +113,7 @@ export function ColorPicker({
             ))}
           </div>
 
-          <div className="color-picker__footer">
+          <div className="pt-3 border-t border-border">
             <Input
               value={hex}
               onChange={handleHexInput}
@@ -134,7 +132,10 @@ export function ColorPicker({
         <span
           id={messageId}
           role={error ? 'alert' : undefined}
-          className={error ? 'color-picker__error-text' : 'color-picker__helper-text'}
+          className={cn(
+            'text-[12px] ml-1 tracking-tight',
+            error ? 'text-ds-danger-600 dark:text-ds-danger-400 font-medium' : 'text-ds-600'
+          )}
         >
           {error || helperText}
         </span>
@@ -151,13 +152,14 @@ function ColorSwatch({ color, size = 'default' }: { color: string; size?: 'sm' |
     <div
       aria-hidden="true"
       className={cn(
-        'color-picker__swatch',
-        size === 'sm' ? "size-4" : "size-5",
-        isWhite ? "border-black/20" : "border-black/10",
-        isBlack && "dark:border-white/30"
+        'rounded-md border shrink-0 transition-all duration-200',
+        size === 'sm' ? 'size-4' : 'size-5',
+        isWhite ? 'border-black/20' : 'border-black/10',
+        isBlack && 'dark:border-white/30'
       )}
       style={{ backgroundColor: color }}
     />
   );
 }
 
+ColorPicker.displayName = 'ColorPicker';

@@ -106,7 +106,6 @@ export const registry: Record<string, ComponentConfig> = {
       'src/dashkit/Dropdown/DropdownLabel.tsx',
       'src/dashkit/Dropdown/DropdownSeparator.tsx',
       'src/dashkit/Dropdown/DropdownTrigger.tsx',
-      'src/dashkit/Dropdown/dropdown.css',
       'src/dashkit/Dropdown/useDropdown.ts',
       'src/dashkit/Dropdown/Dropdown.test.tsx',
       'src/dashkit/Dropdown/index.ts'
@@ -172,12 +171,11 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Select',
     files: [
       'src/dashkit/Select/Select.tsx',
-      'src/dashkit/Select/select.css',
       'src/dashkit/Select/useSelect.ts',
       'src/dashkit/Select/Select.test.tsx',
       'src/dashkit/Select/index.ts'
     ],
-    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'class-variance-authority', 'react-icons'],
   },
   switch: {
     name: 'Switch',
@@ -370,7 +368,6 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'Combobox',
     files: [
       'src/dashkit/Combobox/Combobox.tsx',
-      'src/dashkit/Combobox/combobox.css',
       'src/dashkit/Combobox/useCombobox.ts',
       'src/dashkit/Combobox/Combobox.test.tsx',
       'src/dashkit/Combobox/index.ts'
@@ -426,7 +423,6 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'DatePicker',
     files: [
       'src/dashkit/DatePicker/DatePicker.tsx',
-      'src/dashkit/DatePicker/date-picker.css',
       'src/dashkit/DatePicker/useDatePicker.ts',
       'src/dashkit/DatePicker/DatePicker.test.tsx',
       'src/dashkit/DatePicker/index.ts'
@@ -479,7 +475,6 @@ export const registry: Record<string, ComponentConfig> = {
       'src/dashkit/Popover/Popover.tsx',
       'src/dashkit/Popover/PopoverContent.tsx',
       'src/dashkit/Popover/PopoverTrigger.tsx',
-      'src/dashkit/Popover/popover.css',
       'src/dashkit/Popover/usePopover.ts',
       'src/dashkit/Popover/Popover.test.tsx',
       'src/dashkit/Popover/index.ts'
@@ -511,7 +506,6 @@ export const registry: Record<string, ComponentConfig> = {
     files: [
       'src/dashkit/DateField/DateField.tsx',
       'src/dashkit/DateField/useDateField.ts',
-      'src/dashkit/DateField/date-field.css',
       'src/dashkit/DateField/DateField.test.tsx',
       'src/dashkit/DateField/index.ts'
     ],
@@ -569,7 +563,6 @@ export const registry: Record<string, ComponentConfig> = {
     name: 'ColorPicker',
     files: [
       'src/dashkit/ColorPicker/ColorPicker.tsx',
-      'src/dashkit/ColorPicker/color-picker.css',
       'src/dashkit/ColorPicker/ColorPicker.test.tsx',
       'src/dashkit/ColorPicker/index.ts'
     ],

@@ -12,8 +12,6 @@ export interface PopoverContentProps {
   sideOffset?: number;
 }
 
-import './popover.css';
-
 export function PopoverContent({
     children,
     className,
@@ -115,10 +113,10 @@ export function PopoverContent({
            onMouseLeave={triggerMode === 'hover' ? onMouseLeave : undefined}
            onFocus={triggerMode === 'hover' ? onFocus : undefined}
            onBlur={triggerMode === 'hover' ? onBlur : undefined}
-           transition={{ duration: 0.15, ease: "easeOut" }}
+           transition={{ duration: 0.15, ease: 'easeOut' }}
            style={style}
            className={cn(
-             "popover__content",
+             'w-72 max-w-[calc(100vw-2rem)] bg-popover/95 backdrop-blur-md text-popover-fg border border-popover-border/80 ds-rounded-lg shadow-xl dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05),0_20px_25px_-5px_rgba(0,0,0,0.5)] p-4 overflow-hidden',
              animProps.originClass,
              className
            )}
