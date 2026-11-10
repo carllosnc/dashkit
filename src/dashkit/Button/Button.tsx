@@ -7,19 +7,92 @@ import {
   type ReactNode,
   type ReactElement,
 } from 'react';
-import clsx, { type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { cn } from '../utils/cn';
 import { Spinner } from '../Spinner/Spinner';
-import './button.css';
 
-function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
+const buttonVariants = cva(
+  'inline-flex font-medium items-center justify-center cursor-pointer whitespace-nowrap transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-transparent active:scale-[0.97] disabled:opacity-60 disabled:cursor-not-allowed disabled:pointer-events-none',
+  {
+    variants: {
+      variant: {
+        filled: '',
+        outlined: 'bg-card text-foreground border',
+        soft: '',
+        ghost: 'bg-transparent border border-transparent',
+      },
+      color: {
+        primary: '',
+        danger: '',
+      },
+      size: {
+        sm: 'h-7 text-xs',
+        md: 'h-9 text-sm',
+        lg: 'h-11 text-base',
+      },
+      rounded: {
+        true: 'rounded-full',
+        false: 'rounded-md',
+      },
+    },
+    compoundVariants: [
+      // filled
+      {
+        variant: 'filled',
+        color: 'primary',
+        className: 'ds-primary-gradient text-primary-foreground shadow-xs hover:brightness-105',
+      },
+      {
+        variant: 'filled',
+        color: 'danger',
+        className: 'ds-danger-gradient text-red-50 hover:brightness-120',
+      },
+      // outlined
+      {
+        variant: 'outlined',
+        color: 'primary',
+        className: 'border-ds-300 hover:bg-ds-50 dark:border-ds-700 dark:hover:bg-ds-800/50 dark:hover:brightness-110',
+      },
+      {
+        variant: 'outlined',
+        color: 'danger',
+        className: 'bg-transparent text-ds-danger-600 border-ds-danger-400 hover:bg-ds-danger-50 dark:border-ds-danger-500 dark:text-ds-danger-400 dark:hover:bg-ds-danger-500/10 dark:hover:brightness-110',
+      },
+      // soft
+      {
+        variant: 'soft',
+        color: 'primary',
+        className: 'bg-secondary text-secondary-foreground hover:brightness-90 dark:hover:brightness-125',
+      },
+      {
+        variant: 'soft',
+        color: 'danger',
+        className: 'bg-ds-danger-600/10 text-ds-danger-600 hover:bg-ds-danger-600/20 dark:bg-ds-danger-500/20 dark:hover:brightness-125',
+      },
+      // ghost
+      {
+        variant: 'ghost',
+        color: 'primary',
+        className: 'text-foreground hover:bg-accent hover:text-accent-foreground',
+      },
+      {
+        variant: 'ghost',
+        color: 'danger',
+        className: 'text-ds-danger-600 hover:bg-ds-danger-600/10 dark:text-ds-danger-400 dark:hover:bg-ds-danger-500/20',
+      },
+    ],
+    defaultVariants: {
+      variant: 'filled',
+      color: 'primary',
+      size: 'md',
+      rounded: true,
+    },
+  }
+);
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'filled' | 'outlined' | 'soft' | 'ghost';
-  color?: 'primary' | 'danger';
-  size?: 'sm' | 'md' | 'lg';
+export interface ButtonProps
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'>,
+    Omit<VariantProps<typeof buttonVariants>, 'rounded'> {
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   loading?: boolean;
@@ -43,7 +116,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       leftIcon,
       rightIcon,
       loading,
-      rounded,
+      rounded = true,
       disabled,
       asChild = false,
       ...props
@@ -54,17 +127,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const spinnerSize = size === 'sm' ? 14 : size === 'lg' ? 18 : 16;
 
     const classes = cn(
-      'button',
-      `button--${variant}-${color}`,
-      `button--${size}`,
-      rounded === false && '!rounded-md',
-      {
-        "button--loading": loading,
-        "button--with-text": !isIconOnly,
-        "button--with-text-sm": size === 'sm' && !isIconOnly,
-        "button--with-text-lg": size === 'lg' && !isIconOnly,
-        "button--icon-only": isIconOnly,
-      },
+      buttonVariants({ variant, color, size, rounded }),
+      isIconOnly
+        ? 'aspect-square'
+        : size === 'sm'
+          ? 'px-2.5 gap-1.5'
+          : size === 'lg'
+            ? 'px-6 gap-2.5'
+            : 'px-4 gap-2',
+      loading && 'opacity-60 cursor-not-allowed',
       className
     );
 
@@ -78,7 +149,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
       return cloneElement(child as ReactElement<Record<string, unknown>>, {
         ref,
-        className: twMerge(classes, childProps.className),
+        className: cn(classes, childProps.className),
         children: (
           <>
             {loading && <Spinner size={spinnerSize} color="currentColor" thickness={3} />}
@@ -107,6 +178,3 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 );
 
 Button.displayName = 'Button';
-
-
-

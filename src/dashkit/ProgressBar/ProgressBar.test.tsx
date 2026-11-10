@@ -3,9 +3,10 @@ import { ProgressBar } from './ProgressBar';
 
 describe('ProgressBar', () => {
   it('renders correctly', () => {
-    const { container } = render(<ProgressBar value={50} />);
-    const progressBarContainer = container.querySelector('.progress-bar__track');
-    expect(progressBarContainer).toBeInTheDocument();
+    render(<ProgressBar value={50} />);
+    const progressBar = screen.getByRole('progressbar');
+    expect(progressBar).toBeInTheDocument();
+    expect(progressBar).toHaveAttribute('aria-valuenow', '50');
   });
 
   it('shows label when showLabel is true', () => {

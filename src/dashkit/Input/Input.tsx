@@ -1,5 +1,32 @@
 import { forwardRef, useId, type InputHTMLAttributes, type ReactNode } from 'react';
+import { cva } from 'class-variance-authority';
 import { cn } from '../utils/cn';
+
+const inputWrapperVariants = cva(
+  'relative flex items-center bg-input-bg border border-input-border ds-rounded outline-none transition-all duration-200 focus-within:border-input-focus focus-within:ring-2 focus-within:ring-input-focus/20',
+  {
+    variants: {
+      size: {
+        sm: '',
+        md: '',
+        lg: '',
+      },
+      error: {
+        true: 'border-ds-danger-500/50 focus-within:border-ds-danger-500 focus-within:ring-ds-danger-50 dark:border-ds-danger-500/30 dark:focus-within:border-ds-danger-500/50 dark:focus-within:ring-ds-danger-500/10',
+        false: '',
+      },
+      disabled: {
+        true: 'opacity-50 cursor-not-allowed pointer-events-none',
+        false: '',
+      },
+    },
+    defaultVariants: {
+      size: 'md',
+      error: false,
+      disabled: false,
+    },
+  }
+);
 
 export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'prefix' | 'size'> {
   label?: string;
@@ -12,9 +39,8 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
   mask?: RegExp;
   formatter?: (value: string) => string;
   size?: 'sm' | 'md' | 'lg';
+  wrapperClassName?: string;
 }
-
-import './input.css';
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   function Input(
@@ -30,6 +56,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       formatter,
       size = 'md',
       className,
+      wrapperClassName,
       id,
       onChange,
       ...props
@@ -53,33 +80,46 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     };
 
     return (
-      <div className={cn('input', `input--${size}`)}>
+      <div className={cn('flex flex-col gap-1.5 w-full font-sans', className)}>
         {label && (
           <label
             htmlFor={inputId}
-            className="input__label"
+            className="text-xs font-semibold text-ds-700 dark:text-ds-300 ml-1 tracking-tight"
           >
             {label}
           </label>
         )}
         <div
+          data-testid="input-wrapper"
           className={cn(
-            'input__wrapper',
-            `input__wrapper--${size}`,
-            error && 'input__wrapper--error',
-            props.disabled && 'input__wrapper--disabled',
-            className
+            inputWrapperVariants({ size, error: !!error, disabled: !!props.disabled }),
+            wrapperClassName
           )}
         >
           {prefix && (
-            <div className={cn('input__prefix', size === 'sm' && 'input__prefix--sm', size === 'lg' && 'input__prefix--lg')}>
+            <div
+              className={cn(
+                'text-ds-500 font-medium select-none whitespace-nowrap',
+                size === 'sm' ? 'pl-2.5 text-xs' : 'pl-4 text-sm'
+              )}
+            >
               {prefix}
             </div>
           )}
 
-          <div className={cn('input__inner', `input__inner--${size}`)}>
+          <div
+            className={cn(
+              'relative flex-1 flex items-center',
+              size === 'sm' ? 'h-7' : size === 'lg' ? 'h-11' : 'h-9'
+            )}
+          >
             {leftIcon && (
-              <div className={cn('input__icon', 'input__icon--left', size === 'sm' && 'input__icon--sm-left')}>
+              <div
+                className={cn(
+                  'absolute inset-y-0 text-ds-500 pointer-events-none flex items-center justify-center transition-colors',
+                  size === 'sm' ? 'left-2.5' : 'left-4'
+                )}
+              >
                 {leftIcon}
               </div>
             )}
@@ -95,21 +135,31 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
                   .join(' ') || undefined
               }
               className={cn(
-                'input__field',
-                `input__field--${size}`,
-                leftIcon && "input__field--with-left-icon",
-                rightIcon && "input__field--with-right-icon"
+                'w-full h-full bg-transparent border-none outline-none text-input-fg placeholder:text-muted-foreground disabled:cursor-not-allowed',
+                size === 'sm' ? 'text-xs px-2.5' : size === 'lg' ? 'text-base px-4' : 'text-sm px-4',
+                leftIcon && (size === 'sm' ? 'pl-8' : size === 'lg' ? 'pl-12' : 'pl-11'),
+                rightIcon && (size === 'sm' ? 'pr-8' : size === 'lg' ? 'pr-12' : 'pr-11')
               )}
             />
             {rightIcon && (
-              <div className={cn('input__icon', 'input__icon--right', size === 'sm' && 'input__icon--sm-right')}>
+              <div
+                className={cn(
+                  'absolute inset-y-0 text-ds-500 pointer-events-none flex items-center justify-center transition-colors',
+                  size === 'sm' ? 'right-2.5' : 'right-4'
+                )}
+              >
                 {rightIcon}
               </div>
             )}
           </div>
 
           {suffix && (
-            <div className={cn('input__suffix', size === 'sm' && 'input__suffix--sm', size === 'lg' && 'input__suffix--lg')}>
+            <div
+              className={cn(
+                'text-ds-500 font-medium select-none whitespace-nowrap',
+                size === 'sm' ? 'pr-2.5 text-xs' : 'pr-4 text-sm'
+              )}
+            >
               {suffix}
             </div>
           )}
@@ -119,8 +169,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             id={messageId}
             role={error ? 'alert' : undefined}
             className={cn(
-              'input__message',
-              error ? 'input__message--error' : 'input__message--default'
+              'text-xs ml-1 tracking-tight',
+              error
+                ? 'text-ds-danger-600 dark:text-ds-danger-400'
+                : 'text-ds-600 dark:text-ds-400'
             )}
           >
             {error || helperText}

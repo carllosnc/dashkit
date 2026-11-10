@@ -10,16 +10,22 @@ describe('Surface', () => {
 
   it('applies default variant class', () => {
     const { container } = render(<Surface>Default surface</Surface>);
-    expect(container.firstChild).toHaveClass('surface');
-    expect(container.firstChild).toHaveClass('surface--default');
+    expect(container.firstChild).toHaveClass('ds-rounded-md');
+    expect(container.firstChild).toHaveClass('bg-muted/50');
   });
 
-  const variants: SurfaceVariant[] = ['default', 'info', 'success', 'warning', 'danger'];
+  const variantClassMap: Record<SurfaceVariant, string> = {
+    default: 'bg-muted/50',
+    info: 'bg-info/10',
+    success: 'bg-success/10',
+    warning: 'bg-warning/12',
+    danger: 'bg-danger/10',
+  };
 
-  variants.forEach((variant) => {
-    it(`applies variant class surface--${variant}`, () => {
+  (Object.keys(variantClassMap) as SurfaceVariant[]).forEach((variant) => {
+    it(`applies variant class for ${variant}`, () => {
       const { container } = render(<Surface variant={variant}>Content</Surface>);
-      expect(container.firstChild).toHaveClass(`surface--${variant}`);
+      expect(container.firstChild).toHaveClass(variantClassMap[variant]);
     });
   });
 

@@ -5,8 +5,6 @@ import { BreadcrumbList } from './BreadcrumbList';
 import { BreadcrumbItem } from './BreadcrumbItem';
 import { BreadcrumbSeparator } from './BreadcrumbSeparator';
 
-import './breadcrumb.css';
-
 export interface BreadcrumbProps extends React.ComponentPropsWithoutRef<'nav'> {
   separator?: React.ReactNode;
   items?: {
@@ -24,7 +22,7 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
         <nav
           ref={ref}
           aria-label="Breadcrumb"
-          className={cn('breadcrumb', className)}
+          className={cn('flex', className)}
           {...props}
         >
           <BreadcrumbList>
@@ -37,13 +35,13 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
                     active={isLast || item.active}
                   >
                     {item.icon && (
-                      <span className="breadcrumb__icon-wrapper">{item.icon}</span>
+                      <span className="shrink-0">{item.icon}</span>
                     )}
                     {item.label}
                   </BreadcrumbItem>
                   {!isLast && (
                     <BreadcrumbSeparator>
-                      {separator || <LuChevronRight size={14} className="breadcrumb__separator-icon" />}
+                      {separator || <LuChevronRight size={14} className="text-ds-400" />}
                     </BreadcrumbSeparator>
                   )}
                 </React.Fragment>
@@ -58,7 +56,7 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
       <nav
         ref={ref}
         aria-label="breadcrumb"
-        className={cn('breadcrumb', className)}
+        className={cn('flex', className)}
         {...props}
       >
         {children}
@@ -67,5 +65,4 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
   }
 );
 
-
-
+Breadcrumb.displayName = 'Breadcrumb';

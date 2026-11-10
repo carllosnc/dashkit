@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { useDropdown, DropdownContext } from './useDropdown';
-import './dropdown.css';
+import { cn } from '../utils/cn';
 
 export interface DropdownProps {
   children: React.ReactNode;
+  className?: string;
 }
 
-export function Dropdown({ children }: DropdownProps) {
+export function Dropdown({ children, className }: DropdownProps) {
   const {
     open,
     setOpen,
@@ -28,9 +29,11 @@ export function Dropdown({ children }: DropdownProps) {
       setTriggerElement,
       portalRef
     }}>
-      <div className="dropdown" ref={containerRef}>
+      <div className={cn('relative inline-block text-left', className)} ref={containerRef}>
         {children}
       </div>
     </DropdownContext.Provider>
   );
 }
+
+Dropdown.displayName = 'Dropdown';

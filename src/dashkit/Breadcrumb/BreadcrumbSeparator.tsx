@@ -11,10 +11,12 @@ export function BreadcrumbSeparator({
     <li
       role="presentation"
       aria-hidden="true"
-      className={cn('breadcrumb__separator', className)}
+      className={cn('[&>svg]:size-3.5', className)}
       {...props}
     >
-      {children ?? <LuChevronRight size={14} className="breadcrumb__separator-icon" />}
+      {children ?? <LuChevronRight size={14} className="text-ds-400" />}
     </li>
   );
 }
+
+BreadcrumbSeparator.displayName = 'BreadcrumbSeparator';

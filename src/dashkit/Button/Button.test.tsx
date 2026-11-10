@@ -21,25 +21,25 @@ describe('Button', () => {
   it('applies standard variant by default', () => {
     render(<Button>Click Me</Button>);
     const button = screen.getByRole('button', { name: /click me/i });
-    expect(button).toHaveClass('button--filled-primary');
+    expect(button).toHaveClass('ds-primary-gradient');
   });
 
   it('applies outlined variant when passed', () => {
     render(<Button variant="outlined">Click Me</Button>);
     const button = screen.getByRole('button', { name: /click me/i });
-    expect(button).toHaveClass('button--outlined-primary');
+    expect(button).toHaveClass('bg-card');
   });
 
   it('applies soft variant when passed', () => {
     render(<Button variant="soft">Click Me</Button>);
     const button = screen.getByRole('button', { name: /click me/i });
-    expect(button).toHaveClass('button--soft-primary');
+    expect(button).toHaveClass('bg-secondary');
   });
 
   it('applies ghost variant when passed', () => {
     render(<Button variant="ghost">Click Me</Button>);
     const button = screen.getByRole('button', { name: /click me/i });
-    expect(button).toHaveClass('button--ghost-primary');
+    expect(button).toHaveClass('hover:bg-accent');
   });
 
   it('passes generic attributes to button element', () => {
@@ -58,10 +58,10 @@ describe('Button', () => {
   it('applies non-full rounded class when rounded is false', () => {
     const { rerender } = render(<Button rounded={false}>Click Me</Button>);
     let button = screen.getByRole('button');
-    expect(button).toHaveClass('!rounded-md');
+    expect(button).toHaveClass('rounded-md');
 
     rerender(<Button>Click Me</Button>);
     button = screen.getByRole('button');
-    expect(button).not.toHaveClass('!rounded-md');
+    expect(button).toHaveClass('rounded-full');
   });
 });

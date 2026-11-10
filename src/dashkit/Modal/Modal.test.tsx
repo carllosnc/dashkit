@@ -67,14 +67,9 @@ describe('Modal', () => {
       </Modal>
     );
 
-    // The backdrop is the element with "backdrop__overlay"
-    const backdrop = document.querySelector('.backdrop__overlay');
-    if (backdrop) {
-      fireEvent.click(backdrop);
-      expect(onClose).toHaveBeenCalled();
-    } else {
-      throw new Error('Backdrop not found');
-    }
+    const backdrop = screen.getByTestId('backdrop-overlay');
+    fireEvent.click(backdrop);
+    expect(onClose).toHaveBeenCalled();
   });
 
   it('renders header with title and description', () => {

@@ -7,14 +7,14 @@ describe('Divider', () => {
     render(<Divider />);
     const divider = screen.getByRole('separator');
     expect(divider).toHaveAttribute('aria-orientation', 'horizontal');
-    expect(divider).toHaveClass('divider--horizontal');
+    expect(divider).toHaveClass('w-full');
   });
 
   it('renders a vertical divider', () => {
     render(<Divider orientation="vertical" />);
     const divider = screen.getByRole('separator');
     expect(divider).toHaveAttribute('aria-orientation', 'vertical');
-    expect(divider).toHaveClass('divider--vertical');
+    expect(divider).toHaveClass('self-stretch');
   });
 
   it('renders children (content) in horizontal mode', () => {
@@ -25,15 +25,15 @@ describe('Divider', () => {
   it('applies variant classes correctly', () => {
     const { rerender } = render(<Divider variant="dashed" />);
     const divider = screen.getByRole('separator');
-    expect(divider).toHaveClass('divider--dashed');
+    expect(divider).toHaveClass('border-dashed');
 
     rerender(<Divider variant="dotted" />);
-    expect(screen.getByRole('separator')).toHaveClass('divider--dotted');
+    expect(screen.getByRole('separator')).toHaveClass('border-dotted');
   });
 
   it('handles content position correctly (left hide right span)', () => {
-    const { container } = render(<Divider contentPosition="left">Left Content</Divider>);
-    const parts = container.querySelectorAll('.divider__line');
+    render(<Divider contentPosition="left">Left Content</Divider>);
+    const parts = screen.getAllByTestId('divider-line');
     // First div should be hidden when left
     expect(parts[0]).toHaveClass('hidden');
     expect(parts[1]).not.toHaveClass('hidden');

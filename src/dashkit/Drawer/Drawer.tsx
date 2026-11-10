@@ -1,14 +1,38 @@
 import { type ReactNode, forwardRef, useCallback, type MutableRefObject } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { cva } from 'class-variance-authority';
 import { FiX } from 'react-icons/fi';
 import { cn } from '../utils/cn';
 import { useDrawer, type DrawerPosition } from './useDrawer';
 import { useFocusTrap } from '../utils/useFocusTrap';
 import { Backdrop } from '../Backdrop/Backdrop';
-import './drawer.css';
 
 export { type DrawerPosition };
+
+const drawerPanelVariants = cva(
+  'absolute bg-card text-card-foreground shadow-sm overflow-hidden flex flex-col touch-none z-[1110]',
+  {
+    variants: {
+      position: {
+        left: 'left-0 top-0 h-full border-r',
+        right: 'right-0 top-0 h-full border-l',
+        top: 'top-0 left-0 w-full border-b',
+        bottom: 'bottom-0 left-0 w-full border-t',
+      },
+    },
+    defaultVariants: {
+      position: 'right',
+    },
+  }
+);
+
+const closePositionClasses: Record<DrawerPosition, string> = {
+  right: 'top-6 left-6',
+  left: 'top-6 right-6',
+  top: 'bottom-6 right-6',
+  bottom: 'top-6 right-6',
+};
 
 export interface DrawerProps {
   isOpen: boolean;
@@ -25,7 +49,7 @@ export interface DrawerProps {
 
 export function DrawerHeader({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <div className={cn("drawer__header", className)}>
+    <div className={cn('p-6 pb-4 flex flex-col gap-1 border-b border-border/80', className)}>
       {children}
     </div>
   );
@@ -33,7 +57,7 @@ export function DrawerHeader({ children, className }: { children: ReactNode; cla
 
 export function DrawerContent({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <div className={cn("drawer__body", className)}>
+    <div className={cn('flex-1 overflow-y-auto px-6 py-2 custom-scrollbar', className)}>
       {children}
     </div>
   );
@@ -41,7 +65,7 @@ export function DrawerContent({ children, className }: { children: ReactNode; cl
 
 export function DrawerFooter({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <div className={cn("drawer__footer", className)}>
+    <div className={cn('p-6 pt-4 flex items-center justify-end gap-3 border-t border-border/80', className)}>
       {children}
     </div>
   );
@@ -80,14 +104,17 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(function Drawer({
   return createPortal(
     <AnimatePresence>
       {isOpen && (
-        <div className="drawer">
+        <div className="fixed inset-0 z-[1100] isolate overflow-hidden flex items-center justify-center">
           <Backdrop show={true} fixed={false} onClick={onClose}>
             <motion.button
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.8 }}
               onClick={onClose}
-              className={cn("drawer__close", `drawer__close--${position}`)}
+              className={cn(
+                'absolute p-3 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-colors z-[1120] backdrop-blur-md',
+                closePositionClasses[position]
+              )}
               aria-label="Close drawer"
             >
               <FiX size={20} />
@@ -116,14 +143,13 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(function Drawer({
             onDragEnd={handleDragEnd}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
             className={cn(
-              "drawer__panel",
-              `drawer__panel--${position}`,
+              drawerPanelVariants({ position }),
               size || defaultSize,
               className
             )}
           >
             {children}
-            <div className="drawer__gradient" />
+            <div className="absolute bottom-0 h-6 w-full shrink-0 bg-gradient-to-t from-white dark:from-ds-900 to-transparent pointer-events-none z-10" />
           </motion.div>
         </div>
       )}

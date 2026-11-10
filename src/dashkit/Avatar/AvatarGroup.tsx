@@ -1,6 +1,23 @@
 import * as React from 'react';
+import { cva } from 'class-variance-authority';
 import { cn } from '../utils/cn';
 import { Avatar, type AvatarProps, type AvatarSize } from './Avatar';
+
+const avatarGroupVariants = cva(
+  'flex items-center [&_.ds-avatar]:ring-2 [&_.ds-avatar]:ring-background [&_.ds-avatar]:border dark:[&_.ds-avatar]:border-ds-800',
+  {
+    variants: {
+      spacing: {
+        sm: '-space-x-1.5',
+        md: '-space-x-3',
+        lg: '-space-x-4',
+      },
+    },
+    defaultVariants: {
+      spacing: 'md',
+    },
+  }
+);
 
 export interface AvatarGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   max?: number;
@@ -14,7 +31,7 @@ export function AvatarGroup({ children, max, size = 'md', spacing = 'md', classN
   const remainingCount = max ? childrenArray.length - max : 0;
 
   return (
-    <div className={cn('avatar-group', `avatar-group--${spacing}`, className)} {...props}>
+    <div className={cn(avatarGroupVariants({ spacing }), className)} {...props}>
       {visibleAvatars.map((child, i) => (
         React.isValidElement(child) ? React.cloneElement(child as React.ReactElement<AvatarProps>, {
           size,
@@ -25,7 +42,7 @@ export function AvatarGroup({ children, max, size = 'md', spacing = 'md', classN
         <Avatar
           fallback={`+${remainingCount}`}
           size={size}
-          className="avatar-group__remaining"
+          className="bg-ds-900 text-white z-0 text-[10px] dark:bg-white dark:text-ds-900"
         />
       )}
     </div>

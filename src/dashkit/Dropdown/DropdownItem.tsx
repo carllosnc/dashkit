@@ -2,7 +2,6 @@ import * as React from 'react';
 import { FiCheck } from 'react-icons/fi';
 import { useDropdownContext } from './useDropdown';
 import { cn } from '../utils/cn';
-import './dropdown.css';
 
 export interface DropdownItemProps {
   children: React.ReactNode;
@@ -38,16 +37,18 @@ export function DropdownItem({
       disabled={disabled}
       onClick={handleClick}
       className={cn(
-        "dropdown-item",
-        destructive && "dropdown-item--destructive",
-        selected && "dropdown-item--selected",
+        'flex w-full items-center gap-2 px-2.5 py-1.5 text-sm font-medium ds-rounded transition-colors text-left text-popover-fg hover:bg-popover-item duration-150 disabled:opacity-50 disabled:cursor-not-allowed',
+        destructive && 'text-red-500 hover:text-red-600 dark:hover:bg-red-500/10',
+        selected && 'bg-popover-item-selected text-popover-item-selected-fg font-semibold',
         className
       )}
     >
-      {leftIcon && <span className="dropdown-item__icon">{leftIcon}</span>}
-      <span className="dropdown-item__content">{children}</span>
-      {selected && <FiCheck className="dropdown-item__check" size={14} />}
-      {rightIcon && <span className="dropdown-item__icon">{rightIcon}</span>}
+      {leftIcon && <span className="shrink-0 text-ds-400">{leftIcon}</span>}
+      <span className="flex-1 truncate">{children}</span>
+      {selected && <FiCheck className="shrink-0 text-ds-primary-600 dark:text-ds-primary-400" size={14} />}
+      {rightIcon && <span className="shrink-0 text-ds-400">{rightIcon}</span>}
     </button>
   );
 }
+
+DropdownItem.displayName = 'DropdownItem';

@@ -1,19 +1,45 @@
 import * as React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../utils/cn';
 
-import './avatar.css';
+const avatarVariants = cva(
+  'ds-avatar relative flex shrink-0 items-center justify-center overflow-hidden bg-ds-200/80 border border-border/70 text-foreground dark:bg-ds-800 dark:border-ds-700/80 dark:text-ds-100',
+  {
+    variants: {
+      size: {
+        xs: 'size-6 text-[10px]',
+        sm: 'size-8 text-xs',
+        md: 'size-10 text-sm',
+        lg: 'size-12 text-base',
+        xl: 'size-16 text-xl',
+      },
+      shape: {
+        circle: 'rounded-full',
+        square: 'rounded-sm',
+      },
+      bordered: {
+        true: 'ring-2 ring-background border dark:border-ds-800',
+        false: '',
+      },
+    },
+    defaultVariants: {
+      size: 'md',
+      shape: 'circle',
+      bordered: false,
+    },
+  }
+);
 
 export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type AvatarShape = 'circle' | 'square';
 
-export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface AvatarProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof avatarVariants> {
   src?: string;
   alt?: string;
   fallback?: React.ReactNode;
-  size?: AvatarSize;
-  shape?: AvatarShape;
-  bordered?: boolean;
 }
 
 export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
@@ -36,13 +62,7 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
     return (
       <div
         ref={ref}
-        className={cn(
-          'avatar',
-          `avatar--${size}`,
-          `avatar--${shape}`,
-          bordered && 'avatar--bordered',
-          className
-        )}
+        className={cn(avatarVariants({ size, shape, bordered }), className)}
         {...props}
       >
         {src && !hasError && (
@@ -55,7 +75,7 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
             onError={() => setHasError(true)}
             initial={{ opacity: 0 }}
             animate={{ opacity: isLoaded ? 1 : 0 }}
-            className="avatar__image"
+            className="absolute inset-0 aspect-square h-full w-full object-cover"
           />
         )}
 
@@ -66,7 +86,7 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="avatar__fallback"
+              className="flex h-full w-full items-center justify-center font-semibold text-foreground uppercase select-none tracking-tight dark:text-ds-100"
             >
               {fallback || (alt ? alt.split(' ').map(n => n[0]).join('').slice(0, 2) : '?')}
             </motion.div>
@@ -77,3 +97,4 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
   }
 );
 
+Avatar.displayName = 'Avatar';

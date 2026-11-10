@@ -2,8 +2,6 @@ import * as React from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '../utils/cn';
 
-import './area-chart.css';
-
 import { useAreaChart, type AreaChartSeries } from './useAreaChart';
 
 const DEFAULT_COLORS = [
@@ -57,15 +55,15 @@ export function AreaChart({
 
   return (
     <div
-      className={cn("area-chart", className)}
+      className={cn("w-full flex-1 flex flex-col min-h-0 overflow-visible", className)}
       style={{ height: typeof height === 'number' ? `${height}px` : height }}
     >
-      <div className="area-chart__wrapper">
+      <div className="relative flex-1 w-full min-h-0 overflow-visible">
         <svg
           ref={chartRef}
           viewBox={`0 0 ${width} ${svgHeight}`}
           preserveAspectRatio="none"
-          className="area-chart__svg"
+          className="w-full h-full block overflow-visible"
           onMouseMove={handleMouseMove}
           onMouseLeave={() => setHoveredIndex(null)}
         >
@@ -85,7 +83,7 @@ export function AreaChart({
               y1={svgHeight * (1 - line)}
               x2={width}
               y2={svgHeight * (1 - line)}
-              className="area-chart__grid-line"
+              className="stroke-border"
               strokeWidth="1"
               strokeDasharray="4 4"
               vectorEffect="non-scaling-stroke"
@@ -98,7 +96,7 @@ export function AreaChart({
               y1="0"
               x2={(hoveredIndex / (data.length - 1)) * width}
               y2={svgHeight}
-              className="area-chart__hover-line"
+              className="stroke-border"
               strokeWidth="1"
               vectorEffect="non-scaling-stroke"
             />
@@ -147,12 +145,12 @@ export function AreaChart({
           })}
         </svg>
 
-        <div className="area-chart__dot-overlay">
+        <div className="absolute inset-0 pointer-events-none touch-none">
           {allSeriesPoints.map((s) => (
             s.points.map((p, i) => (
               <motion.div
                 key={`${s.key}-${i}`}
-                className="area-chart__dot"
+                className="absolute rounded-full border-2 transition-all duration-200"
                 style={{
                   left: `${(p.x / width) * 100}%`,
                   top: `${(p.y / svgHeight) * 100}%`,
@@ -177,7 +175,7 @@ export function AreaChart({
         {showTooltip && hoveredIndex !== null && (
           <div
             className={cn(
-              "area-chart__tooltip",
+              "absolute z-50 pointer-events-none transform -translate-x-1/2 bg-popover text-popover-fg ds-rounded border border-border p-3 shadow-xl backdrop-blur-sm flex flex-col gap-2 min-w-[140px] transition-transform duration-200",
               isNearTop ? "translate-y-4" : "-translate-y-full -mt-12"
             )}
             style={{
@@ -185,18 +183,18 @@ export function AreaChart({
               top: tooltipPos.y
             }}
           >
-            <div className="area-chart__tooltip-header">
-               <span className="area-chart__tooltip-label">
+            <div className="flex border-b border-border pb-1 mb-1">
+               <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
                  {data[hoveredIndex].label}
                </span>
             </div>
             {series.map(s => (
-              <div key={s.key} className="area-chart__tooltip-row">
-                <div className="area-chart__tooltip-series">
-                   <div className="area-chart__tooltip-dot" style={{ backgroundColor: s.color }} />
-                   <span className="area-chart__tooltip-value-name">{s.label}</span>
+              <div key={s.key} className="flex items-center justify-between gap-4">
+                <div className="flex items-center gap-2">
+                   <div className="size-2 rounded-full" style={{ backgroundColor: s.color }} />
+                   <span className="text-xs font-medium text-muted-foreground whitespace-nowrap">{s.label}</span>
                 </div>
-                <span className="area-chart__tooltip-value">
+                <span className="text-xs font-bold text-foreground">
                   {Number(data[hoveredIndex][s.key]).toLocaleString()}
                 </span>
               </div>
@@ -206,13 +204,13 @@ export function AreaChart({
       </div>
 
       {showLabels && (
-        <div className="area-chart__x-axis">
+        <div className="flex justify-between mt-3 shrink-0">
           {data.map((d, i) => (
             <span
               key={i}
               className={cn(
-                "area-chart__x-axis-label",
-                hoveredIndex === i && "area-chart__x-axis-label--active"
+                "text-[10px] font-bold uppercase tracking-widest text-muted-foreground transition-colors",
+                hoveredIndex === i && "text-foreground"
               )}
             >
               {d.label}

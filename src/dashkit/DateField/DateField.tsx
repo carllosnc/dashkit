@@ -1,5 +1,6 @@
 import { forwardRef, type KeyboardEvent } from 'react';
 import { cn } from '../utils/cn';
+import { useDateField } from './useDateField';
 
 export interface DateFieldProps {
   label?: string;
@@ -21,8 +22,6 @@ interface SegmentProps {
   onPrev: () => void;
   disabled?: boolean;
 }
-
-import './date-field.css';
 
 const DateSegment = forwardRef<HTMLInputElement, SegmentProps>(
   function DateSegment({ value, placeholder, max, onUpdate, onNext, onPrev, disabled }, ref) {
@@ -58,15 +57,13 @@ const DateSegment = forwardRef<HTMLInputElement, SegmentProps>(
         onKeyDown={handleKeyDown}
         disabled={disabled}
         className={cn(
-          'date-field__segment',
-          placeholder === 'YYYY' ? "w-16" : "w-11"
+          'h-9 bg-input-bg text-input-fg border border-input-border ds-rounded text-sm font-medium text-center tabular-nums p-0 outline-none transition-all duration-200 placeholder:text-ds-600 dark:placeholder:text-ds-400 focus:border-input-focus focus:ring-2 focus:ring-input-focus/20 disabled:opacity-50 disabled:cursor-not-allowed',
+          placeholder === 'YYYY' ? 'w-16' : 'w-11'
         )}
       />
     );
   }
 );
-
-import { useDateField } from './useDateField';
 
 export function DateField({
   label,
@@ -91,16 +88,15 @@ export function DateField({
   } = useDateField({ value, onChange });
 
   return (
-    <div className={cn('date-field', className)}>
+    <div className={cn('flex flex-col gap-1.5 w-full font-sans', className)}>
       {label && (
-        <label className="date-field__label">
+        <label className="text-[13px] font-semibold text-ds-700 ml-1 tracking-tight dark:text-ds-300">
           {label}
-          {isRequired && <span className="date-field__required">*</span>}
+          {isRequired && <span className="text-ds-danger-500 ml-0.5">*</span>}
         </label>
       )}
-      <div
-        className="date-field__segments"
-      >
+
+      <div className="flex items-center gap-2">
         <DateSegment
           ref={monthRef}
           value={month}
@@ -111,7 +107,7 @@ export function DateField({
           onNext={() => dayRef.current?.focus()}
           onPrev={() => {}}
         />
-        <span className="date-field__separator">·</span>
+        <span className="text-ds-600 dark:text-ds-400 font-bold select-none text-lg">·</span>
         <DateSegment
           ref={dayRef}
           value={day}
@@ -122,7 +118,7 @@ export function DateField({
           onNext={() => yearRef.current?.focus()}
           onPrev={() => monthRef.current?.focus()}
         />
-        <span className="date-field__separator">·</span>
+        <span className="text-ds-600 dark:text-ds-400 font-bold select-none text-lg">·</span>
         <DateSegment
           ref={yearRef}
           value={year}
@@ -136,10 +132,12 @@ export function DateField({
       </div>
 
       {(error || description) && (
-        <span className={cn(
-          'date-field__message',
-          error ? 'date-field__message--error' : 'date-field__message--description'
-        )}>
+        <span
+          className={cn(
+            'text-[12px] ml-1 tracking-tight',
+            error ? 'text-ds-danger-600 dark:text-ds-danger-400 font-medium' : 'text-ds-600 dark:text-ds-400'
+          )}
+        >
           {error || description}
         </span>
       )}
@@ -148,4 +146,3 @@ export function DateField({
 }
 
 DateField.displayName = 'DateField';
-

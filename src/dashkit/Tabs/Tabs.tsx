@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, type ReactNode, type KeyboardEvent } from 'react';
 import { motion } from 'framer-motion';
+import { cva } from 'class-variance-authority';
 import { cn } from '../utils/cn';
-import './tabs.css';
 
 export type TabsVariant = 'line' | 'pills';
 
@@ -13,6 +13,62 @@ interface TabsContextType {
 }
 
 const TabsContext = createContext<TabsContextType | undefined>(undefined);
+
+const tabsVariants = cva('flex flex-col font-sans', {
+  variants: {
+    variant: {
+      line: 'w-full',
+      pills: 'w-fit',
+    },
+  },
+  defaultVariants: {
+    variant: 'line',
+  },
+});
+
+const tabsListVariants = cva('flex items-center', {
+  variants: {
+    variant: {
+      line: 'w-full justify-start border-b border-border gap-6',
+      pills: 'inline-flex bg-muted p-0.5 ds-rounded-lg gap-0.5 border border-border/40',
+    },
+  },
+  defaultVariants: {
+    variant: 'line',
+  },
+});
+
+const tabsTriggerVariants = cva(
+  'relative inline-flex items-center justify-center gap-2 text-sm font-medium outline-none isolate whitespace-nowrap cursor-pointer transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-transparent disabled:pointer-events-none disabled:opacity-50',
+  {
+    variants: {
+      variant: {
+        line: 'pb-2.5 pt-1 px-1',
+        pills: 'px-3 py-1.5 ds-rounded-md duration-150',
+      },
+      active: {
+        true: '',
+        false: 'text-muted-foreground hover:text-foreground',
+      },
+    },
+    compoundVariants: [
+      {
+        variant: 'line',
+        active: true,
+        className: 'text-foreground font-medium',
+      },
+      {
+        variant: 'pills',
+        active: true,
+        className: 'text-foreground font-semibold',
+      },
+    ],
+    defaultVariants: {
+      variant: 'line',
+      active: false,
+    },
+  }
+);
 
 export interface TabsProps {
   defaultValue?: string;
@@ -36,7 +92,7 @@ export function Tabs({ defaultValue, value, onValueChange, children, className, 
 
   return (
     <TabsContext.Provider value={{ activeTab, setActiveTab, tabsId, variant }}>
-      <div className={cn('tabs', `tabs--${variant}`, className)}>
+      <div data-variant={variant} className={cn(tabsVariants({ variant }), className)}>
         {children}
       </div>
     </TabsContext.Provider>
@@ -54,7 +110,11 @@ export function TabsList({ children, className, variant: variantProp }: TabsList
   const variant = variantProp || context?.variant || 'line';
 
   return (
-    <div role="tablist" className={cn('tabs__list', `tabs__list--${variant}`, className)}>
+    <div
+      role="tablist"
+      data-variant={variant}
+      className={cn(tabsListVariants({ variant }), className)}
+    >
       {children}
     </div>
   );
@@ -119,16 +179,14 @@ export function TabsTrigger({ value, children, className, disabled }: TabsTrigge
       onClick={() => context.setActiveTab(value)}
       onKeyDown={handleKeyDown}
       className={cn(
-        'tabs__trigger',
-        `tabs__trigger--${variant}`,
-        isActive ? 'tabs__trigger--active' : 'tabs__trigger--inactive',
+        tabsTriggerVariants({ variant, active: isActive }),
         className
       )}
     >
       {isActive && variant === 'line' && (
         <motion.div
           layoutId={`active-tab-line-${context.tabsId}`}
-          className="tabs__active-indicator"
+          className="absolute bottom-[-1px] left-0 right-0 h-[2px] bg-primary z-10 rounded-full"
           transition={{
             type: 'spring',
             bounce: 0,
@@ -139,7 +197,7 @@ export function TabsTrigger({ value, children, className, disabled }: TabsTrigge
       {isActive && variant === 'pills' && (
         <motion.div
           layoutId={`active-tab-pill-${context.tabsId}`}
-          className="tabs__active-pill"
+          className="absolute inset-0 bg-card text-foreground shadow-xs ds-rounded-md z-0 border border-border/50"
           transition={{
             type: 'spring',
             bounce: 0,
@@ -174,7 +232,7 @@ export function TabsContent({ value, children, className }: TabsContentProps) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 2 }}
       transition={{ duration: 0.15, ease: 'easeOut' }}
-      className={cn('tabs__content', className)}
+      className={cn('flex-1 outline-none pt-4 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring', className)}
     >
       {children}
     </motion.div>

@@ -48,7 +48,7 @@ describe('Chip', () => {
     );
     
     const chip = screen.getByText('Disabled').closest('div');
-    expect(chip).toHaveClass('chip--disabled');
+    expect(chip).toHaveClass('opacity-50', 'pointer-events-none');
     
     fireEvent.click(screen.getByText('Disabled'));
     expect(handleClick).not.toHaveBeenCalled();
@@ -57,6 +57,6 @@ describe('Chip', () => {
   it('supports soft variant mapping to tonal styles', () => {
     render(<Chip label="Soft Chip" variant="soft" color="primary" />);
     const chip = screen.getByText('Soft Chip').closest('div');
-    expect(chip).toHaveClass('chip--tonal-primary');
+    expect(chip).toHaveClass('text-primary');
   });
 });

@@ -2,7 +2,6 @@ import * as React from 'react';
 import { cn } from '../utils/cn';
 import { NavigationMenuContext } from './NavigationMenuContext';
 import { useNavigationMenu } from './useNavigationMenu';
-import './navigation-menu.css';
 
 export interface NavigationMenuProps {
   children: React.ReactNode;
@@ -35,7 +34,7 @@ export function NavigationMenu({ children, className }: NavigationMenuProps) {
     >
       <nav
         ref={menuRef}
-        className={cn('navigation-menu', className)}
+        className={cn('relative z-[999] flex w-full items-center justify-center', className)}
       >
         {children}
       </nav>

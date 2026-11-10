@@ -1,7 +1,6 @@
 import { forwardRef, useId, type TextareaHTMLAttributes } from 'react';
 import { cn } from '../utils/cn';
 import { useTextarea } from './useTextarea';
-import './textarea.css';
 
 export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
@@ -23,11 +22,11 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     const hasMessage = !!(error || helperText);
 
     return (
-      <div className="textarea">
+      <div className="flex flex-col gap-1.5 w-full font-sans">
         {label && (
           <label
             htmlFor={internalId}
-            className="textarea__label"
+            className="text-[13px] font-semibold text-ds-700 dark:text-ds-300 ml-1 tracking-tight"
           >
             {label}
           </label>
@@ -51,19 +50,27 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
               .join(' ') || undefined
           }
           className={cn(
-            'textarea__field',
-            autoGrow && 'textarea__field--auto-grow',
-            error && 'textarea__field--error',
+            'w-full px-4 py-3 text-base sm:text-sm transition-all duration-200 ds-rounded outline-none',
+            'bg-input-bg text-input-fg border border-input-border',
+            'focus:border-input-focus focus:ring-2 focus:ring-input-focus/20',
+            'placeholder:text-muted-foreground',
+            'disabled:cursor-not-allowed disabled:opacity-50',
+            'resize-none min-h-[100px]',
+            autoGrow && 'overflow-hidden',
+            error
+              ? 'border-ds-danger-500/50 focus:border-ds-danger-500 focus:ring-ds-danger-50 dark:border-ds-danger-500/30 dark:focus:border-ds-danger-500/50 dark:focus:ring-ds-danger-500/10'
+              : '',
             className
           )}
         />
         {(error || helperText) && (
           <span
             id={messageId}
-            role={error ? 'alert' : undefined}
             className={cn(
-              'textarea__message',
-              error ? 'textarea__message--error' : 'textarea__message--helper'
+              'text-[12px] ml-1 tracking-tight',
+              error
+                ? 'text-ds-danger-600 dark:text-ds-danger-400'
+                : 'text-ds-600'
             )}
           >
             {error || helperText}

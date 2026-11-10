@@ -183,7 +183,7 @@ Use the `type="multiple"` prop to allow more than one item to be expanded at the
 
 - Slug: `card`
 - Installation: `bunx carllosnc/dashkit add card`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
+- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`
 - Dashkit Dependencies: `badge`, `button`
 
 # Card
@@ -392,7 +392,7 @@ The bottom action area with a subtle separator.
 
 - Slug: `surface`
 - Installation: `bunx carllosnc/dashkit add surface`
-- NPM Dependencies: `clsx`, `tailwind-merge`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`
 
 # Surface
 
@@ -463,7 +463,7 @@ Since Surface doesn't provide padding or forced borders, you can easily apply yo
 
 - Slug: `divider`
 - Installation: `bunx carllosnc/dashkit add divider`
-- NPM Dependencies: `clsx`, `tailwind-merge`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`
 
 # Divider
 
@@ -547,7 +547,7 @@ Horizontal dividers can contain text or other components, positioned along the l
 
 - Slug: `scrollarea`
 - Installation: `bunx carllosnc/dashkit add scrollarea`
-- NPM Dependencies: `clsx`, `tailwind-merge`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`
 
 export const VerticalExample = () => (
   
@@ -666,7 +666,7 @@ Use `orientation="both"` when you need independent scrolling in both directions.
 
 - Slug: `navbar`
 - Installation: `bunx carllosnc/dashkit add navbar`
-- NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`, `class-variance-authority`
 
 # Navbar
 
@@ -1182,7 +1182,7 @@ The Sidebar library is composed of several specialized layers designed for speci
 
 - Slug: `breadcrumb`
 - Installation: `bunx carllosnc/dashkit add breadcrumb`
-- NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`, `class-variance-authority`
 
 # Breadcrumb
 
@@ -1334,7 +1334,7 @@ You can still use the `items` prop for simpler cases.
 
 - Slug: `tabs`
 - Installation: `bunx carllosnc/dashkit add tabs`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
+- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`
 
 # Tabs
 
@@ -1675,7 +1675,7 @@ const [activeStep, setActiveStep] = useState(0);
 
 - Slug: `pagination`
 - Installation: `bunx carllosnc/dashkit add pagination`
-- NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`, `framer-motion`
 
 # Pagination
 
@@ -1926,7 +1926,7 @@ You can adjust the `magnification` (how much it grows) and the `distance` (how f
 
 - Slug: `button`
 - Installation: `bunx carllosnc/dashkit add button`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
+- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`, `react-icons`
 - Dashkit Dependencies: `spinner`
 
 # Button
@@ -2060,7 +2060,7 @@ The component extends all native `ButtonHTMLAttributes` props (e.g. `onClick`, `
 
 - Slug: `iconbutton`
 - Installation: `bunx carllosnc/dashkit add iconbutton`
-- NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`, `react-icons`
 
 # Icon Button
 
@@ -2147,7 +2147,7 @@ Icon buttons can be disabled to prevent user interaction while remaining visuall
 
 - Slug: `buttongroup`
 - Installation: `bunx carllosnc/dashkit add buttongroup`
-- NPM Dependencies: `clsx`, `tailwind-merge`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`
 
 # Button Group
 
@@ -2235,7 +2235,7 @@ Vertical groups are useful for sidebars or property menus.
 
 - Slug: `input`
 - Installation: `bunx carllosnc/dashkit add input`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
+- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`, `react-icons`
 
 export const PatternsExample = () => {
   const formatCPF = (val) => val
@@ -2860,7 +2860,7 @@ Extends all native `CheckboxHTMLAttributes` (except `type`), plus these specialt
 
 - Slug: `select`
 - Installation: `bunx carllosnc/dashkit add select`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
+- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`, `react-icons`
 
 export const SelectDemo = () => {
   const [value, setValue] = useState('');
@@ -3664,7 +3664,7 @@ Add a `label` and `description` to provide context for the value.
 
 - Slug: `modal`
 - Installation: `bunx carllosnc/dashkit add modal`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
+- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`, `react-icons`
 - Dashkit Dependencies: `backdrop`, `iconbutton`
 
 export const BasicModal = () => {
@@ -3919,7 +3919,7 @@ The `full` size provides a take-over experience while maintaining focus on a sin
 
 - Slug: `drawer`
 - Installation: `bunx carllosnc/dashkit add drawer`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
+- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`, `react-icons`
 - Dashkit Dependencies: `backdrop`
 
 export const DrawerDemo = () => {
@@ -4988,7 +4988,7 @@ Spinners are commonly used alongside text labels to indicate specific processing
 
 - Slug: `progressbar`
 - Installation: `bunx carllosnc/dashkit add progressbar`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
+- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`
 
 # ProgressBar
 
@@ -5190,7 +5190,7 @@ Control the visibility of the background track and the shape of the progress end
 
 - Slug: `skeleton`
 - Installation: `bunx carllosnc/dashkit add skeleton`
-- NPM Dependencies: `clsx`, `tailwind-merge`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`
 
 export const SkeletonDemo = () => {
   return (
@@ -5459,7 +5459,7 @@ The menu can be positioned at any corner of the parent container or screen.
 
 - Slug: `avatar`
 - Installation: `bunx carllosnc/dashkit add avatar`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
+- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`
 
 # Avatar
 
@@ -5549,7 +5549,7 @@ Cluster multiple avatars together with automatic truncation using the `max` prop
 
 - Slug: `badge`
 - Installation: `bunx carllosnc/dashkit add badge`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
+- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`
 
 # Badge
 
@@ -5801,7 +5801,7 @@ Combine badges with other components to create rich status indicators.
 
 - Slug: `chip`
 - Installation: `bunx carllosnc/dashkit add chip`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
+- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`, `react-icons`
 
 export const MultiSelectExample = () => {
   const [selectedChips, setSelectedChips] = useState(['React', 'Vite']);

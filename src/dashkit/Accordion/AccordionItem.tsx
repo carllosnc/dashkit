@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { cn } from '../utils/cn';
 import { AccordionContext, AccordionItemContext } from './AccordionContext';
-import './accordion.css';
 
 interface AccordionItemProps {
   value: string;
@@ -24,10 +23,8 @@ export function AccordionItem({ value, children, className, disabled }: Accordio
         data-disabled={disabled || undefined}
         aria-disabled={disabled || undefined}
         className={cn(
-          'accordion__item',
-          isOpen && "accordion__item--open",
-          !context.shadowed && "accordion__item--shadow-none",
-          disabled && "accordion__item--disabled",
+          'border-b border-border transition-colors last:border-b-0',
+          disabled && 'opacity-50 pointer-events-none',
           className
         )}
       >

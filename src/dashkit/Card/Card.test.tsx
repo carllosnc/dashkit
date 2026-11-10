@@ -24,23 +24,20 @@ describe('Card', () => {
   it('defaults to unshadowed and applies border and shadow management correctly', () => {
     const { unmount } = render(<Card>Default Content</Card>);
     const defaultCard = screen.getByText('Default Content');
-    expect(defaultCard).toHaveClass('card--no-shadow');
     expect(defaultCard).toHaveClass('shadow-none');
-    expect(defaultCard).not.toHaveClass('card--shadowed');
     expect(defaultCard).not.toHaveClass('shadow-sm');
+    expect(defaultCard).toHaveClass('border');
     unmount();
 
     render(<Card bordered={false} shadowed={false}>Content</Card>);
     const card = screen.getByText('Content');
-    expect(card).toHaveClass('card--no-border');
-    expect(card).toHaveClass('card--no-shadow');
+    expect(card).toHaveClass('border-0');
     expect(card).toHaveClass('shadow-none');
   });
 
   it('applies shadow when shadowed prop is true', () => {
     render(<Card shadowed>Shadowed Content</Card>);
     const card = screen.getByText('Shadowed Content');
-    expect(card).toHaveClass('card--shadowed');
     expect(card).toHaveClass('shadow-sm');
   });
 

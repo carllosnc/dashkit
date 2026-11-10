@@ -23,7 +23,7 @@ describe('ButtonGroup', () => {
     );
 
     const group = container.firstChild as HTMLElement;
-    expect(group).toHaveClass('button-group', 'button-group--horizontal');
+    expect(group).toHaveClass('flex-row', '-space-x-px');
   });
 
   it('applies correct classes for vertical layout', () => {
@@ -35,7 +35,7 @@ describe('ButtonGroup', () => {
     );
 
     const group = container.firstChild as HTMLElement;
-    expect(group).toHaveClass('button-group', 'button-group--vertical');
+    expect(group).toHaveClass('flex-col', '-space-y-px');
   });
 
   it('applies selected class when selected prop is true', () => {
@@ -45,8 +45,6 @@ describe('ButtonGroup', () => {
       </ButtonGroup>
     );
     const button = screen.getByText('Selected');
-    expect(button).toHaveClass('button-group__item--selected');
+    expect(button).toHaveClass('bg-ds-200');
   });
 });
-
-

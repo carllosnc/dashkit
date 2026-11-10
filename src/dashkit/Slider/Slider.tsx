@@ -1,7 +1,6 @@
 import { forwardRef, type InputHTMLAttributes } from 'react';
 import { cn } from '../utils/cn';
 import { useSlider } from './useSlider';
-import './slider.css';
 
 export interface SliderProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'onChange' | 'value' | 'defaultValue'> {
   label?: string;
@@ -25,39 +24,39 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(
     });
 
     return (
-      <div className={cn('slider', disabled && 'slider--disabled')}>
+      <div className={cn('flex flex-col gap-3 relative w-full', disabled && 'opacity-60 cursor-not-allowed pointer-events-none')}>
         {(label || description || showValue) && (
-          <div className="slider__header">
-            <div className="slider__label-group">
+          <div className="flex justify-between items-end">
+            <div className="flex flex-col">
               {label && (
                 <label
                   htmlFor={sliderId}
-                  className="slider__label"
+                  className="text-sm font-medium text-ds-800 dark:text-ds-200 tracking-tight cursor-pointer"
                 >
                   {label}
                 </label>
               )}
               {description && (
-                <span className="slider__description">
+                <span className="text-[13px] text-muted-foreground tracking-tight">
                   {description}
                 </span>
               )}
             </div>
             {showValue && (
-              <span className="slider__value">
+              <span className="text-[13px] font-semibold tabular-nums text-foreground">
                 {currentValue}
               </span>
             )}
           </div>
         )}
-        <div className="slider__track-container">
-          <div className="slider__track-bg" />
+        <div className="group relative flex items-center h-5 w-full">
+          <div className="absolute inset-x-0 h-1.5 rounded-full bg-ds-200 dark:bg-ds-800 pointer-events-none" />
           <div
-            className="slider__track-fill"
+            className="absolute left-0 h-1.5 rounded-full bg-primary pointer-events-none"
             style={{ width: `${percentage}%` }}
           />
           <div
-            className="slider__thumb"
+            className="absolute w-4 h-4 rounded-full bg-white dark:bg-ds-0 border-2 border-primary shadow-sm pointer-events-none z-10 transition-[box-shadow,transform] duration-200 group-hover:ring-4 group-hover:ring-primary/10 group-has-[:focus-visible]:ring-4 group-has-[:focus-visible]:ring-primary/30"
             style={{
               left: `calc(${percentage}% - 8px)`
             }}
@@ -73,7 +72,7 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(
             value={currentValue}
             onChange={handleChange}
             disabled={disabled}
-            className={cn('slider__input', className)}
+            className={cn('absolute inset-0 w-full h-full opacity-0 cursor-pointer accent-transparent z-20', className)}
           />
         </div>
       </div>

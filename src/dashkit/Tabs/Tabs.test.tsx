@@ -105,11 +105,11 @@ describe('Tabs', () => {
     );
 
     const list = screen.getByRole('tablist');
-    expect(list).toHaveClass('tabs__list--pills');
+    expect(list).toHaveAttribute('data-variant', 'pills');
 
     const overviewTab = screen.getByRole('tab', { name: /overview/i });
-    expect(overviewTab).toHaveClass('tabs__trigger--pills');
-    expect(overviewTab).toHaveClass('tabs__trigger--active');
+    expect(overviewTab).toHaveClass('ds-rounded-md');
+    expect(overviewTab).toHaveAttribute('aria-selected', 'true');
 
     fireEvent.click(screen.getByRole('tab', { name: /analytics/i }));
     expect(screen.getByText('Analytics Panel')).toBeInTheDocument();

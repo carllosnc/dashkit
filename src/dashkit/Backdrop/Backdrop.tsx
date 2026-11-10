@@ -2,8 +2,6 @@ import * as React from 'react';
 import { motion, type HTMLMotionProps } from 'framer-motion';
 import { cn } from '../utils/cn';
 
-import './backdrop.css';
-
 export interface BackdropProps extends HTMLMotionProps<'div'> {
   show?: boolean;
   blur?: boolean;
@@ -22,8 +20,6 @@ export function Backdrop({
   children,
   ...props
 }: BackdropProps) {
-  // Note: Escape-to-close is handled by the overlay hooks (useModal/useDrawer)
-  // instead of here, so `onClose` is invoked exactly once with a real event.
   const overlay = (
     <motion.div
       initial={{ opacity: 0 }}
@@ -31,9 +27,9 @@ export function Backdrop({
       exit={{ opacity: 0 }}
       onClick={onClick}
       className={cn(
-        'backdrop__overlay',
-        !transparent && 'backdrop__overlay--color',
-        blur && 'backdrop__overlay--blur',
+        'absolute inset-0 -z-10',
+        !transparent && 'bg-ds-950/40 dark:bg-white/15',
+        blur && 'backdrop-blur-sm dark:backdrop-blur-md',
         className
       )}
       data-testid="backdrop-overlay"
@@ -46,9 +42,10 @@ export function Backdrop({
   if (children || fixed) {
     return (
       <div 
+        data-testid="backdrop-root"
         className={cn(
-          'backdrop', 
-          !fixed && 'backdrop--absolute'
+          'inset-0 z-[1100] flex items-center justify-center p-6 isolate',
+          fixed ? 'fixed' : 'absolute'
         )}
       >
         {overlay}

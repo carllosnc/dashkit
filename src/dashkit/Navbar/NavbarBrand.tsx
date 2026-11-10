@@ -8,8 +8,10 @@ export interface NavbarBrandProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export function NavbarBrand({ children, className, ...props }: NavbarBrandProps) {
   return (
-    <div className={cn('navbar__brand', className)} {...props}>
+    <div className={cn('flex items-center gap-1.5 sm:gap-3 shrink-0 flex-nowrap min-w-0', className)} {...props}>
       {children}
     </div>
   );
 }
+
+NavbarBrand.displayName = 'NavbarBrand';

@@ -158,8 +158,8 @@ describe('Toast Component', () => {
       toast({ title: 'Top Left' });
     });
 
-    const container = screen.getByText('Top Left').closest('.toast-viewport');
-    expect(container).toHaveClass('toast-viewport--top-left');
+    const container = screen.getByText('Top Left').closest('[data-testid="toast-viewport"]');
+    expect(container).toHaveAttribute('data-position', 'top-left');
 
     // Default was bottom-right in previous tests
   });
@@ -177,7 +177,7 @@ describe('Toast Component', () => {
     });
 
     // Every viewport is a polite live region.
-    document.querySelectorAll('.toast-viewport').forEach((viewport) => {
+    document.querySelectorAll('[data-testid="toast-viewport"]').forEach((viewport) => {
       expect(viewport).toHaveAttribute('aria-live', 'polite');
     });
 

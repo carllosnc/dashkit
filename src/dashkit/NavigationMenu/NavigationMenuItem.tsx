@@ -3,7 +3,7 @@ import { cn } from '../utils/cn';
 
 export function NavigationMenuItem({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <li className={cn('navigation-menu__item', className)}>
+    <li className={cn('relative', className)}>
       {children}
     </li>
   );

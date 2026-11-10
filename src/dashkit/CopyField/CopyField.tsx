@@ -5,8 +5,6 @@ import { IconButton } from '../IconButton/IconButton';
 import { cn } from '../utils/cn';
 import { toast } from '../Toast/useToast';
 
-import './copy-field.css';
-
 export interface CopyFieldProps {
   label?: string;
   description?: string;
@@ -43,10 +41,10 @@ export const CopyField = forwardRef<HTMLDivElement, CopyFieldProps>(
     return (
       <div
         ref={ref}
-        className={cn('copy-field', className)}
+        className={cn('flex flex-col gap-1.5 w-full font-sans', className)}
       >
         {label && (
-          <label htmlFor={inputId} className="copy-field__label">
+          <label htmlFor={inputId} className="text-[13px] font-bold uppercase text-ds-800 dark:text-ds-200 ml-1 tracking-wider">
             {label}
           </label>
         )}
@@ -55,18 +53,18 @@ export const CopyField = forwardRef<HTMLDivElement, CopyFieldProps>(
           value={value}
           readOnly
           helperText={description}
-          className="copy-field__input"
+          className="font-mono"
           onFocus={(e) => e.target.select()}
           rightIcon={
             <IconButton
               icon={copied ? (
-                <FiCheck className="copy-field__check-icon" />
+                <FiCheck className="text-ds-success-600 duration-300" />
               ) : (
-                <FiCopy className="copy-field__copy-icon" />
+                <FiCopy className="opacity-70 transition-opacity group-hover:opacity-100" />
               )}
               onClick={handleCopy}
               variant="ghost"
-              className="copy-field__button"
+              className="group pointer-events-auto size-8 h-8 -mr-2.5 transition-all active:scale-95"
               aria-label="Copy to clipboard"
             />
           }

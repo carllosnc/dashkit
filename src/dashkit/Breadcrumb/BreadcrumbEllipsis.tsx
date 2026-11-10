@@ -10,11 +10,13 @@ export function BreadcrumbEllipsis({
     <span
       role="presentation"
       aria-hidden="true"
-      className={cn('breadcrumb__ellipsis', className)}
+      className={cn('flex h-9 w-9 items-center justify-center', className)}
       {...props}
     >
-      <LuEllipsis className="breadcrumb__ellipsis-icon" />
+      <LuEllipsis className="size-4" />
       <span className="sr-only">More</span>
     </span>
   );
 }
+
+BreadcrumbEllipsis.displayName = 'BreadcrumbEllipsis';

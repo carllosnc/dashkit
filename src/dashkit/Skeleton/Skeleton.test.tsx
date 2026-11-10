@@ -5,17 +5,17 @@ import { describe, it, expect } from 'vitest';
 describe('Skeleton', () => {
   it('renders with default rectangular variant', () => {
     const { container } = render(<Skeleton />);
-    expect(container.firstChild).toHaveClass('skeleton--rectangular');
+    expect(container.firstChild).toHaveClass('ds-rounded');
   });
 
   it('applies circular variant correctly', () => {
     const { container } = render(<Skeleton variant="circular" />);
-    expect(container.firstChild).toHaveClass('skeleton--circular');
+    expect(container.firstChild).toHaveClass('rounded-full');
   });
 
   it('applies text variant correctly', () => {
     const { container } = render(<Skeleton variant="text" />);
-    expect(container.firstChild).toHaveClass('skeleton--text');
+    expect(container.firstChild).toHaveClass('h-4', 'w-full');
   });
 
   it('applies custom className', () => {
@@ -25,6 +25,6 @@ describe('Skeleton', () => {
 
   it('applies shimmer animation class by default', () => {
     const { container } = render(<Skeleton />);
-    expect(container.firstChild).toHaveClass('skeleton--shimmer');
+    expect(container.firstChild).toHaveClass('after:absolute');
   });
 });
