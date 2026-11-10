@@ -3,6 +3,7 @@ import { useId } from 'react';
 import { FiChevronDown, FiCheck, FiSearch, FiX } from 'react-icons/fi';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '../utils/cn';
+import { getPortalThemeAttrs } from '../utils/portalTheme';
 import { Chip } from '../Chip/Chip';
 import { useCombobox } from './useCombobox';
 
@@ -73,16 +74,16 @@ export function Combobox({
       : undefined;
 
   return (
-    <div className={cn('flex flex-col gap-2 w-full font-sans relative', className)} ref={containerRef}>
+    <div data-slot="root" className={cn('flex flex-col gap-2 w-full font-sans relative', className)} ref={containerRef}>
       {(label || (multiple && selectedOptions.length > 0)) && (
         <div className="flex items-center justify-between px-1">
           {label && (
-            <label htmlFor={inputId} className="text-[13px] font-semibold text-ds-700 tracking-tight dark:text-ds-300">
+            <label data-slot="label" htmlFor={inputId} className="text-[13px] font-semibold text-foreground tracking-tight">
               {label}
             </label>
           )}
           {multiple && selectedOptions.length > 0 && (
-            <span className="text-[11px] font-bold text-ds-600 dark:text-ds-400 uppercase tracking-wider">
+            <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider">
               {selectedOptions.length} Selected
             </span>
           )}
@@ -90,7 +91,7 @@ export function Combobox({
       )}
 
       {multiple && selectedOptions.length > 0 && (
-        <div className="flex flex-wrap gap-2 mb-1">
+        <div data-slot="chips" className="flex flex-wrap gap-2 mb-1">
           <AnimatePresence>
             {selectedOptions.map(opt => (
               <motion.div
@@ -112,13 +113,14 @@ export function Combobox({
         </div>
       )}
 
-      <div className="relative group" ref={inputWrapperRef}>
-        <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ds-500 transition-colors duration-200 pointer-events-none group-focus-within:text-black dark:group-focus-within:text-white">
+      <div data-slot="wrapper" className="relative group" ref={inputWrapperRef}>
+        <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors duration-200 pointer-events-none group-focus-within:text-foreground">
           <FiSearch className="size-4" />
         </div>
 
         <input
           ref={inputRef}
+          data-slot="input"
           id={inputId}
           type="text"
           role="combobox"
@@ -148,14 +150,14 @@ export function Combobox({
             <button
               type="button"
               onClick={handleClear}
-              className="p-1.5 -m-0.5 rounded-full text-ds-500 transition-all hover:text-black hover:bg-ds-100 dark:hover:text-white dark:hover:bg-ds-800"
+              className="p-1.5 -m-0.5 rounded-full text-muted-foreground transition-all hover:text-foreground hover:bg-muted"
               aria-label="Clear selection"
             >
               <FiX className="size-3.5" />
             </button>
           )}
           <div className={cn(
-            'text-ds-500 transition-transform duration-300 pointer-events-none',
+            'text-muted-foreground transition-transform duration-300 pointer-events-none',
             isOpen && 'rotate-180'
           )}>
             <FiChevronDown className="size-4" />
@@ -165,6 +167,8 @@ export function Combobox({
         {isOpen && triggerRect && createPortal(
           <div
             ref={portalRef}
+            {...getPortalThemeAttrs()}
+            data-slot="content"
             id={listId}
             role="listbox"
             style={{
@@ -189,6 +193,7 @@ export function Combobox({
                   return (
                     <button
                       key={opt.value}
+                      data-slot="option"
                       id={`${listId}-option-${index}`}
                       type="button"
                       role="option"
@@ -214,7 +219,7 @@ export function Combobox({
       </div>
 
       {description && (
-        <span className="text-[12px] text-ds-500 ml-1 tracking-tight">
+        <span data-slot="helper" className="text-[12px] text-muted-foreground ml-1 tracking-tight">
           {description}
         </span>
       )}
