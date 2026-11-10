@@ -1,6 +1,7 @@
 import { createPortal } from 'react-dom';
 import { FiCalendar, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { cn } from '../utils/cn';
+import { getPortalThemeAttrs } from '../utils/portalTheme';
 import { useDatePicker, months, daysOfWeek } from './useDatePicker';
 
 export interface DatePickerProps {
@@ -44,15 +45,16 @@ export function DatePicker({
   } = useDatePicker({ value, onChange, disabled });
 
   return (
-    <div className="flex flex-col gap-1.5 w-full font-sans" ref={containerRef}>
+    <div data-slot="root" className="flex flex-col gap-1.5 w-full font-sans" ref={containerRef}>
       {label && (
-        <label className="text-[13px] font-semibold text-ds-700 ml-1 tracking-tight dark:text-ds-300">
+        <label data-slot="label" className="text-[13px] font-semibold text-foreground ml-1 tracking-tight">
           {label}
         </label>
       )}
       <div className="relative">
         <button
           ref={buttonRef}
+          data-slot="trigger"
           type="button"
           disabled={disabled}
           onClick={toggleOpen}
@@ -63,15 +65,17 @@ export function DatePicker({
             className
           )}
         >
-          <span className={cn('truncate', !value && 'text-ds-500')}>
+          <span className={cn('truncate', !value && 'text-muted-foreground')}>
             {value ? formatDate(value) : placeholder}
           </span>
-          <FiCalendar className="size-4 text-ds-400" />
+          <FiCalendar className="size-4 text-muted-foreground" />
         </button>
 
         {isOpen && triggerRect && createPortal(
           <div
             ref={portalRef}
+            {...getPortalThemeAttrs()}
+            data-slot="content"
             style={{
               position: 'fixed',
               top: position === 'bottom' ? triggerRect.bottom + 8 : triggerRect.top - 8,
@@ -92,7 +96,7 @@ export function DatePicker({
                 <button
                   type="button"
                   onClick={prevMonth}
-                  className="p-1.5 rounded-md transition-colors text-ds-500 hover:bg-popover-item hover:text-popover-fg"
+                  className="p-1.5 rounded-md transition-colors text-muted-foreground hover:bg-popover-item hover:text-popover-fg"
                   aria-label="Previous month"
                 >
                   <FiChevronLeft className="size-4" />
@@ -103,7 +107,7 @@ export function DatePicker({
                 <button
                   type="button"
                   onClick={nextMonth}
-                  className="p-1.5 rounded-md transition-colors text-ds-500 hover:bg-popover-item hover:text-popover-fg"
+                  className="p-1.5 rounded-md transition-colors text-muted-foreground hover:bg-popover-item hover:text-popover-fg"
                   aria-label="Next month"
                 >
                   <FiChevronRight className="size-4" />
@@ -112,7 +116,7 @@ export function DatePicker({
 
               <div className="grid grid-cols-7 mb-2">
                 {daysOfWeek.map(day => (
-                  <div key={day} className="text-[10px] uppercase font-bold text-ds-600 dark:text-ds-400 text-center">
+                  <div key={day} className="text-[10px] uppercase font-bold text-muted-foreground text-center">
                     {day}
                   </div>
                 ))}
@@ -132,8 +136,8 @@ export function DatePicker({
                       onClick={() => handleDateSelect(day)}
                       className={cn(
                         'size-8 text-xs rounded-lg flex items-center justify-center transition-all duration-200 font-medium text-popover-fg hover:bg-popover-item',
-                        selected && 'ds-primary-gradient text-white font-bold shadow-sm transform scale-110 hover:bg-transparent hover:brightness-110',
-                        today && !selected && 'text-ds-800 border border-ds-200 bg-ds-50 dark:text-ds-200 dark:border-ds-800 dark:bg-ds-800'
+                        selected && 'ds-primary-gradient text-primary-foreground font-bold shadow-sm transform scale-110 hover:bg-transparent hover:brightness-110',
+                        today && !selected && 'text-foreground border border-border bg-muted'
                       )}
                     >
                       {day}
@@ -149,7 +153,7 @@ export function DatePicker({
                     const today = new Date();
                     setViewDate(today);
                   }}
-                  className="text-xs font-bold text-ds-600 transition-colors hover:text-ds-900 dark:text-ds-400 dark:hover:text-ds-200"
+                  className="text-xs font-bold text-muted-foreground transition-colors hover:text-popover-fg"
                 >
                   Jump to today
                 </button>
@@ -160,7 +164,7 @@ export function DatePicker({
         )}
       </div>
       {description && (
-        <span className="text-[12px] text-ds-600 ml-1 tracking-tight dark:text-ds-400">
+        <span data-slot="helper" className="text-[12px] text-muted-foreground ml-1 tracking-tight">
           {description}
         </span>
       )}
