@@ -33,20 +33,15 @@ Every component should be located in `src/components/[ComponentName]/` and typic
 
 - **Component Refactoring**:
   - **Preserve Behavior & Styling**: When refactoring, NEVER change an existing feature or styling outcome. Focus purely on code organization and structural improvements.
-  - **Single File**: Create a dedicated file for each component (avoid grouping multiple components in one file).
-  - **Styling Strategy**: Prefer moving Tailwind class strings to a dedicated `[ComponentName].css` file using standard CSS classes. If kept in the `.tsx` file, move them to the top as constant variables (e.g., `const COMPONENT_BASE = "..."`).
+  - **Single File**: Create a dedicated file for each component (avoid grouping multiple components in one file). Each component is self-contained without companion `.css` files.
+  - **Styling Strategy**: Single-file utility-first architecture using Tailwind CSS v4 and `class-variance-authority` (`cva`) for multi-variant components. Do NOT create separate `.css` files for components.
   - **Named Functions**: Use standard named function component syntax (`function MyComponent() { ... }`) instead of anonymous arrow functions within `forwardRef` or as standalone variables.
   - **Clean Code**: Remove all non-essential comments and eliminate trailing spaces.
 
-- Use **Tailwind CSS v4** for all styling.
-  - When creating a component style file (`.css`), never use `@utility`. Always use standard CSS classes.
-  - **STYLING**: Avoid CSS nesting for BEM elements and modifiers. Use flat, full class names. Nested patterns are allowed ONLY for pseudo-classes (e.g., `:hover`, `:focus`) and pseudo-elements.
-  - **THEMING**: Always use the `@variant dark { ... }` directive for dark mode styles instead of inline `dark:` modifiers.
-  - **BEM METHODOLOGY**: Use BEM (Block Element Modifier) for all CSS class names.
-    - **Block**: The component name (e.g., `.card`)
-    - **Element**: Parts of the block, prefixed with double underscores (e.g., `.card__header`, `.card__title`)
-    - **Modifier**: State or style variations, prefixed with double hyphens (e.g., `.card--outlined`, `.card__title--large`)
-  - Always include `@reference` to the project's central CSS file (e.g., `../dashkit.css`) at the top of component style files to enable IntelliSense and proper token inheritance.
+- Use **Tailwind CSS v4** utility classes and `cva` for all component styling.
+  - **GLOBAL TOKENS**: Central tokens, themes (light/dark/oled), and shared utilities live in `src/dashkit/dashkit.css`.
+  - **UTILITY-FIRST & CVA**: Declare variants with `cva` inside the component `.tsx` file. Do not export runtime variant objects directly if they violate `react-refresh/only-export-components`; export `type Props extends VariantProps<typeof variants>`.
+  - **THEMING**: Use inline Tailwind utility classes (e.g. `dark:bg-ds-900`) and design system semantic tokens (`bg-card`, `text-foreground`, `border-border`, etc.).
 - Use `framer-motion` for animations.
 - Use the `cn` utility from `src/utils/cn` for class merging.
 - Ensure proper accessibility (ARIA roles, keyboard navigation).
