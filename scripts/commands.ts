@@ -58,6 +58,7 @@ export interface CliOptions {
   install: boolean;
   force?: boolean;
   tests?: boolean;
+  all?: boolean;
 }
 
 async function installDashkitCss(targetPath: string, sourcePath: string) {
@@ -196,19 +197,18 @@ async function addComponent(
   isDependency = false,
   allDeps = new Set<string>(),
   visited = new Set<string>()
-) {
+): Promise<boolean> {
   const registryKey = componentName.toLowerCase();
   const component = registry[registryKey];
   if (!component) {
     logger.error(`Component "${componentName}" not found in registry.`);
-    if (!isDependency) process.exit(1);
     process.exitCode = 1;
-    return;
+    return false;
   }
 
   // Guard against cycles and diamond dependencies in registryDependencies —
   // without this a self/cycle reference would recurse until the stack blows.
-  if (visited.has(registryKey)) return;
+  if (visited.has(registryKey)) return true;
   visited.add(registryKey);
 
   const spinner = ora(isDependency ? `Adding dependency ${chalk.bold(component.name)}...` : `Adding ${chalk.bold(component.name)}...`).start();
@@ -229,28 +229,17 @@ async function addComponent(
       }
     }
 
+    spinner.stop();
     if (!isDependency) {
-      spinner.stop();
       logger.success(`Component ${chalk.bold(component.name)} added.`);
-
-      if (options.install) {
-        await installDependencies(Array.from(allDeps));
-      } else {
-        const missingDeps = await getMissingDependencies(Array.from(allDeps));
-        if (missingDeps.length > 0) {
-          const pm = getPackageManager();
-          const installCmd = pm === 'npm' ? 'install' : 'add';
-          logger.info(`Install missing dependencies: ${chalk.bold(`${pm} ${installCmd} ${missingDeps.join(' ')}`)}`);
-        }
-      }
-    } else {
-      spinner.stop();
     }
+    return true;
   } catch (error) {
     spinner.stop();
     logger.error(`Error adding ${isDependency ? 'dependency ' : ''}${component.name}`);
     if (error instanceof Error) logger.error(error.message);
     process.exitCode = 1;
+    return false;
   }
 }
 
@@ -353,7 +342,9 @@ export async function handleAdd(
       : [];
 
   let componentNames: string[];
-  if (normalizedArgs.length > 0) {
+  if (options.all) {
+    componentNames = Object.keys(registry);
+  } else if (normalizedArgs.length > 0) {
     componentNames = normalizedArgs;
   } else if (!process.stdin.isTTY || !process.stdout.isTTY) {
     logger.error('No component specified in non-interactive mode. Usage: dashkit add <components...>');
@@ -365,12 +356,31 @@ export async function handleAdd(
 
   if (componentNames.length > 0) {
     // Shared across the whole run so multi-selection doesn't re-copy shared deps
+    // or spawn the package manager multiple times.
     const visited = new Set<string>();
+    const allDeps = new Set<string>();
+    let addedAny = false;
+
     for (const name of componentNames) {
-      await addComponent(name, options, false, new Set<string>(), visited);
+      const ok = await addComponent(name, options, false, allDeps, visited);
+      if (ok) addedAny = true;
     }
-    const baseDir = path.resolve(process.cwd(), options.output);
-    await updateRootBarrelFile(baseDir);
+
+    if (addedAny) {
+      if (options.install) {
+        await installDependencies(Array.from(allDeps));
+      } else {
+        const missingDeps = await getMissingDependencies(Array.from(allDeps));
+        if (missingDeps.length > 0) {
+          const pm = getPackageManager();
+          const installCmd = pm === 'npm' ? 'install' : 'add';
+          logger.info(`Install missing dependencies: ${chalk.bold(`${pm} ${installCmd} ${missingDeps.join(' ')}`)}`);
+        }
+      }
+
+      const baseDir = path.resolve(process.cwd(), options.output);
+      await updateRootBarrelFile(baseDir);
+    }
   }
 }
 
@@ -538,6 +548,13 @@ export async function handleInit(options: InitOptions = {}) {
     }
     if (shouldSave) logger.info('  Configuration:  dashkit.json created');
 
+    const missingBaseDeps = await getMissingDependencies(['clsx', 'tailwind-merge']);
+    if (missingBaseDeps.length > 0) {
+      const pm = getPackageManager();
+      const installCmd = pm === 'npm' ? 'install' : 'add';
+      logger.info(`  Base Packages:  ${chalk.bold(`${pm} ${installCmd} ${missingBaseDeps.join(' ')}`)}`);
+    }
+
   } catch (error) {
     if (error instanceof Error && error.message === 'cancelled') {
        process.exit(0);
@@ -679,6 +696,116 @@ export async function handleAiRules(options: AiRulesOptions = {}) {
   }
 
   logger.success(`AI rules written to ${targetFile}.`);
+}
+
+export interface DiffOptions {
+  json?: boolean;
+}
+
+export interface DiffEntry {
+  key: string;
+  name: string;
+  status: 'up-to-date' | 'modified' | 'missing';
+  modifiedFiles: string[];
+  missingFiles: string[];
+}
+
+export async function handleDiff(componentQuery?: string, options: DiffOptions = {}) {
+  const info = await getProjectInfo();
+  const defaults = getFolderStructure(info);
+  const config = await loadConfig();
+  const componentsDir = config?.componentsDir ?? defaults.components;
+  const targetBase = path.resolve(process.cwd(), componentsDir);
+
+  let keysToCheck: string[];
+  if (componentQuery) {
+    const query = componentQuery.toLowerCase();
+    const matchedKey = Object.keys(registry).find(
+      (k) => k === query || registry[k].name.toLowerCase() === query
+    );
+    if (!matchedKey) {
+      logger.error(`Component "${componentQuery}" not found in registry.`);
+      process.exitCode = 1;
+      return;
+    }
+    keysToCheck = [matchedKey];
+  } else {
+    keysToCheck = Object.keys(registry)
+      .filter((k) => fs.existsSync(path.join(targetBase, registry[k].name)))
+      .sort((a, b) => registry[a].name.localeCompare(registry[b].name));
+  }
+
+  const results: DiffEntry[] = [];
+
+  for (const key of keysToCheck) {
+    const comp = registry[key];
+    const compDir = path.join(targetBase, comp.name);
+    const nonTestFiles = comp.files.filter((f) => !/\.(test|spec)\.(ts|tsx)$/.test(f));
+    const modifiedFiles: string[] = [];
+    const missingFiles: string[] = [];
+
+    for (const relFile of nonTestFiles) {
+      const fileName = path.basename(relFile);
+      const sourcePath = path.resolve(projectRoot, relFile);
+      const localPath = path.join(compDir, fileName);
+
+      if (!(await fs.pathExists(localPath))) {
+        missingFiles.push(fileName);
+        continue;
+      }
+
+      const [sourceContent, localContent] = await Promise.all([
+        fs.readFile(sourcePath, 'utf8'),
+        fs.readFile(localPath, 'utf8'),
+      ]);
+
+      if (sourceContent.replace(/\r\n/g, '\n') !== localContent.replace(/\r\n/g, '\n')) {
+        modifiedFiles.push(fileName);
+      }
+    }
+
+    const status: DiffEntry['status'] =
+      missingFiles.length === nonTestFiles.length
+        ? 'missing'
+        : modifiedFiles.length > 0 || missingFiles.length > 0
+          ? 'modified'
+          : 'up-to-date';
+
+    results.push({
+      key,
+      name: comp.name,
+      status,
+      modifiedFiles,
+      missingFiles,
+    });
+  }
+
+  if (options.json) {
+    console.log(JSON.stringify(results, null, 2));
+    return;
+  }
+
+  logger.bold('\nDashkit Component Diff\n');
+
+  if (results.length === 0) {
+    logger.info('No installed components found to compare.');
+    return;
+  }
+
+  for (const item of results) {
+    if (item.status === 'up-to-date') {
+      console.log(`  ${chalk.green('[up-to-date]')} ${chalk.bold(item.name)}`);
+    } else if (item.status === 'missing') {
+      console.log(`  ${chalk.red('[not installed]')} ${chalk.bold(item.name)}`);
+    } else {
+      const details = [
+        ...item.modifiedFiles.map((f) => `${f} (modified)`),
+        ...item.missingFiles.map((f) => `${f} (missing)`),
+      ].join(', ');
+      console.log(`  ${chalk.yellow('[modified]')}   ${chalk.bold(item.name.padEnd(20))} ${chalk.dim(details)}`);
+    }
+  }
+  console.log();
 }
 
 export async function handleDoctor() {
