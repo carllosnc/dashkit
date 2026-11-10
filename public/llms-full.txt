@@ -5,8 +5,9 @@
 ## Core Architecture & Guidelines
 
 - Source Ownership: Every component is scaffolded directly into your codebase (default `src/dashkit/`).
-- Tailwind CSS v4: All styling relies on Tailwind v4 CSS classes, BEM naming, and @variant dark.
+- Tailwind CSS v4: All styling relies on Tailwind v4 CSS classes, CVA variants, and @variant dark.
 - Pure Usage: Rely on built-in component props and variants rather than ad-hoc inline class overrides.
+- AI Customization Hierarchy: (1) Edit `dashkit.css` tokens (`--ds-*`, `--radius`) for global theme changes; (2) Edit component `cva(...)` in `src/dashkit/<Component>/` for app-wide component changes; (3) Use `className` and `data-slot` selectors (`[&_[data-slot=label]]:...`) for one-off instance tweaks.
 - Block-based Layouts: Use the Card component to partition page sections and views.
 - Bun First: Optimized for bun and bunx package management.
 
