@@ -59,9 +59,9 @@ export function ColorPicker({
   const messageId = React.useId();
 
   return (
-    <div className={cn('flex flex-col gap-1.5 w-full font-sans', className)}>
+    <div data-slot="root" className={cn('flex flex-col gap-1.5 w-full font-sans', className)}>
       {label && (
-        <label id={labelId} className="text-[13px] font-semibold text-ds-700 ml-1 tracking-tight dark:text-ds-300">
+        <label data-slot="label" id={labelId} className="text-[13px] font-semibold text-foreground ml-1 tracking-tight">
           {label}
         </label>
       )}
@@ -69,6 +69,7 @@ export function ColorPicker({
       <Popover>
         <PopoverTrigger asChild>
           <button
+            data-slot="trigger"
             type="button"
             aria-labelledby={label ? `${labelId} ${valueId}` : undefined}
             className={cn(
@@ -82,7 +83,7 @@ export function ColorPicker({
             </span>
           </button>
         </PopoverTrigger>
-        <PopoverContent align="start" className="w-64 p-3 space-y-4 shadow-2xl bg-popover border-popover-border">
+        <PopoverContent data-slot="content" align="start" className="w-64 p-3 space-y-4 shadow-2xl bg-popover border-popover-border">
           <div className="grid grid-cols-6 gap-2">
             {presets.map((color) => (
               <button
@@ -130,11 +131,12 @@ export function ColorPicker({
 
       {(error || helperText) && (
         <span
+          data-slot="helper"
           id={messageId}
           role={error ? 'alert' : undefined}
           className={cn(
             'text-[12px] ml-1 tracking-tight',
-            error ? 'text-ds-danger-600 dark:text-ds-danger-400 font-medium' : 'text-ds-600'
+            error ? 'text-ds-danger-600 dark:text-ds-danger-400 font-medium' : 'text-muted-foreground'
           )}
         >
           {error || helperText}
