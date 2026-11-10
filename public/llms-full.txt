@@ -667,7 +667,7 @@ Use `orientation="both"` when you need independent scrolling in both directions.
 
 - Slug: `navbar`
 - Installation: `bunx carllosnc/dashkit add navbar`
-- NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`, `class-variance-authority`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`
 
 # Navbar
 
@@ -1183,7 +1183,7 @@ The Sidebar library is composed of several specialized layers designed for speci
 
 - Slug: `breadcrumb`
 - Installation: `bunx carllosnc/dashkit add breadcrumb`
-- NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`, `class-variance-authority`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`
 
 # Breadcrumb
 
@@ -1815,7 +1815,7 @@ export function PaginationMinimalExample() {
 
 - Slug: `dock`
 - Installation: `bunx carllosnc/dashkit add dock`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
+- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
 
 export const DockDemo = () => {
   return (
@@ -1927,7 +1927,7 @@ You can adjust the `magnification` (how much it grows) and the `distance` (how f
 
 - Slug: `button`
 - Installation: `bunx carllosnc/dashkit add button`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`, `react-icons`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`
 - Dashkit Dependencies: `spinner`
 
 # Button
@@ -2061,7 +2061,7 @@ The component extends all native `ButtonHTMLAttributes` props (e.g. `onClick`, `
 
 - Slug: `iconbutton`
 - Installation: `bunx carllosnc/dashkit add iconbutton`
-- NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`, `react-icons`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`
 
 # Icon Button
 
@@ -2236,7 +2236,7 @@ Vertical groups are useful for sidebars or property menus.
 
 - Slug: `input`
 - Installation: `bunx carllosnc/dashkit add input`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`, `react-icons`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`
 
 export const PatternsExample = () => {
   const formatCPF = (val) => val
@@ -2494,7 +2494,7 @@ The component extends all native `TextareaHTMLAttributes` props, plus the follow
 
 - Slug: `checkbox`
 - Installation: `bunx carllosnc/dashkit add checkbox`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
+- NPM Dependencies: `clsx`, `tailwind-merge`
 
 export const ControlledExample = () => {
   const [checked, setChecked] = useState(false);
@@ -2626,7 +2626,7 @@ The component extends all native `InputHTMLAttributes` props (excluding `type`),
 
 - Slug: `radio`
 - Installation: `bunx carllosnc/dashkit add radio`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
+- NPM Dependencies: `clsx`, `tailwind-merge`
 
 export const RadioDemo = () => {
   const [selected, setSelected] = useState('one');
@@ -2752,7 +2752,7 @@ Extends all native `RadioHTMLAttributes` (except `type`), plus these specialties
 
 - Slug: `switch`
 - Installation: `bunx carllosnc/dashkit add switch`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
+- NPM Dependencies: `clsx`, `tailwind-merge`
 
 export const SwitchDemo = () => {
   const [enabled, setEnabled] = useState(false);
@@ -2861,7 +2861,7 @@ Extends all native `CheckboxHTMLAttributes` (except `type`), plus these specialt
 
 - Slug: `select`
 - Installation: `bunx carllosnc/dashkit add select`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`, `react-icons`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`, `react-icons`
 
 export const SelectDemo = () => {
   const [value, setValue] = useState('');
@@ -3103,7 +3103,7 @@ The combobox supports different visual states like `disabled` or pre-filled valu
 
 - Slug: `slider`
 - Installation: `bunx carllosnc/dashkit add slider`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
+- NPM Dependencies: `clsx`, `tailwind-merge`
 
 export const SliderDemo = () => {
   const [value, setValue] = useState(50);
@@ -3362,7 +3362,7 @@ export function ControlledDateField() {
 
 - Slug: `datepicker`
 - Installation: `bunx carllosnc/dashkit add datepicker`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`
 
 # DatePicker
 
@@ -3439,7 +3439,7 @@ You can provide custom labels, descriptions, and placeholders.
 
 - Slug: `otpinput`
 - Installation: `bunx carllosnc/dashkit add otpinput`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
+- NPM Dependencies: `clsx`, `tailwind-merge`
 
 export const OtpInputDemo = () => {
   const [otp, setOtp] = useState('');
@@ -3550,7 +3550,7 @@ export function VerificationForm() {
 
 - Slug: `colorpicker`
 - Installation: `bunx carllosnc/dashkit add colorpicker`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`
 - Dashkit Dependencies: `popover`, `input`
 
 # Color Picker
@@ -3602,7 +3602,7 @@ function App() {
 
 - Slug: `copyfield`
 - Installation: `bunx carllosnc/dashkit add copyfield`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`
 - Dashkit Dependencies: `input`, `iconbutton`, `toast`
 
 # Copy Field
@@ -4055,7 +4055,7 @@ The sub-components `DrawerHeader`, `DrawerContent`, and `DrawerFooter` all accep
 
 - Slug: `dropdown`
 - Installation: `bunx carllosnc/dashkit add dropdown`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`
 
 export const DropdownDemo = () => {
   const [selected, setSelected] = useState('Personal');
@@ -4364,7 +4364,7 @@ The `asChild` prop allows any element to act as the dropdown trigger, from icon 
 
 - Slug: `popover`
 - Installation: `bunx carllosnc/dashkit add popover`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
+- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
 
 # Popover
 
@@ -4892,7 +4892,7 @@ export const ChildrenExample = () => {
 
 - Slug: `spinner`
 - Installation: `bunx carllosnc/dashkit add spinner`
-- NPM Dependencies: `clsx`, `tailwind-merge`
+- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
 
 # Spinner
 
@@ -5676,6 +5676,7 @@ Combine badges with other components to create rich status indicators.
 
 - Slug: `floatbadge`
 - Installation: `bunx carllosnc/dashkit add floatbadge`
+- NPM Dependencies: `clsx`, `tailwind-merge`
 - Dashkit Dependencies: `badge`
 
 # Badge
@@ -5802,7 +5803,7 @@ Combine badges with other components to create rich status indicators.
 
 - Slug: `chip`
 - Installation: `bunx carllosnc/dashkit add chip`
-- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`, `react-icons`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`, `react-icons`
 
 export const MultiSelectExample = () => {
   const [selectedChips, setSelectedChips] = useState(['React', 'Vite']);
@@ -6446,7 +6447,7 @@ By default, the component automatically scrolls to the bottom when new logs are 
 
 - Slug: `table`
 - Installation: `bunx carllosnc/dashkit add table`
-- NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`
+- NPM Dependencies: `clsx`, `tailwind-merge`
 
 # Table
 
