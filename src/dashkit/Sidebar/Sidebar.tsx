@@ -230,7 +230,7 @@ export interface SidebarContentProps extends React.HTMLAttributes<HTMLDivElement
 
 export function SidebarContent({ children, className, ...props }: SidebarContentProps) {
   return (
-    <div className={cn('flex-1 overflow-y-auto overflow-x-hidden min-h-0 flex flex-col gap-1', className)} {...props}>
+    <div className={cn('flex-1 overflow-y-auto overflow-x-hidden min-h-0 flex flex-col gap-1 py-3', className)} {...props}>
       {children}
     </div>
   );
@@ -346,7 +346,7 @@ export function SidebarSection({
   const [isSectionOpen, setIsSectionOpen] = React.useState(defaultOpen);
 
   return (
-    <div className={cn('text-foreground mt-4 first:mt-1 mb-1', className)}>
+    <div className={cn('text-foreground mt-4 first:mt-2 mb-1', className)}>
       {title && isOpen && (
         <div className="overflow-hidden">
           <button
