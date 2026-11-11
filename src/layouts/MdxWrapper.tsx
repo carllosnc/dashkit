@@ -127,7 +127,7 @@ const CustomPre = ({ children, ...props }: CustomPreProps) => {
   return (
     <div
       {...divProps}
-      className="relative group mt-6 first:mt-0 overflow-hidden rounded-lg border border-ds-200 dark:border-ds-800"
+      className="relative group mt-6 first:mt-0 overflow-hidden ds-rounded border border-ds-200 dark:border-ds-800"
     >
       <pre ref={preRef} className="m-0! bg-transparent!">
         {children}
