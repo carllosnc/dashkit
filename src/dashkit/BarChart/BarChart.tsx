@@ -21,6 +21,7 @@ export interface BarChartProps {
   showTooltip?: boolean;
   animate?: boolean;
   barGap?: number;
+  maxBarWidth?: number;
   rounded?: boolean;
   texture?: BarChartTexture;
   showTrack?: boolean;
@@ -36,6 +37,7 @@ export function BarChart({
   showTooltip = true,
   animate = true,
   barGap = 4,
+  maxBarWidth = 64,
   rounded = true,
   texture = 'none',
   showTrack = false,
@@ -56,7 +58,7 @@ export function BarChart({
     barWidth,
     handleMouseMove,
     isNearTop
-  } = useBarChart({ data, series, barGap });
+  } = useBarChart({ data, series, barGap, maxBarWidth });
 
   if (!data || data.length === 0 || !series || series.length === 0) return null;
 
