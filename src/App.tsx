@@ -1,10 +1,7 @@
-import { Badge } from './dashkit/Badge/Badge'
 import { Button } from './dashkit/Button/Button'
-import { Chip } from './dashkit/Chip/Chip'
 import { CopyField } from './dashkit/CopyField/CopyField'
 import { Header } from './partials/Header'
 import { FiArrowRight, FiGithub } from 'react-icons/fi'
-import { SiReact, SiTailwindcss, SiFramer, SiTypescript } from 'react-icons/si'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { Footer } from './partials/Footer'
@@ -36,14 +33,6 @@ function App() {
 
       {/* Hero Section */}
       <main className="relative flex flex-col items-center justify-center text-center px-6 py-16 md:py-20 overflow-hidden">
-        <div className="mb-6 animate-in fade-in slide-in-from-top-4 duration-1000 delay-100 fill-mode-both">
-          <Badge
-            color="primary"
-            variant="soft"
-            content="v1.0 • 55+ Components • AI-Ready"
-          />
-        </div>
-
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground leading-tight mb-5">
           {TAGLINE}
         </h1>
@@ -65,14 +54,6 @@ function App() {
 
         <div className="mt-6 w-full max-w-xs">
           <CopyField value="bunx carllosnc/dashkit init" />
-        </div>
-
-        {/* Tech Stack Badges */}
-        <div className="mt-10 flex flex-wrap justify-center gap-3">
-          <Chip variant="tonal" icon={<SiReact className="w-3.5 h-3.5 text-[#61DAFB]" />} label="React 19" />
-          <Chip variant="tonal" icon={<SiTailwindcss className="w-3.5 h-3.5 text-[#06B6D4]" />} label="Tailwind CSS v4" />
-          <Chip variant="tonal" icon={<SiFramer className="w-3.5 h-3.5 text-foreground" />} label="Framer Motion" />
-          <Chip variant="tonal" icon={<SiTypescript className="w-3.5 h-3.5 text-[#3178C6]" />} label="TypeScript" />
         </div>
       </main>
 
