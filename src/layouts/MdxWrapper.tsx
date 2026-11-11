@@ -111,7 +111,7 @@ const CopyButton = ({ preRef }: { preRef: React.RefObject<HTMLPreElement | null>
     <button
       onClick={copy}
       type="button"
-      className="absolute top-2 right-2 p-1.5 rounded-md transition-all duration-200 bg-ds-800 hover:bg-ds-700 text-ds-400 hover:text-white border border-ds-700 z-20 opacity-0 group-hover:opacity-100 focus:opacity-100"
+      className="absolute top-2.5 right-2.5 p-1.5 rounded-md transition-opacity duration-150 bg-ds-800 hover:bg-ds-700 text-ds-300 hover:text-white border border-ds-700 z-20 opacity-80 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       aria-label="Copy code"
     >
       {isCopied ? <FiCheck size={14} className="text-emerald-400" /> : <FiCopy size={14} />}
@@ -241,17 +241,80 @@ const components: Record<string, ElementType> = {
   HiOutlineChartBarSquare,
   HiOutlineTicket,
   Preview: ({ children }: { children: ReactNode }) => (
-    <div className="not-prose border bg-card border-ds-200 dark:border-ds-800 ds-rounded flex flex-col p-4 gap-4 first:pt-0 items-start">
+    <div className="not-prose my-6 border bg-card border-border ds-rounded flex flex-col p-6 md:p-8 gap-4 items-start">
       {children}
     </div>
   ),
   pre: CustomPre,
 };
 
+function extractMarkdownFromDom(root: HTMLElement): string {
+  const lines: string[] = [];
+
+  for (const node of Array.from(root.children)) {
+    const tag = node.tagName.toLowerCase();
+    if (node.getAttribute('data-ai-toolbar') === 'true') continue;
+
+    if (tag === 'h1') {
+      lines.push(`# ${node.textContent?.trim() ?? ''}\n`);
+    } else if (tag === 'h2') {
+      lines.push(`\n## ${node.textContent?.trim() ?? ''}\n`);
+    } else if (tag === 'h3') {
+      lines.push(`\n### ${node.textContent?.trim() ?? ''}\n`);
+    } else if (tag === 'h4') {
+      lines.push(`\n#### ${node.textContent?.trim() ?? ''}\n`);
+    } else if (tag === 'p') {
+      lines.push(`${node.textContent?.trim() ?? ''}\n`);
+    } else if (tag === 'ul' || tag === 'ol') {
+      const items = Array.from(node.querySelectorAll(':scope > li'));
+      for (const li of items) {
+        lines.push(`- ${li.textContent?.trim() ?? ''}`);
+      }
+      lines.push('');
+    } else if (node.querySelector('pre')) {
+      const pre = node.querySelector('pre');
+      const lang = pre?.getAttribute('data-language') || 'tsx';
+      const code = pre?.textContent?.trim() ?? '';
+      if (code) {
+        lines.push(`\`\`\`${lang}\n${code}\n\`\`\`\n`);
+      }
+    } else if (node.querySelector('table')) {
+      const rows = Array.from(node.querySelectorAll('tr'));
+      rows.forEach((tr, rowIdx) => {
+        const cells = Array.from(tr.querySelectorAll('th, td')).map((c) =>
+          (c.textContent?.trim() ?? '').replace(/\|/g, '\\|').replace(/\s+/g, ' ')
+        );
+        if (cells.length > 0) {
+          lines.push(`| ${cells.join(' | ')} |`);
+          if (rowIdx === 0) {
+            lines.push(`| ${cells.map(() => '---').join(' | ')} |`);
+          }
+        }
+      });
+      lines.push('');
+    }
+  }
+
+  return lines.join('\n').replace(/\n{3,}/g, '\n\n').trim() + '\n';
+}
+
 export function MdxWrapper({ Component }: { Component: MdxComponent }) {
   const [title, setTitle] = useState('Dashkit UI');
-  const [description, setDescription] = useState('Premium React component library for modern dashboards.');
+  const [description, setDescription] = useState('Copy-paste React 19 & Tailwind CSS v4 components with native context for AI coding agents.');
+  const [copiedPage, setCopiedPage] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const handleCopyForAi = async () => {
+    if (!containerRef.current) return;
+    try {
+      const markdown = extractMarkdownFromDom(containerRef.current);
+      await navigator.clipboard.writeText(markdown);
+      setCopiedPage(true);
+      setTimeout(() => setCopiedPage(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy page markdown: ', err);
+    }
+  };
 
   useEffect(() => {
     if (containerRef.current) {
@@ -271,7 +334,7 @@ export function MdxWrapper({ Component }: { Component: MdxComponent }) {
   }, [Component]);
 
   return (
-    <div className="prose prose-sm md:prose-base md:prose-pre:text-base prose-neutral dark:prose-invert max-w-full  prose-h1:font-normal" ref={containerRef}>
+    <div className="prose prose-sm md:prose-base md:prose-pre:text-base prose-neutral dark:prose-invert max-w-none! w-full prose-h1:font-bold prose-h1:tracking-tight prose-h2:font-semibold prose-h2:tracking-tight prose-headings:scroll-mt-24" ref={containerRef}>
       <Helmet>
         <title>{title}</title>
         <meta name="description" content={description} />
@@ -284,6 +347,49 @@ export function MdxWrapper({ Component }: { Component: MdxComponent }) {
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content="/og.png" />
       </Helmet>
+      <div
+        data-ai-toolbar="true"
+        className="not-prose mb-6 flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-border"
+      >
+        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+          <span className="inline-flex items-center gap-1.5 font-medium text-foreground">
+            AI Context:
+          </span>
+          <a
+            href="/llms.txt"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-2 py-0.5 rounded-md bg-secondary text-secondary-foreground hover:opacity-80 transition-opacity font-mono"
+          >
+            /llms.txt
+          </a>
+          <a
+            href="/llms-full.txt"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-2 py-0.5 rounded-md bg-secondary text-secondary-foreground hover:opacity-80 transition-opacity font-mono"
+          >
+            /llms-full.txt
+          </a>
+          <a
+            href="/registry.json"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-2 py-0.5 rounded-md bg-secondary text-secondary-foreground hover:opacity-80 transition-opacity font-mono"
+          >
+            /registry.json
+          </a>
+        </div>
+        <Button
+          size="sm"
+          variant="outlined"
+          rounded={false}
+          leftIcon={copiedPage ? <FiCheck className="text-ds-success-600" /> : <FiCopy />}
+          onClick={handleCopyForAi}
+        >
+          {copiedPage ? 'Copied Markdown' : 'Copy Page for AI'}
+        </Button>
+      </div>
       <Component components={components} />
     </div>
   );
