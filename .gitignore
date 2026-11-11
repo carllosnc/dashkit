@@ -27,7 +27,10 @@ dist-ssr
 tmp/
 test_output.txt
 
-# Agent scratch directories
+# Agent scratch directories & local skills
 .agent/
-.agents/
+.agents/*
+!.agents/skills/
+.agents/skills/*
+!.agents/skills/dashkit-developer/
 skills-lock.json

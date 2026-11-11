@@ -107,6 +107,14 @@ export function stripEmojis(str: string): string {
   return str.replace(/\p{Extended_Pictographic}/gu, '');
 }
 
+export function toHeadingAnchor(heading: string): string {
+  return heading
+    .trim()
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/\s+/g, '-');
+}
+
 export function extractDescriptionFromMdx(content: string): string {
   const lines = content.split('\n');
   let foundTitle = false;
@@ -157,6 +165,7 @@ export function convertPropertyDocToMarkdown(docStr: string): string {
 
 export function cleanMdxForDocumentation(content: string): string {
   const parts = content.split(/(```[\s\S]*?```)/g);
+  let removedTitleH1 = false;
 
   for (let i = 0; i < parts.length; i++) {
     if (i % 2 === 1) {
@@ -168,6 +177,18 @@ export function cleanMdxForDocumentation(content: string): string {
 
       // Remove import statements
       text = text.replace(/^import\s+[\s\S]*?from\s+['"][^'"]+['"];?\s*$/gm, '');
+
+      // Remove the top-level MDX H1 title (already emitted as `## <ComponentName>` by the generator)
+      if (!removedTitleH1 && /^#\s+.+$/m.test(text)) {
+        text = text.replace(/^#\s+.+$\n?/m, '');
+        removedTitleH1 = true;
+      }
+
+      // Demote all remaining MDX headings by one level (## -> ###, ### -> ####, etc.)
+      // so they nest under `## <ComponentName>`. Note: H3+ subsection headings (e.g.
+      // `### Import`, `### Installation`, `### Props`) are component-scoped and allowed
+      // to repeat across components, while H1/H2 anchors are strictly unique.
+      text = text.replace(/^(#{1,5})\s+/gm, (_match, hashes: string) => `#${hashes} `);
 
       // Remove <Preview ...> ... </Preview>
       text = text.replace(/<Preview[\s\S]*?<\/Preview>/g, '');
@@ -279,7 +300,8 @@ export function generateLlmsTxt(): string {
         desc = extractDescriptionFromMdx(fs.readFileSync(mdxPath, 'utf8'));
       }
       const descPart = desc ? `: ${desc}` : '';
-      lines.push(`- [${comp.name}](llms-full.txt#${comp.slug})${descPart}`);
+      const anchor = toHeadingAnchor(comp.name);
+      lines.push(`- [${comp.name}](llms-full.txt#${anchor})${descPart}`);
     }
     lines.push('');
   }
@@ -313,18 +335,15 @@ export function generateLlmsFullTxt(): string {
   lines.push('bunx carllosnc/dashkit list --json');
   lines.push('```\n');
 
-  lines.push('## Components\n');
-
   const processedSlugs = new Set<string>();
 
   for (const cat of CATEGORIES) {
-    lines.push(`### Category: ${cat.name}\n`);
-
     for (const comp of cat.components) {
       if (processedSlugs.has(comp.slug)) continue;
       processedSlugs.add(comp.slug);
 
       lines.push(`## ${comp.name}\n`);
+      lines.push(`- Category: ${cat.name}`);
       lines.push(`- Slug: \`${comp.slug}\``);
       lines.push(`- Installation: \`bunx carllosnc/dashkit add ${comp.slug}\``);
 

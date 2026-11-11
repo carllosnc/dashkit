@@ -95,7 +95,7 @@ Complete list of 55 production-ready components. For full API signatures, props 
 ### Navigation
 
 - [Navbar](llms-full.txt#navbar): A premium, responsive navigation header with support for branding, navigation, and action buttons using a flexible composition pattern.
-- [NavigationMenu](llms-full.txt#navigation-menu): A premium navigation menu component inspired by modern, high-end dashboards. It features a shared viewport that smoothly moves and resizes to accommodate different content sections.
+- [NavigationMenu](llms-full.txt#navigationmenu): A premium navigation menu component inspired by modern, high-end dashboards. It features a shared viewport that smoothly moves and resizes to accommodate different content sections.
 - [Sidebar](llms-full.txt#sidebar): A versatile and premium navigation sidebar component that supports complex layouts, branding, status indicators, and responsive mobile drawer adaptation out of the box.
 - [Breadcrumb](llms-full.txt#breadcrumb): A secondary navigation component that helps users understand their current location in the application hierarchy.
 - [Tabs](llms-full.txt#tabs): A performant and premium tabs component with a smooth, fluid indicator animation powered by Framer Motion.
@@ -135,7 +135,7 @@ Complete list of 55 production-ready components. For full API signatures, props 
 - [ProgressBar](llms-full.txt#progressbar): Animated, fluid indicators for tracking task completion, loading states, or data metrics with high precision.
 - [CircularProgress](llms-full.txt#circularprogress): A high-fidelity circular progress indicator built with SVG and Framer Motion. It provides smooth, fluid animations for status monitoring, health metrics, and loading states.
 - [Skeleton](llms-full.txt#skeleton): A placeholder component used to mimic the layout of actual content while it is loading.
-- [FloatActionMenu](llms-full.txt#float-action-menu): A premium floating action button that reveals an interactive menu card sliding from right to left.
+- [FloatActionMenu](llms-full.txt#floatactionmenu): A premium floating action button that reveals an interactive menu card sliding from right to left.
 
 ### Data Display & Metrics
 
