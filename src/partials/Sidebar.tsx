@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { FiSearch, FiX } from 'react-icons/fi';
 import clsx from 'clsx';
 
@@ -29,7 +28,6 @@ export function Sidebar({
   sections,
   currentPath,
   onItemClick,
-  layoutId = "sidebar-active-item",
   isActive: customIsActive,
   searchable = false,
 }: SidebarProps) {
@@ -110,27 +108,20 @@ export function Sidebar({
                     className={clsx(
                       "relative px-3 py-1.5 rounded-full text-sm transition-colors duration-150 flex items-center gap-2.5 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                       active
-                        ? "text-ds-50 dark:text-ds-950"
+                        ? "bg-ds-900 text-ds-50 dark:bg-ds-100 dark:text-ds-950"
                         : "text-muted-foreground font-medium hover:text-foreground hover:bg-card dark:hover:bg-ds-800/50",
                       link.disabled && "opacity-50 cursor-not-allowed hover:bg-transparent"
                     )}
                   >
-                    {active && (
-                      <motion.div
-                        layoutId={layoutId}
-                        className="absolute inset-0 bg-ds-900 dark:bg-ds-100 rounded-full"
-                        transition={{ type: "spring", bounce: 0, duration: 0.35 }}
-                      />
-                    )}
                     <div className={clsx(
-                      "shrink-0 transition-colors duration-150 relative z-10",
+                      "shrink-0 transition-colors duration-150",
                       active
                         ? "text-ds-50 dark:text-ds-950"
                         : "text-muted-foreground group-hover:text-foreground"
                     )}>
                       {link.icon}
                     </div>
-                    <span className="relative z-10 font-medium">{link.label}</span>
+                    <span className="font-medium">{link.label}</span>
                   </Link>
                 );
               })}

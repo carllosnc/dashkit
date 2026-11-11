@@ -42,19 +42,19 @@ export function PropertyDoc({ title, properties, className }: PropertyDocProps) 
                 className="group hover:bg-muted/20 transition-colors duration-150"
               >
                 <td className="px-4 py-3.5 align-top whitespace-nowrap border-r border-border">
-                  <code className="inline-flex items-center font-mono text-xs font-semibold text-foreground bg-muted px-2 py-0.5 rounded border border-border/60">
+                  <span className="inline-flex items-center font-sans text-xs font-semibold text-foreground bg-muted px-2 py-0.5 rounded border border-border/60">
                     {property.prop}
-                  </code>
+                  </span>
                 </td>
                 {hasType && (
                   <td className="px-4 py-3.5 align-top border-r border-border">
-                    <code className="font-mono text-xs text-primary break-words">
+                    <span className="font-sans text-xs font-medium text-primary break-words">
                       {property.type}
-                    </code>
+                    </span>
                   </td>
                 )}
                 {hasDefault && (
-                  <td className="px-4 py-3.5 align-top whitespace-nowrap font-mono text-xs border-r border-border">
+                  <td className="px-4 py-3.5 align-top whitespace-nowrap font-sans text-xs border-r border-border">
                     <span className="text-muted-foreground">
                       {property.defaultValue || '—'}
                     </span>
