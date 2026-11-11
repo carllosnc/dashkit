@@ -3,6 +3,7 @@ import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { execSync } from 'child_process';
 import fs from 'fs-extra';
 import path from 'path';
+import { normalizeComponentsDir, normalizeDirPath } from '../utils';
 
 const CLI_PATH = path.resolve(__dirname, '../cli.ts');
 const TEMP_DIR = path.resolve(__dirname, '../../tmp/cli-tests');
@@ -453,5 +454,100 @@ describe('Dashkit CLI', () => {
     expect(badgeDiff?.status).toBe("up-to-date");
     expect(switchDiff?.status).toBe("modified");
     expect(switchDiff?.modifiedFiles).toContain("Switch.tsx");
+  }, 30000);
+
+  it("should normalize paths with POSIX forward slashes and avoid duplicate /dashkit on trailing slashes", () => {
+    expect(normalizeComponentsDir("src\\dashkit")).toBe("src/dashkit");
+    expect(normalizeComponentsDir("src/dashkit/")).toBe("src/dashkit");
+    expect(normalizeComponentsDir("src/components/")).toBe("src/components/dashkit");
+    expect(normalizeDirPath("./src\\styles/")).toBe("src/styles");
+    expect(normalizeDirPath(".")).toBe("");
+  });
+
+  it("should respect existing dashkit.json and support --force on init", async () => {
+    const testDir = path.join(TEMP_DIR, "init-existing-and-force");
+    await fs.ensureDir(path.join(testDir, "src"));
+    // Single-line CSS without trailing newline
+    const mainCss = path.join(testDir, "src/index.css");
+    await fs.writeFile(mainCss, '@import "tailwindcss";');
+
+    await fs.writeJson(path.join(testDir, "dashkit.json"), {
+      componentsDir: "src\\custom-ui\\dashkit/",
+      cssDir: "src\\styles/"
+    });
+
+    execSync(`bun x tsx ${CLI_PATH} init --yes --no-install`, {
+      cwd: testDir,
+      stdio: "pipe",
+      timeout: SPAWN_TIMEOUT
+    });
+
+    const savedConfig = await fs.readJson(path.join(testDir, "dashkit.json"));
+    expect(savedConfig.componentsDir).toBe("src/custom-ui/dashkit");
+    expect(savedConfig.cssDir).toBe("src/styles");
+
+    const installedCss = path.join(testDir, "src/styles/dashkit.css");
+    const installedCn = path.join(testDir, "src/custom-ui/dashkit/utils/cn.ts");
+    expect(await fs.pathExists(installedCss)).toBe(true);
+    expect(await fs.pathExists(installedCn)).toBe(true);
+
+    // Verify single-line @import "tailwindcss"; had dashkit.css injected after it
+    const mainCssContent = await fs.readFile(mainCss, "utf8");
+    expect(mainCssContent.indexOf('@import "tailwindcss";')).toBeLessThan(
+      mainCssContent.indexOf("dashkit.css")
+    );
+
+    // Customize dashkit.css and utils/cn.ts locally
+    await fs.writeFile(installedCss, "/* custom css */\n");
+    await fs.writeFile(installedCn, "// custom cn\n");
+
+    // Re-run init without --force: should preserve local modifications
+    execSync(`bun x tsx ${CLI_PATH} init --yes --no-install`, {
+      cwd: testDir,
+      stdio: "pipe",
+      timeout: SPAWN_TIMEOUT
+    });
+    expect(await fs.readFile(installedCss, "utf8")).toBe("/* custom css */\n");
+    expect(await fs.readFile(installedCn, "utf8")).toBe("// custom cn\n");
+
+    // Re-run init with --force: should restore upstream files
+    execSync(`bun x tsx ${CLI_PATH} init --yes --force --no-install`, {
+      cwd: testDir,
+      stdio: "pipe",
+      timeout: SPAWN_TIMEOUT
+    });
+    expect(await fs.readFile(installedCss, "utf8")).not.toBe("/* custom css */\n");
+    expect(await fs.readFile(installedCn, "utf8")).not.toBe("// custom cn\n");
+  }, 30000);
+
+  it("should support LLM-first one-shot init with --json, -c, --css-dir, and automatic AI rules", async () => {
+    const testDir = path.join(TEMP_DIR, "init-llm-json");
+    await fs.ensureDir(path.join(testDir, "src"));
+    await fs.writeFile(path.join(testDir, "src/index.css"), '@import "tailwindcss";\n');
+
+    const jsonOutput = execSync(
+      `bun x tsx ${CLI_PATH} init -c src/ui --css-dir src/styles --ai-rules .cursorrules --no-install --json`,
+      {
+        cwd: testDir,
+        encoding: "utf8",
+        stdio: "pipe",
+        timeout: SPAWN_TIMEOUT
+      }
+    );
+
+    const parsed = JSON.parse(jsonOutput);
+    expect(parsed.initialized).toBe(true);
+    expect(parsed.componentsDir).toBe("src/ui/dashkit");
+    expect(parsed.cssDir).toBe("src/styles");
+    expect(parsed.cssFile).toBe("src/styles/dashkit.css");
+    expect(parsed.cssStatus).toBe("installed");
+    expect(parsed.mainCssFile).toBe("src/index.css");
+    expect(parsed.cssImportStatus).toBe("imported");
+    expect(parsed.aiRulesFile).toBe(".cursorrules");
+    expect(parsed.utilsInstalled).toContain("cn.ts");
+
+    const cursorRules = await fs.readFile(path.join(testDir, ".cursorrules"), "utf8");
+    expect(cursorRules).toContain("src/ui/dashkit");
+    expect(cursorRules).toContain("src/styles/dashkit.css");
   }, 30000);
 });

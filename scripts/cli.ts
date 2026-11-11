@@ -43,8 +43,16 @@ program
 
 program
   .command('init')
-  .description('Initialize Dashkit in your project (installs dashkit.css)')
+  .description('Initialize Dashkit in your project (installs dashkit.css, utils, dashkit.json, and AI rules)')
   .option('-y, --yes', 'Accept all defaults without prompting')
+  .option('-c, --components-dir <dir>', 'Directory to store Dashkit components')
+  .option('-o, --output <dir>', 'Alias for --components-dir')
+  .option('--css-dir <dir>', 'Directory to store dashkit.css')
+  .option('--ai-rules [file]', 'Generate AI assistant instructions (defaults to AGENTS.md)')
+  .option('--no-ai-rules', 'Skip generating AI assistant instructions')
+  .option('-f, --force', 'Overwrite existing dashkit.css and utility files')
+  .option('--no-install', 'Do not automatically install base dependencies')
+  .option('--json', 'Output initialization result as JSON for LLMs and scripts')
   .action(handleInit);
 
 program
