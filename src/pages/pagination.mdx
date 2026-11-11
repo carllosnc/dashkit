@@ -23,7 +23,7 @@ Provide the `currentPage`, `totalPages`, and an `onChange` callback to sync stat
 
 ```tsx
 import { useState } from 'react';
-import { Pagination } from '@/components/Pagination';
+import { Pagination } from '@/dashkit/Pagination';
 
 export function PaginationExample() {
   const [page, setPage] = useState(1);
@@ -56,7 +56,7 @@ When `totalPages` is small (e.g., 5 pages), the component automatically hides th
 
 ```tsx
 import { useState } from 'react';
-import { Pagination } from '@/components/Pagination';
+import { Pagination } from '@/dashkit/Pagination';
 
 export function PaginationShortExample() {
   const [page, setPage] = useState(2);
@@ -89,7 +89,7 @@ The `Pagination` component automatically calculates ellipsis (`...`) truncations
 
 ```tsx
 import { useState } from 'react';
-import { Pagination } from '@/components/Pagination';
+import { Pagination } from '@/dashkit/Pagination';
 
 export function PaginationLargeDataExample() {
   const [page, setPage] = useState(50);
@@ -123,7 +123,7 @@ By configuring `siblingCount={0}`, you can minimize the footprint of the paginat
 
 ```tsx
 import { useState } from 'react';
-import { Pagination } from '@/components/Pagination';
+import { Pagination } from '@/dashkit/Pagination';
 
 export function PaginationMinimalExample() {
   const [page, setPage] = useState(25);
