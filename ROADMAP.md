@@ -29,8 +29,8 @@ Initiatives to make Dashkit fully optimized for AI coding assistants (Cursor, Cl
 - [ ] Develop an official Dashkit MCP (Model Context Protocol) server (`@dashkit/mcp`) with search and component scaffolding tools.
 
 ### Repository Agent Rules and Skills
-- [x] Document the 3-Tier AI Customization Hierarchy (`dashkit.css` tokens → component `cva` variants → `className` & `data-slot`) in `.agent/skills/dashkit-developer/SKILL.md`, `customization.mdx`, and `llms-full.txt`.
-- [x] Synchronize `.agent/skills/dashkit-developer/SKILL.md` to reference `src/dashkit/` instead of legacy paths.
+- [x] Document the 3-Tier AI Customization Hierarchy (`dashkit.css` tokens → component `cva` variants → `className` & `data-slot`) in `.agents/skills/dashkit-developer/SKILL.md`, `customization.mdx`, and `llms-full.txt`.
+- [x] Synchronize `.agents/skills/dashkit-developer/SKILL.md` to reference `src/dashkit/` instead of legacy paths.
 - [x] Expand `AGENTS.md` and create a root `.cursorrules` with Tailwind v4 rules, CVA standards, and pure-usage patterns.
 - [ ] Add automated lint checks to verify agent compliance with file structure and styling guidelines.
 

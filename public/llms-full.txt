@@ -24,21 +24,16 @@ bunx carllosnc/dashkit add <component> --tests
 bunx carllosnc/dashkit list --json
 ```
 
-## Components
-
-### Category: Layout & Containers
-
 ## Accordion
 
+- Category: Layout & Containers
 - Slug: `accordion`
 - Installation: `bunx carllosnc/dashkit add accordion`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
 
-# Accordion
-
 A vertically stacked list of headers that reveal associated content areas when clicked.
 
-## Import
+### Import
 
 ```tsx
 import {
@@ -49,7 +44,7 @@ import {
 } from '@/dashkit/Accordion'
 ```
 
-## Installation
+### Installation
 
 Add the accordion to your project using the Dashkit CLI:
 
@@ -57,7 +52,7 @@ Add the accordion to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add accordion
 ```
 
-## Basic Usage
+### Basic Usage
 
 The accordion supports `single` (default) or `multiple` expansion modes via the `type` prop.
 
@@ -98,7 +93,7 @@ The accordion supports `single` (default) or `multiple` expansion modes via the 
 </Accordion>
 ```
 
-## Multiple
+### Multiple
 
 Use the `type="multiple"` prop to allow more than one item to be expanded at the same time.
 
@@ -146,7 +141,7 @@ Use the `type="multiple"` prop to allow more than one item to be expanded at the
 </Accordion>
 ```
 
-## Features
+### Features
 
 - **Height Animations**: Smooth, spring-based expansion using `framer-motion`.
 - **Compound Components**: Highly customizable using the sub-component pattern.
@@ -154,9 +149,9 @@ Use the `type="multiple"` prop to allow more than one item to be expanded at the
 - **Auto-State**: Manages internal open/close state or can be controlled via `value`.
 - **Keyboard Navigation**: Fully accessible via enter/space keys and focus management.
 
-## Props
+### Props
 
-### Accordion
+#### Accordion
 
 
 
@@ -169,7 +164,7 @@ Use the `type="multiple"` prop to allow more than one item to be expanded at the
 
 
 
-### AccordionItem
+#### AccordionItem
 
 
 
@@ -182,16 +177,15 @@ Use the `type="multiple"` prop to allow more than one item to be expanded at the
 
 ## Card
 
+- Category: Layout & Containers
 - Slug: `card`
 - Installation: `bunx carllosnc/dashkit add card`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`
 - Dashkit Dependencies: `badge`, `button`
 
-# Card
-
 Dashkit's Card is designed as a **composed wrapper**, providing total layout control through granular sub-components.
 
-## Installation
+### Installation
 
 Add the Card component to your project using the Dashkit CLI:
 
@@ -199,7 +193,7 @@ Add the Card component to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add card
 ```
 
-## Import
+### Import
 
 ```tsx
 import {
@@ -212,7 +206,7 @@ import {
 } from '@/dashkit/Card';
 ```
 
-## Basic Usage
+### Basic Usage
 
 The card can be used as a simple container or with its sub-components for more structure.
 
@@ -250,7 +244,7 @@ The card can be used as a simple container or with its sub-components for more s
 </Card>
 ```
 
-## With Icon & Actions
+### With Icon & Actions
 
 The `CardHeader` supports a `leftIcon` prop to easily add visual context and an `action` prop for right-aligned elements like badges, buttons, or menus.
 
@@ -288,7 +282,7 @@ import { Badge, Card, CardHeader, CardTitle, CardDescription } from '@/dashkit';
 </Card>
 ```
 
-## Composable Components
+### Composable Components
 
 Cards are built using sub-components to provide maximum flexibility for different use cases. While `leftIcon` and `action` handle common patterns, you can still compose the header manually for more complex layouts.
 
@@ -331,9 +325,9 @@ Cards are built using sub-components to provide maximum flexibility for differen
 </Card>
 ```
 
-## API Reference
+### API Reference
 
-### Card (Root)
+#### Card (Root)
 
 The main wrapper container.
 
@@ -346,7 +340,7 @@ The main wrapper container.
 | `className` | `string` | - | Root container classes. |
 
 
-### CardHeader
+#### CardHeader
 
 The top section container.
 
@@ -358,7 +352,7 @@ The top section container.
 | `className` | `string` | - | Custom classes for the header container. |
 
 
-### CardTitle & CardDescription
+#### CardTitle & CardDescription
 
 Supporting typography components for the header.
 
@@ -369,7 +363,7 @@ Supporting typography components for the header.
 | `CardDescription` | `p` | - | Smaller, medium-weight supporting text. |
 
 
-### CardContent
+#### CardContent
 
 The main body of the card with standard internal padding and flex growth.
 
@@ -379,7 +373,7 @@ The main body of the card with standard internal padding and flex growth.
 | `className` | `string` | - | Custom classes for the content body. |
 
 
-### CardFooter
+#### CardFooter
 
 The bottom action area with a subtle separator.
 
@@ -391,21 +385,20 @@ The bottom action area with a subtle separator.
 
 ## Surface
 
+- Category: Layout & Containers
 - Slug: `surface`
 - Installation: `bunx carllosnc/dashkit add surface`
 - NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`
 
-# Surface
-
 A lightweight, foundational component for creating containers with consistent background variants based on design system states. It provides a clean, borderless surface with no internal padding or margin, serving as a pure visual block.
 
-## Import
+### Import
 
 ```tsx
 import { Surface } from '@/dashkit/Surface/Surface'
 ```
 
-## Installation
+### Installation
 
 Add the surface component to your project using the Dashkit CLI:
 
@@ -413,7 +406,7 @@ Add the surface component to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add surface
 ```
 
-## Basic Usage
+### Basic Usage
 
 The basic surface provides a subtle, borderless background following the theme.
 
@@ -425,7 +418,7 @@ The basic surface provides a subtle, borderless background following the theme.
 </Surface>
 ```
 
-## State Variants
+### State Variants
 
 Surfaces can be styled to represent different states like `info`, `success`, `warning`, and `danger`.
 
@@ -438,7 +431,7 @@ Surfaces can be styled to represent different states like `info`, `success`, `wa
 <Surface variant="danger">Danger Content</Surface>
 ```
 
-## Custom Styling
+### Custom Styling
 
 Since Surface doesn't provide padding or forced borders, you can easily apply your own layout and border styles.
 
@@ -450,7 +443,7 @@ Since Surface doesn't provide padding or forced borders, you can easily apply yo
 </Surface>
 ```
 
-## Props
+### Props
 
 
 | Property | Type | Default | Description |
@@ -462,21 +455,20 @@ Since Surface doesn't provide padding or forced borders, you can easily apply yo
 
 ## Divider
 
+- Category: Layout & Containers
 - Slug: `divider`
 - Installation: `bunx carllosnc/dashkit add divider`
 - NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`
 
-# Divider
-
 A versatile component used to separate sections of content with horizontal or vertical lines.
 
-## Import
+### Import
 
 ```tsx
 import { Divider } from '@/dashkit/Divider/Divider'
 ```
 
-## Installation
+### Installation
 
 Add the divider component to your project using the Dashkit CLI:
 
@@ -484,7 +476,7 @@ Add the divider component to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add divider
 ```
 
-## Basic Usage
+### Basic Usage
 
 The basic horizontal divider represents a solid line.
 
@@ -494,7 +486,7 @@ The basic horizontal divider represents a solid line.
 <Divider />
 ```
 
-## Orientation
+### Orientation
 
 Dividers can be horizontal (default) or vertical. For vertical dividers, ensure the parent container has a defined height.
 
@@ -508,7 +500,7 @@ Dividers can be horizontal (default) or vertical. For vertical dividers, ensure 
 </div>
 ```
 
-## Variants
+### Variants
 
 You can change the visual style of the line using the `variant` prop.
 
@@ -520,7 +512,7 @@ You can change the visual style of the line using the `variant` prop.
 <Divider variant="dotted" />
 ```
 
-## Labels & Content
+### Labels & Content
 
 Horizontal dividers can contain text or other components, positioned along the line.
 
@@ -532,7 +524,7 @@ Horizontal dividers can contain text or other components, positioned along the l
 <Divider contentPosition="right">Right Label</Divider>
 ```
 
-## Props (API)
+### Props (API)
 
 
 | Property | Type | Default | Description |
@@ -546,6 +538,7 @@ Horizontal dividers can contain text or other components, positioned along the l
 
 ## ScrollArea
 
+- Category: Layout & Containers
 - Slug: `scrollarea`
 - Installation: `bunx carllosnc/dashkit add scrollarea`
 - NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`
@@ -578,17 +571,17 @@ export const HorizontalExample = () => (
   
 );
 
-# Scroll Area
+
 
 A minimalist scroll area component that provides theme-aware, custom scrollbars across all browsers and operating systems.
 
-## Import
+### Import
 
 ```tsx
 import { ScrollArea } from '@/dashkit/ScrollArea/ScrollArea'
 ```
 
-## Installation
+### Installation
 
 Add the scroll area to your project using the Dashkit CLI:
 
@@ -596,11 +589,11 @@ Add the scroll area to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add scrollarea
 ```
 
-## Usage
+### Usage
 
 The `ScrollArea` component wraps any content and replaces native scrollbars with a minimalist, theme-aware design while maintaining native scroll performance and accessibility.
 
-### Vertical Scrolling (Default)
+#### Vertical Scrolling (Default)
 
 The scroll area will automatically handle vertical overflow if the content height exceeds the container height.
 
@@ -616,7 +609,7 @@ The scroll area will automatically handle vertical overflow if the content heigh
 </div>
 ```
 
-### Horizontal Scrolling
+#### Horizontal Scrolling
 
 Set the `orientation` prop to `horizontal` to enable horizontal scrolling only.
 
@@ -630,7 +623,7 @@ Set the `orientation` prop to `horizontal` to enable horizontal scrolling only.
 </ScrollArea>
 ```
 
-### Both Orientations
+#### Both Orientations
 
 Use `orientation="both"` when you need independent scrolling in both directions.
 
@@ -642,7 +635,7 @@ Use `orientation="both"` when you need independent scrolling in both directions.
 </ScrollArea>
 ```
 
-## Features
+### Features
 
 - **Native Performance**: Uses standard `overflow: auto` for maximum smoothness and accessibility.
 - **Theme-Aware**: Automatically switches scrollbar colors based on light/dark mode using project design tokens.
@@ -650,7 +643,7 @@ Use `orientation="both"` when you need independent scrolling in both directions.
 - **Cross-Browser**: Standardizes appearance across modern browsers.
 - **Low Dependency**: Zero external libraries; depends only on core project utilities.
 
-## Props (API)
+### Props (API)
 
 
 | Property | Type | Default | Description |
@@ -661,25 +654,22 @@ Use `orientation="both"` when you need independent scrolling in both directions.
 | `children` | `ReactNode` | - | The content to be scrolled. |
 
 
-### Category: Navigation
-
 ## Navbar
 
+- Category: Navigation
 - Slug: `navbar`
 - Installation: `bunx carllosnc/dashkit add navbar`
 - NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`
 
-# Navbar
-
 A premium, responsive navigation header with support for branding, navigation, and action buttons using a flexible composition pattern.
 
-## Import
+### Import
 
 ```tsx
 import { Navbar, NavbarBrand, NavbarLinks, NavbarActions } from '@/dashkit/Navbar/Navbar'
 ```
 
-## Installation
+### Installation
 
 Add the navbar to your project using the Dashkit CLI:
 
@@ -687,7 +677,7 @@ Add the navbar to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add navbar
 ```
 
-## Basic Usage
+### Basic Usage
 
 The `Navbar` uses a composition pattern, allowing you to easily arrange branding, links, and actions.
 
@@ -710,7 +700,7 @@ The `Navbar` uses a composition pattern, allowing you to easily arrange branding
 </Navbar>
 ```
 
-## With Icons & Actions
+### With Icons & Actions
 
 You can combine text links with icon buttons and utilities in the actions area.
 
@@ -730,14 +720,14 @@ import { FiGithub, FiBell } from 'react-icons/fi';
 </Navbar>
 ```
 
-## Features
+### Features
 
 - **Responsive Design**: Links are automatically hidden on smaller screens while branding and actions remain.
 - **Backdrop Blur**: Optional glassmorphism effect using the `blur` prop.
 - **Sticky Behavior**: Automatically sticks to the top of its parent container or viewport.
 - **Composition Based**: Use semantic sub-components for full layout control.
 
-## Components Breakdown
+### Components Breakdown
 
 The Navbar library includes several specialized sections:
 
@@ -750,7 +740,7 @@ The Navbar library includes several specialized sections:
 | `NavbarActions` | - | - | Container for utility icons, themes, and primary action buttons. |
 
 
-## Props (API)
+### Props (API)
 
 
 | Property | Type | Default | Description |
@@ -762,15 +752,14 @@ The Navbar library includes several specialized sections:
 
 ## NavigationMenu
 
+- Category: Navigation
 - Slug: `navigation-menu`
 - Installation: `bunx carllosnc/dashkit add navigation-menu`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
 
-# Navigation Menu
-
 A premium navigation menu component inspired by modern, high-end dashboards. It features a shared viewport that smoothly moves and resizes to accommodate different content sections.
 
-## Import
+### Import
 
 ```tsx
 import {
@@ -784,7 +773,7 @@ import {
 } from '@/dashkit/NavigationMenu/NavigationMenu'
 ```
 
-## Installation
+### Installation
 
 Add the navigation menu to your project using the Dashkit CLI:
 
@@ -792,7 +781,7 @@ Add the navigation menu to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add navigation-menu
 ```
 
-## Basic Usage
+### Basic Usage
 
 The Navigation Menu uses a value-based system to track the active item. Ensure the `value` on `NavigationMenuTrigger` matches the `value` on `NavigationMenuContent`.
 
@@ -817,9 +806,9 @@ The Navigation Menu uses a value-based system to track the active item. Ensure t
 </NavigationMenu>
 ```
 
-## Props
+### Props
 
-### NavigationMenu
+#### NavigationMenu
 
 
 | Property | Type | Default | Description |
@@ -828,7 +817,7 @@ The Navigation Menu uses a value-based system to track the active item. Ensure t
 | `className` | `string` | - | Additional CSS classes for the root container. |
 
 
-### NavigationMenuTrigger
+#### NavigationMenuTrigger
 
 
 | Property | Type | Default | Description |
@@ -836,7 +825,7 @@ The Navigation Menu uses a value-based system to track the active item. Ensure t
 | `value` | `string` | - | A unique value to associate the trigger with its corresponding content. |
 
 
-### NavigationMenuContent
+#### NavigationMenuContent
 
 
 | Property | Type | Default | Description |
@@ -846,6 +835,7 @@ The Navigation Menu uses a value-based system to track the active item. Ensure t
 
 ## Sidebar
 
+- Category: Navigation
 - Slug: `sidebar`
 - Installation: `bunx carllosnc/dashkit add sidebar`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
@@ -947,11 +937,11 @@ export const CollapsibleSectionExample = () => {
   );
 };
 
-# Sidebar
+
 
 A versatile and premium navigation sidebar component that supports complex layouts, branding, status indicators, and responsive mobile drawer adaptation out of the box.
 
-## Import
+### Import
 
 ```tsx
 import { 
@@ -973,7 +963,7 @@ import {
 } from '@/dashkit/Sidebar/Sidebar'
 ```
 
-## Installation
+### Installation
 
 Add the sidebar into your project using the Dashkit CLI:
 
@@ -981,7 +971,7 @@ Add the sidebar into your project using the Dashkit CLI:
 bunx carllosnc/dashkit add sidebar
 ```
 
-## Basic Usage
+### Basic Usage
 
 The `Sidebar` uses a semantic composition of headers, content scroll area, sections, and footers to create a cohesive navigation experience.
 
@@ -1019,7 +1009,7 @@ export default function App() {
 }
 ```
 
-## Responsive Mobile Drawer
+### Responsive Mobile Drawer
 
 By default (`responsive={true}`), the `Sidebar` automatically adapts between desktop and mobile devices:
 - **Desktop (≥ 768px)**: Sits in the layout flow and smoothly expands or collapses between `width` (272px) and `collapsedWidth` (72px).
@@ -1063,7 +1053,7 @@ export default function DashboardLayout({ children }) {
 }
 ```
 
-## Collapsible Sidebar
+### Collapsible Sidebar
 
 Enable the `collapsible` prop to show a floating toggle button on the desktop sidebar edge. You can use the `isOpen` state to conditionally render content using native utility components.
 
@@ -1077,7 +1067,7 @@ Enable the `collapsible` prop to show a floating toggle button on the desktop si
 </Sidebar>
 ```
 
-## Collapsible Sections
+### Collapsible Sections
 
 Sections can be individually collapsed to conserve vertical space or group related functionality. Use the `collapsible` prop on `SidebarSection` to enable this behavior. You can also control the initial expansion state with the `defaultOpen` prop.
 
@@ -1094,7 +1084,7 @@ Sections can be individually collapsed to conserve vertical space or group relat
 </SidebarSection>
 ```
 
-## Components Breakdown
+### Components Breakdown
 
 The Sidebar library is composed of several specialized layers designed for specific layout roles:
 
@@ -1115,9 +1105,9 @@ The Sidebar library is composed of several specialized layers designed for speci
 | `SidebarSubItem` | - | - | Sub-navigation link styled for nested tree hierarchies. |
 
 
-## API Reference
+### API Reference
 
-### Sidebar
+#### Sidebar
 
 
 | Property | Type | Default | Description |
@@ -1137,14 +1127,14 @@ The Sidebar library is composed of several specialized layers designed for speci
 | `className` | `string` | - | Custom classes for the container. |
 
 
-### SidebarTrigger
+#### SidebarTrigger
 
 ", "description": "Custom icon for the trigger button." },
     { "prop": "className", "type": "string", "defaultValue": "—", "description": "Custom class names for the button." }
   ]}
 />
 
-### SidebarSection
+#### SidebarSection
 
 
 | Property | Type | Default | Description |
@@ -1156,7 +1146,7 @@ The Sidebar library is composed of several specialized layers designed for speci
 | `defaultOpen` | `boolean` | `true` | Initial expansion state for the section. |
 
 
-### SidebarItem
+#### SidebarItem
 
 
 | Property | Type | Default | Description |
@@ -1173,7 +1163,7 @@ The Sidebar library is composed of several specialized layers designed for speci
 | `onClick` | `() => void` | - | Standard click event handler. |
 
 
-### SidebarSubItem
+#### SidebarSubItem
 
 
 | Property | Type | Default | Description |
@@ -1188,15 +1178,14 @@ The Sidebar library is composed of several specialized layers designed for speci
 
 ## Breadcrumb
 
+- Category: Navigation
 - Slug: `breadcrumb`
 - Installation: `bunx carllosnc/dashkit add breadcrumb`
 - NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`
 
-# Breadcrumb
-
 A secondary navigation component that helps users understand their current location in the application hierarchy.
 
-## Import
+### Import
 
 ```tsx
 import {
@@ -1208,7 +1197,7 @@ import {
 } from '@/dashkit/Breadcrumb'
 ```
 
-## Installation
+### Installation
 
 Add the breadcrumb to your project using the Dashkit CLI:
 
@@ -1216,7 +1205,7 @@ Add the breadcrumb to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add breadcrumb
 ```
 
-## Basic Usage
+### Basic Usage
 
 The `Breadcrumb` component uses a composition pattern. `BreadcrumbItem` can automatically render as a link if an `href` is provided.
 
@@ -1234,7 +1223,7 @@ The `Breadcrumb` component uses a composition pattern. `BreadcrumbItem` can auto
 </Breadcrumb>
 ```
 
-## With Icons
+### With Icons
 
 You can add icons to your breadcrumb items by passing them as children alongside the text.
 
@@ -1260,7 +1249,7 @@ import { FiHome, FiSettings, FiUser } from 'react-icons/fi';
 </Breadcrumb>
 ```
 
-## Custom Separator
+### Custom Separator
 
 Override the default separator with any React node.
 
@@ -1276,7 +1265,7 @@ Override the default separator with any React node.
 </Breadcrumb>
 ```
 
-## Collapsed (Ellipsis)
+### Collapsed (Ellipsis)
 
 Use `BreadcrumbEllipsis` to show a collapsed state for long paths.
 
@@ -1296,7 +1285,7 @@ Use `BreadcrumbEllipsis` to show a collapsed state for long paths.
 </Breadcrumb>
 ```
 
-## Simplified Usage (Legacy)
+### Simplified Usage (Legacy)
 
 You can still use the `items` prop for simpler cases.
 
@@ -1310,9 +1299,9 @@ You can still use the `items` prop for simpler cases.
 />
 ```
 
-## API
+### API
 
-### Breadcrumb Props
+#### Breadcrumb Props
 
 
 | Property | Type | Default | Description |
@@ -1321,7 +1310,7 @@ You can still use the `items` prop for simpler cases.
 | `className` | `string` | - | Additional CSS classes. |
 
 
-### BreadcrumbList Props
+#### BreadcrumbList Props
 
 
 | Property | Type | Default | Description |
@@ -1329,7 +1318,7 @@ You can still use the `items` prop for simpler cases.
 | `children` | `ReactNode` | - | The items and separators. |
 
 
-### BreadcrumbItem Props
+#### BreadcrumbItem Props
 
 
 | Property | Type | Default | Description |
@@ -1340,21 +1329,20 @@ You can still use the `items` prop for simpler cases.
 
 ## Tabs
 
+- Category: Navigation
 - Slug: `tabs`
 - Installation: `bunx carllosnc/dashkit add tabs`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`
 
-# Tabs
-
 A performant and premium tabs component with a smooth, fluid indicator animation powered by Framer Motion.
 
-## Import
+### Import
 
 ```tsx
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/dashkit/Tabs/Tabs'
 ```
 
-## Installation
+### Installation
 
 Add the tabs to your project using the Dashkit CLI:
 
@@ -1362,7 +1350,7 @@ Add the tabs to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add tabs
 ```
 
-## Basic Usage
+### Basic Usage
 
 The component is highly accessible and supports a fluid layout for its triggers.
 
@@ -1398,7 +1386,7 @@ The component is highly accessible and supports a fluid layout for its triggers.
 </Tabs>
 ```
 
-## Icons & Advanced Previews
+### Icons & Advanced Previews
 
 You can easily integrate icons and complex child layouts within your tabs.
 
@@ -1466,13 +1454,13 @@ You can easily integrate icons and complex child layouts within your tabs.
 </Tabs>
 ```
 
-## Animated Indicators
+### Animated Indicators
 
 The indicator uses Framer Motion's `layoutId` to achieve a "sliding" effect when transitioning between tabs. This happens automatically when triggers are within the same `Tabs` root.
 
-## Props
+### Props
 
-### Tabs
+#### Tabs
 
 
 
@@ -1486,7 +1474,7 @@ The indicator uses Framer Motion's `layoutId` to achieve a "sliding" effect when
 
 
 
-### TabsTrigger
+#### TabsTrigger
 
 
 
@@ -1499,21 +1487,20 @@ The indicator uses Framer Motion's `layoutId` to achieve a "sliding" effect when
 
 ## Stepper
 
+- Category: Navigation
 - Slug: `stepper`
 - Installation: `bunx carllosnc/dashkit add stepper`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
 
-# Stepper
-
 A progress visualization component for multi-step processes or sequence indicators.
 
-## Import
+### Import
 
 ```tsx
 import { Stepper, Step } from '@/dashkit/Stepper'
 ```
 
-## Installation
+### Installation
 
 Add the stepper to your project using the Dashkit CLI:
 
@@ -1521,7 +1508,7 @@ Add the stepper to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add stepper
 ```
 
-## Quick Start
+### Quick Start
 Displays a multi-step sequence with active, completed, and inactive states. Uses `framer-motion` for animated connecting lines.
 
 
@@ -1571,7 +1558,7 @@ export function StepperExample() {
 }
 ```
 
-## Vertical Orientation
+### Vertical Orientation
 Set `orientation="vertical"` to stack the steps vertically, which is highly suited for sidebars or logs.
 
 
@@ -1596,7 +1583,7 @@ import { Stepper, Step } from '@/dashkit/Stepper';
 </Stepper>
 ```
 
-## Custom Icons
+### Custom Icons
 By default, steps are auto-numbered. You can supply an `icon` prop to customize the visual indicator for each step.
 
 
@@ -1620,7 +1607,7 @@ import { FiUser, FiCreditCard, FiCheckCircle } from 'react-icons/fi';
 </Stepper>
 ```
 
-## Color Palettes
+### Color Palettes
 
 Control the stepper's accent theme using the `color` prop. Use `"primary"` (default) for brand accenting or `"base"` for clean, monochrome neutral styling.
 
@@ -1643,7 +1630,7 @@ Control the stepper's accent theme using the `color` prop. Use `"primary"` (defa
 </Stepper>
 ```
 
-## Clickable Navigation
+### Clickable Navigation
 If you provide an `onChange` handler, steps become fully interactive and users can jump between them by clicking.
 ```tsx
 const [activeStep, setActiveStep] = useState(0);
@@ -1655,9 +1642,9 @@ const [activeStep, setActiveStep] = useState(0);
 </Stepper>
 ```
 
-## Props
+### Props
 
-### Stepper
+#### Stepper
 
 
 | Property | Type | Default | Description |
@@ -1668,7 +1655,7 @@ const [activeStep, setActiveStep] = useState(0);
 | `className` | `string` | - | Additional CSS classes merged via clsx. |
 
 
-### Step
+#### Step
 
 
 | Property | Type | Default | Description |
@@ -1681,15 +1668,14 @@ const [activeStep, setActiveStep] = useState(0);
 
 ## Pagination
 
+- Category: Navigation
 - Slug: `pagination`
 - Installation: `bunx carllosnc/dashkit add pagination`
 - NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`, `framer-motion`
 
-# Pagination
-
 A functional and responsive component for navigating between large sets of data or views.
 
-## Quick Start
+### Quick Start
 Provide the `currentPage`, `totalPages`, and an `onChange` callback to sync state perfectly.
 
 
@@ -1718,7 +1704,7 @@ export function PaginationExample() {
 }
 ```
 
-## Short List
+### Short List
 When `totalPages` is small (e.g., 5 pages), the component automatically hides the ellipsis logic and simply renders a cohesive string of pages.
 
 
@@ -1747,7 +1733,7 @@ export function PaginationShortExample() {
 }
 ```
 
-## Large Data Ranges
+### Large Data Ranges
 The `Pagination` component automatically calculates ellipsis (`...`) truncations for large ranges to prevent overflowing.
 
 
@@ -1776,7 +1762,7 @@ export function PaginationLargeDataExample() {
 }
 ```
 
-## Minimal Mode
+### Minimal Mode
 By configuring `siblingCount={0}`, you can minimize the footprint of the pagination. The component defaults to `siblingCount={1}`.
 
 
@@ -1806,7 +1792,7 @@ export function PaginationMinimalExample() {
 }
 ```
 
-## Props
+### Props
 
 
 | Property | Type | Default | Description |
@@ -1820,6 +1806,7 @@ export function PaginationMinimalExample() {
 
 ## Dock
 
+- Category: Navigation
 - Slug: `dock`
 - Installation: `bunx carllosnc/dashkit add dock`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
@@ -1847,23 +1834,23 @@ export const DockDemo = () => {
   );
 }
 
-# Dock
+
 
 A fluid, magnified navigation bar inspired by macOS, using Framer Motion for high-fidelity interactive physics.
 
-## Import
+### Import
 
 ```tsx
 import { Dock, DockItem } from '@/dashkit/Dock/Dock';
 ```
 
-## Installation
+### Installation
 
 ```bash
 bunx carllosnc/dashkit add dock
 ```
 
-## Basic Usage
+### Basic Usage
 
 The dock is composed of a `Dock` container and multiple `DockItem` components.
 
@@ -1878,7 +1865,7 @@ The dock is composed of a `Dock` container and multiple `DockItem` components.
 </Dock>
 ```
 
-## Theme Inversion
+### Theme Inversion
 
 The Dock component implements an inverted contrast theme by default:
 - **Light mode**: Uses dark backgrounds and light icons/text.
@@ -1886,7 +1873,7 @@ The Dock component implements an inverted contrast theme by default:
 
 This makes the dock stand out visually from the rest of the UI, behaving more like a floating control utility.
 
-## Customization
+### Customization
 
 You can adjust the `magnification` (how much it grows) and the `distance` (how far the magnet reach is).
 
@@ -1896,7 +1883,7 @@ You can adjust the `magnification` (how much it grows) and the `distance` (how f
 </Dock>
 ```
 
-## Features
+### Features
 
 - **Fluid Magnification**: Uses `framer-motion`'s `useSpring` and `useTransform` for physics-based scaling.
 - **Smart Positioning**: Items adjust their width relative to the cursor position on the `X` axis.
@@ -1904,9 +1891,9 @@ You can adjust the `magnification` (how much it grows) and the `distance` (how f
 - **Theme Logic**: Specialized colors that provide high contrast in both themes.
 - **Composed API**: Clean JSX structure for easy item management.
 
-## Component API
+### Component API
 
-### Dock
+#### Dock
 
 
 | Property | Type | Default | Description |
@@ -1917,7 +1904,7 @@ You can adjust the `magnification` (how much it grows) and the `distance` (how f
 | `className` | `string` | - | Additional CSS classes for the dock container. |
 
 
-### DockItem
+#### DockItem
 
 
 | Property | Type | Default | Description |
@@ -1928,26 +1915,23 @@ You can adjust the `magnification` (how much it grows) and the `distance` (how f
 | `onClick` | `() => void` | - | Callback function when the item is clicked. |
 
 
-### Category: Forms & Inputs
-
 ## Button
 
+- Category: Forms & Inputs
 - Slug: `button`
 - Installation: `bunx carllosnc/dashkit add button`
 - NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`
 - Dashkit Dependencies: `spinner`
 
-# Button
-
 A highly customizable button component supporting multiple variants, icons, and loading states.
 
-## Import
+### Import
 
 ```tsx
 import { Button } from '@/dashkit/Button/Button'
 ```
 
-## Installation
+### Installation
 
 Add the button to your project using the Dashkit CLI:
 
@@ -1955,7 +1939,7 @@ Add the button to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add button
 ```
 
-## Variants
+### Variants
 
 Use the `variant` prop to switch between visual styles.
 
@@ -1967,7 +1951,7 @@ Use the `variant` prop to switch between visual styles.
 <Button variant="soft">Soft</Button>
 ```
 
-## With Icons
+### With Icons
 
 Use `leftIcon` and `rightIcon` to add icons before or after the label.
 
@@ -1985,7 +1969,7 @@ import { FiDownload, FiArrowRight } from 'react-icons/fi'
 </Button>
 ```
 
-## Loading State
+### Loading State
 
 Set the `loading` prop to show a spinner and disable the button. When loading, the left icon is replaced by the spinner and the right icon is hidden.
 
@@ -1997,7 +1981,7 @@ Set the `loading` prop to show a spinner and disable the button. When loading, t
 </Button>
 ```
 
-## Disabled
+### Disabled
 
 Use the native `disabled` prop. The button becomes non-interactive with reduced opacity.
 
@@ -2008,7 +1992,7 @@ Use the native `disabled` prop. The button becomes non-interactive with reduced 
 <Button variant="outlined" disabled>Outlined Disabled</Button>
 ```
 
-## Icon Only
+### Icon Only
 
 If you omit the `children` (label) and provide only an icon, the button will automatically switch to a circular/square layout with balanced padding. **Note:** Always provide an `aria-label` for accessibility when using icon-only buttons.
 
@@ -2019,7 +2003,7 @@ If you omit the `children` (label) and provide only an icon, the button will aut
 <Button variant="outlined" leftIcon={<FiArrowRight />} aria-label="Next" />
 ```
 
-## Rounded Corner Styles
+### Rounded Corner Styles
 
 Buttons use fully rounded pill shapes by default. Pass `rounded={false}` for crisp medium-rounded corners.
 
@@ -2030,7 +2014,7 @@ Buttons use fully rounded pill shapes by default. Pass `rounded={false}` for cri
 <Button variant="filled" rounded={false}>Medium Rounded</Button>
 ```
 
-## Custom Styling
+### Custom Styling
 
 You can easily override or extend the default styles using the `className` prop. The component uses `tailwind-merge` internally, so your custom classes will automatically take precedence over the defaults without needing the `!` (important) modifier.
 
@@ -2047,7 +2031,7 @@ You can easily override or extend the default styles using the `className` prop.
 </Button>
 ```
 
-## Props
+### Props
 
 The component extends all native `ButtonHTMLAttributes` props (e.g. `onClick`, `type`, `disabled`, `className`), plus the following:
 
@@ -2066,21 +2050,20 @@ The component extends all native `ButtonHTMLAttributes` props (e.g. `onClick`, `
 
 ## IconButton
 
+- Category: Forms & Inputs
 - Slug: `iconbutton`
 - Installation: `bunx carllosnc/dashkit add iconbutton`
 - NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`
 
-# Icon Button
-
 A premium, specialized button for icon-only actions with customizable variant and rounding options.
 
-## Import
+### Import
 
 ```tsx
 import { IconButton } from '@/dashkit/IconButton/IconButton'
 ```
 
-## Installation
+### Installation
 
 Add the icon button component to your project using the Dashkit CLI:
 
@@ -2088,7 +2071,7 @@ Add the icon button component to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add icon-button
 ```
 
-## Basic Usage
+### Basic Usage
 
 Icon buttons are compact triggers that display only an icon. They are perfect for toolbars and navigation.
 
@@ -2103,7 +2086,7 @@ import { FiBell, FiSettings, FiShare2 } from 'react-icons/fi';
 <IconButton icon={<FiShare2 />} variant="ghost" />
 ```
 
-## Variants
+### Variants
 
 Choose between four distinct visual styles: `filled`, `outlined`, `soft`, and `ghost`.
 
@@ -2116,7 +2099,7 @@ Choose between four distinct visual styles: `filled`, `outlined`, `soft`, and `g
 <IconButton icon={<FiEdit />} variant="ghost" />
 ```
 
-## Shapes
+### Shapes
 
 The `rounded` prop allows you to switch between a rounded-square (default) and a full circular shape.
 
@@ -2127,7 +2110,7 @@ The `rounded` prop allows you to switch between a rounded-square (default) and a
 <IconButton icon={<FiTrash />} rounded={true} />
 ```
 
-## States
+### States
 
 Icon buttons can be disabled to prevent user interaction while remaining visually consistent.
 
@@ -2138,7 +2121,7 @@ Icon buttons can be disabled to prevent user interaction while remaining visuall
 <IconButton icon={<FiTrash />} variant="filled" disabled />
 ```
 
-## Props (API)
+### Props (API)
 
 
 | Property | Type | Default | Description |
@@ -2153,17 +2136,16 @@ Icon buttons can be disabled to prevent user interaction while remaining visuall
 
 ## ButtonGroup
 
+- Category: Forms & Inputs
 - Slug: `buttongroup`
 - Installation: `bunx carllosnc/dashkit add buttongroup`
 - NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`
 
-# Button Group
-
 The **ButtonGroup** component is used to cluster multiple buttons together in a single, cohesive unit. This is often used for toolbar actions, toggle switches, or navigation. It features a modern, border-aware outlined design with dedicated selection states.
 
-## Examples
+### Examples
 
-### Segmented Control
+#### Segmented Control
 
 One of the most common uses for a button group is to switch between different views or filters. Use `flex-1` on the items to create equal-width segments.
 
@@ -2177,7 +2159,7 @@ One of the most common uses for a button group is to switch between different vi
 </ButtonGroup>
 ```
 
-### View Switcher
+#### View Switcher
 
 Combine icons and text for a more descriptive interface. The selection state uses a subtle primary background to indicate the active choice.
 
@@ -2197,13 +2179,13 @@ Combine icons and text for a more descriptive interface. The selection state use
 </ButtonGroup>
 ```
 
-### Formatting Toolbar
+#### Formatting Toolbar
 
 Button groups are essential for toolbars. The `-space-x-px` logic ensures borders never double up, maintaining a crisp appearance.
 
 
 
-### Vertical Stack
+#### Vertical Stack
 
 Vertical groups are useful for sidebars or property menus.
 
@@ -2217,9 +2199,9 @@ Vertical groups are useful for sidebars or property menus.
 </ButtonGroup>
 ```
 
-## Props
+### Props
 
-### ButtonGroup
+#### ButtonGroup
 
 
 | Property | Type | Default | Description |
@@ -2229,7 +2211,7 @@ Vertical groups are useful for sidebars or property menus.
 | `className` | `string` | - | Additional CSS classes for the container. |
 
 
-### ButtonGroupItem
+#### ButtonGroupItem
 
 
 | Property | Type | Default | Description |
@@ -2241,6 +2223,7 @@ Vertical groups are useful for sidebars or property menus.
 
 ## Input
 
+- Category: Forms & Inputs
 - Slug: `input`
 - Installation: `bunx carllosnc/dashkit add input`
 - NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`
@@ -2267,17 +2250,17 @@ export const PatternsExample = () => {
   );
 };
 
-# Input
+
 
 A primitive input component with support for labels, icons, error states, and helper text.
 
-## Import
+### Import
 
 ```tsx
 import { Input } from '@/dashkit/Input/Input'
 ```
 
-## Installation
+### Installation
 
 Add the input component to your project using the Dashkit CLI:
 
@@ -2285,7 +2268,7 @@ Add the input component to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add input
 ```
 
-## Basic Usage
+### Basic Usage
 
 The basic usage of the input with a label and placeholder.
 
@@ -2298,7 +2281,7 @@ The basic usage of the input with a label and placeholder.
 />
 ```
 
-## With Icons
+### With Icons
 
 Use `leftIcon` and `rightIcon` to add icons to the input. The icons automatically transition their color when the input is focused.
 
@@ -2320,7 +2303,7 @@ import { FiSearch, FiLock } from 'react-icons/fi'
 />
 ```
 
-## States
+### States
 
 The input supports error and disabled states.
 
@@ -2341,7 +2324,7 @@ The input supports error and disabled states.
 />
 ```
 
-## Custom Styling
+### Custom Styling
 
 You can override or extend the styles of the input via `className`.
 
@@ -2354,11 +2337,11 @@ You can override or extend the styles of the input via `className`.
 />
 ```
 
-## Masking & Formatting
+### Masking & Formatting
 
 The input component provides built-in support for masking (to filter characters) and formatting (to transform the displayed string).
 
-### Digit Only Mask
+#### Digit Only Mask
 
 
 
@@ -2370,7 +2353,7 @@ The input component provides built-in support for masking (to filter characters)
 />
 ```
 
-### Complex Patterns
+#### Complex Patterns
 
 Using `mask` and `formatter` together enables masking for specific formats like Brasil CPF and phone numbers.
 
@@ -2393,7 +2376,7 @@ const formatCPF = (val) => {
 />
 ```
 
-## Props (API)
+### Props (API)
 
 
 | Property | Type | Default | Description |
@@ -2411,21 +2394,20 @@ const formatCPF = (val) => {
 
 ## Textarea
 
+- Category: Forms & Inputs
 - Slug: `textarea`
 - Installation: `bunx carllosnc/dashkit add textarea`
 - NPM Dependencies: `clsx`, `tailwind-merge`
 
-# Textarea
-
 A multiline text input component with support for labels, error states, and auto-growing height.
 
-## Import
+### Import
 
 ```tsx
 import { Textarea } from '@/dashkit/Textarea/Textarea'
 ```
 
-## Installation
+### Installation
 
 Add the textarea component to your project using the Dashkit CLI:
 
@@ -2433,7 +2415,7 @@ Add the textarea component to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add textarea
 ```
 
-## Basic Usage
+### Basic Usage
 
 The basic usage of the textarea with a label and placeholder.
 
@@ -2446,7 +2428,7 @@ The basic usage of the textarea with a label and placeholder.
 />
 ```
 
-## Auto-Grow
+### Auto-Grow
 
 Use the `autoGrow` prop to allow the textarea to automatically adjust its height based on the content. This provides a better user experience for long-form content.
 
@@ -2460,7 +2442,7 @@ Use the `autoGrow` prop to allow the textarea to automatically adjust its height
 />
 ```
 
-## States
+### States
 
 The textarea supports error and disabled states, just like the input component.
 
@@ -2481,7 +2463,7 @@ The textarea supports error and disabled states, just like the input component.
 />
 ```
 
-## Props
+### Props
 
 The component extends all native `TextareaHTMLAttributes` props, plus the following:
 
@@ -2499,6 +2481,7 @@ The component extends all native `TextareaHTMLAttributes` props, plus the follow
 
 ## Checkbox
 
+- Category: Forms & Inputs
 - Slug: `checkbox`
 - Installation: `bunx carllosnc/dashkit add checkbox`
 - NPM Dependencies: `clsx`, `tailwind-merge`
@@ -2525,17 +2508,17 @@ export const ControlledExample = () => {
   );
 };
 
-# Checkbox
+
 
 A custom-styled checkbox component for binary choices, with support for labels and descriptions.
 
-## Import
+### Import
 
 ```tsx
 import { Checkbox } from '@/dashkit/Checkbox/Checkbox'
 ```
 
-## Installation
+### Installation
 
 Add the checkbox component to your project using the Dashkit CLI:
 
@@ -2543,7 +2526,7 @@ Add the checkbox component to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add checkbox
 ```
 
-## Basic Usage
+### Basic Usage
 
 The basic checkbox with a label.
 
@@ -2553,7 +2536,7 @@ The basic checkbox with a label.
 <Checkbox label="Remember me" />
 ```
 
-## With Description
+### With Description
 
 You can add a description below the label to provide more context.
 
@@ -2566,7 +2549,7 @@ You can add a description below the label to provide more context.
 />
 ```
 
-## States
+### States
 
 The checkbox supports various states like checked, disabled, and focus.
 
@@ -2578,7 +2561,7 @@ The checkbox supports various states like checked, disabled, and focus.
 <Checkbox label="Disabled Checked" disabled defaultChecked />
 ```
 
-## Custom Styling
+### Custom Styling
 
 You can override or extend styles via `className`.
 
@@ -2592,7 +2575,7 @@ You can override or extend styles via `className`.
 />
 ```
 
-## Controlled
+### Controlled
 
 You can use the `checked` and `onChange` props to control the checkbox state with React.
 
@@ -2615,7 +2598,7 @@ export function ControlledCheckbox() {
 }
 ```
 
-## Props
+### Props
 
 The component extends all native `InputHTMLAttributes` props (excluding `type`), plus the following:
 
@@ -2631,6 +2614,7 @@ The component extends all native `InputHTMLAttributes` props (excluding `type`),
 
 ## Radio
 
+- Category: Forms & Inputs
 - Slug: `radio`
 - Installation: `bunx carllosnc/dashkit add radio`
 - NPM Dependencies: `clsx`, `tailwind-merge`
@@ -2654,17 +2638,17 @@ export const RadioDemo = () => {
   );
 }
 
-# Radio
+
 
 A premium radio button component for single choices from a set, with support for labels and descriptions.
 
-## Import
+### Import
 
 ```tsx
 import { Radio } from '@/dashkit/Radio/Radio'
 ```
 
-## Installation
+### Installation
 
 Add the radio button to your project using the Dashkit CLI:
 
@@ -2672,7 +2656,7 @@ Add the radio button to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add radio
 ```
 
-## Basic Usage
+### Basic Usage
 
 The basic radio button with a label. Usually part of a group sharing the same `name`.
 
@@ -2685,7 +2669,7 @@ The basic radio button with a label. Usually part of a group sharing the same `n
 </div>
 ```
 
-## With Description
+### With Description
 
 You can add descriptions for more complex choices.
 
@@ -2700,7 +2684,7 @@ You can add descriptions for more complex choices.
 />
 ```
 
-## States
+### States
 
 Supports checked, disabled, and focus states.
 
@@ -2712,7 +2696,7 @@ Supports checked, disabled, and focus states.
 <Radio label="Disabled Checked" disabled defaultChecked />
 ```
 
-## Controlled
+### Controlled
 
 Works seamlessly with React's state management.
 
@@ -2741,7 +2725,7 @@ export function LanguageSelection() {
 }
 ```
 
-## Props
+### Props
 
 Extends all native `RadioHTMLAttributes` (except `type`), plus these specialties:
 
@@ -2757,6 +2741,7 @@ Extends all native `RadioHTMLAttributes` (except `type`), plus these specialties
 
 ## Switch
 
+- Category: Forms & Inputs
 - Slug: `switch`
 - Installation: `bunx carllosnc/dashkit add switch`
 - NPM Dependencies: `clsx`, `tailwind-merge`
@@ -2775,17 +2760,17 @@ export const SwitchDemo = () => {
   );
 }
 
-# Switch
+
 
 A high-performance, premium toggle switch component for binary choices, with support for labels and descriptions.
 
-## Import
+### Import
 
 ```tsx
 import { Switch } from '@/dashkit/Switch/Switch'
 ```
 
-## Installation
+### Installation
 
 Add the switch component to your project using the Dashkit CLI:
 
@@ -2793,7 +2778,7 @@ Add the switch component to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add switch
 ```
 
-## Basic Usage
+### Basic Usage
 
 The basic switch with a label.
 
@@ -2803,7 +2788,7 @@ The basic switch with a label.
 <Switch label="Enable Tracking" />
 ```
 
-## With Description
+### With Description
 
 You can add descriptions to provide more context for the toggle activity.
 
@@ -2816,7 +2801,7 @@ You can add descriptions to provide more context for the toggle activity.
 />
 ```
 
-## Controlled State
+### Controlled State
 
 Manage the switch state using React's `useState`.
 
@@ -2838,7 +2823,7 @@ export function Settings() {
 }
 ```
 
-## States
+### States
 
 Supports checked, disabled, and focus states.
 
@@ -2850,7 +2835,7 @@ Supports checked, disabled, and focus states.
 <Switch label="Disabled Checked" disabled defaultChecked />
 ```
 
-## Props
+### Props
 
 Extends all native `CheckboxHTMLAttributes` (except `type`), plus these specialties:
 
@@ -2866,6 +2851,7 @@ Extends all native `CheckboxHTMLAttributes` (except `type`), plus these specialt
 
 ## Select
 
+- Category: Forms & Inputs
 - Slug: `select`
 - Installation: `bunx carllosnc/dashkit add select`
 - NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`, `react-icons`
@@ -2892,17 +2878,17 @@ export const SelectDemo = () => {
   );
 }
 
-# Select
+
 
 A high-performance dropdown component for single choices, featuring portalled rendering to prevent layout overflow and full keyboard accessibility.
 
-## Import
+### Import
 
 ```tsx
 import { Select } from '@/dashkit/Select/Select'
 ```
 
-## Installation
+### Installation
 
 Add the select component using the Dashkit CLI:
 
@@ -2910,9 +2896,9 @@ Add the select component using the Dashkit CLI:
 bunx carllosnc/dashkit add select
 ```
 
-## Examples
+### Examples
 
-### Shipping Configuration
+#### Shipping Configuration
 
 A standard implementation with labels, descriptions, and controlled state.
 
@@ -2937,7 +2923,7 @@ export function ShippingForm() {
 }
 ```
 
-## Features
+### Features
 
 - **Portalled Rendering**: Renders the dropdown list using `createPortal` to the `document.body`, ensuring it stays on top of all other elements regardless of container overflow.
 - **Dynamic Positioning**: Automatically calculates the trigger's position to align the popup accurately.
@@ -2945,7 +2931,7 @@ export function ShippingForm() {
 - **Keyboard Friendly**: Fully supports `Enter`, `Space`, and `Escape` keys for navigation without a pointer.
 - **Empty State Support**: Built-in messaging when no options are provided.
 
-## Properties
+### Properties
 
 
 | Property | Type | Default | Description |
@@ -2961,6 +2947,7 @@ export function ShippingForm() {
 
 ## Combobox
 
+- Category: Forms & Inputs
 - Slug: `combobox`
 - Installation: `bunx carllosnc/dashkit add combobox`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
@@ -2997,17 +2984,17 @@ export const MultiSelectExample = () => {
   );
 };
 
-# Combobox
+
 
 A combobox is a flexible select component that allows users to filter a large list of options via a search input.
 
-## Import
+### Import
 
 ```tsx
 import { Combobox } from '@/dashkit/Combobox/Combobox'
 ```
 
-## Installation
+### Installation
 
 Add the combobox component to your project using the Dashkit CLI:
 
@@ -3015,7 +3002,7 @@ Add the combobox component to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add combobox
 ```
 
-## Basic Search
+### Basic Search
 
 The component behaves like a standard select, but with a built-in search input to handle long lists of data.
 
@@ -3043,7 +3030,7 @@ export const BasicExample = () => {
 };
 ```
 
-## Multi-Selection
+### Multi-Selection
 
 Use the `multiple` prop to allow users to select more than one option. Selected items are displayed as removable chips.
 
@@ -3064,7 +3051,7 @@ export const MultiSelectExample = () => {
 };
 ```
 
-## Description & Feedback
+### Description & Feedback
 
 You can add a `description` below the input to provide context or instructions.
 
@@ -3078,7 +3065,7 @@ You can add a `description` below the input to provide context or instructions.
 />
 ```
 
-## States
+### States
 
 The combobox supports different visual states like `disabled` or pre-filled values.
 
@@ -3089,7 +3076,7 @@ The combobox supports different visual states like `disabled` or pre-filled valu
 <Combobox label="Empty" options={[]} />
 ```
 
-## Props (API)
+### Props (API)
 
 
 | Property | Type | Default | Description |
@@ -3108,6 +3095,7 @@ The combobox supports different visual states like `disabled` or pre-filled valu
 
 ## Slider
 
+- Category: Forms & Inputs
 - Slug: `slider`
 - Installation: `bunx carllosnc/dashkit add slider`
 - NPM Dependencies: `clsx`, `tailwind-merge`
@@ -3126,17 +3114,17 @@ export const SliderDemo = () => {
   );
 }
 
-# Slider
+
 
 A premium, interactive slider component for selecting a value from a range, featuring smooth animations and real-time feedback.
 
-## Import
+### Import
 
 ```tsx
 import { Slider } from '@/dashkit/Slider/Slider'
 ```
 
-## Installation
+### Installation
 
 Add the slider component to your project using the Dashkit CLI:
 
@@ -3144,7 +3132,7 @@ Add the slider component to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add slider
 ```
 
-## Basic Usage
+### Basic Usage
 
 A simple slider with a label and default range (0-100).
 
@@ -3154,7 +3142,7 @@ A simple slider with a label and default range (0-100).
 <Slider label="Brightness" defaultValue={70} />
 ```
 
-## With Description & Value
+### With Description & Value
 
 Provide more context with a description and show the current value bubble.
 
@@ -3169,7 +3157,7 @@ Provide more context with a description and show the current value bubble.
 />
 ```
 
-## Controlled State
+### Controlled State
 
 Manage the slider value using React's `useState` for full control.
 
@@ -3192,7 +3180,7 @@ export function VolumeSettings() {
 }
 ```
 
-## Custom Ranges & Steps
+### Custom Ranges & Steps
 
 Define custom `min`, `max`, and `step` values for precise control.
 
@@ -3203,7 +3191,7 @@ Define custom `min`, `max`, and `step` values for precise control.
 <Slider label="Rating" min={0} max={5} step={0.5} showValue />
 ```
 
-## States
+### States
 
 Supports disabled and focus states with consistent design system aesthetics.
 
@@ -3213,7 +3201,7 @@ Supports disabled and focus states with consistent design system aesthetics.
 <Slider label="Disabled Slider" disabled defaultValue={30} />
 ```
 
-## Props
+### Props
 
 Extends all native `InputHTMLAttributes` (except `type` and `onChange`), plus these specialties:
 
@@ -3230,6 +3218,7 @@ Extends all native `InputHTMLAttributes` (except `type` and `onChange`), plus th
 
 ## DateField
 
+- Category: Forms & Inputs
 - Slug: `datefield`
 - Installation: `bunx carllosnc/dashkit add datefield`
 - NPM Dependencies: `clsx`, `tailwind-merge`
@@ -3264,17 +3253,17 @@ export const InteractiveDateField = () => {
   );
 };
 
-# DateField
+
 
 A premium, HeroUI-inspired input component for entering and editing date values with individual segments for Day, Month, and Year.
 
-## Import
+### Import
 
 ```tsx
 import { DateField } from 'dashkit'
 ```
 
-## Installation
+### Installation
 
 Add the DateField component to your project using the Dashkit CLI:
 
@@ -3282,7 +3271,7 @@ Add the DateField component to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add datefield
 ```
 
-## Basic Usage
+### Basic Usage
 
 A basic `DateField` with a label.
 
@@ -3292,7 +3281,7 @@ A basic `DateField` with a label.
 <DateField label="Birth Date" />
 ```
 
-## With Description
+### With Description
 
 Provide additional context using the `description` prop.
 
@@ -3305,7 +3294,7 @@ Provide additional context using the `description` prop.
 />
 ```
 
-## States
+### States
 
 `DateField` supports various states such as disabled and required.
 
@@ -3316,7 +3305,7 @@ Provide additional context using the `description` prop.
 <DateField label="Disabled Field" disabled value={new Date()} />
 ```
 
-## Validation
+### Validation
 
 Use the `error` prop to display validation feedback.
 
@@ -3329,7 +3318,7 @@ Use the `error` prop to display validation feedback.
 />
 ```
 
-## Controlled
+### Controlled
 
 Manage the date value explicitly using the `value` and `onChange` props.
 
@@ -3351,7 +3340,7 @@ export function ControlledDateField() {
 }
 ```
 
-## Properties
+### Properties
 
 
 | Property | Type | Default | Description |
@@ -3367,21 +3356,20 @@ export function ControlledDateField() {
 
 ## DatePicker
 
+- Category: Forms & Inputs
 - Slug: `datepicker`
 - Installation: `bunx carllosnc/dashkit add datepicker`
 - NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`
 
-# DatePicker
-
 A minimal, animated date selection component built with native React and Framer Motion. Ideal for dashboards and forms that require single date selection with a premium look.
 
-## Import
+### Import
 
 ```tsx
 import { DatePicker } from 'dashkit'
 ```
 
-## Installation
+### Installation
 
 Add the Date Picker to your project using the Dashkit CLI:
 
@@ -3389,7 +3377,7 @@ Add the Date Picker to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add datepicker
 ```
 
-## Basic Usage
+### Basic Usage
 
 The `DatePicker` component provides a clean calendar interface for date selection.
 
@@ -3414,21 +3402,21 @@ function Example() {
 }
 ```
 
-## Controlled State
+### Controlled State
 
 Pass a `value` and `onChange` handler to fully control the selection.
 
 
 
-## Customization
+### Customization
 
 You can provide custom labels, descriptions, and placeholders.
 
 
 
-## API Reference
+### API Reference
 
-### DatePicker
+#### DatePicker
 
 
 | Property | Type | Default | Description |
@@ -3444,6 +3432,7 @@ You can provide custom labels, descriptions, and placeholders.
 
 ## OtpInput
 
+- Category: Forms & Inputs
 - Slug: `otpinput`
 - Installation: `bunx carllosnc/dashkit add otpinput`
 - NPM Dependencies: `clsx`, `tailwind-merge`
@@ -3494,25 +3483,25 @@ export const OtpInputDemo = () => {
   );
 }
 
-# OTP Input
+
 
 A premium input component optimized for One-Time Passwords, featuring automatic focus shifting, digit masking, and full paste support.
 
-## Import
+### Import
 
 ```tsx
 import { OtpInput } from '@/dashkit/OtpInput/OtpInput';
 ```
 
-## Installation
+### Installation
 
 ```bash
 bunx carllosnc/dashkit add otp-input
 ```
 
-## Examples
+### Examples
 
-### Security Verification
+#### Security Verification
 
 Integrating the OTP input into a verification workflow with controlled state and loading feedback.
 
@@ -3532,7 +3521,7 @@ export function VerificationForm() {
 }
 ```
 
-## Features
+### Features
 
 - **Auto-Focus Logic**: Automatically moves focus to the next field as the user types.
 - **Smart Backspace**: Deletes the current character and moves focus back when backspace is pressed.
@@ -3540,7 +3529,7 @@ export function VerificationForm() {
 - **Input Filtering**: Only accepts numeric input to prevent accidental character entries.
 - **Accessibility**: Includes proper `inputMode` and `autoComplete` attributes for mobile device optimization.
 
-## Properties
+### Properties
 
 
 | Property | Type | Default | Description |
@@ -3555,22 +3544,21 @@ export function VerificationForm() {
 
 ## ColorPicker
 
+- Category: Forms & Inputs
 - Slug: `colorpicker`
 - Installation: `bunx carllosnc/dashkit add colorpicker`
 - NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`
 - Dashkit Dependencies: `popover`, `input`
 
-# Color Picker
-
 A premium color picker component that allows users to select from a curated list of presets or provide a custom hex value.
 
-## Import
+### Import
 
 ```tsx
 import { ColorPicker } from '@/dashkit';
 ```
 
-## Basic Usage
+### Basic Usage
 
 The Color Picker provides a clean popover interface with high-fidelity animations and state management.
 
@@ -3590,9 +3578,9 @@ function App() {
 }
 ```
 
-## API Reference
+### API Reference
 
-### ColorPicker
+#### ColorPicker
 
 
 | Property | Type | Default | Description |
@@ -3607,22 +3595,21 @@ function App() {
 
 ## CopyField
 
+- Category: Forms & Inputs
 - Slug: `copyfield`
 - Installation: `bunx carllosnc/dashkit add copyfield`
 - NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`
 - Dashkit Dependencies: `input`, `iconbutton`, `toast`
 
-# Copy Field
-
 A specialized input component designed for displaying read-only text that needs to be copied to the clipboard, such as invite links, API keys, or referral codes.
 
-## Import
+### Import
 
 ```tsx
 import { CopyField } from '@/dashkit/CopyField'
 ```
 
-## Installation
+### Installation
 
 Add the copy field component to your project using the Dashkit CLI:
 
@@ -3630,7 +3617,7 @@ Add the copy field component to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add copyfield
 ```
 
-## Basic Usage
+### Basic Usage
 
 The copy field displays text in a mono font with an integrated copy button.
 
@@ -3640,7 +3627,7 @@ The copy field displays text in a mono font with an integrated copy button.
 <CopyField value="https://dashkit.ui/join/t_xe9qw" />
 ```
 
-## With Label
+### With Label
 
 Add a `label` and `description` to provide context for the value.
 
@@ -3654,7 +3641,7 @@ Add a `label` and `description` to provide context for the value.
 />
 ```
 
-## Props (API)
+### Props (API)
 
 
 | Property | Type | Default | Description |
@@ -3666,10 +3653,9 @@ Add a `label` and `description` to provide context for the value.
 | `className` | `string` | - | Additional CSS classes for the container element. |
 
 
-### Category: Feedback & Overlays
-
 ## Modal
 
+- Category: Feedback & Overlays
 - Slug: `modal`
 - Installation: `bunx carllosnc/dashkit add modal`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`, `react-icons`
@@ -3791,17 +3777,17 @@ export const FullScreenExample = () => {
 };
 
 
-# Modal
+
 
 A centered, layered dialog component that focuses user attention on critical information or actions.
 
-## Import
+### Import
 
 ```tsx
 import { Modal, ModalHeader, ModalContent, ModalFooter } from '@/dashkit/Modal/Modal'
 ```
 
-## Installation
+### Installation
 
 Add the modal to your project using the Dashkit CLI:
 
@@ -3809,11 +3795,11 @@ Add the modal to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add modal
 ```
 
-## Usage
+### Usage
 
 The modal follows a strict **Composition-based API** for maximum flexibility and layout control.
 
-### Basic Implementation
+#### Basic Implementation
 
 
 
@@ -3833,7 +3819,7 @@ The modal follows a strict **Composition-based API** for maximum flexibility and
 </Modal>
 ```
 
-### Advanced Layouts
+#### Advanced Layouts
 
 Use the footer for standardized action alignment.
 
@@ -3857,9 +3843,9 @@ Use the footer for standardized action alignment.
 </Modal>
 ```
 
-## Formats & Examples
+### Formats & Examples
 
-### Alert Modal
+#### Alert Modal
 
 Smaller modals with centered content for destructive actions.
 
@@ -3880,7 +3866,7 @@ Smaller modals with centered content for destructive actions.
 </Modal>
 ```
 
-### Full-Screen (Immersive)
+#### Full-Screen (Immersive)
 
 The `full` size provides a take-over experience while maintaining focus on a single task.
 
@@ -3903,7 +3889,7 @@ The `full` size provides a take-over experience while maintaining focus on a sin
 </Modal>
 ```
 
-## Features
+### Features
 
 - **Spring-Based Animations**: Uses `framer-motion` for a premium scale/fade entry.
 - **Backdrop Blur**: Softly blurs background content for better focus.
@@ -3911,7 +3897,7 @@ The `full` size provides a take-over experience while maintaining focus on a sin
 - **Portalled Rendering**: Renders at the document root to avoid layering issues.
 - **Keyboard Accessible**: Closes instantly when the `Escape` key is pressed.
 
-## Props (API)
+### Props (API)
 
 
 | Property | Type | Default | Description |
@@ -3925,6 +3911,7 @@ The `full` size provides a take-over experience while maintaining focus on a sin
 
 ## Drawer
 
+- Category: Feedback & Overlays
 - Slug: `drawer`
 - Installation: `bunx carllosnc/dashkit add drawer`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`, `react-icons`
@@ -3956,11 +3943,11 @@ export const DrawerDemo = () => {
   );
 }
 
-# Drawer
+
 
 A premium panel component that slides in from the edges of the screen, providing a temporary surface for navigation, settings, or details. It uses a compositional pattern to give you full control over the header, content, and footer sections.
 
-## Import
+### Import
 
 ```tsx
 import {
@@ -3971,7 +3958,7 @@ import {
 } from '@/dashkit/Drawer/Drawer'
 ```
 
-## Installation
+### Installation
 
 Add the drawer component to your project using the Dashkit CLI:
 
@@ -3979,7 +3966,7 @@ Add the drawer component to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add drawer
 ```
 
-## Basic Usage
+### Basic Usage
 
 The Drawer is controlled via the `isOpen` prop and requires an `onClose` callback. You can compose your drawer using the provided sub-components.
 
@@ -4016,7 +4003,7 @@ export default function MyPage() {
 }
 ```
 
-## Positions
+### Positions
 
 The component supports all four screen edges, with smooth spring animations tailored for each.
 
@@ -4025,7 +4012,7 @@ The component supports all four screen edges, with smooth spring animations tail
 - `top`: Slides from the top.
 - `bottom`: Slides from the bottom.
 
-## Features
+### Features
 
 - **Spring Physics**: Natural, bouncy transitions using Framer Motion.
 - **Backdrop Blur**: Softly blurs content behind the drawer for focus.
@@ -4034,9 +4021,9 @@ The component supports all four screen edges, with smooth spring animations tail
 - **Compositional**: Use `DrawerHeader`, `DrawerContent`, and `DrawerFooter` for modular layouts.
 - **Responsive**: Adapts its width or height based on the `size` prop or position.
 
-## Props
+### Props
 
-### Drawer
+#### Drawer
 
 
 | Property | Type | Default | Description |
@@ -4049,7 +4036,7 @@ The component supports all four screen edges, with smooth spring animations tail
 | `className` | `string` | - | Custom classes for the drawer container. |
 
 
-### Sub-components
+#### Sub-components
 
 The sub-components `DrawerHeader`, `DrawerContent`, and `DrawerFooter` all accept `children` and an optional `className`.
 
@@ -4060,6 +4047,7 @@ The sub-components `DrawerHeader`, `DrawerContent`, and `DrawerFooter` all accep
 
 ## Dropdown
 
+- Category: Feedback & Overlays
 - Slug: `dropdown`
 - Installation: `bunx carllosnc/dashkit add dropdown`
 - NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`
@@ -4221,11 +4209,11 @@ export const CustomTriggerDemo = () => {
   );
 }
 
-# Dropdown Menu
+
 
 An interactive menu that displays a list of actions or options when triggered.
 
-## Import
+### Import
 
 ```tsx
 import { 
@@ -4238,13 +4226,13 @@ import {
 } from '@/dashkit/Dropdown/Dropdown';
 ```
 
-## Installation
+### Installation
 
 ```bash
 bunx carllosnc/dashkit add dropdown
 ```
 
-## Basic Usage
+### Basic Usage
 
 A simple dropdown with items, labels, and separators.
 
@@ -4266,7 +4254,7 @@ A simple dropdown with items, labels, and separators.
 </Dropdown>
 ```
 
-## Selectable Items
+### Selectable Items
 
 Dropdown items can show a selected state, typically used for choosing an option from a list.
 
@@ -4300,7 +4288,7 @@ export function SelectableExample() {
 }
 ```
 
-## Custom Triggers
+### Custom Triggers
 
 The `asChild` prop allows any element to act as the dropdown trigger, from icon buttons to text links.
 
@@ -4335,16 +4323,16 @@ The `asChild` prop allows any element to act as the dropdown trigger, from icon 
 </Dropdown>
 ```
 
-## Features
+### Features
 
 - **Animated**: Uses Framer Motion for smooth scale and opacity transitions.
 - **Accessible**: Closes automatically when clicking outside or selecting an item. Supports `Escape` key.
 - **Customizable**: Supports custom triggers via `asChild`, alignment (`left` or `right`), and icons.
 - **Styled**: Beautiful default styles for light and dark modes.
 
-## Component API
+### Component API
 
-### DropdownContent
+#### DropdownContent
 
 
 | Property | Type | Default | Description |
@@ -4354,7 +4342,7 @@ The `asChild` prop allows any element to act as the dropdown trigger, from icon 
 
 
 
-### DropdownItem
+#### DropdownItem
 
 
 | Property | Type | Default | Description |
@@ -4369,21 +4357,20 @@ The `asChild` prop allows any element to act as the dropdown trigger, from icon 
 
 ## Popover
 
+- Category: Feedback & Overlays
 - Slug: `popover`
 - Installation: `bunx carllosnc/dashkit add popover`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
 
-# Popover
-
 A floating container that displays rich content anchored to a trigger element. Popovers are ideal for more complex content than tooltips, such as forms or descriptive text.
 
-## Import
+### Import
 
 ```tsx
 import { Popover, PopoverTrigger, PopoverContent } from 'dashkit'
 ```
 
-## Installation
+### Installation
 
 Add the popover to your project using the Dashkit CLI:
 
@@ -4391,7 +4378,7 @@ Add the popover to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add popover
 ```
 
-## Basic Usage
+### Basic Usage
 
 The `Popover` component uses a composition-based API. Wrap your trigger and content in the `Popover` provider.
 
@@ -4413,7 +4400,7 @@ export default () => (
 );
 ```
 
-## Placement
+### Placement
 
 Popovers can be placed on any side of the trigger using the `side` prop, and aligned using the `align` prop.
 
@@ -4424,7 +4411,7 @@ Popovers can be placed on any side of the trigger using the `side` prop, and ali
 <PopoverContent side="left" align="center">...</PopoverContent>
 ```
 
-## Trigger Mode
+### Trigger Mode
 
 You can change how the popover is triggered using the `trigger` prop. It supports `click` (default) and `hover`.
 
@@ -4433,11 +4420,11 @@ You can change how the popover is triggered using the `trigger` prop. It support
 <Popover trigger="hover">...</Popover>
 ```
 
-## Custom Content
+### Custom Content
 
 Since the `PopoverContent` is just a container, you can put any React components inside it.
 
-## Features
+### Features
 
 - **Automatic Collision Handling**: The popover will flip to the opposite side if it doesn't have enough space in the preferred direction.
 - **Escape to Close**: Pressing the `Escape` key closes the popover immediately.
@@ -4445,9 +4432,9 @@ Since the `PopoverContent` is just a container, you can put any React components
 - **Dynamic Portaling**: Renders via `createPortal` to avoid z-index and overflow issues.
 - **Framer Motion Animations**: Smooth scale and opacity transitions.
 
-## API
+### API
 
-### PopoverContent Props
+#### PopoverContent Props
 
 | Property | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
@@ -4460,6 +4447,7 @@ Since the `PopoverContent` is just a container, you can put any React components
 
 ## Tooltip
 
+- Category: Feedback & Overlays
 - Slug: `tooltip`
 - Installation: `bunx carllosnc/dashkit add tooltip`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
@@ -4551,11 +4539,11 @@ export const PositioningDemo = () => {
   );
 }
 
-# Tooltip
+
 
 A small popup that displays information when a user hovers over an element.
 
-## Import
+### Import
 
 ```tsx
 import { 
@@ -4565,13 +4553,13 @@ import {
 } from '@/dashkit/Tooltip/Tooltip';
 ```
 
-## Installation
+### Installation
 
 ```bash
 bunx carllosnc/dashkit add tooltip
 ```
 
-## Basic Usage
+### Basic Usage
 
 Tooltips are triggered by hovering over the trigger element.
 
@@ -4590,7 +4578,7 @@ Tooltips are triggered by hovering over the trigger element.
 </Tooltip>
 ```
 
-## Side Positioning
+### Side Positioning
 
 Tooltips can be positioned on the `top`, `bottom`, `left`, or `right` of the trigger.
 
@@ -4607,7 +4595,7 @@ Tooltips can be positioned on the `top`, `bottom`, `left`, or `right` of the tri
 </Tooltip>
 ```
 
-## Features
+### Features
 
 - **Animated**: Uses Framer Motion for smooth entry and exit transitions.
 - **Accessible**: Closes automatically when the mouse leaves the trigger.
@@ -4615,9 +4603,9 @@ Tooltips can be positioned on the `top`, `bottom`, `left`, or `right` of the tri
 - **Portalled**: Renders at the end of the document body to avoid z-index and overflow issues.
 - **Design System Consistent**: Uses theme-aware popover tokens and radius variables.
 
-## Component API
+### Component API
 
-### Tooltip
+#### Tooltip
 
 
 | Property | Type | Default | Description |
@@ -4625,7 +4613,7 @@ Tooltips can be positioned on the `top`, `bottom`, `left`, or `right` of the tri
 | `delay` | `number` | `0` | The delay in milliseconds before the tooltip appears. |
 
 
-### TooltipContent
+#### TooltipContent
 
 
 | Property | Type | Default | Description |
@@ -4637,6 +4625,7 @@ Tooltips can be positioned on the `top`, `bottom`, `left`, or `right` of the tri
 
 ## Toast
 
+- Category: Feedback & Overlays
 - Slug: `toast`
 - Installation: `bunx carllosnc/dashkit add toast`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
@@ -4691,11 +4680,11 @@ export const InvertedExamples = () => {
   );
 };
 
-# Toast
+
 
 A succinct message that provides feedback about an operation in a small, non-intrusive card.
 
-## Installation
+### Installation
 
 Add the toast component to your project using the Dashkit CLI:
 
@@ -4703,7 +4692,7 @@ Add the toast component to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add toast
 ```
 
-## Setup
+### Setup
 
 Wrap your application (usually in `main.tsx` or `App.tsx`) with the `ToastProvider`.
 
@@ -4719,13 +4708,13 @@ function App() {
 }
 ```
 
-## Import
+### Import
 
 ```tsx
 import { toast, ToastProvider, useToast } from '@/dashkit/Toast/Toast'
 ```
 
-## Basic Usage
+### Basic Usage
 
 Trigger a toast from anywhere by calling the `toast` function. Toasts automatically stack as cards to save space.
 
@@ -4743,7 +4732,7 @@ const notify = () => {
 }
 ```
 
-## Positioning
+### Positioning
 
 Supports multiple screen positions for different layout requirements.
 
@@ -4754,7 +4743,7 @@ toast({ title: "Alert", position: "top-center" })
 toast({ title: "Feedback", position: "top-right" })
 ```
 
-## Inverted Theme
+### Inverted Theme
 
 Enable the `invert` property on a specific toast (or globally at the `ToastProvider`) to render it with high-contrast, inverted colors. This is especially useful for making critical messages pop out.
 
@@ -4768,16 +4757,16 @@ toast({
 })
 ```
 
-## Features
+### Features
 
 - **Stacked Visualization**: Toasts stack vertically, revealing themselves as the top ones are dismissed.
 - **Portalled Layout**: Renders at the document root to avoid z-index layering issues.
 - **Framer Motion**: Smooth, spring-based entry/exit and layout animations.
 - **Auto-dismiss**: Configurable duration with a default of 5 seconds.
 
-## API Reference
+### API Reference
 
-### ToastProvider
+#### ToastProvider
 
 
 | Property | Type | Default | Description |
@@ -4786,7 +4775,7 @@ toast({
 | `invert` | `boolean` | `false` | If true, all toasts will render with inverted high-contrast colors by default. |
 
 
-### toast(options)
+#### toast(options)
 
 
 | Property | Type | Default | Description |
@@ -4802,21 +4791,20 @@ toast({
 
 ## Backdrop
 
+- Category: Feedback & Overlays
 - Slug: `backdrop`
 - Installation: `bunx carllosnc/dashkit add backdrop`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
 
-# Backdrop
-
 A blurred or semi-transparent full-screen overlay, often used behind modals, drawers, or to dim the background for focus.
 
-## Import
+### Import
 
 ```tsx
 import { Backdrop } from '@/dashkit/Backdrop/Backdrop'
 ```
 
-## Installation
+### Installation
 
 Add the backdrop to your project using the Dashkit CLI:
 
@@ -4824,7 +4812,7 @@ Add the backdrop to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add backdrop
 ```
 
-## Basic Usage
+### Basic Usage
 
 The backdrop component is usually controlled by a state.
 
@@ -4851,7 +4839,7 @@ return (
 );
 ```
 
-## With Children
+### With Children
 
 You can pass children to the backdrop, which will be centered on top of the overlay.
 
@@ -4882,7 +4870,7 @@ export const ChildrenExample = () => {
 </Backdrop>
 ```
 
-## Props
+### Props
 
 
 | Property | Type | Default | Description |
@@ -4897,21 +4885,20 @@ export const ChildrenExample = () => {
 
 ## Spinner
 
+- Category: Feedback & Overlays
 - Slug: `spinner`
 - Installation: `bunx carllosnc/dashkit add spinner`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
 
-# Spinner
-
 A sleek, high-performance loading indicator built with SVG and CSS animations.
 
-## Import
+### Import
 
 ```tsx
 import { Spinner } from '@/dashkit/Spinner/Spinner'
 ```
 
-## Installation
+### Installation
 
 Add the spinner to your project using the Dashkit CLI:
 
@@ -4919,7 +4906,7 @@ Add the spinner to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add spinner
 ```
 
-## Basic Usage
+### Basic Usage
 
 The basic spinner uses a standard size and the current text color.
 
@@ -4929,7 +4916,7 @@ The basic spinner uses a standard size and the current text color.
 <Spinner />
 ```
 
-## Sizes
+### Sizes
 
 Use the `size` prop to scale the spinner. The default is 24px.
 
@@ -4942,7 +4929,7 @@ Use the `size` prop to scale the spinner. The default is 24px.
 <Spinner size={48} />
 ```
 
-## Colors
+### Colors
 
 The spinner accepts any valid CSS color. It defaults to `currentColor` for easier theme integration.
 
@@ -4955,7 +4942,7 @@ The spinner accepts any valid CSS color. It defaults to `currentColor` for easie
 <Spinner color="#ef4444" />
 ```
 
-## Thickness
+### Thickness
 
 Adjust the `thickness` of the spinner's stroke for different visual densities.
 
@@ -4968,7 +4955,7 @@ Adjust the `thickness` of the spinner's stroke for different visual densities.
 <Spinner thickness={4} />
 ```
 
-## Context Integration
+### Context Integration
 
 Spinners are commonly used alongside text labels to indicate specific processing states.
 
@@ -4981,7 +4968,7 @@ Spinners are commonly used alongside text labels to indicate specific processing
 </div>
 ```
 
-## Props (API)
+### Props (API)
 
 
 | Property | Type | Default | Description |
@@ -4994,21 +4981,20 @@ Spinners are commonly used alongside text labels to indicate specific processing
 
 ## ProgressBar
 
+- Category: Feedback & Overlays
 - Slug: `progressbar`
 - Installation: `bunx carllosnc/dashkit add progressbar`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`
 
-# ProgressBar
-
 Animated, fluid indicators for tracking task completion, loading states, or data metrics with high precision.
 
-## Import
+### Import
 
 ```tsx
 import { ProgressBar } from '@/dashkit/ProgressBar/ProgressBar'
 ```
 
-## Installation
+### Installation
 
 Add the progress bar into your project using the Dashkit CLI:
 
@@ -5016,7 +5002,7 @@ Add the progress bar into your project using the Dashkit CLI:
 bunx carllosnc/dashkit add progressbar
 ```
 
-## Basic Usage
+### Basic Usage
 
 A simple progress bar with a controlled value. It uses spring-based animations for width changes by default.
 
@@ -5026,7 +5012,7 @@ A simple progress bar with a controlled value. It uses spring-based animations f
 <ProgressBar value={65} showLabel />
 ```
 
-## Colors
+### Colors
 
 The component supports all semantic color palettes from your design system.
 
@@ -5038,7 +5024,7 @@ The component supports all semantic color palettes from your design system.
 <ProgressBar value={85} color="base" showLabel label="NVMe Block Storage" />
 ```
 
-## Sizes
+### Sizes
 
 Choose from four predefined heights to fit different UI contexts.
 
@@ -5051,7 +5037,7 @@ Choose from four predefined heights to fit different UI contexts.
 <ProgressBar size="lg" value={90} />
 ```
 
-## Label Positions
+### Label Positions
 
 Labels can be placed either above the bar or to the side, which is ideal for compact layouts like table cells.
 
@@ -5065,9 +5051,9 @@ Labels can be placed either above the bar or to the side, which is ideal for com
 <ProgressBar value={88} showLabel labelPosition="side" />
 ```
 
-## API Reference
+### API Reference
 
-### ProgressBar Props
+#### ProgressBar Props
 
 
 | Property | Type | Default | Description |
@@ -5084,21 +5070,20 @@ Labels can be placed either above the bar or to the side, which is ideal for com
 
 ## CircularProgress
 
+- Category: Feedback & Overlays
 - Slug: `circularprogress`
 - Installation: `bunx carllosnc/dashkit add circularprogress`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
 
-# CircularProgress
-
 A high-fidelity circular progress indicator built with SVG and Framer Motion. It provides smooth, fluid animations for status monitoring, health metrics, and loading states.
 
-## Import
+### Import
 
 ```tsx
 import { CircularProgress } from '@/dashkit/CircularProgress/CircularProgress'
 ```
 
-## Installation
+### Installation
 
 Add the component to your project using the Dashkit CLI:
 
@@ -5106,7 +5091,7 @@ Add the component to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add circular-progress
 ```
 
-## Basic Usage
+### Basic Usage
 
 The component accepts a `value` between 0 and 100. Use `showValue` to display the percentage inside the circle.
 
@@ -5119,7 +5104,7 @@ The component accepts a `value` between 0 and 100. Use `showValue` to display th
 <CircularProgress value={18} color="danger" showValue />
 ```
 
-## Variants
+### Variants
 
 Dashkit provides two visual variants: `solid` (default) for a crisp high-contrast track, and `soft` for a more integrated, subtle look.
 
@@ -5130,7 +5115,7 @@ Dashkit provides two visual variants: `solid` (default) for a crisp high-contras
 <CircularProgress value={65} variant="soft" color="success" showValue />
 ```
 
-## Sizes
+### Sizes
 
 Choose from predefined sizes (`sm`, `md`, `lg`) or provide a custom numeric value for the diameter (in pixels).
 
@@ -5143,7 +5128,7 @@ Choose from predefined sizes (`sm`, `md`, `lg`) or provide a custom numeric valu
 <CircularProgress value={50} size={120} showValue />
 ```
 
-## Track Customization
+### Track Customization
 
 You can explicitly set the color of the background track using the `trackColor` prop. This is useful when you want to deviate from the theme's default track styles.
 
@@ -5155,7 +5140,7 @@ You can explicitly set the color of the background track using the `trackColor` 
 ```
 
 
-## Custom Thickness
+### Custom Thickness
 
 The `strokeWidth` prop allows you to override the default thickness of the track and indicator.
 
@@ -5166,7 +5151,7 @@ The `strokeWidth` prop allows you to override the default thickness of the track
 <CircularProgress value={60} strokeWidth={12} showValue />
 ```
 
-## Minimalist Styles
+### Minimalist Styles
 
 Control the visibility of the background track and the shape of the progress ends using `showTrack` and `roundCaps`.
 
@@ -5177,7 +5162,7 @@ Control the visibility of the background track and the shape of the progress end
 <CircularProgress value={65} roundCaps={false} showValue />
 ```
 
-## API
+### API
 
 
 | Property | Type | Default | Description |
@@ -5196,6 +5181,7 @@ Control the visibility of the background track and the shape of the progress end
 
 ## Skeleton
 
+- Category: Feedback & Overlays
 - Slug: `skeleton`
 - Installation: `bunx carllosnc/dashkit add skeleton`
 - NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`
@@ -5223,17 +5209,17 @@ export const SkeletonDemo = () => {
   );
 };
 
-# Skeleton
+
 
 A placeholder component used to mimic the layout of actual content while it is loading.
 
-## Import
+### Import
 
 ```tsx
 import { Skeleton } from '@/dashkit/Skeleton/Skeleton'
 ```
 
-## Installation
+### Installation
 
 Add the skeleton to your project using the Dashkit CLI:
 
@@ -5241,11 +5227,11 @@ Add the skeleton to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add skeleton
 ```
 
-## Demo
+### Demo
 
 
 
-## Text Variant
+### Text Variant
 
 Use the `variant="text"` prop for text line placeholders.
 
@@ -5258,7 +5244,7 @@ Use the `variant="text"` prop for text line placeholders.
 </div>
 ```
 
-## Circular Variant
+### Circular Variant
 
 Use the `variant="circular"` prop for avatars or circular elements.
 
@@ -5268,7 +5254,7 @@ Use the `variant="circular"` prop for avatars or circular elements.
 <Skeleton variant="circular" className="size-12" />
 ```
 
-## Rectangular Variant
+### Rectangular Variant
 
 The default `variant="rectangular"` is ideal for cards, images, or large content blocks.
 
@@ -5278,7 +5264,7 @@ The default `variant="rectangular"` is ideal for cards, images, or large content
 <Skeleton variant="rectangular" className="h-[200px] w-full" />
 ```
 
-## Animation
+### Animation
 
 By default, skeletons use a `shimmer` animation. 
 
@@ -5294,7 +5280,7 @@ By default, skeletons use a `shimmer` animation.
 </div>
 ```
 
-## Pulse Animation
+### Pulse Animation
 
 Use the `animation="pulse"` prop for a classic fading effect. This provides a more subtle "breathing" feel to your placeholders.
 
@@ -5310,7 +5296,7 @@ Use the `animation="pulse"` prop for a classic fading effect. This provides a mo
 </div>
 ```
 
-## No Animation
+### No Animation
 
 Disable animations entirely with `animation="none"`.
 
@@ -5320,7 +5306,7 @@ Disable animations entirely with `animation="none"`.
 <Skeleton animation="none" />
 ```
 
-## API
+### API
 
 
 
@@ -5333,6 +5319,7 @@ Disable animations entirely with `animation="none"`.
 
 ## FloatActionMenu
 
+- Category: Feedback & Overlays
 - Slug: `float-action-menu`
 - Installation: `bunx carllosnc/dashkit add float-action-menu`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
@@ -5369,11 +5356,11 @@ export const FloatActionMenuDemo = () => (
   
 )
 
-# Float Action Menu
+
 
 A premium floating action button that reveals an interactive menu card sliding from right to left.
 
-## Usage
+### Usage
 
 ```tsx
 import { FloatActionMenu } from 'dashkit'
@@ -5397,7 +5384,7 @@ export function MyComponent() {
 }
 ```
 
-## Interactive Demo
+### Interactive Demo
 
 The demo below showcases the snappy, right-to-left slide transition. The button remains visible and acts as a toggle while the menu is open.
 
@@ -5405,7 +5392,7 @@ The demo below showcases the snappy, right-to-left slide transition. The button 
   
 
 
-## Positions
+### Positions
 
 The menu can be positioned at any corner of the parent container or screen.
 
@@ -5416,7 +5403,7 @@ The menu can be positioned at any corner of the parent container or screen.
 <FloatActionMenu position="top-left" label="Top Left" />
 ```
 
-## Props
+### Props
 
 ",
       "description": "Icon to display in the floating button."
@@ -5461,19 +5448,16 @@ The menu can be positioned at any corner of the parent container or screen.
 />
 
 
-### Category: Data Display & Metrics
-
 ## Avatar
 
+- Category: Data Display & Metrics
 - Slug: `avatar`
 - Installation: `bunx carllosnc/dashkit add avatar`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`
 
-# Avatar
-
 A versatile component for presenting user profile pictures, with built-in fallback Support and smooth loading transitions.
 
-## Installation
+### Installation
 
 Add the Avatar to your project using the Dashkit CLI:
 
@@ -5481,7 +5465,7 @@ Add the Avatar to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add avatar
 ```
 
-## Basic usage
+### Basic usage
 
 By default, the Avatar component will show initials as a fallback if the image source is not provided or fails to load.
 
@@ -5501,19 +5485,19 @@ function Example() {
 }
 ```
 
-## Sizes
+### Sizes
 
 Available in five standard sizes: `xs`, `sm`, `md` (default), `lg`, and `xl`.
 
 
 
-## Shapes
+### Shapes
 
 Choose between `circle` (default) and `square` shapes.
 
 
 
-## Avatar Group
+### Avatar Group
 
 Cluster multiple avatars together with automatic truncation using the `max` prop.
 
@@ -5528,9 +5512,9 @@ Cluster multiple avatars together with automatic truncation using the `max` prop
 </AvatarGroup>
 ```
 
-## API Reference
+### API Reference
 
-### Avatar
+#### Avatar
 
 
 | Property | Type | Default | Description |
@@ -5543,7 +5527,7 @@ Cluster multiple avatars together with automatic truncation using the `max` prop
 | `bordered` | `boolean` | `false` | Whether to show a focus-like ring border. |
 
 
-### AvatarGroup
+#### AvatarGroup
 
 
 | Property | Type | Default | Description |
@@ -5555,21 +5539,20 @@ Cluster multiple avatars together with automatic truncation using the `max` prop
 
 ## Badge
 
+- Category: Data Display & Metrics
 - Slug: `badge`
 - Installation: `bunx carllosnc/dashkit add badge`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`
 
-# Badge
-
 Visual indicators used for counts, statuses, or high-priority labels. Dashkit provides two distinct badge components optimized for different use cases.
 
-## Import
+### Import
 
 ```tsx
 import { Badge, FloatBadge } from '@/dashkit/Badge'
 ```
 
-## Installation
+### Installation
 
 Add the badge to your project using the Dashkit CLI:
 
@@ -5577,7 +5560,7 @@ Add the badge to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add badge
 ```
 
-## Standalone Badge
+### Standalone Badge
 
 Use the `Badge` component for simple labels or indicators.
 
@@ -5596,7 +5579,7 @@ export default () => (
 );
 ```
 
-## Floating Badge 
+### Floating Badge 
 
 Use the `FloatBadge` component to wrap an element and position a badge relative to its corners.
 
@@ -5615,7 +5598,7 @@ export default () => (
 );
 ```
 
-## Badge Positions
+### Badge Positions
 
 Dot badges can be positioned at any corner of the element.
 
@@ -5628,7 +5611,7 @@ Dot badges can be positioned at any corner of the element.
 <FloatBadge dot position="bottom-left">...</FloatBadge>
 ```
 
-## Status Indicators
+### Status Indicators
 
 Combine badges with other components to create rich status indicators.
 
@@ -5641,16 +5624,16 @@ Combine badges with other components to create rich status indicators.
 </div>
 ```
 
-## Features
+### Features
 
 - **Automatic Clipping**: Numbers larger than the `max` prop (default 99) are automatically formatted with a plus sign (e.g., `99+`).
 - **Pulse Effects**: Easily add a status pulse animation to dots or small content badges via the `pulse` prop.
 - **Rhythmic Corners**: All text-based badges now use a modern `rounded-sm` style, while dots remain `rounded-full`.
 - **Flexible Variants**: Choose between `solid` and `outline` appearances.
 
-## API
+### API
 
-### Badge Props
+#### Badge Props
 
 
 
@@ -5666,7 +5649,7 @@ Combine badges with other components to create rich status indicators.
 
 
 
-### FloatBadge Props
+#### FloatBadge Props
 
 `FloatBadge` inherits all `Badge` props and adds the following:
 
@@ -5681,22 +5664,21 @@ Combine badges with other components to create rich status indicators.
 
 ## FloatBadge
 
+- Category: Data Display & Metrics
 - Slug: `floatbadge`
 - Installation: `bunx carllosnc/dashkit add floatbadge`
 - NPM Dependencies: `clsx`, `tailwind-merge`
 - Dashkit Dependencies: `badge`
 
-# Badge
-
 Visual indicators used for counts, statuses, or high-priority labels. Dashkit provides two distinct badge components optimized for different use cases.
 
-## Import
+### Import
 
 ```tsx
 import { Badge, FloatBadge } from '@/dashkit/Badge'
 ```
 
-## Installation
+### Installation
 
 Add the badge to your project using the Dashkit CLI:
 
@@ -5704,7 +5686,7 @@ Add the badge to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add badge
 ```
 
-## Standalone Badge
+### Standalone Badge
 
 Use the `Badge` component for simple labels or indicators.
 
@@ -5723,7 +5705,7 @@ export default () => (
 );
 ```
 
-## Floating Badge 
+### Floating Badge 
 
 Use the `FloatBadge` component to wrap an element and position a badge relative to its corners.
 
@@ -5742,7 +5724,7 @@ export default () => (
 );
 ```
 
-## Badge Positions
+### Badge Positions
 
 Dot badges can be positioned at any corner of the element.
 
@@ -5755,7 +5737,7 @@ Dot badges can be positioned at any corner of the element.
 <FloatBadge dot position="bottom-left">...</FloatBadge>
 ```
 
-## Status Indicators
+### Status Indicators
 
 Combine badges with other components to create rich status indicators.
 
@@ -5768,16 +5750,16 @@ Combine badges with other components to create rich status indicators.
 </div>
 ```
 
-## Features
+### Features
 
 - **Automatic Clipping**: Numbers larger than the `max` prop (default 99) are automatically formatted with a plus sign (e.g., `99+`).
 - **Pulse Effects**: Easily add a status pulse animation to dots or small content badges via the `pulse` prop.
 - **Rhythmic Corners**: All text-based badges now use a modern `rounded-sm` style, while dots remain `rounded-full`.
 - **Flexible Variants**: Choose between `solid` and `outline` appearances.
 
-## API
+### API
 
-### Badge Props
+#### Badge Props
 
 
 
@@ -5793,7 +5775,7 @@ Combine badges with other components to create rich status indicators.
 
 
 
-### FloatBadge Props
+#### FloatBadge Props
 
 `FloatBadge` inherits all `Badge` props and adds the following:
 
@@ -5808,6 +5790,7 @@ Combine badges with other components to create rich status indicators.
 
 ## Chip
 
+- Category: Data Display & Metrics
 - Slug: `chip`
 - Installation: `bunx carllosnc/dashkit add chip`
 - NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`, `react-icons`
@@ -5847,17 +5830,17 @@ export const RemovableExample = () => {
   );
 };
 
-# Chip
+
 
 A compact, interactive element that represents an input, attribute, or action, inspired by Material Design 3.
 
-## Import
+### Import
 
 ```tsx
 import { Chip } from '@/dashkit/Chip/Chip'
 ```
 
-## Installation
+### Installation
 
 Add the chip component to your project using the Dashkit CLI:
 
@@ -5865,7 +5848,7 @@ Add the chip component to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add chip
 ```
 
-## Basic Usage
+### Basic Usage
 
 The basic tonal chip represents a simple label or filter item.
 
@@ -5877,7 +5860,7 @@ The basic tonal chip represents a simple label or filter item.
 <Chip label="Urgent" />
 ```
 
-## Types
+### Types
 
 Chips can be used for different purposes, and their visual behavior changes based on provided props.
 
@@ -5892,7 +5875,7 @@ import { FiClock, FiSettings } from 'react-icons/fi';
 <Chip label="Action Chip" icon={<FiSettings />} color="info" />
 ```
 
-## Visual Styles
+### Visual Styles
 
 Chips combine three `variants` with five semantic `colors` to provide maximum flexibility for different UI contexts.
 
@@ -5909,7 +5892,7 @@ Chips combine three `variants` with five semantic `colors` to provide maximum fl
 <Chip label="Danger" color="danger" variant="tonal" />
 ```
 
-## Multi-Selection
+### Multi-Selection
 
 Selection state shows a checkmark icon automatically. This is useful for filter situations.
 
@@ -5942,7 +5925,7 @@ export const MultiSelectExample = () => {
 };
 ```
 
-## Removable Labels
+### Removable Labels
 
 Chips can include a delete action, useful for tag systems.
 
@@ -5965,7 +5948,7 @@ export const RemovableExample = () => {
 };
 ```
 
-## Props (API)
+### Props (API)
 
 
 | Property | Type | Default | Description |
@@ -5983,27 +5966,26 @@ export const RemovableExample = () => {
 
 ## ListTile
 
+- Category: Data Display & Metrics
 - Slug: `listtile`
 - Installation: `bunx carllosnc/dashkit add listtile`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
 
-# List Tile
-
 A flexible row component for building lists, menus, and settings panels. Supports leading icons or avatars, a title and subtitle text block, and a trailing slot for actions or indicators.
 
-## Import
+### Import
 
 ```tsx
 import { ListTile } from '@/dashkit/ListTile'
 ```
 
-## Installation
+### Installation
 
 ```bash
 bunx carllosnc/dashkit add listtile
 ```
 
-## Basic Usage
+### Basic Usage
 
 
 
@@ -6011,7 +5993,7 @@ bunx carllosnc/dashkit add listtile
 <ListTile title="Account" leading={<FiUser size={18} />} trailing={<FiChevronRight size={16} />} interactive />
 ```
 
-## With Subtitle
+### With Subtitle
 
 
 
@@ -6024,7 +6006,7 @@ bunx carllosnc/dashkit add listtile
 />
 ```
 
-## With Trailing Control
+### With Trailing Control
 
 
 
@@ -6037,7 +6019,7 @@ bunx carllosnc/dashkit add listtile
 />
 ```
 
-## Disabled State
+### Disabled State
 
 
 
@@ -6045,7 +6027,7 @@ bunx carllosnc/dashkit add listtile
 <ListTile title="Disabled Item" disabled interactive />
 ```
 
-## Dividers
+### Dividers
 
 Use the `divider` prop to render a bottom border directly on each tile. This lets you manage separators per-tile without a wrapper, which is useful when bleed-edge layouts remove the container.
 
@@ -6069,7 +6051,7 @@ You can also use `divider` on all but the last item via array index:
 ))}
 ```
 
-## Props (API)
+### Props (API)
 
 
 | Property | Type | Default | Description |
@@ -6087,22 +6069,21 @@ You can also use `divider` on all but the last item via array index:
 
 ## StatsCard
 
+- Category: Data Display & Metrics
 - Slug: `statscard`
 - Installation: `bunx carllosnc/dashkit add statscard`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
 - Dashkit Dependencies: `card`, `animatenumber`, `divider`
 
-# Stats Card
-
 A high-level component for displaying key performance indicators, metrics, and trends at a glance.
 
-## Import
+### Import
 
 ```tsx
 import { StatsCard } from '@/dashkit/StatsCard/StatsCard'
 ```
 
-## Installation
+### Installation
 
 Add the stats card to your project using the Dashkit CLI:
 
@@ -6110,7 +6091,7 @@ Add the stats card to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add statscard
 ```
 
-## Basic Usage
+### Basic Usage
 
 The `StatsCard` is perfect for dashboards and summary sections.
 
@@ -6149,7 +6130,7 @@ export default () => (
 );
 ```
 
-## With Icons
+### With Icons
 
 Add visual context using icons from `react-icons`.
 
@@ -6189,7 +6170,7 @@ export default () => (
 );
 ```
 
-## With Sparklines
+### With Sparklines
 
 Visualize data trends directly within the card using the `chart` prop.
 
@@ -6216,7 +6197,7 @@ export default () => (
 );
 ```
 
-## Chart and Description
+### Chart and Description
 
 Combine sparklines and descriptive footers for maximum context.
 
@@ -6255,9 +6236,9 @@ export default () => (
 );
 ```
 
-## API
+### API
 
-### StatsCard Props
+#### StatsCard Props
 
 
 | Property | Type | Default | Description |
@@ -6278,6 +6259,7 @@ export default () => (
 
 ## AnimateNumber
 
+- Category: Data Display & Metrics
 - Slug: `animatenumber`
 - Installation: `bunx carllosnc/dashkit add animatenumber`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
@@ -6297,17 +6279,17 @@ export const AnimateNumberExample = () => {
   );
 }
 
-# Animate Number
+
 
 A specialized component for creating sleek numeric counters with independent digit animations. It uses a "top-to-bottom" sliding effect for each character, providing a premium and dynamic feel for dashboards and metrics.
 
-## Import
+### Import
 
 ```tsx
 import { AnimateNumber } from '@/dashkit/AnimateNumber'
 ```
 
-## Installation
+### Installation
 
 Add the animate-number to your project using the Dashkit CLI:
 
@@ -6315,7 +6297,7 @@ Add the animate-number to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add animate-number
 ```
 
-## Basic Usage
+### Basic Usage
 
 The component will automatically animate whenever the `value` prop changes. Each digit that differs from the previous value will slide vertically to its new position.
 
@@ -6341,20 +6323,20 @@ export default () => {
 };
 ```
 
-## Advanced Examples
+### Advanced Examples
 
 You can customize the precision, add prefixes/suffixes, and control the duration (speed of the slide animation).
 
 
 
-## Features
+### Features
 
 - **Character Splitting**: Each digit animates independently for a premium odometer feel.
 - **Top-to-Bottom Movement**: New values slide in from above while old ones exit below.
 - **Localization Support**: Automatically handles thousands separators and decimal markers via `Intl.NumberFormat`.
 - **Customizable Duration**: Control the speed of each character's vertical transition.
 
-## API
+### API
 
 
 | Property | Type | Default | Description |
@@ -6369,22 +6351,21 @@ You can customize the precision, add prefixes/suffixes, and control the duration
 
 ## SystemLogs
 
+- Category: Data Display & Metrics
 - Slug: `systemlogs`
 - Installation: `bunx carllosnc/dashkit add systemlogs`
 - NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`
 - Dashkit Dependencies: `badge`
 
-# System Logs
-
 A terminal-style component for displaying real-time system logs, process outputs, or audit trails with auto-scrolling and status indicators.
 
-## Import
+### Import
 
 ```tsx
 import { SystemLogs, type LogEntry } from '@/dashkit/SystemLogs/SystemLogs'
 ```
 
-## Installation
+### Installation
 
 Add the system logs to your project using the Dashkit CLI:
 
@@ -6392,7 +6373,7 @@ Add the system logs to your project using the Dashkit CLI:
 bunx carllosnc/dashkit add systemlogs
 ```
 
-## Usage
+### Usage
 
 The `SystemLogs` component takes an array of `logs` and renders them in a dark, monospace container that mimics a terminal environment.
 
@@ -6422,7 +6403,7 @@ export default () => (
 )
 ```
 
-## Log Levels
+### Log Levels
 
 The component supports five distinct log levels, each with its own visual style:
 
@@ -6436,20 +6417,20 @@ The component supports five distinct log levels, each with its own visual style:
   
 
 
-## Customization
+### Customization
 
-### Auto-scrolling
+#### Auto-scrolling
 
 By default, the component automatically scrolls to the bottom when new logs are added. You can disable this behavior by setting `autoScroll={false}`.
 
-### Header & Footer
+#### Header & Footer
 
 - `title`: The label displayed in the terminal header.
 - `session`: An optional session identifier displayed in the footer.
 - `status`: A status label displayed as a badge in the footer.
 - `statusColor`: The color of the status badge.
 
-## Props
+### Props
 
 
 | Property | Type | Default | Description |
@@ -6466,15 +6447,14 @@ By default, the component automatically scrolls to the bottom when new logs are 
 
 ## Table
 
+- Category: Data Display & Metrics
 - Slug: `table`
 - Installation: `bunx carllosnc/dashkit add table`
 - NPM Dependencies: `clsx`, `tailwind-merge`
 
-# Table
-
 A simple, responsive table component for displaying structured data.
 
-## Basic usage
+### Basic usage
 
 Built with a composition pattern for ultimate flexibility. Renders a clean semantic table designed to be placed inside any container, card, or scrollable wrapper.
 
@@ -6519,7 +6499,7 @@ Built with a composition pattern for ultimate flexibility. Renders a clean seman
 
 
 
-## Actions Support
+### Actions Support
 
 Tables often need a way to perform operations on specific rows. You can easily integrate a `Dropdown` for clean, consolidated actions.
 
@@ -6584,9 +6564,9 @@ Tables often need a way to perform operations on specific rows. You can easily i
 </Table>
 ```
 
-## API Reference
+### API Reference
 
-### TableContainer
+#### TableContainer
 
 
 | Property | Type | Default | Description |
@@ -6596,7 +6576,7 @@ Tables often need a way to perform operations on specific rows. You can easily i
 
 
 
-### Table
+#### Table
 
 
 | Property | Type | Default | Description |
@@ -6605,7 +6585,7 @@ Tables often need a way to perform operations on specific rows. You can easily i
 | `children` | `ReactNode` | - | The table content (Header, Body, etc). |
 
 
-### TableHead
+#### TableHead
 
 
 | Property | Type | Default | Description |
@@ -6613,7 +6593,7 @@ Tables often need a way to perform operations on specific rows. You can easily i
 | `className` | `string` | - | Custom styles for the header cell. |
 
 
-### TableCell
+#### TableCell
 
 
 | Property | Type | Default | Description |
@@ -6622,27 +6602,24 @@ Tables often need a way to perform operations on specific rows. You can easily i
 | `colSpan` | `number` | - | The number of columns the cell should span. |
 
 
-### Category: Visualization & Media
-
 ## AreaChart
 
+- Category: Visualization & Media
 - Slug: `areachart`
 - Installation: `bunx carllosnc/dashkit add areachart`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
 
-# Area Chart
-
 The **AreaChart** component is a lightweight, responsive data visualization tool built using native SVG and **Framer Motion**. It's designed to be lean, performant, and deeply customizable through theme tokens.
 
-## Examples
+### Examples
 
-### Default Area Chart
-
-
+#### Default Area Chart
 
 
 
-### Weekly Performance (7 Values)
+
+
+#### Weekly Performance (7 Values)
 
 A standard weekly view using 7 consecutive data points.
 
@@ -6661,7 +6638,7 @@ function Example() {
 }
 ```
 
-### Multiple Series (Mobile vs Desktop)
+#### Multiple Series (Mobile vs Desktop)
 
 Compare multiple data points using the `series` array.
 
@@ -6677,7 +6654,7 @@ Compare multiple data points using the `series` array.
 />
 ```
 
-### Market Trends (3+ Series)
+#### Market Trends (3+ Series)
 
 Compare complex data sets with three or more series.
 
@@ -6685,7 +6662,7 @@ Compare complex data sets with three or more series.
 
 
 
-### Complex Analytics (7 Series)
+#### Complex Analytics (7 Series)
 
 Comparing seven different data streams simultaneously to demonstrate high-density visualization and overlapping areas.
 
@@ -6693,7 +6670,7 @@ Comparing seven different data streams simultaneously to demonstrate high-densit
 
 
 
-### System Performance
+#### System Performance
 
 Use a single series with specialized semantic colors for status monitoring.
 
@@ -6701,9 +6678,9 @@ Use a single series with specialized semantic colors for status monitoring.
 
 
 
-## API Reference
+### API Reference
 
-### AreaChart
+#### AreaChart
 
 
 
@@ -6721,17 +6698,16 @@ Use a single series with specialized semantic colors for status monitoring.
 
 ## BarChart
 
+- Category: Visualization & Media
 - Slug: `barchart`
 - Installation: `bunx carllosnc/dashkit add barchart`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
 
-# Bar Chart
-
 The **BarChart** component is a powerful, animated data visualization tool built for comparing discrete categories or showing distribution across groups. It supports multiple grouped series, interactive tooltips, and smooth entrance animations.
 
-## Examples
+### Examples
 
-### Single Series Bar Chart
+#### Single Series Bar Chart
 
 
 
@@ -6752,7 +6728,7 @@ function Example() {
 }
 ```
 
-### Grouped Bar Chart (Yearly Comparison)
+#### Grouped Bar Chart (Yearly Comparison)
 
 Compare multiple metrics across the same time periods using grouped bars.
 
@@ -6771,7 +6747,7 @@ Compare multiple metrics across the same time periods using grouped bars.
 />
 ```
 
-### Resource Allocation
+#### Resource Allocation
 
 Use semantic colors to visualize system performance or resource distribution.
 
@@ -6779,7 +6755,7 @@ Use semantic colors to visualize system performance or resource distribution.
 
 
 
-### Textured Bars & Background Tracks
+#### Textured Bars & Background Tracks
 
 Apply SVG patterns to bars using the `texture` prop (`'striped' | 'dots' | 'grid' | 'gradient'`) and enable ghost background tracks with `showTrack`.
 
@@ -6798,9 +6774,9 @@ Apply SVG patterns to bars using the `texture` prop (`'striped' | 'dots' | 'grid
 />
 ```
 
-## API Reference
+### API Reference
 
-### BarChart
+#### BarChart
 
 
 | Property | Type | Default | Description |
@@ -6822,17 +6798,16 @@ Apply SVG patterns to bars using the `texture` prop (`'striped' | 'dots' | 'grid
 
 ## LineChart
 
+- Category: Visualization & Media
 - Slug: `linechart`
 - Installation: `bunx carllosnc/dashkit add linechart`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
 
-# Line Chart
-
 The **LineChart** component is a clean, minimal data visualization tool built using native SVG and **Framer Motion**. It's ideal for showing precise trends without the visual weight of an area fill.
 
-## Examples
+### Examples
 
-### Default Line Chart
+#### Default Line Chart
 
 
 
@@ -6849,7 +6824,7 @@ function Example() {
 }
 ```
 
-### Multiple Trends
+#### Multiple Trends
 
 Compare multiple variables with distinct line styles and colors.
 
@@ -6857,7 +6832,7 @@ Compare multiple variables with distinct line styles and colors.
 
 
 
-### Growth Comparison (Multi-Line)
+#### Growth Comparison (Multi-Line)
 
 Analyzing multiple growth vectors simultaneously to identify correlations between revenue, costs, and percentage growth.
 
@@ -6865,9 +6840,9 @@ Analyzing multiple growth vectors simultaneously to identify correlations betwee
 
 
 
-## API Reference
+### API Reference
 
-### LineChart
+#### LineChart
 
 
 
@@ -6884,17 +6859,16 @@ Analyzing multiple growth vectors simultaneously to identify correlations betwee
 
 ## PieChart
 
+- Category: Visualization & Media
 - Slug: `piechart`
 - Installation: `bunx carllosnc/dashkit add piechart`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
 
-# Pie Chart
-
 The **PieChart** component is an expressive tool for visualizing categorical distributions. It features interactive segments with tooltips, smooth hover scaling, and supports donut variations via the `innerRadius` prop.
 
-## Examples
+### Examples
 
-### Classic Pie Chart
+#### Classic Pie Chart
 
 
 
@@ -6914,7 +6888,7 @@ function Example() {
 }
 ```
 
-### Donut Chart
+#### Donut Chart
 
 Transform any pie chart into a donut chart by setting the `innerRadius` property (0 to 1).
 
@@ -6929,7 +6903,7 @@ Transform any pie chart into a donut chart by setting the `innerRadius` property
 />
 ```
 
-### Textured Slices
+#### Textured Slices
 
 Apply SVG patterns across the entire chart with the `texture` prop (`'striped' | 'dots' | 'grid' | 'gradient'`) or mix different textures per slice inside `data`.
 
@@ -6948,9 +6922,9 @@ Apply SVG patterns across the entire chart with the `texture` prop (`'striped' |
 />
 ```
 
-## API Reference
+### API Reference
 
-### PieChart
+#### PieChart
 
 
 
@@ -6967,6 +6941,7 @@ Apply SVG patterns across the entire chart with the `texture` prop (`'striped' |
 
 ## ImageExpander
 
+- Category: Visualization & Media
 - Slug: `imageexpander`
 - Installation: `bunx carllosnc/dashkit add imageexpander`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
@@ -7006,23 +6981,23 @@ export const ImageExpanderDemo = () => {
   );
 }
 
-# Image Expander
+
 
 A premium component that enables cinematic image expansion with smooth animations, backdrop blur, and caption support.
 
-## Import
+### Import
 
 ```tsx
 import { ImageExpander } from '@/dashkit/ImageExpander/ImageExpander';
 ```
 
-## Installation
+### Installation
 
 ```bash
 bunx carllosnc/dashkit add image-expander
 ```
 
-## Examples
+### Examples
 
 Building a clean gallery with expanding visuals.
 
@@ -7037,7 +7012,7 @@ Building a clean gallery with expanding visuals.
 </ImageExpander>
 ```
 
-## Features
+### Features
 
 - **Spring Dynamics**: Natural, bouncy transitions powered by Framer Motion.
 - **Glassmorphism**: Elegant backdrop blur and translucent overlays.
@@ -7045,7 +7020,7 @@ Building a clean gallery with expanding visuals.
 - **Responsive**: Adapts perfectly to mobile and desktop viewports.
 - **Esc to Close**: Closes automatically when the Escape key is pressed.
 
-## Properties
+### Properties
 
 
 | Property | Type | Default | Description |
