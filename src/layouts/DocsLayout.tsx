@@ -7,9 +7,9 @@ import {
   FiInbox, FiChevronRight, FiGrid, FiLayout, FiLoader, FiSliders, FiMoreHorizontal, FiCalendar, FiTable, FiUser, FiActivity,
   FiMonitor, FiMessageCircle, FiAlignLeft, FiEdit3, FiTrendingUp, FiSettings, FiTerminal,
   FiPlusSquare, FiDroplet, FiClock, FiPlusCircle, FiCompass, FiChevronsRight, FiChevronsDown, FiChevronDown, FiTarget, FiCheck, FiHelpCircle,
-  FiCopy
+  FiCopy, FiCpu, FiArrowLeft, FiArrowRight
 } from 'react-icons/fi';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Header } from '../partials/Header';
 import { Footer } from '../partials/Footer';
@@ -21,8 +21,9 @@ const navItems: SidebarSection[] = [
     title: 'Getting Started',
     links: [
       { to: '/docs/introduction', label: 'Introduction', icon: <FiBookOpen size={16} /> },
-      { to: '/docs/cli', label: 'Installation', icon: <FiDownload size={16} /> },
+      { to: '/docs/cli', label: 'Installation & CLI', icon: <FiDownload size={16} /> },
       { to: '/docs/customization', label: 'Customization', icon: <FiSettings size={16} /> },
+      { to: '/docs/ai', label: 'AI & LLMs', icon: <FiCpu size={16} /> },
       { to: '/docs/components', label: 'Components', icon: <FiGrid size={16} /> },
     ]
   },
@@ -83,10 +84,17 @@ const navItems: SidebarSection[] = [
   },
 ];
 
+const flatDocLinks = navItems.flatMap((section) => section.links);
+
 export function DocsLayout() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const currentPath = location.pathname;
+
+  const normalizedCurrent = currentPath === '/docs' ? '/docs/introduction' : currentPath;
+  const currentIdx = flatDocLinks.findIndex((item) => item.to === normalizedCurrent);
+  const prevLink = currentIdx > 0 ? flatDocLinks[currentIdx - 1] : null;
+  const nextLink = currentIdx >= 0 && currentIdx < flatDocLinks.length - 1 ? flatDocLinks[currentIdx + 1] : null;
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans flex flex-col">
@@ -104,14 +112,15 @@ export function DocsLayout() {
         size="w-[80%] max-w-[300px]"
       >
         <DrawerHeader>
-          <h2 className="text-xl font-bold text-block-fg dark:text-block-dark-fg tracking-tight">
+          <h2 className="text-xl font-bold text-foreground tracking-tight">
              Documentation
           </h2>
         </DrawerHeader>
-        <div className="py-4 px-6 overflow-y-auto">
+        <div className="py-4 px-6 overflow-y-auto overscroll-contain">
           <Sidebar
             sections={navItems}
             currentPath={currentPath}
+            searchable
             onItemClick={() => setIsMobileMenuOpen(false)}
             isActive={(linkTo, path) => path === linkTo || (linkTo === '/docs/introduction' && path === '/docs')}
           />
@@ -119,21 +128,59 @@ export function DocsLayout() {
       </Drawer>
 
       {/* Main Layout */}
-      <div className="flex-1 max-w-6xl w-full mx-auto px-4 md:px-6 flex md:grid md:grid-cols-[260px_1fr] gap-0 md:gap-12">
+      <div className="flex-1 max-w-7xl w-full mx-auto px-4 md:px-8 flex md:grid md:grid-cols-[260px_minmax(0,1fr)] gap-0 md:gap-12">
         {/* Sidebar */}
-        <aside className="py-12 border-r hidden md:block shrink-0">
-          <div className="sticky top-28 h-[calc(100vh-140px)] overflow-y-auto pr-8 custom-scrollbar">
+        <aside className="border-r border-border hidden md:block shrink-0">
+          <div className="sticky top-16 h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain py-8 pr-6 custom-scrollbar">
             <Sidebar
               sections={navItems}
               currentPath={currentPath}
+              searchable
               isActive={(linkTo, path) => path === linkTo || (linkTo === '/docs/introduction' && path === '/docs')}
             />
           </div>
         </aside>
 
         {/* Content Area */}
-        <main className="py-8 md:py-12 w-full min-w-0 overflow-hidden">
+        <main className="py-8 md:py-12 w-full min-w-0">
           <Outlet />
+
+          {(prevLink || nextLink) && (
+            <nav
+              aria-label="Pagination"
+              className="mt-16 pt-8 border-t border-border grid grid-cols-1 sm:grid-cols-2 gap-4"
+            >
+              {prevLink ? (
+                <Link
+                  to={prevLink.to}
+                  className="group flex flex-col items-start gap-1 p-4 ds-rounded border border-border bg-card hover:border-primary/50 transition-colors"
+                >
+                  <span className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                    <FiArrowLeft className="size-3.5 transition-transform group-hover:-translate-x-0.5" />
+                    Previous
+                  </span>
+                  <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
+                    {prevLink.label}
+                  </span>
+                </Link>
+              ) : <div />}
+
+              {nextLink ? (
+                <Link
+                  to={nextLink.to}
+                  className="group flex flex-col items-end text-right gap-1 p-4 ds-rounded border border-border bg-card hover:border-primary/50 transition-colors"
+                >
+                  <span className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                    Next
+                    <FiArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
+                  </span>
+                  <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
+                    {nextLink.label}
+                  </span>
+                </Link>
+              ) : <div />}
+            </nav>
+          )}
         </main>
       </div>
 

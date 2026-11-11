@@ -97,39 +97,26 @@ Or scoped to a specific card or container:
 </div>
 ```
 
-#### Available Base Palettes
-- `zinc` (default)
-- `slate`
-- `gray`
-- `neutral`
-- `stone`
+#### Available Base Palettes (`data-base`)
+- `zinc` (default), `slate`, `gray`, `neutral`, `stone`, `taupe`, `mauve`, `mist`, `olive`
 
-#### Available Primary Palettes
-- `blue` (default)
-- `violet`
-- `indigo`
-- `emerald`
-- `green`
-- `rose`
-- `orange`
-- `amber`
-- `cyan`
-- `teal`
-- `fuchsia`
+#### Available Primary Palettes (`data-primary`)
+- `blue` (default), `violet`, `indigo`, `emerald`, `green`, `rose`, `orange`, `amber`, `cyan`, `teal`, `fuchsia`, `red`, `yellow`, `lime`, `sky`, `purple`, `pink`
+
+#### OLED Dark Mode (`data-dark-bg`)
+- `oled` (switches `.dark` background `--ds-bg` to pure `#000000` black)
 
 ### Static Token Customization
 
-To customize Dashkit statically, simply edit the values in `src/dashkit.css`.
+To customize Dashkit statically, edit the variables in `:root` and `.dark` inside `src/dashkit/dashkit.css`.
 
 ### Example: Customizing Roundness
 
-If you want a more rounded, "pill" style for your application:
+Because `--radius-sm` through `--radius-2xl` are computed proportionally from `--radius`, changing `--radius` in `:root` updates the entire system:
 
 ```css
-@theme inline {
-  --radius-base: 1rem;
-  --radius-md: 1.5rem;
-  --radius-lg: 2rem;
+:root {
+  --radius: 1rem; /* Soft, rounded geometry (use 0rem for sharp corners) */
 }
 ```
 

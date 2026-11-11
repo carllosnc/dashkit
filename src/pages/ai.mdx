@@ -1,0 +1,131 @@
+# AI & LLMs
+
+Dashkit UI is engineered from the ground up for **AI coding assistants** (Cursor, Claude Code, Windsurf, Antigravity, GitHub Copilot) and LLM workflows. Because every component lives directly inside your repository (`src/dashkit/`), AI agents can inspect, compose, and customize your UI with zero black-box abstractions.
+
+## Machine-Readable Context Endpoints
+
+Feed Dashkit's structured documentation directly into your AI assistant's context window or `@Docs` indexer:
+
+| Resource | Path | Purpose |
+| :--- | :--- | :--- |
+| **LLM Index** | [`/llms.txt`](/llms.txt) | Compact architecture overview, token reference, CLI commands, and 55-component catalog. |
+| **Full Technical Context** | [`/llms-full.txt`](/llms-full.txt) | Complete single-file specification with installation commands, JSX examples, and Markdown props tables for all 55 components. |
+| **JSON Registry Schema** | [`/registry.json`](/registry.json) | Machine-readable JSON metadata containing component slugs, file paths, NPM dependencies, registry dependencies, exports, and raw TypeScript `*Props` interfaces. |
+
+## Automatic AI Rules (`dashkit ai-rules`)
+
+Configure your project's AI coding assistant in one command. The CLI detects your `dashkit.json` paths (`componentsDir` and `cssDir`) and generates an idempotent instructions block:
+
+```bash
+# Writes or updates AGENTS.md in your project root
+bunx carllosnc/dashkit ai-rules
+
+# Or target Cursor / Copilot instruction files directly
+bunx carllosnc/dashkit ai-rules -o .cursorrules
+```
+
+The generated block teaches AI agents where your components live, how to install new components via the CLI, and how to customize themes without breaking design system consistency.
+
+## CLI Introspection for Coding Agents
+
+Autonomous agents can query the Dashkit CLI in non-interactive mode using `--json` flags:
+
+```bash
+# Inspect exports, dependencies, and TypeScript Props for a component
+bunx carllosnc/dashkit info card --json
+
+# List all 55 components and check which ones are installed locally
+bunx carllosnc/dashkit list --json
+
+# Check if any local component files were customized vs. upstream
+bunx carllosnc/dashkit diff --json
+
+# Install multiple components in a single batch (updates src/dashkit/index.ts barrel)
+bunx carllosnc/dashkit add button card input select modal
+```
+
+## 3-Tier AI Customization Protocol
+
+When prompting an AI agent to restyle your application, Dashkit enforces a strict 3-tier customization hierarchy so agents never scatter fragile utility overrides across dozens of pages:
+
+### Tier 1 — Global Theme (`src/dashkit/dashkit.css`)
+
+For brand colors, dark mode surfaces, border radius, or flat vs. gradient buttons, edit `:root` and `.dark` CSS custom properties in `dashkit.css` or set runtime attributes on `<html>`:
+
+```css
+:root {
+  --radius: 0.5rem; /* Scales --radius-sm through --radius-2xl proportionally */
+  --ds-primary: var(--color-emerald-600);
+  --ds-primary-gradient: none; /* Switches filled buttons to flat solid surfaces */
+}
+```
+
+```html
+<!-- Or switch palettes dynamically via data attributes -->
+<html data-base="slate" data-primary="emerald" data-dark-bg="oled" class="dark">
+```
+
+### Tier 2 — Component-Wide Variants (`src/dashkit/<Component>/<Component>.tsx`)
+
+When changing how a component looks across the entire application (for example, adding an `xl` size to `Button` or changing `Card` padding), edit the `cva(...)` definition directly inside `src/dashkit/<Component>/<Component>.tsx`.
+
+### Tier 3 — One-Off Instance Overrides (`className` & `data-slot`)
+
+For single-screen layout adjustments, pass `className` (merged via `cn()`, which automatically resolves `rounded-*` and `bg-none` against `ds-rounded*` and `ds-*-gradient`) or target internal sub-elements via `data-slot`:
+
+```tsx
+<Input
+  label="API Key"
+  placeholder="sk-live-..."
+  className="[&_[data-slot=label]]:uppercase [&_[data-slot=label]]:tracking-wider [&_[data-slot=input]]:font-mono"
+/>
+```
+
+## Component API Patterns (Zero-Hallucination Reference)
+
+Dashkit components follow two predictable composition patterns:
+
+### 1. Compound Components (Compose via `children`)
+
+Use exported sub-components for structural layouts and overlays:
+
+- **Card**: `Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter`
+- **Tabs**: `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent`
+- **Accordion**: `Accordion`, `AccordionItem`, `AccordionTrigger`, `AccordionContent`
+- **Modal**: `Modal`, `ModalHeader`, `ModalContent`, `ModalFooter`
+- **Drawer**: `Drawer`, `DrawerHeader`, `DrawerContent`, `DrawerFooter`
+- **Dropdown**: `Dropdown`, `DropdownTrigger`, `DropdownContent`, `DropdownItem`, `DropdownLabel`, `DropdownSeparator`
+- **Popover**: `Popover`, `PopoverTrigger`, `PopoverContent`
+- **Table**: `Table`, `TableHeader`, `TableBody`, `TableFooter`, `TableRow`, `TableHead`, `TableCell`, `TableCaption`
+- **Navbar**: `Navbar`, `NavbarBrand`, `NavbarLinks`, `NavbarActions`
+- **Breadcrumb**: `Breadcrumb`, `BreadcrumbList`, `BreadcrumbItem`, `BreadcrumbSeparator`, `BreadcrumbEllipsis`
+- **Sidebar**: `Sidebar`, `SidebarHeader`, `SidebarSection`, `SidebarItem`, `SidebarFooter`
+
+### 2. Prop-Driven Components (Configure via Props)
+
+Do **not** invent sub-components (like `<SelectItem>` or `<InputLabel>`) for form controls and metrics—pass data directly via props:
+
+- **Select & Combobox**: Pass `options={[{ value, label }]}`, `value`, `onChange`, `label`, `description`.
+- **Input, Textarea, DatePicker, DateField, ColorPicker, CopyField, OtpInput, Checkbox, Radio, Switch, Slider**: Pass `label`, `description` / `helperText`, and `error` directly as props.
+- **StatsCard**: Pass `title`, `value`, `trend`, `trendLabel`, `status`, `icon`, `chart`.
+- **AreaChart, BarChart, LineChart, PieChart**: Pass `data` and `series` (or `dataKey`) props.
+
+## Ready-to-Use AI Prompts
+
+### Build a Feature Screen
+
+```text
+Using Dashkit UI components from @/dashkit, build a Team Billing & Usage page.
+1. Inspect available components with `bunx carllosnc/dashkit list --json` and install any missing ones via `bunx carllosnc/dashkit add stats-card card table tabs badge button select input`.
+2. Use StatsCard for top-level KPIs, Tabs for switching between Overview and Invoices, Card (CardHeader, CardTitle, CardDescription, CardContent, CardFooter) for sections, and Table for invoice history.
+3. Follow Pure Usage: rely on built-in component variants and semantic tokens (bg-background, text-foreground, text-muted-foreground, border-border).
+```
+
+### Customize the Global Theme
+
+```text
+Update our Dashkit theme in src/dashkit/dashkit.css following Tier 1 of the AI Customization Protocol:
+1. Set data-base="slate" and data-primary="violet" on the root element, or configure :root and .dark tokens for a high-contrast violet brand.
+2. Set --radius: 0.375rem for a crisp, technical geometry across all inputs, cards, and modals.
+3. Disable button gradients by setting --ds-primary-gradient: none in :root and .dark.
+```

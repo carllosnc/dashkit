@@ -10,7 +10,7 @@ A progress visualization component for multi-step processes or sequence indicato
 ## Import
 
 ```tsx
-import { Stepper, Step } from '@/components/Stepper'
+import { Stepper, Step } from '@/dashkit/Stepper'
 ```
 
 ## Installation
@@ -48,8 +48,8 @@ Displays a multi-step sequence with active, completed, and inactive states. Uses
 
 ```tsx
 import { useState } from 'react';
-import { Stepper, Step } from '@/components/Stepper';
-import { Button } from '@/components/Button/Button';
+import { Stepper, Step } from '@/dashkit/Stepper';
+import { Button } from '@/dashkit/Button/Button';
 
 export function StepperExample() {
   const [step, setStep] = useState(1);
@@ -86,7 +86,7 @@ Set `orientation="vertical"` to stack the steps vertically, which is highly suit
 </div>
 
 ```tsx
-import { Stepper, Step } from '@/components/Stepper';
+import { Stepper, Step } from '@/dashkit/Stepper';
 
 <Stepper activeStep={2} orientation="vertical">
   <Step title="Order Placed" description="Order #32049 has been confirmed." />
@@ -110,7 +110,7 @@ By default, steps are auto-numbered. You can supply an `icon` prop to customize 
 </div>
 
 ```tsx
-import { Stepper, Step } from '@/components/Stepper';
+import { Stepper, Step } from '@/dashkit/Stepper';
 import { FiUser, FiCreditCard, FiCheckCircle } from 'react-icons/fi';
 
 <Stepper activeStep={1}>

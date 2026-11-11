@@ -213,9 +213,11 @@ export function generateLlmsTxt(): string {
 
   lines.push('## CLI Reference\n');
   lines.push('- `dashkit init [-y]`: Configures dashkit.json and injects design token stylesheet (dashkit.css).');
-  lines.push('- `dashkit add <components...> [-o <dir>] [-t] [-f] [--no-install]`: Scaffolds one or more components, resolves dependencies, and updates the root `index.ts` barrel file.');
+  lines.push('- `dashkit add <components...> [--all] [-o <dir>] [-t] [-f] [--no-install]`: Scaffolds one or more components, resolves dependencies in a single batch, and updates the root `index.ts` barrel file.');
   lines.push('- `dashkit info <component> [--json]`: Outputs component exports, dependencies, and TypeScript Props definitions.');
   lines.push('- `dashkit list [--installed] [--json]`: Lists all registry components with status.');
+  lines.push('- `dashkit diff [component] [--json]`: Compares local component files against the upstream registry.');
+  lines.push('- `dashkit ai-rules [-o <file>]`: Generates or updates AI coding assistant rules in `AGENTS.md` or `.cursorrules`.');
   lines.push('- `dashkit doctor`: Verifies CSS imports, dependencies, and directory configuration.\n');
 
   lines.push('## Design Tokens and Theming (`dashkit.css`)\n');

@@ -41,6 +41,7 @@ Initiatives to make Dashkit fully optimized for AI coding assistants (Cursor, Cl
 
 ### Downstream Consumer AI Tooling
 - [x] Inject consumer AI rules/skills (`AGENTS.md`, `.cursorrules`, or `.agents/skills/dashkit/SKILL.md`) automatically during `dashkit init` (or via `dashkit ai-rules`) with resolved paths from `dashkit.json`, component catalog, and the 3-tier customization protocol.
+- [ ] Create a dedicated Dashkit UI Builder AI Skill (`SKILL.md`) with best practices, layout recipes, component pairing rules, and design guidelines for generating high-craft UIs using Dashkit.
 - [ ] Publish system prompts and golden template examples for generative UI workflows (dashboards, tables, forms).
 
 ## Component Library Enhancements

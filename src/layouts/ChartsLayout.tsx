@@ -36,7 +36,7 @@ export function ChartsLayout() {
   const currentPath = location.pathname;
 
   return (
-    <div className="min-h-screen ds-page font-sans flex flex-col">
+    <div className="min-h-screen bg-background text-foreground font-sans flex flex-col">
       <Helmet>
         <title>Charts Showcase | Dashkit UI</title>
         <meta name="description" content="Explore Dashkit UI's interactive chart components, including Area, Bar, Line, and Pie charts optimized for dashboards." />
@@ -51,11 +51,11 @@ export function ChartsLayout() {
         size="w-[80%] max-w-[300px]"
       >
         <DrawerHeader>
-          <h2 className="text-xl font-bold text-block-fg dark:text-block-dark-fg tracking-tight">
+          <h2 className="text-xl font-bold text-foreground tracking-tight">
              Charts Gallery
           </h2>
         </DrawerHeader>
-        <div className="py-4 px-6 overflow-y-auto">
+        <div className="py-4 px-6 overflow-y-auto overscroll-contain">
           <Sidebar 
             sections={chartNavItems} 
             currentPath={currentPath}
@@ -66,10 +66,10 @@ export function ChartsLayout() {
       </Drawer>
 
       {/* Main Layout */}
-      <div className="flex-1 max-w-6xl w-full mx-auto px-4 md:px-6 flex md:grid md:grid-cols-[260px_1fr] gap-0 md:gap-12">
+      <div className="flex-1 max-w-7xl w-full mx-auto px-4 md:px-8 flex md:grid md:grid-cols-[260px_minmax(0,1fr)] gap-0 md:gap-12">
         {/* Sidebar */}
-        <aside className="py-12 border-r hidden md:block shrink-0">
-          <div className="sticky top-28 h-[calc(100vh-140px)] overflow-y-auto pr-8 custom-scrollbar">
+        <aside className="border-r border-border hidden md:block shrink-0">
+          <div className="sticky top-16 h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain py-8 pr-6 custom-scrollbar">
             <Sidebar 
               sections={chartNavItems} 
               currentPath={currentPath}
@@ -79,7 +79,7 @@ export function ChartsLayout() {
         </aside>
 
         {/* Content Area */}
-        <main className="py-8 md:py-12 w-full min-w-0 overflow-hidden">
+        <main className="py-8 md:py-12 w-full min-w-0">
           <Outlet />
         </main>
       </div>

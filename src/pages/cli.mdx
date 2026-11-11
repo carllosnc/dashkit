@@ -1,43 +1,116 @@
-# Installation
+# Installation & CLI
 
-The Dashkit CLI is the fastest way to add components to your project. It handles copying files, managing internal dependencies, and installing required NPM packages automatically.
+The Dashkit CLI initializes design system tokens, scaffolds components into your source tree, resolves internal and NPM dependencies, maintains your root `index.ts` barrel export, and generates context files for AI coding assistants.
 
 ## Quick Start
 
-Add a component using the following command:
+### 1. Initialize Dashkit
+
+Run `init` to create `dashkit.json`, copy `dashkit.css` and shared utilities (`cn.ts`, `scrollLock.ts`, `portalTheme.ts`), and automatically inject `@import "./dashkit/dashkit.css";` into your main stylesheet:
 
 ```bash
-bunx carllosnc/dashkit add [component-name]
+bunx carllosnc/dashkit init
 ```
 
-## Commands
+For non-interactive environments (CI pipelines or AI agents), pass `-y`:
+
+```bash
+bunx carllosnc/dashkit init -y
+```
+
+### 2. Add Components
+
+Add one or multiple components in a single command. The CLI resolves recursive Dashkit dependencies, installs missing NPM packages in one batch, and updates `src/dashkit/index.ts`:
+
+```bash
+bunx carllosnc/dashkit add button card input modal
+```
+
+To install all 55 components at once:
+
+```bash
+bunx carllosnc/dashkit add --all
+```
+
+### 3. Configure AI Assistant Rules
+
+Generate an `AGENTS.md` (or `.cursorrules`) block tailored to your project's configured directories:
+
+```bash
+bunx carllosnc/dashkit ai-rules
+```
+
+## CLI Command Reference
+
+### `init`
+
+Initializes Dashkit in your repository (`dashkit.css`, `utils/`, and `dashkit.json`).
+
+```bash
+bunx carllosnc/dashkit init [options]
+```
+
+- `-y, --yes`: Accept all detected defaults without interactive prompts.
 
 ### `add`
 
-Copies a component and its Dashkit dependencies to your project.
+Copies one or more components and their `registryDependencies` into your project.
 
 ```bash
-bunx carllosnc/dashkit add <component> [options]
+bunx carllosnc/dashkit add [components...] [options]
 ```
 
-#### Arguments
+- `-a, --all`: Add all 55 components in the registry.
+- `-o, --output <dir>`: Target directory (defaults to `componentsDir` in `dashkit.json` or `src/dashkit`).
+- `--no-install`: Skip automatic installation of missing NPM dependencies.
+- `-f, --force`: Overwrite existing local component files without prompting.
+- `-t, --tests`: Include component unit test files (`*.test.tsx`).
 
-- `<component>`: The name of the component to add (e.g., `button`, `card`, `modal`).
+### `info`
 
-#### Options
+Displays component metadata, exports, dependencies, and TypeScript `*Props` interfaces.
 
-- `-o, --output <dir>`: Specifies the output directory. Defaults to `src/dashkit`.
-- `--no-install`: Prevents the CLI from automatically installing missing NPM dependencies.
+```bash
+bunx carllosnc/dashkit info <component> [options]
+```
 
-## Dependency Management
+- `--json`: Output structured JSON metadata for AI agents and scripts.
 
-The CLI intelligently manages two types of dependencies:
+### `list`
 
-1.  **Registry Dependencies**: If a component depends on another Dashkit component (e.g., `Card` depends on `Badge`), the CLI will automatically add those as well.
-2.  **NPM Dependencies**: The CLI detects your package manager (`bun`, `pnpm`, `yarn`, or `npm`) and checks your `package.json`. If required packages (like `framer-motion` or `react-icons`) are missing, it will install them automatically.
+Lists all available components in the Dashkit registry along with their local installation status.
 
-## Troubleshooting
+```bash
+bunx carllosnc/dashkit list [options]
+```
 
-If you encounter issues with automatic installation, you can use the `--no-install` flag and manually install the dependencies listed in the CLI output.
+- `--installed`: Show only components currently installed in your project.
+- `--json`: Output the component list as JSON.
 
+### `diff`
 
+Compares your local component files against the upstream Dashkit registry so you can see which files were customized locally before running `add --force`.
+
+```bash
+bunx carllosnc/dashkit diff [component] [options]
+```
+
+- `--json`: Output the diff report (`up-to-date`, `modified`, `missing`) as JSON.
+
+### `ai-rules`
+
+Generates or updates an idempotent `<!-- dashkit:ai-rules:start/end -->` instruction block in `AGENTS.md` (or a custom file).
+
+```bash
+bunx carllosnc/dashkit ai-rules [options]
+```
+
+- `-o, --output <file>`: Target file path (defaults to `AGENTS.md`; e.g. `-o .cursorrules`).
+
+### `doctor`
+
+Runs diagnostics on your project to verify core dependencies (`react`, `typescript`, `tailwindcss`), `dashkit.css` presence, and main CSS `@import` wiring.
+
+```bash
+bunx carllosnc/dashkit doctor
+```

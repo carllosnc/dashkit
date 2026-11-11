@@ -53,17 +53,27 @@ Dashkit provides an interactive CLI to streamline component integration.
 
 ### Commands
 
-- `dashkit init`: Configures `dashkit.json` and imports base design system CSS into your global styles.
-  - `-y, --yes`: Accept defaults non-interactively.
-- `dashkit add [component]`: Scaffolds a component and its sub-components into your target directory.
-  - `-o, --output <dir>`: Specify a custom destination path (overrides detected paths).
+- `dashkit init [-y]`: Configures `dashkit.json`, copies `dashkit.css` and `utils/`, and injects the `@import` into your main CSS file.
+- `dashkit add [components...]`: Scaffolds one or more components, resolves dependencies in a single batch, and updates the root `index.ts` barrel.
+  - `-a, --all`: Add all 55 registry components at once.
+  - `-o, --output <dir>`: Specify a custom destination path.
   - `--no-install`: Skip automatic installation of third-party package dependencies.
   - `-f, --force`: Overwrite existing files on disk.
   - `-t, --tests`: Include Vitest unit test files (`*.test.tsx`).
-- `dashkit list`: Lists all available components from the registry.
-  - `--installed`: Filter to show only components present in the local project.
-  - `--json`: Format the output as JSON for tooling pipelines.
+- `dashkit info <component> [--json]`: Outputs component metadata, exports, dependencies, and TypeScript `*Props` definitions.
+- `dashkit list [--installed] [--json]`: Lists all available components from the registry with installation status.
+- `dashkit diff [component] [--json]`: Compares installed local component files against the upstream registry (`up-to-date`, `modified`, `missing`).
+- `dashkit ai-rules [-o <file>]`: Generates or updates AI coding assistant guidelines in `AGENTS.md` (or `.cursorrules`).
 - `dashkit doctor`: Runs project diagnostics to verify dependencies, CSS imports, and directory structure.
+
+## AI-First & LLM Readiness
+
+Dashkit provides native context for AI coding assistants (Cursor, Claude Code, Windsurf, Antigravity, GitHub Copilot):
+
+- **`/llms.txt` & `/llms-full.txt`**: Structured LLM index and single-file full technical specification generated automatically on build (`bun run build:llms`).
+- **`/registry.json`**: Machine-readable component schema with files, dependencies, exports, and TypeScript `*Props` interfaces.
+- **`dashkit ai-rules`**: CLI command to inject Dashkit's 3-Tier AI Customization Protocol and component API patterns directly into consumer repositories.
+- **Copy Page for AI**: Every documentation page includes a one-click button to copy clean Markdown specifications for any LLM prompt.
 
 ## Available Components
 
@@ -168,11 +178,10 @@ bun run dev
 
 Dashkit is actively expanding its capabilities with an emphasis on developer ergonomics and AI-first readiness:
 
-- Structured Model Documentation: Automated `llms.txt` and `llms-full.txt` for coding agents and LLM context windows.
-- Machine-Readable Registry & MCP: Public `registry.json` endpoint and official Model Context Protocol server.
-- Repository Agent Rules: Synchronized skill files and comprehensive guidelines for autonomous coding assistants.
-- Code Metadata & Typing: JSDoc annotations with `@example` blocks and strict discriminated unions across all components.
-- Downstream AI Tooling: CLI command to scaffold AI rules (`.cursorrules`) into consuming applications.
+- **Dashkit UI Builder Skill**: Dedicated AI agent skill (`SKILL.md`) with curated layout recipes, component pairing patterns, visual hierarchy rules, and best practices for generating modern UIs with Dashkit.
+- **Official MCP Server**: Model Context Protocol server (`@dashkit/mcp`) with component search, prop inspection, and scaffolding tools.
+- **Code Metadata & Typing**: JSDoc annotations with `@example` and `@default` blocks across all 55 components for inline LLM autocomplete.
+- **Extended Slot & Prop Forwarding**: Complete `data-slot` coverage and `ComponentPropsWithoutRef` + `ref` forwarding across every overlay, navigation, and data display primitive.
 
 For detailed tracking and upcoming milestones, see [ROADMAP.md](ROADMAP.md).
 

@@ -30,6 +30,7 @@ import {
   CheckboxDocs,
   ChipDocs,
   CliDocs,
+  AiDocs,
   ColorPickerDocs,
   ComboboxDocs,
   ComplexFormExample,
@@ -106,6 +107,7 @@ createRoot(document.getElementById('root')!).render(
                     <Route path="introduction" element={<MdxWrapper Component={IntroductionDocs} />} />
                     <Route path="components" element={<MdxWrapper Component={ComponentsDocs} />} />
                     <Route path="cli" element={<MdxWrapper Component={CliDocs} />} />
+                    <Route path="ai" element={<MdxWrapper Component={AiDocs} />} />
                     <Route path="customization" element={<MdxWrapper Component={CustomizationDocs} />} />
                     <Route path="accordion" element={<MdxWrapper Component={AccordionDocs} />} />
                     <Route path="animate-number" element={<MdxWrapper Component={AnimateNumberDocs} />} />

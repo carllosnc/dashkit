@@ -39,7 +39,7 @@ export function Header({ onMenuClick, showNavLinks = true }: HeaderProps) {
             to="/docs"
             className={clsx(
               "text-sm font-medium transition-colors",
-              currentPath.startsWith('/docs') ? "text-foreground" : "text-muted-foreground hover:text-ds-950 dark:hover:text-white"
+              currentPath.startsWith('/docs') ? "text-foreground" : "text-muted-foreground hover:text-foreground"
             )}
           >
             Documentation
@@ -48,7 +48,7 @@ export function Header({ onMenuClick, showNavLinks = true }: HeaderProps) {
             to="/charts"
             className={clsx(
               "text-sm font-medium transition-colors",
-              currentPath.startsWith('/charts') ? "text-foreground" : "text-muted-foreground hover:text-ds-950 dark:hover:text-white"
+              currentPath.startsWith('/charts') ? "text-foreground" : "text-muted-foreground hover:text-foreground"
             )}
           >
             Charts
@@ -57,7 +57,7 @@ export function Header({ onMenuClick, showNavLinks = true }: HeaderProps) {
             to="/examples"
             className={clsx(
               "text-sm font-medium transition-colors",
-              currentPath.startsWith('/examples') ? "text-foreground" : "text-muted-foreground hover:text-ds-950 dark:hover:text-white"
+              currentPath.startsWith('/examples') ? "text-foreground" : "text-muted-foreground hover:text-foreground"
             )}
           >
             Examples

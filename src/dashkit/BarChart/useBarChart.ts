@@ -13,9 +13,10 @@ interface UseBarChartProps {
   data: Record<string, string | number>[];
   series: BarChartSeries[];
   barGap: number;
+  maxBarWidth: number;
 }
 
-export function useBarChart({ data, series, barGap }: UseBarChartProps) {
+export function useBarChart({ data, series, barGap, maxBarWidth }: UseBarChartProps) {
   const chartRef = React.useRef<SVGSVGElement>(null);
   const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
   const [tooltipPos, setTooltipPos] = React.useState<{ x: number, y: number }>({ x: 0, y: 0 });
@@ -39,10 +40,16 @@ export function useBarChart({ data, series, barGap }: UseBarChartProps) {
   const width = 1000;
   const svgHeight = 400;
 
-  const groupWidth = width / data.length;
-  const barsContainerWidth = groupWidth * 0.8;
+  const groupWidth = data.length > 0 ? width / data.length : 0;
+  const maxBarsContainerWidth = groupWidth * 0.8;
+  const rawBarWidth = validSeries.length > 0
+    ? (maxBarsContainerWidth - (validSeries.length - 1) * barGap) / validSeries.length
+    : 0;
+  const barWidth = Math.max(0, Math.min(rawBarWidth, maxBarWidth));
+  const barsContainerWidth = validSeries.length > 0
+    ? validSeries.length * barWidth + (validSeries.length - 1) * barGap
+    : 0;
   const groupPadding = (groupWidth - barsContainerWidth) / 2;
-  const barWidth = (barsContainerWidth - (validSeries.length - 1) * barGap) / validSeries.length;
 
   const handleMouseMove = (e: React.MouseEvent<SVGSVGElement>) => {
     const svg = chartRef.current;

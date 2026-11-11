@@ -1,36 +1,38 @@
 # Introduction
 
-Welcome to **Dashkit UI**, a leaner, simpler React component library designed for the modern web. Dashkit prioritizes **low dependency counts** and **direct control** over heavy abstractions.
+Welcome to **Dashkit UI**, an open-source React 19 and Tailwind CSS v4 component library designed for modern web interfaces and AI-assisted development. Dashkit delivers 55+ accessible, composable building blocks through a copy-paste distribution model, giving you **complete source code ownership** and **native context for AI coding agents**.
 
 ## Philosophy
 
-Dashkit is built for developers who want a professional design without the baggage. Our core pillars are:
+Dashkit is built for teams and AI agents that need production-ready interfaces without black-box `node_modules` constraints:
 
-1.  **Zero-Heavy Dependencies**: We avoid massive runtime libraries. No heavy component frameworks or complex state managers. Just React and Tailwind CSS v4.
-2.  **Copy-Paste Ownership**: Similar to shadcn/ui, you don't install Dashkit as a package. You own the code. Use our CLI to add components directly to your source for absolute customizability.
-3.  **Simple & Sharp Aesthetics**: Meticulously designed for professional tools. No fluff, no unnecessary animations, just premium components with native dark mode support.
-4.  **Lean Performance**: By leveraging Tailwind CSS v4's CSS-first approach, we ensure minimal bundle overhead and lightning-fast load times.
+1. **Complete Code Ownership**: Components are scaffolded directly into your repository (`src/dashkit/`). You can read, typecheck, and edit every component and variant directly.
+2. **Tailwind CSS v4 & Semantic Tokens**: Built around Tailwind CSS v4 `@theme inline` and CSS custom properties (`dashkit.css`). Switch brand colors, neutral base palettes, OLED dark mode, and border radii globally or per section.
+3. **AI-First Architecture**: Every component uses predictable `cva` variants, `data-slot` sub-element selectors, and exported TypeScript `*Props` interfaces, backed by [`/llms.txt`](/llms.txt), [`/llms-full.txt`](/llms-full.txt), [`/registry.json`](/registry.json), and `dashkit ai-rules`.
+4. **Composable & Accessible**: Keyboard navigation, focus trapping, ARIA attributes, reduced-motion support, and portal theme propagation (`data-base`, `data-primary`, `data-dark-bg`, `.dark`) work out of the box.
 
 ## Key Features
 
--   🎨 **Sharp Design System**: High-contrast, professional-grade UI powered by Inter.
-    -   🌓 **Native Dark Mode**: Seamless support for light and dark themes with true-black (neutral-950) backgrounds.
--   🚀 **Tailwind CSS v4**: Built with the latest, fastest version of Tailwind.
--   📦 **Minimal Footprint**: We prefer standard React hooks and native browser APIs over external libraries. Most components have zero external dependencies.
--   💻 **Dashkit CLI**: Instantly add components to your project with a single command.
+- **55+ Production Components**: Layout primitives, navigation, forms, overlays, data display, and SVG charts.
+- **Dynamic Theme Engine**: 9 neutral base palettes (`zinc`, `slate`, `gray`, `neutral`, `stone`, `taupe`, `mauve`, `mist`, `olive`), 17 primary brand palettes, proportional `--radius` scaling, and `oled` dark mode.
+- **Smart CLI**: Initialize tokens (`dashkit init`), scaffold multiple components with barrel updates (`dashkit add`), inspect component schemas (`dashkit info --json`), compare local edits (`dashkit diff`), and generate AI rules (`dashkit ai-rules`).
+- **Native LLM Context**: First-class [`/llms.txt`](/llms.txt), [`/llms-full.txt`](/llms-full.txt), and [`/registry.json`](/registry.json) endpoints plus a **Copy Page for AI** button on every documentation page.
 
-## Installation
+## Quick Start
 
-Add components directly to your project using our CLI:
+Initialize Dashkit in your project and scaffold your first components:
 
 ```bash
-bunx carllosnc/dashkit add [component-name]
-```
+# 1. Initialize dashkit.css and dashkit.json
+bunx carllosnc/dashkit init
 
-Or check the specific component pages for manual installation instructions.
+# 2. Add one or more components
+bunx carllosnc/dashkit add button card input select modal
+
+# 3. Generate AI assistant rules (AGENTS.md or .cursorrules)
+bunx carllosnc/dashkit ai-rules
+```
 
 ## Getting Support
 
-Dashkit is an open-source project. You can find the source code, report issues, or contribute on [GitHub](https://github.com/carllosnc/dashkit).
-
-
+Dashkit is an open-source project released under the MIT License. Explore the source code, report issues, or contribute on [GitHub](https://github.com/carllosnc/dashkit).

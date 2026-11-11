@@ -185,7 +185,7 @@
         "useBarChart"
       ],
       "propsDefinitions": [
-        "export interface BarChartProps {\r\n  data: Record<string, string | number>[];\r\n  series: BarChartSeries[];\r\n  height?: number | string;\r\n  className?: string;\r\n  showGrid?: boolean;\r\n  showLabels?: boolean;\r\n  showTooltip?: boolean;\r\n  animate?: boolean;\r\n  barGap?: number;\r\n  rounded?: boolean;\r\n  texture?: BarChartTexture;\r\n  showTrack?: boolean;\r\n}"
+        "export interface BarChartProps {\r\n  data: Record<string, string | number>[];\r\n  series: BarChartSeries[];\r\n  height?: number | string;\r\n  className?: string;\r\n  showGrid?: boolean;\r\n  showLabels?: boolean;\r\n  showTooltip?: boolean;\r\n  animate?: boolean;\r\n  barGap?: number;\r\n  maxBarWidth?: number;\r\n  rounded?: boolean;\r\n  texture?: BarChartTexture;\r\n  showTrack?: boolean;\r\n}"
       ]
     },
     "breadcrumb": {

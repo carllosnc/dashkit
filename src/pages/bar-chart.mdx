@@ -155,6 +155,24 @@ Apply SVG patterns to bars using the `texture` prop (`'striped' | 'dots' | 'grid
     "description": "Spacing between individual bars within a group."
   },
   {
+    "prop": "maxBarWidth",
+    "type": "number",
+    "defaultValue": "64",
+    "description": "Maximum width of each bar in SVG viewBox units (out of 1000)."
+  },
+  {
+    "prop": "texture",
+    "type": "'none' | 'striped' | 'dots' | 'grid' | 'gradient'",
+    "defaultValue": "'none'",
+    "description": "SVG pattern texture applied over the bars."
+  },
+  {
+    "prop": "showTrack",
+    "type": "boolean",
+    "defaultValue": "false",
+    "description": "Render full-height background tracks behind each bar."
+  },
+  {
     "prop": "rounded",
     "type": "boolean",
     "defaultValue": "true",
