@@ -10,6 +10,8 @@ import { runDoctor, getPackageManager, getMissingDependencies } from './doctor';
 import {
   getProjectInfo,
   getFolderStructure,
+  normalizeDirPath,
+  normalizeComponentsDir,
   saveConfig,
   loadConfig,
   findMainCssFile,
@@ -61,19 +63,22 @@ export interface CliOptions {
   all?: boolean;
 }
 
-async function installDashkitCss(targetPath: string, sourcePath: string) {
-  if (await fs.pathExists(targetPath)) return true;
-
-  try {
-    if (await fs.pathExists(sourcePath)) {
-      await fs.copy(sourcePath, targetPath);
-      logger.success('dashkit.css installed.');
-      return true;
-    }
-  } catch {
-    return false;
+async function installDashkitCss(
+  targetPath: string,
+  sourcePath: string,
+  force = false
+): Promise<'installed' | 'kept'> {
+  if (!(await fs.pathExists(sourcePath))) {
+    throw new Error(`Source file not found: ${sourcePath}`);
   }
-  return false;
+
+  if (!force && (await fs.pathExists(targetPath))) {
+    return 'kept';
+  }
+
+  await fs.ensureDir(path.dirname(targetPath));
+  await fs.copy(sourcePath, targetPath);
+  return 'installed';
 }
 
 // Components import shared helpers from ../utils (cn.ts, scrollLock.ts, ...).
@@ -170,7 +175,7 @@ async function copyComponentFiles(
   return result;
 }
 
-async function installDependencies(deps: string[]) {
+async function installDependencies(deps: string[], silent = false) {
   const missingDeps = await getMissingDependencies(deps);
   if (missingDeps.length === 0) return;
 
@@ -178,15 +183,20 @@ async function installDependencies(deps: string[]) {
   const installCmd = pm === 'npm' ? 'install' : 'add';
   const command = `${pm} ${installCmd} ${missingDeps.join(' ')}`;
 
-  const spinner = ora(`Installing dependencies...`).start();
+  const spinner = ora({
+    text: 'Installing dependencies...',
+    isSilent: silent || !process.stdout.isTTY
+  }).start();
   try {
-    execSync(command, { stdio: 'inherit', cwd: process.cwd() });
+    execSync(command, { stdio: silent ? 'pipe' : 'inherit', cwd: process.cwd() });
     spinner.stop();
-    logger.success('Dependencies installed.');
+    if (!silent) logger.success('Dependencies installed.');
   } catch {
     spinner.stop();
-    logger.error('Failed to install dependencies. Please run:');
-    logger.bold(`  ${command}`);
+    if (!silent) {
+      logger.error('Failed to install dependencies. Please run:');
+      logger.bold(`  ${command}`);
+    }
     process.exitCode = 1;
   }
 }
@@ -444,39 +454,97 @@ export async function handleList(options: ListOptions = {}) {
 
 export interface InitOptions {
   yes?: boolean;
+  componentsDir?: string;
+  output?: string;
+  cssDir?: string;
+  aiRules?: boolean | string;
+  force?: boolean;
+  install?: boolean;
+  json?: boolean;
+}
+
+export interface InitResultPayload {
+  initialized: boolean;
+  componentsDir: string;
+  cssDir: string;
+  cssFile: string;
+  cssStatus: 'installed' | 'kept';
+  mainCssFile: string | null;
+  cssImportStatus: 'imported' | 'already_imported' | 'skipped';
+  utilsInstalled: string[];
+  configFile: string | null;
+  aiRulesFile: string | null;
+  missingDependencies: string[];
 }
 
 export async function handleInit(options: InitOptions = {}) {
   const info = await getProjectInfo();
   const defaults = getFolderStructure(info);
+  const existingConfig = await loadConfig();
+  const initialComponentsDir = normalizeDirPath(existingConfig?.componentsDir ?? defaults.components) || defaults.components;
+  const initialCssDir = normalizeDirPath(existingConfig?.cssDir ?? defaults.css);
   const mainCssFile = await findMainCssFile();
+  const silent = Boolean(options.json);
   let spinner: ReturnType<typeof ora> | undefined;
 
   try {
-    let componentsDir: string;
+    const explicitComponentsDir = options.componentsDir ?? options.output;
+    const hasExplicitFlags = Boolean(
+      options.yes ||
+      options.json ||
+      explicitComponentsDir !== undefined ||
+      options.cssDir !== undefined
+    );
+    const isAgentOrCiEnv = Boolean(
+      process.env.CI ||
+      process.env.CLAUDECODE ||
+      process.env.CURSOR_AGENT ||
+      process.env.CODEX_SANDBOX ||
+      process.env.ANTIGRAVITY_AGENT
+    );
+    const isNonInteractive =
+      hasExplicitFlags ||
+      isAgentOrCiEnv ||
+      !process.stdin.isTTY ||
+      !process.stdout.isTTY;
+
+    let componentsDirRaw: string;
     let cssDirRaw: string;
     let shouldSave: boolean;
     let shouldInjectCss: boolean;
-
-    const isNonInteractive = Boolean(options.yes) || !process.stdin.isTTY || !process.stdout.isTTY;
+    let shouldGenerateAiRules: boolean;
+    const aiRulesTarget = typeof options.aiRules === 'string' ? options.aiRules : 'AGENTS.md';
 
     if (isNonInteractive) {
-      componentsDir = defaults.components;
-      cssDirRaw = defaults.css || '.';
+      componentsDirRaw = explicitComponentsDir ?? initialComponentsDir;
+      const resolvedComponentsPreview = normalizeComponentsDir(componentsDirRaw, initialComponentsDir);
+      if (options.cssDir !== undefined) {
+        cssDirRaw = options.cssDir;
+      } else if (explicitComponentsDir !== undefined && existingConfig?.cssDir === undefined) {
+        cssDirRaw = resolvedComponentsPreview;
+      } else {
+        cssDirRaw = initialCssDir || '.';
+      }
       shouldSave = true;
       shouldInjectCss = Boolean(mainCssFile);
+      shouldGenerateAiRules = options.aiRules !== false;
     } else {
       const componentsDirPrompt = new Input({
         name: 'componentsDir',
         message: 'Where would you like to store your components?',
-        initial: defaults.components
+        initial: initialComponentsDir
       });
-      componentsDir = await componentsDirPrompt.run();
+      componentsDirRaw = await componentsDirPrompt.run();
+
+      const normalizedPreview = normalizeComponentsDir(componentsDirRaw, initialComponentsDir);
+      const suggestedCssDir = existingConfig?.cssDir !== undefined
+        ? (initialCssDir || '.')
+        : normalizedPreview;
 
       const cssDirPrompt = new Input({
         name: 'cssDir',
         message: 'Where would you like to store your dashkit.css?',
-        initial: defaults.css || '.'
+        initial: suggestedCssDir
       });
       cssDirRaw = await cssDirPrompt.run();
 
@@ -492,6 +560,19 @@ export async function handleInit(options: InitOptions = {}) {
         shouldInjectCss = false;
       }
 
+      if (options.aiRules === false) {
+        shouldGenerateAiRules = false;
+      } else if (typeof options.aiRules === 'string') {
+        shouldGenerateAiRules = true;
+      } else {
+        const confirmAiRules = new Confirm({
+          name: 'aiRules',
+          message: `Generate AI assistant instructions (${aiRulesTarget})?`,
+          initial: true
+        });
+        shouldGenerateAiRules = await confirmAiRules.run();
+      }
+
       const confirmPrompt = new Confirm({
         name: 'save',
         message: 'Save these settings to dashkit.json?',
@@ -500,17 +581,19 @@ export async function handleInit(options: InitOptions = {}) {
       shouldSave = await confirmPrompt.run();
     }
 
-    if (!componentsDir.replace(/\\/g, '/').split('/').pop()?.includes('dashkit')) {
-      componentsDir = path.join(componentsDir, 'dashkit').replace(/\\/g, '/');
-    }
-    const cssDir = cssDirRaw === '.' ? '' : cssDirRaw;
+    const componentsDir = normalizeComponentsDir(componentsDirRaw, initialComponentsDir);
+    const cssDir = normalizeDirPath(cssDirRaw);
+    const cssFile = cssDir ? `${cssDir}/dashkit.css` : 'dashkit.css';
 
-    spinner = ora('Initializing Dashkit...').start();
+    spinner = ora({
+      text: 'Initializing Dashkit...',
+      isSilent: silent || !process.stdout.isTTY
+    }).start();
 
     // Ensure CSS installation
     const targetPath = path.resolve(process.cwd(), cssDir, 'dashkit.css');
     const sourcePath = path.resolve(projectRoot, 'src', 'dashkit', 'dashkit.css');
-    await installDashkitCss(targetPath, sourcePath);
+    const cssStatus = await installDashkitCss(targetPath, sourcePath, options.force);
 
     // Create dashkit and utils folders
     const fullComponentsDir = path.resolve(process.cwd(), componentsDir);
@@ -519,13 +602,15 @@ export async function handleInit(options: InitOptions = {}) {
 
     // Copy shared utils (cn.ts, scrollLock.ts, ...) so every component's
     // ../utils imports resolve in the user's project.
-    await copyUtilsFiles(utilsDir);
+    const copiedUtils = await copyUtilsFiles(utilsDir, options.force);
 
-    let injectedCssFile: string | null = null;
+    let cssImportStatus: 'imported' | 'already_imported' | 'skipped' = 'skipped';
     if (shouldInjectCss && mainCssFile) {
       const injectResult = await injectDashkitCss(mainCssFile, targetPath);
       if (injectResult.updated) {
-        injectedCssFile = path.relative(process.cwd(), mainCssFile).replace(/\\/g, '/');
+        cssImportStatus = 'imported';
+      } else if (injectResult.reason === 'already_imported') {
+        cssImportStatus = 'already_imported';
       }
     }
 
@@ -533,22 +618,61 @@ export async function handleInit(options: InitOptions = {}) {
       await saveConfig({ componentsDir, cssDir });
     }
 
+    let writtenAiRulesFile: string | null = null;
+    if (shouldGenerateAiRules) {
+      writtenAiRulesFile = await writeAiRulesFile(aiRulesTarget, { componentsDir, cssDir });
+    }
+
     spinner.stop();
+
+    const baseDeps = ['clsx', 'tailwind-merge'];
+    let missingBaseDeps = await getMissingDependencies(baseDeps);
+    if (missingBaseDeps.length > 0) {
+      const hasPkgJson = await fs.pathExists(path.resolve(process.cwd(), 'package.json'));
+      if (options.install !== false && hasPkgJson) {
+        await installDependencies(missingBaseDeps, silent);
+        missingBaseDeps = await getMissingDependencies(baseDeps);
+      }
+    }
+
+    const relMainCss = mainCssFile
+      ? path.relative(process.cwd(), mainCssFile).replace(/\\/g, '/')
+      : null;
+
+    if (silent) {
+      const payload: InitResultPayload = {
+        initialized: true,
+        componentsDir,
+        cssDir,
+        cssFile,
+        cssStatus,
+        mainCssFile: relMainCss,
+        cssImportStatus,
+        utilsInstalled: copiedUtils,
+        configFile: shouldSave ? 'dashkit.json' : null,
+        aiRulesFile: writtenAiRulesFile,
+        missingDependencies: missingBaseDeps,
+      };
+      console.log(JSON.stringify(payload, null, 2));
+      return;
+    }
+
     logger.success('Dashkit initialized successfully.');
 
     logger.bold('\nInitialization Summary:');
     logger.info(`  Components Dir: ${chalk.bold(componentsDir)}`);
     logger.info(`  CSS Dir:        ${chalk.bold(cssDir || 'root')}`);
-    if (injectedCssFile) {
-      logger.info(`  Main CSS:       ${chalk.bold(injectedCssFile)} (imported dashkit.css)`);
-    } else if (mainCssFile) {
-      const relMain = path.relative(process.cwd(), mainCssFile).replace(/\\/g, '/');
-      const relImport = getRelativeCssImport(mainCssFile, targetPath);
-      logger.info(`  Main CSS:       ${chalk.bold(relMain)} (add: @import "${relImport}";)`);
+    if (relMainCss && mainCssFile) {
+      if (cssImportStatus === 'imported' || cssImportStatus === 'already_imported') {
+        logger.info(`  Main CSS:       ${chalk.bold(relMainCss)} (imported dashkit.css)`);
+      } else {
+        const relImport = getRelativeCssImport(mainCssFile, targetPath);
+        logger.info(`  Main CSS:       ${chalk.bold(relMainCss)} (add: @import "${relImport}";)`);
+      }
     }
-    if (shouldSave) logger.info('  Configuration:  dashkit.json created');
+    if (shouldSave) logger.info('  Configuration:  dashkit.json saved');
+    if (writtenAiRulesFile) logger.info(`  AI Rules:       ${chalk.bold(writtenAiRulesFile)} (updated)`);
 
-    const missingBaseDeps = await getMissingDependencies(['clsx', 'tailwind-merge']);
     if (missingBaseDeps.length > 0) {
       const pm = getPackageManager();
       const installCmd = pm === 'npm' ? 'install' : 'add';
@@ -559,6 +683,7 @@ export async function handleInit(options: InitOptions = {}) {
     if (error instanceof Error && error.message === 'cancelled') {
        process.exit(0);
     }
+    spinner?.stop();
     logger.error('Failed to initialize Dashkit.');
     if (error instanceof Error) logger.error(error.message);
     process.exitCode = 1;
@@ -650,14 +775,16 @@ export interface AiRulesOptions {
   output?: string;
 }
 
-export async function handleAiRules(options: AiRulesOptions = {}) {
+async function writeAiRulesFile(
+  targetFile = 'AGENTS.md',
+  configOverride?: { componentsDir: string; cssDir: string }
+): Promise<string> {
   const info = await getProjectInfo();
   const defaults = getFolderStructure(info);
-  const config = await loadConfig();
-  const componentsDir = (config?.componentsDir ?? defaults.components).replace(/\\/g, '/');
-  const cssDir = (config?.cssDir ?? (defaults.css || '.')).replace(/\\/g, '/');
-  const cssFile = cssDir === '.' || cssDir === '' ? 'dashkit.css' : `${cssDir}/dashkit.css`;
-  const targetFile = options.output || 'AGENTS.md';
+  const config = configOverride ?? (await loadConfig());
+  const componentsDir = normalizeDirPath(config?.componentsDir ?? defaults.components) || defaults.components;
+  const cssDir = normalizeDirPath(config?.cssDir ?? defaults.css);
+  const cssFile = cssDir ? `${cssDir}/dashkit.css` : 'dashkit.css';
   const targetPath = path.resolve(process.cwd(), targetFile);
 
   const allSlugs = Object.keys(registry).sort((a, b) => a.localeCompare(b));
@@ -695,6 +822,12 @@ export async function handleAiRules(options: AiRulesOptions = {}) {
     await fs.writeFile(targetPath, `# Project AI Instructions\n\n${rulesBlock}\n`, 'utf8');
   }
 
+  return targetFile.replace(/\\/g, '/');
+}
+
+export async function handleAiRules(options: AiRulesOptions = {}) {
+  const targetFile = options.output || 'AGENTS.md';
+  await writeAiRulesFile(targetFile);
   logger.success(`AI rules written to ${targetFile}.`);
 }
 

@@ -44,13 +44,20 @@ bunx carllosnc/dashkit ai-rules
 
 ### `init`
 
-Initializes Dashkit in your repository (`dashkit.css`, `utils/`, and `dashkit.json`).
+Initializes Dashkit in your repository (`dashkit.css`, `utils/`, `dashkit.json`, and `AGENTS.md` AI instructions).
 
 ```bash
 bunx carllosnc/dashkit init [options]
 ```
 
 - `-y, --yes`: Accept all detected defaults without interactive prompts.
+- `-c, --components-dir <dir>` (or `-o, --output <dir>`): Target directory for Dashkit components.
+- `--css-dir <dir>`: Target directory for `dashkit.css`.
+- `--ai-rules [file]`: Target file for AI assistant instructions (defaults to `AGENTS.md`).
+- `--no-ai-rules`: Skip generating AI assistant instructions.
+- `-f, --force`: Overwrite existing `dashkit.css` and `utils/` files.
+- `--no-install`: Skip automatic installation of missing base NPM dependencies (`clsx`, `tailwind-merge`).
+- `--json`: Output structured JSON summary for LLMs and automation scripts.
 
 ### `add`
 

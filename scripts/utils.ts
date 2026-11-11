@@ -13,8 +13,26 @@ export interface DashkitConfig {
 
 const CONFIG_FILE = 'dashkit.json';
 
+export function normalizeDirPath(rawPath: string): string {
+  const cleaned = rawPath.trim().replace(/\\/g, '/').replace(/^\.\/+/, '').replace(/\/+$/, '');
+  return cleaned === '.' ? '' : cleaned;
+}
+
+export function normalizeComponentsDir(rawDir: string, fallback = 'dashkit'): string {
+  const cleaned = normalizeDirPath(rawDir) || normalizeDirPath(fallback) || 'dashkit';
+  const lastSegment = cleaned.split('/').pop() ?? '';
+  if (!lastSegment.toLowerCase().includes('dashkit')) {
+    return `${cleaned}/dashkit`;
+  }
+  return cleaned;
+}
+
 export async function saveConfig(config: DashkitConfig) {
-  await fs.writeJson(path.resolve(process.cwd(), CONFIG_FILE), config, { spaces: 2 });
+  const normalized: DashkitConfig = {
+    componentsDir: normalizeDirPath(config.componentsDir),
+    cssDir: normalizeDirPath(config.cssDir),
+  };
+  await fs.writeJson(path.resolve(process.cwd(), CONFIG_FILE), normalized, { spaces: 2 });
 }
 
 export async function loadConfig(): Promise<DashkitConfig | null> {
@@ -38,11 +56,11 @@ export async function getProjectInfo(): Promise<ProjectInfo> {
 }
 
 export function getFolderStructure(info: ProjectInfo) {
-  const base = info.hasSrc ? 'src' : '';
+  const dir = info.hasSrc ? 'src/dashkit' : 'dashkit';
 
   return {
-    components: path.join(base, 'dashkit'),
-    css: path.join(base, 'dashkit')
+    components: dir,
+    css: dir
   };
 }
 
@@ -92,12 +110,12 @@ export async function injectDashkitCss(
   const importPath = getRelativeCssImport(mainCssPath, dashkitCssPath);
   const importStatement = `@import "${importPath}";`;
 
-  // Look for @import "tailwindcss" (with single or double quotes, optional semicolon)
-  const twImportRegex = /(@import\s+['"]tailwindcss['"];?\r?\n)/;
+  // Look for @import "tailwindcss" (with single or double quotes, optional semicolon, optional trailing newline)
+  const twImportRegex = /(@import\s+['"]tailwindcss['"];?)(?:\r?\n|$)/;
   let newContent: string;
 
   if (twImportRegex.test(content)) {
-    newContent = content.replace(twImportRegex, `$1${importStatement}\n`);
+    newContent = content.replace(twImportRegex, `$1\n${importStatement}\n`);
   } else {
     newContent = `${importStatement}\n${content}`;
   }

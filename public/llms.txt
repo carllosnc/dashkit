@@ -22,7 +22,7 @@ bunx carllosnc/dashkit add sidebar
 
 ## CLI Reference
 
-- `dashkit init [-y]`: Configures dashkit.json and injects design token stylesheet (dashkit.css).
+- `dashkit init [-y] [-c <dir>] [--css-dir <dir>] [--ai-rules [file]] [--no-ai-rules] [-f] [--no-install] [--json]`: Configures `dashkit.json`, installs `dashkit.css` and `utils/`, injects `@import` into the main stylesheet, and generates AI assistant instructions (`AGENTS.md`).
 - `dashkit add <components...> [--all] [-o <dir>] [-t] [-f] [--no-install]`: Scaffolds one or more components, resolves dependencies in a single batch, and updates the root `index.ts` barrel file.
 - `dashkit info <component> [--json]`: Outputs component exports, dependencies, and TypeScript Props definitions.
 - `dashkit list [--installed] [--json]`: Lists all registry components with status.
