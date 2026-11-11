@@ -56,6 +56,32 @@ Transform any pie chart into a donut chart by setting the `innerRadius` property
 />
 ```
 
+### Textured Slices
+
+Apply SVG patterns across the entire chart with the `texture` prop (`'striped' | 'dots' | 'grid' | 'gradient'`) or mix different textures per slice inside `data`.
+
+<Card className='not-prose'>
+<PieChart
+  innerRadius={0.55}
+  data={[
+    { label: 'Completed', value: 55, color: 'var(--color-emerald-500)', texture: 'gradient' },
+    { label: 'In Progress', value: 30, color: 'var(--color-blue-500)', texture: 'striped' },
+    { label: 'Planned', value: 15, color: 'var(--color-amber-500)', texture: 'dots' },
+  ]}
+/>
+</Card>
+
+```tsx
+<PieChart
+  innerRadius={0.55}
+  data={[
+    { label: 'Completed', value: 55, color: 'var(--color-emerald-500)', texture: 'gradient' },
+    { label: 'In Progress', value: 30, color: 'var(--color-blue-500)', texture: 'striped' },
+    { label: 'Planned', value: 15, color: 'var(--color-amber-500)', texture: 'dots' },
+  ]}
+/>
+```
+
 ## API Reference
 
 ### PieChart
@@ -92,6 +118,12 @@ Transform any pie chart into a donut chart by setting the `innerRadius` property
     "type": "boolean",
     "defaultValue": "true",
     "description": "Enable entrance animations."
+  },
+  {
+    "prop": "texture",
+    "type": "'none' | 'striped' | 'dots' | 'grid' | 'gradient'",
+    "defaultValue": "'none'",
+    "description": "SVG pattern texture applied over the slices (can also be overridden per item in data)."
   },
   {
     "prop": "className",

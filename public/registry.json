@@ -998,7 +998,7 @@
         "usePieChart"
       ],
       "propsDefinitions": [
-        "export interface PieChartProps {\r\n  data: PieChartDataItem[];\r\n  className?: string;\r\n  innerRadius?: number;\r\n  showLabels?: boolean;\r\n  showTooltip?: boolean;\r\n  animate?: boolean;\r\n}",
+        "export interface PieChartProps {\r\n  data: PieChartDataItem[];\r\n  className?: string;\r\n  innerRadius?: number;\r\n  showLabels?: boolean;\r\n  showTooltip?: boolean;\r\n  animate?: boolean;\r\n  texture?: PieChartTexture;\r\n}",
         "export interface UsePieChartProps {\r\n  data: PieChartDataItem[];\r\n  innerRadius: number;\r\n  showTooltip: boolean;\r\n}"
       ]
     },
