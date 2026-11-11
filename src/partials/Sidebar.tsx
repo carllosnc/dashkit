@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { FiSearch, FiX } from 'react-icons/fi';
 import clsx from 'clsx';
 
 export interface SidebarLink {
@@ -21,6 +22,7 @@ interface SidebarProps {
   onItemClick?: () => void;
   layoutId?: string;
   isActive?: (linkTo: string, currentPath: string) => boolean;
+  searchable?: boolean;
 }
 
 export function Sidebar({
@@ -28,59 +30,114 @@ export function Sidebar({
   currentPath,
   onItemClick,
   layoutId = "sidebar-active-item",
-  isActive: customIsActive
+  isActive: customIsActive,
+  searchable = false,
 }: SidebarProps) {
+  const [query, setQuery] = React.useState('');
+
   const checkIsActive = (linkTo: string) => {
     if (customIsActive) return customIsActive(linkTo, currentPath);
     return currentPath === linkTo;
   };
 
+  const normalizedQuery = query.trim().toLowerCase();
+  const filteredSections = React.useMemo(() => {
+    if (!normalizedQuery) return sections;
+    return sections
+      .map((sec) => ({
+        ...sec,
+        links: sec.links.filter((link) => link.label.toLowerCase().includes(normalizedQuery)),
+      }))
+      .filter((sec) => sec.links.length > 0);
+  }, [sections, normalizedQuery]);
+
   return (
     <>
-      {sections.map((section, idx) => (
-        <div key={idx} className="mb-10 last:mb-0">
-          <h4 className="text-[11px] font-medium text-muted-foreground uppercase tracking-[0.15em] mb-4">
-            {section.title}
-          </h4>
-          <nav className="flex flex-col gap-1">
-            {section.links.map((link) => {
-              const active = checkIsActive(link.to);
-
-              return (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  onClick={link.disabled ? (e) => e.preventDefault() : onItemClick}
-                  className={clsx(
-                    "relative px-3 py-2 rounded-full text-sm transition-all duration-200 flex items-center gap-3 group",
-                    active
-                      ? "text-ds-50 dark:text-ds-950"
-                      : "text-ds-500 font-medium hover:bg-white dark:text-ds-400 dark:hover:bg-ds-800/50",
-                    link.disabled && "opacity-50 cursor-not-allowed hover:bg-transparent"
-                  )}
-                >
-                  {active && (
-                    <motion.div
-                      layoutId={layoutId}
-                      className="absolute inset-0 bg-ds-900 dark:bg-ds-200 rounded-full"
-                      transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-                    />
-                  )}
-                  <div className={clsx(
-                    "shrink-0 transition-colors duration-300 relative z-10",
-                    active
-                      ? "text-ds-50 dark:text-ds-950"
-                      : "text-ds-400 dark:text-ds-500"
-                  )}>
-                    {link.icon}
-                  </div>
-                  <span className="relative z-10 font-medium">{link.label}</span>
-                </Link>
-              );
-            })}
-          </nav>
+      {searchable && (
+        <div className="mb-6">
+          <div className="relative flex items-center">
+            <FiSearch className="absolute left-3 size-3.5 text-muted-foreground pointer-events-none" />
+            <input
+              type="search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Filter components..."
+              aria-label="Filter documentation links"
+              className="w-full h-8 pl-8 pr-7 text-xs bg-input-bg text-input-fg border border-input-border ds-rounded-sm outline-none transition-colors focus:border-input-focus focus:ring-2 focus:ring-input-focus/20 placeholder:text-muted-foreground"
+            />
+            {query && (
+              <button
+                type="button"
+                onClick={() => setQuery('')}
+                aria-label="Clear filter"
+                className="absolute right-2 p-0.5 rounded text-muted-foreground hover:text-foreground"
+              >
+                <FiX className="size-3.5" />
+              </button>
+            )}
+          </div>
         </div>
-      ))}
+      )}
+
+      {filteredSections.length === 0 ? (
+        <div className="py-6 text-center">
+          <p className="text-xs text-muted-foreground mb-2">
+            No results for &ldquo;{query}&rdquo;
+          </p>
+          <button
+            type="button"
+            onClick={() => setQuery('')}
+            className="text-xs font-medium text-primary hover:underline"
+          >
+            Clear filter
+          </button>
+        </div>
+      ) : (
+        filteredSections.map((section, idx) => (
+          <div key={idx} className="mb-8 last:mb-0">
+            <h4 className="text-[11px] font-semibold text-muted-foreground uppercase tracking-[0.08em] mb-3 px-3">
+              {section.title}
+            </h4>
+            <nav className="flex flex-col gap-0.5">
+              {section.links.map((link) => {
+                const active = checkIsActive(link.to);
+
+                return (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    onClick={link.disabled ? (e) => e.preventDefault() : onItemClick}
+                    className={clsx(
+                      "relative px-3 py-1.5 rounded-full text-sm transition-colors duration-150 flex items-center gap-2.5 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                      active
+                        ? "text-ds-50 dark:text-ds-950"
+                        : "text-muted-foreground font-medium hover:text-foreground hover:bg-card dark:hover:bg-ds-800/50",
+                      link.disabled && "opacity-50 cursor-not-allowed hover:bg-transparent"
+                    )}
+                  >
+                    {active && (
+                      <motion.div
+                        layoutId={layoutId}
+                        className="absolute inset-0 bg-ds-900 dark:bg-ds-100 rounded-full"
+                        transition={{ type: "spring", bounce: 0, duration: 0.35 }}
+                      />
+                    )}
+                    <div className={clsx(
+                      "shrink-0 transition-colors duration-150 relative z-10",
+                      active
+                        ? "text-ds-50 dark:text-ds-950"
+                        : "text-muted-foreground group-hover:text-foreground"
+                    )}>
+                      {link.icon}
+                    </div>
+                    <span className="relative z-10 font-medium">{link.label}</span>
+                  </Link>
+                );
+              })}
+            </nav>
+          </div>
+        ))
+      )}
     </>
   );
 }
