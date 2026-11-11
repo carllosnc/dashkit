@@ -17,6 +17,7 @@ const components = [
   { to: '/docs/avatar', label: 'Avatar', icon: <FiUser size={24} />, description: 'Visual representation of a user.' },
   { to: '/docs/backdrop', label: 'Backdrop', icon: <FiLayers size={24} />, description: 'Dim the background for focus.' },
   { to: '/docs/badge', label: 'Badge', icon: <FiAward size={24} />, description: 'Small status descriptors.' },
+  { to: '/docs/badge', label: 'Float Badge', icon: <FiAward size={24} />, description: 'Corner status indicators anchored to elements.' },
   { to: '/charts/bar-chart', label: 'Bar Chart', icon: <FiBarChart2 size={24} />, description: 'Vertical or horizontal bar data.' },
   { to: '/docs/breadcrumb', label: 'Breadcrumb', icon: <FiChevronRight size={24} />, description: 'Navigation path indicators.' },
   { to: '/docs/button', label: 'Button', icon: <FiSquare size={24} />, description: 'Interactive action triggers.' },
@@ -38,7 +39,7 @@ const components = [
   { to: '/docs/icon-button', label: 'Icon Button', icon: <FiCircle size={24} />, description: 'Compact button with icons.' },
   { to: '/docs/image-expander', label: 'Image Expander', icon: <FiMaximize2 size={24} />, description: 'Expandable image thumbnails.' },
   { to: '/docs/input', label: 'Input', icon: <FiType size={24} />, description: 'Standard text data entry.' },
-  { to: '/docs/line-chart', label: 'Line Chart', icon: <FiActivity size={24} />, description: 'Linear data progression tracking.' },
+  { to: '/charts/line-chart', label: 'Line Chart', icon: <FiActivity size={24} />, description: 'Linear data progression tracking.' },
   { to: '/docs/list-tile', label: 'List Tile', icon: <FiList size={24} />, description: 'Flexible list item patterns.' },
   { to: '/docs/modal', label: 'Modal', icon: <FiMaximize size={24} />, description: 'Overlay dialog windows.' },
   { to: '/docs/navbar', label: 'Navbar', icon: <FiLayout size={24} />, description: 'Top-level navigation bar.' },
@@ -69,18 +70,18 @@ const components = [
 
 export const ComponentGrid = () => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
       {components.map((component) => (
         <Link
-          key={component.to}
+          key={component.label}
           to={component.to}
-          className="p-4 rounded-md bg-ds-0 shadow-sm dark:bg-ds-900 flex flex-col gap-10 no-underline group"
+          className="p-5 ds-rounded bg-card border border-border flex flex-col gap-3 no-underline group transition-colors duration-150 hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
-          <div className="w-10 h-10 rounded-sm bg-ds-100 dark:bg-white/5 flex items-center justify-center text-ds-600 dark:text-ds-400">
+          <span className="text-muted-foreground group-hover:text-primary transition-colors duration-150">
             {component.icon}
-          </div>
-          <div className="flex flex-col gap-0">
-            <h3 className="text-base font-semibold text-ds-900 dark:text-white">
+          </span>
+          <div className="flex flex-col gap-1">
+            <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors duration-150">
               {component.label}
             </h3>
             <p className="text-xs text-muted-foreground leading-relaxed">
