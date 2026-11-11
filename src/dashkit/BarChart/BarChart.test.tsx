@@ -36,4 +36,19 @@ describe('BarChart', () => {
     const { container } = render(<BarChart data={data} series={series} height={500} />);
     expect(container.firstChild).toHaveStyle('height: 500px');
   });
+
+  it('caps bar width at maxBarWidth and centers bars within each group', () => {
+    const { container } = render(
+      <BarChart
+        data={[{ label: 'Starter', value: 100 }, { label: 'Pro', value: 200 }]}
+        series={[{ key: 'value', label: 'Plans' }]}
+        maxBarWidth={48}
+      />
+    );
+    const rects = container.querySelectorAll('rect');
+    expect(rects).toHaveLength(2);
+    expect(rects[0].getAttribute('width')).toBe('48');
+    // groupWidth is 1000 / 2 = 500; groupPadding is (500 - 48) / 2 = 226
+    expect(rects[0].getAttribute('x')).toBe('226');
+  });
 });
