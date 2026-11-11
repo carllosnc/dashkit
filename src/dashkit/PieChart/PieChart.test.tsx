@@ -40,4 +40,19 @@ describe('PieChart', () => {
     const paths = container.querySelectorAll('path');
     expect(paths).toHaveLength(3);
   });
+
+  it('renders texture overlay paths when global or per-slice texture is set', () => {
+    const { container } = render(
+      <PieChart
+        data={[
+          { label: 'A', value: 50, color: 'red', texture: 'striped' },
+          { label: 'B', value: 50, color: 'blue' },
+        ]}
+      />
+    );
+    const paths = container.querySelectorAll('path');
+    // 2 base slice paths + 1 texture overlay path for slice A
+    expect(paths).toHaveLength(3);
+    expect(paths[1].getAttribute('fill')).toMatch(/^url\(#pie-texture-striped-/);
+  });
 });

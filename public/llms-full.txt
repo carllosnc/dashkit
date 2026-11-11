@@ -796,6 +796,8 @@ bunx carllosnc/dashkit add navigation-menu
 
 The Navigation Menu uses a value-based system to track the active item. Ensure the `value` on `NavigationMenuTrigger` matches the `value` on `NavigationMenuContent`.
 
+
+
 ```tsx
 <NavigationMenu>
   <NavigationMenuList>
@@ -819,18 +821,23 @@ The Navigation Menu uses a value-based system to track the active item. Ensure t
 
 ### NavigationMenu
 
+
 | Property | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
 | `delay` | `number` | `200` | Delay in milliseconds before closing the menu after the mouse leaves. |
 | `className` | `string` | - | Additional CSS classes for the root container. |
 
+
 ### NavigationMenuTrigger
+
 
 | Property | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
 | `value` | `string` | - | A unique value to associate the trigger with its corresponding content. |
 
+
 ### NavigationMenuContent
+
 
 | Property | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
@@ -6107,9 +6114,11 @@ bunx carllosnc/dashkit add statscard
 
 The `StatsCard` is perfect for dashboards and summary sections.
 
+
   
   
   
+
 
 ```tsx
 import { StatsCard } from 'dashkit';
@@ -6144,6 +6153,7 @@ export default () => (
 
 Add visual context using icons from `react-icons`.
 
+
   }
     status="info"
     description="Completion across all active sprints"
@@ -6154,6 +6164,7 @@ Add visual context using icons from `react-icons`.
     trendLabel="today"
     description="Unassigned support requests"
   />
+
 
 ```tsx
 import { StatsCard } from 'dashkit';
@@ -6182,9 +6193,11 @@ export default () => (
 
 Visualize data trends directly within the card using the `chart` prop.
 
+
   
   
   
+
 
 ```tsx
 import { StatsCard } from 'dashkit';
@@ -6207,8 +6220,10 @@ export default () => (
 
 Combine sparklines and descriptive footers for maximum context.
 
+
   
   
+
 
 ```tsx
 import { StatsCard } from 'dashkit';
@@ -6243,6 +6258,7 @@ export default () => (
 ## API
 
 ### StatsCard Props
+
 
 | Property | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
@@ -6380,7 +6396,9 @@ bunx carllosnc/dashkit add systemlogs
 
 The `SystemLogs` component takes an array of `logs` and renders them in a dark, monospace container that mimics a terminal environment.
 
+
   
+
 
 ```tsx
 import { SystemLogs } from '@/dashkit/SystemLogs/SystemLogs'
@@ -6414,7 +6432,9 @@ The component supports five distinct log levels, each with its own visual style:
 - `error`: Error messages (indicated by `[ERR]`)
 - `stable`: Stability or state updates (indicated by `[STB]`)
 
+
   
+
 
 ## Customization
 
@@ -6430,6 +6450,7 @@ By default, the component automatically scrolls to the bottom when new logs are 
 - `statusColor`: The color of the status badge.
 
 ## Props
+
 
 | Property | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
@@ -6908,6 +6929,25 @@ Transform any pie chart into a donut chart by setting the `innerRadius` property
 />
 ```
 
+### Textured Slices
+
+Apply SVG patterns across the entire chart with the `texture` prop (`'striped' | 'dots' | 'grid' | 'gradient'`) or mix different textures per slice inside `data`.
+
+
+
+
+
+```tsx
+<PieChart
+  innerRadius={0.55}
+  data={[
+    { label: 'Completed', value: 55, color: 'var(--color-emerald-500)', texture: 'gradient' },
+    { label: 'In Progress', value: 30, color: 'var(--color-blue-500)', texture: 'striped' },
+    { label: 'Planned', value: 15, color: 'var(--color-amber-500)', texture: 'dots' },
+  ]}
+/>
+```
+
 ## API Reference
 
 ### PieChart
@@ -6921,6 +6961,7 @@ Transform any pie chart into a donut chart by setting the `innerRadius` property
 | `showLabels` | `boolean` | `true` | Display the legend below the chart. |
 | `showTooltip` | `boolean` | `true` | Enable interactive segment tooltips. |
 | `animate` | `boolean` | `true` | Enable entrance animations. |
+| `texture` | `'none' \| 'striped' \| 'dots' \| 'grid' \| 'gradient'` | `'none'` | SVG pattern texture applied over the slices (can also be overridden per item in data). |
 | `className` | `string` | - | Additional CSS for the container. |
 
 

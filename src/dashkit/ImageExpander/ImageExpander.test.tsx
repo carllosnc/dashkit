@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { ImageExpander } from './ImageExpander';
 
 describe('ImageExpander', () => {
@@ -50,6 +50,26 @@ describe('ImageExpander', () => {
     
     fireEvent.keyDown(window, { key: 'Escape' });
     // State change is internal, in a real env it would close.
+  });
+
+  it('closes when clicking the expanded image', async () => {
+    render(
+      <ImageExpander
+        caption="Click Image Test"
+        full={<img src="full.jpg" alt="Expanded" />}
+      >
+        <img src="test.jpg" alt="Thumbnail" />
+      </ImageExpander>
+    );
+
+    fireEvent.click(screen.getByAltText('Thumbnail'));
+    const expandedImg = screen.getByAltText('Expanded');
+    expect(expandedImg).toBeInTheDocument();
+
+    fireEvent.click(expandedImg);
+    await waitFor(() => {
+      expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    });
   });
 });
 

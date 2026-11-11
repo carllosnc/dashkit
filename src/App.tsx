@@ -11,10 +11,10 @@ import { Footer } from './partials/Footer'
 import { HomeExamples } from './partials/HomeExamples'
 import { Divider } from './dashkit/Divider/Divider'
 
-const TITLE = "Dashkit | Build Modern Interfaces Faster";
-const DESCRIPTION = "Copy-paste 55+ customizable React 19 & Tailwind CSS v4 components straight into your project. Total code ownership, dynamic semantic tokens, and native context for AI coding agents.";
-const TAGLINE = "Build Modern Interfaces Faster";
-const OG_DESCRIPTION = "Copy-paste 55+ customizable React 19 & Tailwind CSS v4 components straight into your project with total code ownership and native AI context.";
+const TITLE = "Dashkit | Ship modern interfaces in minutes";
+const DESCRIPTION = "Ready-to-use components you can copy straight into your project. Fully customizable, accessible by default, and yours to own.";
+const TAGLINE = "Ship modern interfaces in minutes";
+const OG_DESCRIPTION = "Ready-to-use components you can copy straight into your project. Fully customizable, accessible by default, and yours to own.";
 
 function App() {
   return (
@@ -44,11 +44,11 @@ function App() {
           />
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground max-w-4xl leading-tight mb-6">
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground leading-tight mb-5">
           {TAGLINE}
         </h1>
 
-        <p className="text-base md:text-xl text-muted-foreground max-w-2xl leading-relaxed mb-10">
+        <p className="text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed text-balance mb-10">
           {DESCRIPTION}
         </p>
 

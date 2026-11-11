@@ -70,39 +70,35 @@ export function ImageExpander({ children, full, caption, className }: ImageExpan
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="relative z-[105] w-full h-full flex flex-col items-center justify-center overflow-auto no-scrollbar scroll-smooth selection:bg-ds-500/30"
-              onClick={(e: React.MouseEvent) => e.stopPropagation()}
+              className="relative z-[105] w-full h-full flex flex-col items-center justify-center p-4 md:p-8 overflow-auto no-scrollbar scroll-smooth selection:bg-ds-500/30 pointer-events-none"
             >
-              <div className="relative shrink-0 flex items-center justify-center min-w-full min-h-full">
-                <div className="cursor-default">
+              <div
+                className="relative shrink-0 flex flex-col items-center justify-center gap-4 pointer-events-auto"
+                onClick={(e: React.MouseEvent) => e.stopPropagation()}
+              >
+                <div
+                  className="cursor-zoom-out"
+                  onClick={() => setIsOpen(false)}
+                >
                   {displayFull}
                 </div>
-              </div>
 
-              {caption && (
-                <>
+                {caption && (
                   <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="fixed inset-x-0 bottom-0 h-48 bg-gradient-to-t from-ds-950/80 via-ds-950/40 to-transparent pointer-events-none z-[115]"
-                  />
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 20 }}
+                    exit={{ opacity: 0, y: 10 }}
                     transition={{
                       type: 'spring',
                       damping: 30,
                       stiffness: 350
                     }}
-                    className="fixed bottom-12 left-1/2 -translate-x-1/2 text-white/90 text-sm font-semibold z-[120] flex items-center gap-2.5 tracking-tight"
+                    className="text-white/90 text-sm font-semibold flex items-center gap-2.5 tracking-tight text-center"
                   >
                     {caption}
                   </motion.div>
-                </>
-              )}
+                )}
+              </div>
             </motion.div>
           </motion.div>
         )}

@@ -1,12 +1,16 @@
 import * as React from 'react';
+import { useId, Fragment } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '../utils/cn';
 import { usePieChart } from './usePieChart';
+
+export type PieChartTexture = 'none' | 'striped' | 'dots' | 'grid' | 'gradient';
 
 export interface PieChartDataItem {
   label: string;
   value: number;
   color?: string;
+  texture?: PieChartTexture;
 }
 
 const DEFAULT_COLORS = [
@@ -24,6 +28,7 @@ export interface PieChartProps {
   showLabels?: boolean;
   showTooltip?: boolean;
   animate?: boolean;
+  texture?: PieChartTexture;
 }
 
 export function PieChart({
@@ -33,11 +38,14 @@ export function PieChart({
   showLabels = true,
   showTooltip = true,
   animate = true,
+  texture = 'none',
 }: PieChartProps) {
+  const chartId = useId().replace(/[^a-zA-Z0-9-_]/g, '');
   const validData = React.useMemo(() => data.map((d, i) => ({
     ...d,
-    color: d.color || DEFAULT_COLORS[i % DEFAULT_COLORS.length]
-  })), [data]);
+    color: d.color || DEFAULT_COLORS[i % DEFAULT_COLORS.length],
+    texture: d.texture || texture,
+  })), [data, texture]);
 
   const {
     hoveredIndex,
@@ -64,29 +72,122 @@ export function PieChart({
           viewBox={`0 0 ${size} ${size}`}
           className="w-full h-full overflow-visible"
         >
-          {slices.map((slice, i) => (
-            <motion.path
-              key={i}
-              d={slice.path}
-              fill={slice.color}
-              stroke="currentColor"
-              strokeWidth="3"
-              className="stroke-card text-card transition-colors duration-200 cursor-pointer"
-              style={{
-                zIndex: hoveredIndex === i ? 10 : 1,
-                transformOrigin: `${center}px ${center}px`
-              }}
-              initial={animate ? { opacity: 0, scale: 0.8, rotate: -10 } : false}
-              animate={{
-                opacity: 1,
-                scale: 1,
-                rotate: 0,
-                transition: { type: 'spring', stiffness: 400, damping: 25 }
-              }}
-              onMouseMove={(e) => handleMouseMove(e, i)}
-              onMouseLeave={() => setHoveredIndex(null)}
-            />
-          ))}
+          <defs>
+            <pattern
+              id={`pie-texture-striped-${chartId}`}
+              width="12"
+              height="12"
+              patternTransform="rotate(45 0 0)"
+              patternUnits="userSpaceOnUse"
+            >
+              <line
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="12"
+                stroke="white"
+                strokeOpacity="0.25"
+                strokeWidth="3.5"
+              />
+            </pattern>
+            <pattern
+              id={`pie-texture-dots-${chartId}`}
+              width="12"
+              height="12"
+              patternUnits="userSpaceOnUse"
+            >
+              <circle
+                cx="6"
+                cy="6"
+                r="2"
+                fill="white"
+                fillOpacity="0.28"
+              />
+            </pattern>
+            <pattern
+              id={`pie-texture-grid-${chartId}`}
+              width="12"
+              height="12"
+              patternUnits="userSpaceOnUse"
+            >
+              <line
+                x1="0"
+                y1="0"
+                x2="12"
+                y2="0"
+                stroke="white"
+                strokeOpacity="0.22"
+                strokeWidth="1.5"
+              />
+              <line
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="12"
+                stroke="white"
+                strokeOpacity="0.22"
+                strokeWidth="1.5"
+              />
+            </pattern>
+            <linearGradient
+              id={`pie-texture-gradient-${chartId}`}
+              x1="0"
+              y1="0"
+              x2="1"
+              y2="1"
+            >
+              <stop offset="0%" stopColor="white" stopOpacity="0.28" />
+              <stop offset="100%" stopColor="black" stopOpacity="0.22" />
+            </linearGradient>
+          </defs>
+
+          {slices.map((slice, i) => {
+            const sliceTexture = slice.texture || texture;
+            return (
+              <Fragment key={i}>
+                <motion.path
+                  d={slice.path}
+                  fill={slice.color}
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  className="stroke-card text-card transition-colors duration-200 cursor-pointer"
+                  style={{
+                    zIndex: hoveredIndex === i ? 10 : 1,
+                    transformOrigin: `${center}px ${center}px`
+                  }}
+                  initial={animate ? { opacity: 0, scale: 0.8, rotate: -10 } : false}
+                  animate={{
+                    opacity: 1,
+                    scale: 1,
+                    rotate: 0,
+                    transition: { type: 'spring', stiffness: 400, damping: 25 }
+                  }}
+                  onMouseMove={(e) => handleMouseMove(e, i)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                />
+                {sliceTexture && sliceTexture !== 'none' && (
+                  <motion.path
+                    d={slice.path}
+                    fill={`url(#pie-texture-${sliceTexture}-${chartId})`}
+                    stroke="currentColor"
+                    strokeWidth="3"
+                    className="stroke-card text-card pointer-events-none"
+                    style={{
+                      zIndex: hoveredIndex === i ? 10 : 1,
+                      transformOrigin: `${center}px ${center}px`
+                    }}
+                    initial={animate ? { opacity: 0, scale: 0.8, rotate: -10 } : false}
+                    animate={{
+                      opacity: 1,
+                      scale: 1,
+                      rotate: 0,
+                      transition: { type: 'spring', stiffness: 400, damping: 25 }
+                    }}
+                  />
+                )}
+              </Fragment>
+            );
+          })}
         </svg>
 
         {showTooltip && hoveredIndex !== null && (
