@@ -270,7 +270,7 @@ The `CardHeader` supports a `leftIcon` prop to easily add visual context and an 
 
 ```tsx
 import { FiShield } from 'react-icons/fi';
-import { Badge, Card, CardHeader, CardTitle, CardDescription } from '@dashkit/ui';
+import { Badge, Card, CardHeader, CardTitle, CardDescription } from '@/dashkit';
 
 <Card>
   <CardHeader 
@@ -6788,6 +6788,9 @@ Apply SVG patterns to bars using the `texture` prop (`'striped' | 'dots' | 'grid
 | `series` | `BarChartSeries[]` | - | Configuration for each data series to render. |
 | `height` | `number \| string` | `'100%'` | Height of the chart container. |
 | `barGap` | `number` | `4` | Spacing between individual bars within a group. |
+| `maxBarWidth` | `number` | `64` | Maximum width of each bar in SVG viewBox units (out of 1000). |
+| `texture` | `'none' \| 'striped' \| 'dots' \| 'grid' \| 'gradient'` | `'none'` | SVG pattern texture applied over the bars. |
+| `showTrack` | `boolean` | `false` | Render full-height background tracks behind each bar. |
 | `rounded` | `boolean` | `true` | Apply rounded corners to bars. |
 | `showGrid` | `boolean` | `true` | Display dashed horizontal lines. |
 | `showLabels` | `boolean` | `true` | Display X-axis labels. |
