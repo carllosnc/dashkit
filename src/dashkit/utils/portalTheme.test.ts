@@ -7,6 +7,7 @@ describe('getPortalThemeAttrs', () => {
     wrapper.setAttribute('data-primary', 'emerald');
     wrapper.setAttribute('data-base', 'stone');
     wrapper.setAttribute('data-dark-bg', 'oled');
+    wrapper.setAttribute('data-preset', 'brutalist');
 
     const child = document.createElement('button');
     wrapper.appendChild(child);
@@ -16,6 +17,7 @@ describe('getPortalThemeAttrs', () => {
       'data-primary': 'emerald',
       'data-base': 'stone',
       'data-dark-bg': 'oled',
+      'data-preset': 'brutalist',
     });
 
     document.body.removeChild(wrapper);
