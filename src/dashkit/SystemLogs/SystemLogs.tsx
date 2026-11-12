@@ -60,9 +60,9 @@ export const SystemLogs = React.forwardRef<HTMLDivElement, SystemLogsProps>(
     return (
       <div
         ref={ref}
-        className={cn('overflow-hidden ds-rounded border border-ds-300 dark:border-ds-700 bg-black shadow-lg', className)}
+        className={cn('overflow-hidden ds-rounded border border-border ds-border-width ds-card-shadow bg-ds-950 shadow-lg', className)}
       >
-        <div className="bg-zinc-950/50 dark:bg-white/[0.03] py-2.5 px-4 border-b border-white/10">
+        <div className="bg-ds-900/60 py-2.5 px-4 border-b border-ds-800">
           <div className="flex items-center gap-2">
             <FiTerminal className="text-ds-400" size={14} />
             <h3 className="text-xs text-ds-50 font-medium tracking-tight">{title}</h3>
@@ -92,7 +92,7 @@ export const SystemLogs = React.forwardRef<HTMLDivElement, SystemLogsProps>(
         </div>
 
         {(session || status) && (
-          <div className="px-4 py-2.5 bg-white/[0.02] border-t border-white/10 flex items-center justify-between min-h-[2.5rem]">
+          <div className="px-4 py-2.5 bg-ds-900/40 border-t border-ds-800 flex items-center justify-between min-h-[2.5rem]">
             {session ? (
               <span className="text-[10px] text-ds-500 uppercase font-bold tracking-wider h-5 inline-flex items-center leading-none translate-y-[0.5px]">
                 session: {session}

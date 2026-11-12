@@ -257,6 +257,10 @@ export function generateLlmsTxt(): string {
   lines.push('- `--ds-danger`, `--ds-success`, `--ds-warning`, `--ds-info` (plus `*-fg` pairs): Semantic feedback states.');
   lines.push('- `--ds-chart-1` through `--ds-chart-5`: Categorical data visualization palette.');
   lines.push('- `--radius`: Master border radius (`0.75rem` default). `--radius-sm`, `--radius-md`, `--radius-lg`, `--radius-xl`, and `--radius-2xl` scale proportionally from `--radius` (set `--radius: 0rem` for sharp corners).');
+  lines.push('- `--ds-pill-radius`: Pill radius for `Button`, `Switch`, `Chip`, `Slider`, and `ProgressBar` (`calc(var(--radius) * 9999)` default; automatically becomes `0rem` when `--radius: 0rem`, or set explicitly e.g. `--ds-pill-radius: var(--radius-md)`).');
+  lines.push('- `--ds-border-width`: Structural border width for Cards, Buttons, Chips, and Inputs (`1px` default; set to `2px` for Neo-Brutalism).');
+  lines.push('- `--ds-button-border`: Border color for filled and soft Buttons (`transparent` default; set to `var(--ds-border)` or `var(--ds-primary)` for bordered buttons).');
+  lines.push('- `--ds-button-shadow`, `--ds-button-outlined-shadow`, `--ds-button-soft-shadow`, `--ds-card-shadow`, `--ds-input-shadow`: Elevation or hard Neo-Brutalist offset shadows (e.g. `3px 3px 0px 0px var(--ds-border)`) or CRT glow shadows.');
   lines.push('- `--ds-primary-gradient` / `--ds-danger-gradient`: Optional gradient overrides (set to `none` for flat buttons).\n');
 
   lines.push('### Dynamic Runtime Theme Attributes');

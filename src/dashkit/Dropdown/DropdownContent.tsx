@@ -137,7 +137,7 @@ export function DropdownContent({
       {...getPortalThemeAttrs(triggerElement)}
       style={style}
       className={cn(
-        'min-w-[12rem] bg-popover/95 backdrop-blur-md text-popover-fg border border-popover-border/80 ds-rounded-lg shadow-lg p-1.5 overflow-hidden flex flex-col gap-0.5',
+        'min-w-[12rem] bg-popover/95 backdrop-blur-md text-popover-fg border border-popover-border/80 ds-border-width ds-card-shadow ds-rounded-lg shadow-lg p-1.5 overflow-hidden flex flex-col gap-0.5',
         animProps.originClass,
         className
       )}

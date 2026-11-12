@@ -42,7 +42,7 @@ export function AvatarGroup({ children, max, size = 'md', spacing = 'md', classN
         <Avatar
           fallback={`+${remainingCount}`}
           size={size}
-          className="bg-ds-900 text-white z-0 text-[10px] dark:bg-white dark:text-ds-900"
+          className="bg-ds-900 text-ds-50 z-0 text-[10px] dark:bg-ds-100 dark:text-ds-900"
         />
       )}
     </div>

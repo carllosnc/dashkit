@@ -30,53 +30,53 @@
   --color-ds-primary-900:   var(--ds-color-primary-900, var(--color-blue-900));
   --color-ds-primary-950:   var(--ds-color-primary-950, var(--color-blue-950));
 
-  --color-ds-info-50:    var(--color-blue-50);
-  --color-ds-info-100:   var(--color-blue-100);
-  --color-ds-info-200:   var(--color-blue-200);
-  --color-ds-info-300:   var(--color-blue-300);
-  --color-ds-info-400:   var(--color-blue-400);
-  --color-ds-info-500:   var(--color-blue-500);
-  --color-ds-info-600:   var(--color-blue-600);
-  --color-ds-info-700:   var(--color-blue-700);
-  --color-ds-info-800:   var(--color-blue-800);
-  --color-ds-info-900:   var(--color-blue-900);
-  --color-ds-info-950:   var(--color-blue-950);
+  --color-ds-info-50:    var(--ds-color-info-50, var(--color-blue-50));
+  --color-ds-info-100:   var(--ds-color-info-100, var(--color-blue-100));
+  --color-ds-info-200:   var(--ds-color-info-200, var(--color-blue-200));
+  --color-ds-info-300:   var(--ds-color-info-300, var(--color-blue-300));
+  --color-ds-info-400:   var(--ds-color-info-400, var(--color-blue-400));
+  --color-ds-info-500:   var(--ds-color-info-500, var(--color-blue-500));
+  --color-ds-info-600:   var(--ds-color-info-600, var(--color-blue-600));
+  --color-ds-info-700:   var(--ds-color-info-700, var(--color-blue-700));
+  --color-ds-info-800:   var(--ds-color-info-800, var(--color-blue-800));
+  --color-ds-info-900:   var(--ds-color-info-900, var(--color-blue-900));
+  --color-ds-info-950:   var(--ds-color-info-950, var(--color-blue-950));
 
-  --color-ds-success-50:    var(--color-emerald-50);
-  --color-ds-success-100:   var(--color-emerald-100);
-  --color-ds-success-200:   var(--color-emerald-200);
-  --color-ds-success-300:   var(--color-emerald-300);
-  --color-ds-success-400:   var(--color-emerald-400);
-  --color-ds-success-500:   var(--color-emerald-500);
-  --color-ds-success-600:   var(--color-emerald-600);
-  --color-ds-success-700:   var(--color-emerald-700);
-  --color-ds-success-800:   var(--color-emerald-800);
-  --color-ds-success-900:   var(--color-emerald-900);
-  --color-ds-success-950:   var(--color-emerald-950);
+  --color-ds-success-50:    var(--ds-color-success-50, var(--color-emerald-50));
+  --color-ds-success-100:   var(--ds-color-success-100, var(--color-emerald-100));
+  --color-ds-success-200:   var(--ds-color-success-200, var(--color-emerald-200));
+  --color-ds-success-300:   var(--ds-color-success-300, var(--color-emerald-300));
+  --color-ds-success-400:   var(--ds-color-success-400, var(--color-emerald-400));
+  --color-ds-success-500:   var(--ds-color-success-500, var(--color-emerald-500));
+  --color-ds-success-600:   var(--ds-color-success-600, var(--color-emerald-600));
+  --color-ds-success-700:   var(--ds-color-success-700, var(--color-emerald-700));
+  --color-ds-success-800:   var(--ds-color-success-800, var(--color-emerald-800));
+  --color-ds-success-900:   var(--ds-color-success-900, var(--color-emerald-900));
+  --color-ds-success-950:   var(--ds-color-success-950, var(--color-emerald-950));
 
-  --color-ds-warning-50:    var(--color-amber-50);
-  --color-ds-warning-100:   var(--color-amber-100);
-  --color-ds-warning-200:   var(--color-amber-200);
-  --color-ds-warning-300:   var(--color-amber-300);
-  --color-ds-warning-400:   var(--color-amber-400);
-  --color-ds-warning-500:   var(--color-amber-500);
-  --color-ds-warning-600:   var(--color-amber-600);
-  --color-ds-warning-700:   var(--color-amber-700);
-  --color-ds-warning-800:   var(--color-amber-800);
-  --color-ds-warning-900:   var(--color-amber-900);
-  --color-ds-warning-950:   var(--color-amber-950);
+  --color-ds-warning-50:    var(--ds-color-warning-50, var(--color-amber-50));
+  --color-ds-warning-100:   var(--ds-color-warning-100, var(--color-amber-100));
+  --color-ds-warning-200:   var(--ds-color-warning-200, var(--color-amber-200));
+  --color-ds-warning-300:   var(--ds-color-warning-300, var(--color-amber-300));
+  --color-ds-warning-400:   var(--ds-color-warning-400, var(--color-amber-400));
+  --color-ds-warning-500:   var(--ds-color-warning-500, var(--color-amber-500));
+  --color-ds-warning-600:   var(--ds-color-warning-600, var(--color-amber-600));
+  --color-ds-warning-700:   var(--ds-color-warning-700, var(--color-amber-700));
+  --color-ds-warning-800:   var(--ds-color-warning-800, var(--color-amber-800));
+  --color-ds-warning-900:   var(--ds-color-warning-900, var(--color-amber-900));
+  --color-ds-warning-950:   var(--ds-color-warning-950, var(--color-amber-950));
 
-  --color-ds-danger-50:    var(--color-red-50);
-  --color-ds-danger-100:   var(--color-red-100);
-  --color-ds-danger-200:   var(--color-red-200);
-  --color-ds-danger-300:   var(--color-red-300);
-  --color-ds-danger-400:   var(--color-red-400);
-  --color-ds-danger-500:   var(--color-red-500);
-  --color-ds-danger-600:   var(--color-red-600);
-  --color-ds-danger-700:   var(--color-red-700);
-  --color-ds-danger-800:   var(--color-red-800);
-  --color-ds-danger-900:   var(--color-red-900);
-  --color-ds-danger-950:   var(--color-red-950);
+  --color-ds-danger-50:    var(--ds-color-danger-50, var(--color-red-50));
+  --color-ds-danger-100:   var(--ds-color-danger-100, var(--color-red-100));
+  --color-ds-danger-200:   var(--ds-color-danger-200, var(--color-red-200));
+  --color-ds-danger-300:   var(--ds-color-danger-300, var(--color-red-300));
+  --color-ds-danger-400:   var(--ds-color-danger-400, var(--color-red-400));
+  --color-ds-danger-500:   var(--ds-color-danger-500, var(--color-red-500));
+  --color-ds-danger-600:   var(--ds-color-danger-600, var(--color-red-600));
+  --color-ds-danger-700:   var(--ds-color-danger-700, var(--color-red-700));
+  --color-ds-danger-800:   var(--ds-color-danger-800, var(--color-red-800));
+  --color-ds-danger-900:   var(--ds-color-danger-900, var(--color-red-900));
+  --color-ds-danger-950:   var(--ds-color-danger-950, var(--color-red-950));
 
   --color-background: var(--ds-bg);
   --color-foreground: var(--ds-fg);
@@ -128,7 +128,6 @@
   --color-chart-4: var(--ds-chart-4);
   --color-chart-5: var(--ds-chart-5);
 
-  --radius: 0.75rem;
   --radius-xl: calc(var(--radius) * 1.3333);
   --radius-2xl: calc(var(--radius) * 1.6667);
   --radius-lg: var(--radius);
@@ -141,6 +140,16 @@
    2. Base Variable Definitions
 ──────────────────────────────────────────────── */
 :root {
+  --radius: 0.75rem;
+  --ds-pill-radius: calc(var(--radius) * 9999);
+  --ds-border-width: 1px;
+  --ds-button-border: transparent;
+  --ds-button-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --ds-button-outlined-shadow: none;
+  --ds-button-soft-shadow: none;
+  --ds-card-shadow: none;
+  --ds-input-shadow: none;
+
   --ds-bg: var(--color-ds-100);
   --ds-fg: var(--color-ds-800);
 
@@ -340,6 +349,34 @@
 @utility ds-rounded-2xl { @apply rounded-[var(--radius-2xl)]; }
 @utility ds-surface-glass { @apply bg-popover/95 backdrop-blur-md; }
 @utility ds-active-press { @apply active:scale-[0.97] transition-transform duration-150 ease-out; }
+
+.ds-pill {
+  border-radius: var(--ds-pill-radius, 9999px);
+}
+.ds-border-width {
+  border-width: var(--ds-border-width, 1px);
+}
+.ds-card-shadow {
+  box-shadow: var(--ds-card-shadow, none);
+}
+.ds-input-surface {
+  border-width: var(--ds-border-width, 1px);
+  box-shadow: var(--ds-input-shadow, none);
+}
+.ds-button-surface {
+  border-width: var(--ds-border-width, 1px);
+  border-color: var(--ds-button-border, transparent);
+  box-shadow: var(--ds-button-shadow, 0 1px 2px 0 rgb(0 0 0 / 0.05));
+}
+.ds-button-soft-surface {
+  border-width: var(--ds-border-width, 1px);
+  border-color: var(--ds-button-border, transparent);
+  box-shadow: var(--ds-button-soft-shadow, none);
+}
+.ds-button-outlined-surface {
+  border-width: var(--ds-border-width, 1px);
+  box-shadow: var(--ds-button-outlined-shadow, none);
+}
 
 
 /* ────────────────────────────────────────────────

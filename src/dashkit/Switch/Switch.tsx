@@ -24,7 +24,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
             />
             <div
               className={cn(
-                'w-11 h-6 bg-ds-200 dark:bg-ds-800 rounded-full transition-colors duration-200 border-2 border-transparent',
+                'w-11 h-6 bg-ds-200 dark:bg-ds-800 rounded-full ds-pill ds-input-surface transition-colors duration-200 border-2 border-border',
                 'group-hover:border-ds-400 dark:group-hover:border-ds-500',
                 'peer-checked:border-primary peer-checked:bg-primary',
                 'peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-transparent',
@@ -33,7 +33,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
             />
             <div
               className={cn(
-                'absolute left-0.5 top-0.5 w-5 h-5 bg-white rounded-full transition-transform duration-200 shadow-sm pointer-events-none',
+                'absolute left-1 top-1 w-4 h-4 bg-ds-0 rounded-full ds-pill transition-transform duration-200 shadow-sm pointer-events-none',
                 'peer-checked:translate-x-5 peer-checked:bg-primary-foreground',
                 'peer-disabled:opacity-60 peer-disabled:cursor-not-allowed'
               )}

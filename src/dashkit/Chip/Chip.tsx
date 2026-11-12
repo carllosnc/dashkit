@@ -7,13 +7,13 @@ export type ChipVariant = 'filled' | 'outlined' | 'tonal' | 'soft';
 export type ChipColor = 'base' | 'primary' | 'success' | 'warning' | 'danger' | 'error' | 'info';
 
 const chipVariants = cva(
-  'inline-flex items-center gap-1.5 h-8 px-3 rounded-full text-xs font-medium transition-all duration-200 border select-none',
+  'inline-flex items-center gap-1.5 h-8 px-3 rounded-full ds-pill text-xs font-medium transition-all duration-200 border ds-border-width select-none',
   {
     variants: {
       variant: {
-        tonal: '',
-        filled: '',
-        outlined: '',
+        tonal: 'ds-button-soft-surface',
+        filled: 'ds-button-surface',
+        outlined: 'ds-button-outlined-surface',
       },
       color: {
         base: '',

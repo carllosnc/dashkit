@@ -1,0 +1,146 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   Dashkit Preset: Matrix
+   @preset matrix
+   @recommended-attrs class="dark" data-base="zinc" data-primary="green" data-preset="matrix"
+   @description Phosphor-green CRT terminal palette, 2px technical corners, monospace UI, subtle glow.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+[data-preset="matrix"] {
+  /* 1. Geometry, Typography & Surface Elevation */
+  --radius: 0.125rem;
+  --ds-pill-radius: var(--radius-md);
+  --ds-border-width: 1px;
+  --ds-primary-gradient: none;
+  --ds-danger-gradient: none;
+  --font-sans: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+
+  --ds-button-border: #16a34a;
+  --ds-button-shadow: 0 0 10px -2px rgb(22 163 74 / 0.35);
+  --ds-button-outlined-shadow: 0 0 8px -2px rgb(22 163 74 / 0.2);
+  --ds-button-soft-shadow: none;
+  --ds-card-shadow: 0 0 20px -8px rgb(22 163 74 / 0.2);
+  --ds-input-shadow: inset 0 0 6px -2px rgb(22 163 74 / 0.15);
+
+  /* 2. Base Scale Override (Phosphor Green Monochromatic Ramp)
+     Ensures components using ds-0..ds-950 (Pagination, ProgressBar track,
+     ButtonGroup active state, Slider, Switch, Divider) match the CRT palette. */
+  --ds-color-0: #ecfdf5;
+  --ds-color-50: #ecfdf5;
+  --ds-color-100: #d1fae5;
+  --ds-color-200: #bbf7d0;
+  --ds-color-300: #86efac;
+  --ds-color-400: #4ade80;
+  --ds-color-500: #22c55e;
+  --ds-color-600: #16a34a;
+  --ds-color-700: #14532d;
+  --ds-color-800: #0a2612;
+  --ds-color-900: #05160a;
+  --ds-color-950: #020804;
+
+  /* 3. Info Scale Override (Terminal Cyan-Emerald Tint) */
+  --ds-color-info-50: #ecfdf5;
+  --ds-color-info-100: #d1fae5;
+  --ds-color-info-200: #a7f3d0;
+  --ds-color-info-300: #6ee7b7;
+  --ds-color-info-400: #34d399;
+  --ds-color-info-500: #10b981;
+  --ds-color-info-600: #059669;
+  --ds-color-info-700: #047857;
+  --ds-color-info-800: #065f46;
+  --ds-color-info-900: #064e3b;
+  --ds-color-info-950: #022c22;
+
+  /* 4. Core Surfaces & Borders (Light) */
+  --ds-bg: #ecfdf5;
+  --ds-fg: #052e16;
+  --ds-card: #f0fdf4;
+  --ds-card-fg: #052e16;
+  --ds-popover: #f0fdf4;
+  --ds-popover-fg: #052e16;
+  --ds-popover-border: #16a34a;
+  --ds-popover-item: #dcfce7;
+  --ds-popover-item-selected: #bbf7d0;
+  --ds-popover-item-selected-fg: #052e16;
+
+  --ds-border: #16a34a;
+  --ds-border-subtle: #86efac;
+
+  /* 5. Interactive & Muted Tokens (Light) */
+  --ds-primary: #15803d;
+  --ds-primary-fg: #f0fdf4;
+  --ds-secondary: #dcfce7;
+  --ds-secondary-fg: #052e16;
+  --ds-muted: #dcfce7;
+  --ds-muted-fg: #15803d;
+  --ds-accent: #bbf7d0;
+  --ds-accent-fg: #052e16;
+  --ds-info: #059669;
+  --ds-info-fg: #ecfdf5;
+
+  /* 6. Form Controls & Charts (Light) */
+  --ds-input-bg: #f0fdf4;
+  --ds-input-border: #16a34a;
+  --ds-input-focus: #15803d;
+  --ds-input-fg: #052e16;
+  --ds-input-ring: #22c55e;
+
+  --ds-chart-1: #16a34a;
+  --ds-chart-2: #059669;
+  --ds-chart-3: #65a30d;
+  --ds-chart-4: #0d9488;
+  --ds-chart-5: #10b981;
+}
+
+.dark[data-preset="matrix"],
+.dark [data-preset="matrix"] {
+  /* Phosphor highlight for ds-0 elements (Slider thumb, inverted Tooltip/Toast) */
+  --ds-color-0: #4ade80;
+
+  /* Core Surfaces & Borders (Dark CRT) */
+  --ds-bg: #020804;
+  --ds-fg: #4ade80;
+  --ds-card: #041007;
+  --ds-card-fg: #86efac;
+  --ds-popover: #051409;
+  --ds-popover-fg: #86efac;
+  --ds-popover-border: #15803d;
+  --ds-popover-item: #092210;
+  --ds-popover-item-selected: #14532d;
+  --ds-popover-item-selected-fg: #86efac;
+
+  --ds-border: #14532d;
+  --ds-border-subtle: #0a2914;
+
+  /* Interactive & Muted Tokens (Dark CRT) */
+  --ds-primary: #22c55e;
+  --ds-primary-fg: #020804;
+  --ds-secondary: #0a2612;
+  --ds-secondary-fg: #86efac;
+  --ds-muted: #07190c;
+  --ds-muted-fg: #4ade80;
+  --ds-accent: #14532d;
+  --ds-accent-fg: #86efac;
+  --ds-info: #10b981;
+  --ds-info-fg: #020804;
+
+  /* Surface Elevation (Dark CRT Glow) */
+  --ds-button-border: #22c55e;
+  --ds-button-shadow: 0 0 12px -2px rgb(34 197 94 / 0.45);
+  --ds-button-outlined-shadow: 0 0 10px -2px rgb(34 197 94 / 0.25);
+  --ds-button-soft-shadow: 0 0 8px -2px rgb(34 197 94 / 0.2);
+  --ds-card-shadow: 0 0 24px -8px rgb(34 197 94 / 0.22);
+  --ds-input-shadow: inset 0 0 8px -2px rgb(34 197 94 / 0.18);
+
+  /* Form Controls & Charts (Dark CRT) */
+  --ds-input-bg: #030c05;
+  --ds-input-border: #15803d;
+  --ds-input-focus: #22c55e;
+  --ds-input-fg: #86efac;
+  --ds-input-ring: #16a34a;
+
+  --ds-chart-1: #22c55e;
+  --ds-chart-2: #4ade80;
+  --ds-chart-3: #86efac;
+  --ds-chart-4: #10b981;
+  --ds-chart-5: #a3e635;
+}

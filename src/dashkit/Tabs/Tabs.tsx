@@ -18,7 +18,7 @@ const tabsVariants = cva('flex flex-col font-sans', {
   variants: {
     variant: {
       line: 'w-full',
-      pills: 'w-fit',
+      pills: 'w-full',
     },
   },
   defaultVariants: {
@@ -30,7 +30,7 @@ const tabsListVariants = cva('flex items-center', {
   variants: {
     variant: {
       line: 'w-full justify-start border-b border-border gap-6',
-      pills: 'inline-flex bg-muted p-0.5 ds-rounded-lg gap-0.5 border border-border/40',
+      pills: 'inline-flex w-fit bg-muted p-0.5 ds-rounded-lg gap-0.5 border border-border/40',
     },
   },
   defaultVariants: {

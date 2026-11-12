@@ -3,7 +3,7 @@ import { cva } from 'class-variance-authority';
 import { cn } from '../utils/cn';
 
 const inputWrapperVariants = cva(
-  'relative flex items-center bg-input-bg border border-input-border ds-rounded outline-none transition-all duration-200 focus-within:border-input-focus focus-within:ring-2 focus-within:ring-input-focus/20',
+  'relative flex items-center bg-input-bg border border-input-border ds-input-surface ds-rounded outline-none transition-all duration-200 focus-within:border-input-focus focus-within:ring-2 focus-within:ring-input-focus/20',
   {
     variants: {
       size: {

@@ -73,7 +73,7 @@ export function ColorPicker({
             type="button"
             aria-labelledby={label ? `${labelId} ${valueId}` : undefined}
             className={cn(
-              'flex items-center gap-3 w-full h-9 px-3 ds-rounded bg-input-bg border border-input-border text-sm text-input-fg outline-none transition-all duration-200 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-transparent hover:ring-2 hover:ring-ring hover:ring-offset-2 hover:ring-offset-transparent',
+              'flex items-center gap-3 w-full h-9 px-3 ds-rounded bg-input-bg border border-input-border ds-input-surface text-sm text-input-fg outline-none transition-all duration-200 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-transparent hover:ring-2 hover:ring-ring hover:ring-offset-2 hover:ring-offset-transparent',
               error && 'border-ds-danger-500/50'
             )}
           >

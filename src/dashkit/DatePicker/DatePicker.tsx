@@ -61,7 +61,7 @@ export function DatePicker({
           aria-haspopup="dialog"
           aria-expanded={isOpen}
           className={cn(
-            'w-full px-4 h-9 text-sm bg-input-bg text-input-fg border border-input-border ds-rounded outline-none transition-all duration-200 text-left flex items-center justify-between gap-2 focus:border-input-focus focus:ring-2 focus:ring-input-focus/20 disabled:cursor-not-allowed disabled:opacity-50',
+            'w-full px-4 h-9 text-sm bg-input-bg text-input-fg border border-input-border ds-input-surface ds-rounded outline-none transition-all duration-200 text-left flex items-center justify-between gap-2 focus:border-input-focus focus:ring-2 focus:ring-input-focus/20 disabled:cursor-not-allowed disabled:opacity-50',
             className
           )}
         >
@@ -88,7 +88,7 @@ export function DatePicker({
               role="dialog"
               aria-label="Calendar"
               className={cn(
-                'w-[280px] bg-popover text-popover-fg border border-popover-border ds-rounded shadow-2xl p-4 overflow-hidden',
+                'w-[280px] bg-popover text-popover-fg border border-popover-border ds-border-width ds-card-shadow ds-rounded shadow-2xl p-4 overflow-hidden',
                 position === 'top' ? 'origin-bottom' : 'origin-top'
               )}
             >

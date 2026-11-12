@@ -473,7 +473,7 @@ export function ColumnOne() {
             </div>
             <div className="flex items-center justify-between pt-1">
                <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                  <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
+                  <span className="size-1.5 rounded-full bg-success shrink-0" />
                   <span>Delivery Active (200 OK)</span>
                </div>
                <Button

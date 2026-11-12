@@ -40,7 +40,7 @@ describe('IconButton', () => {
 
     rerender(<IconButton icon={<FiPlus />} variant="outlined" />);
     button = screen.getByRole('button');
-    expect(button).toHaveClass('border-ds-300');
+    expect(button).toHaveClass('border-border');
   });
 
   it('applies size modifiers correctly', () => {

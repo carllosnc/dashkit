@@ -8,7 +8,7 @@ export type ProgressBarColor = 'primary' | 'success' | 'warning' | 'danger' | 'i
 export type ProgressBarSize = 'xs' | 'sm' | 'md' | 'lg';
 
 const progressTrackVariants = cva(
-  'bg-ds-200 dark:bg-ds-800 rounded-full overflow-hidden',
+  'bg-ds-200 dark:bg-ds-800 rounded-full ds-pill overflow-hidden',
   {
     variants: {
       position: {
@@ -29,7 +29,7 @@ const progressTrackVariants = cva(
   }
 );
 
-const progressFillVariants = cva('h-full rounded-full', {
+const progressFillVariants = cva('h-full rounded-full ds-pill', {
   variants: {
     color: {
       primary: 'bg-primary',

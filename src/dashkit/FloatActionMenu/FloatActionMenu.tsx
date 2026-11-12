@@ -65,8 +65,8 @@ export function FloatActionMenu({
         className={cn(
           'flex items-center gap-2.5 px-4 py-3 ds-rounded active:scale-95 transition-all cursor-pointer relative z-10 shadow-lg',
           variant === 'primary'
-            ? 'ds-primary-gradient text-white hover:brightness-105 border border-white/10'
-            : 'bg-ds-900 text-white dark:bg-ds-100 dark:text-ds-950 hover:bg-ds-800 dark:hover:bg-ds-200 border border-border',
+            ? 'ds-primary-gradient text-primary-foreground hover:brightness-105 border border-transparent ds-button-surface'
+            : 'bg-ds-900 text-ds-50 dark:bg-ds-100 dark:text-ds-950 hover:bg-ds-800 dark:hover:bg-ds-200 border border-border ds-button-surface',
           buttonClassName
         )}
       >
@@ -86,7 +86,7 @@ export function FloatActionMenu({
             key="menu"
             ref={menuRef}
             className={cn(
-              'absolute w-[calc(100vw-3rem)] sm:w-[400px] max-w-[400px] min-h-[300px] bg-white dark:bg-ds-900 ds-rounded shadow-2xl border border-border dark:border-ds-800 overflow-hidden flex flex-col z-20',
+              'absolute w-[calc(100vw-3rem)] sm:w-[400px] max-w-[400px] min-h-[300px] bg-card text-card-foreground ds-rounded shadow-2xl border border-border ds-border-width ds-card-shadow overflow-hidden flex flex-col z-20',
               MENU_POSITION_CLASSES[position],
               menuClassName
             )}

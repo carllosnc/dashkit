@@ -20,8 +20,8 @@ export const BreadcrumbItem = React.forwardRef<HTMLLIElement, BreadcrumbItemProp
           href={href}
           className={cn(
             'flex items-center gap-1.5 text-sm transition-colors',
-            href ? 'text-ds-500 hover:text-ds-900 dark:text-ds-400 dark:hover:text-white' : 'text-ds-500 font-medium',
-            active && 'font-semibold text-ds-900 dark:text-white'
+            href ? 'text-ds-500 hover:text-ds-900 dark:text-ds-400 dark:hover:text-ds-100' : 'text-ds-500 font-medium',
+            active && 'font-semibold text-ds-900 dark:text-ds-100'
           )}
         >
           {children}

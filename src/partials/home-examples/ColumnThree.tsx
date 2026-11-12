@@ -425,7 +425,7 @@ export function ColumnThree() {
             </div>
             <div className="flex items-center justify-between text-xs pt-1">
                <span className="text-muted-foreground">Automatic backup snapshot daily</span>
-               <span className="font-medium text-emerald-600 dark:text-emerald-400">Encrypted</span>
+               <span className="font-medium text-success">Encrypted</span>
             </div>
             <Button
                variant="outlined"

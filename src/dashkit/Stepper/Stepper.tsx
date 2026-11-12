@@ -130,7 +130,7 @@ export function Step({
         {/* Step Icon */}
         <div
           className={cn(
-            'flex items-center justify-center size-8 rounded-full border-2 shrink-0 transition-colors duration-300 bg-card',
+            'flex items-center justify-center size-8 rounded-full ds-pill border-2 shrink-0 transition-colors duration-300 bg-card',
             (isCompleted || isActive)
               ? color === 'base'
                 ? isActive

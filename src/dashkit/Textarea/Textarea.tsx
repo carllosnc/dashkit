@@ -53,7 +53,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           }
           className={cn(
             'w-full px-4 py-3 text-base sm:text-sm transition-all duration-200 ds-rounded outline-none',
-            'bg-input-bg text-input-fg border border-input-border',
+            'bg-input-bg text-input-fg border border-input-border ds-input-surface',
             'focus:border-input-focus focus:ring-2 focus:ring-input-focus/20',
             'placeholder:text-muted-foreground',
             'disabled:cursor-not-allowed disabled:opacity-50',

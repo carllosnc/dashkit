@@ -8,12 +8,12 @@ const cardVariants = cva(
   {
     variants: {
       bordered: {
-        true: 'border border-border/80',
+        true: 'border border-border/80 ds-border-width',
         false: 'border-0',
       },
       shadowed: {
         true: 'shadow-sm',
-        false: 'shadow-none',
+        false: 'shadow-none ds-card-shadow',
       },
     },
     defaultVariants: {
