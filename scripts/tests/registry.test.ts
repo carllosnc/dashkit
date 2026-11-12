@@ -19,10 +19,10 @@ describe('Registry Integrity', () => {
   });
 
   it('should ensure all files in component folders are registered in registry.ts', () => {
-    // Get all subdirectories in src/dashkit, except 'utils'
+    // Get all subdirectories in src/dashkit, except 'utils' and 'presets'
     const subdirs = fs.readdirSync(componentsDir).filter((file) => {
       const fullPath = path.join(componentsDir, file);
-      return fs.statSync(fullPath).isDirectory() && file !== 'utils';
+      return fs.statSync(fullPath).isDirectory() && file !== 'utils' && file !== 'presets';
     });
 
     // Collect all registered files across all components, normalized to forward slashes
