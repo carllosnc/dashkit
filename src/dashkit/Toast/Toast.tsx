@@ -21,15 +21,17 @@ const viewportPositionClasses: Record<ToastPosition, string> = {
   'bottom-center': 'bottom-8 left-1/2 -translate-x-1/2 items-center',
 };
 
+export interface ToastProviderProps {
+  children: React.ReactNode;
+  position?: ToastPosition;
+  invert?: boolean;
+}
+
 export function ToastProvider({
   children,
   position = 'bottom-right',
   invert = false
-}: {
-  children: React.ReactNode;
-  position?: ToastPosition;
-  invert?: boolean;
-}) {
+}: ToastProviderProps) {
   const { toasts } = useToast();
   const isMounted = React.useSyncExternalStore(
     React.useCallback(() => () => {}, []),
