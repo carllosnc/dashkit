@@ -30,6 +30,7 @@ import { Sidebar, SidebarHeader, SidebarFooter, SidebarSection, SidebarItem } fr
 import { ImageExpander } from '../dashkit/ImageExpander/ImageExpander';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../dashkit/Accordion';
 import { Badge, FloatBadge } from '../dashkit/Badge';
+import { BentoGrid, BentoGridItem } from '../dashkit/BentoGrid';
 import { Skeleton } from '../dashkit/Skeleton/Skeleton';
 import { Spinner } from '../dashkit/Spinner/Spinner';
 import { Navbar } from '../dashkit/Navbar';
@@ -238,6 +239,8 @@ const components: Record<string, ElementType> = {
   NavigationMenuLink,
   NavigationMenuViewport,
   StatsCard,
+  BentoGrid,
+  BentoGridItem,
   HiOutlineChartBarSquare,
   HiOutlineTicket,
   Preview: ({ children }: { children: ReactNode }) => (
