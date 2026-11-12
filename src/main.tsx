@@ -22,6 +22,7 @@ import {
   BackdropDocs,
   BadgeDocs,
   BarChartDocs,
+  BentoGridDocs,
   BreadcrumbDocs,
   ButtonDocs,
   ButtonGroupDocs,
@@ -113,6 +114,7 @@ createRoot(document.getElementById('root')!).render(
                     <Route path="animate-number" element={<MdxWrapper Component={AnimateNumberDocs} />} />
                     <Route path="circular-progress" element={<MdxWrapper Component={CircularProgressDocs} />} />
                     <Route path="badge" element={<MdxWrapper Component={BadgeDocs} />} />
+                    <Route path="bento-grid" element={<MdxWrapper Component={BentoGridDocs} />} />
                     <Route path="breadcrumb" element={<MdxWrapper Component={BreadcrumbDocs} />} />
                     <Route path="backdrop" element={<MdxWrapper Component={BackdropDocs} />} />
                     <Route path="button" element={<MdxWrapper Component={ButtonDocs} />} />
