@@ -45,9 +45,8 @@ export function ButtonGroupItem({
     <button
       className={cn(
         'ds-rounded relative inline-flex items-center justify-center font-medium text-sm h-9 px-4',
-        'bg-ds-0 text-foreground border border-ds-300 hover:bg-ds-50 transition-all cursor-pointer',
+        'bg-card text-foreground border border-border ds-border-width hover:bg-muted/60 transition-all cursor-pointer',
         'focus:outline-none focus:z-10 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring active:scale-[0.98]',
-        'dark:bg-ds-900 dark:border-ds-700 dark:hover:bg-ds-800',
         selected && 'bg-ds-200 text-foreground font-semibold z-10 shadow-xs dark:bg-ds-700 dark:text-foreground',
         className
       )}
