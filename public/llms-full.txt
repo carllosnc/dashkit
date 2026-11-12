@@ -202,6 +202,7 @@ import { BentoGrid, BentoGridItem } from '@/dashkit/BentoGrid';
 
 By default, `BentoGrid` uses `gap="none"` to render a continuous `1px` hairline divider between cells without double borders—even when combining multi-row vertical spans (`rowSpan={2}`) and full-width spans (`colSpan="full"`).
 
+
   
     
       01 / Ingestion
@@ -259,6 +260,7 @@ By default, `BentoGrid` uses `gap="none"` to render a continuous `1px` hairline 
     
   
 
+
 ```tsx
 <BentoGrid cols={{ base: 1, sm: 2, lg: 12 }} autoRows="minmax(140px, auto)">
   <BentoGridItem colSpan={{ base: 1, sm: 1, lg: 4 }}>Cell 1</BentoGridItem>
@@ -278,6 +280,7 @@ By default, `BentoGrid` uses `gap="none"` to render a continuous `1px` hairline 
 ### Sharp Architectural Wireframe (`rounded="none"`)
 
 Set `rounded="none"` for a sharp editorial or architectural blueprint layout where every outer corner and inner intersection meets at 90 degrees.
+
 
   
     
@@ -300,6 +303,7 @@ Set `rounded="none"` for a sharp editorial or architectural blueprint layout whe
     
   
 
+
 ```tsx
 <BentoGrid cols={{ base: 1, md: 12 }} rounded="none" autoRows="minmax(120px, auto)">
   <BentoGridItem colSpan={{ base: 1, md: 4 }}>col-span-4</BentoGridItem>
@@ -317,6 +321,7 @@ Set `rounded="none"` for a sharp editorial or architectural blueprint layout whe
 
 Pass `gap="sm" | "md" | "lg"` when you want detached Bento cards instead of shared hairline borders.
 
+
   
     
       Detached Bento Card (2 cols)
@@ -328,6 +333,7 @@ Pass `gap="sm" | "md" | "lg"` when you want detached Bento cards instead of shar
     
   
 
+
 ```tsx
 <BentoGrid cols={3} gap="md">
   <BentoGridItem colSpan={2}>Detached Bento Card</BentoGridItem>
@@ -337,6 +343,7 @@ Pass `gap="sm" | "md" | "lg"` when you want detached Bento cards instead of shar
 
 ### BentoGrid Props
 
+
 | Property | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
 | `cols` | `BentoResponsiveValue` | `3` | Number of grid columns. Accepts a direct number (stacks on mobile, applies at md+) or a responsive breakpoint object ({ base, sm, md, lg, xl }). |
@@ -345,7 +352,9 @@ Pass `gap="sm" | "md" | "lg"` when you want detached Bento cards instead of shar
 | `rounded` | `'none' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'xl'` | Controls the outer corner radius of the grid container. |
 | `autoRows` | `string` | - | Sets the CSS grid-auto-rows property (e.g., 'minmax(140px, auto)'). |
 
+
 ### BentoGridItem Props
+
 
 | Property | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
@@ -1566,6 +1575,60 @@ The component is highly accessible and supports a fluid layout for its triggers.
 </Tabs>
 ```
 
+### Pills Variant (Segmented Control)
+
+Use `variant="pills"` to render tabs inside a compact, segmented track with an elevated floating indicator that smoothly slides between options.
+
+
+  
+    
+      Overview
+      Analytics
+      Reports
+      Notifications
+    
+    
+      
+        Platform Overview
+        General metric summary across all edge environments.
+      
+    
+    
+      
+        Live Analytics
+        Real-time latency, request rate, and error rate telemetry.
+      
+    
+    
+      
+        Generated Reports
+        Weekly and monthly compliance export records.
+      
+    
+    
+      
+        Notification Feeds
+        System warnings and deployment completion triggers.
+      
+    
+  
+
+
+```tsx
+<Tabs defaultValue="overview" variant="pills">
+  <TabsList>
+    <TabsTrigger value="overview">Overview</TabsTrigger>
+    <TabsTrigger value="analytics">Analytics</TabsTrigger>
+    <TabsTrigger value="reports">Reports</TabsTrigger>
+    <TabsTrigger value="notifications">Notifications</TabsTrigger>
+  </TabsList>
+  <TabsContent value="overview">Overview metrics</TabsContent>
+  <TabsContent value="analytics">Analytics telemetry</TabsContent>
+  <TabsContent value="reports">Generated reports</TabsContent>
+  <TabsContent value="notifications">Notification feeds</TabsContent>
+</Tabs>
+```
+
 ### Icons & Advanced Previews
 
 You can easily integrate icons and complex child layouts within your tabs.
@@ -1649,6 +1712,7 @@ The indicator uses Framer Motion's `layoutId` to achieve a "sliding" effect when
 | `defaultValue` | `string` | - | The value of the tab that should be active on mount. |
 | `value` | `string` | - | The controlled value of the active tab. |
 | `onValueChange` | `(val: string) => void` | - | Callback fired when the active tab changes. |
+| `variant` | `'line' \| 'pills'` | `'line'` | Visual styling variant: 'line' for standard bottom-bordered tabs, 'pills' for segmented control. |
 | `children` | `ReactNode` | - | Content of the tabs container. |
 | `className` | `string` | - | Additional CSS classes for the container. |
 
