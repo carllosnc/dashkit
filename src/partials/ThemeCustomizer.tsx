@@ -2,6 +2,7 @@ import { useTheme } from './ThemeContext';
 import {
   BASE_COLORS,
   PRIMARY_COLORS,
+  THEME_PRESETS,
   type BaseColor,
   type PrimaryColor,
 } from './themeConfig';
@@ -23,13 +24,14 @@ export function ThemeCustomizer({ className, size = 'sm' }: ThemeCustomizerProps
     setBaseColor,
     primaryColor,
     setPrimaryColor,
+    preset,
+    setPreset,
   } = useTheme();
 
-  const isDefault = baseColor === 'zinc' && primaryColor === 'blue';
+  const isDefault = preset === 'default' && baseColor === 'zinc' && primaryColor === 'blue';
 
   const handleReset = () => {
-    setBaseColor('zinc');
-    setPrimaryColor('blue');
+    setPreset('default');
   };
 
   return (
@@ -44,12 +46,57 @@ export function ThemeCustomizer({ className, size = 'sm' }: ThemeCustomizerProps
         />
       </PopoverTrigger>
 
-      <PopoverContent align="end" side="bottom" sideOffset={8} className="w-[320px] p-4">
+      <PopoverContent align="end" side="bottom" sideOffset={8} className="w-[330px] p-4">
         <div className="space-y-4">
           {/* Header */}
           <div className="pb-3 border-b border-border">
             <h4 className="font-semibold text-sm text-foreground">Theme Customizer</h4>
-            <p className="text-xs text-muted-foreground">Adjust base & brand colors in real-time</p>
+            <p className="text-xs text-muted-foreground">Switch design presets & palettes in real-time</p>
+          </div>
+
+          {/* Preset Section */}
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                Style Preset
+              </span>
+              <span className="text-xs font-semibold text-foreground">
+                {THEME_PRESETS.find(p => p.id === preset)?.label}
+              </span>
+            </div>
+            <div className="flex flex-col gap-1.5">
+              {THEME_PRESETS.map(p => {
+                const isSelected = preset === p.id;
+                return (
+                  <button
+                    key={p.id}
+                    type="button"
+                    onClick={() => setPreset(p.id)}
+                    className={clsx(
+                      'px-3 py-2 text-left ds-rounded border transition-all cursor-pointer flex items-center justify-between gap-3',
+                      isSelected
+                        ? 'border-primary bg-primary/10 text-foreground ring-1 ring-primary'
+                        : 'border-border bg-card hover:bg-muted/60 text-muted-foreground hover:text-foreground'
+                    )}
+                  >
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <span
+                        className="size-2.5 rounded-full shrink-0"
+                        style={{ backgroundColor: p.accentHex }}
+                      />
+                      <div className="flex flex-col min-w-0">
+                        <span className="text-xs font-semibold text-foreground leading-tight">
+                          {p.label}
+                        </span>
+                        <span className="text-[11px] text-muted-foreground truncate leading-tight">
+                          {p.tagline}
+                        </span>
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
           {/* Primary Color Section */}
