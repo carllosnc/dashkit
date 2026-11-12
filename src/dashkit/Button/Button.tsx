@@ -16,9 +16,9 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        filled: '',
-        outlined: 'bg-card text-foreground border',
-        soft: '',
+        filled: 'border ds-button-surface',
+        outlined: 'bg-card text-foreground border ds-button-outlined-surface',
+        soft: 'border ds-button-soft-surface',
         ghost: 'bg-transparent border border-transparent',
       },
       color: {
@@ -31,7 +31,7 @@ const buttonVariants = cva(
         lg: 'h-11 text-base',
       },
       rounded: {
-        true: 'rounded-full',
+        true: 'rounded-full ds-pill',
         false: 'rounded-md',
       },
     },
@@ -40,7 +40,7 @@ const buttonVariants = cva(
       {
         variant: 'filled',
         color: 'primary',
-        className: 'ds-primary-gradient text-primary-foreground shadow-xs hover:brightness-105',
+        className: 'ds-primary-gradient text-primary-foreground hover:brightness-105',
       },
       {
         variant: 'filled',
@@ -51,7 +51,7 @@ const buttonVariants = cva(
       {
         variant: 'outlined',
         color: 'primary',
-        className: 'border-ds-300 hover:bg-ds-50 dark:border-ds-700 dark:hover:bg-ds-800/50 dark:hover:brightness-110',
+        className: 'border-border hover:bg-muted/60 dark:hover:bg-muted/60 dark:hover:brightness-110',
       },
       {
         variant: 'outlined',
