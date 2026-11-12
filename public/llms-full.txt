@@ -57,29 +57,6 @@ bunx carllosnc/dashkit add accordion
 The accordion supports `single` (default) or `multiple` expansion modes via the `type` prop.
 
 
-  
-    
-      Minimalist Performance
-      
-        No boxes, no shadows. Just clean spacers and thin lines for a modern, high-density dashboard look. We've removed the container styling to let your content breathe.
-      
-    
-
-    
-      Seamless Integration
-      
-        Designed to fit anywhere—sidebars, settings pages, or complex forms without added visual noise. The spring animations provide a premium feel without being distracting.
-      
-    
-
-    
-      Accessibility First
-      
-        Fully accessible via keyboard navigation. Users can toggle items using the Enter or Space key, following the standard WAI-ARIA design pattern for accordions.
-      
-    
-  
-
 
 ```tsx
 <Accordion type="single" defaultValue="item-1">
@@ -97,31 +74,6 @@ The accordion supports `single` (default) or `multiple` expansion modes via the 
 
 Use the `type="multiple"` prop to allow more than one item to be expanded at the same time.
 
-
-  
-    
-      
-        
-          
-          Real-time Updates
-        
-      
-      
-        Synchronize state across multiple browser tabs with zero latency using our optimized WebSocket provider.
-      
-    
-    
-      
-        
-          
-          Audit Logs Tracking
-        
-      
-      
-        Every action is recorded and verifiable. Export logs to CSV or JSON for compliance reporting.
-      
-    
-  
 
 
 ```tsx
@@ -203,63 +155,6 @@ import { BentoGrid, BentoGridItem } from '@/dashkit/BentoGrid';
 By default, `BentoGrid` uses `gap="none"` to render a continuous `1px` hairline divider between cells without double borders—even when combining multi-row vertical spans (`rowSpan={2}`) and full-width spans (`colSpan="full"`).
 
 
-  
-    
-      01 / Ingestion
-      
-        Edge Collector
-        Low-latency telemetry pipelines across 38 regions.
-      
-    
-
-    
-      02 / Cache
-      
-        99.98% Hit Rate
-        In-memory distributed read replicas.
-      
-    
-
-    
-      
-        03 / Architecture
-        
-      
-      
-        1.42M req/s
-        
-          Tall vertical cell spanning two rows alongside the 2x2 grid on the left, sharing a single 1px border on all sides.
-        
-      
-      cluster-us-east-primary
-    
-
-    
-      04 / Storage
-      
-        Zero-Copy Snapshots
-        Instant branching for isolated preview environments.
-      
-    
-
-    
-      05 / Security
-      
-        mTLS Enforced
-        Automated certificate rotation every 24h.
-      
-    
-
-    
-      
-        06 / Full-Width Footer
-        Global Consensus Layer
-        Spans all 12 columns across the bottom while preserving a crisp 1px top divider.
-      
-      
-    
-  
-
 
 ```tsx
 <BentoGrid cols={{ base: 1, sm: 2, lg: 12 }} autoRows="minmax(140px, auto)">
@@ -282,27 +177,6 @@ By default, `BentoGrid` uses `gap="none"` to render a continuous `1px` hairline 
 Set `rounded="none"` for a sharp editorial or architectural blueprint layout where every outer corner and inner intersection meets at 90 degrees.
 
 
-  
-    
-      col-span-4
-    
-    
-      col-span-3
-    
-    
-      col-span-5 / row-span-2
-    
-    
-      col-span-4
-    
-    
-      col-span-3
-    
-    
-      col-span-full
-    
-  
-
 
 ```tsx
 <BentoGrid cols={{ base: 1, md: 12 }} rounded="none" autoRows="minmax(120px, auto)">
@@ -321,17 +195,6 @@ Set `rounded="none"` for a sharp editorial or architectural blueprint layout whe
 
 Pass `gap="sm" | "md" | "lg"` when you want detached Bento cards instead of shared hairline borders.
 
-
-  
-    
-      Detached Bento Card (2 cols)
-      Automatically switches to individual card borders when gap is enabled.
-    
-    
-      Side Card (1 col)
-      Muted surface variant.
-    
-  
 
 
 ```tsx
@@ -400,20 +263,6 @@ import {
 The card can be used as a simple container or with its sub-components for more structure.
 
 
-  
-    
-      Project Overhaul
-      A comprehensive update to the dashboard architecture and visual identity.
-    
-    
-      A standard composed card using the modular component internal structure for full layout control. This design pattern allows for deep nesting and flexible content slots.
-    
-    
-      Dismiss
-      View Details
-    
-  
-
 
 ```tsx
 <Card>
@@ -437,18 +286,6 @@ The card can be used as a simple container or with its sub-components for more s
 
 The `CardHeader` supports a `leftIcon` prop to easily add visual context and an `action` prop for right-aligned elements like badges, buttons, or menus.
 
-
-  
-    }
-      action={}
-    >
-      Security Overview
-      Manage your system security settings and firewall rules.
-    
-    
-      Enable advanced threat protection and automated security scanning for all connected infrastructure nodes.
-    
-  
 
 
 ```tsx
@@ -475,28 +312,6 @@ import { Badge, Card, CardHeader, CardTitle, CardDescription } from '@/dashkit';
 
 Cards are built using sub-components to provide maximum flexibility for different use cases. While `leftIcon` and `action` handle common patterns, you can still compose the header manually for more complex layouts.
 
-
-  
-    }>
-      System Analytics
-      Real-time monitoring of global infrastructure and system health.
-    
-    
-      
-        
-          Uptime
-          99.99%
-        
-        
-          Latency
-          12ms
-        
-      
-    
-    
-      View Global Status
-    
-  
 
 
 ```tsx
@@ -732,7 +547,7 @@ Horizontal dividers can contain text or other components, positioned along the l
 - Installation: `bunx carllosnc/dashkit add scrollarea`
 - NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`
 
-export const VerticalExample = () => (
+=> (
   
     
       
@@ -746,7 +561,7 @@ export const VerticalExample = () => (
   
 );
 
-export const HorizontalExample = () => (
+ => (
   
     
       
@@ -1030,7 +845,7 @@ The Navigation Menu uses a value-based system to track the active item. Ensure t
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
 - Dashkit Dependencies: `iconbutton`, `tooltip`, `backdrop`
 
-export const InteractiveSidebar = () => {
+=> {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [isOpen, setIsOpen] = useState(true);
 
@@ -1094,7 +909,7 @@ export const InteractiveSidebar = () => {
   );
 };
 
-export const CollapsibleSectionExample = () => {
+ => {
   return (
     
       
@@ -1163,8 +978,6 @@ bunx carllosnc/dashkit add sidebar
 ### Basic Usage
 
 The `Sidebar` uses a semantic composition of headers, content scroll area, sections, and footers to create a cohesive navigation experience.
-
-
 
 
 
@@ -1544,21 +1357,6 @@ bunx carllosnc/dashkit add tabs
 The component is highly accessible and supports a fluid layout for its triggers.
 
 
-  
-    
-      Account
-      Password
-    
-    
-      Account Settings
-      Update your account email and personal information.
-    
-    
-      Password
-      Change your password and manage your security settings.
-    
-  
-
 
 ```tsx
 <Tabs defaultValue="account">
@@ -1580,39 +1378,6 @@ The component is highly accessible and supports a fluid layout for its triggers.
 Use `variant="pills"` to render tabs inside a compact, segmented track with an elevated floating indicator that smoothly slides between options.
 
 
-  
-    
-      Overview
-      Analytics
-      Reports
-      Notifications
-    
-    
-      
-        Platform Overview
-        General metric summary across all edge environments.
-      
-    
-    
-      
-        Live Analytics
-        Real-time latency, request rate, and error rate telemetry.
-      
-    
-    
-      
-        Generated Reports
-        Weekly and monthly compliance export records.
-      
-    
-    
-      
-        Notification Feeds
-        System warnings and deployment completion triggers.
-      
-    
-  
-
 
 ```tsx
 <Tabs defaultValue="overview" variant="pills">
@@ -1632,51 +1397,6 @@ Use `variant="pills"` to render tabs inside a compact, segmented track with an e
 ### Icons & Advanced Previews
 
 You can easily integrate icons and complex child layouts within your tabs.
-
-
-  
-    
-      
-        
-        Profile
-      
-      
-        
-        Activity
-      
-      
-        
-        Settings
-      
-    
-
-    
-      User Profile
-      
-        Update your personal details and public information. All changes are saved automatically.
-      
-    
-    
-      Recent Activity
-      
-        
-          
-          Successfully deployed project dashkit
-        
-        
-          
-          Updated registry.json
-        
-      
-    
-    
-      Preferences
-      
-        Manage your notification types, connected accounts, and general dashboard settings.
-      
-    
-  
-
 
 ```tsx
 <Tabs defaultValue="profile">
@@ -1756,26 +1476,6 @@ bunx carllosnc/dashkit add stepper
 Displays a multi-step sequence with active, completed, and inactive states. Uses `framer-motion` for animated connecting lines.
 
 
-  
-    {React.createElement(() => {
-      const [step, setStep] = useState(1);
-      return (
-        
-           
-              
-              
-              
-           
-           
-           
-               setStep(prev => prev - 1)}>Back
-               setStep(prev => prev + 1)}>Next Step
-           
-        
-      );
-    })}
-  
-
 
 ```tsx
 import { useState } from 'react';
@@ -1806,15 +1506,6 @@ export function StepperExample() {
 Set `orientation="vertical"` to stack the steps vertically, which is highly suited for sidebars or logs.
 
 
-  
-    
-      
-      
-      
-      
-    
-  
-
 
 ```tsx
 import { Stepper, Step } from '@/dashkit/Stepper';
@@ -1830,14 +1521,6 @@ import { Stepper, Step } from '@/dashkit/Stepper';
 ### Custom Icons
 By default, steps are auto-numbered. You can supply an `icon` prop to customize the visual indicator for each step.
 
-
-  
-    
-      } />
-      } />
-      } />
-    
-  
 
 
 ```tsx
@@ -1855,15 +1538,6 @@ import { FiUser, FiCreditCard, FiCheckCircle } from 'react-icons/fi';
 
 Control the stepper's accent theme using the `color` prop. Use `"primary"` (default) for brand accenting or `"base"` for clean, monochrome neutral styling.
 
-
-  
-    Base Monochrome Theme (`color="base"`)
-    
-      
-      
-      
-    
-  
 
 
 ```tsx
@@ -1923,13 +1597,6 @@ A functional and responsive component for navigating between large sets of data 
 Provide the `currentPage`, `totalPages`, and an `onChange` callback to sync state perfectly.
 
 
-  {React.createElement(() => {
-    const [page, setPage] = useState(1);
-    return (
-      
-    );
-  })}
-
 
 ```tsx
 import { useState } from 'react';
@@ -1951,13 +1618,6 @@ export function PaginationExample() {
 ### Short List
 When `totalPages` is small (e.g., 5 pages), the component automatically hides the ellipsis logic and simply renders a cohesive string of pages.
 
-
-  {React.createElement(() => {
-    const [page, setPage] = useState(2);
-    return (
-      
-    );
-  })}
 
 
 ```tsx
@@ -1981,13 +1641,6 @@ export function PaginationShortExample() {
 The `Pagination` component automatically calculates ellipsis (`...`) truncations for large ranges to prevent overflowing.
 
 
-  {React.createElement(() => {
-    const [page, setPage] = useState(50);
-    return (
-      
-    );
-  })}
-
 
 ```tsx
 import { useState } from 'react';
@@ -2009,13 +1662,6 @@ export function PaginationLargeDataExample() {
 ### Minimal Mode
 By configuring `siblingCount={0}`, you can minimize the footprint of the pagination. The component defaults to `siblingCount={1}`.
 
-
-  {React.createElement(() => {
-    const [page, setPage] = useState(25);
-    return (
-      
-    );
-  })}
 
 
 ```tsx
@@ -2055,7 +1701,7 @@ export function PaginationMinimalExample() {
 - Installation: `bunx carllosnc/dashkit add dock`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
 
-export const DockDemo = () => {
+=> {
   return (
     
       
@@ -2472,7 +2118,7 @@ Vertical groups are useful for sidebars or property menus.
 - Installation: `bunx carllosnc/dashkit add input`
 - NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`
 
-export const PatternsExample = () => {
+=> {
   const formatCPF = (val) => val
     .replace(/^(\d{3})(\d)/, '$1.$2')
     .replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3')
@@ -2730,7 +2376,7 @@ The component extends all native `TextareaHTMLAttributes` props, plus the follow
 - Installation: `bunx carllosnc/dashkit add checkbox`
 - NPM Dependencies: `clsx`, `tailwind-merge`
 
-export const ControlledExample = () => {
+=> {
   const [checked, setChecked] = useState(false);
   return (
     
@@ -2863,7 +2509,7 @@ The component extends all native `InputHTMLAttributes` props (excluding `type`),
 - Installation: `bunx carllosnc/dashkit add radio`
 - NPM Dependencies: `clsx`, `tailwind-merge`
 
-export const RadioDemo = () => {
+=> {
   const [selected, setSelected] = useState('one');
 
   const options = [
@@ -2990,7 +2636,7 @@ Extends all native `RadioHTMLAttributes` (except `type`), plus these specialties
 - Installation: `bunx carllosnc/dashkit add switch`
 - NPM Dependencies: `clsx`, `tailwind-merge`
 
-export const SwitchDemo = () => {
+=> {
   const [enabled, setEnabled] = useState(false);
 
   return (
@@ -3100,7 +2746,7 @@ Extends all native `CheckboxHTMLAttributes` (except `type`), plus these specialt
 - Installation: `bunx carllosnc/dashkit add select`
 - NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`, `react-icons`
 
-export const SelectDemo = () => {
+=> {
   const [value, setValue] = useState('');
 
   const shippingOptions = [
@@ -3197,20 +2843,7 @@ export function ShippingForm() {
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
 - Dashkit Dependencies: `chip`
 
-export const frameworks = [
-  { value: 'nextjs', label: 'Next.js' },
-  { value: 'sveltekit', label: 'SvelteKit' },
-  { value: 'nuxt', label: 'Nuxt.js' },
-  { value: 'remix', label: 'Remix' },
-  { value: 'astro', label: 'Astro' },
-  { value: 'gatsby', label: 'Gatsby' },
-  { value: 'vite', label: 'Vite' },
-  { value: 'webpack', label: 'Webpack' },
-  { value: 'parcel', label: 'Parcel' },
-  { value: 'rollup', label: 'Rollup' },
-];
-
-export const BasicExample = () => {
+=> {
   const [value, setValue] = useState('nextjs');
   return (
     
@@ -3219,7 +2852,7 @@ export const BasicExample = () => {
   );
 };
 
-export const MultiSelectExample = () => {
+ => {
   const [multiValue, setMultiValue] = useState(['nextjs', 'vite']);
   return (
     
@@ -3344,7 +2977,7 @@ The combobox supports different visual states like `disabled` or pre-filled valu
 - Installation: `bunx carllosnc/dashkit add slider`
 - NPM Dependencies: `clsx`, `tailwind-merge`
 
-export const SliderDemo = () => {
+=> {
   const [value, setValue] = useState(50);
 
   return (
@@ -3467,7 +3100,7 @@ Extends all native `InputHTMLAttributes` (except `type` and `onChange`), plus th
 - Installation: `bunx carllosnc/dashkit add datefield`
 - NPM Dependencies: `clsx`, `tailwind-merge`
 
-export const BasicExample = () => {
+=> {
   const [value, setValue] = useState(null);
   return (
     
@@ -3476,7 +3109,7 @@ export const BasicExample = () => {
   );
 };
 
-export const InteractiveDateField = () => {
+ => {
   const [value, setValue] = useState(new Date());
   return (
     
@@ -3681,7 +3314,7 @@ You can provide custom labels, descriptions, and placeholders.
 - Installation: `bunx carllosnc/dashkit add otpinput`
 - NPM Dependencies: `clsx`, `tailwind-merge`
 
-export const OtpInputDemo = () => {
+=> {
   const [otp, setOtp] = useState('');
   const [isVerifying, setIsVerifying] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
@@ -3905,7 +3538,7 @@ Add a `label` and `description` to provide context for the value.
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`, `react-icons`
 - Dashkit Dependencies: `backdrop`, `iconbutton`
 
-export const BasicModal = () => {
+=> {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
@@ -3930,7 +3563,7 @@ export const BasicModal = () => {
   );
 };
 
-export const ComposableModal = () => {
+ => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
@@ -3960,7 +3593,7 @@ export const ComposableModal = () => {
   );
 };
 
-export const AlertModalExample = () => {
+ => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
@@ -3990,7 +3623,7 @@ export const AlertModalExample = () => {
   );
 };
 
-export const FullScreenExample = () => {
+ => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
@@ -4161,7 +3794,7 @@ The `full` size provides a take-over experience while maintaining focus on a sin
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`, `react-icons`
 - Dashkit Dependencies: `backdrop`
 
-export const DrawerDemo = () => {
+=> {
   const [activeDrawer, setActiveDrawer] = useState(null);
   const closeDrawer = () => setActiveDrawer(null);
 
@@ -4296,7 +3929,7 @@ The sub-components `DrawerHeader`, `DrawerContent`, and `DrawerFooter` all accep
 - Installation: `bunx carllosnc/dashkit add dropdown`
 - NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`
 
-export const DropdownDemo = () => {
+=> {
   const [selected, setSelected] = useState('Personal');
 
   return (
@@ -4368,7 +4001,7 @@ export const DropdownDemo = () => {
   );
 }
 
-export const BasicMenuDemo = () => {
+ => {
   return (
     
       
@@ -4386,7 +4019,7 @@ export const BasicMenuDemo = () => {
   );
 }
 
-export const SelectableMenuDemo = () => {
+ => {
   const [selected, setSelected] = useState('Personal');
 
   return (
@@ -4419,7 +4052,7 @@ export const SelectableMenuDemo = () => {
   );
 }
 
-export const CustomTriggerDemo = () => {
+ => {
   return (
     
       
@@ -4696,7 +4329,7 @@ Since the `PopoverContent` is just a container, you can put any React components
 - Installation: `bunx carllosnc/dashkit add tooltip`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
 
-export const TooltipDemo = () => {
+=> {
   return (
     
       
@@ -4752,7 +4385,7 @@ export const TooltipDemo = () => {
   );
 }
 
-export const PositioningDemo = () => {
+ => {
   return (
     
       
@@ -4874,7 +4507,7 @@ Tooltips can be positioned on the `top`, `bottom`, `left`, or `right` of the tri
 - Installation: `bunx carllosnc/dashkit add toast`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
 
-export const ToastExamples = () => {
+=> {
   const showStacked = () => {
     toast({ title: 'Success!', description: 'The operation completed successfully.', type: 'success' });
     setTimeout(() => toast({ title: 'New Update', description: 'V5.2.0 is now available.', type: 'info' }), 400);
@@ -4898,7 +4531,7 @@ export const ToastExamples = () => {
   );
 };
 
-export const PositionExamples = () => {
+ => {
   return (
     
        toast({ title: 'Top Right', position: 'top-right', type: 'info' })}>
@@ -4914,7 +4547,7 @@ export const PositionExamples = () => {
   );
 };
 
-export const InvertedExamples = () => {
+ => {
   return (
     
        toast({ title: 'System Updated', description: 'All changes saved to the cloud.', type: 'success', invert: true })}>
@@ -5060,7 +4693,7 @@ bunx carllosnc/dashkit add backdrop
 
 The backdrop component is usually controlled by a state.
 
-export const BasicExample = () => {
+ => {
   const [show, setShow] = useState(false);
   return (
     <>
@@ -5087,7 +4720,7 @@ return (
 
 You can pass children to the backdrop, which will be centered on top of the overlay.
 
-export const ChildrenExample = () => {
+ => {
   const [show, setShow] = useState(false);
   return (
     <>
@@ -5430,7 +5063,7 @@ Control the visibility of the background track and the shape of the progress end
 - Installation: `bunx carllosnc/dashkit add skeleton`
 - NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`
 
-export const SkeletonDemo = () => {
+=> {
   return (
     
       
@@ -5569,34 +5202,7 @@ Disable animations entirely with `animation="none"`.
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
 - Dashkit Dependencies: `iconbutton`
 
-export const FloatActionMenuDemo = () => (
-  
-    
-      
-        Slide-in Interaction
-      
-      
-        The button remains fixed while the menu slides in from the right to left.
-      
-    
-
-    }
-      position="bottom-right"
-      className="absolute"
-    >
-      
-        {[
-          { icon: , label: 'Enable Alerts', color: 'text-orange-500' },
-          { icon: , label: 'View messages', color: 'text-emerald-500' },
-          { icon: , label: 'Global Settings', color: 'text-ds-500' },
-          { icon: , label: 'My profile', color: 'text-blue-500' },
-        ].map((item, i) => (
-          
-            {item.label}
-          
-        ))}
-      
-    
+=> (
   
 )
 
@@ -6039,7 +5645,7 @@ Combine badges with other components to create rich status indicators.
 - Installation: `bunx carllosnc/dashkit add chip`
 - NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`, `react-icons`
 
-export const MultiSelectExample = () => {
+=> {
   const [selectedChips, setSelectedChips] = useState(['React', 'Vite']);
   const toggleChip = (label) => {
     setSelectedChips(prev =>
@@ -6056,7 +5662,7 @@ export const MultiSelectExample = () => {
   );
 };
 
-export const RemovableExample = () => {
+ => {
   const [chips, setChips] = useState(['Personal', 'Work', 'Urgent', 'Low Priority']);
   const removeChip = (label) => {
     setChips(prev => prev.filter(c => c !== label));
@@ -6340,10 +5946,6 @@ bunx carllosnc/dashkit add statscard
 The `StatsCard` is perfect for dashboards and summary sections.
 
 
-  
-  
-  
-
 
 ```tsx
 import { StatsCard } from 'dashkit';
@@ -6379,17 +5981,6 @@ export default () => (
 Add visual context using icons from `react-icons`.
 
 
-  }
-    status="info"
-    description="Completion across all active sprints"
-  />
-  }
-    status="warning"
-    trend={8}
-    trendLabel="today"
-    description="Unassigned support requests"
-  />
-
 
 ```tsx
 import { StatsCard } from 'dashkit';
@@ -6419,10 +6010,6 @@ export default () => (
 Visualize data trends directly within the card using the `chart` prop.
 
 
-  
-  
-  
-
 
 ```tsx
 import { StatsCard } from 'dashkit';
@@ -6445,9 +6032,6 @@ export default () => (
 
 Combine sparklines and descriptive footers for maximum context.
 
-
-  
-  
 
 
 ```tsx
@@ -6508,17 +6092,9 @@ export default () => (
 - Installation: `bunx carllosnc/dashkit add animatenumber`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`
 
-export const AnimateNumberExample = () => {
+=> {
   const [val, setVal] = useState(1250);
   return (
-    
-      
-        
-      
-      
-          setVal(v => v + Math.floor(Math.random() * 100))}>Update Value
-          setVal(1250)}>Reset
-      
     
   );
 }
@@ -6622,8 +6198,6 @@ bunx carllosnc/dashkit add systemlogs
 The `SystemLogs` component takes an array of `logs` and renders them in a dark, monospace container that mimics a terminal environment.
 
 
-  
-
 
 ```tsx
 import { SystemLogs } from '@/dashkit/SystemLogs/SystemLogs'
@@ -6657,8 +6231,6 @@ The component supports five distinct log levels, each with its own visual style:
 - `error`: Error messages (indicated by `[ERR]`)
 - `stable`: Stability or state updates (indicated by `[STB]`)
 
-
-  
 
 
 ### Customization
@@ -6704,83 +6276,9 @@ Built with a composition pattern for ultimate flexibility. Renders a clean seman
 
 
 
-
-  Inventory list exported today.
-  
-    
-      Invoice
-      Status
-      Method
-      Amount
-    
-  
-  
-    
-      INV001
-      Paid
-      Credit Card
-      $250.00
-    
-    
-      INV002
-      Pending
-      PayPal
-      $150.00
-    
-    
-      INV003
-      Unpaid
-      Bank Transfer
-      $350.00
-    
-  
-  
-    
-      Total: $750.00
-    
-  
-
-
-
-
 ### Actions Support
 
 Tables often need a way to perform operations on specific rows. You can easily integrate a `Dropdown` for clean, consolidated actions.
-
-
-
-  
-    
-      Customer
-      Email
-      Actions
-    
-  
-  
-    {[
-      { name: 'John Cooper', email: 'john@example.com' },
-      { name: 'Sarah Miller', email: 'sarah@example.com' },
-    ].map((user) => (
-      
-        {user.name}
-        {user.email}
-        
-          
-            
-              } variant="ghost" size="sm" />
-            
-            
-              Actions
-              View details
-              Edit customer
-              
-              Delete customer
-            
-          
-        
-      
-    ))}
-  
 
 
 
@@ -7190,7 +6688,7 @@ Apply SVG patterns across the entire chart with the `texture` prop (`'striped' |
 - Installation: `bunx carllosnc/dashkit add imageexpander`
 - NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
 
-export const ImageExpanderDemo = () => {
+=> {
   const images = [
     {
       url: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?q=80&w=1176&auto=format&fit=crop",
