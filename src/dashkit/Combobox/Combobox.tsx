@@ -140,7 +140,7 @@ export function Combobox({
           placeholder={multiple && selectedOptions.length > 0 ? "Add more..." : placeholder}
           autoComplete="off"
           className={cn(
-            'w-full h-9 pl-10 pr-10 text-base sm:text-sm bg-input-bg text-input-fg border border-input-border ds-rounded outline-none transition-all duration-200 placeholder:text-muted-foreground focus:border-input-focus focus:ring-2 focus:ring-input-focus/20 disabled:cursor-not-allowed disabled:opacity-50',
+            'w-full h-9 pl-10 pr-10 text-base sm:text-sm bg-input-bg text-input-fg border border-input-border ds-input-surface ds-rounded outline-none transition-all duration-200 placeholder:text-muted-foreground focus:border-input-focus focus:ring-2 focus:ring-input-focus/20 disabled:cursor-not-allowed disabled:opacity-50',
             isOpen && 'border-input-focus ring-2 ring-input-focus/20'
           )}
         />
@@ -180,7 +180,7 @@ export function Combobox({
                 ? { top: triggerRect.bottom + 8 }
                 : { bottom: (window.innerHeight - triggerRect.top) + 8 }),
             }}
-            className="p-1 bg-popover text-popover-fg border border-popover-border ds-rounded shadow-lg overflow-hidden"
+            className="p-1 bg-popover text-popover-fg border border-popover-border ds-border-width ds-card-shadow ds-rounded shadow-lg overflow-hidden"
           >
             <div className="max-h-60 overflow-y-auto custom-scrollbar flex flex-col gap-0.5 font-sans pr-1">
               {filteredOptions.length === 0 ? (
