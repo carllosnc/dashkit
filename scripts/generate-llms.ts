@@ -164,6 +164,113 @@ export function convertPropertyDocToMarkdown(docStr: string): string {
   }
 }
 
+function stripTopLevelExports(text: string): string {
+  const exportRegex = /^export\s+(?:const|function)\s+[A-Za-z0-9_]+/gm;
+  let result = '';
+  let lastIndex = 0;
+
+  while (true) {
+    exportRegex.lastIndex = lastIndex;
+    const match = exportRegex.exec(text);
+    if (!match) {
+      result += text.slice(lastIndex);
+      break;
+    }
+
+    result += text.slice(lastIndex, match.index);
+
+    let i = match.index;
+    let depth = 0;
+    let enteredBlock = false;
+    let inString: string | null = null;
+    let escaped = false;
+
+    while (i < text.length) {
+      const ch = text[i];
+
+      if (inString) {
+        if (escaped) {
+          escaped = false;
+        } else if (ch === '\\') {
+          escaped = true;
+        } else if (ch === inString) {
+          inString = null;
+        }
+        i++;
+        continue;
+      }
+
+      if (ch === '\'' || ch === '"' || ch === '`') {
+        inString = ch;
+        i++;
+        continue;
+      }
+
+      if (ch === '{' || ch === '(' || ch === '[') {
+        depth++;
+        enteredBlock = true;
+      } else if (ch === '}' || ch === ')' || ch === ']') {
+        depth = Math.max(0, depth - 1);
+        if (enteredBlock && depth === 0) {
+          i++;
+          if (text[i] === ';') i++;
+          break;
+        }
+      }
+      i++;
+    }
+
+    lastIndex = i;
+  }
+
+  return result;
+}
+
+function stripNotProseDivs(text: string): string {
+  const openRegex = /<div\b[^>]*\bnot-prose\b[^>]*>/g;
+  let result = '';
+  let lastIndex = 0;
+
+  while (true) {
+    openRegex.lastIndex = lastIndex;
+    const match = openRegex.exec(text);
+    if (!match) {
+      result += text.slice(lastIndex);
+      break;
+    }
+
+    result += text.slice(lastIndex, match.index);
+
+    let i = match.index + match[0].length;
+    let depth = 1;
+
+    while (i < text.length && depth > 0) {
+      const nextOpen = text.indexOf('<div', i);
+      const nextClose = text.indexOf('</div>', i);
+
+      if (nextClose === -1) {
+        i = text.length;
+        break;
+      }
+
+      if (nextOpen !== -1 && nextOpen < nextClose) {
+        const after = text[nextOpen + 4];
+        if (after === '>' || after === ' ' || after === '\n' || after === '\r' || after === '\t') {
+          depth++;
+        }
+        i = nextOpen + 4;
+      } else {
+        depth--;
+        i = nextClose + 6;
+      }
+    }
+
+    lastIndex = i;
+  }
+
+  return result;
+}
+
 export function cleanMdxForDocumentation(content: string): string {
   const parts = content.split(/(```[\s\S]*?```)/g);
   let removedTitleH1 = false;
@@ -176,8 +283,9 @@ export function cleanMdxForDocumentation(content: string): string {
       // Outside code block
       let text = parts[i];
 
-      // Remove import statements
+      // Remove import statements and inline demo exports
       text = text.replace(/^import\s+[\s\S]*?from\s+['"][^'"]+['"];?\s*$/gm, '');
+      text = stripTopLevelExports(text);
 
       // Remove the top-level MDX H1 title (already emitted as `## <ComponentName>` by the generator)
       if (!removedTitleH1 && /^#\s+.+$/m.test(text)) {
@@ -191,8 +299,9 @@ export function cleanMdxForDocumentation(content: string): string {
       // to repeat across components, while H1/H2 anchors are strictly unique.
       text = text.replace(/^(#{1,5})\s+/gm, (_match, hashes: string) => `#${hashes} `);
 
-      // Remove <Preview ...> ... </Preview>
+      // Remove <Preview ...> ... </Preview> and <div className="not-prose"> ... </div>
       text = text.replace(/<Preview[\s\S]*?<\/Preview>/g, '');
+      text = stripNotProseDivs(text);
 
       // Convert <PropertyDoc ... /> to Markdown tables
       text = text.replace(/<PropertyDoc[\s\S]*?(?:\/>|<\/PropertyDoc>)/g, (match) => {
@@ -274,9 +383,12 @@ export function generateLlmsTxt(): string {
   lines.push('2. **Tier 2 (Component-Wide Style)**: Edit `cva(...)` variants directly inside `src/dashkit/<Component>/<Component>.tsx`.');
   lines.push('3. **Tier 3 (One-Off Instance Override)**: Pass `className` (merged via `cn()`, which resolves `rounded-*` and `bg-none` against `ds-rounded*` and `ds-*-gradient`) or target sub-elements via `data-slot` (`className="[&_[data-slot=label]]:uppercase [&_[data-slot=trigger]]:rounded-full"`).\n');
 
+  const totalComponents = Object.keys(registry).length;
+
   lines.push('## Component API Patterns (Compound vs. Prop-Driven)\n');
   lines.push('- **Compound Components (use subcomponents via `children`)**:');
-  lines.push('  - `Card`: `Card`, `CardHeader` (props: `title`, `description`, `action`), `CardContent`, `CardFooter`');
+  lines.push('  - `Card`: `Card`, `CardHeader` (props: `leftIcon`, `action`), `CardTitle`, `CardDescription`, `CardContent`, `CardFooter`');
+  lines.push('  - `BentoGrid`: `BentoGrid`, `BentoGridItem`');
   lines.push('  - `Tabs`: `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent`');
   lines.push('  - `Accordion`: `Accordion`, `AccordionItem`, `AccordionTrigger`, `AccordionContent`');
   lines.push('  - `Modal`: `Modal`, `ModalHeader`, `ModalContent`, `ModalFooter`');
@@ -284,9 +396,14 @@ export function generateLlmsTxt(): string {
   lines.push('  - `Dropdown`: `Dropdown`, `DropdownTrigger`, `DropdownContent`, `DropdownItem`, `DropdownLabel`, `DropdownSeparator`');
   lines.push('  - `Popover`: `Popover`, `PopoverTrigger`, `PopoverContent`');
   lines.push('  - `Table`: `TableContainer`, `Table`, `TableHeader`, `TableBody`, `TableFooter`, `TableRow`, `TableHead`, `TableCell`, `TableCaption`');
-  lines.push('  - `Navbar`: `Navbar`, `NavbarBrand`, `NavbarLinks`, `NavbarLink`, `NavbarActions`');
+  lines.push('  - `Navbar`: `Navbar`, `NavbarBrand`, `NavbarLinks`, `NavbarActions`');
+  lines.push('  - `NavigationMenu`: `NavigationMenu`, `NavigationMenuList`, `NavigationMenuItem`, `NavigationMenuTrigger`, `NavigationMenuContent`, `NavigationMenuLink`, `NavigationMenuViewport`');
+  lines.push('  - `Sidebar`: `SidebarProvider`, `Sidebar`, `SidebarTrigger`, `SidebarContent`, `SidebarHeader`, `SidebarSection`, `SidebarItem`, `SidebarSubList`, `SidebarSubItem`, `SidebarFooter`');
   lines.push('  - `Breadcrumb`: `Breadcrumb`, `BreadcrumbList`, `BreadcrumbItem`, `BreadcrumbSeparator`, `BreadcrumbEllipsis`');
   lines.push('  - `Stepper`: `Stepper`, `Step`');
+  lines.push('  - `Dock`: `Dock`, `DockItem`');
+  lines.push('  - `ButtonGroup`: `ButtonGroup`, `ButtonGroupItem`');
+  lines.push('  - `Avatar`: `Avatar`, `AvatarGroup`');
   lines.push('- **Prop-Driven Components (pass data via props, do NOT invent subcomponents)**:');
   lines.push('  - `Select`, `Combobox`: Pass `options={[{ value, label }]}`, `value`, `onChange`, `label`.');
   lines.push('  - `Input`, `Textarea`, `DatePicker`, `DateField`, `ColorPicker`, `CopyField`, `OtpInput`, `Checkbox`, `Radio`, `Switch`, `Slider`: Pass `label`, `description` / `helperText`, `error` directly as props.');
@@ -294,7 +411,7 @@ export function generateLlmsTxt(): string {
   lines.push('  - `AreaChart`, `BarChart`, `LineChart`, `PieChart`: Pass `data` and `series` props.\n');
 
   lines.push('## Component Catalog\n');
-  lines.push('Complete list of 55 production-ready components. For full API signatures, props tables, and code snippets, see [llms-full.txt](llms-full.txt).\n');
+  lines.push(`Complete list of ${totalComponents} production-ready components. For full API signatures, props tables, and code snippets, see [llms-full.txt](llms-full.txt).\n`);
 
   for (const cat of CATEGORIES) {
     lines.push(`### ${cat.name}\n`);

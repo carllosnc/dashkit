@@ -67,7 +67,8 @@ Apply on `<html>`, `<body>`, or any scoped container `<div>`:
 ## Component API Patterns (Compound vs. Prop-Driven)
 
 - **Compound Components (use subcomponents via `children`)**:
-  - `Card`: `Card`, `CardHeader` (props: `title`, `description`, `action`), `CardContent`, `CardFooter`
+  - `Card`: `Card`, `CardHeader` (props: `leftIcon`, `action`), `CardTitle`, `CardDescription`, `CardContent`, `CardFooter`
+  - `BentoGrid`: `BentoGrid`, `BentoGridItem`
   - `Tabs`: `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent`
   - `Accordion`: `Accordion`, `AccordionItem`, `AccordionTrigger`, `AccordionContent`
   - `Modal`: `Modal`, `ModalHeader`, `ModalContent`, `ModalFooter`
@@ -75,9 +76,14 @@ Apply on `<html>`, `<body>`, or any scoped container `<div>`:
   - `Dropdown`: `Dropdown`, `DropdownTrigger`, `DropdownContent`, `DropdownItem`, `DropdownLabel`, `DropdownSeparator`
   - `Popover`: `Popover`, `PopoverTrigger`, `PopoverContent`
   - `Table`: `TableContainer`, `Table`, `TableHeader`, `TableBody`, `TableFooter`, `TableRow`, `TableHead`, `TableCell`, `TableCaption`
-  - `Navbar`: `Navbar`, `NavbarBrand`, `NavbarLinks`, `NavbarLink`, `NavbarActions`
+  - `Navbar`: `Navbar`, `NavbarBrand`, `NavbarLinks`, `NavbarActions`
+  - `NavigationMenu`: `NavigationMenu`, `NavigationMenuList`, `NavigationMenuItem`, `NavigationMenuTrigger`, `NavigationMenuContent`, `NavigationMenuLink`, `NavigationMenuViewport`
+  - `Sidebar`: `SidebarProvider`, `Sidebar`, `SidebarTrigger`, `SidebarContent`, `SidebarHeader`, `SidebarSection`, `SidebarItem`, `SidebarSubList`, `SidebarSubItem`, `SidebarFooter`
   - `Breadcrumb`: `Breadcrumb`, `BreadcrumbList`, `BreadcrumbItem`, `BreadcrumbSeparator`, `BreadcrumbEllipsis`
   - `Stepper`: `Stepper`, `Step`
+  - `Dock`: `Dock`, `DockItem`
+  - `ButtonGroup`: `ButtonGroup`, `ButtonGroupItem`
+  - `Avatar`: `Avatar`, `AvatarGroup`
 - **Prop-Driven Components (pass data via props, do NOT invent subcomponents)**:
   - `Select`, `Combobox`: Pass `options={[{ value, label }]}`, `value`, `onChange`, `label`.
   - `Input`, `Textarea`, `DatePicker`, `DateField`, `ColorPicker`, `CopyField`, `OtpInput`, `Checkbox`, `Radio`, `Switch`, `Slider`: Pass `label`, `description` / `helperText`, `error` directly as props.
@@ -86,7 +92,7 @@ Apply on `<html>`, `<body>`, or any scoped container `<div>`:
 
 ## Component Catalog
 
-Complete list of 55 production-ready components. For full API signatures, props tables, and code snippets, see [llms-full.txt](llms-full.txt).
+Complete list of 56 production-ready components. For full API signatures, props tables, and code snippets, see [llms-full.txt](llms-full.txt).
 
 ### Layout & Containers
 

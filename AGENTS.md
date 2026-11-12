@@ -14,6 +14,7 @@
 - `bun run build` — typecheck and build
 - `bun run check:all` — test + lint + build
 - `bun run build:cli` — build the CLI bundle
+- `bun run build:llms` — regenerate `public/llms.txt`, `public/llms-full.txt`, and `public/registry.json`
 
 ## Architecture & Styling Guidelines
 

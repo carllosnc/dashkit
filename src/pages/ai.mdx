@@ -8,8 +8,8 @@ Feed Dashkit's structured documentation directly into your AI assistant's contex
 
 | Resource | Path | Purpose |
 | :--- | :--- | :--- |
-| **LLM Index** | [`/llms.txt`](/llms.txt) | Compact architecture overview, token reference, CLI commands, and 55-component catalog. |
-| **Full Technical Context** | [`/llms-full.txt`](/llms-full.txt) | Complete single-file specification with installation commands, JSX examples, and Markdown props tables for all 55 components. |
+| **LLM Index** | [`/llms.txt`](/llms.txt) | Compact architecture overview, token reference, CLI commands, and 56-component catalog. |
+| **Full Technical Context** | [`/llms-full.txt`](/llms-full.txt) | Complete single-file specification with installation commands, JSX examples, and Markdown props tables for all 56 components. |
 | **JSON Registry Schema** | [`/registry.json`](/registry.json) | Machine-readable JSON metadata containing component slugs, file paths, NPM dependencies, registry dependencies, exports, and raw TypeScript `*Props` interfaces. |
 
 ## Automatic AI Rules (`dashkit ai-rules`)
@@ -34,7 +34,7 @@ Autonomous agents can query the Dashkit CLI in non-interactive mode using `--jso
 # Inspect exports, dependencies, and TypeScript Props for a component
 bunx carllosnc/dashkit info card --json
 
-# List all 55 components and check which ones are installed locally
+# List all 56 components and check which ones are installed locally
 bunx carllosnc/dashkit list --json
 
 # Check if any local component files were customized vs. upstream
@@ -90,16 +90,22 @@ Dashkit components follow two predictable composition patterns:
 Use exported sub-components for structural layouts and overlays:
 
 - **Card**: `Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter`
+- **BentoGrid**: `BentoGrid`, `BentoGridItem`
 - **Tabs**: `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent`
 - **Accordion**: `Accordion`, `AccordionItem`, `AccordionTrigger`, `AccordionContent`
 - **Modal**: `Modal`, `ModalHeader`, `ModalContent`, `ModalFooter`
 - **Drawer**: `Drawer`, `DrawerHeader`, `DrawerContent`, `DrawerFooter`
 - **Dropdown**: `Dropdown`, `DropdownTrigger`, `DropdownContent`, `DropdownItem`, `DropdownLabel`, `DropdownSeparator`
 - **Popover**: `Popover`, `PopoverTrigger`, `PopoverContent`
-- **Table**: `Table`, `TableHeader`, `TableBody`, `TableFooter`, `TableRow`, `TableHead`, `TableCell`, `TableCaption`
+- **Table**: `TableContainer`, `Table`, `TableHeader`, `TableBody`, `TableFooter`, `TableRow`, `TableHead`, `TableCell`, `TableCaption`
 - **Navbar**: `Navbar`, `NavbarBrand`, `NavbarLinks`, `NavbarActions`
+- **NavigationMenu**: `NavigationMenu`, `NavigationMenuList`, `NavigationMenuItem`, `NavigationMenuTrigger`, `NavigationMenuContent`, `NavigationMenuLink`, `NavigationMenuViewport`
 - **Breadcrumb**: `Breadcrumb`, `BreadcrumbList`, `BreadcrumbItem`, `BreadcrumbSeparator`, `BreadcrumbEllipsis`
-- **Sidebar**: `Sidebar`, `SidebarHeader`, `SidebarSection`, `SidebarItem`, `SidebarFooter`
+- **Sidebar**: `SidebarProvider`, `Sidebar`, `SidebarTrigger`, `SidebarContent`, `SidebarHeader`, `SidebarSection`, `SidebarItem`, `SidebarSubList`, `SidebarSubItem`, `SidebarFooter`
+- **Stepper**: `Stepper`, `Step`
+- **Dock**: `Dock`, `DockItem`
+- **ButtonGroup**: `ButtonGroup`, `ButtonGroupItem`
+- **Avatar**: `Avatar`, `AvatarGroup`
 
 ### 2. Prop-Driven Components (Configure via Props)
 

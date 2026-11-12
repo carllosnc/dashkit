@@ -270,11 +270,15 @@ function extractMarkdownFromDom(root: HTMLElement): string {
       lines.push(`\n#### ${node.textContent?.trim() ?? ''}\n`);
     } else if (tag === 'p') {
       lines.push(`${node.textContent?.trim() ?? ''}\n`);
+    } else if (tag === 'blockquote') {
+      const quoteLines = (node.textContent?.trim() ?? '').split('\n').map((l) => `> ${l.trim()}`);
+      lines.push(`${quoteLines.join('\n')}\n`);
     } else if (tag === 'ul' || tag === 'ol') {
       const items = Array.from(node.querySelectorAll(':scope > li'));
-      for (const li of items) {
-        lines.push(`- ${li.textContent?.trim() ?? ''}`);
-      }
+      items.forEach((li, idx) => {
+        const prefix = tag === 'ol' ? `${idx + 1}.` : '-';
+        lines.push(`${prefix} ${li.textContent?.trim() ?? ''}`);
+      });
       lines.push('');
     } else if (node.querySelector('pre')) {
       const pre = node.querySelector('pre');

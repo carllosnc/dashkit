@@ -55,7 +55,7 @@ Dashkit provides an interactive CLI to streamline component integration.
 
 - `dashkit init [-y]`: Configures `dashkit.json`, copies `dashkit.css` and `utils/`, and injects the `@import` into your main CSS file.
 - `dashkit add [components...]`: Scaffolds one or more components, resolves dependencies in a single batch, and updates the root `index.ts` barrel.
-  - `-a, --all`: Add all 55 registry components at once.
+  - `-a, --all`: Add all 56 registry components at once.
   - `-o, --output <dir>`: Specify a custom destination path.
   - `--no-install`: Skip automatic installation of third-party package dependencies.
   - `-f, --force`: Overwrite existing files on disk.
@@ -77,10 +77,11 @@ Dashkit provides native context for AI coding assistants (Cursor, Claude Code, W
 
 ## Available Components
 
-Dashkit includes 55 production-ready components:
+Dashkit includes 56 production-ready components:
 
 ### Layout & Containers
 - Accordion
+- BentoGrid
 - Card
 - Surface
 - Divider
@@ -180,7 +181,7 @@ Dashkit is actively expanding its capabilities with an emphasis on developer erg
 
 - **Dashkit UI Builder Skill**: Dedicated AI agent skill (`SKILL.md`) with curated layout recipes, component pairing patterns, visual hierarchy rules, and best practices for generating modern UIs with Dashkit.
 - **Official MCP Server**: Model Context Protocol server (`@dashkit/mcp`) with component search, prop inspection, and scaffolding tools.
-- **Code Metadata & Typing**: JSDoc annotations with `@example` and `@default` blocks across all 55 components for inline LLM autocomplete.
+- **Code Metadata & Typing**: JSDoc annotations with `@example` and `@default` blocks across all 56 components for inline LLM autocomplete.
 - **Extended Slot & Prop Forwarding**: Complete `data-slot` coverage and `ComponentPropsWithoutRef` + `ref` forwarding across every overlay, navigation, and data display primitive.
 
 For detailed tracking and upcoming milestones, see [ROADMAP.md](ROADMAP.md).

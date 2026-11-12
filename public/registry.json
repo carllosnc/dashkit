@@ -1529,7 +1529,9 @@
         "toast",
         "resetToasts"
       ],
-      "propsDefinitions": []
+      "propsDefinitions": [
+        "export interface ToastProviderProps {\r\n  children: React.ReactNode;\r\n  position?: ToastPosition;\r\n  invert?: boolean;\r\n}"
+      ]
     },
     "tooltip": {
       "slug": "tooltip",
