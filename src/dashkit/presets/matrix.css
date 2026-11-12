@@ -2,17 +2,16 @@
    Dashkit Preset: Matrix
    @preset matrix
    @recommended-attrs class="dark" data-base="zinc" data-primary="green" data-preset="matrix"
-   @description Phosphor-green CRT terminal palette, 2px technical corners, monospace UI, subtle glow.
+   @description Phosphor-green CRT terminal palette, 2px technical corners, subtle glow.
    ───────────────────────────────────────────────────────────────────────────── */
 
 [data-preset="matrix"] {
-  /* 1. Geometry, Typography & Surface Elevation */
+  /* 1. Geometry & Surface Elevation */
   --radius: 0.125rem;
   --ds-pill-radius: var(--radius-md);
   --ds-border-width: 1px;
   --ds-primary-gradient: none;
   --ds-danger-gradient: none;
-  --font-sans: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
 
   --ds-button-border: #16a34a;
   --ds-button-shadow: 0 0 10px -2px rgb(22 163 74 / 0.35);
