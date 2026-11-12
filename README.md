@@ -12,12 +12,12 @@ Dashkit is an open-source React component library built with Tailwind CSS v4. It
 
 ## Highlights
 
-- Source Ownership: Components live directly within your project tree rather than behind locked node_modules packages.
-- Tailwind CSS v4 Native: Crafted around Tailwind v4 architecture, utilizing modern CSS variables and token-driven design.
-- React 19 Ready: Designed for modern React standards, supporting server components, actions, and client-side transitions.
-- Motion and Micro-Interactions: Built with Framer Motion for smooth, hardware-accelerated animations and spring physics.
-- High-Contrast Aesthetics: Balanced typography scales, deliberate contrast ratios, and first-class dark mode integration.
-- Automated CLI Workflow: A dedicated command-line interface to initialize stylesheets, resolve dependencies, and scaffold components.
+**- Source Ownership:** Components live directly within your project tree rather than behind locked node_modules packages.
+**- Tailwind CSS v4 Native:** Crafted around Tailwind v4 architecture, utilizing modern CSS variables and token-driven design.
+**- React 19 Ready:** Designed for modern React standards, supporting server components, actions, and client-side transitions.
+**- Motion and Micro-Interactions:** Built with Framer Motion for smooth, hardware-accelerated animations and spring physics.
+**- High-Contrast Aesthetics:** Balanced typography scales, deliberate contrast ratios, and first-class dark mode integration.
+**- Automated CLI Workflow:** A dedicated command-line interface to initialize stylesheets, resolve dependencies, and scaffold components.
 
 ## Getting Started
 
