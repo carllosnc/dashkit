@@ -22,7 +22,7 @@ describe('LLMs Documentation Generator', () => {
 
     expect(llmsContent.length).toBeGreaterThan(1000);
     expect(llmsFullContent.length).toBeGreaterThan(10000);
-    expect(registryJson.totalComponents).toBeGreaterThanOrEqual(55);
+    expect(registryJson.totalComponents).toBeGreaterThanOrEqual(56);
     expect(registryJson.components.button.name).toBe('Button');
     expect(Array.isArray(registryJson.components.button.exports)).toBe(true);
   });
@@ -57,7 +57,7 @@ describe('LLMs Documentation Generator', () => {
       }
     }
 
-    expect(totalCatalogComponents).toBe(55);
+    expect(totalCatalogComponents).toBe(56);
   });
 
   it('should resolve every catalog link anchor in llms.txt to an existing heading in llms-full.txt', () => {
@@ -70,7 +70,7 @@ describe('LLMs Documentation Generator', () => {
     }
 
     const linkAnchors = [...llmsContent.matchAll(/\(llms-full\.txt#([^)]+)\)/g)].map((m) => m[1]);
-    expect(linkAnchors.length).toBe(55);
+    expect(linkAnchors.length).toBe(56);
 
     for (const anchor of linkAnchors) {
       expect(fullHeadingAnchors.has(anchor), `Broken anchor link: #${anchor}`).toBe(true);
