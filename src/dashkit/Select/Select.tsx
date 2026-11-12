@@ -12,7 +12,7 @@ export interface SelectOption {
 }
 
 const selectTriggerVariants = cva(
-  'w-full text-left flex items-center justify-between gap-2 bg-input-bg text-input-fg border border-input-border ds-rounded outline-none transition-all duration-200 focus:border-input-focus focus:ring-2 focus:ring-input-focus/20 disabled:cursor-not-allowed disabled:opacity-50',
+  'w-full text-left flex items-center justify-between gap-2 bg-input-bg text-input-fg border border-input-border ds-input-surface ds-rounded outline-none transition-all duration-200 focus:border-input-focus focus:ring-2 focus:ring-input-focus/20 disabled:cursor-not-allowed disabled:opacity-50',
   {
     variants: {
       size: {
@@ -144,7 +144,7 @@ export function Select({
               zIndex: 9999,
             }}
             className={cn(
-              'p-1 bg-popover/95 backdrop-blur-md text-popover-fg border border-popover-border/80 ds-rounded-lg shadow-lg overflow-hidden',
+              'p-1 bg-popover/95 backdrop-blur-md text-popover-fg border border-popover-border/80 ds-border-width ds-card-shadow ds-rounded-lg shadow-lg overflow-hidden',
               side === 'top' ? 'origin-bottom' : 'origin-top'
             )}
           >
