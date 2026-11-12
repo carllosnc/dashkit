@@ -27,7 +27,7 @@ const badgeVariants = cva(
     },
     compoundVariants: [
       // Base
-      { variant: 'solid', color: 'base', className: 'bg-ds-500 text-white' },
+      { variant: 'solid', color: 'base', className: 'bg-ds-600 text-ds-50 dark:bg-ds-500 dark:text-ds-950' },
       { variant: 'soft', color: 'base', className: 'bg-ds-500/15 text-ds-600 dark:text-ds-400 dark:bg-ds-500/20' },
       // Success
       { variant: 'solid', color: 'success', className: 'bg-ds-success-600 text-ds-success-50 dark:bg-ds-success-500 dark:text-ds-success-950' },
