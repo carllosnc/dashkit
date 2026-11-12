@@ -9,7 +9,7 @@ import { useFocusTrap } from '../utils/useFocusTrap';
 import { Backdrop } from '../Backdrop/Backdrop';
 
 const modalContentVariants = cva(
-  'w-full bg-card text-card-foreground ds-rounded-lg border border-border/80 shadow-2xl overflow-hidden flex flex-col dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_25px_50px_-12px_rgba(0,0,0,0.7)]',
+  'w-full bg-card text-card-foreground ds-rounded-lg border border-border/80 ds-border-width ds-card-shadow shadow-2xl overflow-hidden flex flex-col dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_25px_50px_-12px_rgba(0,0,0,0.7)]',
   {
     variants: {
       size: {
