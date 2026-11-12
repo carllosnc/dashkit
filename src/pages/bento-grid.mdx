@@ -1,0 +1,239 @@
+import { BentoGrid, BentoGridItem } from '../dashkit/BentoGrid';
+import { Badge } from '../dashkit/Badge';
+
+# Bento Grid
+
+A modular grid layout system for building regular and irregular Bento or Hairline grids while maintaining seamless `1px` shared border coherence across arbitrary column/row spans and responsive breakpoints.
+
+## Installation
+
+Add the BentoGrid component to your project using the Dashkit CLI:
+
+```bash
+bunx carllosnc/dashkit add bento-grid
+```
+
+## Import
+
+```tsx
+import { BentoGrid, BentoGridItem } from '@/dashkit/BentoGrid';
+```
+
+## Irregular Hairline Grid
+
+By default, `BentoGrid` uses `gap="none"` to render a continuous `1px` hairline divider between cells without double borders—even when combining multi-row vertical spans (`rowSpan={2}`) and full-width spans (`colSpan="full"`).
+
+<div className="not-prose my-6">
+  <BentoGrid cols={{ base: 1, sm: 2, lg: 12 }} autoRows="minmax(140px, auto)">
+    <BentoGridItem colSpan={{ base: 1, sm: 1, lg: 4 }} className="justify-between">
+      <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground">01 / Ingestion</span>
+      <div>
+        <h4 className="text-base font-semibold text-foreground">Edge Collector</h4>
+        <p className="text-xs text-muted-foreground mt-1">Low-latency telemetry pipelines across 38 regions.</p>
+      </div>
+    </BentoGridItem>
+
+    <BentoGridItem colSpan={{ base: 1, sm: 1, lg: 3 }} className="justify-between">
+      <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground">02 / Cache</span>
+      <div>
+        <h4 className="text-base font-semibold text-foreground">99.98% Hit Rate</h4>
+        <p className="text-xs text-muted-foreground mt-1">In-memory distributed read replicas.</p>
+      </div>
+    </BentoGridItem>
+
+    <BentoGridItem
+      colSpan={{ base: 1, sm: 2, lg: 5 }}
+      rowSpan={{ base: 1, lg: 2 }}
+      className="justify-between"
+    >
+      <div className="flex items-center justify-between">
+        <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground">03 / Architecture</span>
+        <Badge content="2x Row Span" color="info" variant="soft" />
+      </div>
+      <div className="my-6 flex flex-col gap-2">
+        <div className="text-3xl font-bold tracking-tight text-foreground">1.42M req/s</div>
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          Tall vertical cell spanning two rows alongside the 2x2 grid on the left, sharing a single 1px border on all sides.
+        </p>
+      </div>
+      <span className="text-xs text-muted-foreground font-mono">cluster-us-east-primary</span>
+    </BentoGridItem>
+
+    <BentoGridItem colSpan={{ base: 1, sm: 1, lg: 4 }} className="justify-between">
+      <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground">04 / Storage</span>
+      <div>
+        <h4 className="text-base font-semibold text-foreground">Zero-Copy Snapshots</h4>
+        <p className="text-xs text-muted-foreground mt-1">Instant branching for isolated preview environments.</p>
+      </div>
+    </BentoGridItem>
+
+    <BentoGridItem colSpan={{ base: 1, sm: 1, lg: 3 }} className="justify-between">
+      <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground">05 / Security</span>
+      <div>
+        <h4 className="text-base font-semibold text-foreground">mTLS Enforced</h4>
+        <p className="text-xs text-muted-foreground mt-1">Automated certificate rotation every 24h.</p>
+      </div>
+    </BentoGridItem>
+
+    <BentoGridItem colSpan="full" className="flex-row items-center justify-between gap-4">
+      <div>
+        <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground">06 / Full-Width Footer</span>
+        <h4 className="text-base font-semibold text-foreground mt-0.5">Global Consensus Layer</h4>
+        <p className="text-xs text-muted-foreground mt-0.5">Spans all 12 columns across the bottom while preserving a crisp 1px top divider.</p>
+      </div>
+      <Badge content="Healthy" color="success" variant="soft" />
+    </BentoGridItem>
+  </BentoGrid>
+</div>
+
+```tsx
+<BentoGrid cols={{ base: 1, sm: 2, lg: 12 }} autoRows="minmax(140px, auto)">
+  <BentoGridItem colSpan={{ base: 1, sm: 1, lg: 4 }}>Cell 1</BentoGridItem>
+  <BentoGridItem colSpan={{ base: 1, sm: 1, lg: 3 }}>Cell 2</BentoGridItem>
+  <BentoGridItem
+    colSpan={{ base: 1, sm: 2, lg: 5 }}
+    rowSpan={{ base: 1, lg: 2 }}
+  >
+    Cell 3 (Tall 2-Row Span)
+  </BentoGridItem>
+  <BentoGridItem colSpan={{ base: 1, sm: 1, lg: 4 }}>Cell 4</BentoGridItem>
+  <BentoGridItem colSpan={{ base: 1, sm: 1, lg: 3 }}>Cell 5</BentoGridItem>
+  <BentoGridItem colSpan="full">Cell 6 (Full Width)</BentoGridItem>
+</BentoGrid>
+```
+
+## Sharp Architectural Wireframe (`rounded="none"`)
+
+Set `rounded="none"` for a sharp editorial or architectural blueprint layout where every outer corner and inner intersection meets at 90 degrees.
+
+<div className="not-prose my-6">
+  <BentoGrid cols={{ base: 1, md: 12 }} rounded="none" autoRows="minmax(120px, auto)">
+    <BentoGridItem colSpan={{ base: 1, md: 4 }} className="justify-center items-center text-xs font-mono text-muted-foreground">
+      col-span-4
+    </BentoGridItem>
+    <BentoGridItem colSpan={{ base: 1, md: 3 }} className="justify-center items-center text-xs font-mono text-muted-foreground">
+      col-span-3
+    </BentoGridItem>
+    <BentoGridItem
+      colSpan={{ base: 1, md: 5 }}
+      rowSpan={{ base: 1, md: 2 }}
+      className="justify-center items-center text-xs font-mono text-muted-foreground"
+    >
+      col-span-5 / row-span-2
+    </BentoGridItem>
+    <BentoGridItem colSpan={{ base: 1, md: 4 }} className="justify-center items-center text-xs font-mono text-muted-foreground">
+      col-span-4
+    </BentoGridItem>
+    <BentoGridItem colSpan={{ base: 1, md: 3 }} className="justify-center items-center text-xs font-mono text-muted-foreground">
+      col-span-3
+    </BentoGridItem>
+    <BentoGridItem colSpan="full" className="justify-center items-center text-xs font-mono text-muted-foreground">
+      col-span-full
+    </BentoGridItem>
+  </BentoGrid>
+</div>
+
+```tsx
+<BentoGrid cols={{ base: 1, md: 12 }} rounded="none" autoRows="minmax(120px, auto)">
+  <BentoGridItem colSpan={{ base: 1, md: 4 }}>col-span-4</BentoGridItem>
+  <BentoGridItem colSpan={{ base: 1, md: 3 }}>col-span-3</BentoGridItem>
+  <BentoGridItem colSpan={{ base: 1, md: 5 }} rowSpan={{ base: 1, md: 2 }}>
+    col-span-5 / row-span-2
+  </BentoGridItem>
+  <BentoGridItem colSpan={{ base: 1, md: 4 }}>col-span-4</BentoGridItem>
+  <BentoGridItem colSpan={{ base: 1, md: 3 }}>col-span-3</BentoGridItem>
+  <BentoGridItem colSpan="full">col-span-full</BentoGridItem>
+</BentoGrid>
+```
+
+## Spaced Bento Cards
+
+Pass `gap="sm" | "md" | "lg"` when you want detached Bento cards instead of shared hairline borders.
+
+<div className="not-prose my-6">
+  <BentoGrid cols={3} gap="md">
+    <BentoGridItem colSpan={2}>
+      <h4 className="text-sm font-semibold text-foreground">Detached Bento Card (2 cols)</h4>
+      <p className="text-xs text-muted-foreground mt-1">Automatically switches to individual card borders when gap is enabled.</p>
+    </BentoGridItem>
+    <BentoGridItem colSpan={1} surface="muted">
+      <h4 className="text-sm font-semibold text-foreground">Side Card (1 col)</h4>
+      <p className="text-xs text-muted-foreground mt-1">Muted surface variant.</p>
+    </BentoGridItem>
+  </BentoGrid>
+</div>
+
+```tsx
+<BentoGrid cols={3} gap="md">
+  <BentoGridItem colSpan={2}>Detached Bento Card</BentoGridItem>
+  <BentoGridItem colSpan={1} surface="muted">Side Card</BentoGridItem>
+</BentoGrid>
+```
+
+## BentoGrid Props
+
+<PropertyDoc
+  properties={[
+    {
+      prop: "cols",
+      type: "BentoResponsiveValue<1 | 2 | 3 | 4 | 5 | 6 | 12>",
+      defaultValue: "3",
+      description: "Number of grid columns. Accepts a direct number (stacks on mobile, applies at md+) or a responsive breakpoint object ({ base, sm, md, lg, xl })."
+    },
+    {
+      prop: "gap",
+      type: "'none' | 'sm' | 'md' | 'lg'",
+      defaultValue: "'none'",
+      description: "'none' enables the seamless 1px hairline border mode. Other values separate items into individual bordered cards."
+    },
+    {
+      prop: "bordered",
+      type: "boolean",
+      defaultValue: "true",
+      description: "Whether to render the outer 1px perimeter border in hairline mode."
+    },
+    {
+      prop: "rounded",
+      type: "'none' | 'sm' | 'md' | 'lg' | 'xl'",
+      defaultValue: "'xl'",
+      description: "Controls the outer corner radius of the grid container."
+    },
+    {
+      prop: "autoRows",
+      type: "string",
+      defaultValue: "—",
+      description: "Sets the CSS grid-auto-rows property (e.g., 'minmax(140px, auto)')."
+    }
+  ]}
+/>
+
+## BentoGridItem Props
+
+<PropertyDoc
+  properties={[
+    {
+      prop: "colSpan",
+      type: "BentoResponsiveValue<1..12 | 'full'>",
+      defaultValue: "1",
+      description: "Number of columns the cell spans. Accepts a direct value or a responsive breakpoint object."
+    },
+    {
+      prop: "rowSpan",
+      type: "BentoResponsiveValue<1 | 2 | 3 | 4 | 5 | 6>",
+      defaultValue: "1",
+      description: "Number of rows the cell spans. Accepts a direct value or a responsive breakpoint object."
+    },
+    {
+      prop: "surface",
+      type: "'card' | 'background' | 'muted' | 'transparent'",
+      defaultValue: "'card'",
+      description: "Semantic background surface color of the cell."
+    },
+    {
+      prop: "padding",
+      type: "'none' | 'sm' | 'md' | 'lg'",
+      defaultValue: "'md'",
+      description: "Internal cell padding ('none' for full-bleed visuals, 'sm' = p-4, 'md' = p-6, 'lg' = p-8)."
+    }
+  ]}
+/>
