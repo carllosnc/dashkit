@@ -8,9 +8,9 @@ const iconButtonVariants = cva(
   {
     variants: {
       variant: {
-        filled: 'ds-primary-gradient text-primary-foreground border border-transparent hover:brightness-105',
-        outlined: 'bg-transparent text-foreground border border-ds-300 hover:bg-ds-50 hover:brightness-95 dark:border-ds-700 dark:hover:bg-ds-800/50 dark:hover:brightness-110',
-        soft: 'bg-secondary text-secondary-foreground border border-transparent hover:brightness-85 dark:hover:brightness-150',
+        filled: 'ds-primary-gradient text-primary-foreground border border-transparent ds-button-surface hover:brightness-105',
+        outlined: 'bg-card text-foreground border border-border ds-button-outlined-surface hover:bg-muted/60 hover:brightness-95 dark:hover:bg-muted/60 dark:hover:brightness-110',
+        soft: 'bg-secondary text-secondary-foreground border border-transparent ds-button-soft-surface hover:brightness-85 dark:hover:brightness-150',
         ghost: 'bg-transparent text-muted-foreground border border-transparent hover:bg-accent hover:text-accent-foreground hover:brightness-95 dark:hover:brightness-110',
       },
       size: {
@@ -19,7 +19,7 @@ const iconButtonVariants = cva(
         lg: 'size-11 text-base',
       },
       rounded: {
-        true: 'rounded-full',
+        true: 'rounded-full ds-pill',
         false: 'rounded-md',
       },
     },
