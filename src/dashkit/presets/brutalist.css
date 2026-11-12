@@ -1,0 +1,83 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   Dashkit Preset: Brutalism
+   @preset brutalist
+   @recommended-attrs data-base="stone" data-primary="orange" data-preset="brutalist"
+   @description Sharp 0px geometry, 2px ink borders, flat solid fills, hard offset shadows.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+[data-preset="brutalist"] {
+  /* 1. Geometry & Surface Elevation */
+  --radius: 0rem;
+  --ds-pill-radius: 0rem;
+  --ds-border-width: 2px;
+  --ds-primary-gradient: none;
+  --ds-danger-gradient: none;
+
+  --ds-button-border: var(--ds-border);
+  --ds-button-shadow: 3px 3px 0px 0px var(--ds-border);
+  --ds-button-outlined-shadow: 3px 3px 0px 0px var(--ds-border);
+  --ds-button-soft-shadow: 3px 3px 0px 0px var(--ds-border);
+  --ds-card-shadow: 4px 4px 0px 0px var(--ds-border);
+  --ds-input-shadow: 2px 2px 0px 0px var(--ds-border);
+
+  /* 2. Core Surfaces & Borders (Light) */
+  --ds-bg: #f5f2eb;
+  --ds-fg: var(--color-ds-950);
+  --ds-card: #fffdf9;
+  --ds-card-fg: var(--color-ds-950);
+  --ds-popover: #fffdf9;
+  --ds-popover-fg: var(--color-ds-950);
+  --ds-popover-border: var(--color-ds-900);
+
+  --ds-border: var(--color-ds-900);
+  --ds-border-subtle: var(--color-ds-400);
+
+  /* 3. Interactive & Muted Tokens (Light) */
+  --ds-secondary: var(--color-ds-200);
+  --ds-secondary-fg: var(--color-ds-950);
+  --ds-muted: #ebe5d9;
+  --ds-muted-fg: var(--color-ds-700);
+
+  /* 4. Form Controls (Light) */
+  --ds-input-bg: #ffffff;
+  --ds-input-border: var(--color-ds-900);
+  --ds-input-focus: var(--color-ds-950);
+  --ds-input-fg: var(--color-ds-950);
+  --ds-input-ring: var(--color-ds-900);
+}
+
+.dark[data-preset="brutalist"],
+.dark [data-preset="brutalist"] {
+  /* Core Surfaces & Borders (Dark) */
+  --ds-bg: #121110;
+  --ds-fg: var(--color-ds-50);
+  --ds-card: #1c1917;
+  --ds-card-fg: var(--color-ds-50);
+  --ds-popover: #1c1917;
+  --ds-popover-fg: var(--color-ds-50);
+  --ds-popover-border: var(--color-ds-300);
+
+  --ds-border: var(--color-ds-300);
+  --ds-border-subtle: var(--color-ds-700);
+
+  /* Surface Elevation (Dark) */
+  --ds-button-border: var(--ds-border);
+  --ds-button-shadow: 3px 3px 0px 0px var(--ds-border);
+  --ds-button-outlined-shadow: 3px 3px 0px 0px var(--ds-border);
+  --ds-button-soft-shadow: 3px 3px 0px 0px var(--ds-border);
+  --ds-card-shadow: 4px 4px 0px 0px var(--ds-border);
+  --ds-input-shadow: 2px 2px 0px 0px var(--ds-border);
+
+  /* Interactive & Muted Tokens (Dark) */
+  --ds-secondary: var(--color-ds-800);
+  --ds-secondary-fg: var(--color-ds-50);
+  --ds-muted: var(--color-ds-800);
+  --ds-muted-fg: var(--color-ds-300);
+
+  /* Form Controls (Dark) */
+  --ds-input-bg: #0c0a09;
+  --ds-input-border: var(--color-ds-300);
+  --ds-input-focus: var(--color-ds-50);
+  --ds-input-fg: var(--color-ds-50);
+  --ds-input-ring: var(--color-ds-300);
+}
