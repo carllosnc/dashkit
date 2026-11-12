@@ -1,181 +1,115 @@
 # Customization
 
-Dashkit UI components are built to be deeply customizable through **CSS Design Tokens**. Instead of complex configuration files, Dashkit leverages **Tailwind CSS v4's CSS-first theme system** combined with a robust CSS variable architecture.
+> Architecture reference for AI agents and LLMs customizing Dashkit UI tokens, variants, and presets.
 
-All global and component-specific styles are defined in `src/dashkit.css`.
+## AI Customization Protocol (3 Tiers)
 
-## The Two-Layer Token System
+Always prioritize edits in this order:
 
-Dashkit uses a specialized two-layer system for managing design tokens:
+1. **Tier 1 — Global Theme (`src/dashkit/dashkit.css`)**: Global brand colors, neutral palettes, dark/OLED mode, border radius, and flat vs. gradient surfaces. Edit `:root` and `.dark` variables or apply `data-*` attributes.
+2. **Tier 2 — Component Variants (`src/dashkit/[Component]/[Component].tsx`)**: App-wide component styling changes. Edit the `cva(...)` definition directly inside the component file.
+3. **Tier 3 — Instance Overrides (`className` & `data-slot`)**: One-off layout tweaks on a single screen. Pass utility classes via `className`, or target internal slots via `data-slot` (e.g. `className="[&_[data-slot=label]]:uppercase"`).
 
-1.  **Tailwind Mappings (`@theme`)**: Maps semantic Tailwind names (like `bg-background` or `text-primary`) to underlying CSS variables.
-2.  **Theme Definitions (`:root` & `.dark`)**: Defines the actual values (colors, spacing, radii) for those variables in both light and dark modes.
+---
 
-## 1. Core Variables
+## Live Token & Preset Explorer
 
-The core variables control the foundation of your application. You can find these in the `:root` and `.dark` blocks of `src/dashkit.css`.
+<CustomizationPlayground />
 
-### Base Colors
-| Variable | Description |
-| :--- | :--- |
-| `--ds-bg` | Main application background |
-| `--ds-fg` | Main text color (foreground) |
-| `--ds-border` | Default border color |
+---
 
-### Surface Colors
-| Variable | Description |
-| :--- | :--- |
-| `--ds-card` | Background for cards and containers |
-| `--ds-card-fg` | Text color within cards |
-| `--ds-popover` | Background for dropdowns and menus |
+## Architecture: Tailwind v4 `@theme inline`
 
-### Interactive Colors
-| Variable | Description |
-| :--- | :--- |
-| `--ds-primary` | Primary brand color |
-| `--ds-secondary` | Secondary action color |
-| `--ds-accent` | Subtle highlight/selection color |
-
-### Feedback & Status Colors
-| Variable | Description |
-| :--- | :--- |
-| `--ds-danger` / `--ds-danger-fg` | Destructive/error actions and alerts |
-| `--ds-success` / `--ds-success-fg` | Success confirmations and positive status |
-| `--ds-warning` / `--ds-warning-fg` | Warnings and cautionary states |
-| `--ds-info` / `--ds-info-fg` | Informational indicators and tips |
-
-### Data Visualization Colors
-| Variable | Description |
-| :--- | :--- |
-| `--ds-chart-1` to `--ds-chart-5` | Distinct categorical colors for multi-series charts |
-
-## 2. Form & Input Tokens
-
-Input components use a specialized set of tokens to ensure consistency across the UI:
+Dashkit connects semantic utility classes to CSS custom properties via `@theme inline` in `src/dashkit/dashkit.css`:
 
 ```css
-:root {
-  --ds-input-bg: var(--color-ds-100);
-  --ds-input-border: var(--color-ds-300);
-  --ds-input-focus: var(--color-ds-400);
-  --ds-input-fg: var(--color-ds-900);
-  --ds-input-ring: var(--color-ds-300);
+@theme inline {
+  --color-background: var(--ds-bg);
+  --color-foreground: var(--ds-fg);
+  --color-card: var(--ds-card);
+  --color-popover: var(--ds-popover);
+  --color-border: var(--ds-border);
+  --color-primary: var(--ds-primary);
+  --color-primary-foreground: var(--ds-primary-fg);
+  --color-input-bg: var(--ds-input-bg);
+  --color-input-border: var(--ds-input-border);
+  --color-input-focus: var(--ds-input-focus);
+  --color-input-fg: var(--ds-input-fg);
 }
 ```
 
-## 3. Global Radius
+---
 
-Dashkit uses a centralized radius system where all size tokens scale proportionally from `--radius`:
+## Token Reference
 
-| Variable | Default Formula / Value |
-| :--- | :--- |
-| `--radius` | `0.75rem` (master control) |
-| `--radius-sm` | `max(0px, calc(var(--radius) - 5px))` |
-| `--radius-md` | `max(0px, calc(var(--radius) - 3px))` |
-| `--radius-lg` | `var(--radius)` |
-| `--radius-xl` | `calc(var(--radius) * 1.3333)` |
-| `--radius-2xl` | `calc(var(--radius) * 1.6667)` |
+### Core Surfaces & Borders
+- `--ds-bg`: Base canvas background (`bg-background`)
+- `--ds-fg`: Main foreground text (`text-foreground`)
+- `--ds-card`: Card and panel surface (`bg-card`)
+- `--ds-card-fg`: Card text foreground (`text-card-foreground`)
+- `--ds-popover`: Floating surfaces for dropdowns, tooltips, dialogs (`bg-popover`)
+- `--ds-border`: Default border color (`border-border`)
 
-Changing `--radius` in `src/dashkit.css` (for example, setting `--radius: 0rem` for a sharp brutalist look or `1rem` for a soft rounded UI) automatically updates Cards, Modals, Inputs, Selects, and Surfaces across the entire library.
+### Interactive & Brand Actions
+- `--ds-primary`: Primary action color (`bg-primary`, `text-primary`)
+- `--ds-primary-fg`: Text on primary action (`text-primary-foreground`)
+- `--ds-primary-gradient`: Linear gradient for filled buttons (`none` for flat style)
+- `--ds-secondary`: Secondary action background (`bg-secondary`)
+- `--ds-accent`: Subtle selection and hover highlight (`bg-accent`)
 
-## Customizing Your Theme
+### Status & Feedback
+- `--ds-danger` / `--ds-danger-fg`: Error and destructive actions (`text-danger`, `bg-danger`)
+- `--ds-success` / `--ds-success-fg`: Confirmation and positive indicators (`text-success`)
+- `--ds-warning` / `--ds-warning-fg`: Caution and warning alerts (`text-warning`)
+- `--ds-info` / `--ds-info-fg`: Informational badges and icons (`text-info`)
 
-### Dynamic Theme Switching (`data-base` & `data-primary`)
+### Form & Input Controls
+- `--ds-input-bg`: Input field background (`bg-input-bg`)
+- `--ds-input-border`: Unfocused input border (`border-input-border`)
+- `--ds-input-focus`: Focused ring and border highlight (`focus:border-input-focus`)
+- `--ds-input-fg`: Input value text color (`text-input-fg`)
+- `--ds-input-ring`: Focus ring box-shadow color
 
-Dashkit includes built-in support for dynamic base neutral palettes and primary brand colors. You can switch themes at runtime or scope them to specific sections using data attributes:
+### Geometry, Corner Radius & Tactile Shadows
+All corner radii derive dynamically from `--radius`. Modifying `--radius` updates all components instantly without React changes:
+- `--radius`: Master geometric scale (Default: `0.75rem`)
+- `--radius-sm`: Derived as `max(0px, calc(var(--radius) - 5px))` (Checkboxes, small Badges)
+- `--radius-md`: Derived as `max(0px, calc(var(--radius) - 3px))` (Inputs, Buttons)
+- `--radius-lg`: Derived as `var(--radius)` (Cards, Popovers)
+- `--radius-xl`: Derived as `calc(var(--radius) * 1.3333)` (Modals, Drawers)
+- `--radius-2xl`: Derived as `calc(var(--radius) * 1.6667)` (Hero containers)
+- `--ds-pill-radius`: Derived as `calc(var(--radius) * 9999)` (Pill Buttons, Switches, Chips, Sliders; set to `0rem` for square pills)
+- `--ds-border-width`: Structural border thickness for surfaces and controls (Default: `1px`, `2px` in Brutalism)
+- `--ds-card-shadow`: Surface elevation, hard offset, or glow shadow (Default: `none`)
+- `--ds-button-shadow`: Tactile elevation on buttons (Default: `0 1px 2px 0 rgb(0 0 0 / 0.05)`)
+- `--ds-button-border`: Border color for filled/soft buttons (Default: `transparent`, `var(--ds-border)` in Brutalism)
 
-```html
-<!-- Set globally on <html> or <body> -->
-<html data-base="slate" data-primary="violet">
-```
+---
 
-Or scoped to a specific card or container:
+## Dynamic Runtime Attributes
 
-```tsx
-<div data-primary="emerald" data-base="stone">
-  <Button variant="filled">Emerald Action in Stone Surface</Button>
-</div>
-```
+Dashkit supports instant dynamic switching via HTML attributes without changing CSS files:
 
-#### Available Base Palettes (`data-base`)
-- `zinc` (default), `slate`, `gray`, `neutral`, `stone`, `taupe`, `mauve`, `mist`, `olive`
+### Base Neutral Palette (`data-base`)
+Applies neutral gray scales (`ds-0` through `ds-950`):
+- Values: `zinc` (default), `slate`, `gray`, `neutral`, `stone`, `taupe`, `mauve`, `mist`, `olive`
+- Scope: Set on `<html data-base="...">` or scoped on any container `<div data-base="...">`
 
-#### Available Primary Palettes (`data-primary`)
-- `blue` (default), `violet`, `indigo`, `emerald`, `green`, `rose`, `orange`, `amber`, `cyan`, `teal`, `fuchsia`, `red`, `yellow`, `lime`, `sky`, `purple`, `pink`
+### Primary Brand Color (`data-primary`)
+Applies primary brand swatches (`ds-primary-50` through `ds-primary-950`):
+- Values: `blue` (default), `violet`, `indigo`, `emerald`, `green`, `rose`, `orange`, `amber`, `cyan`, `teal`, `fuchsia`, `red`, `yellow`, `lime`, `sky`, `purple`, `pink`
+- Scope: Set on `<html data-primary="...">` or scoped on any container `<div data-primary="...">`
 
-#### OLED Dark Mode (`data-dark-bg`)
-- `oled` (switches `.dark` background `--ds-bg` to pure `#000000` black)
+### Dark & OLED Background (`data-dark-bg`)
+- `data-dark-bg="oled"`: Forces `.dark` background `--ds-bg` to pure `#000000` black.
 
-### Static Token Customization
+---
 
-To customize Dashkit statically, edit the variables in `:root` and `.dark` inside `src/dashkit/dashkit.css`.
+## Preset Delta Layer (`src/dashkit/presets/`)
 
-### Example: Customizing Roundness
+Presets are token-override layers scoped to `[data-preset="<name>"]`:
 
-Because `--radius-sm` through `--radius-2xl` are computed proportionally from `--radius`, changing `--radius` in `:root` updates the entire system:
-
-```css
-:root {
-  --radius: 1rem; /* Soft, rounded geometry (use 0rem for sharp corners) */
-}
-```
-
-### Example: Custom Brand Color
-
-To change the primary color to a custom purple:
-
-```css
-:root {
-  --ds-primary: #7c3aed; /* Violet 600 */
-  --ds-primary-fg: #ffffff;
-}
-
-.dark {
-  --ds-primary: #a78bfa; /* Violet 400 */
-}
-```
-
-## Creating Your Own Tokens
-
-When building your own components, you can add new tokens to the `:root` block to keep your design consistent:
-
-1.  **Define the token** in `dashkit.css`:
-    ```css
-    :root {
-      --ds-special-bg: var(--color-ds-primary-500);
-    }
-    ```
-2.  **Map it** in `@theme inline`:
-    ```css
-    @theme inline {
-      --color-special-bg: var(--ds-special-bg);
-    }
-    ```
-3.  **Use it** in your component:
-    ```tsx
-    <div className="bg-special-bg px-4 py-2">
-      My custom themed component
-    </div>
-    ```
-
-## AI-First Customization Protocol
-
-Dashkit is architected for **AI-driven customization via prompts**. Because you own the source code in `src/dashkit/`, AI agents should follow a strict 3-tier hierarchy instead of scattering inline classes across pages:
-
-1. **Tier 1 — Global Theme (`src/dashkit/dashkit.css`)**: Change `--ds-primary`, `--ds-bg`, `--ds-card`, `--radius`, or set `--ds-primary-gradient: none` for flat buttons.
-2. **Tier 2 — Component Variants (`src/dashkit/[Component]/[Component].tsx`)**: Edit `cva(...)` definitions directly in the component file when changing a component's default look or adding a new variant across the app.
-3. **Tier 3 — One-Off Overrides (`className` & `data-slot`)**: Use `className` for single-instance tweaks (the `cn` utility automatically resolves conflicts between standard Tailwind classes like `rounded-full` / `bg-none` and Dashkit's `ds-rounded*` / `ds-*-gradient`). For sub-elements inside form components (`Input`, `Select`, `Combobox`, `DatePicker`, etc.), target `data-slot` attributes (e.g., `className="[&_[data-slot=label]]:uppercase [&_[data-slot=trigger]]:rounded-full"`).
-
-### AI Prompt Example
-
-Copy and paste this prompt to quickly generate a unique theme:
-
-> **AI Prompt:**
-> "I want to create a new theme for Dashkit UI. The theme should use a professional 'Emerald and Slate' palette. Please update `dashkit.css` by:
-> 1. Updating the `:root` and `.dark` variables for bg, fg, primary, and secondary.
-> 2. Setting `--radius: 0.5rem` for a sharper, denser geometric profile.
-> 3. Ensuring inputs use a clean, bordered style with subtle rings.
-> Keep all page components pure without inline style overrides."
-
-
-
+- `src/dashkit/dashkit.css`: Base engine and default token values.
+- `src/dashkit/presets/brutalist.css`: Neo-Brutalist preset (`--radius: 0rem`, `--ds-pill-radius: 0rem`, `--ds-border-width: 2px`, hard offset shadows).
+- `src/dashkit/presets/matrix.css`: Cyber Terminal preset (`--radius: 0.125rem`, phosphor green palette, CRT glow shadows, monospace font).
+- `src/dashkit/presets/index.css`: Preset aggregator.
