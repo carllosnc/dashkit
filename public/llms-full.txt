@@ -175,6 +175,186 @@ Use the `type="multiple"` prop to allow more than one item to be expanded at the
 | `className` | `string` | - | Custom styles for the container. |
 
 
+## BentoGrid
+
+- Category: Layout & Containers
+- Slug: `bento-grid`
+- Installation: `bunx carllosnc/dashkit add bento-grid`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `class-variance-authority`
+
+A modular grid layout system for building regular and irregular Bento or Hairline grids while maintaining seamless `1px` shared border coherence across arbitrary column/row spans and responsive breakpoints.
+
+### Installation
+
+Add the BentoGrid component to your project using the Dashkit CLI:
+
+```bash
+bunx carllosnc/dashkit add bento-grid
+```
+
+### Import
+
+```tsx
+import { BentoGrid, BentoGridItem } from '@/dashkit/BentoGrid';
+```
+
+### Irregular Hairline Grid
+
+By default, `BentoGrid` uses `gap="none"` to render a continuous `1px` hairline divider between cells without double borders—even when combining multi-row vertical spans (`rowSpan={2}`) and full-width spans (`colSpan="full"`).
+
+  
+    
+      01 / Ingestion
+      
+        Edge Collector
+        Low-latency telemetry pipelines across 38 regions.
+      
+    
+
+    
+      02 / Cache
+      
+        99.98% Hit Rate
+        In-memory distributed read replicas.
+      
+    
+
+    
+      
+        03 / Architecture
+        
+      
+      
+        1.42M req/s
+        
+          Tall vertical cell spanning two rows alongside the 2x2 grid on the left, sharing a single 1px border on all sides.
+        
+      
+      cluster-us-east-primary
+    
+
+    
+      04 / Storage
+      
+        Zero-Copy Snapshots
+        Instant branching for isolated preview environments.
+      
+    
+
+    
+      05 / Security
+      
+        mTLS Enforced
+        Automated certificate rotation every 24h.
+      
+    
+
+    
+      
+        06 / Full-Width Footer
+        Global Consensus Layer
+        Spans all 12 columns across the bottom while preserving a crisp 1px top divider.
+      
+      
+    
+  
+
+```tsx
+<BentoGrid cols={{ base: 1, sm: 2, lg: 12 }} autoRows="minmax(140px, auto)">
+  <BentoGridItem colSpan={{ base: 1, sm: 1, lg: 4 }}>Cell 1</BentoGridItem>
+  <BentoGridItem colSpan={{ base: 1, sm: 1, lg: 3 }}>Cell 2</BentoGridItem>
+  <BentoGridItem
+    colSpan={{ base: 1, sm: 2, lg: 5 }}
+    rowSpan={{ base: 1, lg: 2 }}
+  >
+    Cell 3 (Tall 2-Row Span)
+  </BentoGridItem>
+  <BentoGridItem colSpan={{ base: 1, sm: 1, lg: 4 }}>Cell 4</BentoGridItem>
+  <BentoGridItem colSpan={{ base: 1, sm: 1, lg: 3 }}>Cell 5</BentoGridItem>
+  <BentoGridItem colSpan="full">Cell 6 (Full Width)</BentoGridItem>
+</BentoGrid>
+```
+
+### Sharp Architectural Wireframe (`rounded="none"`)
+
+Set `rounded="none"` for a sharp editorial or architectural blueprint layout where every outer corner and inner intersection meets at 90 degrees.
+
+  
+    
+      col-span-4
+    
+    
+      col-span-3
+    
+    
+      col-span-5 / row-span-2
+    
+    
+      col-span-4
+    
+    
+      col-span-3
+    
+    
+      col-span-full
+    
+  
+
+```tsx
+<BentoGrid cols={{ base: 1, md: 12 }} rounded="none" autoRows="minmax(120px, auto)">
+  <BentoGridItem colSpan={{ base: 1, md: 4 }}>col-span-4</BentoGridItem>
+  <BentoGridItem colSpan={{ base: 1, md: 3 }}>col-span-3</BentoGridItem>
+  <BentoGridItem colSpan={{ base: 1, md: 5 }} rowSpan={{ base: 1, md: 2 }}>
+    col-span-5 / row-span-2
+  </BentoGridItem>
+  <BentoGridItem colSpan={{ base: 1, md: 4 }}>col-span-4</BentoGridItem>
+  <BentoGridItem colSpan={{ base: 1, md: 3 }}>col-span-3</BentoGridItem>
+  <BentoGridItem colSpan="full">col-span-full</BentoGridItem>
+</BentoGrid>
+```
+
+### Spaced Bento Cards
+
+Pass `gap="sm" | "md" | "lg"` when you want detached Bento cards instead of shared hairline borders.
+
+  
+    
+      Detached Bento Card (2 cols)
+      Automatically switches to individual card borders when gap is enabled.
+    
+    
+      Side Card (1 col)
+      Muted surface variant.
+    
+  
+
+```tsx
+<BentoGrid cols={3} gap="md">
+  <BentoGridItem colSpan={2}>Detached Bento Card</BentoGridItem>
+  <BentoGridItem colSpan={1} surface="muted">Side Card</BentoGridItem>
+</BentoGrid>
+```
+
+### BentoGrid Props
+
+| Property | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `cols` | `BentoResponsiveValue` | `3` | Number of grid columns. Accepts a direct number (stacks on mobile, applies at md+) or a responsive breakpoint object ({ base, sm, md, lg, xl }). |
+| `gap` | `'none' \| 'sm' \| 'md' \| 'lg'` | `'none'` | 'none' enables the seamless 1px hairline border mode. Other values separate items into individual bordered cards. |
+| `bordered` | `boolean` | `true` | Whether to render the outer 1px perimeter border in hairline mode. |
+| `rounded` | `'none' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'xl'` | Controls the outer corner radius of the grid container. |
+| `autoRows` | `string` | - | Sets the CSS grid-auto-rows property (e.g., 'minmax(140px, auto)'). |
+
+### BentoGridItem Props
+
+| Property | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `colSpan` | `BentoResponsiveValue<1..12 \| 'full'>` | `1` | Number of columns the cell spans. Accepts a direct value or a responsive breakpoint object. |
+| `rowSpan` | `BentoResponsiveValue` | `1` | Number of rows the cell spans. Accepts a direct value or a responsive breakpoint object. |
+| `surface` | `'card' \| 'background' \| 'muted' \| 'transparent'` | `'card'` | Semantic background surface color of the cell. |
+| `padding` | `'none' \| 'sm' \| 'md' \| 'lg'` | `'md'` | Internal cell padding ('none' for full-bleed visuals, 'sm' = p-4, 'md' = p-6, 'lg' = p-8). |
+
+
 ## Card
 
 - Category: Layout & Containers
