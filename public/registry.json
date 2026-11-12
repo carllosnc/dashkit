@@ -1,6 +1,6 @@
 {
   "name": "Dashkit UI Registry",
-  "totalComponents": 55,
+  "totalComponents": 56,
   "components": {
     "accordion": {
       "slug": "accordion",
@@ -186,6 +186,31 @@
       ],
       "propsDefinitions": [
         "export interface BarChartProps {\r\n  data: Record<string, string | number>[];\r\n  series: BarChartSeries[];\r\n  height?: number | string;\r\n  className?: string;\r\n  showGrid?: boolean;\r\n  showLabels?: boolean;\r\n  showTooltip?: boolean;\r\n  animate?: boolean;\r\n  barGap?: number;\r\n  maxBarWidth?: number;\r\n  rounded?: boolean;\r\n  texture?: BarChartTexture;\r\n  showTrack?: boolean;\r\n}"
+      ]
+    },
+    "bento-grid": {
+      "slug": "bento-grid",
+      "name": "BentoGrid",
+      "category": "Layout & Containers",
+      "description": "A modular grid layout system for building regular and irregular Bento or Hairline grids while maintaining seamless `1px` shared border coherence across arbitrary column/row spans and responsive breakpoints.",
+      "installCommand": "bunx carllosnc/dashkit add bento-grid",
+      "files": [
+        "src/dashkit/BentoGrid/BentoGrid.tsx",
+        "src/dashkit/BentoGrid/index.ts"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "BentoGrid",
+        "BentoGridItem"
+      ],
+      "propsDefinitions": [
+        "export interface BentoGridProps\n  extends React.HTMLAttributes<HTMLDivElement>,\n    VariantProps<typeof bentoGridVariants> {\n  cols?: BentoResponsiveValue<BentoCols>;\n  autoRows?: string;\n}",
+        "export interface BentoGridItemProps\n  extends React.HTMLAttributes<HTMLDivElement>,\n    Omit<VariantProps<typeof bentoGridItemVariants>, 'divided'> {\n  colSpan?: BentoResponsiveValue<BentoColSpan>;\n  rowSpan?: BentoResponsiveValue<BentoRowSpan>;\n}"
       ]
     },
     "breadcrumb": {
