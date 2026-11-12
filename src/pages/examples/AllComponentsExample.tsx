@@ -8,6 +8,7 @@ import { IconButton } from '../../dashkit/IconButton/IconButton';
 import { Chip } from '../../dashkit/Chip/Chip';
 import { Divider } from '../../dashkit/Divider/Divider';
 import { Badge, FloatBadge } from '../../dashkit/Badge';
+import { BentoGrid, BentoGridItem } from '../../dashkit/BentoGrid';
 import { AnimateNumber } from '../../dashkit/AnimateNumber';
 import { CircularProgress } from '../../dashkit/CircularProgress/CircularProgress';
 import { Avatar, AvatarGroup } from '../../dashkit/Avatar';
@@ -1642,6 +1643,50 @@ export const AllComponentsExample = () => {
                 alt="Abstract pattern 2"
               />
             </ImageExpander>
+          </CardContent>
+        </Card>
+
+        {/* BENTO GRID */}
+        <Card className="md:col-span-2">
+          <CardHeader>
+            <CardTitle>Bento Grid</CardTitle>
+            <CardDescription>Regular and irregular hairline-bordered grids with responsive column and row spans.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <BentoGrid cols={{ base: 1, sm: 2, lg: 12 }} autoRows="minmax(110px, auto)">
+              <BentoGridItem colSpan={{ base: 1, sm: 1, lg: 4 }} padding="sm" className="justify-between">
+                <span className="text-xs font-mono text-muted-foreground">01</span>
+                <span className="text-sm font-semibold">Ingestion</span>
+              </BentoGridItem>
+              <BentoGridItem colSpan={{ base: 1, sm: 1, lg: 3 }} padding="sm" className="justify-between">
+                <span className="text-xs font-mono text-muted-foreground">02</span>
+                <span className="text-sm font-semibold">Cache Layer</span>
+              </BentoGridItem>
+              <BentoGridItem
+                colSpan={{ base: 1, sm: 2, lg: 5 }}
+                rowSpan={{ base: 1, lg: 2 }}
+                padding="sm"
+                className="justify-between"
+              >
+                <span className="text-xs font-mono text-muted-foreground">03 / Tall Span</span>
+                <div>
+                  <div className="text-xl font-bold">99.99%</div>
+                  <p className="text-xs text-muted-foreground mt-1">Spans 2 vertical rows with 1px border coherence.</p>
+                </div>
+              </BentoGridItem>
+              <BentoGridItem colSpan={{ base: 1, sm: 1, lg: 4 }} padding="sm" className="justify-between">
+                <span className="text-xs font-mono text-muted-foreground">04</span>
+                <span className="text-sm font-semibold">Zero-Copy Storage</span>
+              </BentoGridItem>
+              <BentoGridItem colSpan={{ base: 1, sm: 1, lg: 3 }} padding="sm" className="justify-between">
+                <span className="text-xs font-mono text-muted-foreground">05</span>
+                <span className="text-sm font-semibold">mTLS Security</span>
+              </BentoGridItem>
+              <BentoGridItem colSpan="full" padding="sm" className="flex-row items-center justify-between">
+                <span className="text-sm font-semibold">Global Consensus Footer (Full Span)</span>
+                <Badge content="Active" color="success" variant="soft" />
+              </BentoGridItem>
+            </BentoGrid>
           </CardContent>
         </Card>
       </main>
