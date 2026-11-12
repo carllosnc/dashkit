@@ -20,6 +20,7 @@ export const CATEGORIES: ComponentCategory[] = [
     name: 'Layout & Containers',
     components: [
       { name: 'Accordion', slug: 'accordion', mdxFile: 'accordion.mdx' },
+      { name: 'BentoGrid', slug: 'bento-grid', mdxFile: 'bento-grid.mdx' },
       { name: 'Card', slug: 'card', mdxFile: 'card.mdx' },
       { name: 'Surface', slug: 'surface', mdxFile: 'surface.mdx' },
       { name: 'Divider', slug: 'divider', mdxFile: 'divider.mdx' },
