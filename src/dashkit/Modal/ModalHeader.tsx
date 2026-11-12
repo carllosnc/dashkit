@@ -20,7 +20,7 @@ export function ModalHeader({ children, className, onClose }: ModalHeaderProps) 
           icon={<FiX size={18} />}
           variant="ghost"
           onClick={onClose}
-          className="-mr-2 text-ds-600 dark:text-ds-400 hover:text-ds-900 dark:hover:text-white"
+          className="-mr-2 text-ds-600 dark:text-ds-400 hover:text-ds-900 dark:hover:text-foreground"
           aria-label="Close modal"
         />
       )}
