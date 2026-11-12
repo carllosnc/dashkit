@@ -29,18 +29,18 @@ const strokeWidthMap = {
 
 const softTrackColors: Record<NonNullable<CircularProgressProps['color']>, string> = {
   primary: 'text-primary/20',
-  success: 'text-emerald-500/20',
-  warning: 'text-amber-500/20',
-  danger: 'text-rose-500/20',
-  info: 'text-sky-500/20',
+  success: 'text-success/20',
+  warning: 'text-warning/20',
+  danger: 'text-danger/20',
+  info: 'text-info/20',
 };
 
 const indicatorColors: Record<NonNullable<CircularProgressProps['color']>, string> = {
   primary: 'text-primary',
-  success: 'text-emerald-500',
-  warning: 'text-amber-500',
-  danger: 'text-rose-500',
-  info: 'text-sky-500',
+  success: 'text-success',
+  warning: 'text-warning',
+  danger: 'text-danger',
+  info: 'text-info',
 };
 
 const valueSizeClasses: Record<string, string> = {
