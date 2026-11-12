@@ -5,6 +5,7 @@ export * from './Avatar';
 export * from './Backdrop';
 export * from './Badge';
 export * from './BarChart';
+export * from './BentoGrid';
 export * from './Breadcrumb';
 export * from './Button';
 export * from './ButtonGroup';

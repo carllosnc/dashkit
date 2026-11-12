@@ -18,6 +18,7 @@ const components = [
   { to: '/docs/backdrop', label: 'Backdrop', icon: <FiLayers size={24} />, description: 'Dim the background for focus.' },
   { to: '/docs/badge', label: 'Badge', icon: <FiAward size={24} />, description: 'Small status descriptors.' },
   { to: '/docs/badge', label: 'Float Badge', icon: <FiAward size={24} />, description: 'Corner status indicators anchored to elements.' },
+  { to: '/docs/bento-grid', label: 'Bento Grid', icon: <FiGrid size={24} />, description: 'Regular and irregular hairline-bordered grids.' },
   { to: '/charts/bar-chart', label: 'Bar Chart', icon: <FiBarChart2 size={24} />, description: 'Vertical or horizontal bar data.' },
   { to: '/docs/breadcrumb', label: 'Breadcrumb', icon: <FiChevronRight size={24} />, description: 'Navigation path indicators.' },
   { to: '/docs/button', label: 'Button', icon: <FiSquare size={24} />, description: 'Interactive action triggers.' },

@@ -35,6 +35,7 @@ const navItems: SidebarSection[] = [
       { to: '/docs/avatar', label: 'Avatar', icon: <FiUser size={16} /> },
       { to: '/docs/backdrop', label: 'Backdrop', icon: <FiLayers size={16} /> },
       { to: '/docs/badge', label: 'Badge', icon: <FiAward size={16} /> },
+      { to: '/docs/bento-grid', label: 'Bento Grid', icon: <FiGrid size={16} /> },
       { to: '/docs/breadcrumb', label: 'Breadcrumb', icon: <FiChevronRight size={16} /> },
       { to: '/docs/button', label: 'Button', icon: <FiSquare size={16} /> },
       { to: '/docs/button-group', label: 'Button Group', icon: <FiMoreHorizontal size={16} /> },

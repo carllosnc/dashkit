@@ -87,6 +87,7 @@ Complete list of 55 production-ready components. For full API signatures, props 
 ### Layout & Containers
 
 - [Accordion](llms-full.txt#accordion): A vertically stacked list of headers that reveal associated content areas when clicked.
+- [BentoGrid](llms-full.txt#bentogrid): A modular grid layout system for building regular and irregular Bento or Hairline grids while maintaining seamless `1px` shared border coherence across arbitrary column/row spans and responsive breakpoints.
 - [Card](llms-full.txt#card): Dashkit's Card is designed as a **composed wrapper**, providing total layout control through granular sub-components.
 - [Surface](llms-full.txt#surface): A lightweight, foundational component for creating containers with consistent background variants based on design system states. It provides a clean, borderless surface with no internal padding or margin, serving as a pure visual block.
 - [Divider](llms-full.txt#divider): A versatile component used to separate sections of content with horizontal or vertical lines.
