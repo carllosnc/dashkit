@@ -5,7 +5,9 @@ import {
   type BaseColor,
   type PrimaryColor,
   type DarkBackground,
+  type ThemePreset,
 } from './ThemeContext';
+import { THEME_PRESETS } from './themeConfig';
 
 /**
  * Disables CSS transitions globally for a single tick during theme / palette switches.
@@ -68,6 +70,14 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     return 'midnight';
   });
 
+  const [preset, setPresetState] = useState<ThemePreset>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('dashkit-preset') as ThemePreset;
+      if (saved && THEME_PRESETS.some(p => p.id === saved)) return saved;
+    }
+    return 'default';
+  });
+
   const setBaseColor = (base: BaseColor) => {
     const restore = disableTransitions();
     setBaseColorState(base);
@@ -92,6 +102,40 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const root = window.document.documentElement;
     root.setAttribute('data-dark-bg', bg);
     localStorage.setItem('dashkit-dark-bg', bg);
+    restore();
+  };
+
+  const setPreset = (nextPreset: ThemePreset) => {
+    const restore = disableTransitions();
+    const config = THEME_PRESETS.find(p => p.id === nextPreset) ?? THEME_PRESETS[0];
+    const root = window.document.documentElement;
+
+    setPresetState(nextPreset);
+    root.setAttribute('data-preset', nextPreset);
+    localStorage.setItem('dashkit-preset', nextPreset);
+
+    setBaseColorState(config.baseColor);
+    root.setAttribute('data-base', config.baseColor);
+    localStorage.setItem('dashkit-base-color', config.baseColor);
+
+    setPrimaryColorState(config.primaryColor);
+    root.setAttribute('data-primary', config.primaryColor);
+    localStorage.setItem('dashkit-primary-color', config.primaryColor);
+
+    setDarkBgState(config.darkBg);
+    root.setAttribute('data-dark-bg', config.darkBg);
+    localStorage.setItem('dashkit-dark-bg', config.darkBg);
+
+    if (config.preferredTheme) {
+      setTheme(config.preferredTheme);
+      if (config.preferredTheme === 'dark') {
+        root.classList.add('dark');
+      } else {
+        root.classList.remove('dark');
+      }
+      localStorage.setItem('theme', config.preferredTheme);
+    }
+
     restore();
   };
 
@@ -122,6 +166,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     root.setAttribute('data-base', baseColor);
     root.setAttribute('data-primary', primaryColor);
     root.setAttribute('data-dark-bg', darkBg);
+    root.setAttribute('data-preset', preset);
   }, []);
 
   return (
@@ -135,6 +180,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         setPrimaryColor,
         darkBg,
         setDarkBg,
+        preset,
+        setPreset,
       }}
     >
       {children}
