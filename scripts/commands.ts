@@ -800,7 +800,7 @@ async function writeAiRulesFile(
     `- **Available Components (${allSlugs.length})**: ${allSlugs.map((s) => `\`${s}\``).join(', ')}`,
     '',
     '### 3-Tier AI Customization Protocol',
-    `1. **Global Theme (\`${cssFile}\`)**: Edit \`:root\` / \`.dark\` variables (\`--ds-primary\`, \`--ds-bg\`, \`--ds-card\`, \`--radius\`, \`--ds-primary-gradient\`) or set \`data-primary\` / \`data-base\` attributes. Never scatter inline theme classes across pages.`,
+    `1. **Global Theme (\`${cssFile}\`)**: Edit \`:root\` / \`.dark\` variables (\`--ds-primary\`, \`--ds-bg\`, \`--ds-card\`, \`--radius\`, \`--ds-pill-radius\`, \`--ds-border-width\`, \`--ds-button-border\`, \`--ds-button-shadow\`, \`--ds-card-shadow\`, \`--ds-input-shadow\`, \`--ds-primary-gradient\`) or set \`data-primary\` / \`data-base\` attributes. Never scatter inline theme classes across pages.`,
     `2. **Component Variants (\`${componentsDir}/<Component>/<Component>.tsx\`)**: Edit \`cva(...)\` variants directly inside the component file when changing a component across the app.`,
     '3. **Instance Overrides (`className` & `data-slot`)**: Use `className` (merged via `cn()`) or `data-slot` selectors (`className="[&_[data-slot=label]]:uppercase"`) for one-off tweaks.',
     '',
