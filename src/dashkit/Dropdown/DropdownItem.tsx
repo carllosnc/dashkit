@@ -38,7 +38,7 @@ export function DropdownItem({
       onClick={handleClick}
       className={cn(
         'flex w-full items-center gap-2 px-2.5 py-1.5 text-sm font-medium ds-rounded transition-colors text-left text-popover-fg hover:bg-popover-item duration-150 disabled:opacity-50 disabled:cursor-not-allowed',
-        destructive && 'text-red-500 hover:text-red-600 dark:hover:bg-red-500/10',
+        destructive && 'text-danger hover:text-ds-danger-600 dark:hover:bg-danger/10',
         selected && 'bg-popover-item-selected text-popover-item-selected-fg font-semibold',
         className
       )}
