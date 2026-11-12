@@ -14,7 +14,7 @@ export const Dock = React.forwardRef<HTMLDivElement, DockProps>(
       <div
         ref={ref}
         className={cn(
-          "mx-auto flex gap-3 rounded-full bg-ds-950/15 dark:bg-ds-0/10 backdrop-blur-lg p-2 border border-ds-950/5 dark:border-ds-0/10",
+          "mx-auto flex gap-3 rounded-full ds-pill bg-ds-950/15 dark:bg-ds-0/10 backdrop-blur-lg p-2 border border-ds-950/5 dark:border-ds-0/10",
           isVertical ? "flex-col items-center" : "flex-row items-center",
           className
         )}
