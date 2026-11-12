@@ -81,6 +81,7 @@ import {
 } from '../dashkit/NavigationMenu';
 import { StatsCard } from '../dashkit/StatsCard/StatsCard';
 import { HiOutlineChartBarSquare, HiOutlineTicket } from 'react-icons/hi2';
+import { CustomizationPlayground } from '../partials/CustomizationPlayground';
 
 
 type MdxComponentProps = { components?: Record<string, ElementType> };
@@ -243,6 +244,7 @@ const components: Record<string, ElementType> = {
   BentoGridItem,
   HiOutlineChartBarSquare,
   HiOutlineTicket,
+  CustomizationPlayground,
   Preview: ({ children }: { children: ReactNode }) => (
     <div className="not-prose my-6 border bg-card border-border ds-rounded flex flex-col p-6 md:p-8 gap-4 items-start">
       {children}
