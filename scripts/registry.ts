@@ -45,6 +45,15 @@ export const registry: Record<string, ComponentConfig> = {
     dependencies: ['clsx', 'tailwind-merge'],
     registryDependencies: ['badge'],
   },
+  'bento-grid': {
+    name: 'BentoGrid',
+    files: [
+      'src/dashkit/BentoGrid/BentoGrid.tsx',
+      'src/dashkit/BentoGrid/BentoGrid.test.tsx',
+      'src/dashkit/BentoGrid/index.ts'
+    ],
+    dependencies: ['clsx', 'tailwind-merge', 'class-variance-authority'],
+  },
   button: {
     name: 'Button',
     files: [
