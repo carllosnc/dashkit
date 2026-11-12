@@ -209,8 +209,8 @@
         "BentoGridItem"
       ],
       "propsDefinitions": [
-        "export interface BentoGridProps\n  extends React.HTMLAttributes<HTMLDivElement>,\n    VariantProps<typeof bentoGridVariants> {\n  cols?: BentoResponsiveValue<BentoCols>;\n  autoRows?: string;\n}",
-        "export interface BentoGridItemProps\n  extends React.HTMLAttributes<HTMLDivElement>,\n    Omit<VariantProps<typeof bentoGridItemVariants>, 'divided'> {\n  colSpan?: BentoResponsiveValue<BentoColSpan>;\n  rowSpan?: BentoResponsiveValue<BentoRowSpan>;\n}"
+        "export interface BentoGridProps\r\n  extends React.HTMLAttributes<HTMLDivElement>,\r\n    VariantProps<typeof bentoGridVariants> {\r\n  cols?: BentoResponsiveValue<BentoCols>;\r\n  autoRows?: string;\r\n}",
+        "export interface BentoGridItemProps\r\n  extends React.HTMLAttributes<HTMLDivElement>,\r\n    Omit<VariantProps<typeof bentoGridItemVariants>, 'divided'> {\r\n  colSpan?: BentoResponsiveValue<BentoColSpan>;\r\n  rowSpan?: BentoResponsiveValue<BentoRowSpan>;\r\n}"
       ]
     },
     "breadcrumb": {
