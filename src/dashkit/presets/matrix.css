@@ -13,28 +13,28 @@
   --ds-primary-gradient: none;
   --ds-danger-gradient: none;
 
-  --ds-button-border: #16a34a;
-  --ds-button-shadow: 0 0 10px -2px rgb(22 163 74 / 0.35);
-  --ds-button-outlined-shadow: 0 0 8px -2px rgb(22 163 74 / 0.2);
+  --ds-button-border: #15803d;
+  --ds-button-shadow: 0 0 10px -2px rgb(22 163 74 / 0.28);
+  --ds-button-outlined-shadow: 0 0 8px -2px rgb(22 163 74 / 0.14);
   --ds-button-soft-shadow: none;
-  --ds-card-shadow: 0 0 20px -8px rgb(22 163 74 / 0.2);
-  --ds-input-shadow: inset 0 0 6px -2px rgb(22 163 74 / 0.15);
+  --ds-card-shadow: 0 1px 3px 0 rgb(5 46 22 / 0.06), 0 0 20px -8px rgb(22 163 74 / 0.14);
+  --ds-input-shadow: inset 0 1px 2px 0 rgb(5 46 22 / 0.04);
 
   /* 2. Base Scale Override (Phosphor Green Monochromatic Ramp)
      Ensures components using ds-0..ds-950 (Pagination, ProgressBar track,
      ButtonGroup active state, Slider, Switch, Divider) match the CRT palette. */
-  --ds-color-0: #ecfdf5;
-  --ds-color-50: #ecfdf5;
-  --ds-color-100: #d1fae5;
-  --ds-color-200: #bbf7d0;
-  --ds-color-300: #86efac;
+  --ds-color-0: #fafdfb;
+  --ds-color-50: #f2f7f4;
+  --ds-color-100: #e4efe8;
+  --ds-color-200: #cfe5d7;
+  --ds-color-300: #94c9a9;
   --ds-color-400: #4ade80;
   --ds-color-500: #16a34a;
   --ds-color-600: #166534;
-  --ds-color-700: #14532d;
-  --ds-color-800: #0a2612;
-  --ds-color-900: #05160a;
-  --ds-color-950: #020804;
+  --ds-color-700: #144328;
+  --ds-color-800: #0c2416;
+  --ds-color-900: #07140c;
+  --ds-color-950: #030705;
 
   /* 3. Info Scale Override (Terminal Cyan-Emerald Tint) */
   --ds-color-info-50: #ecfdf5;
@@ -50,35 +50,35 @@
   --ds-color-info-950: #022c22;
 
   /* 4. Core Surfaces & Borders (Light) */
-  --ds-bg: #ecfdf5;
+  --ds-bg: #f2f7f4;
   --ds-fg: #052e16;
-  --ds-card: #f0fdf4;
+  --ds-card: #fafdfb;
   --ds-card-fg: #052e16;
-  --ds-popover: #f0fdf4;
+  --ds-popover: #ffffff;
   --ds-popover-fg: #052e16;
-  --ds-popover-border: #16a34a;
-  --ds-popover-item: #dcfce7;
-  --ds-popover-item-selected: #bbf7d0;
+  --ds-popover-border: #94c9a9;
+  --ds-popover-item: #ebf3ee;
+  --ds-popover-item-selected: #d1e7d9;
   --ds-popover-item-selected-fg: #052e16;
 
-  --ds-border: #16a34a;
-  --ds-border-subtle: #86efac;
+  --ds-border: #94c9a9;
+  --ds-border-subtle: #cfe5d7;
 
   /* 5. Interactive & Muted Tokens (Light) */
   --ds-primary: #15803d;
   --ds-primary-fg: #f0fdf4;
-  --ds-secondary: #dcfce7;
+  --ds-secondary: #e4efe8;
   --ds-secondary-fg: #052e16;
-  --ds-muted: #dcfce7;
+  --ds-muted: #e4efe8;
   --ds-muted-fg: #166534;
-  --ds-accent: #bbf7d0;
+  --ds-accent: #d1e7d9;
   --ds-accent-fg: #052e16;
   --ds-info: #059669;
   --ds-info-fg: #ecfdf5;
 
   /* 6. Form Controls & Charts (Light) */
-  --ds-input-bg: #f0fdf4;
-  --ds-input-border: #16a34a;
+  --ds-input-bg: #ffffff;
+  --ds-input-border: #84bfa0;
   --ds-input-focus: #15803d;
   --ds-input-fg: #052e16;
   --ds-input-ring: #22c55e;
@@ -96,43 +96,43 @@
   --ds-color-0: #dcfce7;
 
   /* Core Surfaces & Borders (Dark CRT) */
-  --ds-bg: #020804;
+  --ds-bg: #030705;
   --ds-fg: #4ade80;
-  --ds-card: #041007;
+  --ds-card: #07120c;
   --ds-card-fg: #86efac;
-  --ds-popover: #051409;
+  --ds-popover: #0a1710;
   --ds-popover-fg: #86efac;
-  --ds-popover-border: #15803d;
-  --ds-popover-item: #092210;
-  --ds-popover-item-selected: #14532d;
-  --ds-popover-item-selected-fg: #86efac;
+  --ds-popover-border: #1a4d2e;
+  --ds-popover-item: #11281b;
+  --ds-popover-item-selected: #163a25;
+  --ds-popover-item-selected-fg: #bbf7d0;
 
-  --ds-border: #14532d;
-  --ds-border-subtle: #0a2914;
+  --ds-border: #164229;
+  --ds-border-subtle: #0e2a1a;
 
   /* Interactive & Muted Tokens (Dark CRT) */
   --ds-primary: #22c55e;
-  --ds-primary-fg: #020804;
-  --ds-secondary: #0a2612;
+  --ds-primary-fg: #030705;
+  --ds-secondary: #102519;
   --ds-secondary-fg: #86efac;
-  --ds-muted: #07190c;
+  --ds-muted: #0c1d13;
   --ds-muted-fg: #22c55e;
-  --ds-accent: #14532d;
-  --ds-accent-fg: #86efac;
+  --ds-accent: #163a25;
+  --ds-accent-fg: #bbf7d0;
   --ds-info: #10b981;
-  --ds-info-fg: #020804;
+  --ds-info-fg: #030705;
 
   /* Surface Elevation (Dark CRT Glow) */
   --ds-button-border: #22c55e;
-  --ds-button-shadow: 0 0 12px -2px rgb(34 197 94 / 0.45);
-  --ds-button-outlined-shadow: 0 0 10px -2px rgb(34 197 94 / 0.25);
-  --ds-button-soft-shadow: 0 0 8px -2px rgb(34 197 94 / 0.2);
-  --ds-card-shadow: 0 0 24px -8px rgb(34 197 94 / 0.22);
-  --ds-input-shadow: inset 0 0 8px -2px rgb(34 197 94 / 0.18);
+  --ds-button-shadow: 0 0 12px -2px rgb(34 197 94 / 0.4);
+  --ds-button-outlined-shadow: 0 0 10px -2px rgb(34 197 94 / 0.2);
+  --ds-button-soft-shadow: 0 0 8px -2px rgb(34 197 94 / 0.16);
+  --ds-card-shadow: 0 0 28px -10px rgb(34 197 94 / 0.18), inset 0 1px 0 0 rgb(74 222 128 / 0.06);
+  --ds-input-shadow: inset 0 1px 4px 0 rgb(0 0 0 / 0.45), inset 0 0 8px -2px rgb(34 197 94 / 0.14);
 
   /* Form Controls & Charts (Dark CRT) */
-  --ds-input-bg: #030c05;
-  --ds-input-border: #15803d;
+  --ds-input-bg: #040a07;
+  --ds-input-border: #1a4d2e;
   --ds-input-focus: #22c55e;
   --ds-input-fg: #86efac;
   --ds-input-ring: #16a34a;
