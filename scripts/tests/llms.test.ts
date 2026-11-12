@@ -130,5 +130,21 @@ describe('LLMs Documentation Generator', () => {
     expect(llmsContent).toContain('data-primary');
     expect(llmsContent).toContain('3-Tier AI Customization Protocol');
     expect(llmsContent).toContain('Component API Patterns (Compound vs. Prop-Driven)');
+    expect(llmsContent).not.toContain('`NavbarLink`');
+    expect(llmsContent).not.toContain('CardHeader (props: title, description');
+  });
+
+  it('should strip inline demo exports and not-prose preview blocks from llms-full.txt', () => {
+    const llmsFullContent = generateLlmsFullTxt();
+    expect(llmsFullContent).not.toContain('SelectDemo');
+    expect(llmsFullContent).not.toContain('not-prose');
+  });
+
+  it('should extract propsDefinitions for every registered component including toast', () => {
+    const { registryJsonPath } = buildLlmsFiles();
+    const registryJson = JSON.parse(fs.readFileSync(registryJsonPath, 'utf8'));
+    for (const [slug, entry] of Object.entries<{ propsDefinitions: string[] }>(registryJson.components)) {
+      expect(entry.propsDefinitions.length, `Missing propsDefinitions for ${slug}`).toBeGreaterThan(0);
+    }
   });
 });
