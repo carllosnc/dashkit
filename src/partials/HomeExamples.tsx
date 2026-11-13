@@ -18,7 +18,7 @@ export function HomeExamples() {
     <>
       {/* Live Theme Preset Switcher Bar */}
       <div className="w-full max-w-[1600px] mx-auto px-4 pt-6 pb-2">
-        <div className="flex flex-row items-center justify-between gap-3 px-4 py-2 bg-card/80 backdrop-blur-sm border border-border ds-border-width ds-card-shadow ds-rounded-lg">
+        <div className="flex flex-row items-center justify-between gap-3">
           {/* Official Dashkit Tabs (variant="pills") */}
           <div className="shrink-0">
             <Tabs
