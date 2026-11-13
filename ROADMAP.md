@@ -32,7 +32,7 @@ Initiatives to make Dashkit fully optimized for AI coding assistants (Cursor, Cl
 - [x] Document the 3-Tier AI Customization Hierarchy (`dashkit.css` tokens → component `cva` variants → `className` & `data-slot`) in `.agents/skills/dashkit-developer/SKILL.md`, `customization.mdx`, and `llms-full.txt`.
 - [x] Synchronize `.agents/skills/dashkit-developer/SKILL.md` to reference `src/dashkit/` instead of legacy paths.
 - [x] Expand `AGENTS.md` and create a root `.cursorrules` with Tailwind v4 rules, CVA standards, and pure-usage patterns.
-- [ ] Add automated lint checks to verify agent compliance with file structure and styling guidelines.
+- [x] Add automated lint checks to verify agent compliance with file structure and styling guidelines.
 
 ### Code Metadata and Zero-Ambiguity APIs
 - [ ] Add JSDoc descriptions and `@example` usage blocks across all 55 component declarations for inline LLM autocomplete (explicitly distinguishing prop-driven `options={...}` components from compound `children` components).
