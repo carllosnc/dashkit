@@ -113,7 +113,7 @@ function ToastItem({
 
   const offset = index * 12;
   const scale = 1 - index * 0.05;
-  const opacity = 1 - index * 0.2;
+  const opacity = index >= 3 ? 0 : 1;
 
   return (
     <motion.div
@@ -134,7 +134,7 @@ function ToastItem({
       onFocus={() => pauseToastTimer(toast.id)}
       onBlur={() => resumeToastTimer(toast.id)}
       className={cn(
-        'group absolute w-full pointer-events-auto border ds-rounded shadow-2xl p-4 flex items-center gap-4 transition-shadow',
+        'group absolute w-full pointer-events-auto border ds-border-width ds-rounded shadow-2xl ds-card-shadow p-4 flex items-center gap-4 transition-shadow',
         invert
           ? 'bg-ds-950 text-ds-50 border-ds-800 dark:bg-ds-0 dark:text-ds-950 dark:border-ds-200'
           : 'bg-card text-card-foreground border-border',
