@@ -18,6 +18,7 @@
   --ds-button-outlined-shadow: 3px 3px 0px 0px var(--ds-border);
   --ds-button-soft-shadow: 3px 3px 0px 0px var(--ds-border);
   --ds-card-shadow: 4px 4px 0px 0px var(--ds-border);
+  --ds-popover-shadow: 4px 4px 0px 0px var(--ds-border);
   --ds-input-shadow: 2px 2px 0px 0px var(--ds-border);
 
   /* 2. Core Surfaces & Borders (Light) */
@@ -66,6 +67,7 @@
   --ds-button-outlined-shadow: 3px 3px 0px 0px var(--ds-border);
   --ds-button-soft-shadow: 3px 3px 0px 0px var(--ds-border);
   --ds-card-shadow: 4px 4px 0px 0px var(--ds-border);
+  --ds-popover-shadow: 4px 4px 0px 0px var(--ds-border);
   --ds-input-shadow: 2px 2px 0px 0px var(--ds-border);
 
   /* Interactive & Muted Tokens (Dark) */

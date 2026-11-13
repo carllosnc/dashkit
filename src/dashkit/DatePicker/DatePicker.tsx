@@ -88,7 +88,7 @@ export function DatePicker({
               role="dialog"
               aria-label="Calendar"
               className={cn(
-                'w-[280px] bg-popover text-popover-fg border border-popover-border ds-border-width ds-card-shadow ds-rounded shadow-2xl p-4 overflow-hidden',
+                'w-[280px] bg-popover text-popover-fg border border-popover-border ds-border-width ds-popover-shadow ds-rounded p-4 overflow-hidden',
                 position === 'top' ? 'origin-bottom' : 'origin-top'
               )}
             >
