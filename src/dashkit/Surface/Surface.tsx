@@ -7,7 +7,7 @@ const surfaceVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-muted/50 dark:bg-muted/40',
+        default: 'bg-muted/50 dark:bg-muted/85',
         info: 'bg-info/10 dark:bg-info/15',
         success: 'bg-success/10 dark:bg-success/15',
         warning: 'bg-warning/12 dark:bg-warning/15',
