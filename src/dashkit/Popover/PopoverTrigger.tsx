@@ -61,6 +61,7 @@ export function PopoverTrigger({ children, asChild }: PopoverTriggerProps) {
     return (
       <div
         ref={internalRef}
+        data-slot="popover-trigger"
         onClick={(e) => toggleOpen(e.currentTarget)}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={onMouseLeave}
@@ -76,6 +77,7 @@ export function PopoverTrigger({ children, asChild }: PopoverTriggerProps) {
   return (
     <div
       ref={internalRef}
+      data-slot="popover-trigger"
       role="button"
       tabIndex={0}
       aria-haspopup="dialog"

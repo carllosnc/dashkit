@@ -26,18 +26,23 @@ export interface SkeletonProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof skeletonVariants> {}
 
-export function Skeleton({
-  variant = 'rectangular',
-  animation = 'shimmer',
-  className,
-  ...props
-}: SkeletonProps) {
+export const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(function Skeleton(
+  {
+    variant = 'rectangular',
+    animation = 'shimmer',
+    className,
+    ...props
+  },
+  ref
+) {
   return (
     <div
+      ref={ref}
+      data-slot="skeleton"
       className={cn(skeletonVariants({ variant, animation }), className)}
       {...props}
     />
   );
-}
+});
 
 Skeleton.displayName = 'Skeleton';

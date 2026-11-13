@@ -1,17 +1,21 @@
 import * as React from 'react';
 import { cn } from '../utils/cn';
 
-export interface DropdownLabelProps {
-  children: React.ReactNode;
-  className?: string;
-}
+export type DropdownLabelProps = React.ComponentPropsWithoutRef<'div'>;
 
-export function DropdownLabel({ children, className }: DropdownLabelProps) {
-  return (
-    <div className={cn('px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-ds-600 dark:text-ds-400', className)}>
-      {children}
-    </div>
-  );
-}
+export const DropdownLabel = React.forwardRef<HTMLDivElement, DropdownLabelProps>(
+  function DropdownLabel({ children, className, ...props }, ref) {
+    return (
+      <div
+        ref={ref}
+        data-slot="dropdown-label"
+        className={cn('px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-muted-foreground', className)}
+        {...props}
+      >
+        {children}
+      </div>
+    );
+  }
+);
 
 DropdownLabel.displayName = 'DropdownLabel';

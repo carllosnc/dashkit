@@ -17,7 +17,7 @@ Initiatives to make Dashkit fully optimized for AI coding assistants (Cursor, Cl
 - [x] Derive `ds-primary-gradient` and `ds-danger-gradient` from semantic `--ds-primary` and `--ds-danger` tokens (with `--ds-primary-gradient: none` support for flat themes).
 - [x] Configure `extendTailwindMerge` in `cn.ts` so standard Tailwind classes (`rounded-*`, `bg-none`) deterministically override `ds-rounded*` and `ds-*-gradient`.
 - [x] Replace hardcoded neutral color scales with semantic tokens (`text-foreground`, `text-muted-foreground`) and add `data-slot` attributes across form components.
-- [ ] Extend `data-slot` attributes and native HTML prop forwarding (`ComponentPropsWithoutRef` + `ref`) across all remaining overlay, navigation, and data display components.
+- [x] Extend `data-slot` attributes and native HTML prop forwarding (`ComponentPropsWithoutRef` + `ref`) across all remaining overlay, navigation, and data display components.
 - [x] Propagate scoped theme attributes (`data-primary`, `data-base`) to portalled overlays (`Select`, `Combobox`, `DatePicker`, `Modal`, `Popover`).
 
 ### Machine-Readable Registry, CLI and MCP

@@ -114,6 +114,7 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
     const desktopElement = (
       <motion.aside
         ref={ref as React.Ref<HTMLDivElement>}
+        data-slot="sidebar"
         initial={false}
         animate={{
           width: isOpen ? width : collapsedWidth
@@ -149,7 +150,7 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
       createPortal(
         <AnimatePresence>
           {openMobile && (
-            <div className="fixed inset-0 z-[1100] isolate overflow-hidden">
+            <div data-slot="sidebar-portal" className="fixed inset-0 z-[1100] isolate overflow-hidden">
               <Backdrop
                 show={true}
                 blur={true}
@@ -158,6 +159,7 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
               />
               <motion.aside
                 ref={ref as React.Ref<HTMLDivElement>}
+                data-slot="sidebar"
                 initial={{ x: '-100%' }}
                 animate={{ x: 0 }}
                 exit={{ x: '-100%' }}

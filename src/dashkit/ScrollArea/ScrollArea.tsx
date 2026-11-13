@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { forwardRef, type ComponentPropsWithoutRef, type ReactNode } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../utils/cn';
 
@@ -15,25 +15,35 @@ const viewportVariants = cva('h-full w-full rounded-[inherit] custom-scrollbar',
   },
 });
 
-export interface ScrollAreaProps extends VariantProps<typeof viewportVariants> {
+export interface ScrollAreaProps
+  extends ComponentPropsWithoutRef<'div'>,
+    VariantProps<typeof viewportVariants> {
   children: ReactNode;
-  className?: string;
   viewportClassName?: string;
 }
 
-export function ScrollArea({
-  children,
-  className,
-  viewportClassName,
-  orientation,
-}: ScrollAreaProps) {
+export const ScrollArea = forwardRef<HTMLDivElement, ScrollAreaProps>(function ScrollArea(
+  {
+    children,
+    className,
+    viewportClassName,
+    orientation,
+    ...props
+  },
+  ref
+) {
   return (
-    <div className={cn('relative overflow-hidden w-full h-full', className)}>
-      <div className={cn(viewportVariants({ orientation }), viewportClassName)}>
+    <div
+      ref={ref}
+      data-slot="scroll-area"
+      className={cn('relative overflow-hidden w-full h-full', className)}
+      {...props}
+    >
+      <div data-slot="scroll-area-viewport" className={cn(viewportVariants({ orientation }), viewportClassName)}>
         {children}
       </div>
     </div>
   );
-}
+});
 
 ScrollArea.displayName = 'ScrollArea';
