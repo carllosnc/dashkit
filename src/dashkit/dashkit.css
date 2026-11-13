@@ -148,6 +148,7 @@
   --ds-button-outlined-shadow: none;
   --ds-button-soft-shadow: none;
   --ds-card-shadow: none;
+  --ds-popover-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --ds-input-shadow: none;
 
   --ds-bg: var(--color-ds-100);
@@ -211,6 +212,7 @@
   --ds-popover: var(--color-ds-900);
   --ds-popover-fg: var(--color-ds-100);
   --ds-popover-border: var(--color-ds-700);
+  --ds-popover-shadow: 0 12px 24px -4px rgb(0 0 0 / 0.55), 0 4px 10px -2px rgb(0 0 0 / 0.4);
   --ds-popover-item: var(--color-ds-800);
   --ds-popover-item-selected: var(--color-ds-800);
   --ds-popover-item-selected-fg: var(--color-ds-100);
@@ -358,6 +360,9 @@
 }
 .ds-card-shadow {
   box-shadow: var(--ds-card-shadow, none);
+}
+.ds-popover-shadow {
+  box-shadow: var(--ds-popover-shadow, 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1));
 }
 .ds-input-surface {
   border-width: var(--ds-border-width, 1px);

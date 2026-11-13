@@ -180,7 +180,7 @@ export function Combobox({
                 ? { top: triggerRect.bottom + 8 }
                 : { bottom: (window.innerHeight - triggerRect.top) + 8 }),
             }}
-            className="p-1 bg-popover text-popover-fg border border-popover-border ds-border-width ds-card-shadow ds-rounded shadow-lg overflow-hidden"
+            className="p-1 bg-popover text-popover-fg border border-popover-border ds-border-width ds-popover-shadow ds-rounded overflow-hidden"
           >
             <div className="max-h-60 overflow-y-auto custom-scrollbar flex flex-col gap-0.5 font-sans pr-1">
               {filteredOptions.length === 0 ? (

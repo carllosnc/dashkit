@@ -144,7 +144,7 @@ export function Select({
               zIndex: 9999,
             }}
             className={cn(
-              'p-1 bg-popover/95 backdrop-blur-md text-popover-fg border border-popover-border/80 ds-border-width ds-card-shadow ds-rounded-lg shadow-lg overflow-hidden',
+              'p-1 bg-popover/95 backdrop-blur-md text-popover-fg border border-popover-border/80 ds-border-width ds-popover-shadow ds-rounded-lg overflow-hidden',
               side === 'top' ? 'origin-bottom' : 'origin-top'
             )}
           >
