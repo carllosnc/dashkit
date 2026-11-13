@@ -73,8 +73,8 @@
   --ds-muted-fg: #166534;
   --ds-accent: #d1e7d9;
   --ds-accent-fg: #052e16;
-  --ds-info: #059669;
-  --ds-info-fg: #ecfdf5;
+  --ds-info: #0891b2;
+  --ds-info-fg: #ecfeff;
 
   /* 6. Form Controls & Charts (Light) */
   --ds-input-bg: #ffffff;
@@ -97,7 +97,7 @@
 
   /* Core Surfaces & Borders (Dark CRT) */
   --ds-bg: #030705;
-  --ds-fg: #4ade80;
+  --ds-fg: #86efac;
   --ds-card: #07120c;
   --ds-card-fg: #86efac;
   --ds-popover: #0a1710;
@@ -115,11 +115,11 @@
   --ds-primary-fg: #030705;
   --ds-secondary: #102519;
   --ds-secondary-fg: #86efac;
-  --ds-muted: #0c1d13;
-  --ds-muted-fg: #22c55e;
+  --ds-muted: #11291b;
+  --ds-muted-fg: #4ade80;
   --ds-accent: #163a25;
   --ds-accent-fg: #bbf7d0;
-  --ds-info: #10b981;
+  --ds-info: #22d3ee;
   --ds-info-fg: #030705;
 
   /* Surface Elevation (Dark CRT Glow) */
