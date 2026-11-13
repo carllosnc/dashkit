@@ -1,8 +1,9 @@
 import { type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { cva, type VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 import { cn } from '../utils/cn';
+import type { StrictVariantProps } from '../utils/types';
 import { getPortalThemeAttrs } from '../utils/portalTheme';
 import { useModal } from './useModal';
 import { useFocusTrap } from '../utils/useFocusTrap';
@@ -27,7 +28,9 @@ const modalContentVariants = cva(
   }
 );
 
-export interface ModalProps extends VariantProps<typeof modalContentVariants> {
+export type ModalSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
+
+export interface ModalProps extends StrictVariantProps<typeof modalContentVariants> {
   isOpen: boolean;
   onClose: () => void;
   children: ReactNode;

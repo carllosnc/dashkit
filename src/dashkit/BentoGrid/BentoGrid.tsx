@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 import { cn } from '../utils/cn';
+import type { StrictVariantProps } from '../utils/types';
 
 export type BentoBreakpoint = 'base' | 'sm' | 'md' | 'lg' | 'xl';
 export type BentoResponsiveValue<T> = T | Partial<Record<BentoBreakpoint, T>>;
@@ -300,7 +301,7 @@ const BentoGridContext = React.createContext<BentoGridContextValue>({
 
 export interface BentoGridProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof bentoGridVariants> {
+    StrictVariantProps<typeof bentoGridVariants> {
   cols?: BentoResponsiveValue<BentoCols>;
   autoRows?: string;
 }
@@ -347,7 +348,7 @@ BentoGrid.displayName = 'BentoGrid';
 
 export interface BentoGridItemProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    Omit<VariantProps<typeof bentoGridItemVariants>, 'divided'> {
+    Omit<StrictVariantProps<typeof bentoGridItemVariants>, 'divided'> {
   colSpan?: BentoResponsiveValue<BentoColSpan>;
   rowSpan?: BentoResponsiveValue<BentoRowSpan>;
 }

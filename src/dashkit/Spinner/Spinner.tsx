@@ -2,7 +2,8 @@ import * as React from 'react';
 import { cn } from '../utils/cn';
 import { motion, type Transition } from 'framer-motion';
 
-export type SpinnerColor = 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'neutral' | string;
+export type SpinnerTokenColor = 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'neutral';
+export type SpinnerColor = SpinnerTokenColor | 'currentColor' | `#${string}` | `var(--${string})`;
 
 export interface SpinnerProps extends Omit<React.SVGAttributes<SVGSVGElement>, 'color'> {
   size?: number | string;
@@ -11,7 +12,7 @@ export interface SpinnerProps extends Omit<React.SVGAttributes<SVGSVGElement>, '
   className?: string;
 }
 
-const COLOR_MAP: Record<string, string> = {
+const COLOR_MAP: Record<SpinnerTokenColor, string> = {
   primary: 'var(--color-primary)',
   success: 'var(--color-ds-success-600)',
   warning: 'var(--color-ds-warning-500)',
@@ -38,7 +39,7 @@ export function Spinner({
   ...props
 }: SpinnerProps) {
   const spinnerSize = typeof size === 'number' ? `${size}px` : size;
-  const strokeColor = COLOR_MAP[color as string] || color;
+  const strokeColor = color in COLOR_MAP ? COLOR_MAP[color as SpinnerTokenColor] : color;
 
   return (
     <motion.svg

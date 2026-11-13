@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { motion, type HTMLMotionProps } from 'framer-motion';
-import { cva, type VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 import { cn } from '../utils/cn';
+import type { StrictVariantProps } from '../utils/types';
 
 const cardVariants = cva(
   'relative bg-card text-card-foreground p-6 rounded-xl gap-6 flex flex-col font-sans',
@@ -24,7 +25,7 @@ const cardVariants = cva(
 );
 
 export type CardProps = Omit<HTMLMotionProps<'div'>, 'title'> &
-  VariantProps<typeof cardVariants> & {
+  StrictVariantProps<typeof cardVariants> & {
     animate?: boolean;
     ref?: React.Ref<HTMLDivElement>;
   };

@@ -2,12 +2,16 @@ import * as React from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '../utils/cn';
 
+export type CircularProgressColor = 'primary' | 'success' | 'warning' | 'danger' | 'info';
+export type CircularProgressVariant = 'solid' | 'soft';
+export type CircularProgressSize = 'sm' | 'md' | 'lg' | number;
+
 export interface CircularProgressProps {
   value: number;
-  size?: 'sm' | 'md' | 'lg' | number;
+  size?: CircularProgressSize;
   strokeWidth?: number;
-  color?: 'primary' | 'success' | 'warning' | 'danger' | 'info';
-  variant?: 'solid' | 'soft';
+  color?: CircularProgressColor;
+  variant?: CircularProgressVariant;
   showValue?: boolean;
   showTrack?: boolean;
   roundCaps?: boolean;
