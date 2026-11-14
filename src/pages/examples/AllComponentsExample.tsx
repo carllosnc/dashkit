@@ -17,6 +17,7 @@ import { CopyField } from '../../dashkit/CopyField/CopyField';
 import { ListTile } from '../../dashkit/ListTile/ListTile';
 import { Checkbox } from '../../dashkit/Checkbox/Checkbox';
 import { Radio } from '../../dashkit/Radio/Radio';
+import { RadioCard, RadioCardGroup } from '../../dashkit/RadioCard/RadioCard';
 import { Switch } from '../../dashkit/Switch/Switch';
 import { Textarea } from '../../dashkit/Textarea/Textarea';
 import { ButtonGroup, ButtonGroupItem } from '../../dashkit/ButtonGroup/ButtonGroup';
@@ -608,6 +609,36 @@ export const AllComponentsExample = () => {
             <Radio name="billing" label="Monthly Billing" description="Charged monthly, cancel anytime without fees." defaultChecked />
             <Radio name="billing" label="Annual Billing" description="Save 20% on all enterprise plans." />
             <Radio name="billing" label="Enterprise Custom" disabled description="Contact sales for custom contract invoicing." />
+          </CardContent>
+        </Card>
+
+        {/* RADIO CARDS */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Radio Cards</CardTitle>
+            <CardDescription>Selectable option cards with leading accents, descriptions, and keyboard navigation.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <RadioCardGroup label="Style Preset" valueLabel="Default" defaultValue="default">
+              <RadioCard
+                value="default"
+                title="Default"
+                description="Clean & balanced"
+                leading={<span className="size-2.5 rounded-full bg-blue-600" />}
+              />
+              <RadioCard
+                value="brutalism"
+                title="Brutalism"
+                description="Sharp & high-contrast"
+                leading={<span className="size-2.5 rounded-full bg-orange-500" />}
+              />
+              <RadioCard
+                value="matrix"
+                title="Matrix"
+                description="Cyber terminal"
+                leading={<span className="size-2.5 rounded-full bg-emerald-500" />}
+              />
+            </RadioCardGroup>
           </CardContent>
         </Card>
 

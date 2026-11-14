@@ -2629,6 +2629,170 @@ Extends all native `RadioHTMLAttributes` (except `type`), plus these specialties
 | `ref` | `Ref` | - | Forwarded ref to the underlying radio input. |
 
 
+## RadioCard
+
+- Category: Forms & Inputs
+- Slug: `radio-card`
+- Installation: `bunx carllosnc/dashkit add radio-card`
+- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `class-variance-authority`, `react-icons`
+
+=> {
+  const [preset, setPreset] = useState('default');
+  const labels = {
+    default: 'Default',
+    brutalism: 'Brutalism',
+    matrix: 'Matrix',
+  };
+
+  return (
+    
+      
+        }
+        />
+        }
+        />
+        }
+        />
+      
+    
+  );
+};
+
+ => {
+  const [plan, setPlan] = useState('pro');
+
+  return (
+    
+      
+        $0}
+        />
+        }
+        />
+        Contact}
+        />
+      
+    
+  );
+};
+
+A selectable option card group for single-choice selections such as style presets, plans, providers, or configuration modes.
+
+### Import
+
+```tsx
+import { RadioCard, RadioCardGroup } from '@/dashkit/RadioCard'
+```
+
+### Installation
+
+Add the radio card component to your project using the Dashkit CLI:
+
+```bash
+bunx carllosnc/dashkit add radio-card
+```
+
+### Style Preset Example
+
+Use `RadioCardGroup` with `label` and `valueLabel` to display the group title and active selection summary above a stack of option cards.
+
+```tsx
+const [preset, setPreset] = useState('default');
+
+<RadioCardGroup
+  label="Style Preset"
+  valueLabel={preset}
+  value={preset}
+  onValueChange={setPreset}
+>
+  <RadioCard
+    value="default"
+    title="Default"
+    description="Clean & balanced"
+    leading={<span className="size-2.5 rounded-full bg-blue-600" />}
+  />
+  <RadioCard
+    value="brutalism"
+    title="Brutalism"
+    description="Sharp & high-contrast"
+    leading={<span className="size-2.5 rounded-full bg-orange-500" />}
+  />
+  <RadioCard
+    value="matrix"
+    title="Matrix"
+    description="Cyber terminal"
+    leading={<span className="size-2.5 rounded-full bg-emerald-500" />}
+  />
+</RadioCardGroup>
+```
+
+### Grid & Indicators
+
+Combine `columns` (`1 | 2 | 3 | 4`), `indicator` (`'none' | 'radio' | 'check'`), and `trailing` slots for multi-column plan or provider pickers.
+
+```tsx
+<RadioCardGroup label="Billing Plan" columns={3} indicator="check" defaultValue="pro">
+  <RadioCard
+    value="starter"
+    title="Starter"
+    description="For side projects and prototypes."
+    trailing={<span className="text-sm font-semibold">$0</span>}
+  />
+  <RadioCard
+    value="pro"
+    title="Pro"
+    description="For growing teams and production apps."
+    trailing={<Badge content="$29/mo" color="primary" />}
+  />
+  <RadioCard
+    value="enterprise"
+    title="Enterprise"
+    description="Dedicated support and custom SLAs."
+    disabled
+  />
+</RadioCardGroup>
+```
+
+### Radio Indicator & Sizes
+
+Use `indicator="radio"` when you want a traditional radio circle inside each card, and `size` (`'sm' | 'md' | 'lg'`) to adjust density.
+
+### Accessibility
+
+- Uses `role="radiogroup"` on `RadioCardGroup` and `role="radio"` with `aria-checked` on each `RadioCard`.
+- Full keyboard navigation: `ArrowDown` / `ArrowRight` move to the next enabled card, `ArrowUp` / `ArrowLeft` move to the previous enabled card, and `Home` / `End` jump to the first or last enabled card.
+- Pass `name` on `RadioCardGroup` to include a hidden `` for native HTML form submissions.
+
+### Props
+
+#### RadioCardGroup
+
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `value` | `string` | `-` | Controlled selected value. |
+| `defaultValue` | `string` | `-` | Initial selected value for uncontrolled usage. |
+| `onValueChange` | `(value: string) => void` | `-` | Callback fired when selection changes. |
+| `name` | `string` | `-` | Optional form field name rendered as a hidden input. |
+| `label` | `ReactNode` | `-` | Uppercase group label displayed at top-left. |
+| `valueLabel` | `ReactNode` | `-` | Active selection summary displayed at top-right. |
+| `columns` | `1 \| 2 \| 3 \| 4` | `1` | Responsive grid column count. |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Card padding density inherited by children. |
+| `indicator` | `'none' \| 'radio' \| 'check'` | `'none'` | Selection indicator style shown on each card. |
+| `disabled` | `boolean` | `false` | Disables all cards in the group. |
+
+#### RadioCard
+
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `value` | `string` | Required | Unique option value within the group. |
+| `title` | `ReactNode` | Required | Primary option heading. |
+| `description` | `ReactNode` | `-` | Secondary supporting text below the title. |
+| `leading` | `ReactNode` | `-` | Optional leading element (color dot, icon, avatar). |
+| `trailing` | `ReactNode` | `-` | Optional trailing element (price, badge, shortcut). |
+| `size` | `'sm' \| 'md' \| 'lg'` | Group `size` | Overrides the group size for this card. |
+| `indicator` | `'none' \| 'radio' \| 'check'` | Group `indicator` | Overrides the group indicator for this card. |
+| `disabled` | `boolean` | `false` | Disables this individual card. |
+
+
 ## Switch
 
 - Category: Forms & Inputs

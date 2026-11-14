@@ -174,6 +174,15 @@ export const registry: Record<string, ComponentConfig> = {
     ],
     dependencies: ['clsx', 'tailwind-merge'],
   },
+  'radio-card': {
+    name: 'RadioCard',
+    files: [
+      'src/dashkit/RadioCard/RadioCard.tsx',
+      'src/dashkit/RadioCard/RadioCard.test.tsx',
+      'src/dashkit/RadioCard/index.ts'
+    ],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'class-variance-authority', 'react-icons'],
+  },
   select: {
     name: 'Select',
     files: [
