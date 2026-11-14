@@ -390,6 +390,15 @@ export const registry: Record<string, ComponentConfig> = {
     ],
     dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
   },
+  fileupload: {
+    name: 'FileUpload',
+    files: [
+      'src/dashkit/FileUpload/FileUpload.tsx',
+      'src/dashkit/FileUpload/FileUpload.test.tsx',
+      'src/dashkit/FileUpload/index.ts'
+    ],
+    dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
+  },
   divider: {
     name: 'Divider',
     files: [
