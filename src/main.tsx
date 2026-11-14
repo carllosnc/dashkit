@@ -65,6 +65,7 @@ import {
   PopoverDocs,
   ProgressBarDocs,
   RadioDocs,
+  RadioCardDocs,
   ScrollAreaDocs,
   SelectDocs,
   SidebarDocs,
@@ -138,6 +139,7 @@ createRoot(document.getElementById('root')!).render(
                     <Route path="otp-input" element={<MdxWrapper Component={OtpInputDocs} />} />
                     <Route path="pagination" element={<MdxWrapper Component={PaginationDocs} />} />
                     <Route path="radio" element={<MdxWrapper Component={RadioDocs} />} />
+                    <Route path="radio-card" element={<MdxWrapper Component={RadioCardDocs} />} />
                     <Route path="select" element={<MdxWrapper Component={SelectDocs} />} />
                     <Route path="skeleton" element={<MdxWrapper Component={SkeletonDocs} />} />
                     <Route path="spinner" element={<MdxWrapper Component={SpinnerDocs} />} />
