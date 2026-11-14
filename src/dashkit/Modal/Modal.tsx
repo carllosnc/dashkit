@@ -1,12 +1,7 @@
 import { forwardRef, useCallback, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
-<<<<<<< HEAD
-import { motion, AnimatePresence } from 'framer-motion';
-import { cva } from 'class-variance-authority';
-=======
 import { motion, AnimatePresence, type HTMLMotionProps } from 'framer-motion';
-import { cva, type VariantProps } from 'class-variance-authority';
->>>>>>> origin/master
+import { cva } from 'class-variance-authority';
 import { cn } from '../utils/cn';
 import type { StrictVariantProps } from '../utils/types';
 import { getPortalThemeAttrs } from '../utils/portalTheme';
