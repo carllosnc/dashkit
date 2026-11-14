@@ -3585,6 +3585,8 @@ A drag-and-drop file upload dropzone with file size validation, per-file progres
 
 ### Basic usage
 
+
+
 ```tsx
 import { FileUpload } from '@/dashkit';
 
@@ -3601,6 +3603,7 @@ export function Example() {
 ```
 
 ### Props
+
 
 | Property | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
