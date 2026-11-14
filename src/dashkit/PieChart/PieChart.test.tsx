@@ -55,4 +55,26 @@ describe('PieChart', () => {
     expect(paths).toHaveLength(3);
     expect(paths[1].getAttribute('fill')).toMatch(/^url\(#pie-texture-striped-/);
   });
+
+  it('renders a full-circle slice when one item represents 100%', () => {
+    const { container } = render(
+      <PieChart
+        data={[{ label: 'Only', value: 100, color: 'purple' }]}
+        innerRadius={0.5}
+        animate={false}
+      />
+    );
+    const paths = container.querySelectorAll('path');
+    expect(paths).toHaveLength(1);
+    expect(paths[0].getAttribute('d')).not.toContain('NaN');
+    expect(paths[0].getAttribute('d')).toContain('A ');
+  });
+
+  it('handles zero-total data safely without NaN', () => {
+    const { container } = render(
+      <PieChart data={[{ label: 'Empty', value: 0 }]} animate={false} />
+    );
+    expect(container.querySelector('svg')).toBeInTheDocument();
+    expect(container.querySelectorAll('path')).toHaveLength(0);
+  });
 });

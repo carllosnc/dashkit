@@ -34,4 +34,36 @@ describe('LineChart', () => {
     expect(screen.getByText(/Jan/i)).toBeInTheDocument();
     expect(screen.getByText(/Feb/i)).toBeInTheDocument();
   });
+
+  it('handles single data point and all-zero values without NaN', () => {
+    const { container } = render(
+      <LineChart
+        data={[{ label: 'Only', value1: 0 }]}
+        series={series}
+        animate={false}
+      />
+    );
+    const path = container.querySelector('path');
+    expect(path).toBeInTheDocument();
+    expect(path?.getAttribute('d')).not.toContain('NaN');
+  });
+
+  it('applies height, showYAxis, showLegend, and showDots="hover"', () => {
+    const { container } = render(
+      <LineChart
+        data={data}
+        series={series}
+        height={300}
+        showYAxis
+        showLegend
+        showDots="hover"
+        valueFormatter={(v) => `${v}ms`}
+        animate={false}
+      />
+    );
+    expect(container.firstChild).toHaveStyle('height: 300px');
+    expect(screen.getByText('Series 1')).toBeInTheDocument();
+    expect(screen.getByText('0ms')).toBeInTheDocument();
+    expect(container.querySelectorAll('.rounded-full')).toHaveLength(1); // only legend dot
+  });
 });

@@ -21,6 +21,8 @@ const DEFAULT_COLORS = [
   'var(--color-chart-5)',
 ];
 
+const defaultFormatter = (value: number) => value.toLocaleString();
+
 export interface PieChartProps extends React.ComponentPropsWithoutRef<'div'> {
   data: PieChartDataItem[];
   /** @default 0 */
@@ -33,6 +35,10 @@ export interface PieChartProps extends React.ComponentPropsWithoutRef<'div'> {
   animate?: boolean;
   /** @default 'none' */
   texture?: PieChartTexture;
+  /** Custom formatter for tooltip values. */
+  valueFormatter?: (value: number) => string;
+  /** Accessible label for the chart SVG. @default 'Pie chart' */
+  ariaLabel?: string;
 }
 
 /**
@@ -40,7 +46,7 @@ export interface PieChartProps extends React.ComponentPropsWithoutRef<'div'> {
  *
  * @example
  * ```tsx
- * <PieChart data={[{ name: 'Desktop', value: 65 }, { name: 'Mobile', value: 35 }]} />
+ * <PieChart data={[{ label: 'Desktop', value: 65 }, { label: 'Mobile', value: 35 }]} />
  * ```
  */
 export const PieChart = React.forwardRef<HTMLDivElement, PieChartProps>(function PieChart(
@@ -52,6 +58,8 @@ export const PieChart = React.forwardRef<HTMLDivElement, PieChartProps>(function
     showTooltip = true,
     animate = true,
     texture = 'none',
+    valueFormatter = defaultFormatter,
+    ariaLabel = 'Pie chart',
     ...props
   },
   ref
@@ -70,6 +78,7 @@ export const PieChart = React.forwardRef<HTMLDivElement, PieChartProps>(function
     containerRef,
     slices,
     handleMouseMove,
+    handleTouchMove,
     isNearTop,
     total,
     size,
@@ -87,6 +96,10 @@ export const PieChart = React.forwardRef<HTMLDivElement, PieChartProps>(function
 
   if (!data || data.length === 0) return null;
 
+  const hoveredItem = hoveredIndex !== null ? validData[hoveredIndex] : undefined;
+  const hoveredPercent =
+    hoveredItem && total > 0 ? ((Math.max(0, hoveredItem.value) / total) * 100).toFixed(1) : '0.0';
+
   return (
     <div
       ref={setRootRef}
@@ -96,8 +109,12 @@ export const PieChart = React.forwardRef<HTMLDivElement, PieChartProps>(function
     >
       <div className="relative w-full aspect-square max-w-[280px] overflow-visible">
         <svg
+          role="img"
+          aria-label={ariaLabel}
           viewBox={`0 0 ${size} ${size}`}
           className="w-full h-full overflow-visible"
+          onMouseLeave={() => setHoveredIndex(null)}
+          onTouchEnd={() => setHoveredIndex(null)}
         >
           <defs>
             <pattern
@@ -169,15 +186,20 @@ export const PieChart = React.forwardRef<HTMLDivElement, PieChartProps>(function
           </defs>
 
           {slices.map((slice, i) => {
+            if (!slice.path) return null;
             const sliceTexture = slice.texture || texture;
             return (
               <Fragment key={i}>
                 <motion.path
                   d={slice.path}
                   fill={slice.color}
+                  fillRule="evenodd"
                   stroke="currentColor"
                   strokeWidth="3"
-                  className="stroke-card text-card transition-colors duration-200 cursor-pointer"
+                  className={cn(
+                    'stroke-card text-card transition-opacity duration-200 cursor-pointer',
+                    hoveredIndex !== null && hoveredIndex !== i && 'opacity-50'
+                  )}
                   style={{
                     zIndex: hoveredIndex === i ? 10 : 1,
                     transformOrigin: `${center}px ${center}px`
@@ -190,12 +212,13 @@ export const PieChart = React.forwardRef<HTMLDivElement, PieChartProps>(function
                     transition: { type: 'spring', stiffness: 400, damping: 25 }
                   }}
                   onMouseMove={(e) => handleMouseMove(e, i)}
-                  onMouseLeave={() => setHoveredIndex(null)}
+                  onTouchMove={(e) => handleTouchMove(e, i)}
                 />
                 {sliceTexture && sliceTexture !== 'none' && (
                   <motion.path
                     d={slice.path}
                     fill={`url(#pie-texture-${sliceTexture}-${chartId})`}
+                    fillRule="evenodd"
                     stroke="currentColor"
                     strokeWidth="3"
                     className="stroke-card text-card pointer-events-none"
@@ -217,10 +240,10 @@ export const PieChart = React.forwardRef<HTMLDivElement, PieChartProps>(function
           })}
         </svg>
 
-        {showTooltip && hoveredIndex !== null && (
+        {showTooltip && hoveredItem && (
           <div
             className={cn(
-              'absolute z-50 pointer-events-none transform -translate-x-1/2 bg-popover text-popover-fg ds-rounded shadow-xl border border-border p-3 flex flex-col gap-1 min-w-[120px] transition-transform duration-200',
+              'absolute z-50 pointer-events-none transform -translate-x-1/2 bg-popover text-popover-fg ds-rounded shadow-xl border border-border p-3 backdrop-blur-sm flex flex-col gap-1 min-w-[120px] transition-transform duration-200',
               isNearTop ? 'translate-y-4' : '-translate-y-full -mt-8'
             )}
             style={{
@@ -229,32 +252,35 @@ export const PieChart = React.forwardRef<HTMLDivElement, PieChartProps>(function
             }}
           >
             <div className="flex items-center gap-2">
-               <div className="size-2 rounded-full" style={{ backgroundColor: validData[hoveredIndex].color }} />
-               <span className="text-xs font-medium text-muted-foreground whitespace-nowrap">{validData[hoveredIndex].label}</span>
+              <div className="size-2 rounded-full" style={{ backgroundColor: hoveredItem.color }} />
+              <span className="text-xs font-medium text-muted-foreground whitespace-nowrap">{hoveredItem.label}</span>
             </div>
-            <div className="flex border-b border-border pb-1 mt-1 mb-1">
-               <span className="text-xs font-bold text-foreground">
-                 {validData[hoveredIndex].value.toLocaleString()}
-                 <span className="ml-1 opacity-50 font-normal">
-                   ({((validData[hoveredIndex].value / total) * 100).toFixed(1)}%)
-                 </span>
-               </span>
+            <div className="flex items-baseline gap-1.5 pt-0.5">
+              <span className="text-xs font-bold tabular-nums text-foreground">
+                {valueFormatter(hoveredItem.value)}
+              </span>
+              <span className="text-[11px] tabular-nums text-muted-foreground">
+                ({hoveredPercent}%)
+              </span>
             </div>
           </div>
         )}
       </div>
+
       {showLabels && (
-        <div className="flex w-full flex-wrap justify-center gap-x-6 gap-y-2">
+        <div className="flex w-full flex-wrap justify-center gap-x-6 gap-y-2 mt-2">
           {validData.map((item, i) => (
             <div
               key={i}
+              onMouseEnter={() => setHoveredIndex(i)}
+              onMouseLeave={() => setHoveredIndex(null)}
               className={cn(
-                'flex items-center gap-2 transition-opacity duration-200',
+                'flex items-center gap-2 transition-opacity duration-200 cursor-default',
                 hoveredIndex !== null && hoveredIndex !== i && 'opacity-40'
               )}
             >
-              <div className="size-2.5 rounded-sm" style={{ backgroundColor: item.color }} />
-              <span className="text-[10px] font-bold uppercase text-muted-foreground first-letter:uppercase !tracking-normal">
+              <div className="size-2.5 rounded-sm shrink-0" style={{ backgroundColor: item.color }} />
+              <span className="text-xs font-medium text-muted-foreground">
                 {item.label}
               </span>
             </div>

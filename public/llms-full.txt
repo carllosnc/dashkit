@@ -2675,6 +2675,8 @@ Extends all native `RadioHTMLAttributes` (except `type`), plus these specialties
   );
 };
 
+
+
 A selectable option card group for single-choice selections such as style presets, plans, providers, or configuration modes.
 
 ### Import
@@ -2694,6 +2696,8 @@ bunx carllosnc/dashkit add radio-card
 ### Style Preset Example
 
 Use `RadioCardGroup` with `label` and `valueLabel` to display the group title and active selection summary above a stack of option cards.
+
+
 
 ```tsx
 const [preset, setPreset] = useState('default');
@@ -2729,6 +2733,8 @@ const [preset, setPreset] = useState('default');
 
 Combine `columns` (`1 | 2 | 3 | 4`), `indicator` (`'none' | 'radio' | 'check'`), and `trailing` slots for multi-column plan or provider pickers.
 
+
+
 ```tsx
 <RadioCardGroup label="Billing Plan" columns={3} indicator="check" defaultValue="pro">
   <RadioCard
@@ -2755,6 +2761,8 @@ Combine `columns` (`1 | 2 | 3 | 4`), `indicator` (`'none' | 'radio' | 'check'`),
 ### Radio Indicator & Sizes
 
 Use `indicator="radio"` when you want a traditional radio circle inside each card, and `size` (`'sm' | 'md' | 'lg'`) to adjust density.
+
+
 
 ### Accessibility
 
