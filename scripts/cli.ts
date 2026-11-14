@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
 import { handleAdd, handleInit, handleDoctor, handleList, handleInfo, handleAiRules, handleDiff } from './commands';
+import { startMcpServer } from './mcp';
 
 const program = new Command();
 
@@ -65,6 +66,11 @@ program
   .description('Generate AI assistant instructions (AGENTS.md / .cursorrules) for your project')
   .option('-o, --output <file>', 'Target file path (defaults to AGENTS.md)')
   .action(handleAiRules);
+
+program
+  .command('mcp')
+  .description('Start the Dashkit MCP (Model Context Protocol) server over stdio')
+  .action(startMcpServer);
 
 // parseAsync (not parse) so async action handlers are awaited and their
 // rejections surface instead of becoming unhandled promise rejections.
