@@ -69,6 +69,8 @@
   },
   "files": [
     "exec",
-    "src/dashkit"
+    "src/dashkit",
+    "public",
+    "prompts"
   ]
 }

@@ -26,7 +26,7 @@ Initiatives to make Dashkit fully optimized for AI coding assistants (Cursor, Cl
 - [x] Support installing multiple components in a single CLI call (`dashkit add <components...>`) so AI agents can scaffold an entire view in one command.
 - [x] Add non-interactive TTY guards (`!process.stdin.isTTY`) to `dashkit init` and `dashkit add` so autonomous agents never hang on interactive prompts.
 - [x] Automatically generate and maintain a root barrel file (`src/dashkit/index.ts`) during `dashkit add` so AI imports from `@/dashkit` always resolve alongside `@/dashkit/<Component>`.
-- [ ] Develop an official Dashkit MCP (Model Context Protocol) server (`@dashkit/mcp`) with search and component scaffolding tools.
+- [x] Develop an official Dashkit MCP (Model Context Protocol) server (`@dashkit/mcp`) with search and component scaffolding tools.
 
 ### Repository Agent Rules and Skills
 - [x] Document the 3-Tier AI Customization Hierarchy (`dashkit.css` tokens → component `cva` variants → `className` & `data-slot`) in `.agents/skills/dashkit-developer/SKILL.md`, `customization.mdx`, and `llms-full.txt`.
