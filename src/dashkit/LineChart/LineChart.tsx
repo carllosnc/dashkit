@@ -17,25 +17,28 @@ const DEFAULT_COLORS = [
   'var(--color-chart-5)',
 ];
 
-export interface LineChartProps {
+export interface LineChartProps extends React.ComponentPropsWithoutRef<'div'> {
   data: Record<string, string | number>[];
   series: LineChartSeries[];
-  className?: string;
   showGrid?: boolean;
   showLabels?: boolean;
   showTooltip?: boolean;
   animate?: boolean;
 }
 
-export const LineChart = ({
-  data,
-  series,
-  className,
-  showGrid = true,
-  showLabels = true,
-  showTooltip = true,
-  animate = true,
-}: LineChartProps) => {
+export const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>(function LineChart(
+  {
+    data,
+    series,
+    className,
+    showGrid = true,
+    showLabels = true,
+    showTooltip = true,
+    animate = true,
+    ...props
+  },
+  ref
+) {
   const validSeries = React.useMemo(() => series.map((s, i) => ({
     ...s,
     color: s.color || DEFAULT_COLORS[i % DEFAULT_COLORS.length]
@@ -56,7 +59,7 @@ export const LineChart = ({
   if (!data || data.length === 0 || !series || series.length === 0) return null;
 
   return (
-    <div className={cn('w-full flex flex-col relative overflow-visible', className)}>
+    <div ref={ref} data-slot="line-chart" className={cn('w-full flex flex-col relative overflow-visible', className)} {...props}>
       <div className="relative w-full aspect-[2.5/1] overflow-visible">
         <svg
           ref={chartRef}
@@ -188,6 +191,6 @@ export const LineChart = ({
       )}
     </div>
   );
-};
+});
 
 LineChart.displayName = 'LineChart';

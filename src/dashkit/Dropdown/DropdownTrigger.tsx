@@ -37,7 +37,12 @@ export function DropdownTrigger({ children, asChild }: DropdownTriggerProps) {
 
   if (hasElementChild) {
     return (
-      <div ref={internalRef} onClick={(e) => toggleOpen(e.currentTarget)} className="cursor-pointer inline-block">
+      <div
+        ref={internalRef}
+        data-slot="dropdown-trigger"
+        onClick={(e) => toggleOpen(e.currentTarget)}
+        className="cursor-pointer inline-block"
+      >
         {children}
       </div>
     );
@@ -46,6 +51,7 @@ export function DropdownTrigger({ children, asChild }: DropdownTriggerProps) {
   return (
     <div
       ref={internalRef}
+      data-slot="dropdown-trigger"
       role="button"
       tabIndex={0}
       aria-expanded={open}

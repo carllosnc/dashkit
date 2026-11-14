@@ -42,6 +42,7 @@ export function Card({
     <motion.div
       {...props}
       ref={ref}
+      data-slot="card"
       initial={animate ? { opacity: 0, y: 10 } : undefined}
       animate={animate ? { opacity: 1, y: 0 } : undefined}
       transition={{ duration: 0.3, ease: 'easeOut' }}

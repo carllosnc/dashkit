@@ -21,9 +21,8 @@ const DEFAULT_COLORS = [
   'var(--color-chart-5)',
 ];
 
-export interface PieChartProps {
+export interface PieChartProps extends React.ComponentPropsWithoutRef<'div'> {
   data: PieChartDataItem[];
-  className?: string;
   innerRadius?: number;
   showLabels?: boolean;
   showTooltip?: boolean;
@@ -31,15 +30,19 @@ export interface PieChartProps {
   texture?: PieChartTexture;
 }
 
-export function PieChart({
-  data,
-  className,
-  innerRadius = 0,
-  showLabels = true,
-  showTooltip = true,
-  animate = true,
-  texture = 'none',
-}: PieChartProps) {
+export const PieChart = React.forwardRef<HTMLDivElement, PieChartProps>(function PieChart(
+  {
+    data,
+    className,
+    innerRadius = 0,
+    showLabels = true,
+    showTooltip = true,
+    animate = true,
+    texture = 'none',
+    ...props
+  },
+  ref
+) {
   const chartId = useId().replace(/[^a-zA-Z0-9-_]/g, '');
   const validData = React.useMemo(() => data.map((d, i) => ({
     ...d,
@@ -60,12 +63,23 @@ export function PieChart({
     center
   } = usePieChart({ data: validData, innerRadius, showTooltip });
 
+  const setRootRef = React.useCallback(
+    (node: HTMLDivElement | null) => {
+      containerRef.current = node;
+      if (typeof ref === 'function') ref(node);
+      else if (ref) ref.current = node;
+    },
+    [containerRef, ref]
+  );
+
   if (!data || data.length === 0) return null;
 
   return (
     <div
-      ref={containerRef}
+      ref={setRootRef}
+      data-slot="pie-chart"
       className={cn('w-full flex flex-col items-center justify-center relative overflow-visible', className)}
+      {...props}
     >
       <div className="relative w-full aspect-square max-w-[280px] overflow-visible">
         <svg
@@ -236,6 +250,6 @@ export function PieChart({
       )}
     </div>
   );
-}
+});
 
 PieChart.displayName = 'PieChart';

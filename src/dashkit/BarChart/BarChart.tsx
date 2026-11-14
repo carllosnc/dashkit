@@ -1,4 +1,4 @@
-import { useId, Fragment } from 'react';
+import { forwardRef, useId, Fragment, type ComponentPropsWithoutRef } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '../utils/cn';
 import { useBarChart } from './useBarChart';
@@ -11,11 +11,10 @@ export interface BarChartSeries {
 
 export type BarChartTexture = 'none' | 'striped' | 'dots' | 'grid' | 'gradient';
 
-export interface BarChartProps {
+export interface BarChartProps extends ComponentPropsWithoutRef<'div'> {
   data: Record<string, string | number>[];
   series: BarChartSeries[];
   height?: number | string;
-  className?: string;
   showGrid?: boolean;
   showLabels?: boolean;
   showTooltip?: boolean;
@@ -27,21 +26,26 @@ export interface BarChartProps {
   showTrack?: boolean;
 }
 
-export function BarChart({
-  data,
-  series,
-  height = '100%',
-  className,
-  showGrid = true,
-  showLabels = true,
-  showTooltip = true,
-  animate = true,
-  barGap = 4,
-  maxBarWidth = 64,
-  rounded = true,
-  texture = 'none',
-  showTrack = false,
-}: BarChartProps) {
+export const BarChart = forwardRef<HTMLDivElement, BarChartProps>(function BarChart(
+  {
+    data,
+    series,
+    height = '100%',
+    className,
+    style,
+    showGrid = true,
+    showLabels = true,
+    showTooltip = true,
+    animate = true,
+    barGap = 4,
+    maxBarWidth = 64,
+    rounded = true,
+    texture = 'none',
+    showTrack = false,
+    ...props
+  },
+  ref
+) {
   const chartId = useId().replace(/[^a-zA-Z0-9-_]/g, '');
   const {
     chartRef,
@@ -64,8 +68,11 @@ export function BarChart({
 
   return (
     <div
+      ref={ref}
+      data-slot="bar-chart"
       className={cn('w-full flex-1 flex flex-col relative overflow-visible', className)}
-      style={{ height: typeof height === 'number' ? `${height}px` : height }}
+      style={{ height: typeof height === 'number' ? `${height}px` : height, ...style }}
+      {...props}
     >
       <svg
         ref={chartRef}
@@ -270,4 +277,6 @@ export function BarChart({
       )}
     </div>
   );
-}
+});
+
+BarChart.displayName = 'BarChart';

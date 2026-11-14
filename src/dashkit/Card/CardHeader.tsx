@@ -18,6 +18,7 @@ export function CardHeader({
   return (
     <div
       ref={ref}
+      data-slot="card-header"
       className={cn('flex gap-3 items-start', className)}
       {...props}
     >
@@ -47,6 +48,7 @@ export function CardTitle({ className, as: Component = 'h3', ref, ...props }: Ca
   return (
     <Component
       ref={ref}
+      data-slot="card-title"
       className={cn('text-base font-bold text-foreground tracking-tight leading-tight', className)}
       {...props}
     />
@@ -59,6 +61,7 @@ export function CardDescription({ className, ref, ...props }: CardDescriptionPro
   return (
     <p
       ref={ref}
+      data-slot="card-description"
       className={cn('text-sm text-muted-foreground', className)}
       {...props}
     />

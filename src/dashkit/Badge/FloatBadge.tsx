@@ -25,15 +25,18 @@ export interface FloatBadgeProps extends BadgeProps {
   offset?: [number, number];
 }
 
-export function FloatBadge({
-  children,
-  position = 'top-right',
-  offset,
-  className,
-  ...props
-}: FloatBadgeProps) {
+export const FloatBadge = React.forwardRef<HTMLDivElement, FloatBadgeProps>(function FloatBadge(
+  {
+    children,
+    position = 'top-right',
+    offset,
+    className,
+    ...props
+  },
+  ref
+) {
   return (
-    <div className={FLOAT_ROOT}>
+    <div ref={ref} data-slot="float-badge" className={FLOAT_ROOT}>
       {children}
       <div
         className={cn(
@@ -57,4 +60,6 @@ export function FloatBadge({
       </div>
     </div>
   );
-}
+});
+
+FloatBadge.displayName = 'FloatBadge';

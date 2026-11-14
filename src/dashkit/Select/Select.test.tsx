@@ -1,3 +1,4 @@
+import { createRef } from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Select } from './Select';
 
@@ -62,9 +63,26 @@ describe('Select', () => {
 
   it('renders error message and applies error styles', () => {
     render(<Select options={options} error="Please select a value" />);
-    expect(screen.getByText('Please select a value')).toBeInTheDocument();
+    const errorEl = screen.getByRole('alert');
+    expect(errorEl).toHaveTextContent('Please select a value');
     const trigger = screen.getByRole('button');
     expect(trigger).toHaveAttribute('aria-invalid', 'true');
+    expect(trigger).toHaveAttribute('aria-describedby', errorEl.id);
     expect(trigger).toHaveClass('border-ds-danger-500/50');
+  });
+
+  it('forwards ref and native button attributes and sets type="button" on options', () => {
+    const ref = createRef<HTMLButtonElement>();
+    render(<Select ref={ref} id="country-select" name="country" options={options} />);
+    const trigger = screen.getByRole('button');
+    expect(ref.current).toBe(trigger);
+    expect(trigger).toHaveAttribute('id', 'country-select');
+    expect(trigger).toHaveAttribute('name', 'country');
+
+    fireEvent.click(trigger);
+    const optionButtons = screen.getAllByRole('option');
+    for (const option of optionButtons) {
+      expect(option).toHaveAttribute('type', 'button');
+    }
   });
 });

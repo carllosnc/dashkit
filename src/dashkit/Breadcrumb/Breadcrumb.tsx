@@ -21,6 +21,7 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
       return (
         <nav
           ref={ref}
+          data-slot="breadcrumb"
           aria-label="Breadcrumb"
           className={cn('flex', className)}
           {...props}
@@ -55,6 +56,7 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
     return (
       <nav
         ref={ref}
+        data-slot="breadcrumb"
         aria-label="breadcrumb"
         className={cn('flex', className)}
         {...props}

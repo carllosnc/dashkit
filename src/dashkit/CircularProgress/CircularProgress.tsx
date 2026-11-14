@@ -2,7 +2,7 @@ import * as React from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '../utils/cn';
 
-export interface CircularProgressProps {
+export interface CircularProgressProps extends Omit<React.ComponentPropsWithoutRef<'div'>, 'color'> {
   value: number;
   size?: 'sm' | 'md' | 'lg' | number;
   strokeWidth?: number;
@@ -12,7 +12,6 @@ export interface CircularProgressProps {
   showTrack?: boolean;
   roundCaps?: boolean;
   trackColor?: string;
-  className?: string;
 }
 
 const sizeMap = {
@@ -60,7 +59,9 @@ export const CircularProgress = React.forwardRef<HTMLDivElement, CircularProgres
     showTrack = true,
     roundCaps = true,
     trackColor,
-    className
+    className,
+    style,
+    ...props
   }, ref) {
     const dimension = typeof size === 'number' ? size : sizeMap[size];
     const stroke = strokeWidth || (typeof size === 'number' ? Math.max(2, size / 10) : strokeWidthMap[size]);
@@ -74,12 +75,14 @@ export const CircularProgress = React.forwardRef<HTMLDivElement, CircularProgres
     return (
       <div
         ref={ref}
+        data-slot="circular-progress"
         role="progressbar"
         aria-valuenow={Math.round(value)}
         aria-valuemin={0}
         aria-valuemax={100}
         className={cn('relative inline-flex items-center justify-center', className)}
-        style={{ width: dimension, height: dimension }}
+        style={{ width: dimension, height: dimension, ...style }}
+        {...props}
       >
         <svg
           width={dimension}

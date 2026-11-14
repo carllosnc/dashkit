@@ -36,7 +36,7 @@ describe('Breadcrumb', () => {
   it('applies active styling to the active item', () => {
     render(<BreadcrumbItem active>Current Page</BreadcrumbItem>);
     const item = screen.getByText('Current Page');
-    expect(item).toHaveClass('font-semibold', 'text-ds-900');
+    expect(item).toHaveClass('font-semibold', 'text-foreground');
   });
 
   it('renders a custom separator', () => {

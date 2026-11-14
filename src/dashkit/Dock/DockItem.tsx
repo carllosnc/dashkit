@@ -82,6 +82,7 @@ export const DockItem = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, 
     );
 
     const commonProps = {
+      'data-slot': 'dock-item',
       className: cn(
         "relative flex size-10 items-center justify-center rounded-full ds-pill bg-card dark:bg-ds-950 text-ds-800 dark:text-ds-200 shadow-sm shrink-0 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-ds-400",
         className

@@ -12,27 +12,31 @@ const DEFAULT_COLORS = [
   'var(--color-chart-5)',
 ];
 
-export interface AreaChartProps {
+export interface AreaChartProps extends React.ComponentPropsWithoutRef<'div'> {
   data: Record<string, string | number>[];
   series: AreaChartSeries[];
   height?: number | string;
-  className?: string;
   showGrid?: boolean;
   showLabels?: boolean;
   showTooltip?: boolean;
   animate?: boolean;
 }
 
-export function AreaChart({
-  data,
-  series,
-  height = '100%',
-  className,
-  showGrid = true,
-  showLabels = true,
-  showTooltip = true,
-  animate = true,
-}: AreaChartProps) {
+export const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>(function AreaChart(
+  {
+    data,
+    series,
+    height = '100%',
+    className,
+    style,
+    showGrid = true,
+    showLabels = true,
+    showTooltip = true,
+    animate = true,
+    ...props
+  },
+  ref
+) {
   const {
     chartRef,
     hoveredIndex,
@@ -55,8 +59,11 @@ export function AreaChart({
 
   return (
     <div
+      ref={ref}
+      data-slot="area-chart"
       className={cn("w-full flex-1 flex flex-col min-h-0 overflow-visible", className)}
-      style={{ height: typeof height === 'number' ? `${height}px` : height }}
+      style={{ height: typeof height === 'number' ? `${height}px` : height, ...style }}
+      {...props}
     >
       <div className="relative flex-1 w-full min-h-0 overflow-visible">
         <svg
@@ -220,4 +227,6 @@ export function AreaChart({
       )}
     </div>
   );
-}
+});
+
+AreaChart.displayName = 'AreaChart';

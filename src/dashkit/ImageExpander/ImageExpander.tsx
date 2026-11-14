@@ -6,23 +6,29 @@ import { FiMaximize2, FiX } from 'react-icons/fi';
 import { cn } from '../utils/cn';
 import { useImageExpander } from './useImageExpander';
 
-export interface ImageExpanderProps {
+export interface ImageExpanderProps extends React.ComponentPropsWithoutRef<'div'> {
   children: ReactNode;
   full?: ReactNode;
   caption?: string;
-  className?: string;
 }
 
-export function ImageExpander({ children, full, caption, className }: ImageExpanderProps) {
-  const { isOpen, setIsOpen } = useImageExpander();
-  const displayFull = full || children;
+export const ImageExpander = React.forwardRef<HTMLDivElement, ImageExpanderProps>(
+  function ImageExpander({ children, full, caption, className, onClick, ...props }, ref) {
+    const { isOpen, setIsOpen } = useImageExpander();
+    const displayFull = full || children;
 
-  return (
-    <>
-      <div
-        onClick={() => setIsOpen(true)}
-        className={cn('group relative cursor-zoom-in overflow-hidden ds-rounded border border-ds-200 dark:border-ds-800 transition-all duration-300 hover:shadow-xl', className)}
-      >
+    return (
+      <>
+        <div
+          ref={ref}
+          data-slot="image-expander"
+          onClick={(e) => {
+            setIsOpen(true);
+            onClick?.(e);
+          }}
+          className={cn('group relative cursor-zoom-in overflow-hidden ds-rounded border border-border transition-all duration-300 hover:shadow-xl', className)}
+          {...props}
+        >
         <div className="flex w-full h-full transition-transform duration-500 group-hover:scale-105">
           {children}
         </div>
@@ -39,6 +45,7 @@ export function ImageExpander({ children, full, caption, className }: ImageExpan
         {isOpen && (
           <motion.div
             key="image-expander-dialog"
+            data-slot="image-expander-dialog"
             className="fixed inset-0 z-[1100] flex items-center justify-center isolate"
             role="dialog"
             aria-modal="true"
@@ -107,6 +114,6 @@ export function ImageExpander({ children, full, caption, className }: ImageExpan
       )}
     </>
   );
-}
+});
 
 ImageExpander.displayName = 'ImageExpander';

@@ -56,6 +56,7 @@ export function ToastProvider({
               <div
                 key={pos}
                 aria-live="polite"
+                data-slot="toast-viewport"
                 data-testid="toast-viewport"
                 data-position={pos}
                 className={cn(
@@ -118,6 +119,7 @@ function ToastItem({
   return (
     <motion.div
       layout
+      data-slot="toast"
       role={isUrgent ? 'alert' : 'status'}
       aria-atomic="true"
       initial={{ opacity: 0, y: isTop ? -20 : 20, scale: 0.95 }}
@@ -141,18 +143,18 @@ function ToastItem({
         isTop ? 'top-0 origin-top' : 'bottom-0 origin-bottom'
       )}
     >
-      <div className="shrink-0 text-xl">
+      <div data-slot="toast-icon" className="shrink-0 text-xl">
         {toast.icon || TYPE_ICONS[toast.type]}
       </div>
 
       <div className="flex flex-col gap-1 flex-1 overflow-hidden">
         {toast.title && (
-          <h4 className={cn('text-sm font-bold leading-tight', invert ? 'text-ds-50 dark:text-ds-950' : 'text-foreground')}>
+          <h4 data-slot="toast-title" className={cn('text-sm font-bold leading-tight', invert ? 'text-ds-50 dark:text-ds-950' : 'text-foreground')}>
             {toast.title}
           </h4>
         )}
         {toast.description && (
-          <p className={cn('text-xs leading-relaxed', invert ? 'text-ds-300 dark:text-ds-600' : 'text-muted-foreground')}>
+          <p data-slot="toast-description" className={cn('text-xs leading-relaxed', invert ? 'text-ds-300 dark:text-ds-600' : 'text-muted-foreground')}>
             {toast.description}
           </p>
         )}
@@ -160,6 +162,7 @@ function ToastItem({
 
       <button
         type="button"
+        data-slot="toast-close"
         aria-label="Dismiss notification"
         onClick={() => removeToast(toast.id)}
         className={cn(
