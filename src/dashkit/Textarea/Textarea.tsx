@@ -36,7 +36,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           <label
             data-slot="label"
             htmlFor={internalId}
-            className="text-[13px] font-semibold text-foreground ml-1 tracking-tight"
+            className="text-xs font-semibold text-foreground ml-1 tracking-tight"
           >
             {label}
           </label>
@@ -69,7 +69,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             'resize-none min-h-[100px]',
             autoGrow && 'overflow-hidden',
             error
-              ? 'border-ds-danger-500/50 focus:border-ds-danger-500 focus:ring-ds-danger-50 dark:border-ds-danger-500/30 dark:focus:border-ds-danger-500/50 dark:focus:ring-ds-danger-500/10'
+              ? 'border-ds-danger-500/50 focus:border-ds-danger-500 focus:ring-danger/20 dark:border-ds-danger-500/30 dark:focus:border-ds-danger-500/50'
               : '',
             className
           )}
@@ -79,7 +79,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             data-slot="helper"
             id={messageId}
             className={cn(
-              'text-[12px] ml-1 tracking-tight',
+              'text-xs ml-1 tracking-tight',
               error
                 ? 'text-ds-danger-600 dark:text-ds-danger-400'
                 : 'text-muted-foreground'

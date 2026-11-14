@@ -12,7 +12,7 @@ export interface SelectOption {
 }
 
 const selectTriggerVariants = cva(
-  'w-full text-left flex items-center justify-between gap-2 bg-input-bg text-input-fg border border-input-border ds-input-surface ds-rounded outline-none transition-all duration-200 focus:border-input-focus focus:ring-2 focus:ring-input-focus/20 disabled:cursor-not-allowed disabled:opacity-50',
+  'w-full text-left flex items-center justify-between gap-2 bg-input-bg text-input-fg border border-input-border ds-input-surface ds-rounded outline-none transition-all duration-200 focus-visible:border-input-focus focus-visible:ring-2 focus-visible:ring-input-focus/20 disabled:cursor-not-allowed disabled:opacity-50',
   {
     variants: {
       size: {
@@ -21,7 +21,7 @@ const selectTriggerVariants = cva(
         lg: 'h-11 text-base px-4',
       },
       error: {
-        true: 'border-ds-danger-500/50 focus:border-ds-danger-500 focus:ring-ds-danger-50 dark:border-ds-danger-500/30 dark:focus:border-ds-danger-500/50 dark:focus:ring-ds-danger-500/10',
+        true: 'border-ds-danger-500/50 focus-visible:border-ds-danger-500 focus-visible:ring-danger/20 dark:border-ds-danger-500/30 dark:focus-visible:border-ds-danger-500/50',
         false: '',
       },
       isOpen: {

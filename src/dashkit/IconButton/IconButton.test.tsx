@@ -43,6 +43,13 @@ describe('IconButton', () => {
     expect(button).toHaveClass('border-border');
   });
 
+  it('applies color styles correctly', () => {
+    render(<IconButton icon={<FiPlus />} variant="filled" color="danger" />);
+    const button = screen.getByRole('button');
+    expect(button).toHaveClass('ds-danger-gradient');
+    expect(button).toHaveClass('text-danger-foreground');
+  });
+
   it('applies size modifiers correctly', () => {
     const { rerender } = render(<IconButton icon={<FiPlus />} size="sm" />);
     let button = screen.getByRole('button');

@@ -13,7 +13,7 @@ import type { StrictVariantProps } from '../utils/types';
 import { Spinner } from '../Spinner/Spinner';
 
 const buttonVariants = cva(
-  'inline-flex font-medium items-center justify-center cursor-pointer whitespace-nowrap transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-transparent active:scale-[0.97] disabled:opacity-60 disabled:cursor-not-allowed disabled:pointer-events-none',
+  'inline-flex font-medium items-center justify-center cursor-pointer whitespace-nowrap transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-transparent active:scale-[0.97] disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none',
   {
     variants: {
       variant: {
@@ -46,7 +46,7 @@ const buttonVariants = cva(
       {
         variant: 'filled',
         color: 'danger',
-        className: 'ds-danger-gradient text-red-50 hover:brightness-120',
+        className: 'ds-danger-gradient text-danger-foreground hover:brightness-120',
       },
       // outlined
       {
