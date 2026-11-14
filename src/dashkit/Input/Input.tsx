@@ -12,7 +12,7 @@ const inputWrapperVariants = cva(
         lg: '',
       },
       error: {
-        true: 'border-ds-danger-500/50 focus-within:border-ds-danger-500 focus-within:ring-ds-danger-50 dark:border-ds-danger-500/30 dark:focus-within:border-ds-danger-500/50 dark:focus-within:ring-ds-danger-500/10',
+        true: 'border-ds-danger-500/50 focus-within:border-ds-danger-500 focus-within:ring-danger/20 dark:border-ds-danger-500/30 dark:focus-within:border-ds-danger-500/50',
         false: '',
       },
       disabled: {
