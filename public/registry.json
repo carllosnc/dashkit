@@ -1,6 +1,6 @@
 {
   "name": "Dashkit UI Registry",
-  "totalComponents": 57,
+  "totalComponents": 58,
   "components": {
     "accordion": {
       "slug": "accordion",
@@ -483,7 +483,7 @@
         "CommandPalette"
       ],
       "propsDefinitions": [
-        "export interface CommandPaletteProps {\n  /** Controlled open state. @default undefined */\n  open?: boolean;\n  /** Initial open state when uncontrolled. @default false */\n  defaultOpen?: boolean;\n  /** Callback fired when the open state changes. */\n  onOpenChange?: (open: boolean) => void;\n  /** List of searchable command items. */\n  items: CommandPaletteItem[];\n  /** Global callback fired when any enabled item is selected. */\n  onSelect?: (item: CommandPaletteItem) => void;\n  /** Search input placeholder text. @default 'Type a command or search...' */\n  placeholder?: string;\n  /** Message displayed when no items match the search query. @default 'No results found.' */\n  emptyMessage?: string;\n  /** Enables global `Cmd+K` / `Ctrl+K` shortcut to toggle the palette. @default true */\n  enableShortcut?: boolean;\n  /** Closes the palette automatically after an item is selected. @default true */\n  closeOnSelect?: boolean;\n  /** Optional footer bar content (e.g. keyboard hints). */\n  footer?: ReactNode;\n  /** Additional classes for the palette dialog surface. */\n  className?: string;\n}"
+        "export interface CommandPaletteProps {\r\n  /** Controlled open state. @default undefined */\r\n  open?: boolean;\r\n  /** Initial open state when uncontrolled. @default false */\r\n  defaultOpen?: boolean;\r\n  /** Callback fired when the open state changes. */\r\n  onOpenChange?: (open: boolean) => void;\r\n  /** List of searchable command items. */\r\n  items: CommandPaletteItem[];\r\n  /** Global callback fired when any enabled item is selected. */\r\n  onSelect?: (item: CommandPaletteItem) => void;\r\n  /** Search input placeholder text. @default 'Type a command or search...' */\r\n  placeholder?: string;\r\n  /** Message displayed when no items match the search query. @default 'No results found.' */\r\n  emptyMessage?: string;\r\n  /** Enables global `Cmd+K` / `Ctrl+K` shortcut to toggle the palette. @default true */\r\n  enableShortcut?: boolean;\r\n  /** Closes the palette automatically after an item is selected. @default true */\r\n  closeOnSelect?: boolean;\r\n  /** Optional footer bar content (e.g. keyboard hints). */\r\n  footer?: ReactNode;\r\n  /** Additional classes for the palette dialog surface. */\r\n  className?: string;\r\n}"
       ]
     },
     "copyfield": {
@@ -1509,6 +1509,29 @@
         "export interface TabsListProps extends ComponentPropsWithoutRef<'div'> {\r\n  children: ReactNode;\r\n  variant?: TabsVariant;\r\n}",
         "export interface TabsTriggerProps extends Omit<ComponentPropsWithoutRef<'button'>, 'value'> {\r\n  value: string;\r\n  children: ReactNode;\r\n}",
         "export interface TabsContentProps extends Omit<HTMLMotionProps<'div'>, 'children'> {\r\n  value: string;\r\n  children: ReactNode;\r\n}"
+      ]
+    },
+    "taginput": {
+      "slug": "taginput",
+      "name": "TagInput",
+      "category": "Forms & Inputs",
+      "description": "A multi-select tag input supporting keyboard navigation (`ArrowLeft`, `ArrowRight`, `Backspace`, `Delete`), delimiter commits, and autocomplete suggestions.",
+      "installCommand": "bunx carllosnc/dashkit add taginput",
+      "files": [
+        "src/dashkit/TagInput/TagInput.tsx",
+        "src/dashkit/TagInput/index.ts"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "react-icons"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "TagInput"
+      ],
+      "propsDefinitions": [
+        "export interface TagInputProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange' | 'defaultValue'> {\n  /** Controlled list of tags. @default undefined */\n  value?: string[];\n  /** Initial tags when uncontrolled. @default [] */\n  defaultValue?: string[];\n  /** Callback fired whenever tags are added or removed. */\n  onChange?: (tags: string[]) => void;\n  /** Optional field label. */\n  label?: string;\n  /** Optional helper text rendered below the input. */\n  description?: string;\n  /** Error message; applies error styling and `aria-invalid`. */\n  error?: string;\n  /** Input placeholder text. @default 'Add a tag...' */\n  placeholder?: string;\n  /** Optional autocomplete suggestions shown in a dropdown while typing. @default [] */\n  suggestions?: string[];\n  /** Allows creating custom tags not present in `suggestions`. @default true */\n  allowCustom?: boolean;\n  /** Allows duplicate tag values. @default false */\n  allowDuplicates?: boolean;\n  /** Maximum number of tags allowed. @default undefined */\n  maxTags?: number;\n  /** Key characters that commit the current input as a tag. @default [','] */\n  delimiters?: string[];\n  /** Disables adding or removing tags. @default false */\n  disabled?: boolean;\n}\n\n/**\n * Multi-select tag input with keyboard navigation (`ArrowLeft`/`ArrowRight`, `Backspace`/`Delete`), delimiter commit, and autocomplete suggestions.\n *\n * @example\n * ```tsx\n * <TagInput\n *   label=\"Skills\"\n *   defaultValue={['TypeScript', 'React']}\n *   suggestions={['Tailwind CSS', 'Node.js', 'GraphQL']}\n *   placeholder=\"Add a skill...\"\n * />\n * ```\n */"
       ]
     },
     "textarea": {
