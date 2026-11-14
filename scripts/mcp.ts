@@ -324,6 +324,35 @@ async function withCapturedExecution<T>(
   }
 }
 
+const COMPONENT_SEARCH_ALIASES: Record<string, string[]> = {
+  commandpalette: ['kbar', 'cmd+k', 'ctrl+k', 'command menu', 'quick actions', 'spotlight'],
+  taginput: ['multiselect', 'multi-select', 'tags', 'chips input', 'autocomplete'],
+  fileupload: ['dropzone', 'upload', 'drag and drop', 'file picker', 'attachment'],
+  table: ['datagrid', 'data grid', 'virtual scroll', 'virtualized', 'rows'],
+  combobox: ['autocomplete', 'searchable select', 'typeahead'],
+  modal: ['dialog', 'popup', 'alertdialog'],
+  drawer: ['sheet', 'slide-over', 'panel'],
+  toast: ['notification', 'snackbar', 'alert'],
+  dropdown: ['menu', 'context menu', 'actions menu'],
+  datepicker: ['calendar', 'date'],
+  statscard: ['kpi', 'metric', 'analytics card'],
+  systemlogs: ['terminal', 'console', 'logs', 'audit trail']
+};
+
+function scoreComponentMatch(item: RegistryComponentMetadata, query: string): number {
+  const slug = item.slug.toLowerCase();
+  const name = item.name.toLowerCase();
+  if (slug === query || name === query) return 100;
+  if (slug.startsWith(query) || name.startsWith(query)) return 80;
+  if (slug.includes(query) || name.includes(query)) return 60;
+  if (item.exports.some((exp) => exp.toLowerCase().includes(query))) return 50;
+  if (item.description.toLowerCase().includes(query)) return 40;
+  if (item.category.toLowerCase().includes(query)) return 30;
+  const aliases = COMPONENT_SEARCH_ALIASES[slug] ?? [];
+  if (aliases.some((alias) => alias.includes(query) || query.includes(alias))) return 25;
+  return 0;
+}
+
 async function executeTool(
   name: string,
   args: Record<string, unknown> = {}
@@ -336,20 +365,19 @@ async function executeTool(
       const category = typeof args.category === 'string' ? args.category.trim().toLowerCase() : '';
       const limit = typeof args.limit === 'number' && args.limit > 0 ? args.limit : 10;
 
-      const matches = Object.values(components)
-        .filter((item) => {
-          if (category && !item.category.toLowerCase().includes(category)) {
-            return false;
-          }
-          if (!query) return true;
-          return (
-            item.slug.toLowerCase().includes(query) ||
-            item.name.toLowerCase().includes(query) ||
-            item.category.toLowerCase().includes(query) ||
-            item.description.toLowerCase().includes(query) ||
-            item.exports.some((exp) => exp.toLowerCase().includes(query))
-          );
-        })
+      const filtered = Object.values(components).filter((item) => {
+        if (category && !item.category.toLowerCase().includes(category)) {
+          return false;
+        }
+        if (!query) return true;
+        return scoreComponentMatch(item, query) > 0;
+      });
+
+      if (query) {
+        filtered.sort((a, b) => scoreComponentMatch(b, query) - scoreComponentMatch(a, query));
+      }
+
+      const matches = filtered
         .slice(0, limit)
         .map((item) => ({
           slug: item.slug,
