@@ -15,10 +15,15 @@ const DEFAULT_COLORS = [
 export interface AreaChartProps extends React.ComponentPropsWithoutRef<'div'> {
   data: Record<string, string | number>[];
   series: AreaChartSeries[];
+  /** @default '100%' */
   height?: number | string;
+  /** @default true */
   showGrid?: boolean;
+  /** @default true */
   showLabels?: boolean;
+  /** @default true */
   showTooltip?: boolean;
+  /** @default true */
   animate?: boolean;
 }
 

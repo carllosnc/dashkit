@@ -3,6 +3,7 @@ import { cn } from '../utils/cn';
 import { AccordionContext, type AccordionType } from './AccordionContext';
 
 export interface AccordionProps extends React.ComponentPropsWithoutRef<'div'> {
+  /** @default 'single' */
   type?: AccordionType;
   defaultValue?: string | string[];
   value?: string | string[];

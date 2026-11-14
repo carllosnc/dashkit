@@ -38,6 +38,7 @@ const closePositionClasses: Record<DrawerPosition, string> = {
 export interface DrawerProps {
   isOpen: boolean;
   onClose: () => void;
+  /** @default 'right' */
   position?: DrawerPosition;
   children: ReactNode;
   size?: string;

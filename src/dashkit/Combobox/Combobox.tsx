@@ -15,13 +15,16 @@ export interface ComboboxOption {
 export interface ComboboxProps {
   label?: string;
   description?: string;
+  /** @default 'Search or select...' */
   placeholder?: string;
   options: ComboboxOption[];
   value?: string | string[];
   onChange?: (value: string | string[]) => void;
   className?: string;
   disabled?: boolean;
+  /** @default false */
   clearSearchOnSelect?: boolean;
+  /** @default false */
   multiple?: boolean;
 }
 

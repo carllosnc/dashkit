@@ -4,6 +4,7 @@ import { cn } from '../utils/cn';
 
 export interface PopoverProps extends React.ComponentPropsWithoutRef<'div'> {
   children: React.ReactNode;
+  /** @default 'click' */
   trigger?: PopoverTriggerMode;
 }
 

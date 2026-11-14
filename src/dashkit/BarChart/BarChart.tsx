@@ -14,15 +14,25 @@ export type BarChartTexture = 'none' | 'striped' | 'dots' | 'grid' | 'gradient';
 export interface BarChartProps extends ComponentPropsWithoutRef<'div'> {
   data: Record<string, string | number>[];
   series: BarChartSeries[];
+  /** @default '100%' */
   height?: number | string;
+  /** @default true */
   showGrid?: boolean;
+  /** @default true */
   showLabels?: boolean;
+  /** @default true */
   showTooltip?: boolean;
+  /** @default true */
   animate?: boolean;
+  /** @default 4 */
   barGap?: number;
+  /** @default 64 */
   maxBarWidth?: number;
+  /** @default true */
   rounded?: boolean;
+  /** @default 'none' */
   texture?: BarChartTexture;
+  /** @default false */
   showTrack?: boolean;
 }
 

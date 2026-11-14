@@ -8,10 +8,13 @@ import { useFloatActionMenu, type FloatActionPosition } from './useFloatActionMe
 export type FloatActionMenuVariant = 'neutral' | 'primary';
 
 export interface FloatActionMenuProps extends React.ComponentPropsWithoutRef<'div'> {
+  /** @default <FiMenu /> */
   icon?: React.ReactNode;
   label?: string;
+  /** @default 'neutral' */
   variant?: FloatActionMenuVariant;
   children: React.ReactNode;
+  /** @default 'bottom-right' */
   position?: FloatActionPosition;
   buttonClassName?: string;
   menuClassName?: string;

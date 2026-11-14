@@ -6,6 +6,7 @@ export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
   label?: string;
   error?: string;
   helperText?: string;
+  /** @default false */
   autoGrow?: boolean;
 }
 

@@ -63,6 +63,7 @@ export interface DividerProps
   extends React.HTMLAttributes<HTMLDivElement>,
     StrictVariantProps<typeof dividerVariants> {
   children?: React.ReactNode;
+  /** @default 'center' */
   contentPosition?: DividerContentPosition;
 }
 

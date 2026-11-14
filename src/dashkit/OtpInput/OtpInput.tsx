@@ -3,7 +3,9 @@ import { cn } from '../utils/cn';
 import { useOtpInput } from './useOtpInput';
 
 export interface OtpInputProps {
+  /** @default 6 */
   length?: number;
+  /** @default '' */
   value?: string;
   onChange?: (value: string) => void;
   disabled?: boolean;

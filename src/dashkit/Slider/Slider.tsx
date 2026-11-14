@@ -8,6 +8,7 @@ export interface SliderProps extends Omit<InputHTMLAttributes<HTMLInputElement>,
   value?: number;
   defaultValue?: number;
   onChange?: (value: number) => void;
+  /** @default false */
   showValue?: boolean;
 }
 

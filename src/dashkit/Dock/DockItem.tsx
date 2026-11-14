@@ -8,7 +8,10 @@ export interface DockItemProps {
   onClick?: () => void;
   href?: string;
   className?: string;
-  /** @internal */
+  /**
+   * @internal
+   * @default "bottom"
+   */
   position?: "bottom" | "left" | "right";
 }
 

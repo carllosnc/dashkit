@@ -20,6 +20,7 @@ const buttonGroupVariants = cva(
 export interface ButtonGroupProps {
   children: ReactNode;
   className?: string;
+  /** @default false */
   vertical?: boolean;
 }
 
@@ -32,6 +33,7 @@ export function ButtonGroup({ children, className, vertical = false }: ButtonGro
 }
 
 export interface ButtonGroupItemProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  /** @default false */
   selected?: boolean;
 }
 

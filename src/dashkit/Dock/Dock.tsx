@@ -3,6 +3,7 @@ import { cn } from "../utils/cn";
 
 export interface DockProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
+  /** @default "bottom" */
   position?: "bottom" | "left" | "right";
 }
 

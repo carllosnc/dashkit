@@ -26,6 +26,7 @@ const cardVariants = cva(
 
 export type CardProps = Omit<HTMLMotionProps<'div'>, 'title'> &
   StrictVariantProps<typeof cardVariants> & {
+    /** @default false */
     animate?: boolean;
     ref?: React.Ref<HTMLDivElement>;
   };

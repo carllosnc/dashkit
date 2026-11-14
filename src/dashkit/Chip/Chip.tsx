@@ -68,9 +68,13 @@ export interface ChipProps
   extends Omit<React.HTMLAttributes<HTMLButtonElement | HTMLDivElement>, 'onClick' | 'color'> {
   label: React.ReactNode;
   icon?: React.ReactNode;
+  /** @default 'tonal' */
   variant?: ChipVariant;
+  /** @default 'base' */
   color?: ChipColor;
+  /** @default false */
   selected?: boolean;
+  /** @default false */
   disabled?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) => void;
   onDelete?: (event: React.MouseEvent<HTMLButtonElement>) => void;

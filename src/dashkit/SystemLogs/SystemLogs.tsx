@@ -13,11 +13,15 @@ export interface LogEntry {
 
 export interface SystemLogsProps extends Omit<React.ComponentPropsWithoutRef<'div'>, 'title'> {
   logs: LogEntry[];
+  /** @default 'System Logs' */
   title?: string;
   session?: string;
+  /** @default 'Stable' */
   status?: string;
+  /** @default 'success' */
   statusColor?: BadgeColor;
   maxHeight?: number | string;
+  /** @default true */
   autoScroll?: boolean;
 }
 

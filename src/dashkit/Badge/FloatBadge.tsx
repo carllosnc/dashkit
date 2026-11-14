@@ -21,6 +21,7 @@ const positionClasses: Record<BadgePosition, string> = {
 
 export interface FloatBadgeProps extends BadgeProps {
   children: React.ReactNode;
+  /** @default 'top-right' */
   position?: BadgePosition;
   offset?: [number, number];
 }

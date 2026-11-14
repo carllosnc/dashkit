@@ -7,6 +7,7 @@ import { useDatePicker, months, daysOfWeek } from './useDatePicker';
 export interface DatePickerProps {
   label?: string;
   description?: string;
+  /** @default 'Select date' */
   placeholder?: string;
   value?: Date;
   onChange?: (date: Date) => void;

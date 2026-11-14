@@ -7,8 +7,10 @@ export interface ListTileProps extends Omit<HTMLMotionProps<'div'>, 'title'> {
   subtitle?: React.ReactNode;
   leading?: React.ReactNode;
   trailing?: React.ReactNode;
+  /** @default false */
   disabled?: boolean;
   interactive?: boolean;
+  /** @default false */
   divider?: boolean;
   ref?: React.Ref<HTMLDivElement>;
 }

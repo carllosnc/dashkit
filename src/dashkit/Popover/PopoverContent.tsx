@@ -7,8 +7,11 @@ import { getPortalThemeAttrs } from '../utils/portalTheme';
 
 export interface PopoverContentProps extends Omit<HTMLMotionProps<'div'>, 'children'> {
   children: React.ReactNode;
+  /** @default 'center' */
   align?: 'start' | 'end' | 'center';
+  /** @default 'bottom' */
   side?: 'top' | 'bottom' | 'left' | 'right';
+  /** @default 8 */
   sideOffset?: number;
 }
 
