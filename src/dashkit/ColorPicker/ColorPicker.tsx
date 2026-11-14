@@ -23,6 +23,14 @@ export interface ColorPickerProps {
   presets?: string[];
 }
 
+/**
+ * Prop-driven (`value`, `onChange`, `presets`) popover color selector.
+ *
+ * @example
+ * ```tsx
+ * <ColorPicker value={color} onChange={setColor} />
+ * ```
+ */
 export function ColorPicker({
   value,
   defaultValue = '#3B82F6',

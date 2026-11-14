@@ -29,6 +29,16 @@ export interface NavbarProps
   children: React.ReactNode;
 }
 
+/**
+ * Compound sticky top navigation bar (`children`).
+ *
+ * @example
+ * ```tsx
+ * <Navbar sticky blur>
+ *   <span className="font-semibold">Dashkit</span>
+ * </Navbar>
+ * ```
+ */
 export const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
   function Navbar({ sticky = true, blur = true, className, children, ...props }, ref) {
     return (

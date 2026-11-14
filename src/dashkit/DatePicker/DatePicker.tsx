@@ -15,6 +15,14 @@ export interface DatePickerProps {
   disabled?: boolean;
 }
 
+/**
+ * Prop-driven (`value`, `onChange`) calendar popover date selector.
+ *
+ * @example
+ * ```tsx
+ * <DatePicker label="Due Date" value={date} onChange={setDate} />
+ * ```
+ */
 export function DatePicker({
   label,
   description,

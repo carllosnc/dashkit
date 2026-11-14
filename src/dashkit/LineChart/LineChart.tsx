@@ -30,6 +30,17 @@ export interface LineChartProps extends React.ComponentPropsWithoutRef<'div'> {
   animate?: boolean;
 }
 
+/**
+ * Prop-driven (`data`, `series`) multi-series SVG line chart with interactive hover tooltips.
+ *
+ * @example
+ * ```tsx
+ * <LineChart
+ *   data={[{ day: 'Mon', visits: 320 }, { day: 'Tue', visits: 410 }]}
+ *   series={[{ key: 'visits', label: 'Visits' }]}
+ * />
+ * ```
+ */
 export const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>(function LineChart(
   {
     data,

@@ -45,6 +45,14 @@ const STATUS_COLORS: Record<string, string> = {
   neutral: 'text-muted-foreground',
 };
 
+/**
+ * Prop-driven (`title`, `value`, `trend`, `status`, `chart`) KPI metric card.
+ *
+ * @example
+ * ```tsx
+ * <StatsCard title="MRR" value={64900} prefix="$" trend={12.4} status="success" />
+ * ```
+ */
 export const StatsCard = React.forwardRef<HTMLDivElement, StatsCardProps>(function StatsCard(
   {
     title,

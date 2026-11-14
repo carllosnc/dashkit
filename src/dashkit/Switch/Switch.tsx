@@ -7,6 +7,14 @@ export interface SwitchProps extends Omit<InputHTMLAttributes<HTMLInputElement>,
   description?: string;
 }
 
+/**
+ * Accessible toggle switch with optional `label` and `description` props.
+ *
+ * @example
+ * ```tsx
+ * <Switch label="Email alerts" checked={enabled} onChange={(e) => setEnabled(e.target.checked)} />
+ * ```
+ */
 export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
   ({ label, description, className, id, ...props }, ref) => {
     const { switchId } = useSwitch({ id, label });

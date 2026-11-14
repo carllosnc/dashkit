@@ -34,6 +34,14 @@ const ACTIVE_CIRCLE_INITIAL = { pathLength: 0.1, pathOffset: 0 };
 const ACTIVE_CIRCLE_ANIMATE = { pathLength: [0.1, 0.8, 0.1], pathOffset: [0, 0.5, 1] };
 const ACTIVE_CIRCLE_TRANSITION: Transition = { repeat: Infinity, duration: 1.5, ease: "easeInOut" };
 
+/**
+ * Animated SVG loading indicator (`size`, `color`, `thickness`).
+ *
+ * @example
+ * ```tsx
+ * <Spinner size={24} color="primary" />
+ * ```
+ */
 export const Spinner = React.forwardRef<SVGSVGElement, SpinnerProps>(function Spinner(
   {
     size = 24,

@@ -25,6 +25,16 @@ export interface ScrollAreaProps
   viewportClassName?: string;
 }
 
+/**
+ * Compound custom-styled scrollable viewport (`children`).
+ *
+ * @example
+ * ```tsx
+ * <ScrollArea className="h-64" orientation="vertical">
+ *   <div>Scrollable content</div>
+ * </ScrollArea>
+ * ```
+ */
 export const ScrollArea = forwardRef<HTMLDivElement, ScrollAreaProps>(function ScrollArea(
   {
     children,

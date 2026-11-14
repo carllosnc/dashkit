@@ -15,6 +15,14 @@ export interface AnimateNumberProps extends Omit<ComponentPropsWithoutRef<'span'
   locale?: string;
 }
 
+/**
+ * Prop-driven animated numeric counter with prefix, suffix, and precision formatting.
+ *
+ * @example
+ * ```tsx
+ * <AnimateNumber value={12480} prefix="$" precision={0} />
+ * ```
+ */
 export const AnimateNumber = forwardRef<HTMLSpanElement, AnimateNumberProps>(function AnimateNumber(
   {
     value,

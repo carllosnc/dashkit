@@ -36,6 +36,17 @@ export interface BarChartProps extends ComponentPropsWithoutRef<'div'> {
   showTrack?: boolean;
 }
 
+/**
+ * Prop-driven (`data`, `series`) SVG bar chart supporting grouped/stacked bars and optional SVG textures.
+ *
+ * @example
+ * ```tsx
+ * <BarChart
+ *   data={[{ label: 'Q1', sales: 120 }, { label: 'Q2', sales: 180 }]}
+ *   series={[{ key: 'sales', label: 'Sales' }]}
+ * />
+ * ```
+ */
 export const BarChart = forwardRef<HTMLDivElement, BarChartProps>(function BarChart(
   {
     data,

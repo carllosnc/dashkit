@@ -27,6 +27,17 @@ export interface AreaChartProps extends React.ComponentPropsWithoutRef<'div'> {
   animate?: boolean;
 }
 
+/**
+ * Prop-driven (`data`, `series`) responsive SVG area chart with grid, labels, and interactive tooltips.
+ *
+ * @example
+ * ```tsx
+ * <AreaChart
+ *   data={[{ month: 'Jan', revenue: 4200 }, { month: 'Feb', revenue: 5100 }]}
+ *   series={[{ key: 'revenue', label: 'Revenue' }]}
+ * />
+ * ```
+ */
 export const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>(function AreaChart(
   {
     data,

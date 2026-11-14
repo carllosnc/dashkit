@@ -14,6 +14,14 @@ export interface CopyFieldProps {
   showToast?: boolean;
 }
 
+/**
+ * Prop-driven (`value`) read-only input with one-click clipboard copy feedback.
+ *
+ * @example
+ * ```tsx
+ * <CopyField label="API Key" value="dk_live_123456" />
+ * ```
+ */
 export const CopyField = forwardRef<HTMLDivElement, CopyFieldProps>(
   function CopyField({ label, description, value, className, showToast = true }, ref) {
     const [copied, setCopied] = useState(false);

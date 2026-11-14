@@ -66,6 +66,14 @@ const DateSegment = forwardRef<HTMLInputElement, SegmentProps>(
   }
 );
 
+/**
+ * Prop-driven (`value`, `onChange`) segmented keyboard-accessible date input.
+ *
+ * @example
+ * ```tsx
+ * <DateField label="Start Date" value={date} onChange={setDate} />
+ * ```
+ */
 export function DateField({
   label,
   description,

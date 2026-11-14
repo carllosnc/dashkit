@@ -41,6 +41,14 @@ const LEVEL_COLORS: Record<LogLevel, string> = {
   stable: 'text-ds-primary-500',
 };
 
+/**
+ * Prop-driven (`logs`) terminal-style log viewer with level badges and auto-scroll.
+ *
+ * @example
+ * ```tsx
+ * <SystemLogs logs={[{ type: 'ok', message: 'Build succeeded', timestamp: '12:00:01' }]} />
+ * ```
+ */
 export const SystemLogs = React.forwardRef<HTMLDivElement, SystemLogsProps>(
   ({
     logs,

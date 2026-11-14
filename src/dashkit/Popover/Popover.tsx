@@ -8,6 +8,17 @@ export interface PopoverProps extends React.ComponentPropsWithoutRef<'div'> {
   trigger?: PopoverTriggerMode;
 }
 
+/**
+ * Compound floating overlay (`children` with `PopoverTrigger` and `PopoverContent`).
+ *
+ * @example
+ * ```tsx
+ * <Popover>
+ *   <PopoverTrigger>Open</PopoverTrigger>
+ *   <PopoverContent>Popover body</PopoverContent>
+ * </Popover>
+ * ```
+ */
 export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(function Popover(
   { children, trigger = 'click', className, ...props },
   ref

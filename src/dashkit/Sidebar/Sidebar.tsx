@@ -65,6 +65,22 @@ export interface SidebarProps extends
   mobileBreakpoint?: number;
 }
 
+/**
+ * Compound collapsible application sidebar (`children` inside `SidebarProvider`, using `SidebarContent`, `SidebarSection`, `SidebarItem`).
+ *
+ * @example
+ * ```tsx
+ * <SidebarProvider>
+ *   <Sidebar>
+ *     <SidebarContent>
+ *       <SidebarSection title="Menu">
+ *         <SidebarItem label="Dashboard" active />
+ *       </SidebarSection>
+ *     </SidebarContent>
+ *   </Sidebar>
+ * </SidebarProvider>
+ * ```
+ */
 export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
   (
     {

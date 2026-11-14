@@ -84,6 +84,14 @@ export interface BadgeProps extends Omit<HTMLMotionProps<'span'>, 'content'> {
   max?: number;
 }
 
+/**
+ * Prop-driven status or count indicator (`content`, `variant`, `color`, `dot`, `pulse`).
+ *
+ * @example
+ * ```tsx
+ * <Badge variant="soft" color="success" content="Active" />
+ * ```
+ */
 export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(function Badge(
   {
     content,

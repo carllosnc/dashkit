@@ -41,6 +41,17 @@ export interface ModalProps
   label?: string;
 }
 
+/**
+ * Compound accessible dialog (`children` with `ModalHeader`, `ModalContent`, `ModalFooter`).
+ *
+ * @example
+ * ```tsx
+ * <Modal isOpen={open} onClose={() => setOpen(false)} size="md">
+ *   <ModalHeader>Confirm</ModalHeader>
+ *   <ModalContent>Proceed with action?</ModalContent>
+ * </Modal>
+ * ```
+ */
 export const Modal = forwardRef<HTMLDivElement, ModalProps>(function Modal(
   {
     isOpen,

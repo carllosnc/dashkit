@@ -21,6 +21,23 @@ TableContainer.displayName = 'TableContainer';
 
 export type TableProps = HTMLAttributes<HTMLTableElement>;
 
+/**
+ * Compound semantic data table (`children` with `TableContainer`, `TableHeader`, `TableBody`, `TableRow`, `TableHead`, `TableCell`).
+ *
+ * @example
+ * ```tsx
+ * <TableContainer>
+ *   <Table>
+ *     <TableHeader>
+ *       <TableRow><TableHead>Name</TableHead></TableRow>
+ *     </TableHeader>
+ *     <TableBody>
+ *       <TableRow><TableCell>Alice</TableCell></TableRow>
+ *     </TableBody>
+ *   </Table>
+ * </TableContainer>
+ * ```
+ */
 export const Table = forwardRef<HTMLTableElement, TableProps>(
   ({ className, ...props }, ref) => (
     <table

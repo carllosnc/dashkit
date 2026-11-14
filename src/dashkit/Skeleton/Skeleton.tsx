@@ -30,6 +30,14 @@ export interface SkeletonProps
   extends React.HTMLAttributes<HTMLDivElement>,
     StrictVariantProps<typeof skeletonVariants> {}
 
+/**
+ * Animated loading placeholder (`variant="text" | "circular" | "rectangular"`).
+ *
+ * @example
+ * ```tsx
+ * <Skeleton variant="rectangular" className="h-24 w-full" />
+ * ```
+ */
 export const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(function Skeleton(
   {
     variant = 'rectangular',

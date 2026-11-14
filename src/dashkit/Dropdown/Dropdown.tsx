@@ -6,6 +6,19 @@ export interface DropdownProps extends React.ComponentPropsWithoutRef<'div'> {
   children: React.ReactNode;
 }
 
+/**
+ * Compound menu popover (`children` with `DropdownTrigger`, `DropdownContent`, `DropdownItem`).
+ *
+ * @example
+ * ```tsx
+ * <Dropdown>
+ *   <DropdownTrigger>Actions</DropdownTrigger>
+ *   <DropdownContent>
+ *     <DropdownItem onClick={onEdit}>Edit</DropdownItem>
+ *   </DropdownContent>
+ * </Dropdown>
+ * ```
+ */
 export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(function Dropdown(
   { children, className, ...props },
   ref

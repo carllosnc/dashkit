@@ -24,6 +24,17 @@ export interface StepperProps extends Omit<React.HTMLAttributes<HTMLDivElement>,
   children: React.ReactNode;
 }
 
+/**
+ * Compound multi-step progress indicator (`children` with `Step` components).
+ *
+ * @example
+ * ```tsx
+ * <Stepper activeStep={1}>
+ *   <Step title="Account" />
+ *   <Step title="Billing" />
+ * </Stepper>
+ * ```
+ */
 export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(function Stepper(
   {
     activeStep,

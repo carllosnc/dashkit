@@ -12,6 +12,14 @@ export interface SliderProps extends Omit<InputHTMLAttributes<HTMLInputElement>,
   showValue?: boolean;
 }
 
+/**
+ * Prop-driven (`value`, `onChange`, `min`, `max`) range slider input.
+ *
+ * @example
+ * ```tsx
+ * <Slider label="Volume" min={0} max={100} value={volume} onChange={setVolume} />
+ * ```
+ */
 export const Slider = forwardRef<HTMLInputElement, SliderProps>(
   ({ label, description, className, id, min = 0, max = 100, step = 1, value, defaultValue, onChange, showValue = false, disabled, ...props }, ref) => {
     const { currentValue, percentage, handleChange, sliderId } = useSlider({

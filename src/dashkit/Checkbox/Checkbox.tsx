@@ -6,6 +6,14 @@ export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement
   description?: string;
 }
 
+/**
+ * Accessible boolean checkbox input with optional `label` and `description` props.
+ *
+ * @example
+ * ```tsx
+ * <Checkbox label="Accept terms" checked={accepted} onChange={(e) => setAccepted(e.target.checked)} />
+ * ```
+ */
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   function Checkbox({ label, description, className, id, ...props }, ref) {
     const checkboxId = id || (label ? `checkbox-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined);

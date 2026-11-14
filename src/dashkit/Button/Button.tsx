@@ -112,6 +112,16 @@ export interface ButtonProps
   asChild?: boolean;
 }
 
+/**
+ * Interactive action button (`children`, `variant`, `color`, `size`, `loading`, `asChild`).
+ *
+ * @example
+ * ```tsx
+ * <Button variant="filled" color="primary" onClick={handleSave}>
+ *   Save Changes
+ * </Button>
+ * ```
+ */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   function Button(
     {

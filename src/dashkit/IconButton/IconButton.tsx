@@ -46,6 +46,14 @@ export type IconButtonProps = IconButtonBaseProps &
     | (React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string })
   );
 
+/**
+ * Prop-driven (`icon`) square or pill action button; renders `<a>` automatically when `href` is passed.
+ *
+ * @example
+ * ```tsx
+ * <IconButton icon={<PlusIcon />} aria-label="Add item" variant="soft" />
+ * ```
+ */
 export const IconButton = forwardRef<HTMLElement, IconButtonProps>(function IconButton(
   { className, variant = 'soft', size = 'md', icon, rounded = false, ...props },
   ref

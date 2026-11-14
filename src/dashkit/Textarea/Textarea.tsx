@@ -10,6 +10,14 @@ export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
   autoGrow?: boolean;
 }
 
+/**
+ * Multi-line text input with optional `label`, `description`, and `error` props.
+ *
+ * @example
+ * ```tsx
+ * <Textarea label="Notes" rows={4} placeholder="Write a summary..." />
+ * ```
+ */
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ label, error, helperText, autoGrow = false, className, id, onChange, ...props }, ref) => {
     const { textareaRef, internalId, handleChange } = useTextarea({

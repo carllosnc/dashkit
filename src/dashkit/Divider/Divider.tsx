@@ -67,6 +67,14 @@ export interface DividerProps
   contentPosition?: DividerContentPosition;
 }
 
+/**
+ * Horizontal visual separator with optional centered or aligned `children` label.
+ *
+ * @example
+ * ```tsx
+ * <Divider contentPosition="center">OR</Divider>
+ * ```
+ */
 export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
   function Divider(
     {

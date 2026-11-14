@@ -80,6 +80,14 @@ export interface ChipProps
   onDelete?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
+/**
+ * Prop-driven (`label`, `variant`, `color`) compact tag or filter pill with optional delete/click actions.
+ *
+ * @example
+ * ```tsx
+ * <Chip label="TypeScript" variant="tonal" color="primary" onDelete={handleRemove} />
+ * ```
+ */
 export const Chip = React.forwardRef<HTMLButtonElement | HTMLDivElement, ChipProps>(function Chip(
   {
     label,
