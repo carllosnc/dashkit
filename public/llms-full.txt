@@ -3541,6 +3541,8 @@ A multi-select tag input supporting keyboard navigation (`ArrowLeft`, `ArrowRigh
 
 ### Basic usage
 
+
+
 ```tsx
 import { TagInput } from '@/dashkit';
 
@@ -3558,6 +3560,7 @@ export function Example() {
 
 ### Props
 
+
 | Property | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
 | `value` | `string[]` | `undefined` | Controlled list of tags. |
@@ -3569,6 +3572,47 @@ export function Example() {
 | `maxTags` | `number` | `undefined` | Maximum number of tags allowed. |
 | `delimiters` | `string[]` | `[',']` | Characters that commit the current input as a tag. |
 | `disabled` | `boolean` | `false` | Disables adding and removing tags. |
+
+
+## FileUpload
+
+- Category: Forms & Inputs
+- Slug: `fileupload`
+- Installation: `bunx carllosnc/dashkit add fileupload`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`
+
+A drag-and-drop file upload dropzone with file size validation, per-file progress bars, and status indicators.
+
+### Basic usage
+
+```tsx
+import { FileUpload } from '@/dashkit';
+
+export function Example() {
+  return (
+    <FileUpload
+      label="Project Assets"
+      accept="image/*,.pdf"
+      maxSize={5 * 1024 * 1024}
+      onFilesAdded={(files) => console.log(files)}
+    />
+  );
+}
+```
+
+### Props
+
+| Property | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `value` | `FileUploadItem[]` | `undefined` | Controlled list of file upload items. |
+| `defaultValue` | `FileUploadItem[]` | `[]` | Initial list of file upload items when uncontrolled. |
+| `onChange` | `(items: FileUploadItem[]) => void` | - | Callback fired when items are added or removed. |
+| `onFilesAdded` | `(files: File[]) => void` | - | Callback fired with newly selected or dropped File objects. |
+| `accept` | `string` | - | Accepted file types string. |
+| `multiple` | `boolean` | `true` | Allows selecting or dropping multiple files. |
+| `maxSize` | `number` | `undefined` | Maximum allowed file size in bytes. |
+| `maxFiles` | `number` | `undefined` | Maximum number of files allowed. |
+| `disabled` | `boolean` | `false` | Disables dropping, selecting, and removing files. |
 
 
 ## Modal
