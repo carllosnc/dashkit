@@ -33,7 +33,7 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(
     });
 
     return (
-      <div className={cn('flex flex-col gap-3 relative w-full', disabled && 'opacity-60 cursor-not-allowed pointer-events-none')}>
+      <div className={cn('flex flex-col gap-3 relative w-full', disabled && 'opacity-50 cursor-not-allowed pointer-events-none')}>
         {(label || description || showValue) && (
           <div className="flex justify-between items-end">
             <div className="flex flex-col">
@@ -47,7 +47,7 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(
                 </label>
               )}
               {description && (
-                <span className="text-[13px] text-muted-foreground tracking-tight">
+                <span className="text-xs text-muted-foreground tracking-tight">
                   {description}
                 </span>
               )}
@@ -60,13 +60,13 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(
           </div>
         )}
         <div className="group relative flex items-center h-5 w-full">
-          <div className="absolute inset-x-0 h-1.5 rounded-full ds-pill bg-ds-200 dark:bg-ds-800 pointer-events-none" />
+          <div className="absolute inset-x-0 h-1.5 rounded-full ds-pill bg-muted pointer-events-none" />
           <div
             className="absolute left-0 h-1.5 rounded-full ds-pill bg-primary pointer-events-none"
             style={{ width: `${percentage}%` }}
           />
           <div
-            className="absolute w-4 h-4 rounded-full ds-pill bg-ds-0 border-2 border-primary shadow-sm pointer-events-none z-10 transition-[box-shadow,transform] duration-200 group-hover:ring-4 group-hover:ring-primary/10 group-has-[:focus-visible]:ring-4 group-has-[:focus-visible]:ring-primary/30"
+            className="absolute w-4 h-4 rounded-full ds-pill bg-background border-2 border-primary shadow-sm pointer-events-none z-10 transition-[box-shadow,transform] duration-200 group-hover:ring-4 group-hover:ring-primary/10 group-has-[:focus-visible]:ring-2 group-has-[:focus-visible]:ring-ring group-has-[:focus-visible]:ring-offset-2 group-has-[:focus-visible]:ring-offset-transparent"
             style={{
               left: `calc(${percentage}% - 8px)`
             }}
