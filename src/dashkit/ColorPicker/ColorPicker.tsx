@@ -12,12 +12,14 @@ const DEFAULT_PRESETS = [
 
 export interface ColorPickerProps {
   value?: string;
+  /** @default '#3B82F6' */
   defaultValue?: string;
   onChange?: (color: string) => void;
   className?: string;
   label?: string;
   helperText?: string;
   error?: string;
+  /** @default DEFAULT_PRESETS */
   presets?: string[];
 }
 

@@ -3,10 +3,15 @@ import { Digit } from './Digit';
 
 export interface AnimateNumberProps extends Omit<ComponentPropsWithoutRef<'span'>, 'children'> {
   value: number;
+  /** @default 0 */
   precision?: number;
+  /** @default '' */
   prefix?: string;
+  /** @default '' */
   suffix?: string;
+  /** @default 0.35 */
   duration?: number;
+  /** @default 'en-US' */
   locale?: string;
 }
 

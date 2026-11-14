@@ -20,9 +20,13 @@ const DEFAULT_COLORS = [
 export interface LineChartProps extends React.ComponentPropsWithoutRef<'div'> {
   data: Record<string, string | number>[];
   series: LineChartSeries[];
+  /** @default true */
   showGrid?: boolean;
+  /** @default true */
   showLabels?: boolean;
+  /** @default true */
   showTooltip?: boolean;
+  /** @default true */
   animate?: boolean;
 }
 

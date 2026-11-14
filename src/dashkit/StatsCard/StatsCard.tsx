@@ -9,14 +9,19 @@ import { Divider } from '../Divider/Divider';
 export interface StatsCardProps extends Omit<React.ComponentPropsWithoutRef<typeof Card>, 'title' | 'children'> {
   title: string;
   value: number;
+  /** @default "" */
   prefix?: string;
+  /** @default "" */
   suffix?: string;
+  /** @default 0 */
   precision?: number;
   trend?: number;
   trendLabel?: string;
   icon?: React.ReactNode;
   description?: string;
+  /** @default 'neutral' */
   status?: 'success' | 'danger' | 'warning' | 'info' | 'neutral';
+  /** @default false */
   animate?: boolean;
   chart?: {
     data: number[];

@@ -23,7 +23,9 @@ const viewportPositionClasses: Record<ToastPosition, string> = {
 
 export interface ToastProviderProps {
   children: React.ReactNode;
+  /** @default 'bottom-right' */
   position?: ToastPosition;
+  /** @default false */
   invert?: boolean;
 }
 

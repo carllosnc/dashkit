@@ -302,6 +302,7 @@ const BentoGridContext = React.createContext<BentoGridContextValue>({
 export interface BentoGridProps
   extends React.HTMLAttributes<HTMLDivElement>,
     StrictVariantProps<typeof bentoGridVariants> {
+  /** @default 3 */
   cols?: BentoResponsiveValue<BentoCols>;
   autoRows?: string;
 }
@@ -349,7 +350,9 @@ BentoGrid.displayName = 'BentoGrid';
 export interface BentoGridItemProps
   extends React.HTMLAttributes<HTMLDivElement>,
     Omit<StrictVariantProps<typeof bentoGridItemVariants>, 'divided'> {
+  /** @default 1 */
   colSpan?: BentoResponsiveValue<BentoColSpan>;
+  /** @default 1 */
   rowSpan?: BentoResponsiveValue<BentoRowSpan>;
 }
 

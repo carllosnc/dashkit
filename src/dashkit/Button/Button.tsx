@@ -101,11 +101,13 @@ export interface ButtonProps
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   loading?: boolean;
+  /** @default true */
   rounded?: boolean;
   /**
    * Render the button styles onto its single child element instead of a
    * <button> — use for links (<Link>, <a>) so interactive content is never
    * nested inside an anchor.
+   * @default false
    */
   asChild?: boolean;
 }

@@ -77,7 +77,9 @@ export const TableRow = forwardRef<HTMLTableRowElement, HTMLAttributes<HTMLTable
 TableRow.displayName = 'TableRow';
 
 export interface TableHeadProps extends ThHTMLAttributes<HTMLTableCellElement> {
+  /** @default true */
   nowrap?: boolean;
+  /** @default 'left' */
   align?: 'left' | 'center' | 'right';
 }
 
@@ -101,6 +103,7 @@ export const TableHead = forwardRef<HTMLTableCellElement, TableHeadProps>(
 TableHead.displayName = 'TableHead';
 
 export interface TableCellProps extends TdHTMLAttributes<HTMLTableCellElement> {
+  /** @default false */
   nowrap?: boolean;
   align?: 'left' | 'center' | 'right';
 }

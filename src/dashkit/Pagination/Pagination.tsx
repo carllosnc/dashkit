@@ -7,6 +7,7 @@ export interface PaginationProps extends Omit<React.HTMLAttributes<HTMLElement>,
   currentPage: number;
   totalPages: number;
   onChange: (page: number) => void;
+  /** @default 1 */
   siblingCount?: number;
 }
 

@@ -16,7 +16,9 @@ const StepperContext = React.createContext<StepperContextType | undefined>(undef
 
 export interface StepperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
   activeStep: number;
+  /** @default 'horizontal' */
   orientation?: 'horizontal' | 'vertical';
+  /** @default 'primary' */
   color?: StepperColor;
   onChange?: (step: number) => void;
   children: React.ReactNode;
@@ -66,7 +68,9 @@ export interface StepProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 't
   title?: React.ReactNode;
   description?: React.ReactNode;
   icon?: React.ReactNode;
+  /** @default 0 */
   index?: number;
+  /** @default false */
   isLast?: boolean;
 }
 

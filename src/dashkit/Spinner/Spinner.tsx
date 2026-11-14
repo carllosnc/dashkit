@@ -6,8 +6,11 @@ export type SpinnerTokenColor = 'primary' | 'success' | 'warning' | 'danger' | '
 export type SpinnerColor = SpinnerTokenColor | 'currentColor' | `#${string}` | `var(--${string})`;
 
 export interface SpinnerProps extends Omit<React.SVGAttributes<SVGSVGElement>, 'color'> {
+  /** @default 24 */
   size?: number | string;
+  /** @default 'currentColor' */
   color?: SpinnerColor;
+  /** @default 2.5 */
   thickness?: number;
   className?: string;
 }

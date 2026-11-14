@@ -8,12 +8,18 @@ export type CircularProgressSize = 'sm' | 'md' | 'lg' | number;
 
 export interface CircularProgressProps extends Omit<React.ComponentPropsWithoutRef<'div'>, 'color'> {
   value: number;
+  /** @default 'md' */
   size?: CircularProgressSize;
   strokeWidth?: number;
+  /** @default 'primary' */
   color?: CircularProgressColor;
+  /** @default 'solid' */
   variant?: CircularProgressVariant;
+  /** @default false */
   showValue?: boolean;
+  /** @default true */
   showTrack?: boolean;
+  /** @default true */
   roundCaps?: boolean;
   trackColor?: string;
 }

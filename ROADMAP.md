@@ -37,7 +37,7 @@ Initiatives to make Dashkit fully optimized for AI coding assistants (Cursor, Cl
 ### Code Metadata and Zero-Ambiguity APIs
 - [ ] Add JSDoc descriptions and `@example` usage blocks across all 55 component declarations for inline LLM autocomplete (explicitly distinguishing prop-driven `options={...}` components from compound `children` components).
 - [x] Enforce discriminated unions on variant and color props to prevent invalid value generation by models.
-- [ ] Document all component prop interfaces with explicit `@default` tags.
+- [x] Document all component prop interfaces with explicit `@default` tags.
 
 ### Downstream Consumer AI Tooling
 - [x] Inject consumer AI rules/skills (`AGENTS.md`, `.cursorrules`, or `.agents/skills/dashkit/SKILL.md`) automatically during `dashkit init` (or via `dashkit ai-rules`) with resolved paths from `dashkit.json`, component catalog, and the 3-tier customization protocol.

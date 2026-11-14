@@ -41,10 +41,12 @@ export interface SelectProps
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onChange' | 'value'> {
   label?: string;
   description?: string;
+  /** @default 'Select an option' */
   placeholder?: string;
   options: SelectOption[];
   value?: string;
   onChange?: (value: string) => void;
+  /** @default 'md' */
   size?: 'sm' | 'md' | 'lg';
   error?: string;
 }

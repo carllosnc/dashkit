@@ -75,6 +75,7 @@ export interface TabsProps extends ComponentPropsWithoutRef<'div'> {
   value?: string;
   onValueChange?: (val: string) => void;
   children: ReactNode;
+  /** @default 'line' */
   variant?: TabsVariant;
 }
 

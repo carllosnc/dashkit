@@ -38,6 +38,7 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
   helperText?: string;
   mask?: RegExp;
   formatter?: (value: string) => string;
+  /** @default 'md' */
   size?: 'sm' | 'md' | 'lg';
   wrapperClassName?: string;
 }

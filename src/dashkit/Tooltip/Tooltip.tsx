@@ -18,7 +18,9 @@ const TooltipContext = React.createContext<TooltipContextType | undefined>(undef
 
 export interface TooltipProps extends React.ComponentPropsWithoutRef<'div'> {
   children: React.ReactNode;
+  /** @default 0 */
   delay?: number;
+  /** @default true */
   animate?: boolean;
 }
 
@@ -111,7 +113,9 @@ export function TooltipTrigger({ children, asChild }: { children: React.ReactNod
 
 export interface TooltipContentProps extends Omit<HTMLMotionProps<'div'>, 'children'> {
   children: React.ReactNode;
+  /** @default 'top' */
   side?: 'top' | 'bottom' | 'left' | 'right';
+  /** @default 8 */
   sideOffset?: number;
 }
 

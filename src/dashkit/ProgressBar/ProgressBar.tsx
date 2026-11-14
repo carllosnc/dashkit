@@ -48,11 +48,17 @@ const progressFillVariants = cva('h-full rounded-full ds-pill', {
 
 export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
   value: number;
+  /** @default 100 */
   max?: number;
+  /** @default false */
   showLabel?: boolean;
+  /** @default 'top' */
   labelPosition?: 'top' | 'side';
+  /** @default 'primary' */
   color?: ProgressBarColor;
+  /** @default 'sm' */
   size?: ProgressBarSize;
+  /** @default true */
   animate?: boolean;
   label?: React.ReactNode;
 }

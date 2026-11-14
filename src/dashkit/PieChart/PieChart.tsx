@@ -23,10 +23,15 @@ const DEFAULT_COLORS = [
 
 export interface PieChartProps extends React.ComponentPropsWithoutRef<'div'> {
   data: PieChartDataItem[];
+  /** @default 0 */
   innerRadius?: number;
+  /** @default true */
   showLabels?: boolean;
+  /** @default true */
   showTooltip?: boolean;
+  /** @default true */
   animate?: boolean;
+  /** @default 'none' */
   texture?: PieChartTexture;
 }
 

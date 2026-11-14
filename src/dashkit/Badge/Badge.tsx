@@ -70,11 +70,17 @@ export type BadgeColor = 'primary' | 'success' | 'warning' | 'danger' | 'error' 
 
 export interface BadgeProps extends Omit<HTMLMotionProps<'span'>, 'content'> {
   content?: React.ReactNode;
+  /** @default 'success' */
   color?: BadgeColor;
+  /** @default 'solid' */
   variant?: BadgeVariant;
+  /** @default false */
   pulse?: boolean;
+  /** @default false */
   dot?: boolean;
+  /** @default true */
   show?: boolean;
+  /** @default 99 */
   max?: number;
 }
 

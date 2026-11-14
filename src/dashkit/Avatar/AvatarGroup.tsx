@@ -21,7 +21,9 @@ const avatarGroupVariants = cva(
 
 export interface AvatarGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   max?: number;
+  /** @default 'md' */
   size?: AvatarSize;
+  /** @default 'md' */
   spacing?: 'sm' | 'md' | 'lg';
 }
 

@@ -45,16 +45,23 @@ export function SidebarProvider({
 export interface SidebarProps extends
   Omit<HTMLMotionProps<'aside'>, 'children' | 'defaultValue'> {
   children: React.ReactNode;
+  /** @default true */
   collapsible?: boolean;
+  /** @default true */
   defaultOpen?: boolean;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
+  /** @default 272 */
   width?: number;
+  /** @default 72 */
   collapsedWidth?: number;
+  /** @default true */
   responsive?: boolean;
+  /** @default false */
   defaultOpenMobile?: boolean;
   openMobile?: boolean;
   onOpenMobileChange?: (open: boolean) => void;
+  /** @default 768 */
   mobileBreakpoint?: number;
 }
 
@@ -201,6 +208,7 @@ Sidebar.displayName = 'Sidebar';
 
 export interface SidebarTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: React.ReactNode;
+  /** @default 'sm' */
   size?: 'sm' | 'md' | 'lg';
 }
 
@@ -330,7 +338,9 @@ export interface SidebarSectionProps {
   badge?: React.ReactNode;
   children: React.ReactNode;
   className?: string;
+  /** @default false */
   collapsible?: boolean;
+  /** @default true */
   defaultOpen?: boolean;
 }
 
@@ -505,7 +515,9 @@ export interface SidebarItemProps extends Omit<HTMLMotionProps<'button'>, 'child
   badgeSlot?: React.ReactNode;
   href?: string;
   target?: string;
+  /** @default false */
   collapsible?: boolean;
+  /** @default false */
   defaultOpen?: boolean;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;

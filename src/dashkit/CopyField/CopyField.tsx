@@ -10,6 +10,7 @@ export interface CopyFieldProps {
   description?: string;
   value: string;
   className?: string;
+  /** @default true */
   showToast?: boolean;
 }
 

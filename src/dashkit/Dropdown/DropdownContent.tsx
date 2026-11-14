@@ -6,8 +6,11 @@ import { getPortalThemeAttrs } from '../utils/portalTheme';
 
 export interface DropdownContentProps extends React.ComponentPropsWithoutRef<'div'> {
   children: React.ReactNode;
+  /** @default 'start' */
   align?: 'start' | 'end' | 'center';
+  /** @default 'bottom' */
   side?: 'top' | 'bottom' | 'left' | 'right';
+  /** @default 8 */
   sideOffset?: number;
 }
 
