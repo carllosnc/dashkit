@@ -352,7 +352,8 @@ export function generateLlmsTxt(): string {
   lines.push('- `dashkit list [--installed] [--json]`: Lists all registry components with status.');
   lines.push('- `dashkit diff [component] [--json]`: Compares local component files against the upstream registry.');
   lines.push('- `dashkit ai-rules [-o <file>]`: Generates or updates AI coding assistant rules in `AGENTS.md` or `.cursorrules`.');
-  lines.push('- `dashkit doctor`: Verifies CSS imports, dependencies, and directory configuration.\n');
+  lines.push('- `dashkit doctor`: Verifies CSS imports, dependencies, and directory configuration.');
+  lines.push('- `dashkit mcp`: Starts the stdio Model Context Protocol (MCP) server for AI assistants.\n');
 
   lines.push('## Design Tokens and Theming (`dashkit.css`)\n');
   lines.push('Dashkit uses a two-layer token system in `dashkit.css`: `@theme inline` maps semantic Tailwind utilities (`bg-background`, `text-foreground`, `bg-card`, `text-primary`, `border-border`) to underlying `:root` and `.dark` CSS custom properties.\n');
@@ -398,7 +399,7 @@ export function generateLlmsTxt(): string {
   lines.push('  - `Drawer`: `Drawer`, `DrawerHeader`, `DrawerContent`, `DrawerFooter`');
   lines.push('  - `Dropdown`: `Dropdown`, `DropdownTrigger`, `DropdownContent`, `DropdownItem`, `DropdownLabel`, `DropdownSeparator`');
   lines.push('  - `Popover`: `Popover`, `PopoverTrigger`, `PopoverContent`');
-  lines.push('  - `Table`: `TableContainer`, `Table`, `TableHeader`, `TableBody`, `TableFooter`, `TableRow`, `TableHead`, `TableCell`, `TableCaption`');
+  lines.push('  - `Table`: `TableContainer` (`maxHeight`), `Table`, `TableHeader` (`sticky`), `TableBody`, `VirtualTableBody` (virtualized rows), `TableFooter`, `TableRow`, `TableHead`, `TableCell`, `TableCaption`');
   lines.push('  - `Navbar`: `Navbar`, `NavbarBrand`, `NavbarLinks`, `NavbarActions`');
   lines.push('  - `NavigationMenu`: `NavigationMenu`, `NavigationMenuList`, `NavigationMenuItem`, `NavigationMenuTrigger`, `NavigationMenuContent`, `NavigationMenuLink`, `NavigationMenuViewport`');
   lines.push('  - `Sidebar`: `SidebarProvider`, `Sidebar`, `SidebarTrigger`, `SidebarContent`, `SidebarHeader`, `SidebarSection`, `SidebarItem`, `SidebarSubList`, `SidebarSubItem`, `SidebarFooter`');
@@ -410,6 +411,9 @@ export function generateLlmsTxt(): string {
   lines.push('- **Prop-Driven Components (pass data via props, do NOT invent subcomponents)**:');
   lines.push('  - `Select`, `Combobox`: Pass `options={[{ value, label }]}`, `value`, `onChange`, `label`.');
   lines.push('  - `Input`, `Textarea`, `DatePicker`, `DateField`, `ColorPicker`, `CopyField`, `OtpInput`, `Checkbox`, `Radio`, `Switch`, `Slider`: Pass `label`, `description` / `helperText`, `error` directly as props.');
+  lines.push('  - `TagInput`: Pass `value` / `defaultValue`, `onChange`, `suggestions`, `maxTags`, `allowCustom`, `label`.');
+  lines.push('  - `FileUpload`: Pass `files` / `onFilesSelected`, `accept`, `maxSize`, `maxFiles`, `multiple`, `label`.');
+  lines.push('  - `CommandPalette`: Pass `actions` (`[{ id, label, group, onSelect, keywords }]`), `open`, `onOpenChange`, `placeholder`.');
   lines.push('  - `StatsCard`: Pass `title`, `value`, `trend`, `trendLabel`, `status`, `icon`, `chart`.');
   lines.push('  - `AreaChart`, `BarChart`, `LineChart`, `PieChart`: Pass `data` and `series` props.\n');
 
