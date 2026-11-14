@@ -39,6 +39,7 @@ export * from './PieChart';
 export * from './Popover';
 export * from './ProgressBar';
 export * from './Radio';
+export * from './RadioCard';
 export * from './ScrollArea';
 export * from './Select';
 export * from './Sidebar';
