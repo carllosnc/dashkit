@@ -48,7 +48,7 @@ export function OtpInput({
       aria-label={label ? undefined : 'One-time code'}
     >
       {label && (
-        <label data-slot="label" id={`${baseId}-label`} htmlFor={`${baseId}-0`} className="basis-full text-[13px] font-semibold text-foreground ml-1 tracking-tight">
+        <label data-slot="label" id={`${baseId}-label`} htmlFor={`${baseId}-0`} className="basis-full text-xs font-semibold text-foreground ml-1 tracking-tight">
           {label}
         </label>
       )}
