@@ -1,6 +1,6 @@
 {
   "name": "Dashkit UI Registry",
-  "totalComponents": 58,
+  "totalComponents": 59,
   "components": {
     "accordion": {
       "slug": "accordion",
@@ -692,6 +692,29 @@
         "export type DropdownLabelProps = React.ComponentPropsWithoutRef<'div'>;",
         "export type DropdownSeparatorProps = ComponentPropsWithoutRef<'div'>;",
         "export interface DropdownTriggerProps {\r\n  children: React.ReactNode;\r\n  asChild?: boolean;\r\n}"
+      ]
+    },
+    "fileupload": {
+      "slug": "fileupload",
+      "name": "FileUpload",
+      "category": "Forms & Inputs",
+      "description": "A drag-and-drop file upload dropzone with file size validation, per-file progress bars, and status indicators.",
+      "installCommand": "bunx carllosnc/dashkit add fileupload",
+      "files": [
+        "src/dashkit/FileUpload/FileUpload.tsx",
+        "src/dashkit/FileUpload/index.ts"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "react-icons"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "FileUpload"
+      ],
+      "propsDefinitions": [
+        "export interface FileUploadProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange' | 'defaultValue'> {\n  /** Controlled list of upload items. @default undefined */\n  value?: FileUploadItem[];\n  /** Initial list of upload items when uncontrolled. @default [] */\n  defaultValue?: FileUploadItem[];\n  /** Callback fired whenever the list of upload items changes. */\n  onChange?: (items: FileUploadItem[]) => void;\n  /** Callback fired when new valid files are dropped or selected. */\n  onFilesAdded?: (files: File[]) => void;\n  /** Callback fired when a file item is removed. */\n  onRemove?: (item: FileUploadItem) => void;\n  /** Accepted file types (standard `<input accept>` string). */\n  accept?: string;\n  /** Allow selecting or dropping multiple files. @default true */\n  multiple?: boolean;\n  /** Maximum allowed size per file in bytes. @default undefined */\n  maxSize?: number;\n  /** Maximum number of files allowed in the list. @default undefined */\n  maxFiles?: number;\n  /** Disables drag-and-drop, file selection, and removal. @default false */\n  disabled?: boolean;\n  /** Optional field label. */\n  label?: string;\n  /** Optional helper text rendered below the dropzone. */\n  description?: string;\n  /** Field-level validation error message. */\n  error?: string;\n  /** Primary prompt text inside the dropzone. @default 'Drop files here or click to browse' */\n  dropzoneLabel?: string;\n  /** Secondary hint text inside the dropzone. */\n  dropzoneHint?: string;\n}"
       ]
     },
     "float-action-menu": {
@@ -1531,7 +1554,7 @@
         "TagInput"
       ],
       "propsDefinitions": [
-        "export interface TagInputProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange' | 'defaultValue'> {\n  /** Controlled list of tags. @default undefined */\n  value?: string[];\n  /** Initial tags when uncontrolled. @default [] */\n  defaultValue?: string[];\n  /** Callback fired whenever tags are added or removed. */\n  onChange?: (tags: string[]) => void;\n  /** Optional field label. */\n  label?: string;\n  /** Optional helper text rendered below the input. */\n  description?: string;\n  /** Error message; applies error styling and `aria-invalid`. */\n  error?: string;\n  /** Input placeholder text. @default 'Add a tag...' */\n  placeholder?: string;\n  /** Optional autocomplete suggestions shown in a dropdown while typing. @default [] */\n  suggestions?: string[];\n  /** Allows creating custom tags not present in `suggestions`. @default true */\n  allowCustom?: boolean;\n  /** Allows duplicate tag values. @default false */\n  allowDuplicates?: boolean;\n  /** Maximum number of tags allowed. @default undefined */\n  maxTags?: number;\n  /** Key characters that commit the current input as a tag. @default [','] */\n  delimiters?: string[];\n  /** Disables adding or removing tags. @default false */\n  disabled?: boolean;\n}\n\n/**\n * Multi-select tag input with keyboard navigation (`ArrowLeft`/`ArrowRight`, `Backspace`/`Delete`), delimiter commit, and autocomplete suggestions.\n *\n * @example\n * ```tsx\n * <TagInput\n *   label=\"Skills\"\n *   defaultValue={['TypeScript', 'React']}\n *   suggestions={['Tailwind CSS', 'Node.js', 'GraphQL']}\n *   placeholder=\"Add a skill...\"\n * />\n * ```\n */"
+        "export interface TagInputProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange' | 'defaultValue'> {\r\n  /** Controlled list of tags. @default undefined */\r\n  value?: string[];\r\n  /** Initial tags when uncontrolled. @default [] */\r\n  defaultValue?: string[];\r\n  /** Callback fired whenever tags are added or removed. */\r\n  onChange?: (tags: string[]) => void;\r\n  /** Optional field label. */\r\n  label?: string;\r\n  /** Optional helper text rendered below the input. */\r\n  description?: string;\r\n  /** Error message; applies error styling and `aria-invalid`. */\r\n  error?: string;\r\n  /** Input placeholder text. @default 'Add a tag...' */\r\n  placeholder?: string;\r\n  /** Optional autocomplete suggestions shown in a dropdown while typing. @default [] */\r\n  suggestions?: string[];\r\n  /** Allows creating custom tags not present in `suggestions`. @default true */\r\n  allowCustom?: boolean;\r\n  /** Allows duplicate tag values. @default false */\r\n  allowDuplicates?: boolean;\r\n  /** Maximum number of tags allowed. @default undefined */\r\n  maxTags?: number;\r\n  /** Key characters that commit the current input as a tag. @default [','] */\r\n  delimiters?: string[];\r\n  /** Disables adding or removing tags. @default false */\r\n  disabled?: boolean;\r\n}\r\n\r\n/**\r\n * Multi-select tag input with keyboard navigation (`ArrowLeft`/`ArrowRight`, `Backspace`/`Delete`), delimiter commit, and autocomplete suggestions.\r\n *\r\n * @example\r\n * ```tsx\r\n * <TagInput\r\n *   label=\"Skills\"\r\n *   defaultValue={['TypeScript', 'React']}\r\n *   suggestions={['Tailwind CSS', 'Node.js', 'GraphQL']}\r\n *   placeholder=\"Add a skill...\"\r\n * />\r\n * ```\r\n */"
       ]
     },
     "textarea": {

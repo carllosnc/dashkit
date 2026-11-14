@@ -60,6 +60,7 @@ export const CATEGORIES: ComponentCategory[] = [
       { name: 'ColorPicker', slug: 'colorpicker', mdxFile: 'color-picker.mdx' },
       { name: 'CopyField', slug: 'copyfield', mdxFile: 'copy-field.mdx' },
       { name: 'TagInput', slug: 'taginput', mdxFile: 'tag-input.mdx' },
+      { name: 'FileUpload', slug: 'fileupload', mdxFile: 'file-upload.mdx' },
     ],
   },
   {

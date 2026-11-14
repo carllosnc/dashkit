@@ -1,0 +1,96 @@
+import { FileUpload } from '../dashkit/FileUpload';
+
+# FileUpload
+
+A drag-and-drop file upload dropzone with file size validation, per-file progress bars, and status indicators.
+
+## Basic usage
+
+<div className="not-prose max-w-lg">
+  <FileUpload
+    label="Project Assets"
+    accept="image/*,.pdf"
+    maxSize={5 * 1024 * 1024}
+    defaultValue={[
+      { id: '1', name: 'architecture.pdf', size: 1245184, progress: 68, status: 'uploading' },
+      { id: '2', name: 'brand-mark.svg', size: 24576, progress: 100, status: 'completed' }
+    ]}
+    description="Supports SVG, PNG, JPG, and PDF up to 5 MB."
+  />
+</div>
+
+```tsx
+import { FileUpload } from '@/dashkit';
+
+export function Example() {
+  return (
+    <FileUpload
+      label="Project Assets"
+      accept="image/*,.pdf"
+      maxSize={5 * 1024 * 1024}
+      onFilesAdded={(files) => console.log(files)}
+    />
+  );
+}
+```
+
+## Props
+
+<PropertyDoc
+  properties={[
+    {
+      "prop": "value",
+      "type": "FileUploadItem[]",
+      "defaultValue": "undefined",
+      "description": "Controlled list of file upload items."
+    },
+    {
+      "prop": "defaultValue",
+      "type": "FileUploadItem[]",
+      "defaultValue": "[]",
+      "description": "Initial list of file upload items when uncontrolled."
+    },
+    {
+      "prop": "onChange",
+      "type": "(items: FileUploadItem[]) => void",
+      "defaultValue": "—",
+      "description": "Callback fired when items are added or removed."
+    },
+    {
+      "prop": "onFilesAdded",
+      "type": "(files: File[]) => void",
+      "defaultValue": "—",
+      "description": "Callback fired with newly selected or dropped File objects."
+    },
+    {
+      "prop": "accept",
+      "type": "string",
+      "defaultValue": "—",
+      "description": "Accepted file types string."
+    },
+    {
+      "prop": "multiple",
+      "type": "boolean",
+      "defaultValue": "true",
+      "description": "Allows selecting or dropping multiple files."
+    },
+    {
+      "prop": "maxSize",
+      "type": "number",
+      "defaultValue": "undefined",
+      "description": "Maximum allowed file size in bytes."
+    },
+    {
+      "prop": "maxFiles",
+      "type": "number",
+      "defaultValue": "undefined",
+      "description": "Maximum number of files allowed."
+    },
+    {
+      "prop": "disabled",
+      "type": "boolean",
+      "defaultValue": "false",
+      "description": "Disables dropping, selecting, and removing files."
+    }
+  ]}
+/>

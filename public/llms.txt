@@ -92,7 +92,7 @@ Apply on `<html>`, `<body>`, or any scoped container `<div>`:
 
 ## Component Catalog
 
-Complete list of 58 production-ready components. For full API signatures, props tables, and code snippets, see [llms-full.txt](llms-full.txt).
+Complete list of 59 production-ready components. For full API signatures, props tables, and code snippets, see [llms-full.txt](llms-full.txt).
 
 ### Layout & Containers
 
@@ -133,6 +133,7 @@ Complete list of 58 production-ready components. For full API signatures, props 
 - [ColorPicker](llms-full.txt#colorpicker): A premium color picker component that allows users to select from a curated list of presets or provide a custom hex value.
 - [CopyField](llms-full.txt#copyfield): A specialized input component designed for displaying read-only text that needs to be copied to the clipboard, such as invite links, API keys, or referral codes.
 - [TagInput](llms-full.txt#taginput): A multi-select tag input supporting keyboard navigation (`ArrowLeft`, `ArrowRight`, `Backspace`, `Delete`), delimiter commits, and autocomplete suggestions.
+- [FileUpload](llms-full.txt#fileupload): A drag-and-drop file upload dropzone with file size validation, per-file progress bars, and status indicators.
 
 ### Feedback & Overlays
 

@@ -23,6 +23,7 @@ export * from './Divider';
 export * from './Dock';
 export * from './Drawer';
 export * from './Dropdown';
+export * from './FileUpload';
 export * from './FloatActionMenu';
 export * from './IconButton';
 export * from './ImageExpander';
