@@ -10,7 +10,7 @@ const dividerVariants = cva('shrink-0 border-border', {
       vertical: 'h-auto self-stretch',
     },
     variant: {
-      solid: 'bg-ds-200 dark:bg-ds-800',
+      solid: 'bg-border',
       dashed: 'bg-transparent border-dashed',
       dotted: 'bg-transparent border-dotted',
     },
@@ -46,7 +46,7 @@ const dividerVariants = cva('shrink-0 border-border', {
 const dividerLineVariants = cva('flex-1 border-border', {
   variants: {
     variant: {
-      solid: 'h-[1px] bg-ds-200 dark:bg-ds-800',
+      solid: 'h-[1px] bg-border',
       dashed: 'bg-transparent border-t border-dashed',
       dotted: 'bg-transparent border-t border-dotted',
     },
