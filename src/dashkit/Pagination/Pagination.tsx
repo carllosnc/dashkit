@@ -13,6 +13,14 @@ export interface PaginationProps extends Omit<React.HTMLAttributes<HTMLElement>,
 
 const DOTS = '...';
 
+/**
+ * Prop-driven (`currentPage`, `totalPages`, `onChange`) page navigation control.
+ *
+ * @example
+ * ```tsx
+ * <Pagination currentPage={page} totalPages={10} onChange={setPage} />
+ * ```
+ */
 export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
   function Pagination(
     {

@@ -14,6 +14,14 @@ export interface OtpInputProps {
   containerClassName?: string;
 }
 
+/**
+ * Prop-driven (`length`, `value`, `onChange`) multi-cell one-time passcode input.
+ *
+ * @example
+ * ```tsx
+ * <OtpInput length={6} value={code} onChange={setCode} />
+ * ```
+ */
 export function OtpInput({
   length = 6,
   value = '',

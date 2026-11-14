@@ -36,6 +36,16 @@ const MENU_POSITION_CLASSES: Record<FloatActionPosition, string> = {
   'top-left': 'top-0 left-0 origin-top-left',
 };
 
+/**
+ * Compound floating action button with expandable `children` menu items.
+ *
+ * @example
+ * ```tsx
+ * <FloatActionMenu label="New">
+ *   <button onClick={onCreate}>Create Item</button>
+ * </FloatActionMenu>
+ * ```
+ */
 export const FloatActionMenu = React.forwardRef<HTMLDivElement, FloatActionMenuProps>(
   function FloatActionMenu(
     {

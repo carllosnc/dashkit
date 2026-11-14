@@ -24,6 +24,17 @@ export interface TooltipProps extends React.ComponentPropsWithoutRef<'div'> {
   animate?: boolean;
 }
 
+/**
+ * Compound hover/focus hint (`children` with `TooltipTrigger` and `TooltipContent`).
+ *
+ * @example
+ * ```tsx
+ * <Tooltip>
+ *   <TooltipTrigger>Hover me</TooltipTrigger>
+ *   <TooltipContent>Helpful context</TooltipContent>
+ * </Tooltip>
+ * ```
+ */
 export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(function Tooltip(
   {
     children,

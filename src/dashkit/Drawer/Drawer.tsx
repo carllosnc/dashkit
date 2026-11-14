@@ -103,6 +103,17 @@ export const DrawerFooter = forwardRef<HTMLDivElement, DrawerFooterProps>(
 );
 DrawerFooter.displayName = 'DrawerFooter';
 
+/**
+ * Compound slide-over dialog (`children` with `DrawerHeader`, `DrawerContent`, `DrawerFooter`).
+ *
+ * @example
+ * ```tsx
+ * <Drawer isOpen={open} onClose={() => setOpen(false)} position="right">
+ *   <DrawerHeader>Details</DrawerHeader>
+ *   <DrawerContent>Content</DrawerContent>
+ * </Drawer>
+ * ```
+ */
 export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(function Drawer({
   isOpen,
   onClose,

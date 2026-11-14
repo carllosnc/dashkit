@@ -31,6 +31,19 @@ export type CardProps = Omit<HTMLMotionProps<'div'>, 'title'> &
     ref?: React.Ref<HTMLDivElement>;
   };
 
+/**
+ * Compound surface container (`children` with `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter`).
+ *
+ * @example
+ * ```tsx
+ * <Card>
+ *   <CardHeader>
+ *     <CardTitle>Summary</CardTitle>
+ *   </CardHeader>
+ *   <CardContent>Body</CardContent>
+ * </Card>
+ * ```
+ */
 export function Card({
   children,
   animate = false,

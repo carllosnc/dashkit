@@ -29,6 +29,14 @@ export interface SurfaceProps
   children?: React.ReactNode;
 }
 
+/**
+ * Compound semantic callout/container (`children`) with `variant="default" | "info" | "success" | "warning" | "danger"`.
+ *
+ * @example
+ * ```tsx
+ * <Surface variant="info" className="p-4">Changes apply immediately.</Surface>
+ * ```
+ */
 export const Surface = React.forwardRef<HTMLDivElement, SurfaceProps>(
   function Surface({ variant, className, children, ...props }, ref) {
     return (

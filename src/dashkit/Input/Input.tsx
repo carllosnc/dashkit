@@ -43,6 +43,14 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
   wrapperClassName?: string;
 }
 
+/**
+ * Text input with optional `label`, `description`, `error`, and `leftIcon`/`rightIcon` slots.
+ *
+ * @example
+ * ```tsx
+ * <Input label="Email" type="email" placeholder="you@acme.dev" />
+ * ```
+ */
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   function Input(
     {

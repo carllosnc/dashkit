@@ -14,6 +14,14 @@ export interface BackdropProps extends HTMLMotionProps<'div'> {
   children?: React.ReactNode;
 }
 
+/**
+ * Animated modal/drawer overlay backdrop (`children` optional).
+ *
+ * @example
+ * ```tsx
+ * <Backdrop isOpen={open} onClick={() => setOpen(false)} />
+ * ```
+ */
 export const Backdrop = React.forwardRef<HTMLDivElement, BackdropProps>(function Backdrop(
   {
     show = true,

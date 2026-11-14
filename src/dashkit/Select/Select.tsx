@@ -51,6 +51,19 @@ export interface SelectProps
   error?: string;
 }
 
+/**
+ * Prop-driven (`options={...}`, `value`, `onChange`) accessible dropdown selector. Do not pass `<option>` children.
+ *
+ * @example
+ * ```tsx
+ * <Select
+ *   label="Role"
+ *   value={role}
+ *   onChange={setRole}
+ *   options={[{ value: 'admin', label: 'Admin' }, { value: 'member', label: 'Member' }]}
+ * />
+ * ```
+ */
 export const Select = forwardRef<HTMLButtonElement, SelectProps>(
   function Select(
     {

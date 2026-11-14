@@ -15,6 +15,14 @@ export interface ListTileProps extends Omit<HTMLMotionProps<'div'>, 'title'> {
   ref?: React.Ref<HTMLDivElement>;
 }
 
+/**
+ * Prop-driven (`title`, `subtitle`, `leading`, `trailing`) structured list row.
+ *
+ * @example
+ * ```tsx
+ * <ListTile title="Deployment succeeded" subtitle="2m ago" trailing={<Badge content="Live" />} />
+ * ```
+ */
 export const ListTile = ({
   title,
   subtitle,

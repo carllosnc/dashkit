@@ -7,6 +7,21 @@ export interface NavigationMenuProps extends React.ComponentPropsWithoutRef<'nav
   children: React.ReactNode;
 }
 
+/**
+ * Compound desktop navigation bar (`children` with `NavigationMenuList`, `NavigationMenuItem`, `NavigationMenuTrigger`, `NavigationMenuContent`).
+ *
+ * @example
+ * ```tsx
+ * <NavigationMenu>
+ *   <NavigationMenuList>
+ *     <NavigationMenuItem value="docs">
+ *       <NavigationMenuTrigger>Docs</NavigationMenuTrigger>
+ *       <NavigationMenuContent>Links</NavigationMenuContent>
+ *     </NavigationMenuItem>
+ *   </NavigationMenuList>
+ * </NavigationMenu>
+ * ```
+ */
 export const NavigationMenu = React.forwardRef<HTMLElement, NavigationMenuProps>(
   function NavigationMenu({ children, className, ...props }, ref) {
     const {

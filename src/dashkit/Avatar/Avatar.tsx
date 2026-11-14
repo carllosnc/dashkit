@@ -43,6 +43,14 @@ export interface AvatarProps
   fallback?: React.ReactNode;
 }
 
+/**
+ * User profile image or fallback initials badge with `size` and `shape` variants.
+ *
+ * @example
+ * ```tsx
+ * <Avatar src="/avatar.png" alt="Jane Doe" fallback="JD" size="md" />
+ * ```
+ */
 export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
   function Avatar({ src, alt, fallback, size = 'md', shape = 'circle', bordered = false, className, ...props }, ref) {
     const [isLoaded, setIsLoaded] = React.useState(false);

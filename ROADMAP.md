@@ -35,7 +35,7 @@ Initiatives to make Dashkit fully optimized for AI coding assistants (Cursor, Cl
 - [x] Add automated lint checks to verify agent compliance with file structure and styling guidelines.
 
 ### Code Metadata and Zero-Ambiguity APIs
-- [ ] Add JSDoc descriptions and `@example` usage blocks across all 55 component declarations for inline LLM autocomplete (explicitly distinguishing prop-driven `options={...}` components from compound `children` components).
+- [x] Add JSDoc descriptions and `@example` usage blocks across all 55 component declarations for inline LLM autocomplete (explicitly distinguishing prop-driven `options={...}` components from compound `children` components).
 - [x] Enforce discriminated unions on variant and color props to prevent invalid value generation by models.
 - [x] Document all component prop interfaces with explicit `@default` tags.
 

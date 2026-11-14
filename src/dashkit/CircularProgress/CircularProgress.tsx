@@ -58,6 +58,14 @@ const valueSizeClasses: Record<string, string> = {
   lg: 'text-xl',
 };
 
+/**
+ * Prop-driven (`value`) radial progress ring with semantic color tokens and optional percentage readout.
+ *
+ * @example
+ * ```tsx
+ * <CircularProgress value={72} color="primary" showValue />
+ * ```
+ */
 export const CircularProgress = React.forwardRef<HTMLDivElement, CircularProgressProps>(
   function CircularProgress({
     value,

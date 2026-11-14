@@ -79,6 +79,20 @@ export interface TabsProps extends ComponentPropsWithoutRef<'div'> {
   variant?: TabsVariant;
 }
 
+/**
+ * Compound tabbed view switcher (`children` with `TabsList`, `TabsTrigger`, `TabsContent`).
+ *
+ * @example
+ * ```tsx
+ * <Tabs defaultValue="overview">
+ *   <TabsList>
+ *     <TabsTrigger value="overview">Overview</TabsTrigger>
+ *     <TabsTrigger value="logs">Logs</TabsTrigger>
+ *   </TabsList>
+ *   <TabsContent value="overview">Summary</TabsContent>
+ * </Tabs>
+ * ```
+ */
 export const Tabs = forwardRef<HTMLDivElement, TabsProps>(function Tabs(
   { defaultValue, value, onValueChange, children, className, variant = 'line', ...props },
   ref

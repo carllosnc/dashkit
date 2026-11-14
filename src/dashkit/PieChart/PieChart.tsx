@@ -35,6 +35,14 @@ export interface PieChartProps extends React.ComponentPropsWithoutRef<'div'> {
   texture?: PieChartTexture;
 }
 
+/**
+ * Prop-driven (`data`) SVG pie or donut chart with optional inner radius and tooltips.
+ *
+ * @example
+ * ```tsx
+ * <PieChart data={[{ name: 'Desktop', value: 65 }, { name: 'Mobile', value: 35 }]} />
+ * ```
+ */
 export const PieChart = React.forwardRef<HTMLDivElement, PieChartProps>(function PieChart(
   {
     data,

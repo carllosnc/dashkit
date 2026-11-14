@@ -7,6 +7,16 @@ export interface DockProps extends React.HTMLAttributes<HTMLDivElement> {
   position?: "bottom" | "left" | "right";
 }
 
+/**
+ * Compound floating macOS-style icon dock (`children` with `DockItem`).
+ *
+ * @example
+ * ```tsx
+ * <Dock>
+ *   <DockItem label="Home" icon={<HomeIcon />} onClick={goHome} />
+ * </Dock>
+ * ```
+ */
 export const Dock = React.forwardRef<HTMLDivElement, DockProps>(
   function Dock({ children, className, position = "bottom", ...props }, ref) {
     const isVertical = position === "left" || position === "right";

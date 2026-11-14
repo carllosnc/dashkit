@@ -11,6 +11,19 @@ export interface AccordionProps extends React.ComponentPropsWithoutRef<'div'> {
   children: React.ReactNode;
 }
 
+/**
+ * Compound collapsible content container (`children` with `AccordionItem`, `AccordionTrigger`, `AccordionContent`).
+ *
+ * @example
+ * ```tsx
+ * <Accordion type="single" defaultValue="item-1">
+ *   <AccordionItem value="item-1">
+ *     <AccordionTrigger>Overview</AccordionTrigger>
+ *     <AccordionContent>Details here.</AccordionContent>
+ *   </AccordionItem>
+ * </Accordion>
+ * ```
+ */
 export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(function Accordion(
   {
     type = 'single',

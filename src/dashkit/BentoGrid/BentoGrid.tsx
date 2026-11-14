@@ -307,6 +307,17 @@ export interface BentoGridProps
   autoRows?: string;
 }
 
+/**
+ * Compound responsive CSS Grid layout (`children` with `BentoGridItem`) for dashboard cards and KPIs.
+ *
+ * @example
+ * ```tsx
+ * <BentoGrid cols={{ base: 1, md: 3 }} gap="md">
+ *   <BentoGridItem colSpan={{ base: 1, md: 2 }}>Main</BentoGridItem>
+ *   <BentoGridItem>Side</BentoGridItem>
+ * </BentoGrid>
+ * ```
+ */
 export const BentoGrid = React.forwardRef<HTMLDivElement, BentoGridProps>(
   function BentoGrid(
     {

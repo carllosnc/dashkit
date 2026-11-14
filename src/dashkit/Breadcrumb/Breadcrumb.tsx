@@ -15,6 +15,17 @@ export interface BreadcrumbProps extends React.ComponentPropsWithoutRef<'nav'> {
   }[];
 }
 
+/**
+ * Compound navigation trail (`children` with `BreadcrumbItem` and `BreadcrumbSeparator`).
+ *
+ * @example
+ * ```tsx
+ * <Breadcrumb>
+ *   <BreadcrumbItem href="/">Home</BreadcrumbItem>
+ *   <BreadcrumbItem active>Settings</BreadcrumbItem>
+ * </Breadcrumb>
+ * ```
+ */
 export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
   function Breadcrumb({ items, separator, className, children, ...props }, ref) {
     if (items) {

@@ -63,6 +63,14 @@ export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
   label?: React.ReactNode;
 }
 
+/**
+ * Prop-driven (`value`) linear progress bar with semantic color variants.
+ *
+ * @example
+ * ```tsx
+ * <ProgressBar value={68} color="primary" showValue />
+ * ```
+ */
 export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
   ({
     value,

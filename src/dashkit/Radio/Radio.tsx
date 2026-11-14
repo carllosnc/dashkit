@@ -7,6 +7,14 @@ export interface RadioProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
   description?: string;
 }
 
+/**
+ * Accessible radio input with optional `label` and `description` props.
+ *
+ * @example
+ * ```tsx
+ * <Radio name="plan" label="Pro Plan" value="pro" checked={plan === 'pro'} onChange={() => setPlan('pro')} />
+ * ```
+ */
 export const Radio = forwardRef<HTMLInputElement, RadioProps>(
   ({ label, description, className, id, ...props }, ref) => {
     const { radioId } = useRadio({ id, label });

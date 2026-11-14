@@ -28,6 +28,18 @@ export interface ComboboxProps {
   multiple?: boolean;
 }
 
+/**
+ * Prop-driven (`options={...}`, `value`, `onChange`) searchable autocomplete dropdown.
+ *
+ * @example
+ * ```tsx
+ * <Combobox
+ *   options={[{ value: 'react', label: 'React' }, { value: 'vue', label: 'Vue' }]}
+ *   value={framework}
+ *   onChange={setFramework}
+ * />
+ * ```
+ */
 export function Combobox({
   label,
   description,

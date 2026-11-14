@@ -29,6 +29,16 @@ export interface ToastProviderProps {
   invert?: boolean;
 }
 
+/**
+ * Compound notification provider (`ToastProvider`) paired with the `useToast()` hook.
+ *
+ * @example
+ * ```tsx
+ * <ToastProvider position="bottom-right">
+ *   <App />
+ * </ToastProvider>
+ * ```
+ */
 export function ToastProvider({
   children,
   position = 'bottom-right',

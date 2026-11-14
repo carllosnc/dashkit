@@ -24,6 +24,17 @@ export interface ButtonGroupProps {
   vertical?: boolean;
 }
 
+/**
+ * Compound segmented button container (`children` with `ButtonGroupItem`).
+ *
+ * @example
+ * ```tsx
+ * <ButtonGroup>
+ *   <ButtonGroupItem active>Day</ButtonGroupItem>
+ *   <ButtonGroupItem>Week</ButtonGroupItem>
+ * </ButtonGroup>
+ * ```
+ */
 export function ButtonGroup({ children, className, vertical = false }: ButtonGroupProps) {
   return (
     <div className={cn(buttonGroupVariants({ vertical }), className)}>

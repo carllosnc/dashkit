@@ -12,6 +12,14 @@ export interface ImageExpanderProps extends React.ComponentPropsWithoutRef<'div'
   caption?: string;
 }
 
+/**
+ * Prop-driven (`src`, `alt`) thumbnail that expands into a fullscreen lightbox preview.
+ *
+ * @example
+ * ```tsx
+ * <ImageExpander src="/preview.png" alt="Dashboard preview" />
+ * ```
+ */
 export const ImageExpander = React.forwardRef<HTMLDivElement, ImageExpanderProps>(
   function ImageExpander({ children, full, caption, className, onClick, ...props }, ref) {
     const { isOpen, setIsOpen } = useImageExpander();
