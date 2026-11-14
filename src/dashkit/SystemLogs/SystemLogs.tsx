@@ -11,13 +11,12 @@ export interface LogEntry {
   timestamp?: string;
 }
 
-export interface SystemLogsProps {
+export interface SystemLogsProps extends Omit<React.ComponentPropsWithoutRef<'div'>, 'title'> {
   logs: LogEntry[];
   title?: string;
   session?: string;
   status?: string;
   statusColor?: BadgeColor;
-  className?: string;
   maxHeight?: number | string;
   autoScroll?: boolean;
 }
@@ -47,7 +46,8 @@ export const SystemLogs = React.forwardRef<HTMLDivElement, SystemLogsProps>(
     statusColor = 'success',
     className,
     maxHeight,
-    autoScroll = true
+    autoScroll = true,
+    ...props
   }, ref) => {
     const scrollRef = React.useRef<HTMLDivElement>(null);
 
@@ -60,7 +60,9 @@ export const SystemLogs = React.forwardRef<HTMLDivElement, SystemLogsProps>(
     return (
       <div
         ref={ref}
+        data-slot="system-logs"
         className={cn('overflow-hidden ds-rounded border border-border ds-border-width ds-card-shadow bg-ds-950 shadow-lg', className)}
+        {...props}
       >
         <div className="bg-ds-900/60 py-2.5 px-4 border-b border-ds-800">
           <div className="flex items-center gap-2">

@@ -12,14 +12,18 @@ export interface PaginationProps extends Omit<React.HTMLAttributes<HTMLElement>,
 
 const DOTS = '...';
 
-export function Pagination({
-  currentPage,
-  totalPages,
-  onChange,
-  siblingCount = 1,
-  className,
-  ...props
-}: PaginationProps) {
+export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
+  function Pagination(
+    {
+      currentPage,
+      totalPages,
+      onChange,
+      siblingCount = 1,
+      className,
+      ...props
+    },
+    ref
+  ) {
   const paginationId = React.useId();
   const paginationRange = React.useMemo(() => {
     const totalPageNumbers = siblingCount + 5;
@@ -66,6 +70,8 @@ export function Pagination({
 
   return (
     <nav
+      ref={ref}
+      data-slot="pagination"
       role="navigation"
       aria-label="Pagination"
       className={cn('flex flex-wrap items-center gap-1', className)}
@@ -86,7 +92,8 @@ export function Pagination({
           return (
             <div
               key={`dots-${index}`}
-              className="size-9 flex items-center justify-center text-ds-600 dark:text-ds-400"
+              data-slot="pagination-ellipsis"
+              className="size-9 flex items-center justify-center text-muted-foreground"
               aria-hidden="true"
             >
               <FiMoreHorizontal className="size-4" />
@@ -132,6 +139,8 @@ export function Pagination({
       </button>
     </nav>
   );
-}
+});
+
+Pagination.displayName = 'Pagination';
 
 Pagination.displayName = 'Pagination';

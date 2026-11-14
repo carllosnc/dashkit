@@ -1,24 +1,28 @@
+import { forwardRef, type ComponentPropsWithoutRef } from 'react';
 import { Digit } from './Digit';
 
-export interface AnimateNumberProps {
+export interface AnimateNumberProps extends Omit<ComponentPropsWithoutRef<'span'>, 'children'> {
   value: number;
   precision?: number;
   prefix?: string;
   suffix?: string;
-  className?: string;
   duration?: number;
   locale?: string;
 }
 
-export function AnimateNumber({
-  value,
-  precision = 0,
-  prefix = '',
-  suffix = '',
-  className,
-  duration = 0.35,
-  locale = 'en-US',
-}: AnimateNumberProps) {
+export const AnimateNumber = forwardRef<HTMLSpanElement, AnimateNumberProps>(function AnimateNumber(
+  {
+    value,
+    precision = 0,
+    prefix = '',
+    suffix = '',
+    className,
+    duration = 0.35,
+    locale = 'en-US',
+    ...props
+  },
+  ref
+) {
   const formatted = new Intl.NumberFormat(locale, {
     minimumFractionDigits: precision,
     maximumFractionDigits: precision,
@@ -28,7 +32,7 @@ export function AnimateNumber({
   const chars = fullString.split("");
 
   return (
-    <span className={className}>
+    <span ref={ref} data-slot="animate-number" className={className} {...props}>
       {chars.map((char, index) => (
         <Digit 
           key={index} 
@@ -38,4 +42,6 @@ export function AnimateNumber({
       ))}
     </span>
   );
-}
+});
+
+AnimateNumber.displayName = 'AnimateNumber';

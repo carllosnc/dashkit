@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createPortal } from 'react-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, type HTMLMotionProps } from 'framer-motion';
 import { cn } from '../utils/cn';
 import { getPortalThemeAttrs } from '../utils/portalTheme';
 
@@ -16,17 +16,26 @@ interface TooltipContextType {
 
 const TooltipContext = React.createContext<TooltipContextType | undefined>(undefined);
 
-export function Tooltip({
-  children,
-  delay = 0,
-  className,
-  animate = true
-}: {
+export interface TooltipProps extends React.ComponentPropsWithoutRef<'div'> {
   children: React.ReactNode;
   delay?: number;
-  className?: string;
   animate?: boolean;
-}) {
+}
+
+export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(function Tooltip(
+  {
+    children,
+    delay = 0,
+    className,
+    animate = true,
+    onMouseEnter,
+    onMouseLeave,
+    onFocus,
+    onBlur,
+    ...props
+  },
+  ref
+) {
   const [open, setOpen] = React.useState(false);
   const [triggerRect, setTriggerRect] = React.useState<DOMRect | null>(null);
   const [triggerEl, setTriggerEl] = React.useState<HTMLElement | null>(null);
@@ -59,17 +68,32 @@ export function Tooltip({
   return (
     <TooltipContext.Provider value={{ open, setOpen, triggerRect, setTriggerRect, triggerEl, animate, tooltipId }}>
       <div
+        ref={ref}
+        data-slot="tooltip"
         className={cn('inline-block', className)}
-        onMouseEnter={(e) => handleOpen(e.currentTarget)}
-        onMouseLeave={handleClose}
-        onFocus={(e) => handleOpen(e.currentTarget)}
-        onBlur={handleClose}
+        onMouseEnter={(e) => {
+          handleOpen(e.currentTarget);
+          onMouseEnter?.(e);
+        }}
+        onMouseLeave={(e) => {
+          handleClose();
+          onMouseLeave?.(e);
+        }}
+        onFocus={(e) => {
+          handleOpen(e.currentTarget);
+          onFocus?.(e);
+        }}
+        onBlur={(e) => {
+          handleClose();
+          onBlur?.(e);
+        }}
+        {...props}
       >
         {children}
       </div>
     </TooltipContext.Provider>
   );
-}
+});
 
 export function TooltipTrigger({ children, asChild }: { children: React.ReactNode; asChild?: boolean }) {
   const context = React.useContext(TooltipContext);
@@ -82,12 +106,11 @@ export function TooltipTrigger({ children, asChild }: { children: React.ReactNod
       'aria-describedby': [child.props['aria-describedby'], describedBy].filter(Boolean).join(' ') || undefined,
     });
   }
-  return <span aria-describedby={describedBy}>{children}</span>;
+  return <span data-slot="tooltip-trigger" aria-describedby={describedBy}>{children}</span>;
 }
 
-export interface TooltipContentProps {
+export interface TooltipContentProps extends Omit<HTMLMotionProps<'div'>, 'children'> {
   children: React.ReactNode;
-  className?: string;
   side?: 'top' | 'bottom' | 'left' | 'right';
   sideOffset?: number;
 }
@@ -99,18 +122,33 @@ const arrowSideClasses: Record<NonNullable<TooltipContentProps['side']>, string>
   right: 'left-[-5px] top-1/2 -translate-y-1/2 border-l border-b',
 };
 
-export function TooltipContent({
-  children,
-  className,
-  side = 'top',
-  sideOffset = 8
-}: TooltipContentProps) {
-  const context = React.useContext(TooltipContext);
-  if (!context) throw new Error('TooltipContent must be used within a Tooltip');
+export const TooltipContent = React.forwardRef<HTMLDivElement, TooltipContentProps>(
+  function TooltipContent(
+    {
+      children,
+      className,
+      side = 'top',
+      sideOffset = 8,
+      style: userStyle,
+      ...props
+    },
+    ref
+  ) {
+    const context = React.useContext(TooltipContext);
+    if (!context) throw new Error('TooltipContent must be used within a Tooltip');
 
-  const { open, triggerRect, triggerEl, animate, tooltipId } = context;
-  const [contentRect, setContentRect] = React.useState<DOMRect | null>(null);
-  const contentRef = React.useRef<HTMLDivElement>(null);
+    const { open, triggerRect, triggerEl, animate, tooltipId } = context;
+    const [contentRect, setContentRect] = React.useState<DOMRect | null>(null);
+    const contentRef = React.useRef<HTMLDivElement>(null);
+
+    const setRefs = React.useCallback(
+      (node: HTMLDivElement | null) => {
+        contentRef.current = node;
+        if (typeof ref === 'function') ref(node);
+        else if (ref) ref.current = node;
+      },
+      [ref]
+    );
 
   React.useLayoutEffect(() => {
     if (open && contentRef.current) {
@@ -154,7 +192,8 @@ export function TooltipContent({
     <AnimatePresence>
       {open && (
         <motion.div
-          ref={contentRef}
+          ref={setRefs}
+          data-slot="tooltip-content"
           {...getPortalThemeAttrs(triggerEl)}
           id={tooltipId}
           role="tooltip"
@@ -172,14 +211,17 @@ export function TooltipContent({
             top,
             left,
             zIndex: 9999,
+            ...userStyle,
           }}
           className={cn(
             'px-3 py-1.5 text-xs font-medium shadow-lg pointer-events-none relative ds-rounded bg-ds-950 text-ds-0 border border-ds-800 dark:bg-ds-0 dark:text-ds-950 dark:border-ds-200',
             className
           )}
+          {...props}
         >
           {children}
           <div
+            data-slot="tooltip-arrow"
             className={cn(
               'absolute w-2 h-2 rotate-45 bg-ds-950 dark:bg-ds-0 border-ds-800 dark:border-ds-200',
               arrowSideClasses[side]
@@ -190,7 +232,7 @@ export function TooltipContent({
     </AnimatePresence>,
     document.body
   );
-}
+});
 
 Tooltip.displayName = 'Tooltip';
 TooltipTrigger.displayName = 'TooltipTrigger';

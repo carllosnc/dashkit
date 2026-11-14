@@ -1,27 +1,41 @@
 import * as React from 'react';
 import { createPortal } from 'react-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, type HTMLMotionProps } from 'framer-motion';
 import { usePopoverContext } from './usePopover';
 import { cn } from '../utils/cn';
 import { getPortalThemeAttrs } from '../utils/portalTheme';
 
-export interface PopoverContentProps {
+export interface PopoverContentProps extends Omit<HTMLMotionProps<'div'>, 'children'> {
   children: React.ReactNode;
-  className?: string;
   align?: 'start' | 'end' | 'center';
   side?: 'top' | 'bottom' | 'left' | 'right';
   sideOffset?: number;
 }
 
-export function PopoverContent({
-    children,
-    className,
-    align = 'center',
-    side = 'bottom',
-    sideOffset = 8
-}: PopoverContentProps) {
-  const { open, triggerElement, setTriggerRect, triggerRect, triggerMode, onMouseEnter, onMouseLeave, onFocus, onBlur, portalRef } = usePopoverContext();
-  const [contentRect, setContentRect] = React.useState<DOMRect | null>(null);
+export const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
+  function PopoverContent(
+    {
+      children,
+      className,
+      align = 'center',
+      side = 'bottom',
+      sideOffset = 8,
+      style: userStyle,
+      ...props
+    },
+    ref
+  ) {
+    const { open, triggerElement, setTriggerRect, triggerRect, triggerMode, onMouseEnter, onMouseLeave, onFocus, onBlur, portalRef } = usePopoverContext();
+    const [contentRect, setContentRect] = React.useState<DOMRect | null>(null);
+
+    const setContentRef = React.useCallback(
+      (node: HTMLDivElement | null) => {
+        portalRef.current = node;
+        if (typeof ref === 'function') ref(node);
+        else if (ref) ref.current = node;
+      },
+      [portalRef, ref]
+    );
 
   React.useLayoutEffect(() => {
     if (open && portalRef.current) {
@@ -106,7 +120,8 @@ export function PopoverContent({
     <AnimatePresence>
       {open && (
         <motion.div
-           ref={portalRef}
+           ref={setContentRef}
+           data-slot="popover-content"
            {...getPortalThemeAttrs(triggerElement)}
            initial={{ opacity: 0, scale: 0.95, y: animProps.y, x: animProps.x }}
            animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
@@ -116,12 +131,13 @@ export function PopoverContent({
            onFocus={triggerMode === 'hover' ? onFocus : undefined}
            onBlur={triggerMode === 'hover' ? onBlur : undefined}
            transition={{ duration: 0.15, ease: 'easeOut' }}
-           style={style}
+           style={{ ...style, ...userStyle }}
            className={cn(
              'w-72 max-w-[calc(100vw-2rem)] bg-popover/95 backdrop-blur-md text-popover-fg border border-popover-border/80 ds-border-width ds-rounded-lg shadow-xl dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05),0_20px_25px_-5px_rgba(0,0,0,0.5)] p-4 overflow-hidden',
              animProps.originClass,
              className
            )}
+           {...props}
         >
           {children}
         </motion.div>
@@ -129,4 +145,6 @@ export function PopoverContent({
     </AnimatePresence>,
     document.body
   );
-}
+});
+
+PopoverContent.displayName = 'PopoverContent';

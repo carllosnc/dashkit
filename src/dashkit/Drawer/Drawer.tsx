@@ -1,4 +1,4 @@
-import { type ReactNode, forwardRef, useCallback, type MutableRefObject } from 'react';
+import { type ReactNode, type ComponentPropsWithoutRef, forwardRef, useCallback, type MutableRefObject } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cva } from 'class-variance-authority';
@@ -48,29 +48,59 @@ export interface DrawerProps {
   label?: string;
 }
 
-export function DrawerHeader({ children, className }: { children: ReactNode; className?: string }) {
-  return (
-    <div className={cn('p-6 pb-4 flex flex-col gap-1 border-b border-border/80', className)}>
-      {children}
-    </div>
-  );
-}
+export type DrawerHeaderProps = ComponentPropsWithoutRef<'div'>;
 
-export function DrawerContent({ children, className }: { children: ReactNode; className?: string }) {
-  return (
-    <div className={cn('flex-1 overflow-y-auto px-6 py-2 custom-scrollbar', className)}>
-      {children}
-    </div>
-  );
-}
+export const DrawerHeader = forwardRef<HTMLDivElement, DrawerHeaderProps>(
+  function DrawerHeader({ children, className, ...props }, ref) {
+    return (
+      <div
+        ref={ref}
+        data-slot="drawer-header"
+        className={cn('p-6 pb-4 flex flex-col gap-1 border-b border-border/80', className)}
+        {...props}
+      >
+        {children}
+      </div>
+    );
+  }
+);
+DrawerHeader.displayName = 'DrawerHeader';
 
-export function DrawerFooter({ children, className }: { children: ReactNode; className?: string }) {
-  return (
-    <div className={cn('p-6 pt-4 flex items-center justify-end gap-3 border-t border-border/80', className)}>
-      {children}
-    </div>
-  );
-}
+export type DrawerContentProps = ComponentPropsWithoutRef<'div'>;
+
+export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
+  function DrawerContent({ children, className, ...props }, ref) {
+    return (
+      <div
+        ref={ref}
+        data-slot="drawer-content"
+        className={cn('flex-1 overflow-y-auto px-6 py-2 custom-scrollbar', className)}
+        {...props}
+      >
+        {children}
+      </div>
+    );
+  }
+);
+DrawerContent.displayName = 'DrawerContent';
+
+export type DrawerFooterProps = ComponentPropsWithoutRef<'div'>;
+
+export const DrawerFooter = forwardRef<HTMLDivElement, DrawerFooterProps>(
+  function DrawerFooter({ children, className, ...props }, ref) {
+    return (
+      <div
+        ref={ref}
+        data-slot="drawer-footer"
+        className={cn('p-6 pt-4 flex items-center justify-end gap-3 border-t border-border/80', className)}
+        {...props}
+      >
+        {children}
+      </div>
+    );
+  }
+);
+DrawerFooter.displayName = 'DrawerFooter';
 
 export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(function Drawer({
   isOpen,
@@ -107,6 +137,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(function Drawer({
       {isOpen && (
         <div
           {...getPortalThemeAttrs()}
+          data-slot="drawer-portal"
           className="fixed inset-0 z-[1100] isolate overflow-hidden flex items-center justify-center"
         >
           <Backdrop show={true} fixed={false} onClick={onClose}>
@@ -127,6 +158,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(function Drawer({
 
           <motion.div
             ref={setPanelRef}
+            data-slot="drawer"
             data-testid="drawer-content"
             role="dialog"
             aria-modal="true"

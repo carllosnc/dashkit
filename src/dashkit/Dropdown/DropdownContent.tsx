@@ -4,23 +4,37 @@ import { useDropdownContext } from './useDropdown';
 import { cn } from '../utils/cn';
 import { getPortalThemeAttrs } from '../utils/portalTheme';
 
-export interface DropdownContentProps {
+export interface DropdownContentProps extends React.ComponentPropsWithoutRef<'div'> {
   children: React.ReactNode;
-  className?: string;
   align?: 'start' | 'end' | 'center';
   side?: 'top' | 'bottom' | 'left' | 'right';
   sideOffset?: number;
 }
 
-export function DropdownContent({
-  children,
-  className,
-  align = 'start',
-  side = 'bottom',
-  sideOffset = 8
-}: DropdownContentProps) {
-  const { open, triggerElement, setTriggerRect, triggerRect, portalRef } = useDropdownContext();
-  const [contentRect, setContentRect] = React.useState<DOMRect | null>(null);
+export const DropdownContent = React.forwardRef<HTMLDivElement, DropdownContentProps>(
+  function DropdownContent(
+    {
+      children,
+      className,
+      align = 'start',
+      side = 'bottom',
+      sideOffset = 8,
+      style: userStyle,
+      ...props
+    },
+    ref
+  ) {
+    const { open, triggerElement, setTriggerRect, triggerRect, portalRef } = useDropdownContext();
+    const [contentRect, setContentRect] = React.useState<DOMRect | null>(null);
+
+    const setContentRef = React.useCallback(
+      (node: HTMLDivElement | null) => {
+        portalRef.current = node;
+        if (typeof ref === 'function') ref(node);
+        else if (ref) ref.current = node;
+      },
+      [portalRef, ref]
+    );
 
   // Latest trigger element for the focus-restore cleanup below, so the focus
   // effect can depend only on `open`.
@@ -133,19 +147,21 @@ export function DropdownContent({
 
   return createPortal(
     <div
-      ref={portalRef}
+      ref={setContentRef}
+      data-slot="dropdown-content"
       {...getPortalThemeAttrs(triggerElement)}
-      style={style}
+      style={{ ...style, ...userStyle }}
       className={cn(
         'min-w-[12rem] bg-popover/95 backdrop-blur-md text-popover-fg border border-popover-border/80 ds-border-width ds-popover-shadow ds-rounded-lg p-1.5 overflow-hidden flex flex-col gap-0.5',
         animProps.originClass,
         className
       )}
+      {...props}
     >
       {children}
     </div>,
     document.body
   );
-}
+});
 
 DropdownContent.displayName = 'DropdownContent';

@@ -85,6 +85,7 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
       return (
         <div
           ref={ref}
+          data-slot="divider"
           role="separator"
           aria-orientation="horizontal"
           className={cn('flex items-center w-full gap-4 bg-transparent h-auto border-none', className)}
@@ -108,6 +109,7 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
     return (
       <div
         ref={ref}
+        data-slot="divider"
         role="separator"
         aria-orientation={orientation ?? undefined}
         className={cn(dividerVariants({ orientation, variant }), className)}

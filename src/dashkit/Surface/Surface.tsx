@@ -34,6 +34,7 @@ export const Surface = React.forwardRef<HTMLDivElement, SurfaceProps>(
     return (
       <div
         ref={ref}
+        data-slot="surface"
         className={cn(surfaceVariants({ variant }), className)}
         {...props}
       >

@@ -34,10 +34,11 @@ export const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
     return (
       <header
         ref={ref}
+        data-slot="navbar"
         className={cn(navbarVariants({ sticky, blur }), className)}
         {...props}
       >
-        <div className="w-full mx-auto flex items-center justify-between gap-2 sm:gap-4 min-w-0">
+        <div data-slot="navbar-inner" className="w-full mx-auto flex items-center justify-between gap-2 sm:gap-4 min-w-0">
           {children}
         </div>
       </header>

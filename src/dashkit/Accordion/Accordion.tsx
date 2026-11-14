@@ -2,23 +2,26 @@ import * as React from 'react';
 import { cn } from '../utils/cn';
 import { AccordionContext, type AccordionType } from './AccordionContext';
 
-export interface AccordionProps {
+export interface AccordionProps extends React.ComponentPropsWithoutRef<'div'> {
   type?: AccordionType;
   defaultValue?: string | string[];
   value?: string | string[];
   onValueChange?: (value: string | string[]) => void;
   children: React.ReactNode;
-  className?: string;
 }
 
-export function Accordion({
-  type = 'single',
-  defaultValue,
-  value: controlledValue,
-  onValueChange,
-  children,
-  className,
-}: AccordionProps) {
+export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(function Accordion(
+  {
+    type = 'single',
+    defaultValue,
+    value: controlledValue,
+    onValueChange,
+    children,
+    className,
+    ...props
+  },
+  ref
+) {
   const [uncontrolledValue, setUncontrolledValue] = React.useState<string | string[]>(
     defaultValue || (type === 'multiple' ? [] : '')
   );
@@ -44,12 +47,12 @@ export function Accordion({
 
   return (
     <AccordionContext.Provider value={{ type, value, onValueChange: handleValueChange }}>
-      <div className={cn('flex flex-col w-full', className)}>
+      <div ref={ref} data-slot="accordion" className={cn('flex flex-col w-full', className)} {...props}>
         {children}
       </div>
     </AccordionContext.Provider>
   );
-}
+});
 
 Accordion.displayName = 'Accordion';
 

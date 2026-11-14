@@ -6,7 +6,7 @@ import { AnimateNumber } from '../AnimateNumber/AnimateNumber';
 import { HiOutlineArrowTrendingUp, HiOutlineArrowTrendingDown } from 'react-icons/hi2';
 import { Divider } from '../Divider/Divider';
 
-export interface StatsCardProps {
+export interface StatsCardProps extends Omit<React.ComponentPropsWithoutRef<typeof Card>, 'title' | 'children'> {
   title: string;
   value: number;
   prefix?: string;
@@ -18,7 +18,6 @@ export interface StatsCardProps {
   description?: string;
   status?: 'success' | 'danger' | 'warning' | 'info' | 'neutral';
   animate?: boolean;
-  className?: string;
   chart?: {
     data: number[];
     color?: string;
@@ -41,21 +40,26 @@ const STATUS_COLORS: Record<string, string> = {
   neutral: 'text-muted-foreground',
 };
 
-export function StatsCard({
-  title,
-  value,
-  prefix = "",
-  suffix = "",
-  precision = 0,
-  trend,
-  trendLabel,
-  icon,
-  description,
-  status = 'neutral',
-  animate = false,
-  className,
-  chart
-}: StatsCardProps) {
+export const StatsCard = React.forwardRef<HTMLDivElement, StatsCardProps>(function StatsCard(
+  {
+    title,
+    value,
+    prefix = "",
+    suffix = "",
+    precision = 0,
+    trend,
+    trendLabel,
+    icon,
+    description,
+    status = 'neutral',
+    animate = false,
+    className,
+    chart,
+    ...props
+  },
+  ref
+) {
+  const sparkGradId = React.useId();
   const TrendIcon = STATUS_ICONS[status];
   const statusColor = STATUS_COLORS[status] || STATUS_COLORS.neutral;
 
@@ -76,8 +80,11 @@ export function StatsCard({
 
   return (
     <Card
+      ref={ref}
+      data-slot="stats-card"
       className={cn('relative overflow-hidden', !chart && 'pb-4', className)}
       animate={animate}
+      {...props}
     >
       <div className="flex items-start justify-between gap-3">
         <div className="space-y-1.5 overflow-hidden flex-1 min-w-0">
@@ -125,14 +132,14 @@ export function StatsCard({
             preserveAspectRatio="none"
           >
             <defs>
-              <linearGradient id={`spark-grad-${title.replace(/\s+/g, '-')}`} x1="0" y1="0" x2="0" y2="1">
+              <linearGradient id={sparkGradId} x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor="currentColor" stopOpacity={0.2} />
                 <stop offset="100%" stopColor="currentColor" stopOpacity={0} />
               </linearGradient>
             </defs>
             <motion.path
               d={`${sparklinePoints} L 100 40 L 0 40 Z`}
-              fill={`url(#spark-grad-${title.replace(/\s+/g, '-')})`}
+              fill={`url(#${sparkGradId})`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1 }}
@@ -153,6 +160,6 @@ export function StatsCard({
       )}
     </Card>
   );
-}
+});
 
 StatsCard.displayName = 'StatsCard';

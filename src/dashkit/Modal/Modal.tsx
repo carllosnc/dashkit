@@ -1,7 +1,12 @@
-import { type ReactNode } from 'react';
+import { forwardRef, useCallback, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
+<<<<<<< HEAD
 import { motion, AnimatePresence } from 'framer-motion';
 import { cva } from 'class-variance-authority';
+=======
+import { motion, AnimatePresence, type HTMLMotionProps } from 'framer-motion';
+import { cva, type VariantProps } from 'class-variance-authority';
+>>>>>>> origin/master
 import { cn } from '../utils/cn';
 import type { StrictVariantProps } from '../utils/types';
 import { getPortalThemeAttrs } from '../utils/portalTheme';
@@ -30,7 +35,9 @@ const modalContentVariants = cva(
 
 export type ModalSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
 
-export interface ModalProps extends StrictVariantProps<typeof modalContentVariants> {
+export interface ModalProps
+  extends StrictVariantProps<typeof modalContentVariants>,
+    Omit<HTMLMotionProps<'div'>, 'children' | 'size'> {
   isOpen: boolean;
   onClose: () => void;
   children: ReactNode;
@@ -39,29 +46,44 @@ export interface ModalProps extends StrictVariantProps<typeof modalContentVarian
   label?: string;
 }
 
-export function Modal({
-  isOpen,
-  onClose,
-  children,
-  size = 'md',
-  className,
-  labelledBy,
-  label,
-}: ModalProps) {
+export const Modal = forwardRef<HTMLDivElement, ModalProps>(function Modal(
+  {
+    isOpen,
+    onClose,
+    children,
+    size = 'md',
+    className,
+    labelledBy,
+    label,
+    ...props
+  },
+  ref
+) {
   useModal({ isOpen, onClose });
   const contentRef = useFocusTrap<HTMLDivElement>(isOpen);
+
+  const setDialogRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      contentRef.current = node;
+      if (typeof ref === 'function') ref(node);
+      else if (ref) ref.current = node;
+    },
+    [contentRef, ref]
+  );
 
   return createPortal(
     <AnimatePresence>
       {isOpen && (
         <div
           {...getPortalThemeAttrs()}
+          data-slot="modal-portal"
           className="fixed inset-0 z-[1100] isolate flex items-center justify-center p-6"
         >
           <Backdrop show={true} fixed={false} onClick={onClose} />
 
           <motion.div
-            ref={contentRef}
+            ref={setDialogRef}
+            data-slot="modal"
             role="dialog"
             aria-modal="true"
             aria-labelledby={labelledBy}
@@ -71,6 +93,7 @@ export function Modal({
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
             className={cn(modalContentVariants({ size }), className)}
+            {...props}
           >
             {children}
           </motion.div>
@@ -79,6 +102,6 @@ export function Modal({
     </AnimatePresence>,
     document.body
   );
-}
+});
 
 Modal.displayName = 'Modal';

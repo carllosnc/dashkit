@@ -155,7 +155,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     restore();
   };
 
-  // Synchronize on mount
+  // Synchronize theme attributes with documentElement
   useEffect(() => {
     const root = window.document.documentElement;
     if (theme === 'dark') {
@@ -167,7 +167,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     root.setAttribute('data-primary', primaryColor);
     root.setAttribute('data-dark-bg', darkBg);
     root.setAttribute('data-preset', preset);
-  }, []);
+  }, [theme, baseColor, primaryColor, darkBg, preset]);
 
   return (
     <ThemeContext.Provider

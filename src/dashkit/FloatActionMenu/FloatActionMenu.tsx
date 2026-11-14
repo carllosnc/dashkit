@@ -7,13 +7,12 @@ import { useFloatActionMenu, type FloatActionPosition } from './useFloatActionMe
 
 export type FloatActionMenuVariant = 'neutral' | 'primary';
 
-export interface FloatActionMenuProps {
+export interface FloatActionMenuProps extends React.ComponentPropsWithoutRef<'div'> {
   icon?: React.ReactNode;
   label?: string;
   variant?: FloatActionMenuVariant;
   children: React.ReactNode;
   position?: FloatActionPosition;
-  className?: string;
   buttonClassName?: string;
   menuClassName?: string;
 }
@@ -34,35 +33,47 @@ const MENU_POSITION_CLASSES: Record<FloatActionPosition, string> = {
   'top-left': 'top-0 left-0 origin-top-left',
 };
 
-export function FloatActionMenu({
-  icon = <FiMenu />,
-  label,
-  variant = 'neutral',
-  children,
-  position = 'bottom-right',
-  className,
-  buttonClassName,
-  menuClassName,
-}: FloatActionMenuProps) {
-  const {
-    isOpen,
-    setIsOpen,
-    menuRef,
-    isRight,
-    handleDragEnd,
-  } = useFloatActionMenu({ position });
+export const FloatActionMenu = React.forwardRef<HTMLDivElement, FloatActionMenuProps>(
+  function FloatActionMenu(
+    {
+      icon = <FiMenu />,
+      label,
+      variant = 'neutral',
+      children,
+      position = 'bottom-right',
+      className,
+      buttonClassName,
+      menuClassName,
+      ...props
+    },
+    ref
+  ) {
+    const {
+      isOpen,
+      setIsOpen,
+      menuRef,
+      isRight,
+      handleDragEnd,
+    } = useFloatActionMenu({ position });
 
-  const hasPosition = className?.includes('fixed') || className?.includes('absolute') || className?.includes('relative') || className?.includes('sticky');
+    const hasPosition = className?.includes('fixed') || className?.includes('absolute') || className?.includes('relative') || className?.includes('sticky');
 
-  return (
-    <div className={cn(
-      'z-50',
-      !hasPosition && 'fixed',
-      POSITION_CLASSES[position],
-      className
-    )}>
-      <motion.button
-        key="fab"
+    return (
+      <div
+        ref={ref}
+        data-slot="float-action-menu"
+        className={cn(
+          'z-50',
+          !hasPosition && 'fixed',
+          POSITION_CLASSES[position],
+          className
+        )}
+        {...props}
+      >
+        <motion.button
+          key="fab"
+          type="button"
+          data-slot="float-action-menu-trigger"
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
           'flex items-center gap-2.5 px-4 py-3 ds-rounded active:scale-95 transition-all cursor-pointer relative z-10 shadow-lg',
@@ -87,6 +98,7 @@ export function FloatActionMenu({
           <motion.div
             key="menu"
             ref={menuRef}
+            data-slot="float-action-menu-content"
             className={cn(
               'absolute w-[calc(100vw-3rem)] sm:w-[400px] max-w-[400px] min-h-[300px] bg-card text-card-foreground ds-rounded shadow-2xl border border-border ds-border-width ds-card-shadow overflow-hidden flex flex-col z-20',
               MENU_POSITION_CLASSES[position],
@@ -123,6 +135,8 @@ export function FloatActionMenu({
       </AnimatePresence>
     </div>
   );
-}
+});
+
+FloatActionMenu.displayName = 'FloatActionMenu';
 
 FloatActionMenu.displayName = 'FloatActionMenu';

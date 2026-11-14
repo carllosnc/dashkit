@@ -8,7 +8,8 @@ export const BreadcrumbList = React.forwardRef<
   return (
     <ol
       ref={ref}
-      className={cn('flex items-center gap-1.5 text-sm text-ds-500 sm:gap-2.5 dark:text-ds-400', className)}
+      data-slot="breadcrumb-list"
+      className={cn('flex items-center gap-1.5 text-sm text-muted-foreground sm:gap-2.5', className)}
       {...props}
     />
   );

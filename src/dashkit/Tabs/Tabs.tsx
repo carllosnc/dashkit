@@ -1,5 +1,5 @@
-import { createContext, useContext, useState, type ReactNode, type KeyboardEvent } from 'react';
-import { motion } from 'framer-motion';
+import { createContext, forwardRef, useContext, useState, type ComponentPropsWithoutRef, type ReactNode, type KeyboardEvent } from 'react';
+import { motion, type HTMLMotionProps } from 'framer-motion';
 import { cva } from 'class-variance-authority';
 import { cn } from '../utils/cn';
 
@@ -70,16 +70,18 @@ const tabsTriggerVariants = cva(
   }
 );
 
-export interface TabsProps {
+export interface TabsProps extends ComponentPropsWithoutRef<'div'> {
   defaultValue?: string;
   value?: string;
   onValueChange?: (val: string) => void;
   children: ReactNode;
-  className?: string;
   variant?: TabsVariant;
 }
 
-export function Tabs({ defaultValue, value, onValueChange, children, className, variant = 'line' }: TabsProps) {
+export const Tabs = forwardRef<HTMLDivElement, TabsProps>(function Tabs(
+  { defaultValue, value, onValueChange, children, className, variant = 'line', ...props },
+  ref
+) {
   const [internalValue, setInternalValue] = useState(defaultValue || '');
   const [tabsId] = useState(() => Math.random().toString(36).substring(7));
 
@@ -92,44 +94,56 @@ export function Tabs({ defaultValue, value, onValueChange, children, className, 
 
   return (
     <TabsContext.Provider value={{ activeTab, setActiveTab, tabsId, variant }}>
-      <div data-variant={variant} className={cn(tabsVariants({ variant }), className)}>
+      <div
+        ref={ref}
+        data-slot="tabs"
+        data-variant={variant}
+        className={cn(tabsVariants({ variant }), className)}
+        {...props}
+      >
         {children}
       </div>
     </TabsContext.Provider>
   );
-}
+});
 
-export interface TabsListProps {
+export interface TabsListProps extends ComponentPropsWithoutRef<'div'> {
   children: ReactNode;
-  className?: string;
   variant?: TabsVariant;
 }
 
-export function TabsList({ children, className, variant: variantProp }: TabsListProps) {
+export const TabsList = forwardRef<HTMLDivElement, TabsListProps>(function TabsList(
+  { children, className, variant: variantProp, ...props },
+  ref
+) {
   const context = useContext(TabsContext);
   const variant = variantProp || context?.variant || 'line';
 
   return (
     <div
+      ref={ref}
+      data-slot="tabs-list"
       role="tablist"
       data-variant={variant}
       className={cn(tabsListVariants({ variant }), className)}
+      {...props}
     >
       {children}
     </div>
   );
-}
+});
 
-export interface TabsTriggerProps {
+export interface TabsTriggerProps extends Omit<ComponentPropsWithoutRef<'button'>, 'value'> {
   value: string;
   children: ReactNode;
-  className?: string;
-  disabled?: boolean;
 }
 
 const TAB_KEYS = ['ArrowRight', 'ArrowLeft', 'Home', 'End'];
 
-export function TabsTrigger({ value, children, className, disabled }: TabsTriggerProps) {
+export const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(function TabsTrigger(
+  { value, children, className, disabled, onClick, onKeyDown, ...props },
+  ref
+) {
   const context = useContext(TabsContext);
   if (!context) throw new Error('TabsTrigger must be used within Tabs');
 
@@ -169,6 +183,8 @@ export function TabsTrigger({ value, children, className, disabled }: TabsTrigge
 
   return (
     <button
+      ref={ref}
+      data-slot="tabs-trigger"
       type="button"
       role="tab"
       id={`${context.tabsId}-tab-${value}`}
@@ -176,12 +192,19 @@ export function TabsTrigger({ value, children, className, disabled }: TabsTrigge
       aria-controls={`${context.tabsId}-panel-${value}`}
       tabIndex={isActive ? 0 : -1}
       disabled={disabled}
-      onClick={() => context.setActiveTab(value)}
-      onKeyDown={handleKeyDown}
+      onClick={(e) => {
+        context.setActiveTab(value);
+        onClick?.(e);
+      }}
+      onKeyDown={(e) => {
+        handleKeyDown(e);
+        onKeyDown?.(e);
+      }}
       className={cn(
         tabsTriggerVariants({ variant, active: isActive }),
         className
       )}
+      {...props}
     >
       {isActive && variant === 'line' && (
         <motion.div
@@ -208,15 +231,17 @@ export function TabsTrigger({ value, children, className, disabled }: TabsTrigge
       <span className="relative z-10 inline-flex items-center gap-2">{children}</span>
     </button>
   );
-}
+});
 
-export interface TabsContentProps {
+export interface TabsContentProps extends Omit<HTMLMotionProps<'div'>, 'children'> {
   value: string;
   children: ReactNode;
-  className?: string;
 }
 
-export function TabsContent({ value, children, className }: TabsContentProps) {
+export const TabsContent = forwardRef<HTMLDivElement, TabsContentProps>(function TabsContent(
+  { value, children, className, ...props },
+  ref
+) {
   const context = useContext(TabsContext);
   if (!context) throw new Error('TabsContent must be used within Tabs');
 
@@ -224,6 +249,8 @@ export function TabsContent({ value, children, className }: TabsContentProps) {
 
   return (
     <motion.div
+      ref={ref}
+      data-slot="tabs-content"
       role="tabpanel"
       id={`${context.tabsId}-panel-${value}`}
       aria-labelledby={`${context.tabsId}-tab-${value}`}
@@ -233,11 +260,12 @@ export function TabsContent({ value, children, className }: TabsContentProps) {
       exit={{ opacity: 0, y: 2 }}
       transition={{ duration: 0.15, ease: 'easeOut' }}
       className={cn('flex-1 outline-none pt-4 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring', className)}
+      {...props}
     >
       {children}
     </motion.div>
   );
-}
+});
 
 Tabs.displayName = 'Tabs';
 TabsList.displayName = 'TabsList';

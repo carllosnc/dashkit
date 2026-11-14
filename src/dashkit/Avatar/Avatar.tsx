@@ -63,6 +63,7 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
     return (
       <div
         ref={ref}
+        data-slot="avatar"
         className={cn(avatarVariants({ size, shape, bordered }), className)}
         {...props}
       >

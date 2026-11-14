@@ -22,20 +22,25 @@ export interface StepperProps extends Omit<React.HTMLAttributes<HTMLDivElement>,
   children: React.ReactNode;
 }
 
-export function Stepper({
-  activeStep,
-  orientation = 'horizontal',
-  color = 'primary',
-  onChange,
-  children,
-  className,
-  ...props
-}: StepperProps) {
+export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(function Stepper(
+  {
+    activeStep,
+    orientation = 'horizontal',
+    color = 'primary',
+    onChange,
+    children,
+    className,
+    ...props
+  },
+  ref
+) {
   const steps = React.Children.toArray(children).filter(React.isValidElement);
 
   return (
     <StepperContext.Provider value={{ activeStep, orientation, color, onChange }}>
       <div
+        ref={ref}
+        data-slot="stepper"
         data-color={color}
         data-orientation={orientation}
         className={cn(
@@ -55,7 +60,7 @@ export function Stepper({
       </div>
     </StepperContext.Provider>
   );
-}
+});
 
 export interface StepProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   title?: React.ReactNode;
@@ -65,15 +70,18 @@ export interface StepProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 't
   isLast?: boolean;
 }
 
-export function Step({
-  title,
-  description,
-  icon,
-  index = 0,
-  isLast = false,
-  className,
-  ...props
-}: StepProps) {
+export const Step = React.forwardRef<HTMLDivElement, StepProps>(function Step(
+  {
+    title,
+    description,
+    icon,
+    index = 0,
+    isLast = false,
+    className,
+    ...props
+  },
+  ref
+) {
   const context = React.useContext(StepperContext);
   if (!context) {
     throw new Error('Step must be used within a Stepper');
@@ -94,6 +102,8 @@ export function Step({
 
   return (
     <div
+      ref={ref}
+      data-slot="step"
       className={cn(
         'group relative flex',
         orientation === 'horizontal' ? 'flex-1' : 'flex-col items-start pb-6 w-full',
@@ -199,7 +209,7 @@ export function Step({
       )}
     </div>
   );
-}
+});
 
 Step.displayName = 'Step';
 Stepper.displayName = 'Stepper';

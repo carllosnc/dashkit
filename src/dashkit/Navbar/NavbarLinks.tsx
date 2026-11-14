@@ -6,12 +6,19 @@ export interface NavbarLinksProps extends React.HTMLAttributes<HTMLElement> {
   className?: string;
 }
 
-export function NavbarLinks({ children, className, ...props }: NavbarLinksProps) {
-  return (
-    <nav className={cn('hidden md:flex items-center gap-4 lg:gap-8', className)} {...props}>
-      {children}
-    </nav>
-  );
-}
+export const NavbarLinks = React.forwardRef<HTMLElement, NavbarLinksProps>(
+  function NavbarLinks({ children, className, ...props }, ref) {
+    return (
+      <nav
+        ref={ref}
+        data-slot="navbar-links"
+        className={cn('hidden md:flex items-center gap-4 lg:gap-8', className)}
+        {...props}
+      >
+        {children}
+      </nav>
+    );
+  }
+);
 
 NavbarLinks.displayName = 'NavbarLinks';

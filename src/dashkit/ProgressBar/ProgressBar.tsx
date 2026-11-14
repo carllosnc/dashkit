@@ -101,6 +101,7 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
       return (
         <div
           ref={ref}
+          data-slot="progress-bar"
           className={cn('w-full flex items-center gap-3', className)}
           {...props}
         >
@@ -122,6 +123,7 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
     return (
       <div
         ref={ref}
+        data-slot="progress-bar"
         className={cn('w-full flex flex-col gap-2', className)}
         {...props}
       >

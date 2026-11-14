@@ -64,29 +64,34 @@ const chipVariants = cva(
   }
 );
 
-export interface ChipProps {
+export interface ChipProps
+  extends Omit<React.HTMLAttributes<HTMLButtonElement | HTMLDivElement>, 'onClick' | 'color'> {
   label: React.ReactNode;
   icon?: React.ReactNode;
   variant?: ChipVariant;
   color?: ChipColor;
   selected?: boolean;
   disabled?: boolean;
-  className?: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) => void;
   onDelete?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export function Chip({
-  label,
-  icon,
-  variant = 'tonal',
-  color = 'base',
-  selected = false,
-  disabled = false,
-  className,
-  onClick,
-  onDelete,
-}: ChipProps) {
+export const Chip = React.forwardRef<HTMLButtonElement | HTMLDivElement, ChipProps>(function Chip(
+  {
+    label,
+    icon,
+    variant = 'tonal',
+    color = 'base',
+    selected = false,
+    disabled = false,
+    className,
+    onClick,
+    onDelete,
+    onKeyDown,
+    ...props
+  },
+  ref
+) {
   const isInteractive = (!!onClick || !!onDelete) && !disabled;
   // A real <button> can't contain the delete <button>, so only use it when
   // there is no delete action; otherwise the root gets button semantics
@@ -148,10 +153,13 @@ export function Chip({
   if (useButtonElement) {
     return (
       <button
+        ref={ref as React.Ref<HTMLButtonElement>}
+        data-slot="chip"
         type="button"
         aria-pressed={selected}
         onClick={onClick}
         className={classes}
+        {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}
       >
         {content}
       </button>
@@ -160,16 +168,22 @@ export function Chip({
 
   return (
     <div
+      ref={ref as React.Ref<HTMLDivElement>}
+      data-slot="chip"
       role={isInteractive ? 'button' : undefined}
       tabIndex={isKeyboardActivatable ? 0 : undefined}
       aria-disabled={disabled || undefined}
       onClick={isInteractive ? onClick : undefined}
-      onKeyDown={isKeyboardActivatable ? handleKeyDown : undefined}
+      onKeyDown={(e) => {
+        if (isKeyboardActivatable) handleKeyDown(e);
+        onKeyDown?.(e);
+      }}
       className={classes}
+      {...(props as React.HTMLAttributes<HTMLDivElement>)}
     >
       {content}
     </div>
   );
-}
+});
 
 Chip.displayName = 'Chip';

@@ -1,12 +1,16 @@
 import * as React from 'react';
 import { usePopover, PopoverContext, type PopoverTriggerMode } from './usePopover';
+import { cn } from '../utils/cn';
 
-export interface PopoverProps {
+export interface PopoverProps extends React.ComponentPropsWithoutRef<'div'> {
   children: React.ReactNode;
   trigger?: PopoverTriggerMode;
 }
 
-export function Popover({ children, trigger = 'click' }: PopoverProps) {
+export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(function Popover(
+  { children, trigger = 'click', className, ...props },
+  ref
+) {
   const {
     open,
     setOpen,
@@ -48,6 +52,15 @@ export function Popover({ children, trigger = 'click' }: PopoverProps) {
     }
   }, [open, trigger, triggerElement, setTriggerRect]);
 
+  const setRootRef = React.useCallback(
+    (node: HTMLDivElement | null) => {
+      containerRef.current = node;
+      if (typeof ref === 'function') ref(node);
+      else if (ref) ref.current = node;
+    },
+    [containerRef, ref]
+  );
+
   return (
     <PopoverContext.Provider value={{
         open,
@@ -63,9 +76,16 @@ export function Popover({ children, trigger = 'click' }: PopoverProps) {
         onBlur,
         portalRef
     }}>
-      <div className="relative inline-block text-left" ref={containerRef}>
+      <div
+        data-slot="popover"
+        className={cn('relative inline-block text-left', className)}
+        ref={setRootRef}
+        {...props}
+      >
         {children}
       </div>
     </PopoverContext.Provider>
   );
-}
+});
+
+Popover.displayName = 'Popover';
