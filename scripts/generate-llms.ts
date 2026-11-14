@@ -50,6 +50,7 @@ export const CATEGORIES: ComponentCategory[] = [
       { name: 'Textarea', slug: 'textarea', mdxFile: 'textarea.mdx' },
       { name: 'Checkbox', slug: 'checkbox', mdxFile: 'checkbox.mdx' },
       { name: 'Radio', slug: 'radio', mdxFile: 'radio.mdx' },
+      { name: 'RadioCard', slug: 'radio-card', mdxFile: 'radio-card.mdx' },
       { name: 'Switch', slug: 'switch', mdxFile: 'switch.mdx' },
       { name: 'Select', slug: 'select', mdxFile: 'select.mdx' },
       { name: 'Combobox', slug: 'combobox', mdxFile: 'combobox.mdx' },
@@ -395,6 +396,7 @@ export function generateLlmsTxt(): string {
   lines.push('  - `BentoGrid`: `BentoGrid`, `BentoGridItem`');
   lines.push('  - `Tabs`: `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent`');
   lines.push('  - `Accordion`: `Accordion`, `AccordionItem`, `AccordionTrigger`, `AccordionContent`');
+  lines.push('  - `RadioCardGroup`: `RadioCardGroup`, `RadioCard` (props: `value`, `title`, `description`, `leading`, `trailing`, `indicator`)');
   lines.push('  - `Modal`: `Modal`, `ModalHeader`, `ModalContent`, `ModalFooter`');
   lines.push('  - `Drawer`: `Drawer`, `DrawerHeader`, `DrawerContent`, `DrawerFooter`');
   lines.push('  - `Dropdown`: `Dropdown`, `DropdownTrigger`, `DropdownContent`, `DropdownItem`, `DropdownLabel`, `DropdownSeparator`');
