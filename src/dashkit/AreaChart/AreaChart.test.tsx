@@ -57,4 +57,38 @@ describe('AreaChart', () => {
     expect(linePath).toBeInTheDocument();
     expect(linePath?.getAttribute('stroke-width')).toBe('3');
   });
+
+  it('handles single data point and zero values without NaN coordinates', () => {
+    const { container } = render(
+      <AreaChart
+        data={[{ label: 'Only', value: 0 }]}
+        series={[{ key: 'value', label: 'Series' }]}
+        animate={false}
+      />
+    );
+    const paths = container.querySelectorAll('path');
+    expect(paths.length).toBeGreaterThanOrEqual(2);
+    paths.forEach((p) => {
+      expect(p.getAttribute('d')).not.toContain('NaN');
+    });
+  });
+
+  it('supports smooth curves, Y-axis, legend, and custom labelKey', () => {
+    render(
+      <AreaChart
+        data={[{ month: 'Apr', value: 100 }, { month: 'May', value: 200 }, { month: 'Jun', value: 150 }]}
+        series={[{ key: 'value', label: 'Revenue' }]}
+        curve="smooth"
+        showYAxis
+        showLegend
+        showDots="hover"
+        labelKey="month"
+        valueFormatter={(v) => `$${v}`}
+        animate={false}
+      />
+    );
+    expect(screen.getByText('Apr')).toBeInTheDocument();
+    expect(screen.getByText('Revenue')).toBeInTheDocument();
+    expect(screen.getByText('$0')).toBeInTheDocument();
+  });
 });
