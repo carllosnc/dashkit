@@ -38,7 +38,7 @@ describe('Radio', () => {
     const radio = screen.getByLabelText(/Disabled Radio/i);
     expect(radio).toBeDisabled();
     const container = radio.closest('div.group');
-    expect(container).toHaveClass('opacity-60');
+    expect(container).toHaveClass('opacity-50');
   });
 
   it('generates an ID automatically from label if not provided', () => {
