@@ -35,14 +35,14 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
                 'border-border group-hover:border-ds-400 dark:group-hover:border-ds-500',
                 'peer-checked:border-primary peer-checked:bg-background',
                 'peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-transparent',
-                'peer-disabled:opacity-60 peer-disabled:cursor-not-allowed'
+                'peer-disabled:opacity-50 peer-disabled:cursor-not-allowed'
               )}
             />
             <div
               className={cn(
                 'absolute w-[13px] h-[13px] rounded-[calc(var(--radius)*0.1667)] bg-primary transition-all duration-200 pointer-events-none opacity-0 scale-50',
                 'peer-checked:opacity-100 peer-checked:scale-100',
-                'peer-checked:peer-disabled:opacity-60'
+                'peer-checked:peer-disabled:opacity-50'
               )}
             />
           </label>
