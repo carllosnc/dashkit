@@ -1,0 +1,93 @@
+import { TagInput } from '../dashkit/TagInput';
+
+# TagInput
+
+A multi-select tag input supporting keyboard navigation (`ArrowLeft`, `ArrowRight`, `Backspace`, `Delete`), delimiter commits, and autocomplete suggestions.
+
+## Basic usage
+
+<div className="not-prose max-w-md">
+  <TagInput
+    label="Skills"
+    defaultValue={['TypeScript', 'React']}
+    suggestions={['Tailwind CSS', 'Node.js', 'GraphQL', 'Vitest', 'Bun']}
+    description="Press Enter or comma to add a tag. Use ArrowLeft/Delete to remove."
+    placeholder="Add a skill..."
+  />
+</div>
+
+```tsx
+import { TagInput } from '@/dashkit';
+
+export function Example() {
+  return (
+    <TagInput
+      label="Skills"
+      defaultValue={['TypeScript', 'React']}
+      suggestions={['Tailwind CSS', 'Node.js', 'GraphQL']}
+      placeholder="Add a skill..."
+    />
+  );
+}
+```
+
+## Props
+
+<PropertyDoc
+  properties={[
+    {
+      "prop": "value",
+      "type": "string[]",
+      "defaultValue": "undefined",
+      "description": "Controlled list of tags."
+    },
+    {
+      "prop": "defaultValue",
+      "type": "string[]",
+      "defaultValue": "[]",
+      "description": "Initial list of tags when uncontrolled."
+    },
+    {
+      "prop": "onChange",
+      "type": "(tags: string[]) => void",
+      "defaultValue": "—",
+      "description": "Callback fired when tags are added or removed."
+    },
+    {
+      "prop": "suggestions",
+      "type": "string[]",
+      "defaultValue": "[]",
+      "description": "Autocomplete suggestions displayed while typing."
+    },
+    {
+      "prop": "allowCustom",
+      "type": "boolean",
+      "defaultValue": "true",
+      "description": "Allows creating tags not listed in suggestions."
+    },
+    {
+      "prop": "allowDuplicates",
+      "type": "boolean",
+      "defaultValue": "false",
+      "description": "Allows duplicate tag entries."
+    },
+    {
+      "prop": "maxTags",
+      "type": "number",
+      "defaultValue": "undefined",
+      "description": "Maximum number of tags allowed."
+    },
+    {
+      "prop": "delimiters",
+      "type": "string[]",
+      "defaultValue": "[',']",
+      "description": "Characters that commit the current input as a tag."
+    },
+    {
+      "prop": "disabled",
+      "type": "boolean",
+      "defaultValue": "false",
+      "description": "Disables adding and removing tags."
+    }
+  ]}
+/>

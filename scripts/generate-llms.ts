@@ -59,6 +59,7 @@ export const CATEGORIES: ComponentCategory[] = [
       { name: 'OtpInput', slug: 'otpinput', mdxFile: 'otp-input.mdx' },
       { name: 'ColorPicker', slug: 'colorpicker', mdxFile: 'color-picker.mdx' },
       { name: 'CopyField', slug: 'copyfield', mdxFile: 'copy-field.mdx' },
+      { name: 'TagInput', slug: 'taginput', mdxFile: 'tag-input.mdx' },
     ],
   },
   {
