@@ -51,4 +51,39 @@ describe('BarChart', () => {
     // groupWidth is 1000 / 2 = 500; groupPadding is (500 - 48) / 2 = 226
     expect(rects[0].getAttribute('x')).toBe('226');
   });
+
+  it('handles all-zero values without NaN attributes', () => {
+    const { container } = render(
+      <BarChart
+        data={[{ label: 'Jan', value1: 0 }, { label: 'Feb', value1: 0 }]}
+        series={[{ key: 'value1', label: 'Zero' }]}
+        animate={false}
+      />
+    );
+    const rects = container.querySelectorAll('rect');
+    expect(rects).toHaveLength(2);
+    rects.forEach((r) => {
+      expect(r.getAttribute('y')).not.toBe('NaN');
+      expect(r.getAttribute('height')).not.toBe('NaN');
+    });
+  });
+
+  it('supports stacked bars, showYAxis, and showLegend', () => {
+    const { container } = render(
+      <BarChart
+        data={data}
+        series={series}
+        stacked
+        showYAxis
+        showLegend
+        valueFormatter={(v) => `$${v}`}
+        animate={false}
+      />
+    );
+    const rects = container.querySelectorAll('rect');
+    expect(rects).toHaveLength(4);
+    expect(rects[0].getAttribute('x')).toBe(rects[1].getAttribute('x'));
+    expect(screen.getByText('Series 1')).toBeInTheDocument();
+    expect(screen.getByText('$0')).toBeInTheDocument();
+  });
 });
