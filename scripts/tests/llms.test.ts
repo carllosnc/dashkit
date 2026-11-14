@@ -57,7 +57,7 @@ describe('LLMs Documentation Generator', () => {
       }
     }
 
-    expect(totalCatalogComponents).toBe(56);
+    expect(totalCatalogComponents).toBe(Object.keys(registry).length);
   });
 
   it('should resolve every catalog link anchor in llms.txt to an existing heading in llms-full.txt', () => {
@@ -70,7 +70,7 @@ describe('LLMs Documentation Generator', () => {
     }
 
     const linkAnchors = [...llmsContent.matchAll(/\(llms-full\.txt#([^)]+)\)/g)].map((m) => m[1]);
-    expect(linkAnchors.length).toBe(56);
+    expect(linkAnchors.length).toBe(Object.keys(registry).length);
 
     for (const anchor of linkAnchors) {
       expect(fullHeadingAnchors.has(anchor), `Broken anchor link: #${anchor}`).toBe(true);
