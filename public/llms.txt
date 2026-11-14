@@ -72,6 +72,7 @@ Apply on `<html>`, `<body>`, or any scoped container `<div>`:
   - `BentoGrid`: `BentoGrid`, `BentoGridItem`
   - `Tabs`: `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent`
   - `Accordion`: `Accordion`, `AccordionItem`, `AccordionTrigger`, `AccordionContent`
+  - `RadioCardGroup`: `RadioCardGroup`, `RadioCard` (props: `value`, `title`, `description`, `leading`, `trailing`, `indicator`)
   - `Modal`: `Modal`, `ModalHeader`, `ModalContent`, `ModalFooter`
   - `Drawer`: `Drawer`, `DrawerHeader`, `DrawerContent`, `DrawerFooter`
   - `Dropdown`: `Dropdown`, `DropdownTrigger`, `DropdownContent`, `DropdownItem`, `DropdownLabel`, `DropdownSeparator`
@@ -96,7 +97,7 @@ Apply on `<html>`, `<body>`, or any scoped container `<div>`:
 
 ## Component Catalog
 
-Complete list of 59 production-ready components. For full API signatures, props tables, and code snippets, see [llms-full.txt](llms-full.txt).
+Complete list of 60 production-ready components. For full API signatures, props tables, and code snippets, see [llms-full.txt](llms-full.txt).
 
 ### Layout & Containers
 
@@ -127,6 +128,7 @@ Complete list of 59 production-ready components. For full API signatures, props 
 - [Textarea](llms-full.txt#textarea): A multiline text input component with support for labels, error states, and auto-growing height.
 - [Checkbox](llms-full.txt#checkbox): A custom-styled checkbox component for binary choices, with support for labels and descriptions.
 - [Radio](llms-full.txt#radio): A premium radio button component for single choices from a set, with support for labels and descriptions.
+- [RadioCard](llms-full.txt#radiocard): A selectable option card group for single-choice selections such as style presets, plans, providers, or configuration modes.
 - [Switch](llms-full.txt#switch): A high-performance, premium toggle switch component for binary choices, with support for labels and descriptions.
 - [Select](llms-full.txt#select): A high-performance dropdown component for single choices, featuring portalled rendering to prevent layout overflow and full keyboard accessibility.
 - [Combobox](llms-full.txt#combobox): A combobox is a flexible select component that allows users to filter a large list of options via a search input.
