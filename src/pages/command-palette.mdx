@@ -1,0 +1,143 @@
+import { useState } from 'react';
+import { FiFilePlus, FiSearch, FiSettings, FiTerminal } from 'react-icons/fi';
+import { CommandPalette, type CommandPaletteItem } from '../dashkit/CommandPalette';
+import { Button } from '../dashkit/Button';
+
+export function CommandPaletteDemo() {
+  const [open, setOpen] = useState(false);
+  const items: CommandPaletteItem[] = [
+    {
+      id: 'new-doc',
+      label: 'Create Document',
+      description: 'Start a fresh markdown report',
+      group: 'Actions',
+      keywords: ['new', 'file'],
+      shortcut: ['⌘', 'N'],
+      icon: <FiFilePlus />
+    },
+    {
+      id: 'run-cli',
+      label: 'Run Diagnostics',
+      description: 'Verify Dashkit registry health',
+      group: 'Actions',
+      shortcut: ['⌘', 'D'],
+      icon: <FiTerminal />
+    },
+    {
+      id: 'search-docs',
+      label: 'Search Components',
+      group: 'Navigation',
+      shortcut: ['⌘', 'K'],
+      icon: <FiSearch />
+    },
+    {
+      id: 'settings',
+      label: 'Workspace Settings',
+      group: 'Navigation',
+      shortcut: ['⌘', ','],
+      icon: <FiSettings />
+    }
+  ];
+
+  return (
+    <div className="not-prose">
+      <Button variant="outlined" onClick={() => setOpen(true)}>
+        Open Command Palette (⌘K)
+      </Button>
+      <CommandPalette
+        open={open}
+        onOpenChange={setOpen}
+        items={items}
+        footer={<span>Use ↑↓ to navigate, ↵ to select, ESC to close</span>}
+      />
+    </div>
+  );
+}
+
+# CommandPalette
+
+A fast, keyboard-first command menu (`Cmd+K` / `Ctrl+K`) for triggering actions, searching records, and navigating workspaces.
+
+## Basic usage
+
+<CommandPaletteDemo />
+
+```tsx
+import { CommandPalette } from '@/dashkit';
+
+export function Example() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <CommandPalette
+      open={open}
+      onOpenChange={setOpen}
+      items={[
+        { id: 'new-doc', label: 'Create Document', group: 'Actions', shortcut: ['⌘', 'N'] },
+        { id: 'settings', label: 'Workspace Settings', group: 'Navigation', shortcut: ['⌘', ','] }
+      ]}
+    />
+  );
+}
+```
+
+## Props
+
+<PropertyDoc
+  properties={[
+    {
+      "prop": "items",
+      "type": "CommandPaletteItem[]",
+      "defaultValue": "—",
+      "description": "List of searchable command items."
+    },
+    {
+      "prop": "open",
+      "type": "boolean",
+      "defaultValue": "undefined",
+      "description": "Controlled open state."
+    },
+    {
+      "prop": "defaultOpen",
+      "type": "boolean",
+      "defaultValue": "false",
+      "description": "Initial open state when uncontrolled."
+    },
+    {
+      "prop": "onOpenChange",
+      "type": "(open: boolean) => void",
+      "defaultValue": "—",
+      "description": "Callback fired when open state changes."
+    },
+    {
+      "prop": "onSelect",
+      "type": "(item: CommandPaletteItem) => void",
+      "defaultValue": "—",
+      "description": "Global callback fired when any enabled item is selected."
+    },
+    {
+      "prop": "placeholder",
+      "type": "string",
+      "defaultValue": "'Type a command or search...'",
+      "description": "Search input placeholder text."
+    },
+    {
+      "prop": "emptyMessage",
+      "type": "string",
+      "defaultValue": "'No results found.'",
+      "description": "Message rendered when no items match the query."
+    },
+    {
+      "prop": "enableShortcut",
+      "type": "boolean",
+      "defaultValue": "true",
+      "description": "Enables global Cmd+K / Ctrl+K shortcut."
+    },
+    {
+      "prop": "closeOnSelect",
+      "type": "boolean",
+      "defaultValue": "true",
+      "description": "Closes the palette automatically after selecting an item."
+    }
+  ]}
+/>

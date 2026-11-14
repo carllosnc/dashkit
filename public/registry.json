@@ -1,6 +1,6 @@
 {
   "name": "Dashkit UI Registry",
-  "totalComponents": 56,
+  "totalComponents": 57,
   "components": {
     "accordion": {
       "slug": "accordion",
@@ -460,6 +460,30 @@
       "propsDefinitions": [
         "export interface ComboboxProps {\r\n  label?: string;\r\n  description?: string;\r\n  /** @default 'Search or select...' */\r\n  placeholder?: string;\r\n  options: ComboboxOption[];\r\n  value?: string | string[];\r\n  onChange?: (value: string | string[]) => void;\r\n  className?: string;\r\n  disabled?: boolean;\r\n  /** @default false */\r\n  clearSearchOnSelect?: boolean;\r\n  /** @default false */\r\n  multiple?: boolean;\r\n}\r\n\r\n/**\r\n * Prop-driven (`options={...}`, `value`, `onChange`) searchable autocomplete dropdown.\r\n *\r\n * @example\r\n * ```tsx\r\n * <Combobox\r\n *   options={[{ value: 'react', label: 'React' }, { value: 'vue', label: 'Vue' }]}\r\n *   value={framework}\r\n *   onChange={setFramework}\r\n * />\r\n * ```\r\n */",
         "export interface UseComboboxProps {\r\n  options: ComboboxOption[];\r\n  value?: string | string[];\r\n  onChange?: (value: string | string[]) => void;\r\n  disabled?: boolean;\r\n  clearSearchOnSelect?: boolean;\r\n  multiple?: boolean;\r\n}"
+      ]
+    },
+    "commandpalette": {
+      "slug": "commandpalette",
+      "name": "CommandPalette",
+      "category": "Feedback & Overlays",
+      "description": "A fast, keyboard-first command menu (`Cmd+K` / `Ctrl+K`) for triggering actions, searching records, and navigating workspaces.",
+      "installCommand": "bunx carllosnc/dashkit add commandpalette",
+      "files": [
+        "src/dashkit/CommandPalette/CommandPalette.tsx",
+        "src/dashkit/CommandPalette/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "react-icons"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "CommandPalette"
+      ],
+      "propsDefinitions": [
+        "export interface CommandPaletteProps {\n  /** Controlled open state. @default undefined */\n  open?: boolean;\n  /** Initial open state when uncontrolled. @default false */\n  defaultOpen?: boolean;\n  /** Callback fired when the open state changes. */\n  onOpenChange?: (open: boolean) => void;\n  /** List of searchable command items. */\n  items: CommandPaletteItem[];\n  /** Global callback fired when any enabled item is selected. */\n  onSelect?: (item: CommandPaletteItem) => void;\n  /** Search input placeholder text. @default 'Type a command or search...' */\n  placeholder?: string;\n  /** Message displayed when no items match the search query. @default 'No results found.' */\n  emptyMessage?: string;\n  /** Enables global `Cmd+K` / `Ctrl+K` shortcut to toggle the palette. @default true */\n  enableShortcut?: boolean;\n  /** Closes the palette automatically after an item is selected. @default true */\n  closeOnSelect?: boolean;\n  /** Optional footer bar content (e.g. keyboard hints). */\n  footer?: ReactNode;\n  /** Additional classes for the palette dialog surface. */\n  className?: string;\n}"
       ]
     },
     "copyfield": {

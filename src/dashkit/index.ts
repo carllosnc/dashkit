@@ -14,6 +14,7 @@ export * from './Checkbox';
 export * from './Chip';
 export * from './CircularProgress';
 export * from './ColorPicker';
+export * from './CommandPalette';
 export * from './Combobox';
 export * from './CopyField';
 export * from './DateField';

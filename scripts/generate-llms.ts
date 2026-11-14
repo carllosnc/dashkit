@@ -76,6 +76,7 @@ export const CATEGORIES: ComponentCategory[] = [
       { name: 'CircularProgress', slug: 'circularprogress', mdxFile: 'circular-progress.mdx' },
       { name: 'Skeleton', slug: 'skeleton', mdxFile: 'skeleton.mdx' },
       { name: 'FloatActionMenu', slug: 'float-action-menu', mdxFile: 'float-action-menu.mdx' },
+      { name: 'CommandPalette', slug: 'commandpalette', mdxFile: 'command-palette.mdx' },
     ],
   },
   {

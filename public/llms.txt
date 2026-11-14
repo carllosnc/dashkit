@@ -92,7 +92,7 @@ Apply on `<html>`, `<body>`, or any scoped container `<div>`:
 
 ## Component Catalog
 
-Complete list of 56 production-ready components. For full API signatures, props tables, and code snippets, see [llms-full.txt](llms-full.txt).
+Complete list of 57 production-ready components. For full API signatures, props tables, and code snippets, see [llms-full.txt](llms-full.txt).
 
 ### Layout & Containers
 
@@ -147,6 +147,7 @@ Complete list of 56 production-ready components. For full API signatures, props 
 - [CircularProgress](llms-full.txt#circularprogress): A high-fidelity circular progress indicator built with SVG and Framer Motion. It provides smooth, fluid animations for status monitoring, health metrics, and loading states.
 - [Skeleton](llms-full.txt#skeleton): A placeholder component used to mimic the layout of actual content while it is loading.
 - [FloatActionMenu](llms-full.txt#floatactionmenu): A premium floating action button that reveals an interactive menu card sliding from right to left.
+- [CommandPalette](llms-full.txt#commandpalette): A fast, keyboard-first command menu (`Cmd+K` / `Ctrl+K`) for triggering actions, searching records, and navigating workspaces.
 
 ### Data Display & Metrics
 

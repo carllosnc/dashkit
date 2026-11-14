@@ -5298,6 +5298,92 @@ The menu can be positioned at any corner of the parent container or screen.
 />
 
 
+## CommandPalette
+
+- Category: Feedback & Overlays
+- Slug: `commandpalette`
+- Installation: `bunx carllosnc/dashkit add commandpalette`
+- NPM Dependencies: `framer-motion`, `clsx`, `tailwind-merge`, `react-icons`
+
+{
+  const [open, setOpen] = useState(false);
+  const items: CommandPaletteItem[] = [
+    {
+      id: 'new-doc',
+      label: 'Create Document',
+      description: 'Start a fresh markdown report',
+      group: 'Actions',
+      keywords: ['new', 'file'],
+      shortcut: ['⌘', 'N'],
+      icon: 
+    },
+    {
+      id: 'run-cli',
+      label: 'Run Diagnostics',
+      description: 'Verify Dashkit registry health',
+      group: 'Actions',
+      shortcut: ['⌘', 'D'],
+      icon: 
+    },
+    {
+      id: 'search-docs',
+      label: 'Search Components',
+      group: 'Navigation',
+      shortcut: ['⌘', 'K'],
+      icon: 
+    },
+    {
+      id: 'settings',
+      label: 'Workspace Settings',
+      group: 'Navigation',
+      shortcut: ['⌘', ','],
+      icon: 
+    }
+  ];
+
+  return (
+    
+  );
+}
+
+A fast, keyboard-first command menu (`Cmd+K` / `Ctrl+K`) for triggering actions, searching records, and navigating workspaces.
+
+### Basic usage
+
+```tsx
+import { CommandPalette } from '@/dashkit';
+
+export function Example() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <CommandPalette
+      open={open}
+      onOpenChange={setOpen}
+      items={[
+        { id: 'new-doc', label: 'Create Document', group: 'Actions', shortcut: ['⌘', 'N'] },
+        { id: 'settings', label: 'Workspace Settings', group: 'Navigation', shortcut: ['⌘', ','] }
+      ]}
+    />
+  );
+}
+```
+
+### Props
+
+| Property | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `items` | `CommandPaletteItem[]` | - | List of searchable command items. |
+| `open` | `boolean` | `undefined` | Controlled open state. |
+| `defaultOpen` | `boolean` | `false` | Initial open state when uncontrolled. |
+| `onOpenChange` | `(open: boolean) => void` | - | Callback fired when open state changes. |
+| `onSelect` | `(item: CommandPaletteItem) => void` | - | Global callback fired when any enabled item is selected. |
+| `placeholder` | `string` | `'Type a command or search...'` | Search input placeholder text. |
+| `emptyMessage` | `string` | `'No results found.'` | Message rendered when no items match the query. |
+| `enableShortcut` | `boolean` | `true` | Enables global Cmd+K / Ctrl+K shortcut. |
+| `closeOnSelect` | `boolean` | `true` | Closes the palette automatically after selecting an item. |
+
+
 ## Avatar
 
 - Category: Data Display & Metrics
