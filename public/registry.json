@@ -1,6 +1,6 @@
 {
   "name": "Dashkit UI Registry",
-  "totalComponents": 59,
+  "totalComponents": 60,
   "components": {
     "accordion": {
       "slug": "accordion",
@@ -1165,6 +1165,33 @@
       "propsDefinitions": [
         "export interface RadioProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {\r\n  label?: string;\r\n  description?: string;\r\n}\r\n\r\n/**\r\n * Accessible radio input with optional `label` and `description` props.\r\n *\r\n * @example\r\n * ```tsx\r\n * <Radio name=\"plan\" label=\"Pro Plan\" value=\"pro\" checked={plan === 'pro'} onChange={() => setPlan('pro')} />\r\n * ```\r\n */",
         "export interface UseRadioProps {\n  id?: string;\n  label?: string;\n}"
+      ]
+    },
+    "radio-card": {
+      "slug": "radio-card",
+      "name": "RadioCard",
+      "category": "Forms & Inputs",
+      "description": "A selectable option card group for single-choice selections such as style presets, plans, providers, or configuration modes.",
+      "installCommand": "bunx carllosnc/dashkit add radio-card",
+      "files": [
+        "src/dashkit/RadioCard/RadioCard.tsx",
+        "src/dashkit/RadioCard/index.ts"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "class-variance-authority",
+        "react-icons"
+      ],
+      "registryDependencies": [],
+      "exports": [
+        "RadioCardGroup",
+        "RadioCard"
+      ],
+      "propsDefinitions": [
+        "export interface RadioCardGroupProps\n  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'>,\n    VariantProps<typeof radioCardGroupVariants> {\n  value?: string;\n  defaultValue?: string;\n  onValueChange?: (value: string) => void;\n  name?: string;\n  label?: React.ReactNode;\n  valueLabel?: React.ReactNode;\n  size?: RadioCardSize;\n  indicator?: RadioCardIndicator;\n  disabled?: boolean;\n  ref?: React.Ref<HTMLDivElement>;\n}\n\n/**\n * Accessible group container for `RadioCard` options with optional header label,\n * active value summary, keyboard arrow navigation, and responsive grid columns.\n *\n * @example\n * ```tsx\n * <RadioCardGroup label=\"Style Preset\" valueLabel=\"Default\" value={preset} onValueChange={setPreset}>\n *   <RadioCard value=\"default\" title=\"Default\" description=\"Clean & balanced\" />\n * </RadioCardGroup>\n * ```\n */",
+        "export interface RadioCardProps\n  extends Omit<HTMLMotionProps<'button'>, 'title' | 'value' | 'onSelect'> {\n  value: string;\n  title: React.ReactNode;\n  description?: React.ReactNode;\n  leading?: React.ReactNode;\n  trailing?: React.ReactNode;\n  size?: RadioCardSize;\n  indicator?: RadioCardIndicator;\n  disabled?: boolean;\n  ref?: React.Ref<HTMLButtonElement>;\n}\n\n/**\n * Selectable option card for use inside `RadioCardGroup`.\n *\n * @example\n * ```tsx\n * <RadioCard\n *   value=\"default\"\n *   title=\"Default\"\n *   description=\"Clean & balanced\"\n *   leading={<span className=\"size-2.5 rounded-full bg-blue-600\" />}\n * />\n * ```\n */"
       ]
     },
     "scrollarea": {
