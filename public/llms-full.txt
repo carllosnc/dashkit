@@ -3530,6 +3530,47 @@ Add a `label` and `description` to provide context for the value.
 | `className` | `string` | - | Additional CSS classes for the container element. |
 
 
+## TagInput
+
+- Category: Forms & Inputs
+- Slug: `taginput`
+- Installation: `bunx carllosnc/dashkit add taginput`
+- NPM Dependencies: `clsx`, `tailwind-merge`, `react-icons`
+
+A multi-select tag input supporting keyboard navigation (`ArrowLeft`, `ArrowRight`, `Backspace`, `Delete`), delimiter commits, and autocomplete suggestions.
+
+### Basic usage
+
+```tsx
+import { TagInput } from '@/dashkit';
+
+export function Example() {
+  return (
+    <TagInput
+      label="Skills"
+      defaultValue={['TypeScript', 'React']}
+      suggestions={['Tailwind CSS', 'Node.js', 'GraphQL']}
+      placeholder="Add a skill..."
+    />
+  );
+}
+```
+
+### Props
+
+| Property | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `value` | `string[]` | `undefined` | Controlled list of tags. |
+| `defaultValue` | `string[]` | `[]` | Initial list of tags when uncontrolled. |
+| `onChange` | `(tags: string[]) => void` | - | Callback fired when tags are added or removed. |
+| `suggestions` | `string[]` | `[]` | Autocomplete suggestions displayed while typing. |
+| `allowCustom` | `boolean` | `true` | Allows creating tags not listed in suggestions. |
+| `allowDuplicates` | `boolean` | `false` | Allows duplicate tag entries. |
+| `maxTags` | `number` | `undefined` | Maximum number of tags allowed. |
+| `delimiters` | `string[]` | `[',']` | Characters that commit the current input as a tag. |
+| `disabled` | `boolean` | `false` | Disables adding and removing tags. |
+
+
 ## Modal
 
 - Category: Feedback & Overlays
@@ -5346,9 +5387,13 @@ The menu can be positioned at any corner of the parent container or screen.
   );
 }
 
+
+
 A fast, keyboard-first command menu (`Cmd+K` / `Ctrl+K`) for triggering actions, searching records, and navigating workspaces.
 
 ### Basic usage
+
+
 
 ```tsx
 import { CommandPalette } from '@/dashkit';
@@ -5370,6 +5415,7 @@ export function Example() {
 ```
 
 ### Props
+
 
 | Property | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
