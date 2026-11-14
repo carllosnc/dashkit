@@ -29,6 +29,7 @@ bunx carllosnc/dashkit add sidebar
 - `dashkit diff [component] [--json]`: Compares local component files against the upstream registry.
 - `dashkit ai-rules [-o <file>]`: Generates or updates AI coding assistant rules in `AGENTS.md` or `.cursorrules`.
 - `dashkit doctor`: Verifies CSS imports, dependencies, and directory configuration.
+- `dashkit mcp`: Starts the stdio Model Context Protocol (MCP) server for AI assistants.
 
 ## Design Tokens and Theming (`dashkit.css`)
 
@@ -75,7 +76,7 @@ Apply on `<html>`, `<body>`, or any scoped container `<div>`:
   - `Drawer`: `Drawer`, `DrawerHeader`, `DrawerContent`, `DrawerFooter`
   - `Dropdown`: `Dropdown`, `DropdownTrigger`, `DropdownContent`, `DropdownItem`, `DropdownLabel`, `DropdownSeparator`
   - `Popover`: `Popover`, `PopoverTrigger`, `PopoverContent`
-  - `Table`: `TableContainer`, `Table`, `TableHeader`, `TableBody`, `TableFooter`, `TableRow`, `TableHead`, `TableCell`, `TableCaption`
+  - `Table`: `TableContainer` (`maxHeight`), `Table`, `TableHeader` (`sticky`), `TableBody`, `VirtualTableBody` (virtualized rows), `TableFooter`, `TableRow`, `TableHead`, `TableCell`, `TableCaption`
   - `Navbar`: `Navbar`, `NavbarBrand`, `NavbarLinks`, `NavbarActions`
   - `NavigationMenu`: `NavigationMenu`, `NavigationMenuList`, `NavigationMenuItem`, `NavigationMenuTrigger`, `NavigationMenuContent`, `NavigationMenuLink`, `NavigationMenuViewport`
   - `Sidebar`: `SidebarProvider`, `Sidebar`, `SidebarTrigger`, `SidebarContent`, `SidebarHeader`, `SidebarSection`, `SidebarItem`, `SidebarSubList`, `SidebarSubItem`, `SidebarFooter`
@@ -87,6 +88,9 @@ Apply on `<html>`, `<body>`, or any scoped container `<div>`:
 - **Prop-Driven Components (pass data via props, do NOT invent subcomponents)**:
   - `Select`, `Combobox`: Pass `options={[{ value, label }]}`, `value`, `onChange`, `label`.
   - `Input`, `Textarea`, `DatePicker`, `DateField`, `ColorPicker`, `CopyField`, `OtpInput`, `Checkbox`, `Radio`, `Switch`, `Slider`: Pass `label`, `description` / `helperText`, `error` directly as props.
+  - `TagInput`: Pass `value` / `defaultValue`, `onChange`, `suggestions`, `maxTags`, `allowCustom`, `label`.
+  - `FileUpload`: Pass `files` / `onFilesSelected`, `accept`, `maxSize`, `maxFiles`, `multiple`, `label`.
+  - `CommandPalette`: Pass `actions` (`[{ id, label, group, onSelect, keywords }]`), `open`, `onOpenChange`, `placeholder`.
   - `StatsCard`: Pass `title`, `value`, `trend`, `trendLabel`, `status`, `icon`, `chart`.
   - `AreaChart`, `BarChart`, `LineChart`, `PieChart`: Pass `data` and `series` props.
 
