@@ -372,6 +372,15 @@ export const registry: Record<string, ComponentConfig> = {
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
     registryDependencies: ['chip'],
   },
+  commandpalette: {
+    name: 'CommandPalette',
+    files: [
+      'src/dashkit/CommandPalette/CommandPalette.tsx',
+      'src/dashkit/CommandPalette/CommandPalette.test.tsx',
+      'src/dashkit/CommandPalette/index.ts'
+    ],
+    dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
+  },
   divider: {
     name: 'Divider',
     files: [
