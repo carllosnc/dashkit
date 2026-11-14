@@ -64,6 +64,7 @@ const navItems: SidebarSection[] = [
       { to: '/docs/popover', label: 'Popover', icon: <FiMessageCircle size={16} /> },
       { to: '/docs/progressbar', label: 'Progress Bar', icon: <FiActivity size={16} /> },
       { to: '/docs/radio', label: 'Radio', icon: <FiTarget size={16} /> },
+      { to: '/docs/radio-card', label: 'Radio Card', icon: <FiTarget size={16} /> },
       { to: '/docs/list-tile', label: 'List Tile', icon: <FiList size={16} /> },
       { to: '/docs/select', label: 'Select', icon: <FiChevronDown size={16} /> },
       { to: '/docs/scroll-area', label: 'Scroll Area', icon: <FiChevronsDown size={16} /> },
