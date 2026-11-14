@@ -23,7 +23,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
       <div
         className={cn(
           'group flex gap-3 relative transition-all duration-200 items-center',
-          props.disabled && 'opacity-60 cursor-not-allowed pointer-events-none',
+          props.disabled && 'opacity-50 cursor-not-allowed pointer-events-none',
           className
         )}
       >
