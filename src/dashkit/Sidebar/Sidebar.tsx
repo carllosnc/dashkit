@@ -222,7 +222,7 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
 
 Sidebar.displayName = 'Sidebar';
 
-export interface SidebarTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface SidebarTriggerProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'color'> {
   icon?: React.ReactNode;
   /** @default 'sm' */
   size?: 'sm' | 'md' | 'lg';
