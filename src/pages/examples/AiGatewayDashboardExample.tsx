@@ -941,9 +941,9 @@ export const AiGatewayDashboardExample = () => {
                       </div>
 
                       <div className="flex flex-col gap-1">
-                        <code className="text-sm font-semibold font-mono text-foreground truncate">
+                        <span className="text-sm font-semibold font-sans text-foreground truncate">
                           {route.model}
-                        </code>
+                        </span>
                         <div className="flex items-center gap-3 text-xs text-muted-foreground tabular-nums">
                           <span>{route.latency}</span>
                           <span className="text-muted-foreground/40">•</span>
