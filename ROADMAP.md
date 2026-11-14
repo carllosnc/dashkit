@@ -48,5 +48,5 @@ Initiatives to make Dashkit fully optimized for AI coding assistants (Cursor, Cl
 
 - [x] Data grid virtual scrolling for large dataset tables.
 - [x] Command palette (KBar / Command menu) component.
-- [ ] Multi-select tag input with keyboard navigation.
+- [x] Multi-select tag input with keyboard navigation.
 - [ ] File upload dropzone component with progress indicators.
