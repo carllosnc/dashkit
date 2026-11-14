@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import {
   Table,
   TableContainer,
@@ -8,6 +8,7 @@ import {
   TableRow,
   TableHead,
   TableCell,
+  VirtualTableBody,
 } from './Table';
 import { describe, it, expect } from 'vitest';
 
@@ -119,6 +120,106 @@ describe('Table', () => {
       expect(ref.current).toBeInstanceOf(HTMLDivElement);
       expect(ref.current).toHaveClass('custom-scroll-container');
       expect(ref.current).toHaveClass('relative', 'overflow-x-auto');
+    });
+  });
+
+  describe('VirtualTableBody', () => {
+    const largeDataset = Array.from({ length: 1000 }, (_, i) => ({
+      id: `row-${i}`,
+      name: `Item ${i}`,
+    }));
+
+    it('renders only a windowed slice of rows for large datasets', () => {
+      render(
+        <TableContainer data-testid="virtual-container" maxHeight={200}>
+          <Table>
+            <TableHeader sticky>
+              <TableRow>
+                <TableHead>Name</TableHead>
+              </TableRow>
+            </TableHeader>
+            <VirtualTableBody
+              items={largeDataset}
+              estimateSize={40}
+              overscan={2}
+              viewportHeight={200}
+              getRowKey={(item) => item.id}
+              renderRow={(item) => (
+                <TableRow>
+                  <TableCell>{item.name}</TableCell>
+                </TableRow>
+              )}
+            />
+          </Table>
+        </TableContainer>
+      );
+
+      const container = screen.getByTestId('virtual-container');
+      expect(container).toHaveStyle({ maxHeight: '200px' });
+      expect(container).toHaveClass('overflow-y-auto');
+
+      // visibleCount = ceil(200/40) + 2*2 = 5 + 4 = 9 rows (indices 0..8)
+      expect(screen.getByText('Item 0')).toBeInTheDocument();
+      expect(screen.getByText('Item 8')).toBeInTheDocument();
+      expect(screen.queryByText('Item 25')).not.toBeInTheDocument();
+      expect(screen.queryByText('Item 999')).not.toBeInTheDocument();
+
+      const tbody = container.querySelector('[data-slot="virtual-table-body"]');
+      expect(tbody).toHaveAttribute('aria-rowcount', '1000');
+      expect(container.querySelector('[data-slot="virtual-spacer-bottom"]')).toBeInTheDocument();
+      expect(container.querySelector('[data-slot="virtual-spacer-top"]')).not.toBeInTheDocument();
+    });
+
+    it('updates rendered window on scroll and renders top and bottom spacers', () => {
+      render(
+        <TableContainer data-testid="virtual-container" maxHeight={200}>
+          <Table>
+            <VirtualTableBody
+              items={largeDataset}
+              estimateSize={40}
+              overscan={2}
+              viewportHeight={200}
+              getRowKey={(item) => item.id}
+              renderRow={(item) => (
+                <TableRow>
+                  <TableCell>{item.name}</TableCell>
+                </TableRow>
+              )}
+            />
+          </Table>
+        </TableContainer>
+      );
+
+      const container = screen.getByTestId('virtual-container');
+      Object.defineProperty(container, 'scrollTop', { value: 2000, configurable: true });
+      fireEvent.scroll(container);
+
+      // floor(2000/40) = 50; startIndex = 50 - 2 = 48; endIndex = 48 + 9 = 57
+      expect(screen.getByText('Item 48')).toBeInTheDocument();
+      expect(screen.getByText('Item 56')).toBeInTheDocument();
+      expect(screen.queryByText('Item 0')).not.toBeInTheDocument();
+      expect(container.querySelector('[data-slot="virtual-spacer-top"]')).toBeInTheDocument();
+      expect(container.querySelector('[data-slot="virtual-spacer-bottom"]')).toBeInTheDocument();
+    });
+
+    it('renders emptyState when items array is empty', () => {
+      render(
+        <TableContainer maxHeight={200}>
+          <Table>
+            <VirtualTableBody
+              items={[]}
+              renderRow={() => null}
+              emptyState={
+                <TableRow>
+                  <TableCell>No rows available</TableCell>
+                </TableRow>
+              }
+            />
+          </Table>
+        </TableContainer>
+      );
+
+      expect(screen.getByText('No rows available')).toBeInTheDocument();
     });
   });
 });

@@ -32,7 +32,7 @@
         "AccordionItemContext"
       ],
       "propsDefinitions": [
-        "export interface AccordionProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  type?: AccordionType;\r\n  defaultValue?: string | string[];\r\n  value?: string | string[];\r\n  onValueChange?: (value: string | string[]) => void;\r\n  children: React.ReactNode;\r\n}",
+        "export interface AccordionProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  /** @default 'single' */\r\n  type?: AccordionType;\r\n  defaultValue?: string | string[];\r\n  value?: string | string[];\r\n  onValueChange?: (value: string | string[]) => void;\r\n  children: React.ReactNode;\r\n}\r\n\r\n/**\r\n * Compound collapsible content container (`children` with `AccordionItem`, `AccordionTrigger`, `AccordionContent`).\r\n *\r\n * @example\r\n * ```tsx\r\n * <Accordion type=\"single\" defaultValue=\"item-1\">\r\n *   <AccordionItem value=\"item-1\">\r\n *     <AccordionTrigger>Overview</AccordionTrigger>\r\n *     <AccordionContent>Details here.</AccordionContent>\r\n *   </AccordionItem>\r\n * </Accordion>\r\n * ```\r\n */",
         "export interface AccordionItemProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  value: string;\r\n  children: React.ReactNode;\r\n  disabled?: boolean;\r\n}",
         "export type AccordionTriggerProps = React.ComponentPropsWithoutRef<'button'>;",
         "export type AccordionContentProps = React.ComponentPropsWithoutRef<'div'>;"
@@ -60,7 +60,7 @@
         "Digit"
       ],
       "propsDefinitions": [
-        "export interface AnimateNumberProps extends Omit<ComponentPropsWithoutRef<'span'>, 'children'> {\n  value: number;\n  precision?: number;\n  prefix?: string;\n  suffix?: string;\n  duration?: number;\n  locale?: string;\n}"
+        "export interface AnimateNumberProps extends Omit<ComponentPropsWithoutRef<'span'>, 'children'> {\r\n  value: number;\r\n  /** @default 0 */\r\n  precision?: number;\r\n  /** @default '' */\r\n  prefix?: string;\r\n  /** @default '' */\r\n  suffix?: string;\r\n  /** @default 0.35 */\r\n  duration?: number;\r\n  /** @default 'en-US' */\r\n  locale?: string;\r\n}\r\n\r\n/**\r\n * Prop-driven animated numeric counter with prefix, suffix, and precision formatting.\r\n *\r\n * @example\r\n * ```tsx\r\n * <AnimateNumber value={12480} prefix=\"$\" precision={0} />\r\n * ```\r\n */"
       ]
     },
     "areachart": {
@@ -85,7 +85,7 @@
         "useAreaChart"
       ],
       "propsDefinitions": [
-        "export interface AreaChartProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  data: Record<string, string | number>[];\r\n  series: AreaChartSeries[];\r\n  height?: number | string;\r\n  showGrid?: boolean;\r\n  showLabels?: boolean;\r\n  showTooltip?: boolean;\r\n  animate?: boolean;\r\n}",
+        "export interface AreaChartProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  data: Record<string, string | number>[];\r\n  series: AreaChartSeries[];\r\n  /** @default '100%' */\r\n  height?: number | string;\r\n  /** @default true */\r\n  showGrid?: boolean;\r\n  /** @default true */\r\n  showLabels?: boolean;\r\n  /** @default true */\r\n  showTooltip?: boolean;\r\n  /** @default true */\r\n  animate?: boolean;\r\n}\r\n\r\n/**\r\n * Prop-driven (`data`, `series`) responsive SVG area chart with grid, labels, and interactive tooltips.\r\n *\r\n * @example\r\n * ```tsx\r\n * <AreaChart\r\n *   data={[{ month: 'Jan', revenue: 4200 }, { month: 'Feb', revenue: 5100 }]}\r\n *   series={[{ key: 'revenue', label: 'Revenue' }]}\r\n * />\r\n * ```\r\n */",
         "export interface UseAreaChartProps {\r\n  data: Record<string, string | number>[];\r\n  series: AreaChartSeries[];\r\n  width?: number;\r\n  svgHeight?: number;\r\n  defaultColors?: string[];\r\n}"
       ]
     },
@@ -112,8 +112,8 @@
         "AvatarGroup"
       ],
       "propsDefinitions": [
-        "export interface AvatarProps\r\n  extends React.HTMLAttributes<HTMLDivElement>,\r\n    VariantProps<typeof avatarVariants> {\r\n  src?: string;\r\n  alt?: string;\r\n  fallback?: React.ReactNode;\r\n}",
-        "export interface AvatarGroupProps extends React.HTMLAttributes<HTMLDivElement> {\r\n  max?: number;\r\n  size?: AvatarSize;\r\n  spacing?: 'sm' | 'md' | 'lg';\r\n}"
+        "export interface AvatarProps\r\n  extends React.HTMLAttributes<HTMLDivElement>,\r\n    StrictVariantProps<typeof avatarVariants> {\r\n  src?: string;\r\n  alt?: string;\r\n  fallback?: React.ReactNode;\r\n}\r\n\r\n/**\r\n * User profile image or fallback initials badge with `size` and `shape` variants.\r\n *\r\n * @example\r\n * ```tsx\r\n * <Avatar src=\"/avatar.png\" alt=\"Jane Doe\" fallback=\"JD\" size=\"md\" />\r\n * ```\r\n */",
+        "export interface AvatarGroupProps extends React.HTMLAttributes<HTMLDivElement> {\r\n  max?: number;\r\n  /** @default 'md' */\r\n  size?: AvatarSize;\r\n  /** @default 'md' */\r\n  spacing?: 'sm' | 'md' | 'lg';\r\n}"
       ]
     },
     "backdrop": {
@@ -136,7 +136,7 @@
         "Backdrop"
       ],
       "propsDefinitions": [
-        "export interface BackdropProps extends HTMLMotionProps<'div'> {\r\n  show?: boolean;\r\n  blur?: boolean;\r\n  transparent?: boolean;\r\n  fixed?: boolean;\r\n  children?: React.ReactNode;\r\n}"
+        "export interface BackdropProps extends HTMLMotionProps<'div'> {\r\n  /** @default true */\r\n  show?: boolean;\r\n  /** @default true */\r\n  blur?: boolean;\r\n  /** @default false */\r\n  transparent?: boolean;\r\n  /** @default true */\r\n  fixed?: boolean;\r\n  children?: React.ReactNode;\r\n}\r\n\r\n/**\r\n * Animated modal/drawer overlay backdrop (`children` optional).\r\n *\r\n * @example\r\n * ```tsx\r\n * <Backdrop isOpen={open} onClick={() => setOpen(false)} />\r\n * ```\r\n */"
       ]
     },
     "badge": {
@@ -162,8 +162,8 @@
         "FloatBadge"
       ],
       "propsDefinitions": [
-        "export interface BadgeProps extends Omit<HTMLMotionProps<'span'>, 'content'> {\r\n  content?: React.ReactNode;\r\n  color?: BadgeColor;\r\n  variant?: BadgeVariant;\r\n  pulse?: boolean;\r\n  dot?: boolean;\r\n  show?: boolean;\r\n  max?: number;\r\n}",
-        "export interface FloatBadgeProps extends BadgeProps {\n  children: React.ReactNode;\n  position?: BadgePosition;\n  offset?: [number, number];\n}"
+        "export interface BadgeProps extends Omit<HTMLMotionProps<'span'>, 'content'> {\r\n  content?: React.ReactNode;\r\n  /** @default 'success' */\r\n  color?: BadgeColor;\r\n  /** @default 'solid' */\r\n  variant?: BadgeVariant;\r\n  /** @default false */\r\n  pulse?: boolean;\r\n  /** @default false */\r\n  dot?: boolean;\r\n  /** @default true */\r\n  show?: boolean;\r\n  /** @default 99 */\r\n  max?: number;\r\n}\r\n\r\n/**\r\n * Prop-driven status or count indicator (`content`, `variant`, `color`, `dot`, `pulse`).\r\n *\r\n * @example\r\n * ```tsx\r\n * <Badge variant=\"soft\" color=\"success\" content=\"Active\" />\r\n * ```\r\n */",
+        "export interface FloatBadgeProps extends BadgeProps {\r\n  children: React.ReactNode;\r\n  /** @default 'top-right' */\r\n  position?: BadgePosition;\r\n  offset?: [number, number];\r\n}"
       ]
     },
     "barchart": {
@@ -188,7 +188,7 @@
         "useBarChart"
       ],
       "propsDefinitions": [
-        "export interface BarChartProps extends ComponentPropsWithoutRef<'div'> {\r\n  data: Record<string, string | number>[];\r\n  series: BarChartSeries[];\r\n  height?: number | string;\r\n  showGrid?: boolean;\r\n  showLabels?: boolean;\r\n  showTooltip?: boolean;\r\n  animate?: boolean;\r\n  barGap?: number;\r\n  maxBarWidth?: number;\r\n  rounded?: boolean;\r\n  texture?: BarChartTexture;\r\n  showTrack?: boolean;\r\n}"
+        "export interface BarChartProps extends ComponentPropsWithoutRef<'div'> {\r\n  data: Record<string, string | number>[];\r\n  series: BarChartSeries[];\r\n  /** @default '100%' */\r\n  height?: number | string;\r\n  /** @default true */\r\n  showGrid?: boolean;\r\n  /** @default true */\r\n  showLabels?: boolean;\r\n  /** @default true */\r\n  showTooltip?: boolean;\r\n  /** @default true */\r\n  animate?: boolean;\r\n  /** @default 4 */\r\n  barGap?: number;\r\n  /** @default 64 */\r\n  maxBarWidth?: number;\r\n  /** @default true */\r\n  rounded?: boolean;\r\n  /** @default 'none' */\r\n  texture?: BarChartTexture;\r\n  /** @default false */\r\n  showTrack?: boolean;\r\n}\r\n\r\n/**\r\n * Prop-driven (`data`, `series`) SVG bar chart supporting grouped/stacked bars and optional SVG textures.\r\n *\r\n * @example\r\n * ```tsx\r\n * <BarChart\r\n *   data={[{ label: 'Q1', sales: 120 }, { label: 'Q2', sales: 180 }]}\r\n *   series={[{ key: 'sales', label: 'Sales' }]}\r\n * />\r\n * ```\r\n */"
       ]
     },
     "bento-grid": {
@@ -212,8 +212,8 @@
         "BentoGridItem"
       ],
       "propsDefinitions": [
-        "export interface BentoGridProps\r\n  extends React.HTMLAttributes<HTMLDivElement>,\r\n    VariantProps<typeof bentoGridVariants> {\r\n  cols?: BentoResponsiveValue<BentoCols>;\r\n  autoRows?: string;\r\n}",
-        "export interface BentoGridItemProps\r\n  extends React.HTMLAttributes<HTMLDivElement>,\r\n    Omit<VariantProps<typeof bentoGridItemVariants>, 'divided'> {\r\n  colSpan?: BentoResponsiveValue<BentoColSpan>;\r\n  rowSpan?: BentoResponsiveValue<BentoRowSpan>;\r\n}"
+        "export interface BentoGridProps\r\n  extends React.HTMLAttributes<HTMLDivElement>,\r\n    StrictVariantProps<typeof bentoGridVariants> {\r\n  /** @default 3 */\r\n  cols?: BentoResponsiveValue<BentoCols>;\r\n  autoRows?: string;\r\n}\r\n\r\n/**\r\n * Compound responsive CSS Grid layout (`children` with `BentoGridItem`) for dashboard cards and KPIs.\r\n *\r\n * @example\r\n * ```tsx\r\n * <BentoGrid cols={{ base: 1, md: 3 }} gap=\"md\">\r\n *   <BentoGridItem colSpan={{ base: 1, md: 2 }}>Main</BentoGridItem>\r\n *   <BentoGridItem>Side</BentoGridItem>\r\n * </BentoGrid>\r\n * ```\r\n */",
+        "export interface BentoGridItemProps\r\n  extends React.HTMLAttributes<HTMLDivElement>,\r\n    Omit<StrictVariantProps<typeof bentoGridItemVariants>, 'divided'> {\r\n  /** @default 1 */\r\n  colSpan?: BentoResponsiveValue<BentoColSpan>;\r\n  /** @default 1 */\r\n  rowSpan?: BentoResponsiveValue<BentoRowSpan>;\r\n}"
       ]
     },
     "breadcrumb": {
@@ -244,7 +244,7 @@
         "BreadcrumbEllipsis"
       ],
       "propsDefinitions": [
-        "export interface BreadcrumbProps extends React.ComponentPropsWithoutRef<'nav'> {\r\n  separator?: React.ReactNode;\r\n  items?: {\r\n    label: React.ReactNode;\r\n    href?: string;\r\n    active?: boolean;\r\n    icon?: React.ReactNode;\r\n  }[];\r\n}",
+        "export interface BreadcrumbProps extends React.ComponentPropsWithoutRef<'nav'> {\r\n  separator?: React.ReactNode;\r\n  items?: {\r\n    label: React.ReactNode;\r\n    href?: string;\r\n    active?: boolean;\r\n    icon?: React.ReactNode;\r\n  }[];\r\n}\r\n\r\n/**\r\n * Compound navigation trail (`children` with `BreadcrumbItem` and `BreadcrumbSeparator`).\r\n *\r\n * @example\r\n * ```tsx\r\n * <Breadcrumb>\r\n *   <BreadcrumbItem href=\"/\">Home</BreadcrumbItem>\r\n *   <BreadcrumbItem active>Settings</BreadcrumbItem>\r\n * </Breadcrumb>\r\n * ```\r\n */",
         "export interface BreadcrumbItemProps extends React.ComponentPropsWithoutRef<'li'> {\r\n  href?: string;\r\n  active?: boolean;\r\n}"
       ]
     },
@@ -270,7 +270,7 @@
         "Button"
       ],
       "propsDefinitions": [
-        "export interface ButtonProps\r\n  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'>,\r\n    Omit<VariantProps<typeof buttonVariants>, 'rounded'> {\r\n  leftIcon?: ReactNode;\r\n  rightIcon?: ReactNode;\r\n  loading?: boolean;\r\n  rounded?: boolean;\r\n  /**\r\n   * Render the button styles onto its single child element instead of a\r\n   * <button> — use for links (<Link>, <a>) so interactive content is never\r\n   * nested inside an anchor.\r\n   */\r\n  asChild?: boolean;\r\n}"
+        "export interface ButtonProps\r\n  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'>,\r\n    Omit<StrictVariantProps<typeof buttonVariants>, 'rounded'> {\r\n  leftIcon?: ReactNode;\r\n  rightIcon?: ReactNode;\r\n  loading?: boolean;\r\n  /** @default true */\r\n  rounded?: boolean;\r\n  /**\r\n   * Render the button styles onto its single child element instead of a\r\n   * <button> — use for links (<Link>, <a>) so interactive content is never\r\n   * nested inside an anchor.\r\n   * @default false\r\n   */\r\n  asChild?: boolean;\r\n}\r\n\r\n/**\r\n * Interactive action button (`children`, `variant`, `color`, `size`, `loading`, `asChild`).\r\n *\r\n * @example\r\n * ```tsx\r\n * <Button variant=\"filled\" color=\"primary\" onClick={handleSave}>\r\n *   Save Changes\r\n * </Button>\r\n * ```\r\n */"
       ]
     },
     "buttongroup": {
@@ -294,8 +294,8 @@
         "ButtonGroupItem"
       ],
       "propsDefinitions": [
-        "export interface ButtonGroupProps {\r\n  children: ReactNode;\r\n  className?: string;\r\n  vertical?: boolean;\r\n}",
-        "export interface ButtonGroupItemProps extends ButtonHTMLAttributes<HTMLButtonElement> {\r\n  selected?: boolean;\r\n}"
+        "export interface ButtonGroupProps {\r\n  children: ReactNode;\r\n  className?: string;\r\n  /** @default false */\r\n  vertical?: boolean;\r\n}\r\n\r\n/**\r\n * Compound segmented button container (`children` with `ButtonGroupItem`).\r\n *\r\n * @example\r\n * ```tsx\r\n * <ButtonGroup>\r\n *   <ButtonGroupItem active>Day</ButtonGroupItem>\r\n *   <ButtonGroupItem>Week</ButtonGroupItem>\r\n * </ButtonGroup>\r\n * ```\r\n */",
+        "export interface ButtonGroupItemProps extends ButtonHTMLAttributes<HTMLButtonElement> {\r\n  /** @default false */\r\n  selected?: boolean;\r\n}"
       ]
     },
     "card": {
@@ -330,9 +330,9 @@
         "CardFooter"
       ],
       "propsDefinitions": [
-        "export type CardProps = Omit<HTMLMotionProps<'div'>, 'title'> &\r\n  VariantProps<typeof cardVariants> & {\r\n    animate?: boolean;\r\n    ref?: React.Ref<HTMLDivElement>;\r\n  };",
+        "export type CardProps = Omit<HTMLMotionProps<'div'>, 'title'> &\r\n  StrictVariantProps<typeof cardVariants> & {\r\n    /** @default false */\r\n    animate?: boolean;\r\n    ref?: React.Ref<HTMLDivElement>;\r\n  };\r\n\r\n/**\r\n * Compound surface container (`children` with `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter`).\r\n *\r\n * @example\r\n * ```tsx\r\n * <Card>\r\n *   <CardHeader>\r\n *     <CardTitle>Summary</CardTitle>\r\n *   </CardHeader>\r\n *   <CardContent>Body</CardContent>\r\n * </Card>\r\n * ```\r\n */",
         "export interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {\r\n  leftIcon?: React.ReactNode;\r\n  action?: React.ReactNode;\r\n  ref?: React.Ref<HTMLDivElement>;\r\n}",
-        "export type CardTitleProps = React.HTMLAttributes<HTMLHeadingElement> & {\r\n  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';\r\n  ref?: React.Ref<HTMLHeadingElement>;\r\n};",
+        "export type CardTitleProps = React.HTMLAttributes<HTMLHeadingElement> & {\r\n  /** @default 'h3' */\r\n  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';\r\n  ref?: React.Ref<HTMLHeadingElement>;\r\n};",
         "export type CardDescriptionProps = React.ComponentPropsWithRef<'p'>;",
         "export type CardContentProps = React.ComponentPropsWithRef<'div'>;",
         "export type CardFooterProps = React.ComponentPropsWithRef<'div'>;"
@@ -357,7 +357,7 @@
         "Checkbox"
       ],
       "propsDefinitions": [
-        "export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'children'> {\r\n  label?: string;\r\n  description?: string;\r\n}"
+        "export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'children'> {\r\n  label?: string;\r\n  description?: string;\r\n}\r\n\r\n/**\r\n * Accessible boolean checkbox input with optional `label` and `description` props.\r\n *\r\n * @example\r\n * ```tsx\r\n * <Checkbox label=\"Accept terms\" checked={accepted} onChange={(e) => setAccepted(e.target.checked)} />\r\n * ```\r\n */"
       ]
     },
     "chip": {
@@ -381,7 +381,7 @@
         "Chip"
       ],
       "propsDefinitions": [
-        "export interface ChipProps\r\n  extends Omit<React.HTMLAttributes<HTMLButtonElement | HTMLDivElement>, 'onClick' | 'color'> {\r\n  label: React.ReactNode;\r\n  icon?: React.ReactNode;\r\n  variant?: ChipVariant;\r\n  color?: ChipColor;\r\n  selected?: boolean;\r\n  disabled?: boolean;\r\n  onClick?: (event: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) => void;\r\n  onDelete?: (event: React.MouseEvent<HTMLButtonElement>) => void;\r\n}"
+        "export interface ChipProps\r\n  extends Omit<React.HTMLAttributes<HTMLButtonElement | HTMLDivElement>, 'onClick' | 'color'> {\r\n  label: React.ReactNode;\r\n  icon?: React.ReactNode;\r\n  /** @default 'tonal' */\r\n  variant?: ChipVariant;\r\n  /** @default 'base' */\r\n  color?: ChipColor;\r\n  /** @default false */\r\n  selected?: boolean;\r\n  /** @default false */\r\n  disabled?: boolean;\r\n  onClick?: (event: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) => void;\r\n  onDelete?: (event: React.MouseEvent<HTMLButtonElement>) => void;\r\n}\r\n\r\n/**\r\n * Prop-driven (`label`, `variant`, `color`) compact tag or filter pill with optional delete/click actions.\r\n *\r\n * @example\r\n * ```tsx\r\n * <Chip label=\"TypeScript\" variant=\"tonal\" color=\"primary\" onDelete={handleRemove} />\r\n * ```\r\n */"
       ]
     },
     "circularprogress": {
@@ -404,7 +404,7 @@
         "CircularProgress"
       ],
       "propsDefinitions": [
-        "export interface CircularProgressProps extends Omit<React.ComponentPropsWithoutRef<'div'>, 'color'> {\r\n  value: number;\r\n  size?: 'sm' | 'md' | 'lg' | number;\r\n  strokeWidth?: number;\r\n  color?: 'primary' | 'success' | 'warning' | 'danger' | 'info';\r\n  variant?: 'solid' | 'soft';\r\n  showValue?: boolean;\r\n  showTrack?: boolean;\r\n  roundCaps?: boolean;\r\n  trackColor?: string;\r\n}"
+        "export interface CircularProgressProps extends Omit<React.ComponentPropsWithoutRef<'div'>, 'color'> {\r\n  value: number;\r\n  /** @default 'md' */\r\n  size?: CircularProgressSize;\r\n  strokeWidth?: number;\r\n  /** @default 'primary' */\r\n  color?: CircularProgressColor;\r\n  /** @default 'solid' */\r\n  variant?: CircularProgressVariant;\r\n  /** @default false */\r\n  showValue?: boolean;\r\n  /** @default true */\r\n  showTrack?: boolean;\r\n  /** @default true */\r\n  roundCaps?: boolean;\r\n  trackColor?: string;\r\n}"
       ]
     },
     "colorpicker": {
@@ -430,7 +430,7 @@
         "ColorPicker"
       ],
       "propsDefinitions": [
-        "export interface ColorPickerProps {\r\n  value?: string;\r\n  defaultValue?: string;\r\n  onChange?: (color: string) => void;\r\n  className?: string;\r\n  label?: string;\r\n  helperText?: string;\r\n  error?: string;\r\n  presets?: string[];\r\n}"
+        "export interface ColorPickerProps {\r\n  value?: string;\r\n  /** @default '#3B82F6' */\r\n  defaultValue?: string;\r\n  onChange?: (color: string) => void;\r\n  className?: string;\r\n  label?: string;\r\n  helperText?: string;\r\n  error?: string;\r\n  /** @default DEFAULT_PRESETS */\r\n  presets?: string[];\r\n}\r\n\r\n/**\r\n * Prop-driven (`value`, `onChange`, `presets`) popover color selector.\r\n *\r\n * @example\r\n * ```tsx\r\n * <ColorPicker value={color} onChange={setColor} />\r\n * ```\r\n */"
       ]
     },
     "combobox": {
@@ -458,7 +458,7 @@
         "useCombobox"
       ],
       "propsDefinitions": [
-        "export interface ComboboxProps {\r\n  label?: string;\r\n  description?: string;\r\n  placeholder?: string;\r\n  options: ComboboxOption[];\r\n  value?: string | string[];\r\n  onChange?: (value: string | string[]) => void;\r\n  className?: string;\r\n  disabled?: boolean;\r\n  clearSearchOnSelect?: boolean;\r\n  multiple?: boolean;\r\n}",
+        "export interface ComboboxProps {\r\n  label?: string;\r\n  description?: string;\r\n  /** @default 'Search or select...' */\r\n  placeholder?: string;\r\n  options: ComboboxOption[];\r\n  value?: string | string[];\r\n  onChange?: (value: string | string[]) => void;\r\n  className?: string;\r\n  disabled?: boolean;\r\n  /** @default false */\r\n  clearSearchOnSelect?: boolean;\r\n  /** @default false */\r\n  multiple?: boolean;\r\n}\r\n\r\n/**\r\n * Prop-driven (`options={...}`, `value`, `onChange`) searchable autocomplete dropdown.\r\n *\r\n * @example\r\n * ```tsx\r\n * <Combobox\r\n *   options={[{ value: 'react', label: 'React' }, { value: 'vue', label: 'Vue' }]}\r\n *   value={framework}\r\n *   onChange={setFramework}\r\n * />\r\n * ```\r\n */",
         "export interface UseComboboxProps {\r\n  options: ComboboxOption[];\r\n  value?: string | string[];\r\n  onChange?: (value: string | string[]) => void;\r\n  disabled?: boolean;\r\n  clearSearchOnSelect?: boolean;\r\n  multiple?: boolean;\r\n}"
       ]
     },
@@ -486,7 +486,7 @@
         "CopyField"
       ],
       "propsDefinitions": [
-        "export interface CopyFieldProps {\r\n  label?: string;\r\n  description?: string;\r\n  value: string;\r\n  className?: string;\r\n  showToast?: boolean;\r\n}"
+        "export interface CopyFieldProps {\r\n  label?: string;\r\n  description?: string;\r\n  value: string;\r\n  className?: string;\r\n  /** @default true */\r\n  showToast?: boolean;\r\n}\r\n\r\n/**\r\n * Prop-driven (`value`) read-only input with one-click clipboard copy feedback.\r\n *\r\n * @example\r\n * ```tsx\r\n * <CopyField label=\"API Key\" value=\"dk_live_123456\" />\r\n * ```\r\n */"
       ]
     },
     "datefield": {
@@ -538,7 +538,7 @@
         "useDatePicker"
       ],
       "propsDefinitions": [
-        "export interface DatePickerProps {\r\n  label?: string;\r\n  description?: string;\r\n  placeholder?: string;\r\n  value?: Date;\r\n  onChange?: (date: Date) => void;\r\n  className?: string;\r\n  disabled?: boolean;\r\n}",
+        "export interface DatePickerProps {\r\n  label?: string;\r\n  description?: string;\r\n  /** @default 'Select date' */\r\n  placeholder?: string;\r\n  value?: Date;\r\n  onChange?: (date: Date) => void;\r\n  className?: string;\r\n  disabled?: boolean;\r\n}\r\n\r\n/**\r\n * Prop-driven (`value`, `onChange`) calendar popover date selector.\r\n *\r\n * @example\r\n * ```tsx\r\n * <DatePicker label=\"Due Date\" value={date} onChange={setDate} />\r\n * ```\r\n */",
         "export interface UseDatePickerProps {\r\n  value?: Date;\r\n  onChange?: (date: Date) => void;\r\n  disabled?: boolean;\r\n}"
       ]
     },
@@ -562,7 +562,7 @@
         "Divider"
       ],
       "propsDefinitions": [
-        "export interface DividerProps\r\n  extends React.HTMLAttributes<HTMLDivElement>,\r\n    VariantProps<typeof dividerVariants> {\r\n  children?: React.ReactNode;\r\n  contentPosition?: 'left' | 'center' | 'right';\r\n}"
+        "export interface DividerProps\r\n  extends React.HTMLAttributes<HTMLDivElement>,\r\n    StrictVariantProps<typeof dividerVariants> {\r\n  children?: React.ReactNode;\r\n  /** @default 'center' */\r\n  contentPosition?: DividerContentPosition;\r\n}\r\n\r\n/**\r\n * Horizontal visual separator with optional centered or aligned `children` label.\r\n *\r\n * @example\r\n * ```tsx\r\n * <Divider contentPosition=\"center\">OR</Divider>\r\n * ```\r\n */"
       ]
     },
     "dock": {
@@ -587,8 +587,8 @@
         "DockItem"
       ],
       "propsDefinitions": [
-        "export interface DockProps extends React.HTMLAttributes<HTMLDivElement> {\r\n  children: React.ReactNode;\r\n  position?: \"bottom\" | \"left\" | \"right\";\r\n}",
-        "export interface DockItemProps {\r\n  icon: React.ReactNode;\r\n  label?: string;\r\n  onClick?: () => void;\r\n  href?: string;\r\n  className?: string;\r\n  /** @internal */\r\n  position?: \"bottom\" | \"left\" | \"right\";\r\n}"
+        "export interface DockProps extends React.HTMLAttributes<HTMLDivElement> {\r\n  children: React.ReactNode;\r\n  /** @default \"bottom\" */\r\n  position?: \"bottom\" | \"left\" | \"right\";\r\n}\r\n\r\n/**\r\n * Compound floating macOS-style icon dock (`children` with `DockItem`).\r\n *\r\n * @example\r\n * ```tsx\r\n * <Dock>\r\n *   <DockItem label=\"Home\" icon={<HomeIcon />} onClick={goHome} />\r\n * </Dock>\r\n * ```\r\n */",
+        "export interface DockItemProps {\r\n  icon: React.ReactNode;\r\n  label?: string;\r\n  onClick?: () => void;\r\n  href?: string;\r\n  className?: string;\r\n  /**\r\n   * @internal\r\n   * @default \"bottom\"\r\n   */\r\n  position?: \"bottom\" | \"left\" | \"right\";\r\n}"
       ]
     },
     "drawer": {
@@ -621,7 +621,7 @@
         "useDrawer"
       ],
       "propsDefinitions": [
-        "export interface DrawerProps {\r\n  isOpen: boolean;\r\n  onClose: () => void;\r\n  position?: DrawerPosition;\r\n  children: ReactNode;\r\n  size?: string;\r\n  className?: string;\r\n  /** id of the element (e.g. the DrawerHeader title) that names the dialog. */\r\n  labelledBy?: string;\r\n  /** Accessible name for the dialog when there is no heading element to reference. */\r\n  label?: string;\r\n}",
+        "export interface DrawerProps {\r\n  isOpen: boolean;\r\n  onClose: () => void;\r\n  /** @default 'right' */\r\n  position?: DrawerPosition;\r\n  children: ReactNode;\r\n  size?: string;\r\n  className?: string;\r\n  /** id of the element (e.g. the DrawerHeader title) that names the dialog. */\r\n  labelledBy?: string;\r\n  /** Accessible name for the dialog when there is no heading element to reference. */\r\n  label?: string;\r\n}",
         "export type DrawerHeaderProps = ComponentPropsWithoutRef<'div'>;",
         "export type DrawerContentProps = ComponentPropsWithoutRef<'div'>;",
         "export type DrawerFooterProps = ComponentPropsWithoutRef<'div'>;",
@@ -662,8 +662,8 @@
         "useDropdown"
       ],
       "propsDefinitions": [
-        "export interface DropdownProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  children: React.ReactNode;\r\n}",
-        "export interface DropdownContentProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  children: React.ReactNode;\r\n  align?: 'start' | 'end' | 'center';\r\n  side?: 'top' | 'bottom' | 'left' | 'right';\r\n  sideOffset?: number;\r\n}",
+        "export interface DropdownProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  children: React.ReactNode;\r\n}\r\n\r\n/**\r\n * Compound menu popover (`children` with `DropdownTrigger`, `DropdownContent`, `DropdownItem`).\r\n *\r\n * @example\r\n * ```tsx\r\n * <Dropdown>\r\n *   <DropdownTrigger>Actions</DropdownTrigger>\r\n *   <DropdownContent>\r\n *     <DropdownItem onClick={onEdit}>Edit</DropdownItem>\r\n *   </DropdownContent>\r\n * </Dropdown>\r\n * ```\r\n */",
+        "export interface DropdownContentProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  children: React.ReactNode;\r\n  /** @default 'start' */\r\n  align?: 'start' | 'end' | 'center';\r\n  /** @default 'bottom' */\r\n  side?: 'top' | 'bottom' | 'left' | 'right';\r\n  /** @default 8 */\r\n  sideOffset?: number;\r\n}",
         "export interface DropdownItemProps extends Omit<React.ComponentPropsWithoutRef<'button'>, 'onClick'> {\r\n  children: React.ReactNode;\r\n  onClick?: () => void;\r\n  leftIcon?: React.ReactNode;\r\n  rightIcon?: React.ReactNode;\r\n  destructive?: boolean;\r\n  selected?: boolean;\r\n}",
         "export type DropdownLabelProps = React.ComponentPropsWithoutRef<'div'>;",
         "export type DropdownSeparatorProps = ComponentPropsWithoutRef<'div'>;",
@@ -695,7 +695,7 @@
         "useFloatActionMenu"
       ],
       "propsDefinitions": [
-        "export interface FloatActionMenuProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  icon?: React.ReactNode;\r\n  label?: string;\r\n  variant?: 'neutral' | 'primary';\r\n  children: React.ReactNode;\r\n  position?: FloatActionPosition;\r\n  buttonClassName?: string;\r\n  menuClassName?: string;\r\n}",
+        "export interface FloatActionMenuProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  /** @default <FiMenu /> */\r\n  icon?: React.ReactNode;\r\n  label?: string;\r\n  /** @default 'neutral' */\r\n  variant?: FloatActionMenuVariant;\r\n  children: React.ReactNode;\r\n  /** @default 'bottom-right' */\r\n  position?: FloatActionPosition;\r\n  buttonClassName?: string;\r\n  menuClassName?: string;\r\n}",
         "export interface UseFloatActionMenuProps {\n  position: FloatActionPosition;\n}"
       ]
     },
@@ -719,7 +719,7 @@
         "FloatBadge"
       ],
       "propsDefinitions": [
-        "export interface FloatBadgeProps extends BadgeProps {\n  children: React.ReactNode;\n  position?: BadgePosition;\n  offset?: [number, number];\n}"
+        "export interface FloatBadgeProps extends BadgeProps {\r\n  children: React.ReactNode;\r\n  /** @default 'top-right' */\r\n  position?: BadgePosition;\r\n  offset?: [number, number];\r\n}"
       ]
     },
     "iconbutton": {
@@ -742,7 +742,7 @@
         "IconButton"
       ],
       "propsDefinitions": [
-        "export type IconButtonProps = IconButtonBaseProps &\r\n  (\r\n    | (React.ButtonHTMLAttributes<HTMLButtonElement> & { href?: never })\r\n    | (React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string })\r\n  );"
+        "export type IconButtonProps = IconButtonBaseProps &\r\n  (\r\n    | (React.ButtonHTMLAttributes<HTMLButtonElement> & { href?: never })\r\n    | (React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string })\r\n  );\r\n\r\n/**\r\n * Prop-driven (`icon`) square or pill action button; renders `<a>` automatically when `href` is passed.\r\n *\r\n * @example\r\n * ```tsx\r\n * <IconButton icon={<PlusIcon />} aria-label=\"Add item\" variant=\"soft\" />\r\n * ```\r\n */"
       ]
     },
     "imageexpander": {
@@ -768,7 +768,7 @@
         "useImageExpander"
       ],
       "propsDefinitions": [
-        "export interface ImageExpanderProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  children: ReactNode;\r\n  full?: ReactNode;\r\n  caption?: string;\r\n}"
+        "export interface ImageExpanderProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  children: ReactNode;\r\n  full?: ReactNode;\r\n  caption?: string;\r\n}\r\n\r\n/**\r\n * Prop-driven (`src`, `alt`) thumbnail that expands into a fullscreen lightbox preview.\r\n *\r\n * @example\r\n * ```tsx\r\n * <ImageExpander src=\"/preview.png\" alt=\"Dashboard preview\" />\r\n * ```\r\n */"
       ]
     },
     "input": {
@@ -791,7 +791,7 @@
         "Input"
       ],
       "propsDefinitions": [
-        "export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'prefix' | 'size'> {\r\n  label?: string;\r\n  leftIcon?: ReactNode;\r\n  rightIcon?: ReactNode;\r\n  prefix?: ReactNode;\r\n  suffix?: ReactNode;\r\n  error?: string;\r\n  helperText?: string;\r\n  mask?: RegExp;\r\n  formatter?: (value: string) => string;\r\n  size?: 'sm' | 'md' | 'lg';\r\n  wrapperClassName?: string;\r\n}"
+        "export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'prefix' | 'size'> {\r\n  label?: string;\r\n  leftIcon?: ReactNode;\r\n  rightIcon?: ReactNode;\r\n  prefix?: ReactNode;\r\n  suffix?: ReactNode;\r\n  error?: string;\r\n  helperText?: string;\r\n  mask?: RegExp;\r\n  formatter?: (value: string) => string;\r\n  /** @default 'md' */\r\n  size?: 'sm' | 'md' | 'lg';\r\n  wrapperClassName?: string;\r\n}\r\n\r\n/**\r\n * Text input with optional `label`, `description`, `error`, and `leftIcon`/`rightIcon` slots.\r\n *\r\n * @example\r\n * ```tsx\r\n * <Input label=\"Email\" type=\"email\" placeholder=\"you@acme.dev\" />\r\n * ```\r\n */"
       ]
     },
     "linechart": {
@@ -816,7 +816,7 @@
         "useLineChart"
       ],
       "propsDefinitions": [
-        "export interface LineChartProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  data: Record<string, string | number>[];\r\n  series: LineChartSeries[];\r\n  showGrid?: boolean;\r\n  showLabels?: boolean;\r\n  showTooltip?: boolean;\r\n  animate?: boolean;\r\n}",
+        "export interface LineChartProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  data: Record<string, string | number>[];\r\n  series: LineChartSeries[];\r\n  /** @default true */\r\n  showGrid?: boolean;\r\n  /** @default true */\r\n  showLabels?: boolean;\r\n  /** @default true */\r\n  showTooltip?: boolean;\r\n  /** @default true */\r\n  animate?: boolean;\r\n}\r\n\r\n/**\r\n * Prop-driven (`data`, `series`) multi-series SVG line chart with interactive hover tooltips.\r\n *\r\n * @example\r\n * ```tsx\r\n * <LineChart\r\n *   data={[{ day: 'Mon', visits: 320 }, { day: 'Tue', visits: 410 }]}\r\n *   series={[{ key: 'visits', label: 'Visits' }]}\r\n * />\r\n * ```\r\n */",
         "export interface UseLineChartProps {\n  data: Record<string, string | number>[];\n  series: LineChartSeries[];\n}"
       ]
     },
@@ -840,7 +840,7 @@
         "ListTile"
       ],
       "propsDefinitions": [
-        "export interface ListTileProps extends Omit<HTMLMotionProps<'div'>, 'title'> {\r\n  title: React.ReactNode;\r\n  subtitle?: React.ReactNode;\r\n  leading?: React.ReactNode;\r\n  trailing?: React.ReactNode;\r\n  disabled?: boolean;\r\n  interactive?: boolean;\r\n  divider?: boolean;\r\n  ref?: React.Ref<HTMLDivElement>;\r\n}"
+        "export interface ListTileProps extends Omit<HTMLMotionProps<'div'>, 'title'> {\r\n  title: React.ReactNode;\r\n  subtitle?: React.ReactNode;\r\n  leading?: React.ReactNode;\r\n  trailing?: React.ReactNode;\r\n  /** @default false */\r\n  disabled?: boolean;\r\n  interactive?: boolean;\r\n  /** @default false */\r\n  divider?: boolean;\r\n  ref?: React.Ref<HTMLDivElement>;\r\n}\r\n\r\n/**\r\n * Prop-driven (`title`, `subtitle`, `leading`, `trailing`) structured list row.\r\n *\r\n * @example\r\n * ```tsx\r\n * <ListTile title=\"Deployment succeeded\" subtitle=\"2m ago\" trailing={<Badge content=\"Live\" />} />\r\n * ```\r\n */"
       ]
     },
     "modal": {
@@ -876,7 +876,7 @@
         "useModal"
       ],
       "propsDefinitions": [
-        "export interface ModalProps\r\n  extends VariantProps<typeof modalContentVariants>,\r\n    Omit<HTMLMotionProps<'div'>, 'children' | 'size'> {\r\n  isOpen: boolean;\r\n  onClose: () => void;\r\n  children: ReactNode;\r\n  className?: string;\r\n  labelledBy?: string;\r\n  label?: string;\r\n}",
+        "export interface ModalProps\r\n  extends StrictVariantProps<typeof modalContentVariants>,\r\n    Omit<HTMLMotionProps<'div'>, 'children' | 'size'> {\r\n  isOpen: boolean;\r\n  onClose: () => void;\r\n  children: ReactNode;\r\n  className?: string;\r\n  labelledBy?: string;\r\n  label?: string;\r\n}\r\n\r\n/**\r\n * Compound accessible dialog (`children` with `ModalHeader`, `ModalContent`, `ModalFooter`).\r\n *\r\n * @example\r\n * ```tsx\r\n * <Modal isOpen={open} onClose={() => setOpen(false)} size=\"md\">\r\n *   <ModalHeader>Confirm</ModalHeader>\r\n *   <ModalContent>Proceed with action?</ModalContent>\r\n * </Modal>\r\n * ```\r\n */",
         "export type ModalContentProps = ComponentPropsWithoutRef<'div'>;",
         "export type ModalFooterProps = ComponentPropsWithoutRef<'div'>;",
         "export interface ModalHeaderProps extends ComponentPropsWithoutRef<'div'> {\r\n  onClose?: () => void;\r\n}",
@@ -909,7 +909,7 @@
         "NavbarLinks"
       ],
       "propsDefinitions": [
-        "export interface NavbarProps\r\n  extends React.HTMLAttributes<HTMLElement>,\r\n    VariantProps<typeof navbarVariants> {\r\n  children: React.ReactNode;\r\n}",
+        "export interface NavbarProps\r\n  extends React.HTMLAttributes<HTMLElement>,\r\n    StrictVariantProps<typeof navbarVariants> {\r\n  children: React.ReactNode;\r\n}\r\n\r\n/**\r\n * Compound sticky top navigation bar (`children`).\r\n *\r\n * @example\r\n * ```tsx\r\n * <Navbar sticky blur>\r\n *   <span className=\"font-semibold\">Dashkit</span>\r\n * </Navbar>\r\n * ```\r\n */",
         "export interface NavbarActionsProps extends React.HTMLAttributes<HTMLDivElement> {\r\n  children: React.ReactNode;\r\n  className?: string;\r\n}",
         "export interface NavbarBrandProps extends React.HTMLAttributes<HTMLDivElement> {\r\n  children: React.ReactNode;\r\n  className?: string;\r\n}",
         "export interface NavbarLinksProps extends React.HTMLAttributes<HTMLElement> {\r\n  children: React.ReactNode;\r\n  className?: string;\r\n}"
@@ -955,7 +955,7 @@
         "useNavigationMenuViewport"
       ],
       "propsDefinitions": [
-        "export interface NavigationMenuProps extends React.ComponentPropsWithoutRef<'nav'> {\r\n  children: React.ReactNode;\r\n}",
+        "export interface NavigationMenuProps extends React.ComponentPropsWithoutRef<'nav'> {\r\n  children: React.ReactNode;\r\n}\r\n\r\n/**\r\n * Compound desktop navigation bar (`children` with `NavigationMenuList`, `NavigationMenuItem`, `NavigationMenuTrigger`, `NavigationMenuContent`).\r\n *\r\n * @example\r\n * ```tsx\r\n * <NavigationMenu>\r\n *   <NavigationMenuList>\r\n *     <NavigationMenuItem value=\"docs\">\r\n *       <NavigationMenuTrigger>Docs</NavigationMenuTrigger>\r\n *       <NavigationMenuContent>Links</NavigationMenuContent>\r\n *     </NavigationMenuItem>\r\n *   </NavigationMenuList>\r\n * </NavigationMenu>\r\n * ```\r\n */",
         "export interface NavigationMenuTriggerProps\r\n  extends Omit<React.ComponentPropsWithoutRef<'button'>, 'value'> {\r\n  value: string;\r\n}",
         "export type NavigationMenuViewportProps = Omit<HTMLMotionProps<'div'>, 'children'>;"
       ]
@@ -981,7 +981,7 @@
         "useOtpInput"
       ],
       "propsDefinitions": [
-        "export interface OtpInputProps {\r\n  length?: number;\r\n  value?: string;\r\n  onChange?: (value: string) => void;\r\n  disabled?: boolean;\r\n  label?: string;\r\n  className?: string;\r\n  containerClassName?: string;\r\n}",
+        "export interface OtpInputProps {\r\n  /** @default 6 */\r\n  length?: number;\r\n  /** @default '' */\r\n  value?: string;\r\n  onChange?: (value: string) => void;\r\n  disabled?: boolean;\r\n  label?: string;\r\n  className?: string;\r\n  containerClassName?: string;\r\n}\r\n\r\n/**\r\n * Prop-driven (`length`, `value`, `onChange`) multi-cell one-time passcode input.\r\n *\r\n * @example\r\n * ```tsx\r\n * <OtpInput length={6} value={code} onChange={setCode} />\r\n * ```\r\n */",
         "export interface UseOtpInputProps {\n  length: number;\n  value: string;\n  onChange?: (value: string) => void;\n  disabled?: boolean;\n}"
       ]
     },
@@ -1006,7 +1006,7 @@
         "Pagination"
       ],
       "propsDefinitions": [
-        "export interface PaginationProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onChange'> {\r\n  currentPage: number;\r\n  totalPages: number;\r\n  onChange: (page: number) => void;\r\n  siblingCount?: number;\r\n}"
+        "export interface PaginationProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onChange'> {\r\n  currentPage: number;\r\n  totalPages: number;\r\n  onChange: (page: number) => void;\r\n  /** @default 1 */\r\n  siblingCount?: number;\r\n}"
       ]
     },
     "piechart": {
@@ -1031,7 +1031,7 @@
         "usePieChart"
       ],
       "propsDefinitions": [
-        "export interface PieChartProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  data: PieChartDataItem[];\r\n  innerRadius?: number;\r\n  showLabels?: boolean;\r\n  showTooltip?: boolean;\r\n  animate?: boolean;\r\n  texture?: PieChartTexture;\r\n}",
+        "export interface PieChartProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  data: PieChartDataItem[];\r\n  /** @default 0 */\r\n  innerRadius?: number;\r\n  /** @default true */\r\n  showLabels?: boolean;\r\n  /** @default true */\r\n  showTooltip?: boolean;\r\n  /** @default true */\r\n  animate?: boolean;\r\n  /** @default 'none' */\r\n  texture?: PieChartTexture;\r\n}\r\n\r\n/**\r\n * Prop-driven (`data`) SVG pie or donut chart with optional inner radius and tooltips.\r\n *\r\n * @example\r\n * ```tsx\r\n * <PieChart data={[{ name: 'Desktop', value: 65 }, { name: 'Mobile', value: 35 }]} />\r\n * ```\r\n */",
         "export interface UsePieChartProps {\r\n  data: PieChartDataItem[];\r\n  innerRadius: number;\r\n  showTooltip: boolean;\r\n}"
       ]
     },
@@ -1063,8 +1063,8 @@
         "usePopover"
       ],
       "propsDefinitions": [
-        "export interface PopoverProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  children: React.ReactNode;\r\n  trigger?: PopoverTriggerMode;\r\n}",
-        "export interface PopoverContentProps extends Omit<HTMLMotionProps<'div'>, 'children'> {\r\n  children: React.ReactNode;\r\n  align?: 'start' | 'end' | 'center';\r\n  side?: 'top' | 'bottom' | 'left' | 'right';\r\n  sideOffset?: number;\r\n}",
+        "export interface PopoverProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  children: React.ReactNode;\r\n  /** @default 'click' */\r\n  trigger?: PopoverTriggerMode;\r\n}\r\n\r\n/**\r\n * Compound floating overlay (`children` with `PopoverTrigger` and `PopoverContent`).\r\n *\r\n * @example\r\n * ```tsx\r\n * <Popover>\r\n *   <PopoverTrigger>Open</PopoverTrigger>\r\n *   <PopoverContent>Popover body</PopoverContent>\r\n * </Popover>\r\n * ```\r\n */",
+        "export interface PopoverContentProps extends Omit<HTMLMotionProps<'div'>, 'children'> {\r\n  children: React.ReactNode;\r\n  /** @default 'center' */\r\n  align?: 'start' | 'end' | 'center';\r\n  /** @default 'bottom' */\r\n  side?: 'top' | 'bottom' | 'left' | 'right';\r\n  /** @default 8 */\r\n  sideOffset?: number;\r\n}",
         "export interface PopoverTriggerProps {\r\n  children: React.ReactNode;\r\n  asChild?: boolean;\r\n}"
       ]
     },
@@ -1091,7 +1091,7 @@
         "useProgressBar"
       ],
       "propsDefinitions": [
-        "export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {\r\n  value: number;\r\n  max?: number;\r\n  showLabel?: boolean;\r\n  labelPosition?: 'top' | 'side';\r\n  color?: ProgressBarColor;\r\n  size?: ProgressBarSize;\r\n  animate?: boolean;\r\n  label?: React.ReactNode;\r\n}",
+        "export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {\r\n  value: number;\r\n  /** @default 100 */\r\n  max?: number;\r\n  /** @default false */\r\n  showLabel?: boolean;\r\n  /** @default 'top' */\r\n  labelPosition?: 'top' | 'side';\r\n  /** @default 'primary' */\r\n  color?: ProgressBarColor;\r\n  /** @default 'sm' */\r\n  size?: ProgressBarSize;\r\n  /** @default true */\r\n  animate?: boolean;\r\n  label?: React.ReactNode;\r\n}\r\n\r\n/**\r\n * Prop-driven (`value`) linear progress bar with semantic color variants.\r\n *\r\n * @example\r\n * ```tsx\r\n * <ProgressBar value={68} color=\"primary\" showValue />\r\n * ```\r\n */",
         "export interface UseProgressBarProps {\n  value: number;\n  max: number;\n}"
       ]
     },
@@ -1116,7 +1116,7 @@
         "useRadio"
       ],
       "propsDefinitions": [
-        "export interface RadioProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {\r\n  label?: string;\r\n  description?: string;\r\n}",
+        "export interface RadioProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {\r\n  label?: string;\r\n  description?: string;\r\n}\r\n\r\n/**\r\n * Accessible radio input with optional `label` and `description` props.\r\n *\r\n * @example\r\n * ```tsx\r\n * <Radio name=\"plan\" label=\"Pro Plan\" value=\"pro\" checked={plan === 'pro'} onChange={() => setPlan('pro')} />\r\n * ```\r\n */",
         "export interface UseRadioProps {\n  id?: string;\n  label?: string;\n}"
       ]
     },
@@ -1140,7 +1140,7 @@
         "ScrollArea"
       ],
       "propsDefinitions": [
-        "export interface ScrollAreaProps\r\n  extends ComponentPropsWithoutRef<'div'>,\r\n    VariantProps<typeof viewportVariants> {\r\n  children: ReactNode;\r\n  viewportClassName?: string;\r\n}"
+        "export interface ScrollAreaProps\r\n  extends ComponentPropsWithoutRef<'div'>,\r\n    StrictVariantProps<typeof viewportVariants> {\r\n  children: ReactNode;\r\n  viewportClassName?: string;\r\n}\r\n\r\n/**\r\n * Compound custom-styled scrollable viewport (`children`).\r\n *\r\n * @example\r\n * ```tsx\r\n * <ScrollArea className=\"h-64\" orientation=\"vertical\">\r\n *   <div>Scrollable content</div>\r\n * </ScrollArea>\r\n * ```\r\n */"
       ]
     },
     "select": {
@@ -1166,7 +1166,7 @@
         "useSelect"
       ],
       "propsDefinitions": [
-        "export interface SelectProps\r\n  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onChange' | 'value'> {\r\n  label?: string;\r\n  description?: string;\r\n  placeholder?: string;\r\n  options: SelectOption[];\r\n  value?: string;\r\n  onChange?: (value: string) => void;\r\n  size?: 'sm' | 'md' | 'lg';\r\n  error?: string;\r\n}",
+        "export interface SelectProps\r\n  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onChange' | 'value'> {\r\n  label?: string;\r\n  description?: string;\r\n  /** @default 'Select an option' */\r\n  placeholder?: string;\r\n  options: SelectOption[];\r\n  value?: string;\r\n  onChange?: (value: string) => void;\r\n  /** @default 'md' */\r\n  size?: 'sm' | 'md' | 'lg';\r\n  error?: string;\r\n}\r\n\r\n/**\r\n * Prop-driven (`options={...}`, `value`, `onChange`) accessible dropdown selector. Do not pass `<option>` children.\r\n *\r\n * @example\r\n * ```tsx\r\n * <Select\r\n *   label=\"Role\"\r\n *   value={role}\r\n *   onChange={setRole}\r\n *   options={[{ value: 'admin', label: 'Admin' }, { value: 'member', label: 'Member' }]}\r\n * />\r\n * ```\r\n */",
         "export interface UseSelectProps {\r\n  options: SelectOption[];\r\n  value?: string;\r\n  disabled?: boolean;\r\n}"
       ]
     },
@@ -1214,12 +1214,12 @@
       ],
       "propsDefinitions": [
         "export interface SidebarProviderProps extends UseSidebarProps {\r\n  children: React.ReactNode;\r\n}",
-        "export interface SidebarProps extends\r\n  Omit<HTMLMotionProps<'aside'>, 'children' | 'defaultValue'> {\r\n  children: React.ReactNode;\r\n  collapsible?: boolean;\r\n  defaultOpen?: boolean;\r\n  open?: boolean;\r\n  onOpenChange?: (open: boolean) => void;\r\n  width?: number;\r\n  collapsedWidth?: number;\r\n  responsive?: boolean;\r\n  defaultOpenMobile?: boolean;\r\n  openMobile?: boolean;\r\n  onOpenMobileChange?: (open: boolean) => void;\r\n  mobileBreakpoint?: number;\r\n}",
-        "export interface SidebarTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {\r\n  icon?: React.ReactNode;\r\n  size?: 'sm' | 'md' | 'lg';\r\n}",
+        "export interface SidebarProps extends\r\n  Omit<HTMLMotionProps<'aside'>, 'children' | 'defaultValue'> {\r\n  children: React.ReactNode;\r\n  /** @default true */\r\n  collapsible?: boolean;\r\n  /** @default true */\r\n  defaultOpen?: boolean;\r\n  open?: boolean;\r\n  onOpenChange?: (open: boolean) => void;\r\n  /** @default 272 */\r\n  width?: number;\r\n  /** @default 72 */\r\n  collapsedWidth?: number;\r\n  /** @default true */\r\n  responsive?: boolean;\r\n  /** @default false */\r\n  defaultOpenMobile?: boolean;\r\n  openMobile?: boolean;\r\n  onOpenMobileChange?: (open: boolean) => void;\r\n  /** @default 768 */\r\n  mobileBreakpoint?: number;\r\n}\r\n\r\n/**\r\n * Compound collapsible application sidebar (`children` inside `SidebarProvider`, using `SidebarContent`, `SidebarSection`, `SidebarItem`).\r\n *\r\n * @example\r\n * ```tsx\r\n * <SidebarProvider>\r\n *   <Sidebar>\r\n *     <SidebarContent>\r\n *       <SidebarSection title=\"Menu\">\r\n *         <SidebarItem label=\"Dashboard\" active />\r\n *       </SidebarSection>\r\n *     </SidebarContent>\r\n *   </Sidebar>\r\n * </SidebarProvider>\r\n * ```\r\n */",
+        "export interface SidebarTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {\r\n  icon?: React.ReactNode;\r\n  /** @default 'sm' */\r\n  size?: 'sm' | 'md' | 'lg';\r\n}",
         "export interface SidebarContentProps extends React.HTMLAttributes<HTMLDivElement> {\r\n  children: React.ReactNode;\r\n}",
-        "export interface SidebarSectionProps {\r\n  title?: string;\r\n  badge?: React.ReactNode;\r\n  children: React.ReactNode;\r\n  className?: string;\r\n  collapsible?: boolean;\r\n  defaultOpen?: boolean;\r\n}",
+        "export interface SidebarSectionProps {\r\n  title?: string;\r\n  badge?: React.ReactNode;\r\n  children: React.ReactNode;\r\n  className?: string;\r\n  /** @default false */\r\n  collapsible?: boolean;\r\n  /** @default true */\r\n  defaultOpen?: boolean;\r\n}",
         "export interface SidebarSubItemProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {\r\n  children: React.ReactNode;\r\n  active?: boolean;\r\n  href?: string;\r\n  target?: string;\r\n  badgeSlot?: React.ReactNode;\r\n  className?: string;\r\n}",
-        "export interface SidebarItemProps extends Omit<HTMLMotionProps<'button'>, 'children' | 'onDrag' | 'onDragStart' | 'onDragEnd'> {\r\n  icon?: React.ReactNode;\r\n  active?: boolean;\r\n  children: React.ReactNode;\r\n  badgeSlot?: React.ReactNode;\r\n  href?: string;\r\n  target?: string;\r\n  collapsible?: boolean;\r\n  defaultOpen?: boolean;\r\n  open?: boolean;\r\n  onOpenChange?: (open: boolean) => void;\r\n  subItems?: SidebarSubItemConfig[];\r\n}",
+        "export interface SidebarItemProps extends Omit<HTMLMotionProps<'button'>, 'children' | 'onDrag' | 'onDragStart' | 'onDragEnd'> {\r\n  icon?: React.ReactNode;\r\n  active?: boolean;\r\n  children: React.ReactNode;\r\n  badgeSlot?: React.ReactNode;\r\n  href?: string;\r\n  target?: string;\r\n  /** @default false */\r\n  collapsible?: boolean;\r\n  /** @default false */\r\n  defaultOpen?: boolean;\r\n  open?: boolean;\r\n  onOpenChange?: (open: boolean) => void;\r\n  subItems?: SidebarSubItemConfig[];\r\n}",
         "export interface UseSidebarProps {\r\n  defaultOpen?: boolean;\r\n  open?: boolean;\r\n  onOpenChange?: (open: boolean) => void;\r\n  defaultOpenMobile?: boolean;\r\n  openMobile?: boolean;\r\n  onOpenMobileChange?: (open: boolean) => void;\r\n  mobileBreakpoint?: number;\r\n}"
       ]
     },
@@ -1243,7 +1243,7 @@
         "Skeleton"
       ],
       "propsDefinitions": [
-        "export interface SkeletonProps\r\n  extends React.HTMLAttributes<HTMLDivElement>,\r\n    VariantProps<typeof skeletonVariants> {}"
+        "export interface SkeletonProps\r\n  extends React.HTMLAttributes<HTMLDivElement>,\r\n    StrictVariantProps<typeof skeletonVariants> {}\r\n\r\n/**\r\n * Animated loading placeholder (`variant=\"text\" | \"circular\" | \"rectangular\"`).\r\n *\r\n * @example\r\n * ```tsx\r\n * <Skeleton variant=\"rectangular\" className=\"h-24 w-full\" />\r\n * ```\r\n */"
       ]
     },
     "slider": {
@@ -1267,7 +1267,7 @@
         "useSlider"
       ],
       "propsDefinitions": [
-        "export interface SliderProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'onChange' | 'value' | 'defaultValue'> {\r\n  label?: string;\r\n  description?: string;\r\n  value?: number;\r\n  defaultValue?: number;\r\n  onChange?: (value: number) => void;\r\n  showValue?: boolean;\r\n}",
+        "export interface SliderProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'onChange' | 'value' | 'defaultValue'> {\r\n  label?: string;\r\n  description?: string;\r\n  value?: number;\r\n  defaultValue?: number;\r\n  onChange?: (value: number) => void;\r\n  /** @default false */\r\n  showValue?: boolean;\r\n}\r\n\r\n/**\r\n * Prop-driven (`value`, `onChange`, `min`, `max`) range slider input.\r\n *\r\n * @example\r\n * ```tsx\r\n * <Slider label=\"Volume\" min={0} max={100} value={volume} onChange={setVolume} />\r\n * ```\r\n */",
         "export interface UseSliderProps {\n  id?: string;\n  label?: string;\n  min?: string | number;\n  max?: string | number;\n  value?: string | number;\n  defaultValue?: string | number;\n  onChange?: (value: number) => void;\n}"
       ]
     },
@@ -1291,7 +1291,7 @@
         "Spinner"
       ],
       "propsDefinitions": [
-        "export interface SpinnerProps extends Omit<React.SVGAttributes<SVGSVGElement>, 'color'> {\n  size?: number | string;\n  color?: SpinnerColor;\n  thickness?: number;\n  className?: string;\n}"
+        "export interface SpinnerProps extends Omit<React.SVGAttributes<SVGSVGElement>, 'color'> {\r\n  /** @default 24 */\r\n  size?: number | string;\r\n  /** @default 'currentColor' */\r\n  color?: SpinnerColor;\r\n  /** @default 2.5 */\r\n  thickness?: number;\r\n  className?: string;\r\n}"
       ]
     },
     "statscard": {
@@ -1319,7 +1319,7 @@
         "StatsCard"
       ],
       "propsDefinitions": [
-        "export interface StatsCardProps extends Omit<React.ComponentPropsWithoutRef<typeof Card>, 'title' | 'children'> {\r\n  title: string;\r\n  value: number;\r\n  prefix?: string;\r\n  suffix?: string;\r\n  precision?: number;\r\n  trend?: number;\r\n  trendLabel?: string;\r\n  icon?: React.ReactNode;\r\n  description?: string;\r\n  status?: 'success' | 'danger' | 'warning' | 'info' | 'neutral';\r\n  animate?: boolean;\r\n  chart?: {\r\n    data: number[];\r\n    color?: string;\r\n  };\r\n}"
+        "export interface StatsCardProps extends Omit<React.ComponentPropsWithoutRef<typeof Card>, 'title' | 'children'> {\r\n  title: string;\r\n  value: number;\r\n  /** @default \"\" */\r\n  prefix?: string;\r\n  /** @default \"\" */\r\n  suffix?: string;\r\n  /** @default 0 */\r\n  precision?: number;\r\n  trend?: number;\r\n  trendLabel?: string;\r\n  icon?: React.ReactNode;\r\n  description?: string;\r\n  /** @default 'neutral' */\r\n  status?: 'success' | 'danger' | 'warning' | 'info' | 'neutral';\r\n  /** @default false */\r\n  animate?: boolean;\r\n  chart?: {\r\n    data: number[];\r\n    color?: string;\r\n  };\r\n}"
       ]
     },
     "stepper": {
@@ -1344,8 +1344,8 @@
         "Step"
       ],
       "propsDefinitions": [
-        "export interface StepperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {\r\n  activeStep: number;\r\n  orientation?: 'horizontal' | 'vertical';\r\n  color?: StepperColor;\r\n  onChange?: (step: number) => void;\r\n  children: React.ReactNode;\r\n}",
-        "export interface StepProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {\r\n  title?: React.ReactNode;\r\n  description?: React.ReactNode;\r\n  icon?: React.ReactNode;\r\n  index?: number;\r\n  isLast?: boolean;\r\n}"
+        "export interface StepperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {\r\n  activeStep: number;\r\n  /** @default 'horizontal' */\r\n  orientation?: 'horizontal' | 'vertical';\r\n  /** @default 'primary' */\r\n  color?: StepperColor;\r\n  onChange?: (step: number) => void;\r\n  children: React.ReactNode;\r\n}\r\n\r\n/**\r\n * Compound multi-step progress indicator (`children` with `Step` components).\r\n *\r\n * @example\r\n * ```tsx\r\n * <Stepper activeStep={1}>\r\n *   <Step title=\"Account\" />\r\n *   <Step title=\"Billing\" />\r\n * </Stepper>\r\n * ```\r\n */",
+        "export interface StepProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {\r\n  title?: React.ReactNode;\r\n  description?: React.ReactNode;\r\n  icon?: React.ReactNode;\r\n  /** @default 0 */\r\n  index?: number;\r\n  /** @default false */\r\n  isLast?: boolean;\r\n}"
       ]
     },
     "surface": {
@@ -1368,7 +1368,7 @@
         "Surface"
       ],
       "propsDefinitions": [
-        "export interface SurfaceProps\r\n  extends React.HTMLAttributes<HTMLDivElement>,\r\n    VariantProps<typeof surfaceVariants> {\r\n  children?: React.ReactNode;\r\n}"
+        "export interface SurfaceProps\r\n  extends React.HTMLAttributes<HTMLDivElement>,\r\n    StrictVariantProps<typeof surfaceVariants> {\r\n  children?: React.ReactNode;\r\n}\r\n\r\n/**\r\n * Compound semantic callout/container (`children`) with `variant=\"default\" | \"info\" | \"success\" | \"warning\" | \"danger\"`.\r\n *\r\n * @example\r\n * ```tsx\r\n * <Surface variant=\"info\" className=\"p-4\">Changes apply immediately.</Surface>\r\n * ```\r\n */"
       ]
     },
     "switch": {
@@ -1392,7 +1392,7 @@
         "useSwitch"
       ],
       "propsDefinitions": [
-        "export interface SwitchProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {\r\n  label?: string;\r\n  description?: string;\r\n}",
+        "export interface SwitchProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {\r\n  label?: string;\r\n  description?: string;\r\n}\r\n\r\n/**\r\n * Accessible toggle switch with optional `label` and `description` props.\r\n *\r\n * @example\r\n * ```tsx\r\n * <Switch label=\"Email alerts\" checked={enabled} onChange={(e) => setEnabled(e.target.checked)} />\r\n * ```\r\n */",
         "export interface UseSwitchProps {\n  id?: string;\n  label?: string;\n}"
       ]
     },
@@ -1418,7 +1418,7 @@
         "SystemLogs"
       ],
       "propsDefinitions": [
-        "export interface SystemLogsProps extends Omit<React.ComponentPropsWithoutRef<'div'>, 'title'> {\r\n  logs: LogEntry[];\r\n  title?: string;\r\n  session?: string;\r\n  status?: string;\r\n  statusColor?: BadgeColor;\r\n  maxHeight?: number | string;\r\n  autoScroll?: boolean;\r\n}"
+        "export interface SystemLogsProps extends Omit<React.ComponentPropsWithoutRef<'div'>, 'title'> {\r\n  logs: LogEntry[];\r\n  /** @default 'System Logs' */\r\n  title?: string;\r\n  session?: string;\r\n  /** @default 'Stable' */\r\n  status?: string;\r\n  /** @default 'success' */\r\n  statusColor?: BadgeColor;\r\n  maxHeight?: number | string;\r\n  /** @default true */\r\n  autoScroll?: boolean;\r\n}"
       ]
     },
     "table": {
@@ -1445,13 +1445,16 @@
         "TableRow",
         "TableHead",
         "TableCell",
-        "TableCaption"
+        "TableCaption",
+        "VirtualTableBody"
       ],
       "propsDefinitions": [
-        "export interface TableContainerProps extends HTMLAttributes<HTMLDivElement> {\r\n  children: React.ReactNode;\r\n}",
-        "export type TableProps = HTMLAttributes<HTMLTableElement>;",
-        "export interface TableHeadProps extends ThHTMLAttributes<HTMLTableCellElement> {\r\n  nowrap?: boolean;\r\n  align?: 'left' | 'center' | 'right';\r\n}",
-        "export interface TableCellProps extends TdHTMLAttributes<HTMLTableCellElement> {\r\n  nowrap?: boolean;\r\n  align?: 'left' | 'center' | 'right';\r\n}"
+        "export interface TableContainerProps extends HTMLAttributes<HTMLDivElement> {\r\n  children: ReactNode;\r\n  /** Optional max height (px or CSS string) enabling vertical scrolling for virtualized or sticky tables. @default undefined */\r\n  maxHeight?: number | string;\r\n}",
+        "export type TableProps = HTMLAttributes<HTMLTableElement>;\r\n\r\n/**\r\n * Compound semantic data table (`children` with `TableContainer`, `TableHeader`, `TableBody`, `TableRow`, `TableHead`, `TableCell`).\r\n *\r\n * @example\r\n * ```tsx\r\n * <TableContainer>\r\n *   <Table>\r\n *     <TableHeader>\r\n *       <TableRow><TableHead>Name</TableHead></TableRow>\r\n *     </TableHeader>\r\n *     <TableBody>\r\n *       <TableRow><TableCell>Alice</TableCell></TableRow>\r\n *     </TableBody>\r\n *   </Table>\r\n * </TableContainer>\r\n * ```\r\n */",
+        "export interface TableHeaderProps extends HTMLAttributes<HTMLTableSectionElement> {\r\n  /** Keeps the table header pinned to the top inside a scrollable `TableContainer`. @default false */\r\n  sticky?: boolean;\r\n}",
+        "export interface TableHeadProps extends ThHTMLAttributes<HTMLTableCellElement> {\r\n  /** @default true */\r\n  nowrap?: boolean;\r\n  /** @default 'left' */\r\n  align?: 'left' | 'center' | 'right';\r\n}",
+        "export interface TableCellProps extends TdHTMLAttributes<HTMLTableCellElement> {\r\n  /** @default false */\r\n  nowrap?: boolean;\r\n  align?: 'left' | 'center' | 'right';\r\n}",
+        "export interface VirtualTableBodyProps<T> extends Omit<HTMLAttributes<HTMLTableSectionElement>, 'children'> {\r\n  /** Array of row data items to virtualize. */\r\n  items: readonly T[];\r\n  /** Estimated fixed height (in px) of each row. @default 48 */\r\n  estimateSize?: number;\r\n  /** Number of extra rows rendered above and below the visible window. @default 5 */\r\n  overscan?: number;\r\n  /** Viewport height (in px) fallback when container height cannot be measured. @default 400 */\r\n  viewportHeight?: number;\r\n  /** Optional external scroll container ref; automatically inherited from `TableContainer` when omitted. */\r\n  scrollContainerRef?: RefObject<HTMLElement | null>;\r\n  /** Optional stable key extractor for each rendered row. */\r\n  getRowKey?: (item: T, index: number) => Key;\r\n  /** Render callback for each visible row (typically returning `<TableRow>`). */\r\n  renderRow: (item: T, index: number) => ReactNode;\r\n  /** Optional fallback rendered when `items` is empty. */\r\n  emptyState?: ReactNode;\r\n}\r\n\r\n/**\r\n * Virtualized table body (`<tbody>`) for rendering large datasets efficiently inside a scrollable `TableContainer`.\r\n *\r\n * @example\r\n * ```tsx\r\n * <TableContainer maxHeight={400}>\r\n *   <Table>\r\n *     <TableHeader sticky>\r\n *       <TableRow><TableHead>Name</TableHead></TableRow>\r\n *     </TableHeader>\r\n *     <VirtualTableBody\r\n *       items={rows}\r\n *       estimateSize={48}\r\n *       renderRow={(row) => (\r\n *         <TableRow key={row.id}>\r\n *           <TableCell>{row.name}</TableCell>\r\n *         </TableRow>\r\n *       )}\r\n *     />\r\n *   </Table>\r\n * </TableContainer>\r\n * ```\r\n */"
       ]
     },
     "tabs": {
@@ -1478,7 +1481,7 @@
         "TabsContent"
       ],
       "propsDefinitions": [
-        "export interface TabsProps extends ComponentPropsWithoutRef<'div'> {\r\n  defaultValue?: string;\r\n  value?: string;\r\n  onValueChange?: (val: string) => void;\r\n  children: ReactNode;\r\n  variant?: TabsVariant;\r\n}",
+        "export interface TabsProps extends ComponentPropsWithoutRef<'div'> {\r\n  defaultValue?: string;\r\n  value?: string;\r\n  onValueChange?: (val: string) => void;\r\n  children: ReactNode;\r\n  /** @default 'line' */\r\n  variant?: TabsVariant;\r\n}\r\n\r\n/**\r\n * Compound tabbed view switcher (`children` with `TabsList`, `TabsTrigger`, `TabsContent`).\r\n *\r\n * @example\r\n * ```tsx\r\n * <Tabs defaultValue=\"overview\">\r\n *   <TabsList>\r\n *     <TabsTrigger value=\"overview\">Overview</TabsTrigger>\r\n *     <TabsTrigger value=\"logs\">Logs</TabsTrigger>\r\n *   </TabsList>\r\n *   <TabsContent value=\"overview\">Summary</TabsContent>\r\n * </Tabs>\r\n * ```\r\n */",
         "export interface TabsListProps extends ComponentPropsWithoutRef<'div'> {\r\n  children: ReactNode;\r\n  variant?: TabsVariant;\r\n}",
         "export interface TabsTriggerProps extends Omit<ComponentPropsWithoutRef<'button'>, 'value'> {\r\n  value: string;\r\n  children: ReactNode;\r\n}",
         "export interface TabsContentProps extends Omit<HTMLMotionProps<'div'>, 'children'> {\r\n  value: string;\r\n  children: ReactNode;\r\n}"
@@ -1505,7 +1508,7 @@
         "useTextarea"
       ],
       "propsDefinitions": [
-        "export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {\r\n  label?: string;\r\n  error?: string;\r\n  helperText?: string;\r\n  autoGrow?: boolean;\r\n}",
+        "export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {\r\n  label?: string;\r\n  error?: string;\r\n  helperText?: string;\r\n  /** @default false */\r\n  autoGrow?: boolean;\r\n}\r\n\r\n/**\r\n * Multi-line text input with optional `label`, `description`, and `error` props.\r\n *\r\n * @example\r\n * ```tsx\r\n * <Textarea label=\"Notes\" rows={4} placeholder=\"Write a summary...\" />\r\n * ```\r\n */",
         "export interface UseTextareaProps {\n  id?: string;\n  label?: string;\n  autoGrow?: boolean;\n  value?: string | number | readonly string[];\n  onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;\n}"
       ]
     },
@@ -1538,7 +1541,7 @@
         "resetToasts"
       ],
       "propsDefinitions": [
-        "export interface ToastProviderProps {\r\n  children: React.ReactNode;\r\n  position?: ToastPosition;\r\n  invert?: boolean;\r\n}"
+        "export interface ToastProviderProps {\r\n  children: React.ReactNode;\r\n  /** @default 'bottom-right' */\r\n  position?: ToastPosition;\r\n  /** @default false */\r\n  invert?: boolean;\r\n}\r\n\r\n/**\r\n * Compound notification provider (`ToastProvider`) paired with the `useToast()` hook.\r\n *\r\n * @example\r\n * ```tsx\r\n * <ToastProvider position=\"bottom-right\">\r\n *   <App />\r\n * </ToastProvider>\r\n * ```\r\n */"
       ]
     },
     "tooltip": {
@@ -1563,8 +1566,8 @@
         "TooltipContent"
       ],
       "propsDefinitions": [
-        "export interface TooltipProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  children: React.ReactNode;\r\n  delay?: number;\r\n  animate?: boolean;\r\n}",
-        "export interface TooltipContentProps extends Omit<HTMLMotionProps<'div'>, 'children'> {\r\n  children: React.ReactNode;\r\n  side?: 'top' | 'bottom' | 'left' | 'right';\r\n  sideOffset?: number;\r\n}"
+        "export interface TooltipProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  children: React.ReactNode;\r\n  /** @default 0 */\r\n  delay?: number;\r\n  /** @default true */\r\n  animate?: boolean;\r\n}\r\n\r\n/**\r\n * Compound hover/focus hint (`children` with `TooltipTrigger` and `TooltipContent`).\r\n *\r\n * @example\r\n * ```tsx\r\n * <Tooltip>\r\n *   <TooltipTrigger>Hover me</TooltipTrigger>\r\n *   <TooltipContent>Helpful context</TooltipContent>\r\n * </Tooltip>\r\n * ```\r\n */",
+        "export interface TooltipContentProps extends Omit<HTMLMotionProps<'div'>, 'children'> {\r\n  children: React.ReactNode;\r\n  /** @default 'top' */\r\n  side?: 'top' | 'bottom' | 'left' | 'right';\r\n  /** @default 8 */\r\n  sideOffset?: number;\r\n}"
       ]
     }
   }
