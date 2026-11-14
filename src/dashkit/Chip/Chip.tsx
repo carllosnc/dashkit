@@ -24,7 +24,7 @@ const chipVariants = cva(
         info: '',
       },
       interactive: {
-        true: 'cursor-pointer active:scale-[0.97]',
+        true: 'cursor-pointer active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-transparent',
         false: 'cursor-default',
       },
       disabled: {
@@ -153,7 +153,7 @@ export const Chip = React.forwardRef<HTMLButtonElement | HTMLDivElement, ChipPro
             onDelete(e);
           }}
           disabled={disabled}
-          className="size-6 -mr-1.5 -my-1 rounded-full flex items-center justify-center transition-colors hover:bg-black/10 dark:hover:bg-white/10 disabled:cursor-not-allowed"
+          className="size-6 -mr-1.5 -my-1 rounded-full flex items-center justify-center transition-colors hover:bg-black/10 dark:hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed"
           aria-label="Remove"
         >
           <FiX className="size-3" />
