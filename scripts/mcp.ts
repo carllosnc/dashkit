@@ -336,7 +336,8 @@ const COMPONENT_SEARCH_ALIASES: Record<string, string[]> = {
   dropdown: ['menu', 'context menu', 'actions menu'],
   datepicker: ['calendar', 'date'],
   statscard: ['kpi', 'metric', 'analytics card'],
-  systemlogs: ['terminal', 'console', 'logs', 'audit trail']
+  systemlogs: ['terminal', 'console', 'logs', 'audit trail'],
+  radiocard: ['radio group', 'selection card', 'choice card', 'option card', 'preset selector']
 };
 
 function scoreComponentMatch(item: RegistryComponentMetadata, query: string): number {
