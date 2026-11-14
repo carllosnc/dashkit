@@ -381,6 +381,15 @@ export const registry: Record<string, ComponentConfig> = {
     ],
     dependencies: ['framer-motion', 'clsx', 'tailwind-merge', 'react-icons'],
   },
+  taginput: {
+    name: 'TagInput',
+    files: [
+      'src/dashkit/TagInput/TagInput.tsx',
+      'src/dashkit/TagInput/TagInput.test.tsx',
+      'src/dashkit/TagInput/index.ts'
+    ],
+    dependencies: ['clsx', 'tailwind-merge', 'react-icons'],
+  },
   divider: {
     name: 'Divider',
     files: [
