@@ -6,7 +6,7 @@ import {
   FiSidebar, FiMaximize, FiLayers, FiBell, FiMoreVertical, FiAward,
   FiInbox, FiChevronRight, FiGrid, FiLayout, FiLoader, FiSliders, FiMoreHorizontal, FiCalendar, FiTable, FiUser, FiActivity,
   FiMonitor, FiMessageCircle, FiAlignLeft, FiEdit3, FiTrendingUp, FiTerminal, FiBarChart2, FiPieChart,
-  FiPlusSquare, FiDroplet, FiClock, FiPlusCircle, FiCompass, FiChevronsRight, FiChevronsDown, FiChevronDown, FiTarget, FiCheck, FiHelpCircle,
+  FiPlusSquare, FiDroplet, FiClock, FiPlusCircle, FiCompass, FiChevronsRight, FiChevronsDown, FiChevronDown, FiTarget, FiCheck, FiCheckCircle, FiHelpCircle,
   FiCopy
 } from 'react-icons/fi';
 
@@ -51,7 +51,7 @@ const components = [
   { to: '/docs/popover', label: 'Popover', icon: <FiMessageCircle size={24} />, description: 'Floating contextual content.' },
   { to: '/docs/progressbar', label: 'Progress Bar', icon: <FiActivity size={24} />, description: 'Linear task completion trackers.' },
   { to: '/docs/radio', label: 'Radio', icon: <FiTarget size={24} />, description: 'Single-select input options.' },
-  { to: '/docs/radio-card', label: 'Radio Card', icon: <FiTarget size={24} />, description: 'Selectable option cards in a radio group.' },
+  { to: '/docs/radio-card', label: 'Radio Card', icon: <FiCheckCircle size={24} />, description: 'Selectable option cards in a radio group.' },
   { to: '/docs/select', label: 'Select', icon: <FiChevronDown size={24} />, description: 'Standard dropdown selection.' },
   { to: '/docs/scroll-area', label: 'Scroll Area', icon: <FiChevronsDown size={24} />, description: 'Custom theme-aware scrollbars.' },
   { to: '/docs/sidebar', label: 'Sidebar', icon: <FiAlignLeft size={24} />, description: 'Vertical navigation panels.' },
