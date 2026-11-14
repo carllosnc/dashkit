@@ -32,7 +32,10 @@
         "AccordionItemContext"
       ],
       "propsDefinitions": [
-        "export interface AccordionProps {\r\n  type?: AccordionType;\r\n  defaultValue?: string | string[];\r\n  value?: string | string[];\r\n  onValueChange?: (value: string | string[]) => void;\r\n  children: React.ReactNode;\r\n  className?: string;\r\n}"
+        "export interface AccordionProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  type?: AccordionType;\r\n  defaultValue?: string | string[];\r\n  value?: string | string[];\r\n  onValueChange?: (value: string | string[]) => void;\r\n  children: React.ReactNode;\r\n}",
+        "export interface AccordionItemProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  value: string;\r\n  children: React.ReactNode;\r\n  disabled?: boolean;\r\n}",
+        "export type AccordionTriggerProps = React.ComponentPropsWithoutRef<'button'>;",
+        "export type AccordionContentProps = React.ComponentPropsWithoutRef<'div'>;"
       ]
     },
     "animatenumber": {
@@ -57,7 +60,7 @@
         "Digit"
       ],
       "propsDefinitions": [
-        "export interface AnimateNumberProps {\n  value: number;\n  precision?: number;\n  prefix?: string;\n  suffix?: string;\n  className?: string;\n  duration?: number;\n  locale?: string;\n}"
+        "export interface AnimateNumberProps extends Omit<ComponentPropsWithoutRef<'span'>, 'children'> {\n  value: number;\n  precision?: number;\n  prefix?: string;\n  suffix?: string;\n  duration?: number;\n  locale?: string;\n}"
       ]
     },
     "areachart": {
@@ -82,7 +85,7 @@
         "useAreaChart"
       ],
       "propsDefinitions": [
-        "export interface AreaChartProps {\r\n  data: Record<string, string | number>[];\r\n  series: AreaChartSeries[];\r\n  height?: number | string;\r\n  className?: string;\r\n  showGrid?: boolean;\r\n  showLabels?: boolean;\r\n  showTooltip?: boolean;\r\n  animate?: boolean;\r\n}",
+        "export interface AreaChartProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  data: Record<string, string | number>[];\r\n  series: AreaChartSeries[];\r\n  height?: number | string;\r\n  showGrid?: boolean;\r\n  showLabels?: boolean;\r\n  showTooltip?: boolean;\r\n  animate?: boolean;\r\n}",
         "export interface UseAreaChartProps {\r\n  data: Record<string, string | number>[];\r\n  series: AreaChartSeries[];\r\n  width?: number;\r\n  svgHeight?: number;\r\n  defaultColors?: string[];\r\n}"
       ]
     },
@@ -159,7 +162,7 @@
         "FloatBadge"
       ],
       "propsDefinitions": [
-        "export interface BadgeProps {\r\n  content?: React.ReactNode;\r\n  color?: BadgeColor;\r\n  variant?: BadgeVariant;\r\n  pulse?: boolean;\r\n  dot?: boolean;\r\n  show?: boolean;\r\n  max?: number;\r\n  className?: string;\r\n}",
+        "export interface BadgeProps extends Omit<HTMLMotionProps<'span'>, 'content'> {\r\n  content?: React.ReactNode;\r\n  color?: BadgeColor;\r\n  variant?: BadgeVariant;\r\n  pulse?: boolean;\r\n  dot?: boolean;\r\n  show?: boolean;\r\n  max?: number;\r\n}",
         "export interface FloatBadgeProps extends BadgeProps {\n  children: React.ReactNode;\n  position?: BadgePosition;\n  offset?: [number, number];\n}"
       ]
     },
@@ -185,7 +188,7 @@
         "useBarChart"
       ],
       "propsDefinitions": [
-        "export interface BarChartProps {\r\n  data: Record<string, string | number>[];\r\n  series: BarChartSeries[];\r\n  height?: number | string;\r\n  className?: string;\r\n  showGrid?: boolean;\r\n  showLabels?: boolean;\r\n  showTooltip?: boolean;\r\n  animate?: boolean;\r\n  barGap?: number;\r\n  maxBarWidth?: number;\r\n  rounded?: boolean;\r\n  texture?: BarChartTexture;\r\n  showTrack?: boolean;\r\n}"
+        "export interface BarChartProps extends ComponentPropsWithoutRef<'div'> {\r\n  data: Record<string, string | number>[];\r\n  series: BarChartSeries[];\r\n  height?: number | string;\r\n  showGrid?: boolean;\r\n  showLabels?: boolean;\r\n  showTooltip?: boolean;\r\n  animate?: boolean;\r\n  barGap?: number;\r\n  maxBarWidth?: number;\r\n  rounded?: boolean;\r\n  texture?: BarChartTexture;\r\n  showTrack?: boolean;\r\n}"
       ]
     },
     "bento-grid": {
@@ -378,7 +381,7 @@
         "Chip"
       ],
       "propsDefinitions": [
-        "export interface ChipProps {\r\n  label: React.ReactNode;\r\n  icon?: React.ReactNode;\r\n  variant?: ChipVariant;\r\n  color?: ChipColor;\r\n  selected?: boolean;\r\n  disabled?: boolean;\r\n  className?: string;\r\n  onClick?: (event: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) => void;\r\n  onDelete?: (event: React.MouseEvent<HTMLButtonElement>) => void;\r\n}"
+        "export interface ChipProps\r\n  extends Omit<React.HTMLAttributes<HTMLButtonElement | HTMLDivElement>, 'onClick' | 'color'> {\r\n  label: React.ReactNode;\r\n  icon?: React.ReactNode;\r\n  variant?: ChipVariant;\r\n  color?: ChipColor;\r\n  selected?: boolean;\r\n  disabled?: boolean;\r\n  onClick?: (event: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) => void;\r\n  onDelete?: (event: React.MouseEvent<HTMLButtonElement>) => void;\r\n}"
       ]
     },
     "circularprogress": {
@@ -401,7 +404,7 @@
         "CircularProgress"
       ],
       "propsDefinitions": [
-        "export interface CircularProgressProps {\r\n  value: number;\r\n  size?: 'sm' | 'md' | 'lg' | number;\r\n  strokeWidth?: number;\r\n  color?: 'primary' | 'success' | 'warning' | 'danger' | 'info';\r\n  variant?: 'solid' | 'soft';\r\n  showValue?: boolean;\r\n  showTrack?: boolean;\r\n  roundCaps?: boolean;\r\n  trackColor?: string;\r\n  className?: string;\r\n}"
+        "export interface CircularProgressProps extends Omit<React.ComponentPropsWithoutRef<'div'>, 'color'> {\r\n  value: number;\r\n  size?: 'sm' | 'md' | 'lg' | number;\r\n  strokeWidth?: number;\r\n  color?: 'primary' | 'success' | 'warning' | 'danger' | 'info';\r\n  variant?: 'solid' | 'soft';\r\n  showValue?: boolean;\r\n  showTrack?: boolean;\r\n  roundCaps?: boolean;\r\n  trackColor?: string;\r\n}"
       ]
     },
     "colorpicker": {
@@ -619,6 +622,9 @@
       ],
       "propsDefinitions": [
         "export interface DrawerProps {\r\n  isOpen: boolean;\r\n  onClose: () => void;\r\n  position?: DrawerPosition;\r\n  children: ReactNode;\r\n  size?: string;\r\n  className?: string;\r\n  /** id of the element (e.g. the DrawerHeader title) that names the dialog. */\r\n  labelledBy?: string;\r\n  /** Accessible name for the dialog when there is no heading element to reference. */\r\n  label?: string;\r\n}",
+        "export type DrawerHeaderProps = ComponentPropsWithoutRef<'div'>;",
+        "export type DrawerContentProps = ComponentPropsWithoutRef<'div'>;",
+        "export type DrawerFooterProps = ComponentPropsWithoutRef<'div'>;",
         "export interface UseDrawerProps {\r\n  isOpen: boolean;\r\n  onClose: () => void;\r\n  position: DrawerPosition;\r\n}"
       ]
     },
@@ -656,11 +662,11 @@
         "useDropdown"
       ],
       "propsDefinitions": [
-        "export interface DropdownProps {\r\n  children: React.ReactNode;\r\n  className?: string;\r\n}",
-        "export interface DropdownContentProps {\r\n  children: React.ReactNode;\r\n  className?: string;\r\n  align?: 'start' | 'end' | 'center';\r\n  side?: 'top' | 'bottom' | 'left' | 'right';\r\n  sideOffset?: number;\r\n}",
-        "export interface DropdownItemProps {\r\n  children: React.ReactNode;\r\n  onClick?: () => void;\r\n  className?: string;\r\n  disabled?: boolean;\r\n  leftIcon?: React.ReactNode;\r\n  rightIcon?: React.ReactNode;\r\n  destructive?: boolean;\r\n  selected?: boolean;\r\n}",
-        "export interface DropdownLabelProps {\r\n  children: React.ReactNode;\r\n  className?: string;\r\n}",
-        "export interface DropdownSeparatorProps {\r\n  className?: string;\r\n}",
+        "export interface DropdownProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  children: React.ReactNode;\r\n}",
+        "export interface DropdownContentProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  children: React.ReactNode;\r\n  align?: 'start' | 'end' | 'center';\r\n  side?: 'top' | 'bottom' | 'left' | 'right';\r\n  sideOffset?: number;\r\n}",
+        "export interface DropdownItemProps extends Omit<React.ComponentPropsWithoutRef<'button'>, 'onClick'> {\r\n  children: React.ReactNode;\r\n  onClick?: () => void;\r\n  leftIcon?: React.ReactNode;\r\n  rightIcon?: React.ReactNode;\r\n  destructive?: boolean;\r\n  selected?: boolean;\r\n}",
+        "export type DropdownLabelProps = React.ComponentPropsWithoutRef<'div'>;",
+        "export type DropdownSeparatorProps = ComponentPropsWithoutRef<'div'>;",
         "export interface DropdownTriggerProps {\r\n  children: React.ReactNode;\r\n  asChild?: boolean;\r\n}"
       ]
     },
@@ -689,7 +695,7 @@
         "useFloatActionMenu"
       ],
       "propsDefinitions": [
-        "export interface FloatActionMenuProps {\r\n  icon?: React.ReactNode;\r\n  label?: string;\r\n  variant?: 'neutral' | 'primary';\r\n  children: React.ReactNode;\r\n  position?: FloatActionPosition;\r\n  className?: string;\r\n  buttonClassName?: string;\r\n  menuClassName?: string;\r\n}",
+        "export interface FloatActionMenuProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  icon?: React.ReactNode;\r\n  label?: string;\r\n  variant?: 'neutral' | 'primary';\r\n  children: React.ReactNode;\r\n  position?: FloatActionPosition;\r\n  buttonClassName?: string;\r\n  menuClassName?: string;\r\n}",
         "export interface UseFloatActionMenuProps {\n  position: FloatActionPosition;\n}"
       ]
     },
@@ -762,7 +768,7 @@
         "useImageExpander"
       ],
       "propsDefinitions": [
-        "export interface ImageExpanderProps {\r\n  children: ReactNode;\r\n  full?: ReactNode;\r\n  caption?: string;\r\n  className?: string;\r\n}"
+        "export interface ImageExpanderProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  children: ReactNode;\r\n  full?: ReactNode;\r\n  caption?: string;\r\n}"
       ]
     },
     "input": {
@@ -810,7 +816,7 @@
         "useLineChart"
       ],
       "propsDefinitions": [
-        "export interface LineChartProps {\r\n  data: Record<string, string | number>[];\r\n  series: LineChartSeries[];\r\n  className?: string;\r\n  showGrid?: boolean;\r\n  showLabels?: boolean;\r\n  showTooltip?: boolean;\r\n  animate?: boolean;\r\n}",
+        "export interface LineChartProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  data: Record<string, string | number>[];\r\n  series: LineChartSeries[];\r\n  showGrid?: boolean;\r\n  showLabels?: boolean;\r\n  showTooltip?: boolean;\r\n  animate?: boolean;\r\n}",
         "export interface UseLineChartProps {\n  data: Record<string, string | number>[];\n  series: LineChartSeries[];\n}"
       ]
     },
@@ -870,10 +876,10 @@
         "useModal"
       ],
       "propsDefinitions": [
-        "export interface ModalProps extends VariantProps<typeof modalContentVariants> {\r\n  isOpen: boolean;\r\n  onClose: () => void;\r\n  children: ReactNode;\r\n  className?: string;\r\n  labelledBy?: string;\r\n  label?: string;\r\n}",
-        "export interface ModalContentProps {\r\n  children: ReactNode;\r\n  className?: string;\r\n}",
-        "export interface ModalFooterProps {\r\n  children: ReactNode;\r\n  className?: string;\r\n}",
-        "export interface ModalHeaderProps {\r\n  children?: ReactNode;\r\n  className?: string;\r\n  onClose?: () => void;\r\n}",
+        "export interface ModalProps\r\n  extends VariantProps<typeof modalContentVariants>,\r\n    Omit<HTMLMotionProps<'div'>, 'children' | 'size'> {\r\n  isOpen: boolean;\r\n  onClose: () => void;\r\n  children: ReactNode;\r\n  className?: string;\r\n  labelledBy?: string;\r\n  label?: string;\r\n}",
+        "export type ModalContentProps = ComponentPropsWithoutRef<'div'>;",
+        "export type ModalFooterProps = ComponentPropsWithoutRef<'div'>;",
+        "export interface ModalHeaderProps extends ComponentPropsWithoutRef<'div'> {\r\n  onClose?: () => void;\r\n}",
         "export interface UseModalProps {\r\n  isOpen: boolean;\r\n  onClose: () => void;\r\n}"
       ]
     },
@@ -949,7 +955,9 @@
         "useNavigationMenuViewport"
       ],
       "propsDefinitions": [
-        "export interface NavigationMenuProps {\r\n  children: React.ReactNode;\r\n  className?: string;\r\n}"
+        "export interface NavigationMenuProps extends React.ComponentPropsWithoutRef<'nav'> {\r\n  children: React.ReactNode;\r\n}",
+        "export interface NavigationMenuTriggerProps\r\n  extends Omit<React.ComponentPropsWithoutRef<'button'>, 'value'> {\r\n  value: string;\r\n}",
+        "export type NavigationMenuViewportProps = Omit<HTMLMotionProps<'div'>, 'children'>;"
       ]
     },
     "otpinput": {
@@ -1023,7 +1031,7 @@
         "usePieChart"
       ],
       "propsDefinitions": [
-        "export interface PieChartProps {\r\n  data: PieChartDataItem[];\r\n  className?: string;\r\n  innerRadius?: number;\r\n  showLabels?: boolean;\r\n  showTooltip?: boolean;\r\n  animate?: boolean;\r\n  texture?: PieChartTexture;\r\n}",
+        "export interface PieChartProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  data: PieChartDataItem[];\r\n  innerRadius?: number;\r\n  showLabels?: boolean;\r\n  showTooltip?: boolean;\r\n  animate?: boolean;\r\n  texture?: PieChartTexture;\r\n}",
         "export interface UsePieChartProps {\r\n  data: PieChartDataItem[];\r\n  innerRadius: number;\r\n  showTooltip: boolean;\r\n}"
       ]
     },
@@ -1055,8 +1063,8 @@
         "usePopover"
       ],
       "propsDefinitions": [
-        "export interface PopoverProps {\r\n  children: React.ReactNode;\r\n  trigger?: PopoverTriggerMode;\r\n}",
-        "export interface PopoverContentProps {\r\n  children: React.ReactNode;\r\n  className?: string;\r\n  align?: 'start' | 'end' | 'center';\r\n  side?: 'top' | 'bottom' | 'left' | 'right';\r\n  sideOffset?: number;\r\n}",
+        "export interface PopoverProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  children: React.ReactNode;\r\n  trigger?: PopoverTriggerMode;\r\n}",
+        "export interface PopoverContentProps extends Omit<HTMLMotionProps<'div'>, 'children'> {\r\n  children: React.ReactNode;\r\n  align?: 'start' | 'end' | 'center';\r\n  side?: 'top' | 'bottom' | 'left' | 'right';\r\n  sideOffset?: number;\r\n}",
         "export interface PopoverTriggerProps {\r\n  children: React.ReactNode;\r\n  asChild?: boolean;\r\n}"
       ]
     },
@@ -1132,7 +1140,7 @@
         "ScrollArea"
       ],
       "propsDefinitions": [
-        "export interface ScrollAreaProps extends VariantProps<typeof viewportVariants> {\r\n  children: ReactNode;\r\n  className?: string;\r\n  viewportClassName?: string;\r\n}"
+        "export interface ScrollAreaProps\r\n  extends ComponentPropsWithoutRef<'div'>,\r\n    VariantProps<typeof viewportVariants> {\r\n  children: ReactNode;\r\n  viewportClassName?: string;\r\n}"
       ]
     },
     "select": {
@@ -1158,7 +1166,7 @@
         "useSelect"
       ],
       "propsDefinitions": [
-        "export interface SelectProps {\r\n  label?: string;\r\n  description?: string;\r\n  placeholder?: string;\r\n  options: SelectOption[];\r\n  value?: string;\r\n  onChange?: (value: string) => void;\r\n  className?: string;\r\n  disabled?: boolean;\r\n  size?: 'sm' | 'md' | 'lg';\r\n  error?: string;\r\n}",
+        "export interface SelectProps\r\n  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onChange' | 'value'> {\r\n  label?: string;\r\n  description?: string;\r\n  placeholder?: string;\r\n  options: SelectOption[];\r\n  value?: string;\r\n  onChange?: (value: string) => void;\r\n  size?: 'sm' | 'md' | 'lg';\r\n  error?: string;\r\n}",
         "export interface UseSelectProps {\r\n  options: SelectOption[];\r\n  value?: string;\r\n  disabled?: boolean;\r\n}"
       ]
     },
@@ -1311,7 +1319,7 @@
         "StatsCard"
       ],
       "propsDefinitions": [
-        "export interface StatsCardProps {\r\n  title: string;\r\n  value: number;\r\n  prefix?: string;\r\n  suffix?: string;\r\n  precision?: number;\r\n  trend?: number;\r\n  trendLabel?: string;\r\n  icon?: React.ReactNode;\r\n  description?: string;\r\n  status?: 'success' | 'danger' | 'warning' | 'info' | 'neutral';\r\n  animate?: boolean;\r\n  className?: string;\r\n  chart?: {\r\n    data: number[];\r\n    color?: string;\r\n  };\r\n}"
+        "export interface StatsCardProps extends Omit<React.ComponentPropsWithoutRef<typeof Card>, 'title' | 'children'> {\r\n  title: string;\r\n  value: number;\r\n  prefix?: string;\r\n  suffix?: string;\r\n  precision?: number;\r\n  trend?: number;\r\n  trendLabel?: string;\r\n  icon?: React.ReactNode;\r\n  description?: string;\r\n  status?: 'success' | 'danger' | 'warning' | 'info' | 'neutral';\r\n  animate?: boolean;\r\n  chart?: {\r\n    data: number[];\r\n    color?: string;\r\n  };\r\n}"
       ]
     },
     "stepper": {
@@ -1410,7 +1418,7 @@
         "SystemLogs"
       ],
       "propsDefinitions": [
-        "export interface SystemLogsProps {\r\n  logs: LogEntry[];\r\n  title?: string;\r\n  session?: string;\r\n  status?: string;\r\n  statusColor?: BadgeColor;\r\n  className?: string;\r\n  maxHeight?: number | string;\r\n  autoScroll?: boolean;\r\n}"
+        "export interface SystemLogsProps extends Omit<React.ComponentPropsWithoutRef<'div'>, 'title'> {\r\n  logs: LogEntry[];\r\n  title?: string;\r\n  session?: string;\r\n  status?: string;\r\n  statusColor?: BadgeColor;\r\n  maxHeight?: number | string;\r\n  autoScroll?: boolean;\r\n}"
       ]
     },
     "table": {
@@ -1470,10 +1478,10 @@
         "TabsContent"
       ],
       "propsDefinitions": [
-        "export interface TabsProps {\r\n  defaultValue?: string;\r\n  value?: string;\r\n  onValueChange?: (val: string) => void;\r\n  children: ReactNode;\r\n  className?: string;\r\n  variant?: TabsVariant;\r\n}",
-        "export interface TabsListProps {\r\n  children: ReactNode;\r\n  className?: string;\r\n  variant?: TabsVariant;\r\n}",
-        "export interface TabsTriggerProps {\r\n  value: string;\r\n  children: ReactNode;\r\n  className?: string;\r\n  disabled?: boolean;\r\n}",
-        "export interface TabsContentProps {\r\n  value: string;\r\n  children: ReactNode;\r\n  className?: string;\r\n}"
+        "export interface TabsProps extends ComponentPropsWithoutRef<'div'> {\r\n  defaultValue?: string;\r\n  value?: string;\r\n  onValueChange?: (val: string) => void;\r\n  children: ReactNode;\r\n  variant?: TabsVariant;\r\n}",
+        "export interface TabsListProps extends ComponentPropsWithoutRef<'div'> {\r\n  children: ReactNode;\r\n  variant?: TabsVariant;\r\n}",
+        "export interface TabsTriggerProps extends Omit<ComponentPropsWithoutRef<'button'>, 'value'> {\r\n  value: string;\r\n  children: ReactNode;\r\n}",
+        "export interface TabsContentProps extends Omit<HTMLMotionProps<'div'>, 'children'> {\r\n  value: string;\r\n  children: ReactNode;\r\n}"
       ]
     },
     "textarea": {
@@ -1555,7 +1563,8 @@
         "TooltipContent"
       ],
       "propsDefinitions": [
-        "export interface TooltipContentProps {\r\n  children: React.ReactNode;\r\n  className?: string;\r\n  side?: 'top' | 'bottom' | 'left' | 'right';\r\n  sideOffset?: number;\r\n}"
+        "export interface TooltipProps extends React.ComponentPropsWithoutRef<'div'> {\r\n  children: React.ReactNode;\r\n  delay?: number;\r\n  animate?: boolean;\r\n}",
+        "export interface TooltipContentProps extends Omit<HTMLMotionProps<'div'>, 'children'> {\r\n  children: React.ReactNode;\r\n  side?: 'top' | 'bottom' | 'left' | 'right';\r\n  sideOffset?: number;\r\n}"
       ]
     }
   }

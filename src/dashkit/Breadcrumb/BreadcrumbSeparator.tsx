@@ -9,12 +9,13 @@ export function BreadcrumbSeparator({
 }: React.ComponentPropsWithoutRef<'li'>) {
   return (
     <li
+      data-slot="breadcrumb-separator"
       role="presentation"
       aria-hidden="true"
       className={cn('[&>svg]:size-3.5', className)}
       {...props}
     >
-      {children ?? <LuChevronRight size={14} className="text-ds-400" />}
+      {children ?? <LuChevronRight size={14} className="text-muted-foreground" />}
     </li>
   );
 }

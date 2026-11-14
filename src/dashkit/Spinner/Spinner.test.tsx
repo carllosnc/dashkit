@@ -21,13 +21,18 @@ describe('Spinner', () => {
   });
 
   it('applies custom color', () => {
-    const { container } = render(<Spinner color="red" />);
+    const { container } = render(<Spinner color="#ef4444" />);
     const svg = container.querySelector('svg');
-    expect(svg).toHaveAttribute('stroke', 'red');
+    expect(svg).toHaveAttribute('stroke', '#ef4444');
   });
 
   it('has drop-shadow-sm class', () => {
     const { container } = render(<Spinner />);
     expect(container.firstChild).toHaveClass('drop-shadow-sm');
+  });
+
+  it('rejects invalid color values at compile time', () => {
+    // @ts-expect-error invalid color token must fail typechecking
+    render(<Spinner color="invalid-color" />);
   });
 });

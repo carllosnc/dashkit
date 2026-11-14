@@ -6,12 +6,19 @@ export interface NavbarActionsProps extends React.HTMLAttributes<HTMLDivElement>
   className?: string;
 }
 
-export function NavbarActions({ children, className, ...props }: NavbarActionsProps) {
-  return (
-    <div className={cn('flex items-center gap-1.5 sm:gap-2 shrink-0 flex-nowrap', className)} {...props}>
-      {children}
-    </div>
-  );
-}
+export const NavbarActions = React.forwardRef<HTMLDivElement, NavbarActionsProps>(
+  function NavbarActions({ children, className, ...props }, ref) {
+    return (
+      <div
+        ref={ref}
+        data-slot="navbar-actions"
+        className={cn('flex items-center gap-1.5 sm:gap-2 shrink-0 flex-nowrap', className)}
+        {...props}
+      >
+        {children}
+      </div>
+    );
+  }
+);
 
 NavbarActions.displayName = 'NavbarActions';

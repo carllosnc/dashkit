@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { cva, type VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 import { cn } from '../utils/cn';
+import type { StrictVariantProps } from '../utils/types';
 
 const avatarVariants = cva(
   'ds-avatar relative flex shrink-0 items-center justify-center overflow-hidden bg-ds-200/80 border border-border/70 text-foreground dark:bg-ds-800 dark:border-ds-700/80 dark:text-ds-100',
@@ -36,7 +37,7 @@ export type AvatarShape = 'circle' | 'square';
 
 export interface AvatarProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof avatarVariants> {
+    StrictVariantProps<typeof avatarVariants> {
   src?: string;
   alt?: string;
   fallback?: React.ReactNode;
@@ -62,6 +63,7 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
     return (
       <div
         ref={ref}
+        data-slot="avatar"
         className={cn(avatarVariants({ size, shape, bordered }), className)}
         {...props}
       >

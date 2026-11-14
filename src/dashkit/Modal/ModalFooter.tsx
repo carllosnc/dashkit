@@ -1,15 +1,21 @@
-import { type ReactNode } from 'react';
+import { forwardRef, type ComponentPropsWithoutRef } from 'react';
 import { cn } from '../utils/cn';
 
-export interface ModalFooterProps {
-  children: ReactNode;
-  className?: string;
-}
+export type ModalFooterProps = ComponentPropsWithoutRef<'div'>;
 
-export function ModalFooter({ children, className }: ModalFooterProps) {
-  return (
-    <div className={cn('p-6 pb-6 flex items-center justify-end gap-3', className)}>
-      {children}
-    </div>
-  );
-}
+export const ModalFooter = forwardRef<HTMLDivElement, ModalFooterProps>(
+  function ModalFooter({ children, className, ...props }, ref) {
+    return (
+      <div
+        ref={ref}
+        data-slot="modal-footer"
+        className={cn('p-6 pb-6 flex items-center justify-end gap-3', className)}
+        {...props}
+      >
+        {children}
+      </div>
+    );
+  }
+);
+
+ModalFooter.displayName = 'ModalFooter';

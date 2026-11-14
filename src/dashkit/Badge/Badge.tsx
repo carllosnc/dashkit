@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, type HTMLMotionProps } from 'framer-motion';
 import { cva } from 'class-variance-authority';
 import { cn } from '../utils/cn';
 
@@ -55,7 +55,7 @@ const badgeVariants = cva(
   }
 );
 
-const pulseColorClasses: Record<string, string> = {
+const pulseColorClasses: Record<BadgeColor, string> = {
   base: 'bg-ds-500',
   success: 'bg-ds-success-600 dark:bg-ds-success-500',
   warning: 'bg-ds-warning-500',
@@ -68,7 +68,7 @@ const pulseColorClasses: Record<string, string> = {
 export type BadgeVariant = 'solid' | 'soft';
 export type BadgeColor = 'primary' | 'success' | 'warning' | 'danger' | 'error' | 'info' | 'base';
 
-export interface BadgeProps {
+export interface BadgeProps extends Omit<HTMLMotionProps<'span'>, 'content'> {
   content?: React.ReactNode;
   color?: BadgeColor;
   variant?: BadgeVariant;
@@ -76,19 +76,22 @@ export interface BadgeProps {
   dot?: boolean;
   show?: boolean;
   max?: number;
-  className?: string;
 }
 
-export function Badge({
-  content,
-  color = 'success',
-  variant = 'solid',
-  pulse = false,
-  dot = false,
-  show = true,
-  max = 99,
-  className,
-}: BadgeProps) {
+export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(function Badge(
+  {
+    content,
+    color = 'success',
+    variant = 'solid',
+    pulse = false,
+    dot = false,
+    show = true,
+    max = 99,
+    className,
+    ...props
+  },
+  ref
+) {
   const displayContent = React.useMemo(() => {
     if (dot) return null;
     if (typeof content === 'number' && content > max) return `${max}+`;
@@ -101,11 +104,14 @@ export function Badge({
     <AnimatePresence>
       {show && (
         <motion.span
+          ref={ref}
+          data-slot="badge"
           className={cn(
             badgeVariants({ variant, color: colorKey, dot }),
             className
           )}
           data-testid="badge"
+          {...props}
         >
           {pulse && (
             <span
@@ -124,4 +130,6 @@ export function Badge({
       )}
     </AnimatePresence>
   );
-}
+});
+
+Badge.displayName = 'Badge';

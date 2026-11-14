@@ -32,6 +32,7 @@ export const ListTile = ({
     <motion.div
       {...props}
       ref={ref}
+      data-slot="list-tile"
       onClick={!disabled ? onClick : undefined}
       className={cn(
         'flex w-full items-center gap-3 py-3 font-sans text-left transition-colors duration-150',

@@ -2,7 +2,8 @@ import * as React from 'react';
 import { cn } from '../utils/cn';
 import { motion, type Transition } from 'framer-motion';
 
-export type SpinnerColor = 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'neutral' | string;
+export type SpinnerTokenColor = 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'neutral';
+export type SpinnerColor = SpinnerTokenColor | 'currentColor' | `#${string}` | `var(--${string})`;
 
 export interface SpinnerProps extends Omit<React.SVGAttributes<SVGSVGElement>, 'color'> {
   size?: number | string;
@@ -11,7 +12,7 @@ export interface SpinnerProps extends Omit<React.SVGAttributes<SVGSVGElement>, '
   className?: string;
 }
 
-const COLOR_MAP: Record<string, string> = {
+const COLOR_MAP: Record<SpinnerTokenColor, string> = {
   primary: 'var(--color-primary)',
   success: 'var(--color-ds-success-600)',
   warning: 'var(--color-ds-warning-500)',
@@ -30,18 +31,23 @@ const ACTIVE_CIRCLE_INITIAL = { pathLength: 0.1, pathOffset: 0 };
 const ACTIVE_CIRCLE_ANIMATE = { pathLength: [0.1, 0.8, 0.1], pathOffset: [0, 0.5, 1] };
 const ACTIVE_CIRCLE_TRANSITION: Transition = { repeat: Infinity, duration: 1.5, ease: "easeInOut" };
 
-export function Spinner({
-  size = 24,
-  color = 'currentColor',
-  thickness = 2.5,
-  className,
-  ...props
-}: SpinnerProps) {
+export const Spinner = React.forwardRef<SVGSVGElement, SpinnerProps>(function Spinner(
+  {
+    size = 24,
+    color = 'currentColor',
+    thickness = 2.5,
+    className,
+    ...props
+  },
+  ref
+) {
   const spinnerSize = typeof size === 'number' ? `${size}px` : size;
-  const strokeColor = COLOR_MAP[color as string] || color;
+  const strokeColor = color in COLOR_MAP ? COLOR_MAP[color as SpinnerTokenColor] : color;
 
   return (
     <motion.svg
+      ref={ref}
+      data-slot="spinner"
       xmlns="http://www.w3.org/2000/svg"
       width={spinnerSize}
       height={spinnerSize}
@@ -67,6 +73,6 @@ export function Spinner({
       />
     </motion.svg>
   );
-}
+});
 
 Spinner.displayName = 'Spinner';

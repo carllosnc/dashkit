@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 import { cn } from '../utils/cn';
+import type { StrictVariantProps } from '../utils/types';
 
 const skeletonVariants = cva('relative overflow-hidden bg-muted', {
   variants: {
@@ -22,22 +23,30 @@ const skeletonVariants = cva('relative overflow-hidden bg-muted', {
   },
 });
 
+export type SkeletonVariant = 'text' | 'circular' | 'rectangular';
+export type SkeletonAnimation = 'shimmer' | 'pulse' | 'none';
+
 export interface SkeletonProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof skeletonVariants> {}
+    StrictVariantProps<typeof skeletonVariants> {}
 
-export function Skeleton({
-  variant = 'rectangular',
-  animation = 'shimmer',
-  className,
-  ...props
-}: SkeletonProps) {
+export const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(function Skeleton(
+  {
+    variant = 'rectangular',
+    animation = 'shimmer',
+    className,
+    ...props
+  },
+  ref
+) {
   return (
     <div
+      ref={ref}
+      data-slot="skeleton"
       className={cn(skeletonVariants({ variant, animation }), className)}
       {...props}
     />
   );
-}
+});
 
 Skeleton.displayName = 'Skeleton';

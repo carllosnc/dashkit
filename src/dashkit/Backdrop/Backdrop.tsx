@@ -10,18 +10,23 @@ export interface BackdropProps extends HTMLMotionProps<'div'> {
   children?: React.ReactNode;
 }
 
-export function Backdrop({
-  show = true,
-  blur = true,
-  transparent = false,
-  fixed = true,
-  className,
-  onClick,
-  children,
-  ...props
-}: BackdropProps) {
+export const Backdrop = React.forwardRef<HTMLDivElement, BackdropProps>(function Backdrop(
+  {
+    show = true,
+    blur = true,
+    transparent = false,
+    fixed = true,
+    className,
+    onClick,
+    children,
+    ...props
+  },
+  ref
+) {
   const overlay = (
     <motion.div
+      ref={ref}
+      data-slot="backdrop"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -41,7 +46,8 @@ export function Backdrop({
 
   if (children || fixed) {
     return (
-      <div 
+      <div
+        data-slot="backdrop-root"
         data-testid="backdrop-root"
         className={cn(
           'inset-0 z-[1100] flex items-center justify-center p-6 isolate',
@@ -55,4 +61,6 @@ export function Backdrop({
   }
 
   return overlay;
-}
+});
+
+Backdrop.displayName = 'Backdrop';

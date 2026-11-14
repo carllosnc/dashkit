@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 import { cn } from '../utils/cn';
+import type { StrictVariantProps } from '../utils/types';
 
 const surfaceVariants = cva(
   'ds-rounded-md text-foreground transition-colors duration-200',
@@ -24,7 +25,7 @@ export type SurfaceVariant = 'default' | 'info' | 'success' | 'warning' | 'dange
 
 export interface SurfaceProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof surfaceVariants> {
+    StrictVariantProps<typeof surfaceVariants> {
   children?: React.ReactNode;
 }
 
@@ -33,6 +34,7 @@ export const Surface = React.forwardRef<HTMLDivElement, SurfaceProps>(
     return (
       <div
         ref={ref}
+        data-slot="surface"
         className={cn(surfaceVariants({ variant }), className)}
         {...props}
       >

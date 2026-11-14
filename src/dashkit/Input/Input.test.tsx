@@ -43,12 +43,20 @@ describe('Input', () => {
     expect(wrapper).toHaveClass('opacity-50');
   });
 
-  it('generates an ID automatically from label if not provided', () => {
-    render(<Input label="My Great Label" />);
-    const label = screen.getByText(/My Great Label/i);
-    const input = screen.getByRole('textbox');
-    expect(input.id).toBe('input-my-great-label');
-    expect(label).toHaveAttribute('for', 'input-my-great-label');
+  it('generates a unique ID automatically and links it to the label when id is not provided', () => {
+    render(
+      <>
+        <Input label="My Great Label" />
+        <Input label="My Great Label" />
+      </>
+    );
+    const labels = screen.getAllByText(/My Great Label/i);
+    const inputs = screen.getAllByRole('textbox');
+    expect(inputs[0].id).toBeTruthy();
+    expect(inputs[1].id).toBeTruthy();
+    expect(inputs[0].id).not.toBe(inputs[1].id);
+    expect(labels[0]).toHaveAttribute('for', inputs[0].id);
+    expect(labels[1]).toHaveAttribute('for', inputs[1].id);
   });
 
   it('renders prefix correctly', () => {

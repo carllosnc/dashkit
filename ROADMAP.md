@@ -17,7 +17,7 @@ Initiatives to make Dashkit fully optimized for AI coding assistants (Cursor, Cl
 - [x] Derive `ds-primary-gradient` and `ds-danger-gradient` from semantic `--ds-primary` and `--ds-danger` tokens (with `--ds-primary-gradient: none` support for flat themes).
 - [x] Configure `extendTailwindMerge` in `cn.ts` so standard Tailwind classes (`rounded-*`, `bg-none`) deterministically override `ds-rounded*` and `ds-*-gradient`.
 - [x] Replace hardcoded neutral color scales with semantic tokens (`text-foreground`, `text-muted-foreground`) and add `data-slot` attributes across form components.
-- [ ] Extend `data-slot` attributes and native HTML prop forwarding (`ComponentPropsWithoutRef` + `ref`) across all remaining overlay, navigation, and data display components.
+- [x] Extend `data-slot` attributes and native HTML prop forwarding (`ComponentPropsWithoutRef` + `ref`) across all remaining overlay, navigation, and data display components.
 - [x] Propagate scoped theme attributes (`data-primary`, `data-base`) to portalled overlays (`Select`, `Combobox`, `DatePicker`, `Modal`, `Popover`).
 
 ### Machine-Readable Registry, CLI and MCP
@@ -32,16 +32,16 @@ Initiatives to make Dashkit fully optimized for AI coding assistants (Cursor, Cl
 - [x] Document the 3-Tier AI Customization Hierarchy (`dashkit.css` tokens → component `cva` variants → `className` & `data-slot`) in `.agents/skills/dashkit-developer/SKILL.md`, `customization.mdx`, and `llms-full.txt`.
 - [x] Synchronize `.agents/skills/dashkit-developer/SKILL.md` to reference `src/dashkit/` instead of legacy paths.
 - [x] Expand `AGENTS.md` and create a root `.cursorrules` with Tailwind v4 rules, CVA standards, and pure-usage patterns.
-- [ ] Add automated lint checks to verify agent compliance with file structure and styling guidelines.
+- [x] Add automated lint checks to verify agent compliance with file structure and styling guidelines.
 
 ### Code Metadata and Zero-Ambiguity APIs
 - [ ] Add JSDoc descriptions and `@example` usage blocks across all 55 component declarations for inline LLM autocomplete (explicitly distinguishing prop-driven `options={...}` components from compound `children` components).
-- [ ] Enforce discriminated unions on variant and color props to prevent invalid value generation by models.
+- [x] Enforce discriminated unions on variant and color props to prevent invalid value generation by models.
 - [ ] Document all component prop interfaces with explicit `@default` tags.
 
 ### Downstream Consumer AI Tooling
 - [x] Inject consumer AI rules/skills (`AGENTS.md`, `.cursorrules`, or `.agents/skills/dashkit/SKILL.md`) automatically during `dashkit init` (or via `dashkit ai-rules`) with resolved paths from `dashkit.json`, component catalog, and the 3-tier customization protocol.
-- [ ] Create a dedicated Dashkit UI Builder AI Skill (`SKILL.md`) with best practices, layout recipes, component pairing rules, and design guidelines for generating high-craft UIs using Dashkit.
+- [x] Create a dedicated Dashkit UI Builder AI Skill (`SKILL.md`) with best practices, layout recipes, component pairing rules, and design guidelines for generating high-craft UIs using Dashkit.
 - [x] Publish system prompts and golden template examples for generative UI workflows (dashboards, tables, forms).
 
 ## Component Library Enhancements
