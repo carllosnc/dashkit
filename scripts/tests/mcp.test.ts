@@ -94,6 +94,20 @@ describe('Dashkit MCP Server', () => {
     expect(searchPayload.total).toBeGreaterThan(0);
     expect(searchPayload.components.some((c: { slug: string }) => c.slug === 'button')).toBe(true);
 
+    const aliasSearchRes = await handleMcpMessage({
+      jsonrpc: '2.0',
+      id: 41,
+      method: 'tools/call',
+      params: {
+        name: 'search_components',
+        arguments: { query: 'kbar', limit: 5 }
+      }
+    });
+    const aliasPayload = JSON.parse(
+      (aliasSearchRes?.result as { content: Array<{ text: string }> }).content[0].text
+    );
+    expect(aliasPayload.components.some((c: { slug: string }) => c.slug === 'commandpalette')).toBe(true);
+
     const listRes = await handleMcpMessage({
       jsonrpc: '2.0',
       id: 5,
