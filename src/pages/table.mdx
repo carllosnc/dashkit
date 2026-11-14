@@ -7,9 +7,17 @@ import {
   TableRow,
   TableHead,
   TableCell,
-  TableCaption
+  TableCaption,
+  VirtualTableBody
 } from '../dashkit/Table/Table';
 import { Badge } from '../dashkit/Badge';
+
+export const virtualRows = Array.from({ length: 5000 }, (_, i) => ({
+  id: `LOG-${String(i + 1).padStart(4, '0')}`,
+  service: ['api-gateway', 'auth-worker', 'billing-sync', 'edge-cache'][i % 4],
+  latency: `${12 + (i % 85)}ms`,
+  status: i % 11 === 0 ? 'Degraded' : 'Healthy',
+}));
 
 # Table
 
@@ -194,6 +202,119 @@ Tables often need a way to perform operations on specific rows. You can easily i
       "type": "number",
       "defaultValue": "—",
       "description": "The number of columns the cell should span."
+    }
+  ]}
+/>
+
+## Virtual Scrolling (Large Datasets)
+
+For large datasets (thousands of rows), pass `maxHeight` to `TableContainer`, `sticky` to `TableHeader`, and replace `TableBody` with `VirtualTableBody`. Only the visible rows plus an `overscan` buffer are mounted in the DOM.
+
+<div className="not-prose">
+<TableContainer maxHeight={320} className="rounded-xl border border-border/60">
+  <Table>
+    <TableHeader sticky>
+      <TableRow>
+        <TableHead>Event ID</TableHead>
+        <TableHead>Service</TableHead>
+        <TableHead>Status</TableHead>
+        <TableHead align="right">Latency</TableHead>
+      </TableRow>
+    </TableHeader>
+    <VirtualTableBody
+      items={virtualRows}
+      estimateSize={45}
+      overscan={6}
+      getRowKey={(row) => row.id}
+      renderRow={(row) => (
+        <TableRow>
+          <TableCell className="font-mono text-xs">{row.id}</TableCell>
+          <TableCell>{row.service}</TableCell>
+          <TableCell>
+            <Badge color={row.status === 'Healthy' ? 'success' : 'warning'} size="sm">
+              {row.status}
+            </Badge>
+          </TableCell>
+          <TableCell align="right" className="font-mono">{row.latency}</TableCell>
+        </TableRow>
+      )}
+    />
+  </Table>
+</TableContainer>
+</div>
+
+```tsx
+<TableContainer maxHeight={320}>
+  <Table>
+    <TableHeader sticky>
+      <TableRow>
+        <TableHead>Event ID</TableHead>
+        <TableHead>Service</TableHead>
+        <TableHead align="right">Latency</TableHead>
+      </TableRow>
+    </TableHeader>
+    <VirtualTableBody
+      items={rows}
+      estimateSize={45}
+      overscan={6}
+      getRowKey={(row) => row.id}
+      renderRow={(row) => (
+        <TableRow>
+          <TableCell>{row.id}</TableCell>
+          <TableCell>{row.service}</TableCell>
+          <TableCell align="right">{row.latency}</TableCell>
+        </TableRow>
+      )}
+    />
+  </Table>
+</TableContainer>
+```
+
+### VirtualTableBody
+
+<PropertyDoc
+  properties={[
+    {
+      "prop": "items",
+      "type": "readonly T[]",
+      "defaultValue": "—",
+      "description": "Dataset items to virtualize."
+    },
+    {
+      "prop": "renderRow",
+      "type": "(item: T, index: number) => ReactNode",
+      "defaultValue": "—",
+      "description": "Render callback for each visible row."
+    },
+    {
+      "prop": "estimateSize",
+      "type": "number",
+      "defaultValue": "48",
+      "description": "Estimated fixed height (px) per row."
+    },
+    {
+      "prop": "overscan",
+      "type": "number",
+      "defaultValue": "5",
+      "description": "Extra rows rendered above and below the viewport."
+    },
+    {
+      "prop": "viewportHeight",
+      "type": "number",
+      "defaultValue": "400",
+      "description": "Fallback viewport height (px) before container measurement."
+    },
+    {
+      "prop": "getRowKey",
+      "type": "(item: T, index: number) => Key",
+      "defaultValue": "index",
+      "description": "Optional stable key extractor for each row."
+    },
+    {
+      "prop": "emptyState",
+      "type": "ReactNode",
+      "defaultValue": "—",
+      "description": "Optional fallback rendered when items is empty."
     }
   ]}
 />

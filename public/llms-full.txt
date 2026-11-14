@@ -6344,6 +6344,53 @@ Tables often need a way to perform operations on specific rows. You can easily i
 | `colSpan` | `number` | - | The number of columns the cell should span. |
 
 
+### Virtual Scrolling (Large Datasets)
+
+For large datasets (thousands of rows), pass `maxHeight` to `TableContainer`, `sticky` to `TableHeader`, and replace `TableBody` with `VirtualTableBody`. Only the visible rows plus an `overscan` buffer are mounted in the DOM.
+
+
+
+```tsx
+<TableContainer maxHeight={320}>
+  <Table>
+    <TableHeader sticky>
+      <TableRow>
+        <TableHead>Event ID</TableHead>
+        <TableHead>Service</TableHead>
+        <TableHead align="right">Latency</TableHead>
+      </TableRow>
+    </TableHeader>
+    <VirtualTableBody
+      items={rows}
+      estimateSize={45}
+      overscan={6}
+      getRowKey={(row) => row.id}
+      renderRow={(row) => (
+        <TableRow>
+          <TableCell>{row.id}</TableCell>
+          <TableCell>{row.service}</TableCell>
+          <TableCell align="right">{row.latency}</TableCell>
+        </TableRow>
+      )}
+    />
+  </Table>
+</TableContainer>
+```
+
+#### VirtualTableBody
+
+
+| Property | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `items` | `readonly T[]` | - | Dataset items to virtualize. |
+| `renderRow` | `(item: T, index: number) => ReactNode` | - | Render callback for each visible row. |
+| `estimateSize` | `number` | `48` | Estimated fixed height (px) per row. |
+| `overscan` | `number` | `5` | Extra rows rendered above and below the viewport. |
+| `viewportHeight` | `number` | `400` | Fallback viewport height (px) before container measurement. |
+| `getRowKey` | `(item: T, index: number) => Key` | `index` | Optional stable key extractor for each row. |
+| `emptyState` | `ReactNode` | - | Optional fallback rendered when items is empty. |
+
+
 ## AreaChart
 
 - Category: Visualization & Media
