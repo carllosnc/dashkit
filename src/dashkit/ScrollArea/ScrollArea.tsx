@@ -1,6 +1,7 @@
 import { forwardRef, type ComponentPropsWithoutRef, type ReactNode } from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 import { cn } from '../utils/cn';
+import type { StrictVariantProps } from '../utils/types';
 
 const viewportVariants = cva('h-full w-full rounded-[inherit] custom-scrollbar', {
   variants: {
@@ -15,9 +16,11 @@ const viewportVariants = cva('h-full w-full rounded-[inherit] custom-scrollbar',
   },
 });
 
+export type ScrollAreaOrientation = 'vertical' | 'horizontal' | 'both';
+
 export interface ScrollAreaProps
   extends ComponentPropsWithoutRef<'div'>,
-    VariantProps<typeof viewportVariants> {
+    StrictVariantProps<typeof viewportVariants> {
   children: ReactNode;
   viewportClassName?: string;
 }

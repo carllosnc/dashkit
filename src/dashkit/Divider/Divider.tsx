@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 import { cn } from '../utils/cn';
+import type { StrictVariantProps } from '../utils/types';
 
 const dividerVariants = cva('shrink-0 border-border', {
   variants: {
@@ -55,11 +56,14 @@ const dividerLineVariants = cva('flex-1 border-border', {
   },
 });
 
+export type DividerVariant = 'solid' | 'dashed' | 'dotted';
+export type DividerContentPosition = 'left' | 'center' | 'right';
+
 export interface DividerProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof dividerVariants> {
+    StrictVariantProps<typeof dividerVariants> {
   children?: React.ReactNode;
-  contentPosition?: 'left' | 'center' | 'right';
+  contentPosition?: DividerContentPosition;
 }
 
 export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(

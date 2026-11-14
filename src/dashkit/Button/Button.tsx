@@ -7,8 +7,9 @@ import {
   type ReactNode,
   type ReactElement,
 } from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 import { cn } from '../utils/cn';
+import type { StrictVariantProps } from '../utils/types';
 import { Spinner } from '../Spinner/Spinner';
 
 const buttonVariants = cva(
@@ -90,9 +91,13 @@ const buttonVariants = cva(
   }
 );
 
+export type ButtonVariant = 'filled' | 'outlined' | 'soft' | 'ghost';
+export type ButtonColor = 'primary' | 'danger';
+export type ButtonSize = 'sm' | 'md' | 'lg';
+
 export interface ButtonProps
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'>,
-    Omit<VariantProps<typeof buttonVariants>, 'rounded'> {
+    Omit<StrictVariantProps<typeof buttonVariants>, 'rounded'> {
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   loading?: boolean;

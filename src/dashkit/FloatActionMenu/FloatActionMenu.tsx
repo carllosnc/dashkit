@@ -5,10 +5,12 @@ import { FiX, FiMenu } from 'react-icons/fi';
 import { IconButton } from '../IconButton/IconButton';
 import { useFloatActionMenu, type FloatActionPosition } from './useFloatActionMenu';
 
+export type FloatActionMenuVariant = 'neutral' | 'primary';
+
 export interface FloatActionMenuProps extends React.ComponentPropsWithoutRef<'div'> {
   icon?: React.ReactNode;
   label?: string;
-  variant?: 'neutral' | 'primary';
+  variant?: FloatActionMenuVariant;
   children: React.ReactNode;
   position?: FloatActionPosition;
   buttonClassName?: string;

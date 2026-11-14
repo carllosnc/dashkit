@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { forwardRef, type ReactNode } from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 import { cn } from '../utils/cn';
+import type { StrictVariantProps } from '../utils/types';
 
 const iconButtonVariants = cva(
   'inline-flex items-center justify-center transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-transparent cursor-pointer whitespace-nowrap select-none shrink-0 font-medium active:scale-[0.97] disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none',
@@ -31,7 +32,10 @@ const iconButtonVariants = cva(
   }
 );
 
-type IconButtonBaseProps = Omit<VariantProps<typeof iconButtonVariants>, 'rounded'> & {
+export type IconButtonVariant = 'filled' | 'outlined' | 'soft' | 'ghost';
+export type IconButtonSize = 'sm' | 'md' | 'lg';
+
+type IconButtonBaseProps = Omit<StrictVariantProps<typeof iconButtonVariants>, 'rounded'> & {
   icon: ReactNode;
   rounded?: boolean;
 };

@@ -55,7 +55,7 @@ const badgeVariants = cva(
   }
 );
 
-const pulseColorClasses: Record<string, string> = {
+const pulseColorClasses: Record<BadgeColor, string> = {
   base: 'bg-ds-500',
   success: 'bg-ds-success-600 dark:bg-ds-success-500',
   warning: 'bg-ds-warning-500',
