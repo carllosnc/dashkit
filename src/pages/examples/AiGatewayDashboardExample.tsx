@@ -863,6 +863,122 @@ export const AiGatewayDashboardExample = () => {
                 </CardContent>
               </Card>
             </div>
+
+            {/* ROUTING & FAILOVER POLICY (FULL WIDTH) */}
+            <Card>
+              <CardHeader
+                leftIcon={<FiSliders size={18} />}
+                action={
+                  <div className="flex items-center gap-2.5">
+                    <Badge color="info" variant="soft" dot content="Latency-First Routing" />
+                    <Button
+                      variant="outlined"
+                      size="sm"
+                      leftIcon={<FiRefreshCw size={13} />}
+                      onClick={() =>
+                        toast({
+                          title: 'Failover Health Check Passed',
+                          description: 'All 3 upstream providers responded within SLA (<220ms).',
+                          type: 'success',
+                        })
+                      }
+                    >
+                      Test Failover
+                    </Button>
+                  </div>
+                }
+              >
+                <CardTitle as="h2">Routing & Failover Policy</CardTitle>
+                <CardDescription>
+                  Multi-provider load balancing, semantic caching, and automatic fallback order
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="pt-1">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {[
+                    {
+                      priority: 'Primary',
+                      provider: 'Anthropic',
+                      model: 'claude-3-5-sonnet',
+                      traffic: 62,
+                      latency: '184ms p95',
+                      uptime: '99.98%',
+                      badgeColor: 'primary' as const,
+                    },
+                    {
+                      priority: 'Secondary',
+                      provider: 'OpenAI',
+                      model: 'gpt-4o',
+                      traffic: 28,
+                      latency: '215ms p95',
+                      uptime: '99.95%',
+                      badgeColor: 'base' as const,
+                    },
+                    {
+                      priority: 'Fallback',
+                      provider: 'Google',
+                      model: 'gemini-2.5-pro',
+                      traffic: 10,
+                      latency: '168ms p95',
+                      uptime: '99.99%',
+                      badgeColor: 'base' as const,
+                    },
+                  ].map((route) => (
+                    <div
+                      key={route.model}
+                      className="flex flex-col gap-3 rounded-xl border border-border/70 bg-muted/20 p-4"
+                    >
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-2 min-w-0">
+                          <Badge color={route.badgeColor} variant="soft" content={route.priority} />
+                          <span className="text-xs font-medium text-muted-foreground truncate">
+                            {route.provider}
+                          </span>
+                        </div>
+                        <span className="text-xs font-semibold text-foreground tabular-nums">
+                          {route.traffic}% traffic
+                        </span>
+                      </div>
+
+                      <div className="flex flex-col gap-1">
+                        <code className="text-sm font-semibold font-mono text-foreground truncate">
+                          {route.model}
+                        </code>
+                        <div className="flex items-center gap-3 text-xs text-muted-foreground tabular-nums">
+                          <span>{route.latency}</span>
+                          <span className="text-muted-foreground/40">•</span>
+                          <span className="text-emerald-600 dark:text-emerald-400 font-medium">
+                            {route.uptime} uptime
+                          </span>
+                        </div>
+                      </div>
+
+                      <ProgressBar value={route.traffic} size="sm" />
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex flex-wrap items-center justify-between gap-3 text-xs border-t border-border/60 pt-3 mt-4">
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-muted-foreground">
+                    <span>
+                      Semantic Cache Hit: <strong className="text-foreground tabular-nums">34.8%</strong>
+                    </span>
+                    <span className="text-muted-foreground/40">•</span>
+                    <span>
+                      Circuit Breaker: <strong className="text-foreground">&lt; 2% 5xx / 60s</strong>
+                    </span>
+                    <span className="text-muted-foreground/40">•</span>
+                    <span>
+                      Retries: <strong className="text-foreground">2x exponential backoff</strong>
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1.5 font-medium text-emerald-600 dark:text-emerald-400">
+                    <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
+                    <span>Multi-Region Active</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </main>
       </div>
