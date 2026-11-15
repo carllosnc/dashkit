@@ -2,6 +2,8 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { FiSearch, FiX } from 'react-icons/fi';
 import clsx from 'clsx';
+import { Input } from '../dashkit/Input';
+import { IconButton } from '../dashkit/IconButton';
 
 export interface SidebarLink {
   to: string;
@@ -53,27 +55,28 @@ export function Sidebar({
     <>
       {searchable && (
         <div className="mb-6">
-          <div className="relative flex items-center">
-            <FiSearch className="absolute left-3 size-3.5 text-muted-foreground pointer-events-none" />
-            <input
-              type="search"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Filter components..."
-              aria-label="Filter documentation links"
-              className="w-full h-8 pl-8 pr-7 text-xs bg-input-bg text-input-fg border border-input-border ds-rounded-sm outline-none transition-colors focus:border-input-focus focus:ring-2 focus:ring-input-focus/20 placeholder:text-muted-foreground"
-            />
-            {query && (
-              <button
-                type="button"
-                onClick={() => setQuery('')}
-                aria-label="Clear filter"
-                className="absolute right-2 p-0.5 rounded text-muted-foreground hover:text-foreground"
-              >
-                <FiX className="size-3.5" />
-              </button>
-            )}
-          </div>
+          <Input
+            size="sm"
+            type="text"
+            role="searchbox"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Filter components..."
+            aria-label="Filter documentation links"
+            leftIcon={<FiSearch className="size-3.5" />}
+            rightIcon={
+              query ? (
+                <IconButton
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setQuery('')}
+                  aria-label="Clear filter"
+                  className="pointer-events-auto size-5 -mr-1"
+                  icon={<FiX className="size-3.5" />}
+                />
+              ) : undefined
+            }
+          />
         </div>
       )}
 
