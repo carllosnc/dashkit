@@ -18,6 +18,7 @@ import { Badge } from '../dashkit/Badge';
 import { Button } from '../dashkit/Button/Button';
 import {
   Table,
+  TableContainer,
   TableHeader,
   TableBody,
   TableRow,
@@ -126,12 +127,12 @@ export function CustomizationPlayground() {
           </div>
 
           {/* Palette Fine-Tuning */}
-          <div className="flex flex-col gap-5 pt-3 border-t border-border">
-            <div className="space-y-2.5">
+          <div className="flex flex-col gap-6 pt-5 border-t border-border">
+            <div className="flex flex-col gap-3">
               <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                 Primary Brand Palette (`data-primary=&quot;{primaryColor}&quot;`)
               </span>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2.5">
                 {PRIMARY_COLORS.map(c => {
                   const isSelected = primaryColor === c.id;
                   return (
@@ -155,11 +156,11 @@ export function CustomizationPlayground() {
               </div>
             </div>
 
-            <div className="space-y-2.5">
+            <div className="flex flex-col gap-3">
               <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                 Base Neutral Palette (`data-base=&quot;{baseColor}&quot;`)
               </span>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2.5">
                 {BASE_COLORS.map(c => {
                   const isSelected = baseColor === c.id;
                   return (
@@ -205,54 +206,56 @@ export function CustomizationPlayground() {
           </div>
         </CardHeader>
         <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Token Variable</TableHead>
-                <TableHead>Category</TableHead>
-                <TableHead>Light Value (`:root`)</TableHead>
-                <TableHead>Dark Value (`.dark`)</TableHead>
-                <TableHead>Role</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {activePreset.tokens.map(token => (
-                <TableRow key={token.variable}>
-                  <TableCell className="font-mono text-xs font-semibold text-foreground">
-                    {token.variable}
-                  </TableCell>
-                  <TableCell>
-                    <Badge variant="soft" color="base" content={token.category} />
-                  </TableCell>
-                  <TableCell className="font-mono text-xs">
-                    <span className="inline-flex items-center gap-2">
-                      {token.lightPreviewColor && (
-                        <span
-                          className="size-3.5 ds-rounded-sm border border-border shrink-0"
-                          style={{ backgroundColor: token.lightPreviewColor }}
-                        />
-                      )}
-                      <span>{token.lightValue}</span>
-                    </span>
-                  </TableCell>
-                  <TableCell className="font-mono text-xs">
-                    <span className="inline-flex items-center gap-2">
-                      {token.darkPreviewColor && (
-                        <span
-                          className="size-3.5 ds-rounded-sm border border-border shrink-0"
-                          style={{ backgroundColor: token.darkPreviewColor }}
-                        />
-                      )}
-                      <span>{token.darkValue}</span>
-                    </span>
-                  </TableCell>
-                  <TableCell className="text-xs text-muted-foreground">
-                    {token.description}
-                  </TableCell>
+          <TableContainer>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Token Variable</TableHead>
+                  <TableHead>Category</TableHead>
+                  <TableHead>Light Value (`:root`)</TableHead>
+                  <TableHead>Dark Value (`.dark`)</TableHead>
+                  <TableHead>Role</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHeader>
+              <TableBody>
+                {activePreset.tokens.map(token => (
+                  <TableRow key={token.variable}>
+                    <TableCell className="font-mono text-xs font-semibold text-foreground">
+                      {token.variable}
+                    </TableCell>
+                    <TableCell>
+                      <Badge variant="soft" color="base" content={token.category} />
+                    </TableCell>
+                    <TableCell className="font-mono text-xs">
+                      <span className="inline-flex items-center gap-2">
+                        {token.lightPreviewColor && (
+                          <span
+                            className="size-3.5 ds-rounded-sm border border-border shrink-0"
+                            style={{ backgroundColor: token.lightPreviewColor }}
+                          />
+                        )}
+                        <span>{token.lightValue}</span>
+                      </span>
+                    </TableCell>
+                    <TableCell className="font-mono text-xs">
+                      <span className="inline-flex items-center gap-2">
+                        {token.darkPreviewColor && (
+                          <span
+                            className="size-3.5 ds-rounded-sm border border-border shrink-0"
+                            style={{ backgroundColor: token.darkPreviewColor }}
+                          />
+                        )}
+                        <span>{token.darkValue}</span>
+                      </span>
+                    </TableCell>
+                    <TableCell className="text-xs text-muted-foreground">
+                      {token.description}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
         </CardContent>
       </Card>
 
