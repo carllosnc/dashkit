@@ -8,9 +8,9 @@ import { Footer } from './partials/Footer'
 import { HomeExamples } from './partials/HomeExamples'
 import { Divider } from './dashkit/Divider/Divider'
 
-const TITLE = "Dashkit | Ship modern interfaces in minutes";
+const TITLE = "Dashkit | Own your UI. Ship faster.";
 const DESCRIPTION = "Ready-to-use components you can copy straight into your project. Fully customizable, accessible by default, and yours to own.";
-const TAGLINE = "Ship modern interfaces in minutes";
+const TAGLINE = "Own your UI. Ship faster.";
 const OG_DESCRIPTION = "Ready-to-use components you can copy straight into your project. Fully customizable, accessible by default, and yours to own.";
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
 
       {/* Hero Section */}
       <main className="relative flex flex-col items-center justify-center text-center px-6 py-16 md:py-20 overflow-hidden">
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground leading-tight mb-5">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-[-0.03em] text-foreground leading-[1.08] text-balance mb-5">
           {TAGLINE}
         </h1>
 
