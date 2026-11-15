@@ -360,8 +360,8 @@ export function MdxWrapper({ Component }: { Component: MdxComponent }) {
         data-ai-toolbar="true"
         className="not-prose mb-6 flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-border"
       >
-        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-          <span className="inline-flex items-center gap-1.5 font-medium text-foreground">
+        <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+          <span className="inline-flex items-center gap-1.5 font-medium text-foreground whitespace-nowrap">
             AI Context:
           </span>
           <a
