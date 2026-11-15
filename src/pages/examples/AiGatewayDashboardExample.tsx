@@ -34,7 +34,7 @@ import {
   SidebarSection,
   SidebarItem,
 } from '../../dashkit/Sidebar/Sidebar';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../dashkit/Card';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../../dashkit/Card';
 import { StatsCard } from '../../dashkit/StatsCard/StatsCard';
 import { AreaChart } from '../../dashkit/AreaChart/AreaChart';
 import { ProgressBar } from '../../dashkit/ProgressBar/ProgressBar';
@@ -728,65 +728,63 @@ export const AiGatewayDashboardExample = () => {
                 <CardHeader
                   leftIcon={<FiKey size={18} />}
                   action={
-                    <Badge color="success" variant="soft" dot content={`${apiKeys.length} Active Keys`} />
+                    <Badge
+                      color="success"
+                      variant="soft"
+                      content={`${apiKeys.length} Active Keys`}
+                      className="normal-case tracking-normal font-medium"
+                    />
                   }
                 >
                   <CardTitle as="h2">API Gateway Credentials</CardTitle>
                   <CardDescription>Bearer token authentication and RPM throttles</CardDescription>
                 </CardHeader>
-                <CardContent className="flex-1 flex flex-col justify-between pt-1">
+                <CardContent className="flex-1 pt-1">
                   <div className="divide-y divide-border/60">
                     {apiKeys.map((key) => (
-                      <div key={key.id} className="flex items-center justify-between gap-4 py-3 first:pt-0 last:pb-0">
-                        <div className="flex items-center gap-3 min-w-0">
-                          <div className="size-9 rounded-lg bg-muted/70 border border-border/50 flex items-center justify-center text-muted-foreground shrink-0">
-                            <FiKey size={15} />
+                      <div key={key.id} className="flex items-center justify-between gap-3 py-3.5 first:pt-0 last:pb-0">
+                        <div className="flex flex-col min-w-0 gap-0.5">
+                          <div className="flex items-center gap-2 min-w-0">
+                            <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
+                            <span className="font-semibold text-sm text-foreground truncate">{key.name}</span>
                           </div>
-                          <div className="flex flex-col min-w-0 gap-1">
-                            <div className="flex items-center gap-2 min-w-0">
-                              <span className="font-semibold text-sm text-foreground truncate">{key.name}</span>
-                              <span className="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-600 dark:text-emerald-400 shrink-0">
-                                <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
-                                {key.status}
-                              </span>
-                            </div>
-                            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground">
-                              <code className="font-mono text-[11px] font-medium px-1.5 py-0.5 rounded bg-muted text-foreground/80">
-                                {key.prefix}
-                              </code>
-                              <span className="font-medium text-foreground/80 tabular-nums">{key.rpmLimit}</span>
-                              <span className="text-muted-foreground/40">•</span>
-                              <span>Created {key.created}</span>
-                            </div>
-                          </div>
+                          <code className="font-mono text-xs text-muted-foreground pl-3.5 truncate">
+                            {key.prefix}
+                          </code>
                         </div>
-                        <Button
-                          variant="outlined"
-                          size="sm"
-                          leftIcon={<FiCopy size={13} />}
-                          onClick={() => {
-                            navigator.clipboard?.writeText(key.prefix);
-                            toast({
-                              title: 'Key Copied',
-                              description: `${key.name} token prefix copied.`,
-                              type: 'success',
-                            });
-                          }}
-                        >
-                          Copy
-                        </Button>
+                        <div className="flex items-center gap-3 shrink-0">
+                          <div className="flex flex-col items-end gap-0.5">
+                            <span className="font-mono text-xs font-medium text-foreground/80 tabular-nums">
+                              {key.rpmLimit}
+                            </span>
+                            <span className="text-[11px] text-muted-foreground">Created {key.created}</span>
+                          </div>
+                          <IconButton
+                            variant="ghost"
+                            size="sm"
+                            aria-label={`Copy ${key.name} key`}
+                            icon={<FiCopy size={14} />}
+                            onClick={() => {
+                              navigator.clipboard?.writeText(key.prefix);
+                              toast({
+                                title: 'Key Copied',
+                                description: `${key.name} token prefix copied.`,
+                                type: 'success',
+                              });
+                            }}
+                          />
+                        </div>
                       </div>
                     ))}
                   </div>
-
-                  <div className="flex items-center justify-between text-xs border-t border-border/60 pt-3 mt-4">
-                    <span className="text-muted-foreground font-medium">Automatic Key Rotation</span>
-                    <div className="flex items-center gap-1.5 font-medium text-emerald-600 dark:text-emerald-400">
-                      <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
-                      <span>90d Policy Enforced</span>
-                    </div>
-                  </div>
                 </CardContent>
+                <CardFooter className="border-t border-border/60 pt-4 flex items-center justify-between gap-2 text-xs text-muted-foreground">
+                  <span>Automatic Key Rotation</span>
+                  <span className="inline-flex items-center gap-1.5 font-medium text-emerald-600 dark:text-emerald-400">
+                    <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
+                    <span>90d Policy Enforced</span>
+                  </span>
+                </CardFooter>
               </Card>
 
               {/* SECURITY & GUARDRAILS AUDIT */}

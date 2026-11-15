@@ -41,7 +41,7 @@ import {
   SidebarSection,
   SidebarItem,
 } from '../../dashkit/Sidebar/Sidebar';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../dashkit/Card';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../../dashkit/Card';
 import { StatsCard } from '../../dashkit/StatsCard/StatsCard';
 import { AreaChart } from '../../dashkit/AreaChart/AreaChart';
 import { ProgressBar } from '../../dashkit/ProgressBar/ProgressBar';
@@ -804,73 +804,88 @@ export const DevOpsDashboardExample = () => {
               >
                 <CardTitle as="h2">Pipeline Stages</CardTitle>
                 <CardDescription>
-                  Build execution for commit 8f2d91a
+                  Build execution for commit{' '}
+                  <code className="font-mono text-xs text-foreground bg-muted px-1.5 py-0.5 ds-rounded-sm">
+                    8f2d91a
+                  </code>
                 </CardDescription>
               </CardHeader>
-              <CardContent className="flex-1 flex flex-col justify-center py-2">
+              <CardContent className="flex-1 flex flex-col justify-between gap-6 pt-1">
                 <Stepper activeStep={4} orientation="vertical" color="base" className="w-full">
-                  <Step
-                    className="w-full pb-3 last:pb-0 [&_.step__container]:w-full [&_.step__content]:flex-1 [&_.step__content]:min-w-0"
-                    title={
-                      <div className="flex items-center justify-between gap-2 w-full">
-                        <span className="text-sm font-semibold text-foreground">Lint & Typecheck</span>
-                        <span className="text-xs text-muted-foreground tabular-nums">14s</span>
-                      </div>
-                    }
-                    description={
-                      <div className="flex items-center justify-between gap-4 w-full">
-                        <span className="text-xs text-muted-foreground truncate">tsc -b && eslint .</span>
-                        <span className="text-[11px] text-muted-foreground/60 shrink-0">passed</span>
-                      </div>
-                    }
-                  />
-                  <Step
-                    className="w-full pb-3 last:pb-0 [&_.step__container]:w-full [&_.step__content]:flex-1 [&_.step__content]:min-w-0"
-                    title={
-                      <div className="flex items-center justify-between gap-2 w-full">
-                        <span className="text-sm font-semibold text-foreground">Automated Tests</span>
-                        <span className="text-xs text-muted-foreground tabular-nums">28s</span>
-                      </div>
-                    }
-                    description={
-                      <div className="flex items-center justify-between gap-4 w-full">
-                        <span className="text-xs text-muted-foreground truncate">vitest run (54 suites)</span>
-                        <span className="text-[11px] text-muted-foreground/60 shrink-0">passed</span>
-                      </div>
-                    }
-                  />
-                  <Step
-                    className="w-full pb-3 last:pb-0 [&_.step__container]:w-full [&_.step__content]:flex-1 [&_.step__content]:min-w-0"
-                    title={
-                      <div className="flex items-center justify-between gap-2 w-full">
-                        <span className="text-sm font-semibold text-foreground">Container Build</span>
-                        <span className="text-xs text-muted-foreground tabular-nums">45s</span>
-                      </div>
-                    }
-                    description={
-                      <div className="flex items-center justify-between gap-4 w-full">
-                        <span className="text-xs text-muted-foreground truncate">docker build (linux/amd64)</span>
-                        <span className="text-[11px] text-muted-foreground/60 shrink-0">passed</span>
-                      </div>
-                    }
-                  />
-                  <Step
-                    className="w-full pb-3 last:pb-0 [&_.step__container]:w-full [&_.step__content]:flex-1 [&_.step__content]:min-w-0"
-                    title={
-                      <div className="flex items-center justify-between gap-2 w-full">
-                        <span className="text-sm font-semibold text-foreground">Global Edge Sync</span>
-                        <span className="text-xs text-muted-foreground tabular-nums">12s</span>
-                      </div>
-                    }
-                    description={
-                      <div className="flex items-center justify-between gap-4 w-full">
-                        <span className="text-xs text-muted-foreground truncate">syncing 28 anycast PoPs</span>
-                        <span className="text-[11px] text-muted-foreground/60 shrink-0">synced</span>
-                      </div>
-                    }
-                  />
+                  {[
+                    {
+                      title: 'Lint & Typecheck',
+                      detail: 'tsc -b && eslint .',
+                      duration: '14s',
+                      isCommand: true,
+                    },
+                    {
+                      title: 'Automated Tests',
+                      detail: 'vitest run (54 suites)',
+                      duration: '28s',
+                      isCommand: true,
+                    },
+                    {
+                      title: 'Container Build',
+                      detail: 'docker build (linux/amd64)',
+                      duration: '45s',
+                      isCommand: true,
+                    },
+                    {
+                      title: 'Global Edge Sync',
+                      detail: 'syncing 28 anycast PoPs',
+                      duration: '12s',
+                      isCommand: false,
+                    },
+                  ].map((stage) => (
+                    <Step
+                      key={stage.title}
+                      className="pb-5 last:pb-0"
+                      title={
+                        <div className="flex items-center justify-between gap-2 w-full">
+                          <span className="text-sm font-semibold text-foreground">{stage.title}</span>
+                          <span className="font-mono text-xs font-medium text-muted-foreground tabular-nums shrink-0">
+                            {stage.duration}
+                          </span>
+                        </div>
+                      }
+                      description={
+                        <span
+                          className={cn(
+                            'block text-xs text-muted-foreground truncate mt-0.5',
+                            stage.isCommand && 'font-mono'
+                          )}
+                        >
+                          {stage.detail}
+                        </span>
+                      }
+                    />
+                  ))}
                 </Stepper>
+
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center justify-between text-[11px] text-muted-foreground">
+                    <span>Duration breakdown</span>
+                    <span className="font-mono tabular-nums">1m 39s total</span>
+                  </div>
+                  <div className="flex h-1.5 w-full gap-1 overflow-hidden rounded-full">
+                    <div className="h-full rounded-full bg-primary/35" style={{ width: '14%' }} title="Lint & Typecheck: 14s" />
+                    <div className="h-full rounded-full bg-primary/60" style={{ width: '28%' }} title="Automated Tests: 28s" />
+                    <div className="h-full rounded-full bg-primary" style={{ width: '45%' }} title="Container Build: 45s" />
+                    <div className="h-full rounded-full bg-primary/25" style={{ width: '13%' }} title="Global Edge Sync: 12s" />
+                  </div>
+                </div>
               </CardContent>
+              <CardFooter className="border-t border-border/60 pt-4 flex items-center justify-between gap-2 text-xs text-muted-foreground">
+                <span className="inline-flex items-center gap-1.5 font-mono">
+                  <FiGitBranch size={13} />
+                  <span>main</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5">
+                  <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
+                  <span>4 / 4 stages completed</span>
+                </span>
+              </CardFooter>
             </Card>
 
             {/* 3. EDGE POINTS OF PRESENCE */}
@@ -878,10 +893,12 @@ export const DevOpsDashboardExample = () => {
               <CardHeader
                 leftIcon={<FiGlobe size={18} />}
                 action={
-                  <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-                    <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
-                    <span>28 PoPs Active</span>
-                  </div>
+                  <Badge
+                    content="28 PoPs Active"
+                    color="success"
+                    variant="soft"
+                    className="normal-case tracking-normal font-medium"
+                  />
                 }
               >
                 <CardTitle as="h2">Edge Points of Presence</CardTitle>
@@ -896,21 +913,30 @@ export const DevOpsDashboardExample = () => {
                   { code: 'NRT', region: 'Tokyo, Japan', latency: '41.8ms', traffic: '21%', pct: 21 },
                   { code: 'GRU', region: 'São Paulo, Brazil', latency: '27.9ms', traffic: '14%', pct: 14 },
                 ].map((pop) => (
-                  <div key={pop.code} className="flex flex-col gap-1.5">
-                    <div className="flex items-center justify-between text-sm">
+                  <div key={pop.code} className="flex flex-col gap-2">
+                    <div className="flex items-center justify-between gap-2 text-sm">
                       <div className="flex items-center gap-2 min-w-0">
                         <span className="font-semibold text-foreground truncate">{pop.region}</span>
-                        <span className="text-xs text-muted-foreground">{pop.code}</span>
+                        <code className="font-mono text-[11px] text-muted-foreground bg-muted/70 px-1.5 py-0.5 ds-rounded-sm shrink-0">
+                          {pop.code}
+                        </code>
                       </div>
-                      <div className="flex items-center gap-3 shrink-0 text-xs">
-                        <span className="text-muted-foreground">{pop.traffic} traffic</span>
+                      <div className="flex items-center gap-2.5 shrink-0 font-mono text-xs tabular-nums">
+                        <span className="text-muted-foreground">{pop.traffic}</span>
                         <span className="font-semibold text-foreground">{pop.latency}</span>
                       </div>
                     </div>
-                    <ProgressBar value={pop.pct} size="sm" color="primary" />
+                    <ProgressBar value={pop.pct} size="xs" color="primary" />
                   </div>
                 ))}
               </CardContent>
+              <CardFooter className="border-t border-border/60 pt-4 flex items-center justify-between gap-2 text-xs text-muted-foreground">
+                <span className="font-mono tabular-nums">Avg latency: 23.1ms</span>
+                <span className="inline-flex items-center gap-1.5">
+                  <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
+                  <span>100% edge health</span>
+                </span>
+              </CardFooter>
             </Card>
 
             {/* 4. SECURITY & COMPLIANCE */}
@@ -918,10 +944,12 @@ export const DevOpsDashboardExample = () => {
               <CardHeader
                 leftIcon={<FiShield size={18} />}
                 action={
-                  <div className="flex items-center gap-1.5 text-xs font-medium text-emerald-500">
-                    <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
-                    <span>Protected</span>
-                  </div>
+                  <Badge
+                    content="Protected"
+                    color="success"
+                    variant="soft"
+                    className="normal-case tracking-normal font-medium"
+                  />
                 }
               >
                 <CardTitle as="h2">Security & Compliance</CardTitle>
@@ -960,9 +988,9 @@ export const DevOpsDashboardExample = () => {
                     stat: '1 approval required',
                   },
                 ].map((sec) => (
-                  <div key={sec.label} className="flex items-center justify-between gap-4 py-2.5 first:pt-0 last:pb-0">
+                  <div key={sec.label} className="flex items-center justify-between gap-4 py-3 first:pt-0 last:pb-0">
                     <div className="flex items-center gap-3 min-w-0">
-                      <div className="size-8 rounded-lg bg-muted flex items-center justify-center text-muted-foreground shrink-0">
+                      <div className="size-8 ds-rounded bg-muted/70 border border-border/60 flex items-center justify-center text-foreground/70 shrink-0">
                         {sec.icon}
                       </div>
                       <div className="flex flex-col min-w-0">
@@ -970,16 +998,25 @@ export const DevOpsDashboardExample = () => {
                         <span className="text-xs text-muted-foreground truncate">{sec.detail}</span>
                       </div>
                     </div>
-                    <div className="flex flex-col items-end shrink-0 gap-0.5">
-                      <div className="flex items-center gap-1.5 text-xs font-medium text-emerald-500">
-                        <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
-                        <span>{sec.status}</span>
-                      </div>
-                      <span className="text-[11px] text-muted-foreground tabular-nums">{sec.stat}</span>
+                    <div className="flex flex-col items-end shrink-0 gap-1">
+                      <Badge
+                        content={sec.status}
+                        color="success"
+                        variant="soft"
+                        className="normal-case tracking-normal font-medium"
+                      />
+                      <span className="font-mono text-[11px] text-muted-foreground tabular-nums">{sec.stat}</span>
                     </div>
                   </div>
                 ))}
               </CardContent>
+              <CardFooter className="border-t border-border/60 pt-4 flex items-center justify-between gap-2 text-xs text-muted-foreground">
+                <span className="font-mono">Last audit: 4m ago</span>
+                <span className="inline-flex items-center gap-1.5">
+                  <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
+                  <span>All 4 checks passing</span>
+                </span>
+              </CardFooter>
             </Card>
           </div>
         </div>
