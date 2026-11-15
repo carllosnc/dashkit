@@ -205,15 +205,15 @@
   --ds-bg: var(--color-ds-950);
   --ds-fg: var(--color-ds-100);
 
-  --ds-border: var(--color-ds-700);
-  --ds-border-subtle: var(--color-ds-800);
+  --ds-border: var(--color-ds-800);
+  --ds-border-subtle: color-mix(in srgb, var(--color-ds-800) 55%, transparent);
 
   --ds-card: var(--color-ds-900);
   --ds-card-fg: var(--color-ds-100);
 
   --ds-popover: var(--color-ds-900);
   --ds-popover-fg: var(--color-ds-100);
-  --ds-popover-border: var(--color-ds-700);
+  --ds-popover-border: var(--color-ds-800);
   --ds-popover-shadow: 0 12px 24px -4px rgb(0 0 0 / 0.55), 0 4px 10px -2px rgb(0 0 0 / 0.4);
   --ds-popover-item: var(--color-ds-800);
   --ds-popover-item-selected: var(--color-ds-800);
