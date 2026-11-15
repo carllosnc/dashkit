@@ -6,17 +6,17 @@
 ──────────────────────────────────────────────── */
 @theme inline {
   --color-ds-0:     var(--ds-color-0, var(--color-white));
-  --color-ds-50:    var(--ds-color-50, var(--color-zinc-50));
-  --color-ds-100:   var(--ds-color-100, var(--color-zinc-100));
-  --color-ds-200:   var(--ds-color-200, var(--color-zinc-200));
-  --color-ds-300:   var(--ds-color-300, var(--color-zinc-300));
-  --color-ds-400:   var(--ds-color-400, var(--color-zinc-400));
-  --color-ds-500:   var(--ds-color-500, var(--color-zinc-500));
-  --color-ds-600:   var(--ds-color-600, var(--color-zinc-600));
-  --color-ds-700:   var(--ds-color-700, var(--color-zinc-700));
-  --color-ds-800:   var(--ds-color-800, var(--color-zinc-800));
-  --color-ds-900:   var(--ds-color-900, var(--color-zinc-900));
-  --color-ds-950:   var(--ds-color-950, var(--color-zinc-950));
+  --color-ds-50:    var(--ds-color-50, var(--color-neutral-50));
+  --color-ds-100:   var(--ds-color-100, var(--color-neutral-100));
+  --color-ds-200:   var(--ds-color-200, var(--color-neutral-200));
+  --color-ds-300:   var(--ds-color-300, var(--color-neutral-300));
+  --color-ds-400:   var(--ds-color-400, var(--color-neutral-400));
+  --color-ds-500:   var(--ds-color-500, var(--color-neutral-500));
+  --color-ds-600:   var(--ds-color-600, var(--color-neutral-600));
+  --color-ds-700:   var(--ds-color-700, var(--color-neutral-700));
+  --color-ds-800:   var(--ds-color-800, var(--color-neutral-800));
+  --color-ds-900:   var(--ds-color-900, var(--color-neutral-900));
+  --color-ds-950:   var(--ds-color-950, var(--color-neutral-950));
 
   --color-ds-primary-50:    var(--ds-color-primary-50, var(--color-blue-50));
   --color-ds-primary-100:   var(--ds-color-primary-100, var(--color-blue-100));
@@ -140,18 +140,20 @@
    2. Base Variable Definitions
 ──────────────────────────────────────────────── */
 :root {
-  --radius: 0.75rem;
+  --radius: 0.5rem;
   --ds-pill-radius: calc(var(--radius) * 9999);
   --ds-border-width: 1px;
   --ds-button-border: transparent;
-  --ds-button-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --ds-button-shadow: none;
   --ds-button-outlined-shadow: none;
   --ds-button-soft-shadow: none;
+  --ds-primary-gradient: none;
+  --ds-danger-gradient: none;
   --ds-card-shadow: none;
   --ds-popover-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --ds-input-shadow: none;
 
-  --ds-bg: var(--color-ds-100);
+  --ds-bg: var(--color-ds-50);
   --ds-fg: var(--color-ds-800);
 
   --ds-border: var(--color-ds-300);
@@ -162,7 +164,7 @@
 
   --ds-popover: var(--color-ds-0);
   --ds-popover-fg: var(--color-ds-900);
-  --ds-popover-border: var(--color-ds-200);
+  --ds-popover-border: var(--color-ds-300);
   --ds-popover-item: var(--color-ds-100);
   --ds-popover-item-selected: var(--color-ds-200);
   --ds-popover-item-selected-fg: var(--color-ds-900);
@@ -203,8 +205,8 @@
   --ds-bg: var(--color-ds-950);
   --ds-fg: var(--color-ds-100);
 
-  --ds-border: var(--color-ds-800);
-  --ds-border-subtle: var(--color-ds-800)/60;
+  --ds-border: var(--color-ds-700);
+  --ds-border-subtle: var(--color-ds-800);
 
   --ds-card: var(--color-ds-900);
   --ds-card-fg: var(--color-ds-100);
@@ -544,6 +546,31 @@
 }
 
 /* Primary Brand Colors */
+[data-primary="neutral"] {
+  --ds-color-primary-50: oklch(98.5% 0 none);
+  --ds-color-primary-100: oklch(97% 0 none);
+  --ds-color-primary-200: oklch(92.2% 0 none);
+  --ds-color-primary-300: oklch(87% 0 none);
+  --ds-color-primary-400: oklch(70.8% 0 none);
+  --ds-color-primary-500: oklch(55.6% 0 none);
+  --ds-color-primary-600: oklch(43.9% 0 none);
+  --ds-color-primary-700: oklch(37.1% 0 none);
+  --ds-color-primary-800: oklch(26.9% 0 none);
+  --ds-color-primary-900: oklch(20.5% 0 none);
+  --ds-color-primary-950: oklch(14.5% 0 none);
+
+  --ds-primary: var(--color-ds-900);
+  --ds-primary-fg: var(--color-white);
+  --ds-chart-1: var(--color-blue-600);
+}
+
+.dark[data-primary="neutral"],
+.dark [data-primary="neutral"] {
+  --ds-primary: var(--color-ds-50);
+  --ds-primary-fg: var(--color-ds-900);
+  --ds-chart-1: var(--color-blue-500);
+}
+
 [data-primary="blue"] {
   --ds-color-primary-50: oklch(97% 0.014 254.604);
   --ds-color-primary-100: oklch(93.2% 0.032 255.585);

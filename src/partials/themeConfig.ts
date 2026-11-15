@@ -13,6 +13,7 @@ export type BaseColor =
   | 'olive';
 
 export type PrimaryColor =
+  | 'neutral'
   | 'red'
   | 'orange'
   | 'amber'
@@ -95,6 +96,7 @@ export const BASE_COLORS: ColorOption<BaseColor>[] = [
 ];
 
 export const PRIMARY_COLORS: ColorOption<PrimaryColor>[] = [
+  { id: 'neutral', label: 'Neutral', color: '#171717' },
   { id: 'red', label: 'Red', color: '#dc2626' },
   { id: 'orange', label: 'Orange', color: '#ea580c' },
   { id: 'amber', label: 'Amber', color: '#d97706' },
@@ -123,33 +125,33 @@ export const THEME_PRESETS: ThemePresetOption[] = [
   {
     id: 'default',
     label: 'Default',
-    tagline: 'Clean & balanced',
+    tagline: 'Clean & neutral',
     description:
-      'Balanced 0.75rem geometry, Zinc neutral surfaces, Blue brand actions, and subtle depth gradients.',
-    baseColor: 'zinc',
-    primaryColor: 'blue',
+      'Minimal 0.5rem geometry, pure Neutral surfaces, monochrome primary actions, and flat borders.',
+    baseColor: 'neutral',
+    primaryColor: 'neutral',
     darkBg: 'midnight',
-    radius: '0.75rem',
+    radius: '0.5rem',
     radiusScale: {
-      sm: '7px (calc(0.75rem - 5px))',
-      md: '9px (calc(0.75rem - 3px))',
-      lg: '12px (0.75rem)',
-      xl: '16px (calc(0.75rem * 1.3333))',
-      '2xl': '20px (calc(0.75rem * 1.6667))',
+      sm: '3px (calc(0.5rem - 5px))',
+      md: '5px (calc(0.5rem - 3px))',
+      lg: '8px (0.5rem)',
+      xl: '10.67px (calc(0.5rem * 1.3333))',
+      '2xl': '13.33px (calc(0.5rem * 1.6667))',
     },
     fontLabel: 'Inter Variable (Sans)',
-    surfaceLabel: 'Subtle tactile gradient',
-    accentHex: '#2563eb',
+    surfaceLabel: 'Flat & clean',
+    accentHex: '#171717',
     presetFile: 'src/dashkit/dashkit.css',
     tokens: [
       {
         variable: '--ds-bg',
         category: 'Core & Surface',
         description: 'Main application background',
-        lightValue: 'var(--color-ds-100)',
+        lightValue: 'var(--color-ds-50)',
         darkValue: 'var(--color-ds-950)',
-        lightPreviewColor: '#f4f4f5',
-        darkPreviewColor: '#09090b',
+        lightPreviewColor: '#fafafa',
+        darkPreviewColor: '#0a0a0a',
       },
       {
         variable: '--ds-fg',
@@ -157,8 +159,8 @@ export const THEME_PRESETS: ThemePresetOption[] = [
         description: 'Main foreground text color',
         lightValue: 'var(--color-ds-800)',
         darkValue: 'var(--color-ds-100)',
-        lightPreviewColor: '#27272a',
-        darkPreviewColor: '#f4f4f5',
+        lightPreviewColor: '#262626',
+        darkPreviewColor: '#f5f5f5',
       },
       {
         variable: '--ds-card',
@@ -167,25 +169,25 @@ export const THEME_PRESETS: ThemePresetOption[] = [
         lightValue: 'var(--color-ds-0)',
         darkValue: 'var(--color-ds-900)',
         lightPreviewColor: '#ffffff',
-        darkPreviewColor: '#18181b',
+        darkPreviewColor: '#171717',
       },
       {
         variable: '--ds-border',
         category: 'Core & Surface',
         description: 'Default structural border token',
         lightValue: 'var(--color-ds-300)',
-        darkValue: 'var(--color-ds-800)',
-        lightPreviewColor: '#d4d4d8',
-        darkPreviewColor: '#27272a',
+        darkValue: 'var(--color-ds-700)',
+        lightPreviewColor: '#d4d4d4',
+        darkPreviewColor: '#404040',
       },
       {
         variable: '--ds-primary',
         category: 'Interactive',
-        description: 'Primary brand action color',
-        lightValue: 'var(--color-ds-primary-600)',
-        darkValue: 'var(--color-ds-primary-500)',
-        lightPreviewColor: '#2563eb',
-        darkPreviewColor: '#3b82f6',
+        description: 'Primary monochrome action color',
+        lightValue: 'var(--color-ds-900)',
+        darkValue: 'var(--color-ds-50)',
+        lightPreviewColor: '#171717',
+        darkPreviewColor: '#fafafa',
       },
       {
         variable: '--ds-secondary',
@@ -193,8 +195,8 @@ export const THEME_PRESETS: ThemePresetOption[] = [
         description: 'Secondary neutral action fill',
         lightValue: 'var(--color-ds-200)',
         darkValue: 'var(--color-ds-800)',
-        lightPreviewColor: '#e4e4e7',
-        darkPreviewColor: '#27272a',
+        lightPreviewColor: '#e5e5e5',
+        darkPreviewColor: '#262626',
       },
       {
         variable: '--ds-input-bg',
@@ -202,8 +204,8 @@ export const THEME_PRESETS: ThemePresetOption[] = [
         description: 'Form control surface background',
         lightValue: 'var(--color-ds-100)',
         darkValue: 'var(--color-ds-800)',
-        lightPreviewColor: '#f4f4f5',
-        darkPreviewColor: '#27272a',
+        lightPreviewColor: '#f5f5f5',
+        darkPreviewColor: '#262626',
       },
       {
         variable: '--ds-input-border',
@@ -211,15 +213,15 @@ export const THEME_PRESETS: ThemePresetOption[] = [
         description: 'Form control border color',
         lightValue: 'var(--color-ds-300)',
         darkValue: 'var(--color-ds-700)',
-        lightPreviewColor: '#d4d4d8',
-        darkPreviewColor: '#3f3f46',
+        lightPreviewColor: '#d4d4d4',
+        darkPreviewColor: '#404040',
       },
       {
         variable: '--radius',
         category: 'Form & Geometry',
         description: 'Master geometric corner radius',
-        lightValue: '0.75rem',
-        darkValue: '0.75rem',
+        lightValue: '0.5rem',
+        darkValue: '0.5rem',
       },
       {
         variable: '--ds-pill-radius',
@@ -239,8 +241,8 @@ export const THEME_PRESETS: ThemePresetOption[] = [
         variable: '--ds-button-shadow',
         category: 'Interactive',
         description: 'Elevation / offset shadow for Button controls',
-        lightValue: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
-        darkValue: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
+        lightValue: 'none',
+        darkValue: 'none',
       },
       {
         variable: '--ds-card-shadow',
@@ -253,26 +255,27 @@ export const THEME_PRESETS: ThemePresetOption[] = [
         variable: '--ds-primary-gradient',
         category: 'Form & Geometry',
         description: 'Button fill elevation gradient',
-        lightValue: 'linear-gradient(to bottom, var(--ds-primary), ...)',
-        darkValue: 'linear-gradient(to bottom, var(--ds-primary), ...)',
+        lightValue: 'none',
+        darkValue: 'none',
       },
     ],
     cssSnippet: `:root {
-  --radius: 0.75rem;
+  --radius: 0.5rem;
   --ds-pill-radius: calc(var(--radius) * 9999);
   --ds-border-width: 1px;
   --ds-button-border: transparent;
-  --ds-button-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --ds-button-shadow: none;
+  --ds-primary-gradient: none;
   --ds-card-shadow: none;
   --ds-input-shadow: none;
 
-  --ds-bg: var(--color-ds-100);
+  --ds-bg: var(--color-ds-50);
   --ds-fg: var(--color-ds-800);
   --ds-card: var(--color-ds-0);
   --ds-card-fg: var(--color-ds-900);
   --ds-border: var(--color-ds-300);
 
-  --ds-primary: var(--color-ds-primary-600);
+  --ds-primary: var(--color-ds-900);
   --ds-primary-fg: var(--color-white);
 
   --ds-input-bg: var(--color-ds-100);
@@ -284,9 +287,10 @@ export const THEME_PRESETS: ThemePresetOption[] = [
   --ds-fg: var(--color-ds-100);
   --ds-card: var(--color-ds-900);
   --ds-card-fg: var(--color-ds-100);
-  --ds-border: var(--color-ds-800);
+  --ds-border: var(--color-ds-700);
 
-  --ds-primary: var(--color-ds-primary-500);
+  --ds-primary: var(--color-ds-50);
+  --ds-primary-fg: var(--color-ds-900);
   --ds-input-bg: var(--color-ds-800);
   --ds-input-border: var(--color-ds-700);
 }`,
