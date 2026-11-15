@@ -8,9 +8,9 @@ import { Footer } from './partials/Footer'
 import { HomeExamples } from './partials/HomeExamples'
 import { Divider } from './dashkit/Divider/Divider'
 
-const TITLE = "Dashkit | Own your UI. Ship faster.";
+const TITLE = "Dashkit | Own your UI.";
 const DESCRIPTION = "Ready-to-use components you can copy straight into your project. Fully customizable, accessible by default, and yours to own.";
-const TAGLINE = "Own your UI. Ship faster.";
+const TAGLINE = "Own your UI.";
 const OG_DESCRIPTION = "Ready-to-use components you can copy straight into your project. Fully customizable, accessible by default, and yours to own.";
 
 function App() {

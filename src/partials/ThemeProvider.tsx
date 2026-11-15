@@ -51,7 +51,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       const saved = localStorage.getItem('dashkit-base-color') as BaseColor;
       if (saved) return saved;
     }
-    return 'zinc';
+    return 'neutral';
   });
 
   const [primaryColor, setPrimaryColorState] = useState<PrimaryColor>(() => {
@@ -59,7 +59,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       const saved = localStorage.getItem('dashkit-primary-color') as PrimaryColor;
       if (saved) return saved;
     }
-    return 'blue';
+    return 'neutral';
   });
 
   const [darkBg, setDarkBgState] = useState<DarkBackground>(() => {
