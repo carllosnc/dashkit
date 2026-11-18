@@ -83,6 +83,7 @@ export function Combobox({
 
   const inputId = useId();
   const listId = useId();
+  const descriptionId = description ? `${inputId}-description` : undefined;
   const activeOptionId =
     isOpen && activeIndex >= 0 && activeIndex < filteredOptions.length
       ? `${listId}-option-${activeIndex}`
@@ -130,7 +131,7 @@ export function Combobox({
 
       <div data-slot="wrapper" className="relative group" ref={inputWrapperRef}>
         <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors duration-200 pointer-events-none group-focus-within:text-foreground">
-          <FiSearch className="size-4" />
+          <FiSearch className="size-4" aria-hidden="true" />
         </div>
 
         <input
@@ -143,6 +144,7 @@ export function Combobox({
           aria-controls={isOpen ? listId : undefined}
           aria-autocomplete="list"
           aria-activedescendant={activeOptionId}
+          aria-describedby={descriptionId}
           disabled={disabled}
           value={query}
           onChange={(e) => {
@@ -168,14 +170,14 @@ export function Combobox({
               className="p-1.5 -m-0.5 rounded-full text-muted-foreground transition-all hover:text-foreground hover:bg-muted"
               aria-label="Clear selection"
             >
-              <FiX className="size-3.5" />
+              <FiX className="size-3.5" aria-hidden="true" />
             </button>
           )}
           <div className={cn(
             'text-muted-foreground transition-transform duration-300 pointer-events-none',
             isOpen && 'rotate-180'
           )}>
-            <FiChevronDown className="size-4" />
+            <FiChevronDown className="size-4" aria-hidden="true" />
           </div>
         </div>
 
@@ -205,6 +207,7 @@ export function Combobox({
               ) : (
                 filteredOptions.map((opt, index) => {
                   const isSelected = isOptionSelected(opt);
+                  const isActive = index === activeIndex;
                   return (
                     <button
                       key={opt.value}
@@ -216,6 +219,7 @@ export function Combobox({
                       onClick={() => handleSelect(opt)}
                       className={cn(
                         'w-full px-4 py-2.5 text-sm text-left flex items-center justify-between duration-200 transition-colors ds-rounded hover:text-popover-fg hover:bg-popover-item',
+                        isActive && !isSelected && 'bg-popover-item text-popover-fg',
                         isSelected && 'bg-popover-item-selected text-popover-item-selected-fg font-semibold hover:bg-popover-item-selected'
                       )}
                     >
@@ -234,7 +238,7 @@ export function Combobox({
       </div>
 
       {description && (
-        <span data-slot="helper" className="text-[12px] text-muted-foreground ml-1 tracking-tight">
+        <span id={descriptionId} data-slot="helper" className="text-[12px] text-muted-foreground ml-1 tracking-tight">
           {description}
         </span>
       )}
