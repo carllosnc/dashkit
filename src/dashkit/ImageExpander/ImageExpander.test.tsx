@@ -26,7 +26,7 @@ describe('ImageExpander', () => {
     );
     
     fireEvent.click(screen.getByAltText('Thumbnail'));
-    expect(screen.queryByRole('button')).toBeInTheDocument(); // The close button
+    expect(screen.getByRole('button', { name: 'Close' })).toBeInTheDocument();
     
     // The backdrop is the motion div with onClick
     // Since we don't have a specific role for the backdrop, we'll find it by class or just find the close button and mock a click outside.
