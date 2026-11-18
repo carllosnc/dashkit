@@ -40,11 +40,12 @@ export const DropdownItem = React.forwardRef<HTMLButtonElement, DropdownItemProp
       <button
         ref={ref}
         type={type}
+        role="menuitem"
         data-slot="dropdown-item"
         disabled={disabled}
         onClick={handleClick}
         className={cn(
-          'flex w-full items-center gap-2 px-2.5 py-1.5 text-sm font-medium ds-rounded transition-colors text-left text-popover-fg hover:bg-popover-item duration-150 disabled:opacity-50 disabled:cursor-not-allowed',
+          'flex w-full items-center gap-2 px-2.5 py-1.5 text-sm font-medium ds-rounded transition-colors text-left text-popover-fg hover:bg-popover-item focus-visible:outline-none focus-visible:bg-popover-item focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring duration-150 disabled:opacity-50 disabled:cursor-not-allowed',
           destructive && 'text-danger hover:text-ds-danger-600 dark:hover:bg-danger/10',
           selected && 'bg-popover-item-selected text-popover-item-selected-fg font-semibold',
           className
