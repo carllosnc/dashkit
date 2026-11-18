@@ -85,7 +85,7 @@ export const StatsCard = React.forwardRef<HTMLDivElement, StatsCardProps>(functi
     const height = 40;
 
     return chart.data.map((val, i) => {
-      const x = (i / (chart.data.length - 1)) * width;
+      const x = chart.data.length > 1 ? (i / (chart.data.length - 1)) * width : width / 2;
       const y = height - ((val - min) / range) * height;
       return `${i === 0 ? 'M' : 'L'} ${x} ${y}`;
     }).join(' ');
@@ -115,7 +115,7 @@ export const StatsCard = React.forwardRef<HTMLDivElement, StatsCardProps>(functi
           {typeof trend === 'number' && (
             <div className="flex items-center gap-1.5 pt-0.5">
               <span className={cn('flex items-center gap-1 text-[13px] font-bold', statusColor)}>
-                <TrendIcon className="size-3.5" />
+                <TrendIcon className="size-3.5" aria-hidden="true" />
                 {trend > 0 ? '+' : ''}{trend}%
               </span>
               {trendLabel && (
@@ -139,6 +139,7 @@ export const StatsCard = React.forwardRef<HTMLDivElement, StatsCardProps>(functi
       {chart && (
         <div className="h-12 -mx-6 mt-auto">
           <svg
+            aria-hidden="true"
             viewBox="0 0 100 40"
             className={cn('w-full h-full overflow-visible', !chart.color && statusColor)}
             style={chart.color ? { color: chart.color } : undefined}
