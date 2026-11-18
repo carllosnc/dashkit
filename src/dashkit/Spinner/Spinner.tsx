@@ -58,6 +58,8 @@ export const Spinner = React.forwardRef<SVGSVGElement, SpinnerProps>(function Sp
   return (
     <motion.svg
       ref={ref}
+      role="status"
+      aria-label="Loading"
       data-slot="spinner"
       xmlns="http://www.w3.org/2000/svg"
       width={spinnerSize}
