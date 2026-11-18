@@ -1,3 +1,4 @@
+import { useId } from 'react';
 import { createPortal } from 'react-dom';
 import { FiCalendar, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { cn } from '../utils/cn';
@@ -53,15 +54,19 @@ export function DatePicker({
     setViewDate
   } = useDatePicker({ value, onChange, disabled });
 
+  const triggerId = useId();
+  const descriptionId = description ? `${triggerId}-description` : undefined;
+
   return (
     <div data-slot="root" className="flex flex-col gap-1.5 w-full font-sans" ref={containerRef}>
       {label && (
-        <label data-slot="label" className="text-[13px] font-semibold text-foreground ml-1 tracking-tight">
+        <label htmlFor={triggerId} data-slot="label" className="text-[13px] font-semibold text-foreground ml-1 tracking-tight">
           {label}
         </label>
       )}
       <div className="relative">
         <button
+          id={triggerId}
           ref={buttonRef}
           data-slot="trigger"
           type="button"
@@ -69,15 +74,16 @@ export function DatePicker({
           onClick={toggleOpen}
           aria-haspopup="dialog"
           aria-expanded={isOpen}
+          aria-describedby={descriptionId}
           className={cn(
-            'w-full px-4 h-9 text-sm bg-input-bg text-input-fg border border-input-border ds-input-surface ds-rounded outline-none transition-all duration-200 text-left flex items-center justify-between gap-2 focus:border-input-focus focus:ring-2 focus:ring-input-focus/20 disabled:cursor-not-allowed disabled:opacity-50',
+            'w-full px-4 h-9 text-sm bg-input-bg text-input-fg border border-input-border ds-input-surface ds-rounded outline-none transition-all duration-200 text-left flex items-center justify-between gap-2 focus-visible:border-input-focus focus-visible:ring-2 focus-visible:ring-input-focus/20 disabled:cursor-not-allowed disabled:opacity-50',
             className
           )}
         >
           <span className={cn('truncate', !value && 'text-muted-foreground')}>
             {value ? formatDate(value) : placeholder}
           </span>
-          <FiCalendar className="size-4 text-muted-foreground" />
+          <FiCalendar className="size-4 text-muted-foreground" aria-hidden="true" />
         </button>
 
         {isOpen && triggerRect && createPortal(
@@ -143,6 +149,9 @@ export function DatePicker({
                       key={day}
                       type="button"
                       onClick={() => handleDateSelect(day)}
+                      aria-label={`${months[currentMonth]} ${day}, ${currentYear}`}
+                      aria-pressed={selected}
+                      aria-current={today ? 'date' : undefined}
                       className={cn(
                         'size-8 text-xs rounded-lg flex items-center justify-center transition-all duration-200 font-medium text-popover-fg hover:bg-popover-item',
                         selected && 'ds-primary-gradient text-primary-foreground font-bold shadow-sm transform scale-110 hover:bg-transparent hover:brightness-110',
@@ -173,7 +182,7 @@ export function DatePicker({
         )}
       </div>
       {description && (
-        <span data-slot="helper" className="text-[12px] text-muted-foreground ml-1 tracking-tight">
+        <span id={descriptionId} data-slot="helper" className="text-[12px] text-muted-foreground ml-1 tracking-tight">
           {description}
         </span>
       )}
