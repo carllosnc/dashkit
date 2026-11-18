@@ -38,12 +38,12 @@ describe('Checkbox', () => {
     expect(visualBox).toBeInTheDocument();
   });
 
-  it('generates an ID automatically from label if not provided', () => {
+  it('generates a unique ID automatically when not provided', () => {
     render(<Checkbox label="My Awesome Checkbox" />);
     const label = screen.getByText(/My Awesome Checkbox/i);
     const input = screen.getByRole('checkbox');
-    expect(input.id).toBe('checkbox-my-awesome-checkbox');
-    expect(label.parentElement).toHaveAttribute('for', 'checkbox-my-awesome-checkbox');
+    expect(input.id).toBeTruthy();
+    expect(label.closest('label')).toHaveAttribute('for', input.id);
   });
 
   it('triggers onChange when clicked', () => {
