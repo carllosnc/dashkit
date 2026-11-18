@@ -100,6 +100,12 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(function T
           handleClose();
           onBlur?.(e);
         }}
+        onKeyDown={(e) => {
+          if (e.key === 'Escape' && open) {
+            setOpen(false);
+          }
+          props.onKeyDown?.(e);
+        }}
         {...props}
       >
         {children}
