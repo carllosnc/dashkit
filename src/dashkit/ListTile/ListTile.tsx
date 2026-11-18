@@ -46,13 +46,14 @@ export const ListTile = ({
       onClick={!disabled ? onClick : undefined}
       className={cn(
         'flex w-full items-center gap-3 py-3 font-sans text-left transition-colors duration-150',
-        isInteractive && 'cursor-pointer hover:bg-ds-100/60 dark:hover:bg-ds-800/60 active:bg-ds-100 dark:active:bg-ds-800',
+        isInteractive && 'cursor-pointer hover:bg-ds-100/60 dark:hover:bg-ds-800/60 active:bg-ds-100 dark:active:bg-ds-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring',
         disabled && 'opacity-50 pointer-events-none',
         divider && 'border-b border-border',
         className
       )}
       role={isInteractive ? 'button' : undefined}
       tabIndex={isInteractive && !disabled ? 0 : undefined}
+      aria-disabled={isInteractive && disabled ? true : undefined}
       onKeyDown={
         isInteractive && !disabled
           ? (e) => {
