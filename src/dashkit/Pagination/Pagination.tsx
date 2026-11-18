@@ -81,7 +81,6 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
     <nav
       ref={ref}
       data-slot="pagination"
-      role="navigation"
       aria-label="Pagination"
       className={cn('flex flex-wrap items-center gap-1', className)}
       {...props}
@@ -90,7 +89,7 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
         type="button"
         disabled={currentPage <= 1}
         onClick={() => onChange(currentPage - 1)}
-        className="size-9 ds-rounded flex items-center justify-center text-sm font-medium transition-colors bg-ds-200 dark:bg-ds-800 hover:bg-ds-300 dark:hover:bg-ds-700 text-ds-500 focus:outline-none focus-visible:ring-2 disabled:opacity-50 disabled:pointer-events-none"
+        className="size-9 ds-rounded flex items-center justify-center text-sm font-medium transition-colors bg-ds-200 dark:bg-ds-800 hover:bg-ds-300 dark:hover:bg-ds-700 text-ds-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50 disabled:pointer-events-none"
         aria-label="Previous page"
       >
         <FiChevronLeft className="size-4" />
@@ -119,7 +118,7 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
             onClick={() => onChange(pageNumber as number)}
             aria-current={isCurrent ? 'page' : undefined}
             className={cn(
-              'relative size-9 ds-rounded flex items-center justify-center text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2',
+              'relative size-9 ds-rounded flex items-center justify-center text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring',
               isCurrent
                 ? 'z-10 text-background font-semibold pointer-events-none'
                 : 'bg-ds-200 dark:bg-ds-800 hover:bg-ds-300 dark:hover:bg-ds-700 text-foreground'
@@ -141,7 +140,7 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
         type="button"
         disabled={currentPage >= totalPages}
         onClick={() => onChange(currentPage + 1)}
-        className="size-9 ds-rounded flex items-center justify-center text-sm font-medium transition-colors bg-ds-200 dark:bg-ds-800 hover:bg-ds-300 dark:hover:bg-ds-700 text-ds-500 focus:outline-none focus-visible:ring-2 disabled:opacity-50 disabled:pointer-events-none"
+        className="size-9 ds-rounded flex items-center justify-center text-sm font-medium transition-colors bg-ds-200 dark:bg-ds-800 hover:bg-ds-300 dark:hover:bg-ds-700 text-ds-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50 disabled:pointer-events-none"
         aria-label="Next page"
       >
         <FiChevronRight className="size-4" />
@@ -149,7 +148,5 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
     </nav>
   );
 });
-
-Pagination.displayName = 'Pagination';
 
 Pagination.displayName = 'Pagination';
