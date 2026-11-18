@@ -35,10 +35,11 @@ export const TableContainer = forwardRef<HTMLDivElement, TableContainerProps>(
       <TableScrollContext.Provider value={containerRef}>
         <div
           ref={containerRef}
+          tabIndex={0}
           data-slot="table-container"
           style={resolvedMaxHeight ? { maxHeight: resolvedMaxHeight, ...style } : style}
           className={cn(
-            'relative w-full overflow-x-auto custom-scrollbar',
+            'relative w-full overflow-x-auto custom-scrollbar focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring',
             resolvedMaxHeight && 'overflow-y-auto',
             className
           )}
@@ -148,9 +149,10 @@ export interface TableHeadProps extends ThHTMLAttributes<HTMLTableCellElement> {
 }
 
 export const TableHead = forwardRef<HTMLTableCellElement, TableHeadProps>(
-  ({ className, nowrap = true, align = 'left', ...props }, ref) => (
+  ({ className, nowrap = true, align = 'left', scope = 'col', ...props }, ref) => (
     <th
       ref={ref}
+      scope={scope}
       data-slot="table-head"
       className={cn(
         'h-11 px-4 align-middle font-bold text-muted-foreground text-xs uppercase tracking-wider [&:has([role=checkbox])]:pr-0',
