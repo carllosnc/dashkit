@@ -1,8 +1,7 @@
-import { useState, useMemo, type ChangeEvent } from 'react';
+import { useState, useMemo, useId, type ChangeEvent } from 'react';
 
 export interface UseSliderProps {
   id?: string;
-  label?: string;
   min?: string | number;
   max?: string | number;
   value?: string | number;
@@ -10,7 +9,7 @@ export interface UseSliderProps {
   onChange?: (value: number) => void;
 }
 
-export function useSlider({ id, label, min = 0, max = 100, value, defaultValue, onChange }: UseSliderProps) {
+export function useSlider({ id, min = 0, max = 100, value, defaultValue, onChange }: UseSliderProps) {
   const minNum = Number(min);
   const maxNum = Number(max);
 
@@ -19,8 +18,10 @@ export function useSlider({ id, label, min = 0, max = 100, value, defaultValue, 
   const currentValue = isControlled ? Number(value) : internalValue;
 
   const percentage = useMemo(() => {
+    const range = maxNum - minNum;
+    if (range <= 0) return 0;
     const val = Math.max(minNum, Math.min(maxNum, currentValue));
-    return ((val - minNum) / (maxNum - minNum)) * 100;
+    return ((val - minNum) / range) * 100;
   }, [currentValue, minNum, maxNum]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +32,8 @@ export function useSlider({ id, label, min = 0, max = 100, value, defaultValue, 
     onChange?.(newValue);
   };
 
-  const sliderId = id || (label ? `slider-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined);
+  const generatedId = useId();
+  const sliderId = id || `slider-${generatedId}`;
 
   return {
     currentValue,
