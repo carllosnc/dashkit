@@ -295,7 +295,7 @@
         "ButtonGroupItem"
       ],
       "propsDefinitions": [
-        "export interface ButtonGroupProps {\r\n  children: ReactNode;\r\n  className?: string;\r\n  /** @default false */\r\n  vertical?: boolean;\r\n}\r\n\r\n/**\r\n * Compound segmented button container (`children` with `ButtonGroupItem`).\r\n *\r\n * @example\r\n * ```tsx\r\n * <ButtonGroup>\r\n *   <ButtonGroupItem active>Day</ButtonGroupItem>\r\n *   <ButtonGroupItem>Week</ButtonGroupItem>\r\n * </ButtonGroup>\r\n * ```\r\n */",
+        "export interface ButtonGroupProps extends HTMLAttributes<HTMLDivElement> {\r\n  children: ReactNode;\r\n  className?: string;\r\n  /** @default false */\r\n  vertical?: boolean;\r\n}\r\n\r\n/**\r\n * Compound segmented button container (`children` with `ButtonGroupItem`).\r\n *\r\n * @example\r\n * ```tsx\r\n * <ButtonGroup>\r\n *   <ButtonGroupItem selected>Day</ButtonGroupItem>\r\n *   <ButtonGroupItem>Week</ButtonGroupItem>\r\n * </ButtonGroup>\r\n * ```\r\n */",
         "export interface ButtonGroupItemProps extends ButtonHTMLAttributes<HTMLButtonElement> {\r\n  /** @default false */\r\n  selected?: boolean;\r\n}"
       ]
     },
@@ -535,7 +535,7 @@
         "useDateField"
       ],
       "propsDefinitions": [
-        "export interface DateFieldProps {\r\n  label?: string;\r\n  description?: string;\r\n  error?: string;\r\n  value?: Date | null;\r\n  onChange?: (date: Date | null) => void;\r\n  className?: string;\r\n  disabled?: boolean;\r\n  isRequired?: boolean;\r\n}\r\n\r\ninterface SegmentProps {\r\n  value: string;\r\n  placeholder: string;\r\n  max: number;\r\n  onUpdate: (val: string) => void;\r\n  onNext: () => void;\r\n  onPrev: () => void;\r\n  disabled?: boolean;\r\n}",
+        "export interface DateFieldProps {\r\n  label?: string;\r\n  description?: string;\r\n  error?: string;\r\n  value?: Date | null;\r\n  onChange?: (date: Date | null) => void;\r\n  className?: string;\r\n  disabled?: boolean;\r\n  isRequired?: boolean;\r\n}\r\n\r\ninterface SegmentProps {\r\n  value: string;\r\n  placeholder: string;\r\n  ariaLabel: string;\r\n  ariaInvalid?: boolean;\r\n  max: number;\r\n  onUpdate: (val: string) => void;\r\n  onNext: () => void;\r\n  onPrev: () => void;\r\n  disabled?: boolean;\r\n}",
         "export interface UseDateFieldProps {\n  value?: Date | null;\n  onChange?: (date: Date | null) => void;\n}"
       ]
     },
@@ -1166,7 +1166,7 @@
       ],
       "propsDefinitions": [
         "export interface RadioProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {\r\n  label?: string;\r\n  description?: string;\r\n}\r\n\r\n/**\r\n * Accessible radio input with optional `label` and `description` props.\r\n *\r\n * @example\r\n * ```tsx\r\n * <Radio name=\"plan\" label=\"Pro Plan\" value=\"pro\" checked={plan === 'pro'} onChange={() => setPlan('pro')} />\r\n * ```\r\n */",
-        "export interface UseRadioProps {\n  id?: string;\n  label?: string;\n}"
+        "export interface UseRadioProps {\n  id?: string;\n}"
       ]
     },
     "radio-card": {
@@ -1344,7 +1344,7 @@
       ],
       "propsDefinitions": [
         "export interface SliderProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'onChange' | 'value' | 'defaultValue'> {\r\n  label?: string;\r\n  description?: string;\r\n  value?: number;\r\n  defaultValue?: number;\r\n  onChange?: (value: number) => void;\r\n  /** @default false */\r\n  showValue?: boolean;\r\n}\r\n\r\n/**\r\n * Prop-driven (`value`, `onChange`, `min`, `max`) range slider input.\r\n *\r\n * @example\r\n * ```tsx\r\n * <Slider label=\"Volume\" min={0} max={100} value={volume} onChange={setVolume} />\r\n * ```\r\n */",
-        "export interface UseSliderProps {\n  id?: string;\n  label?: string;\n  min?: string | number;\n  max?: string | number;\n  value?: string | number;\n  defaultValue?: string | number;\n  onChange?: (value: number) => void;\n}"
+        "export interface UseSliderProps {\n  id?: string;\n  min?: string | number;\n  max?: string | number;\n  value?: string | number;\n  defaultValue?: string | number;\n  onChange?: (value: number) => void;\n}"
       ]
     },
     "spinner": {
@@ -1469,7 +1469,7 @@
       ],
       "propsDefinitions": [
         "export interface SwitchProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {\r\n  label?: string;\r\n  description?: string;\r\n}\r\n\r\n/**\r\n * Accessible toggle switch with optional `label` and `description` props.\r\n *\r\n * @example\r\n * ```tsx\r\n * <Switch label=\"Email alerts\" checked={enabled} onChange={(e) => setEnabled(e.target.checked)} />\r\n * ```\r\n */",
-        "export interface UseSwitchProps {\n  id?: string;\n  label?: string;\n}"
+        "export interface UseSwitchProps {\n  id?: string;\n}"
       ]
     },
     "systemlogs": {
@@ -1608,7 +1608,7 @@
       ],
       "propsDefinitions": [
         "export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {\r\n  label?: string;\r\n  error?: string;\r\n  helperText?: string;\r\n  /** @default false */\r\n  autoGrow?: boolean;\r\n}\r\n\r\n/**\r\n * Multi-line text input with optional `label`, `description`, and `error` props.\r\n *\r\n * @example\r\n * ```tsx\r\n * <Textarea label=\"Notes\" rows={4} placeholder=\"Write a summary...\" />\r\n * ```\r\n */",
-        "export interface UseTextareaProps {\n  id?: string;\n  label?: string;\n  autoGrow?: boolean;\n  value?: string | number | readonly string[];\n  onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;\n}"
+        "export interface UseTextareaProps {\n  id?: string;\n  autoGrow?: boolean;\n  value?: string | number | readonly string[];\n  onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;\n}"
       ]
     },
     "toast": {
