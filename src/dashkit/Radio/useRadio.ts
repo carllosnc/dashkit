@@ -1,10 +1,12 @@
+import { useId } from 'react';
+
 export interface UseRadioProps {
   id?: string;
-  label?: string;
 }
 
-export function useRadio({ id, label }: UseRadioProps) {
-  const radioId = id || (label ? `radio-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined);
+export function useRadio({ id }: UseRadioProps) {
+  const generatedId = useId();
+  const radioId = id || `radio-${generatedId}`;
 
   return {
     radioId
