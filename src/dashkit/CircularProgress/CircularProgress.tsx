@@ -84,9 +84,10 @@ export const CircularProgress = React.forwardRef<HTMLDivElement, CircularProgres
     const dimension = typeof size === 'number' ? size : sizeMap[size];
     const stroke = strokeWidth || (typeof size === 'number' ? Math.max(2, size / 10) : strokeWidthMap[size]);
 
+    const clampedValue = Math.min(Math.max(value, 0), 100);
     const radius = (dimension - stroke) / 2;
     const circumference = 2 * Math.PI * radius;
-    const offset = circumference - (value / 100) * circumference;
+    const offset = circumference - (clampedValue / 100) * circumference;
 
     const trackClasses = trackColor || (variant === 'solid' ? 'text-ds-100 dark:text-ds-800' : softTrackColors[color]);
 
@@ -95,7 +96,7 @@ export const CircularProgress = React.forwardRef<HTMLDivElement, CircularProgres
         ref={ref}
         data-slot="circular-progress"
         role="progressbar"
-        aria-valuenow={Math.round(value)}
+        aria-valuenow={Math.round(clampedValue)}
         aria-valuemin={0}
         aria-valuemax={100}
         className={cn('relative inline-flex items-center justify-center', className)}
