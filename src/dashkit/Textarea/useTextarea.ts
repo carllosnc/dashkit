@@ -1,16 +1,16 @@
-import { useRef, useEffect, useCallback, type ChangeEvent } from 'react';
+import { useRef, useEffect, useCallback, useId, type ChangeEvent } from 'react';
 
 export interface UseTextareaProps {
   id?: string;
-  label?: string;
   autoGrow?: boolean;
   value?: string | number | readonly string[];
   onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-export function useTextarea({ id, label, autoGrow, value, onChange }: UseTextareaProps) {
+export function useTextarea({ id, autoGrow, value, onChange }: UseTextareaProps) {
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
-  const internalId = id || (label ? `textarea-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined);
+  const generatedId = useId();
+  const internalId = id || `textarea-${generatedId}`;
 
   const adjustHeight = useCallback(() => {
     const textarea = textareaRef.current;
