@@ -197,6 +197,11 @@ export function useCombobox({
       return;
     }
 
+    if (e.key === 'Tab' && isOpen) {
+      setIsOpen(false);
+      return;
+    }
+
     if (e.key === 'Enter' && isOpen && activeIndex >= 0 && activeIndex < count) {
       e.preventDefault();
       handleSelect(filteredOptions[activeIndex]);
