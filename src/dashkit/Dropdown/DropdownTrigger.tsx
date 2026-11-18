@@ -20,13 +20,23 @@ export function DropdownTrigger({ children, asChild }: DropdownTriggerProps) {
   };
 
   if (asChild && React.isValidElement(children)) {
-    return React.cloneElement(children as React.ReactElement<{ onClick?: React.MouseEventHandler; ref?: React.Ref<HTMLElement> }>, {
-      ref: internalRef,
-      onClick: (e: React.MouseEvent) => {
-        (children.props as { onClick?: React.MouseEventHandler }).onClick?.(e);
-        toggleOpen(e.currentTarget as HTMLElement);
-      },
-    });
+    return React.cloneElement(
+      children as React.ReactElement<{
+        onClick?: React.MouseEventHandler;
+        ref?: React.Ref<HTMLElement>;
+        'aria-expanded'?: boolean;
+        'aria-haspopup'?: 'menu';
+      }>,
+      {
+        ref: internalRef,
+        'aria-expanded': open,
+        'aria-haspopup': 'menu',
+        onClick: (e: React.MouseEvent) => {
+          (children.props as { onClick?: React.MouseEventHandler }).onClick?.(e);
+          toggleOpen(e.currentTarget as HTMLElement);
+        },
+      }
+    );
   }
 
   // When the child is already a React element (a <button>, <IconButton>, ...),
@@ -55,6 +65,7 @@ export function DropdownTrigger({ children, asChild }: DropdownTriggerProps) {
       role="button"
       tabIndex={0}
       aria-expanded={open}
+      aria-haspopup="menu"
       onClick={(e) => toggleOpen(e.currentTarget)}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -62,7 +73,7 @@ export function DropdownTrigger({ children, asChild }: DropdownTriggerProps) {
           toggleOpen(e.currentTarget);
         }
       }}
-      className="cursor-pointer inline-block"
+      className="cursor-pointer inline-block rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
     >
       {children}
     </div>
