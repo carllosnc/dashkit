@@ -78,14 +78,17 @@ export const SystemLogs = React.forwardRef<HTMLDivElement, SystemLogsProps>(
       >
         <div className="bg-ds-900/60 py-2.5 px-4 border-b border-ds-800">
           <div className="flex items-center gap-2">
-            <FiTerminal className="text-ds-400" size={14} />
+            <FiTerminal className="text-ds-400" size={14} aria-hidden="true" />
             <h3 className="text-xs text-ds-50 font-medium tracking-tight">{title}</h3>
           </div>
         </div>
 
         <div
           ref={scrollRef}
-          className="p-4 space-y-2 font-mono text-xs leading-relaxed overflow-y-auto custom-scrollbar"
+          role="log"
+          aria-live="polite"
+          tabIndex={0}
+          className="p-4 space-y-2 font-mono text-xs leading-relaxed overflow-y-auto custom-scrollbar focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
           style={{ maxHeight }}
         >
           {logs.map((log, i) => (
@@ -99,7 +102,7 @@ export const SystemLogs = React.forwardRef<HTMLDivElement, SystemLogsProps>(
               <span className="text-ds-300 break-all">{log.message}</span>
             </div>
           ))}
-          <div className="flex gap-2 opacity-50 pt-1">
+          <div className="flex gap-2 opacity-50 pt-1" aria-hidden="true">
             <span className="text-ds-400">$</span>
             <span className="text-ds-100 animate-pulse">_</span>
           </div>
