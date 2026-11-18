@@ -28,13 +28,6 @@ const drawerPanelVariants = cva(
   }
 );
 
-const closePositionClasses: Record<DrawerPosition, string> = {
-  right: 'top-6 left-6',
-  left: 'top-6 right-6',
-  top: 'bottom-6 right-6',
-  bottom: 'top-6 right-6',
-};
-
 export interface DrawerProps {
   isOpen: boolean;
   onClose: () => void;
@@ -152,21 +145,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(function Drawer({
           data-slot="drawer-portal"
           className="fixed inset-0 z-[1100] isolate overflow-hidden flex items-center justify-center"
         >
-          <Backdrop show={true} fixed={false} onClick={onClose}>
-            <motion.button
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              onClick={onClose}
-              className={cn(
-                'absolute p-3 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-colors z-[1120] backdrop-blur-md',
-                closePositionClasses[position]
-              )}
-              aria-label="Close drawer"
-            >
-              <FiX size={20} />
-            </motion.button>
-          </Backdrop>
+          <Backdrop show={true} fixed={false} onClick={onClose} />
 
           <motion.div
             ref={setPanelRef}
@@ -197,7 +176,21 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(function Drawer({
             )}
           >
             {children}
-            <div className="absolute bottom-0 h-6 w-full shrink-0 bg-gradient-to-t from-white dark:from-ds-900 to-transparent pointer-events-none z-10" />
+            <motion.button
+              type="button"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              onClick={onClose}
+              className={cn(
+                'absolute p-2.5 rounded-full bg-muted/80 hover:bg-muted text-foreground border border-border transition-colors z-[1120] backdrop-blur-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                'top-4 right-4'
+              )}
+              aria-label="Close drawer"
+            >
+              <FiX size={18} aria-hidden="true" />
+            </motion.button>
+            <div className="absolute bottom-0 h-6 w-full shrink-0 bg-gradient-to-t from-card to-transparent pointer-events-none z-10" />
           </motion.div>
         </div>
       )}
