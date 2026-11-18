@@ -4,7 +4,8 @@ export interface UseProgressBarProps {
 }
 
 export function useProgressBar({ value, max }: UseProgressBarProps) {
-  const percentage = Math.min(Math.max((value / max) * 100, 0), 100);
+  const safeMax = max > 0 ? max : 100;
+  const percentage = Math.min(Math.max((value / safeMax) * 100, 0), 100);
 
   return {
     percentage
