@@ -8,6 +8,7 @@ export const DropdownSeparator = forwardRef<HTMLDivElement, DropdownSeparatorPro
     return (
       <div
         ref={ref}
+        role="separator"
         data-slot="dropdown-separator"
         className={cn('my-0.5 h-px bg-border', className)}
         {...props}
