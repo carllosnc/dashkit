@@ -80,7 +80,7 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
             ref={imgRef}
             key={src}
             src={src}
-            alt={alt}
+            alt={alt ?? ''}
             onLoad={() => setIsLoaded(true)}
             onError={() => setHasError(true)}
             initial={{ opacity: 0 }}
