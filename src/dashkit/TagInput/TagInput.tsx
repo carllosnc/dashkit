@@ -54,7 +54,7 @@ export interface TagInputProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onC
  * ```
  */
 export const TagInput = forwardRef<HTMLDivElement, TagInputProps>(
-  (
+  function TagInput(
     {
       value: controlledValue,
       defaultValue = [],
@@ -74,10 +74,11 @@ export const TagInput = forwardRef<HTMLDivElement, TagInputProps>(
       ...props
     },
     ref
-  ) => {
+  ) {
     const generatedId = useId();
     const inputId = providedId ?? `tag-input-${generatedId}`;
     const listboxId = `${inputId}-listbox`;
+    const messageId = `${inputId}-message`;
 
     const [uncontrolledTags, setUncontrolledTags] = useState<string[]>(defaultValue);
     const [inputValue, setInputValue] = useState('');
@@ -242,7 +243,7 @@ export const TagInput = forwardRef<HTMLDivElement, TagInputProps>(
           }}
           className={cn(
             'flex min-h-10 w-full flex-wrap items-center gap-1.5 ds-rounded-md border border-border bg-input-bg px-2.5 py-1.5 text-sm text-input-fg transition-colors focus-within:ring-2 focus-within:ring-primary/30 focus-within:border-primary',
-            error && 'border-destructive focus-within:border-destructive focus-within:ring-destructive/30',
+            error && 'border-ds-danger-500 focus-within:border-ds-danger-500 focus-within:ring-ds-danger-500/30',
             disabled && 'opacity-50 cursor-not-allowed'
           )}
         >
@@ -269,7 +270,7 @@ export const TagInput = forwardRef<HTMLDivElement, TagInputProps>(
                       removeTagAt(index);
                       inputRef.current?.focus();
                     }}
-                    className="inline-flex items-center justify-center rounded-full p-0.5 text-muted-foreground hover:text-foreground focus:outline-none"
+                    className="inline-flex items-center justify-center rounded-full p-0.5 text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     <FiX className="size-3" aria-hidden="true" />
                   </button>
@@ -291,6 +292,7 @@ export const TagInput = forwardRef<HTMLDivElement, TagInputProps>(
                 : undefined
             }
             aria-invalid={Boolean(error) || undefined}
+            aria-describedby={error || description ? messageId : undefined}
             disabled={disabled || atLimit}
             value={inputValue}
             placeholder={atLimit ? '' : placeholder}
@@ -353,11 +355,11 @@ export const TagInput = forwardRef<HTMLDivElement, TagInputProps>(
         )}
 
         {error ? (
-          <p data-slot="tag-input-error" className="text-xs text-destructive">
+          <p id={messageId} role="alert" data-slot="tag-input-error" className="text-xs text-ds-danger-600 dark:text-ds-danger-400">
             {error}
           </p>
         ) : description ? (
-          <p data-slot="tag-input-description" className="text-xs text-muted-foreground">
+          <p id={messageId} data-slot="tag-input-description" className="text-xs text-muted-foreground">
             {description}
           </p>
         ) : null}
