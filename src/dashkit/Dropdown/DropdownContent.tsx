@@ -27,7 +27,7 @@ export const DropdownContent = React.forwardRef<HTMLDivElement, DropdownContentP
     },
     ref
   ) {
-    const { open, triggerElement, setTriggerRect, triggerRect, portalRef } = useDropdownContext();
+    const { open, setOpen, triggerElement, setTriggerRect, triggerRect, portalRef } = useDropdownContext();
     const [contentRect, setContentRect] = React.useState<DOMRect | null>(null);
 
     const setContentRef = React.useCallback(
@@ -148,12 +148,40 @@ export const DropdownContent = React.forwardRef<HTMLDivElement, DropdownContentP
 
   if (!open || !triggerRect) return null;
 
+  const handleMenuKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const items = Array.from(
+      e.currentTarget.querySelectorAll<HTMLButtonElement>('[role="menuitem"]:not([disabled])')
+    );
+    if (items.length === 0) return;
+
+    const currentIndex = items.indexOf(document.activeElement as HTMLButtonElement);
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      items[(currentIndex + 1) % items.length]?.focus();
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      items[(currentIndex - 1 + items.length) % items.length]?.focus();
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      items[0]?.focus();
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      items[items.length - 1]?.focus();
+    } else if (e.key === 'Tab') {
+      setOpen(false);
+    }
+    props.onKeyDown?.(e);
+  };
+
   return createPortal(
     <div
       ref={setContentRef}
+      role="menu"
       data-slot="dropdown-content"
       {...getPortalThemeAttrs(triggerElement)}
       style={{ ...style, ...userStyle }}
+      onKeyDown={handleMenuKeyDown}
       className={cn(
         'min-w-[12rem] bg-popover/95 backdrop-blur-md text-popover-fg border border-popover-border/80 ds-border-width ds-popover-shadow ds-rounded-lg p-1.5 overflow-hidden flex flex-col gap-0.5',
         animProps.originClass,
