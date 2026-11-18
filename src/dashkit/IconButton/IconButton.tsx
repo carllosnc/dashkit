@@ -113,16 +113,19 @@ export const IconButton = forwardRef<HTMLElement, IconButtonProps>(function Icon
     className
   );
 
-  const content = <div className="flex items-center justify-center">{icon}</div>;
+  const content = <span className="flex items-center justify-center">{icon}</span>;
 
   if (isLink) {
     const { href, target, rel, ...rest } = props as React.AnchorHTMLAttributes<HTMLAnchorElement>;
+    const isDisabled = 'disabled' in props && Boolean(props.disabled);
     return (
       <a
         ref={ref as React.Ref<HTMLAnchorElement>}
-        href={href}
+        href={isDisabled ? undefined : href}
         target={target}
         rel={rel}
+        aria-disabled={isDisabled || undefined}
+        tabIndex={isDisabled ? -1 : undefined}
         className={classes}
         {...rest}
       >
