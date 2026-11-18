@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useId } from 'react';
 import { motion } from 'framer-motion';
 import { cva } from 'class-variance-authority';
 import { cn } from '../utils/cn';
@@ -85,6 +86,7 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
     ...props
   }, ref) => {
     const { percentage } = useProgressBar({ value, max });
+    const labelId = useId();
 
     const BarContainer = (
       <div
@@ -92,6 +94,7 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
         aria-valuenow={Math.round(percentage)}
         aria-valuemin={0}
         aria-valuemax={100}
+        aria-labelledby={label ? labelId : undefined}
         data-testid="progress-bar-track"
         className={cn(progressTrackVariants({ position: labelPosition, size }))}
       >
@@ -122,7 +125,7 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
           {BarContainer}
           {(showLabel || label) && (
             <div className="flex items-center gap-2 shrink-0 min-w-0">
-              {label && <span className="text-xs font-medium text-muted-foreground truncate">{label}</span>}
+              {label && <span id={labelId} className="text-xs font-medium text-muted-foreground truncate">{label}</span>}
               {showLabel && (
                 <span className="text-xs font-bold text-foreground tracking-tight w-8 text-right">
                   {Math.round(percentage)}%
@@ -143,7 +146,7 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
       >
         {(showLabel || label) && (
           <div className="flex items-center justify-between gap-4 min-w-0">
-            {label && <span className="text-xs font-medium text-muted-foreground truncate">{label}</span>}
+            {label && <span id={labelId} className="text-xs font-medium text-muted-foreground truncate">{label}</span>}
             {showLabel && (
               <span className="text-xs font-bold text-foreground ml-auto tracking-tight">
                 {Math.round(percentage)}%

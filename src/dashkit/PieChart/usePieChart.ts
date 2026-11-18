@@ -21,6 +21,7 @@ export function usePieChart({ data, innerRadius, showTooltip }: UsePieChartProps
       slices: [],
       handleMouseMove: () => {},
       handleTouchMove: () => {},
+      handleLegendEnter: () => {},
       isNearTop: false,
       total: 0,
       size: 400,
@@ -115,7 +116,26 @@ export function usePieChart({ data, innerRadius, showTooltip }: UsePieChartProps
     }
   };
 
-  const isNearTop = tooltipPos.y < 100;
+  const handleLegendEnter = (index: number) => {
+    setHoveredIndex(index);
+    const slice = slices[index];
+    if (!showTooltip || !slice || !containerRef.current) return;
+
+    const rect = containerRef.current.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) return;
+
+    const midAngle = (slice.startAngle + slice.endAngle) / 2;
+    const midRadius = (radius + holeRadius) / 2;
+    const svgX = center + midRadius * Math.cos(midAngle);
+    const svgY = center + midRadius * Math.sin(midAngle);
+
+    setTooltipPos({
+      x: (svgX / size) * rect.width,
+      y: (svgY / size) * rect.height
+    });
+  };
+
+  const isNearTop = tooltipPos.y < 72;
 
   return {
     hoveredIndex,
@@ -125,6 +145,7 @@ export function usePieChart({ data, innerRadius, showTooltip }: UsePieChartProps
     slices,
     handleMouseMove,
     handleTouchMove,
+    handleLegendEnter,
     isNearTop,
     total,
     size,

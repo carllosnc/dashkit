@@ -16,8 +16,10 @@ export interface RadioProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
  * ```
  */
 export const Radio = forwardRef<HTMLInputElement, RadioProps>(
-  ({ label, description, className, id, ...props }, ref) => {
-    const { radioId } = useRadio({ id, label });
+  function Radio({ label, description, className, id, ...props }, ref) {
+    const { radioId } = useRadio({ id });
+    const descriptionId = description ? `${radioId}-description` : undefined;
+    const describedBy = [props['aria-describedby'], descriptionId].filter(Boolean).join(' ') || undefined;
 
     return (
       <div
@@ -34,6 +36,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
               type="radio"
               id={radioId}
               ref={ref}
+              aria-describedby={describedBy}
               className="peer sr-only"
             />
             <div
@@ -53,21 +56,22 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
           </label>
         </div>
         {(label || description) && (
-          <label
-            htmlFor={radioId}
-            className="flex flex-col cursor-pointer select-none"
-          >
+          <div className="flex flex-col select-none">
             {label && (
-              <span data-slot="label" className="text-sm font-medium text-foreground tracking-tight leading-5">
+              <label
+                htmlFor={radioId}
+                data-slot="label"
+                className="text-sm font-medium text-foreground tracking-tight leading-5 cursor-pointer"
+              >
                 {label}
-              </span>
+              </label>
             )}
             {description && (
-              <span data-slot="description" className="text-xs text-muted-foreground tracking-tight">
+              <span id={descriptionId} data-slot="description" className="text-xs text-muted-foreground tracking-tight">
                 {description}
               </span>
             )}
-          </label>
+          </div>
         )}
       </div>
     );

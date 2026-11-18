@@ -19,10 +19,9 @@ export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
  * ```
  */
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ label, error, helperText, autoGrow = false, className, id, onChange, ...props }, ref) => {
+  function Textarea({ label, error, helperText, autoGrow = false, className, id, onChange, ...props }, ref) {
     const { textareaRef, internalId, handleChange } = useTextarea({
       id,
-      label,
       autoGrow,
       value: props.value,
       onChange
@@ -78,6 +77,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           <span
             data-slot="helper"
             id={messageId}
+            role={error ? 'alert' : undefined}
             className={cn(
               'text-xs ml-1 tracking-tight',
               error

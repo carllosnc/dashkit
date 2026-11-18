@@ -298,7 +298,7 @@ export function CommandPalette({
           >
             <div
               data-slot="command-palette-input-wrapper"
-              className="flex items-center gap-3 border-b border-border px-4 py-3"
+              className="flex items-center gap-3 border-b border-border px-4 py-3 focus-within:ring-2 focus-within:ring-inset focus-within:ring-ring"
             >
               <FiSearch className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
               <input
@@ -353,6 +353,7 @@ export function CommandPalette({
                           id={`${listboxId}-option-${item.id}`}
                           type="button"
                           role="option"
+                          tabIndex={-1}
                           aria-selected={isActive}
                           aria-disabled={item.disabled || undefined}
                           disabled={item.disabled}
@@ -363,7 +364,7 @@ export function CommandPalette({
                           }}
                           onClick={() => selectItem(item)}
                           className={cn(
-                            'flex w-full items-center gap-3 ds-rounded-md px-2.5 py-2 text-left text-sm transition-colors',
+                            'flex w-full items-center gap-3 ds-rounded-md px-2.5 py-2 text-left text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring',
                             isActive
                               ? 'bg-primary/10 text-primary'
                               : 'text-foreground hover:bg-muted/60',

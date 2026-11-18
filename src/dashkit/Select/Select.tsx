@@ -109,6 +109,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
     );
 
     const labelId = useId();
+    const triggerId = useId();
     const valueId = useId();
     const listId = useId();
     const messageId = useId();
@@ -122,13 +123,19 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
         className="flex flex-col gap-1.5 w-full font-sans"
       >
         {label && (
-          <label data-slot="label" id={labelId} className="text-xs font-semibold text-foreground ml-1 tracking-tight">
+          <label
+            data-slot="label"
+            id={labelId}
+            htmlFor={props.id ?? triggerId}
+            className="text-xs font-semibold text-foreground ml-1 tracking-tight"
+          >
             {label}
           </label>
         )}
         <div className="relative">
           <button
             {...props}
+            id={props.id ?? triggerId}
             ref={setTriggerRef}
             data-slot="trigger"
             type="button"
@@ -166,6 +173,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
               {selectedOption ? selectedOption.label : placeholder}
             </span>
             <FiChevronDown
+              aria-hidden="true"
               className={cn(
                 'shrink-0 text-muted-foreground transition-transform duration-200',
                 isOpen && 'rotate-180 text-input-focus'
@@ -213,10 +221,10 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
                         setIsOpen(false);
                       }}
                       className={cn(
-                        'w-full px-4 py-2.5 text-sm text-left flex items-center justify-between duration-200 transition-colors ds-rounded',
+                        'w-full px-4 py-2.5 text-sm text-left flex items-center justify-between duration-200 transition-colors ds-rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring',
                         opt.value === value
                           ? 'bg-popover-item-selected text-popover-item-selected-fg font-semibold'
-                          : 'text-popover-fg hover:bg-popover-item'
+                          : 'text-popover-fg hover:bg-popover-item focus-visible:bg-popover-item'
                       )}
                     >
                       <span className="truncate">{opt.label}</span>

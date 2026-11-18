@@ -11,6 +11,7 @@ export const NavbarLinks = React.forwardRef<HTMLElement, NavbarLinksProps>(
     return (
       <nav
         ref={ref}
+        aria-label={props['aria-label'] ?? 'Main navigation'}
         data-slot="navbar-links"
         className={cn('hidden md:flex items-center gap-4 lg:gap-8', className)}
         {...props}

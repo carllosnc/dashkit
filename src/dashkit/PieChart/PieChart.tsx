@@ -79,20 +79,12 @@ export const PieChart = React.forwardRef<HTMLDivElement, PieChartProps>(function
     slices,
     handleMouseMove,
     handleTouchMove,
+    handleLegendEnter,
     isNearTop,
     total,
     size,
     center
   } = usePieChart({ data: validData, innerRadius, showTooltip });
-
-  const setRootRef = React.useCallback(
-    (node: HTMLDivElement | null) => {
-      containerRef.current = node;
-      if (typeof ref === 'function') ref(node);
-      else if (ref) ref.current = node;
-    },
-    [containerRef, ref]
-  );
 
   if (!data || data.length === 0) return null;
 
@@ -102,12 +94,12 @@ export const PieChart = React.forwardRef<HTMLDivElement, PieChartProps>(function
 
   return (
     <div
-      ref={setRootRef}
+      ref={ref}
       data-slot="pie-chart"
       className={cn('w-full flex flex-col items-center justify-center relative overflow-visible', className)}
       {...props}
     >
-      <div className="relative w-full aspect-square max-w-[280px] overflow-visible">
+      <div ref={containerRef} className="relative w-full aspect-square max-w-[280px] overflow-visible">
         <svg
           role="img"
           aria-label={ariaLabel}
@@ -244,7 +236,7 @@ export const PieChart = React.forwardRef<HTMLDivElement, PieChartProps>(function
           <div
             className={cn(
               'absolute z-50 pointer-events-none transform -translate-x-1/2 bg-popover text-popover-fg ds-rounded shadow-xl border border-border p-3 backdrop-blur-sm flex flex-col gap-1 min-w-[120px] transition-transform duration-200',
-              isNearTop ? 'translate-y-4' : '-translate-y-full -mt-8'
+              isNearTop ? 'translate-y-3' : '-translate-y-full -mt-3'
             )}
             style={{
               left: tooltipPos.x,
@@ -272,7 +264,7 @@ export const PieChart = React.forwardRef<HTMLDivElement, PieChartProps>(function
           {validData.map((item, i) => (
             <div
               key={i}
-              onMouseEnter={() => setHoveredIndex(i)}
+              onMouseEnter={() => handleLegendEnter(i)}
               onMouseLeave={() => setHoveredIndex(null)}
               className={cn(
                 'flex items-center gap-2 transition-opacity duration-200 cursor-default',

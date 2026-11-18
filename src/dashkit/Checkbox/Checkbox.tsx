@@ -1,4 +1,4 @@
-import { forwardRef, type InputHTMLAttributes } from 'react';
+import { forwardRef, useId, type InputHTMLAttributes } from 'react';
 import { cn } from '../utils/cn';
 
 export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'children'> {
@@ -16,7 +16,10 @@ export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement
  */
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   function Checkbox({ label, description, className, id, ...props }, ref) {
-    const checkboxId = id || (label ? `checkbox-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined);
+    const generatedId = useId();
+    const checkboxId = id || `checkbox-${generatedId}`;
+    const descriptionId = description ? `${checkboxId}-description` : undefined;
+    const describedBy = [props['aria-describedby'], descriptionId].filter(Boolean).join(' ') || undefined;
 
     return (
       <div className={cn('group flex gap-3 relative transition-all duration-200 items-center', className)}>
@@ -27,6 +30,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
               type="checkbox"
               id={checkboxId}
               ref={ref}
+              aria-describedby={describedBy}
               className="peer sr-only"
             />
             <div
@@ -48,21 +52,22 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           </label>
         </div>
         {(label || description) && (
-          <label
-            htmlFor={checkboxId}
-            className="flex flex-col cursor-pointer select-none"
-          >
+          <div className="flex flex-col select-none">
             {label && (
-              <span data-slot="label" className="text-sm font-medium text-foreground tracking-tight leading-5">
+              <label
+                htmlFor={checkboxId}
+                data-slot="label"
+                className="text-sm font-medium text-foreground tracking-tight leading-5 cursor-pointer"
+              >
                 {label}
-              </span>
+              </label>
             )}
             {description && (
-              <span data-slot="description" className="text-xs text-muted-foreground tracking-tight">
+              <span id={descriptionId} data-slot="description" className="text-xs text-muted-foreground tracking-tight">
                 {description}
               </span>
             )}
-          </label>
+          </div>
         )}
       </div>
     );

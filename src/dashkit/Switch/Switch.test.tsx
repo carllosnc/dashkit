@@ -29,12 +29,12 @@ describe('Switch', () => {
     expect(input).toBeDisabled();
   });
 
-  it('generates an ID automatically from label if not provided', () => {
+  it('generates a unique ID automatically when not provided', () => {
     render(<Switch label="My Switch" />);
     const label = screen.getByText(/My Switch/i);
-    const input = screen.getByRole('checkbox');
-    expect(input.id).toBe('switch-my-switch');
-    expect(label.parentElement).toHaveAttribute('for', 'switch-my-switch');
+    const input = screen.getByRole('switch');
+    expect(input.id).toBeTruthy();
+    expect(label.closest('label')).toHaveAttribute('for', input.id);
   });
 });
 

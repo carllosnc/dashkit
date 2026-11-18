@@ -4,6 +4,7 @@ import { type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { FiMaximize2, FiX } from 'react-icons/fi';
 import { cn } from '../utils/cn';
+import { useFocusTrap } from '../utils/useFocusTrap';
 import { useImageExpander } from './useImageExpander';
 
 export interface ImageExpanderProps extends React.ComponentPropsWithoutRef<'div'> {
@@ -21,8 +22,9 @@ export interface ImageExpanderProps extends React.ComponentPropsWithoutRef<'div'
  * ```
  */
 export const ImageExpander = React.forwardRef<HTMLDivElement, ImageExpanderProps>(
-  function ImageExpander({ children, full, caption, className, onClick, ...props }, ref) {
+  function ImageExpander({ children, full, caption, className, onClick, onKeyDown, ...props }, ref) {
     const { isOpen, setIsOpen } = useImageExpander();
+    const dialogRef = useFocusTrap<HTMLDivElement>(isOpen);
     const displayFull = full || children;
 
     return (
@@ -30,11 +32,20 @@ export const ImageExpander = React.forwardRef<HTMLDivElement, ImageExpanderProps
         <div
           ref={ref}
           data-slot="image-expander"
+          role="button"
+          tabIndex={0}
           onClick={(e) => {
             setIsOpen(true);
             onClick?.(e);
           }}
-          className={cn('group relative cursor-zoom-in overflow-hidden ds-rounded border border-border transition-all duration-300 hover:shadow-xl', className)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              setIsOpen(true);
+            }
+            onKeyDown?.(e);
+          }}
+          className={cn('group relative cursor-zoom-in overflow-hidden ds-rounded border border-border transition-all duration-300 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring', className)}
           {...props}
         >
         <div className="flex w-full h-full transition-transform duration-500 group-hover:scale-105">
@@ -52,12 +63,13 @@ export const ImageExpander = React.forwardRef<HTMLDivElement, ImageExpanderProps
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            ref={dialogRef}
             key="image-expander-dialog"
             data-slot="image-expander-dialog"
             className="fixed inset-0 z-[1100] flex items-center justify-center isolate"
             role="dialog"
             aria-modal="true"
-            aria-label={caption}
+            aria-label={caption ?? 'Expanded image'}
           >
             <motion.div
               initial={{ opacity: 0 }}
@@ -70,14 +82,15 @@ export const ImageExpander = React.forwardRef<HTMLDivElement, ImageExpanderProps
             <div className="absolute inset-0 -z-0" onClick={() => setIsOpen(false)} />
 
             <motion.button
+              type="button"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.8 }}
               onClick={() => setIsOpen(false)}
-              className="absolute top-6 right-6 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-colors z-[110] backdrop-blur-md"
+              className="absolute top-6 right-6 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-colors z-[110] backdrop-blur-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               aria-label="Close"
             >
-              <FiX className="size-6" />
+              <FiX className="size-6" aria-hidden="true" />
             </motion.button>
 
             <motion.div

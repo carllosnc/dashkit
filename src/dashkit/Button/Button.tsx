@@ -166,6 +166,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
       return cloneElement(child as ReactElement<Record<string, unknown>>, {
         ref,
+        'aria-disabled': disabled || loading || undefined,
+        'aria-busy': loading || undefined,
         className: cn(classes, childProps.className),
         children: (
           <>

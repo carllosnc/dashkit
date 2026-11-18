@@ -182,8 +182,9 @@ export const Chip = React.forwardRef<HTMLButtonElement | HTMLDivElement, ChipPro
     <div
       ref={ref as React.Ref<HTMLDivElement>}
       data-slot="chip"
-      role={isInteractive ? 'button' : undefined}
+      role={isKeyboardActivatable ? 'button' : undefined}
       tabIndex={isKeyboardActivatable ? 0 : undefined}
+      aria-pressed={isKeyboardActivatable ? selected : undefined}
       aria-disabled={disabled || undefined}
       onClick={isInteractive ? onClick : undefined}
       onKeyDown={(e) => {

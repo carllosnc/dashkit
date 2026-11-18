@@ -45,14 +45,16 @@ export const AnimateNumber = forwardRef<HTMLSpanElement, AnimateNumberProps>(fun
   const chars = fullString.split("");
 
   return (
-    <span ref={ref} data-slot="animate-number" className={className} {...props}>
-      {chars.map((char, index) => (
-        <Digit 
-          key={index} 
-          char={char} 
-          duration={duration}
-        />
-      ))}
+    <span ref={ref} data-slot="animate-number" aria-label={fullString} className={className} {...props}>
+      <span aria-hidden="true">
+        {chars.map((char, index) => (
+          <Digit 
+            key={index} 
+            char={char} 
+            duration={duration}
+          />
+        ))}
+      </span>
     </span>
   );
 });

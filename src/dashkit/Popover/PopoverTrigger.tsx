@@ -34,8 +34,12 @@ export function PopoverTrigger({ children, asChild }: PopoverTriggerProps) {
         ref?: React.Ref<HTMLElement>;
         onMouseEnter?: React.MouseEventHandler;
         onMouseLeave?: React.MouseEventHandler;
+        'aria-expanded'?: boolean;
+        'aria-haspopup'?: 'dialog';
     }>, {
       ref: internalRef,
+      'aria-expanded': open,
+      'aria-haspopup': 'dialog',
       onClick: (e: React.MouseEvent) => {
         (children.props as { onClick?: React.MouseEventHandler }).onClick?.(e);
         toggleOpen(e.currentTarget as HTMLElement);
@@ -93,7 +97,7 @@ export function PopoverTrigger({ children, asChild }: PopoverTriggerProps) {
       onMouseLeave={onMouseLeave}
       onFocus={onFocus}
       onBlur={onBlur}
-      className="cursor-pointer inline-block"
+      className="cursor-pointer inline-block rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
     >
       {children}
     </div>

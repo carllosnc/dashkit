@@ -87,9 +87,12 @@ export const FloatActionMenu = React.forwardRef<HTMLDivElement, FloatActionMenuP
           key="fab"
           type="button"
           data-slot="float-action-menu-trigger"
+          aria-expanded={isOpen}
+          aria-haspopup="dialog"
+          aria-label={!label ? 'Open menu' : undefined}
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          'flex items-center gap-2.5 px-4 py-3 ds-rounded active:scale-95 transition-all cursor-pointer relative z-10 shadow-lg',
+          'flex items-center gap-2.5 px-4 py-3 ds-rounded active:scale-95 transition-all cursor-pointer relative z-10 shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
           variant === 'primary'
             ? 'ds-primary-gradient text-primary-foreground hover:brightness-105 border border-transparent ds-button-surface'
             : 'bg-ds-900 text-ds-50 dark:bg-ds-100 dark:text-ds-950 hover:bg-ds-800 dark:hover:bg-ds-200 border border-border ds-button-surface',
@@ -111,6 +114,8 @@ export const FloatActionMenu = React.forwardRef<HTMLDivElement, FloatActionMenuP
           <motion.div
             key="menu"
             ref={menuRef}
+            role="dialog"
+            aria-label={label ?? 'Menu'}
             data-slot="float-action-menu-content"
             className={cn(
               'absolute w-[calc(100vw-3rem)] sm:w-[400px] max-w-[400px] min-h-[300px] bg-card text-card-foreground ds-rounded shadow-2xl border border-border ds-border-width ds-card-shadow overflow-hidden flex flex-col z-20',
@@ -136,6 +141,7 @@ export const FloatActionMenu = React.forwardRef<HTMLDivElement, FloatActionMenuP
                 <IconButton
                   icon={<FiX />}
                   variant="ghost"
+                  aria-label="Close menu"
                   onClick={() => setIsOpen(false)}
                 />
               </div>
@@ -149,7 +155,5 @@ export const FloatActionMenu = React.forwardRef<HTMLDivElement, FloatActionMenuP
     </div>
   );
 });
-
-FloatActionMenu.displayName = 'FloatActionMenu';
 
 FloatActionMenu.displayName = 'FloatActionMenu';

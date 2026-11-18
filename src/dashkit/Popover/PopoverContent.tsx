@@ -124,6 +124,7 @@ export const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentPro
       {open && (
         <motion.div
            ref={setContentRef}
+           role="dialog"
            data-slot="popover-content"
            {...getPortalThemeAttrs(triggerElement)}
            initial={{ opacity: 0, scale: 0.95, y: animProps.y, x: animProps.x }}

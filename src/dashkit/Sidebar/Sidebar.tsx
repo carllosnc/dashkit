@@ -7,6 +7,7 @@ import { FiChevronsLeft, FiMenu, FiChevronDown, FiX } from 'react-icons/fi';
 import { IconButton } from '../IconButton/IconButton';
 import { Backdrop } from '../Backdrop/Backdrop';
 import { lockBodyScroll } from '../utils/scrollLock';
+import { useFocusTrap } from '../utils/useFocusTrap';
 import { SidebarContext, useSidebar } from './SidebarContext';
 import { useSidebarState, type UseSidebarProps } from './useSidebar';
 import { Tooltip, TooltipTrigger, TooltipContent } from '../Tooltip/Tooltip';
@@ -82,7 +83,7 @@ export interface SidebarProps extends
  * ```
  */
 export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
-  (
+  function Sidebar(
     {
       className,
       children,
@@ -100,7 +101,7 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
       ...props
     },
     ref
-  ) => {
+  ) {
     const parentContext = React.useContext(SidebarContext);
 
     const localState = useSidebarState({
@@ -117,6 +118,7 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
     const { isOpen, isMobile, openMobile, setOpenMobile, toggle } = activeContext;
 
     const isMobileMode = responsive && isMobile;
+    const mobileDrawerRef = useFocusTrap<HTMLElement>(isMobileMode && openMobile);
 
     React.useEffect(() => {
       if (!isMobileMode || !openMobile) return;
@@ -181,7 +183,11 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
                 onClick={() => setOpenMobile(false)}
               />
               <motion.aside
-                ref={ref as React.Ref<HTMLDivElement>}
+                ref={(node) => {
+                  mobileDrawerRef.current = node;
+                  if (typeof ref === 'function') ref(node);
+                  else if (ref) (ref as React.MutableRefObject<HTMLElement | null>).current = node;
+                }}
                 data-slot="sidebar"
                 initial={{ x: '-100%' }}
                 animate={{ x: 0 }}
@@ -377,34 +383,43 @@ export function SidebarSection({
     <div className={cn('text-foreground mt-4 first:mt-2 mb-1', className)}>
       {title && isOpen && (
         <div className="overflow-hidden">
-          <button
-            type="button"
-            onClick={() => collapsible && setIsSectionOpen(!isSectionOpen)}
-            className={cn(
-              'w-[calc(100%-1rem)] mx-2 flex items-center justify-between py-1 px-2.5 transition-colors duration-150 outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring',
-              collapsible ? 'hover:bg-muted/50 cursor-pointer rounded-lg' : 'cursor-default'
-            )}
-          >
-            <h4 className="text-[11px] font-semibold text-muted-foreground/80 uppercase tracking-wider truncate px-3 py-1">
-              {title}
-            </h4>
+          {collapsible ? (
+            <button
+              type="button"
+              aria-expanded={isSectionOpen}
+              onClick={() => setIsSectionOpen(!isSectionOpen)}
+              className="w-[calc(100%-1rem)] mx-2 flex items-center justify-between py-1 px-2.5 transition-colors duration-150 outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring hover:bg-muted/50 cursor-pointer rounded-lg"
+            >
+              <span className="text-[11px] font-semibold text-muted-foreground/80 uppercase tracking-wider truncate px-3 py-1">
+                {title}
+              </span>
 
-            <div className="px-2 flex items-center gap-2">
-              {badge && (
-                <div className="shrink-0">
-                  {badge}
-                </div>
-              )}
-              {collapsible && (
+              <div className="px-2 flex items-center gap-2">
+                {badge && (
+                  <div className="shrink-0">
+                    {badge}
+                  </div>
+                )}
                 <motion.div
                   animate={{ rotate: isSectionOpen ? 0 : -90 }}
                   className="text-muted-foreground transition-colors"
                 >
-                  <FiChevronDown size={14} />
+                  <FiChevronDown size={14} aria-hidden="true" />
                 </motion.div>
+              </div>
+            </button>
+          ) : (
+            <div className="w-[calc(100%-1rem)] mx-2 flex items-center justify-between py-1 px-2.5">
+              <h4 className="text-[11px] font-semibold text-muted-foreground/80 uppercase tracking-wider truncate px-3 py-1">
+                {title}
+              </h4>
+              {badge && (
+                <div className="px-2 shrink-0">
+                  {badge}
+                </div>
               )}
             </div>
-          </button>
+          )}
         </div>
       )}
       <AnimatePresence initial={false}>

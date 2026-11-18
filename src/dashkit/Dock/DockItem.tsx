@@ -86,14 +86,20 @@ export const DockItem = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, 
 
     const commonProps = {
       'data-slot': 'dock-item',
+      'aria-label': label,
       className: cn(
-        "relative flex size-10 items-center justify-center rounded-full ds-pill bg-card dark:bg-ds-950 text-ds-800 dark:text-ds-200 shadow-sm shrink-0 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-ds-400",
+        "relative flex size-10 items-center justify-center rounded-full ds-pill bg-card dark:bg-ds-950 text-ds-800 dark:text-ds-200 shadow-sm shrink-0 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-ring",
         className
       ),
       onMouseEnter: () => setIsHovered(true),
       onMouseLeave: () => setIsHovered(false),
       onFocus: () => setIsHovered(true),
       onBlur: () => setIsHovered(false),
+      onKeyDown: (e: React.KeyboardEvent) => {
+        if (e.key === 'Escape' && isHovered) {
+          setIsHovered(false);
+        }
+      },
       whileHover: {
         scale: 1.15,
         y: position === "bottom" ? -4 : 0,

@@ -41,11 +41,11 @@ describe('Radio', () => {
     expect(container).toHaveClass('opacity-50');
   });
 
-  it('generates an ID automatically from label if not provided', () => {
+  it('generates a unique ID automatically when not provided', () => {
     render(<Radio label="My Radio" />);
     const label = screen.getByText(/My Radio/i);
     const input = screen.getByRole('radio');
-    expect(input.id).toBe('radio-my-radio');
-    expect(label.parentElement).toHaveAttribute('for', 'radio-my-radio');
+    expect(input.id).toBeTruthy();
+    expect(label.closest('label')).toHaveAttribute('for', input.id);
   });
 });

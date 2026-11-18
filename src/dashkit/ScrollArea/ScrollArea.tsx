@@ -52,7 +52,15 @@ export const ScrollArea = forwardRef<HTMLDivElement, ScrollAreaProps>(function S
       className={cn('relative overflow-hidden w-full h-full', className)}
       {...props}
     >
-      <div data-slot="scroll-area-viewport" className={cn(viewportVariants({ orientation }), viewportClassName)}>
+      <div
+        tabIndex={0}
+        data-slot="scroll-area-viewport"
+        className={cn(
+          viewportVariants({ orientation }),
+          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring',
+          viewportClassName
+        )}
+      >
         {children}
       </div>
     </div>

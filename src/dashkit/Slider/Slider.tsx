@@ -21,16 +21,17 @@ export interface SliderProps extends Omit<InputHTMLAttributes<HTMLInputElement>,
  * ```
  */
 export const Slider = forwardRef<HTMLInputElement, SliderProps>(
-  ({ label, description, className, id, min = 0, max = 100, step = 1, value, defaultValue, onChange, showValue = false, disabled, ...props }, ref) => {
+  function Slider({ label, description, className, id, min = 0, max = 100, step = 1, value, defaultValue, onChange, showValue = false, disabled, ...props }, ref) {
     const { currentValue, percentage, handleChange, sliderId } = useSlider({
       id,
-      label,
       min,
       max,
       value,
       defaultValue,
       onChange
     });
+    const descriptionId = description ? `${sliderId}-description` : undefined;
+    const describedBy = [props['aria-describedby'], descriptionId].filter(Boolean).join(' ') || undefined;
 
     return (
       <div className={cn('flex flex-col gap-3 relative w-full', disabled && 'opacity-50 cursor-not-allowed pointer-events-none')}>
@@ -47,7 +48,7 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(
                 </label>
               )}
               {description && (
-                <span className="text-xs text-muted-foreground tracking-tight">
+                <span id={descriptionId} className="text-xs text-muted-foreground tracking-tight">
                   {description}
                 </span>
               )}
@@ -82,6 +83,7 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(
             value={currentValue}
             onChange={handleChange}
             disabled={disabled}
+            aria-describedby={describedBy}
             className={cn('absolute inset-0 w-full h-full opacity-0 cursor-pointer accent-transparent z-20', className)}
           />
         </div>

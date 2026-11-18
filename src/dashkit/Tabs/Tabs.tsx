@@ -1,4 +1,4 @@
-import { createContext, forwardRef, useContext, useState, type ComponentPropsWithoutRef, type ReactNode, type KeyboardEvent } from 'react';
+import { createContext, forwardRef, useContext, useId, useState, type ComponentPropsWithoutRef, type ReactNode, type KeyboardEvent } from 'react';
 import { motion, type HTMLMotionProps } from 'framer-motion';
 import { cva } from 'class-variance-authority';
 import { cn } from '../utils/cn';
@@ -98,7 +98,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(function Tabs(
   ref
 ) {
   const [internalValue, setInternalValue] = useState(defaultValue || '');
-  const [tabsId] = useState(() => Math.random().toString(36).substring(7));
+  const tabsId = useId();
 
   const activeTab = value !== undefined ? value : internalValue;
 

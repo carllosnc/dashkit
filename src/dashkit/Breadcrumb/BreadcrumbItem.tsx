@@ -19,6 +19,7 @@ export const BreadcrumbItem = React.forwardRef<HTMLLIElement, BreadcrumbItemProp
       >
         <Component
           href={href}
+          aria-current={active ? 'page' : undefined}
           className={cn(
             'flex items-center gap-1.5 text-sm transition-colors',
             href ? 'text-muted-foreground hover:text-foreground' : 'text-muted-foreground font-medium',

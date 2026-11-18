@@ -91,7 +91,7 @@ function formatBytes(bytes: number): string {
  * ```
  */
 export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
-  (
+  function FileUpload(
     {
       value: controlledValue,
       defaultValue = [],
@@ -113,9 +113,11 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
       ...props
     },
     ref
-  ) => {
+  ) {
     const generatedId = useId();
     const inputId = providedId ?? `file-upload-${generatedId}`;
+    const labelId = `${inputId}-label`;
+    const messageId = `${inputId}-message`;
     const inputRef = useRef<HTMLInputElement>(null);
 
     const [uncontrolledItems, setUncontrolledItems] = useState<FileUploadItem[]>(defaultValue);
@@ -217,6 +219,7 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
       <div ref={ref} data-slot="file-upload" className={cn('flex flex-col gap-2 w-full', className)} {...props}>
         {label && (
           <label
+            id={labelId}
             htmlFor={inputId}
             data-slot="file-upload-label"
             className="text-sm font-medium text-foreground select-none"
@@ -229,6 +232,9 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
           role="button"
           tabIndex={disabled || atLimit ? -1 : 0}
           aria-disabled={disabled || atLimit || undefined}
+          aria-labelledby={label ? labelId : undefined}
+          aria-invalid={Boolean(error) || undefined}
+          aria-describedby={error || description ? messageId : undefined}
           data-slot="file-upload-dropzone"
           data-dragging={isDragging ? 'true' : undefined}
           onClick={() => {
@@ -242,7 +248,7 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
           className={cn(
             'flex flex-col items-center justify-center gap-2 ds-rounded-lg border-2 border-dashed border-border bg-card/50 px-6 py-8 text-center transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40',
             isDragging && 'border-primary bg-primary/5',
-            error && 'border-destructive',
+            error && 'border-ds-danger-500',
             (disabled || atLimit) && 'opacity-50 cursor-not-allowed'
           )}
         >
@@ -282,7 +288,7 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
                   data-status={status}
                   className={cn(
                     'flex flex-col gap-2 ds-rounded-md border border-border bg-card p-3',
-                    status === 'error' && 'border-destructive/60 bg-destructive/5'
+                    status === 'error' && 'border-ds-danger-500/60 bg-ds-danger-500/5'
                   )}
                 >
                   <div className="flex items-center gap-3">
@@ -290,7 +296,7 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
                       {status === 'completed' ? (
                         <FiCheckCircle className="size-4 text-primary" aria-hidden="true" />
                       ) : status === 'error' ? (
-                        <FiAlertCircle className="size-4 text-destructive" aria-hidden="true" />
+                        <FiAlertCircle className="size-4 text-ds-danger-600 dark:text-ds-danger-400" aria-hidden="true" />
                       ) : (
                         <FiFile className="size-4" aria-hidden="true" />
                       )}
@@ -338,11 +344,11 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
         )}
 
         {error ? (
-          <p data-slot="file-upload-error" className="text-xs text-destructive">
+          <p id={messageId} role="alert" data-slot="file-upload-error" className="text-xs text-ds-danger-600 dark:text-ds-danger-400">
             {error}
           </p>
         ) : description ? (
-          <p data-slot="file-upload-description" className="text-xs text-muted-foreground">
+          <p id={messageId} data-slot="file-upload-description" className="text-xs text-muted-foreground">
             {description}
           </p>
         ) : null}

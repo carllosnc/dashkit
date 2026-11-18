@@ -58,6 +58,7 @@ export const NavigationMenu = React.forwardRef<HTMLElement, NavigationMenuProps>
       >
         <nav
           ref={setNavRef}
+          aria-label={props['aria-label'] ?? 'Main navigation'}
           data-slot="navigation-menu"
           className={cn('relative z-[999] flex w-full items-center justify-center', className)}
           {...props}

@@ -115,17 +115,29 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(function Step(
     props.onClick?.(e);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (isClickable && onChange && (e.key === 'Enter' || e.key === ' ')) {
+      e.preventDefault();
+      onChange(index);
+    }
+    props.onKeyDown?.(e);
+  };
+
   return (
     <div
       ref={ref}
       data-slot="step"
+      role={isClickable ? 'button' : undefined}
+      tabIndex={isClickable ? 0 : undefined}
+      aria-current={isActive ? 'step' : undefined}
       className={cn(
-        'group relative flex',
+        'group relative flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md',
         orientation === 'horizontal' ? 'flex-1' : 'flex-col items-start pb-6 w-full',
         isClickable && 'cursor-pointer',
         className
       )}
       onClick={handleClick}
+      onKeyDown={handleKeyDown}
       {...props}
     >
       {/* Horizontal Line */}
