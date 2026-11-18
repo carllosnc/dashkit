@@ -1,4 +1,4 @@
-import { forwardRef, type KeyboardEvent } from 'react';
+import { forwardRef, useId, type KeyboardEvent } from 'react';
 import { cn } from '../utils/cn';
 import { useDateField } from './useDateField';
 
@@ -16,6 +16,8 @@ export interface DateFieldProps {
 interface SegmentProps {
   value: string;
   placeholder: string;
+  ariaLabel: string;
+  ariaInvalid?: boolean;
   max: number;
   onUpdate: (val: string) => void;
   onNext: () => void;
@@ -24,7 +26,7 @@ interface SegmentProps {
 }
 
 const DateSegment = forwardRef<HTMLInputElement, SegmentProps>(
-  function DateSegment({ value, placeholder, max, onUpdate, onNext, onPrev, disabled }, ref) {
+  function DateSegment({ value, placeholder, ariaLabel, ariaInvalid, max, onUpdate, onNext, onPrev, disabled }, ref) {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const val = e.target.value.replace(/\D/g, '').slice(0, max.toString().length);
       onUpdate(val);
@@ -52,6 +54,8 @@ const DateSegment = forwardRef<HTMLInputElement, SegmentProps>(
         data-slot="segment"
         type="text"
         inputMode="numeric"
+        aria-label={ariaLabel}
+        aria-invalid={ariaInvalid || undefined}
         placeholder={placeholder}
         value={value}
         onChange={handleChange}
@@ -96,42 +100,60 @@ export function DateField({
     handleYearUpdate
   } = useDateField({ value, onChange });
 
+  const generatedId = useId();
+  const labelId = `${generatedId}-label`;
+  const messageId = `${generatedId}-message`;
+  const hasError = Boolean(error);
+  const hasMessage = Boolean(error || description);
+
   return (
     <div data-slot="root" className={cn('flex flex-col gap-1.5 w-full font-sans', className)}>
       {label && (
-        <label data-slot="label" className="text-[13px] font-semibold text-foreground ml-1 tracking-tight">
+        <span id={labelId} data-slot="label" className="text-[13px] font-semibold text-foreground ml-1 tracking-tight">
           {label}
           {isRequired && <span className="text-ds-danger-500 ml-0.5">*</span>}
-        </label>
+        </span>
       )}
 
-      <div data-slot="segments" className="flex items-center gap-2">
+      <div
+        data-slot="segments"
+        role="group"
+        aria-labelledby={label ? labelId : undefined}
+        aria-describedby={hasMessage ? messageId : undefined}
+        className="flex items-center gap-2"
+      >
         <DateSegment
           ref={monthRef}
           value={month}
           placeholder="MM"
+          ariaLabel="Month"
+          ariaInvalid={hasError}
           max={12}
           disabled={disabled}
           onUpdate={handleMonthUpdate}
           onNext={() => dayRef.current?.focus()}
           onPrev={() => {}}
         />
-        <span className="text-muted-foreground font-bold select-none text-lg">·</span>
+        <span className="text-muted-foreground font-bold select-none text-lg" aria-hidden="true">·</span>
         <DateSegment
           ref={dayRef}
           value={day}
           placeholder="DD"
+          ariaLabel="Day"
+          ariaInvalid={hasError}
           max={31}
           disabled={disabled}
           onUpdate={handleDayUpdate}
           onNext={() => yearRef.current?.focus()}
           onPrev={() => monthRef.current?.focus()}
         />
-        <span className="text-muted-foreground font-bold select-none text-lg">·</span>
+        <span className="text-muted-foreground font-bold select-none text-lg" aria-hidden="true">·</span>
         <DateSegment
           ref={yearRef}
           value={year}
           placeholder="YYYY"
+          ariaLabel="Year"
+          ariaInvalid={hasError}
           max={9999}
           disabled={disabled}
           onUpdate={handleYearUpdate}
@@ -140,8 +162,10 @@ export function DateField({
         />
       </div>
 
-      {(error || description) && (
+      {hasMessage && (
         <span
+          id={messageId}
+          role={error ? 'alert' : undefined}
           data-slot="helper"
           className={cn(
             'text-[12px] ml-1 tracking-tight',
